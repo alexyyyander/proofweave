@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "005",
+  "title": "Irrationality of Catalan’s constant",
+  "result": {
+    "id": "paper-result",
+    "label": "Irrationality of Catalan’s constant",
+    "statement": "Proves that Catalan's constant G= j 0 (-1)^j/(2j+1)^2 is irrational.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "polynomial-rows-and-mixed-moments",
+      "label": "Polynomial rows and mixed moments",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "odd-primes-and-the-finite-place-lower-bound",
+      "label": "Odd primes and the finite-place lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "nonvanishing-along-the-prime-sequence",
+      "label": "Nonvanishing along the prime sequence",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-real-place-determinant-estimates",
+      "label": "The real-place determinant estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniform-energy-bound",
+      "label": "A uniform energy bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-exact-certificate-for-the-two-barriers",
+      "label": "An exact certificate for the two barriers",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Catalan's constant is irrational",
+      "title": "Catalan's constant is irrational",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Catalans-constant-is-irrational-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Catalan's constant is irrational.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-rationality",
+            "m1-prop-nonvanishing"
+          ]
+        },
+        {
+          "id": "m1-prop-rationality",
+          "role": "polynomial-rows-and-mixed-moments",
+          "label": "proposition m1-prop-rationality",
+          "fullLabel": "proposition m1-prop-rationality",
+          "kind": "proposition",
+          "source": "Polynomial rows and mixed moments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-two-adic",
+          "role": "polynomial-rows-and-mixed-moments",
+          "label": "proposition m1-prop-two-adic",
+          "fullLabel": "proposition m1-prop-two-adic",
+          "kind": "proposition",
+          "source": "Polynomial rows and mixed moments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-odd-digit-reductions",
+          "role": "odd-primes-and-the-finite-place-lower-bound",
+          "label": "lemma m1-lem-odd-digit-reductions",
+          "fullLabel": "lemma m1-lem-odd-digit-reductions",
+          "kind": "lemma",
+          "source": "Odd primes and the finite-place lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-odd-central-layer",
+          "role": "odd-primes-and-the-finite-place-lower-bound",
+          "label": "lemma m1-lem-odd-central-layer",
+          "fullLabel": "lemma m1-lem-odd-central-layer",
+          "kind": "lemma",
+          "source": "Odd primes and the finite-place lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-odd-local-elimination",
+          "role": "odd-primes-and-the-finite-place-lower-bound",
+          "label": "lemma m1-lem-odd-local-elimination",
+          "fullLabel": "lemma m1-lem-odd-local-elimination",
+          "kind": "lemma",
+          "source": "Odd primes and the finite-place lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-finite-lower",
+          "role": "odd-primes-and-the-finite-place-lower-bound",
+          "label": "proposition m1-prop-finite-lower",
+          "fullLabel": "proposition m1-prop-finite-lower",
+          "kind": "proposition",
+          "source": "Odd primes and the finite-place lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-nonvanishing",
+          "role": "nonvanishing-along-the-prime-sequence",
+          "label": "proposition m1-prop-nonvanishing",
+          "fullLabel": "proposition m1-prop-nonvanishing",
+          "kind": "proposition",
+          "source": "Nonvanishing along the prime sequence",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-real-uniform-interpolation",
+          "role": "the-real-place-determinant-estimates",
+          "label": "lemma m1-lem-real-uniform-interpolation",
+          "fullLabel": "lemma m1-lem-real-uniform-interpolation",
+          "kind": "lemma",
+          "source": "The real-place determinant estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-first-sheet-bound",
+          "role": "the-real-place-determinant-estimates",
+          "label": "proposition m1-prop-first-sheet-bound",
+          "fullLabel": "proposition m1-prop-first-sheet-bound",
+          "kind": "proposition",
+          "source": "The real-place determinant estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-second-sheet-bound",
+          "role": "the-real-place-determinant-estimates",
+          "label": "proposition m1-prop-second-sheet-bound",
+          "fullLabel": "proposition m1-prop-second-sheet-bound",
+          "kind": "proposition",
+          "source": "The real-place determinant estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-energy-reduction",
+          "role": "a-uniform-energy-bound",
+          "label": "proposition m1-prop-energy-reduction",
+          "fullLabel": "proposition m1-prop-energy-reduction",
+          "kind": "proposition",
+          "source": "A uniform energy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-real-upper",
+          "role": "an-exact-certificate-for-the-two-barriers",
+          "label": "proposition m1-prop-real-upper",
+          "fullLabel": "proposition m1-prop-real-upper",
+          "kind": "proposition",
+          "source": "An exact certificate for the two barriers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Catalan's constant is irrational",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Catalans-constant-is-irrational-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

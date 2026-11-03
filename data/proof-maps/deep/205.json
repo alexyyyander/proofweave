@@ -1,0 +1,559 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "205",
+  "title": "Saxl’s conjecture and universal tensor squares",
+  "result": {
+    "id": "paper-result",
+    "label": "Saxl’s conjecture and universal tensor squares",
+    "statement": "Proves Saxl's conjecture: the tensor square of every staircase representation contains every irreducible complex representation of the corresponding symmetric group. More generally, every S n with n 2,4,9 has an irreducible representation whose tensor square contains all irreducibles.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "representation-theoretic-tools",
+      "label": "Representation-theoretic tools",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-fixed-self-conjugate-candidate",
+      "label": "A fixed self-conjugate candidate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-band-criterion",
+      "label": "The band criterion",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "balance-tests",
+      "label": "Balance tests",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exhaustion-of-the-capacity-conditions",
+      "label": "Exhaustion of the capacity conditions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "small-degrees-by-exact-character-calculation",
+      "label": "Small degrees by exact character calculation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "specht-modules-and-horizontal-strips",
+      "label": "Specht modules and horizontal strips",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-triangular-cyclic-module-and-dominance",
+      "label": "The triangular cyclic module and dominance",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-quotient-obtained-by-cutting-off-a-band",
+      "label": "A quotient obtained by cutting off a band",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "cyclic-support-of-the-bands",
+      "label": "Cyclic support of the bands",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "completion-of-the-induction",
+      "label": "Completion of the induction",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Universal Tensor Squares for Symmetric Groups",
+      "title": "Universal Tensor Squares for Symmetric Groups",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universal-Tensor-Squares-for-Symmetric-Groups-September-24-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Universal Tensor Squares for Symmetric Groups.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-candidate"
+          ]
+        },
+        {
+          "id": "m1-cor-unipotent-squares",
+          "role": "introduction",
+          "label": "corollary m1-cor-unipotent-squares",
+          "fullLabel": "corollary m1-cor-unipotent-squares",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-dual-test",
+          "role": "representation-theoretic-tools",
+          "label": "lemma m1-lem-dual-test",
+          "fullLabel": "lemma m1-lem-dual-test",
+          "kind": "lemma",
+          "source": "Representation-theoretic tools",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-young-support",
+          "role": "representation-theoretic-tools",
+          "label": "lemma m1-lem-young-support",
+          "fullLabel": "lemma m1-lem-young-support",
+          "kind": "lemma",
+          "source": "Representation-theoretic tools",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lr-addition",
+          "role": "representation-theoretic-tools",
+          "label": "lemma m1-lem-lr-addition",
+          "fullLabel": "lemma m1-lem-lr-addition",
+          "kind": "lemma",
+          "source": "Representation-theoretic tools",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-cyclic-input",
+          "role": "representation-theoretic-tools",
+          "label": "theorem m1-thm-cyclic-input",
+          "fullLabel": "theorem m1-thm-cyclic-input",
+          "kind": "theorem",
+          "source": "Representation-theoretic tools",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-candidate",
+          "role": "a-fixed-self-conjugate-candidate",
+          "label": "lemma m1-lem-candidate",
+          "fullLabel": "lemma m1-lem-candidate",
+          "kind": "lemma",
+          "source": "A fixed self-conjugate candidate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-band-test",
+          "role": "the-band-criterion",
+          "label": "proposition m1-prop-band-test",
+          "fullLabel": "proposition m1-prop-band-test",
+          "kind": "proposition",
+          "source": "The band criterion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sector-induction",
+          "role": "the-band-criterion",
+          "label": "lemma m1-lem-sector-induction",
+          "fullLabel": "lemma m1-lem-sector-induction",
+          "kind": "lemma",
+          "source": "The band criterion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-band-triangle-quotient",
+          "role": "the-band-criterion",
+          "label": "lemma m1-band-triangle-quotient",
+          "fullLabel": "lemma m1-band-triangle-quotient",
+          "kind": "lemma",
+          "source": "The band criterion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-band-separated",
+          "role": "the-band-criterion",
+          "label": "lemma m1-band-separated",
+          "fullLabel": "lemma m1-band-separated",
+          "kind": "lemma",
+          "source": "The band criterion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-band-path-support",
+          "role": "the-band-criterion",
+          "label": "lemma m1-band-path-support",
+          "fullLabel": "lemma m1-band-path-support",
+          "kind": "lemma",
+          "source": "The band criterion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-band-one-extra",
+          "role": "the-band-criterion",
+          "label": "lemma m1-band-one-extra",
+          "fullLabel": "lemma m1-band-one-extra",
+          "kind": "lemma",
+          "source": "The band criterion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-band-two-extras",
+          "role": "the-band-criterion",
+          "label": "lemma m1-band-two-extras",
+          "fullLabel": "lemma m1-band-two-extras",
+          "kind": "lemma",
+          "source": "The band criterion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-balance-separation",
+          "role": "balance-tests",
+          "label": "lemma m1-lem-balance-separation",
+          "fullLabel": "lemma m1-lem-balance-separation",
+          "kind": "lemma",
+          "source": "Balance tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bal-coordinate-line",
+          "role": "balance-tests",
+          "label": "lemma m1-bal-coordinate-line",
+          "fullLabel": "lemma m1-bal-coordinate-line",
+          "kind": "lemma",
+          "source": "Balance tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bal-neighboring",
+          "role": "balance-tests",
+          "label": "lemma m1-bal-neighboring",
+          "fullLabel": "lemma m1-bal-neighboring",
+          "kind": "lemma",
+          "source": "Balance tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bal-two-paths",
+          "role": "balance-tests",
+          "label": "lemma m1-bal-two-paths",
+          "fullLabel": "lemma m1-bal-two-paths",
+          "kind": "lemma",
+          "source": "Balance tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bal-even-rows",
+          "role": "balance-tests",
+          "label": "lemma m1-bal-even-rows",
+          "fullLabel": "lemma m1-bal-even-rows",
+          "kind": "lemma",
+          "source": "Balance tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bal-odd-strip",
+          "role": "balance-tests",
+          "label": "lemma m1-bal-odd-strip",
+          "fullLabel": "lemma m1-bal-odd-strip",
+          "kind": "lemma",
+          "source": "Balance tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-balance-four",
+          "role": "balance-tests",
+          "label": "proposition m1-prop-balance-four",
+          "fullLabel": "proposition m1-prop-balance-four",
+          "kind": "proposition",
+          "source": "Balance tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-three-row",
+          "role": "balance-tests",
+          "label": "proposition m1-prop-three-row",
+          "fullLabel": "proposition m1-prop-three-row",
+          "kind": "proposition",
+          "source": "Balance tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-capacity-rectangle",
+          "role": "exhaustion-of-the-capacity-conditions",
+          "label": "lemma m1-lem-capacity-rectangle",
+          "fullLabel": "lemma m1-lem-capacity-rectangle",
+          "kind": "lemma",
+          "source": "Exhaustion of the capacity conditions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-capacity-large",
+          "role": "exhaustion-of-the-capacity-conditions",
+          "label": "lemma m1-lem-capacity-large",
+          "fullLabel": "lemma m1-lem-capacity-large",
+          "kind": "lemma",
+          "source": "Exhaustion of the capacity conditions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-capacity-intermediate",
+          "role": "exhaustion-of-the-capacity-conditions",
+          "label": "lemma m1-lem-capacity-intermediate",
+          "fullLabel": "lemma m1-lem-capacity-intermediate",
+          "kind": "lemma",
+          "source": "Exhaustion of the capacity conditions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-capacity-prefix-pruning",
+          "role": "exhaustion-of-the-capacity-conditions",
+          "label": "lemma m1-lem-capacity-prefix-pruning",
+          "fullLabel": "lemma m1-lem-capacity-prefix-pruning",
+          "kind": "lemma",
+          "source": "Exhaustion of the capacity conditions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-capacity-hit",
+          "role": "exhaustion-of-the-capacity-conditions",
+          "label": "lemma m1-lem-capacity-hit",
+          "fullLabel": "lemma m1-lem-capacity-hit",
+          "kind": "lemma",
+          "source": "Exhaustion of the capacity conditions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-capacity-enumeration",
+          "role": "exhaustion-of-the-capacity-conditions",
+          "label": "lemma m1-lem-capacity-enumeration",
+          "fullLabel": "lemma m1-lem-capacity-enumeration",
+          "kind": "lemma",
+          "source": "Exhaustion of the capacity conditions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-capacity-exhaustion",
+          "role": "exhaustion-of-the-capacity-conditions",
+          "label": "proposition m1-prop-capacity-exhaustion",
+          "fullLabel": "proposition m1-prop-capacity-exhaustion",
+          "kind": "proposition",
+          "source": "Exhaustion of the capacity conditions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-finite-check",
+          "role": "small-degrees-by-exact-character-calculation",
+          "label": "proposition m1-prop-finite-check",
+          "fullLabel": "proposition m1-prop-finite-check",
+          "kind": "proposition",
+          "source": "Small degrees by exact character calculation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "A Cyclic Polytabloid Proof of Saxl's Conjecture",
+      "title": "A Cyclic Polytabloid Proof of Saxl's Conjecture",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Cyclic-Polytabloid-Proof-of-Saxls-Conjecture-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A Cyclic Polytabloid Proof of Saxl's Conjecture.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-saxl",
+          "role": "introduction",
+          "label": "theorem m2-thm-saxl",
+          "fullLabel": "theorem m2-thm-saxl",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-polytabloid",
+          "role": "specht-modules-and-horizontal-strips",
+          "label": "lemma m2-lem-polytabloid",
+          "fullLabel": "lemma m2-lem-polytabloid",
+          "kind": "lemma",
+          "source": "Specht modules and horizontal strips",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-pieri",
+          "role": "specht-modules-and-horizontal-strips",
+          "label": "lemma m2-lem-pieri",
+          "fullLabel": "lemma m2-lem-pieri",
+          "kind": "lemma",
+          "source": "Specht modules and horizontal strips",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-young-rule",
+          "role": "specht-modules-and-horizontal-strips",
+          "label": "lemma m2-lem-young-rule",
+          "fullLabel": "lemma m2-lem-young-rule",
+          "kind": "lemma",
+          "source": "Specht modules and horizontal strips",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-cyclic-saxl",
+          "role": "the-triangular-cyclic-module-and-dominance",
+          "label": "theorem m2-thm-cyclic-saxl",
+          "fullLabel": "theorem m2-thm-cyclic-saxl",
+          "kind": "theorem",
+          "source": "The triangular cyclic module and dominance",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-dominated",
+          "role": "the-triangular-cyclic-module-and-dominance",
+          "label": "proposition m2-prop-dominated",
+          "fullLabel": "proposition m2-prop-dominated",
+          "kind": "proposition",
+          "source": "The triangular cyclic module and dominance",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sector-induction",
+          "role": "a-quotient-obtained-by-cutting-off-a-band",
+          "label": "lemma m2-lem-sector-induction",
+          "fullLabel": "lemma m2-lem-sector-induction",
+          "kind": "lemma",
+          "source": "A quotient obtained by cutting off a band",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-band-quotient",
+          "role": "a-quotient-obtained-by-cutting-off-a-band",
+          "label": "proposition m2-prop-band-quotient",
+          "fullLabel": "proposition m2-prop-band-quotient",
+          "kind": "proposition",
+          "source": "A quotient obtained by cutting off a band",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-path-contraction",
+          "role": "cyclic-support-of-the-bands",
+          "label": "lemma m2-path-contraction",
+          "fullLabel": "lemma m2-path-contraction",
+          "kind": "lemma",
+          "source": "Cyclic support of the bands",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-path-segment",
+          "role": "cyclic-support-of-the-bands",
+          "label": "lemma m2-path-segment",
+          "fullLabel": "lemma m2-path-segment",
+          "kind": "lemma",
+          "source": "Cyclic support of the bands",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-two-band",
+          "role": "cyclic-support-of-the-bands",
+          "label": "proposition m2-prop-two-band",
+          "fullLabel": "proposition m2-prop-two-band",
+          "kind": "proposition",
+          "source": "Cyclic support of the bands",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-comb-strip-reduction",
+          "role": "completion-of-the-induction",
+          "label": "lemma m2-comb-strip-reduction",
+          "fullLabel": "lemma m2-comb-strip-reduction",
+          "kind": "lemma",
+          "source": "Completion of the induction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Universal Tensor Squares for Symmetric Groups",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universal-Tensor-Squares-for-Symmetric-Groups-September-24-2026/main.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A Cyclic Polytabloid Proof of Saxl's Conjecture",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Cyclic-Polytabloid-Proof-of-Saxls-Conjecture-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

@@ -9,7 +9,7 @@ import { Breadcrumb } from "@/app/components/navigation/Breadcrumb";
 import { PageSectionNav } from "@/app/components/navigation/PageSectionNav";
 import { StepNavigation } from "@/app/components/navigation/StepNavigation";
 import { ProductStateBadge, StatusStack } from "@/app/components/evidence/Status";
-import { ResearchCard } from "@/app/components/research/ResearchCard";
+import { ResearchCard, englishResearchCardCopy } from "@/app/components/research/ResearchCard";
 
 export function ComponentGallery({ project }: { project?: CatalogProblemSummary }) {
   const [step, setStep] = useState(0);
@@ -50,6 +50,6 @@ export function ComponentGallery({ project }: { project?: CatalogProblemSummary 
       <Button type="button" variant="secondary" onClick={() => setRows((value) => value + 5)}>Add preview rows</Button>
       <ScrollArea maxHeight={160} aria-label="Growing preview list"><ul>{Array.from({ length: rows }, (_, index) => <li key={index}>Preview record {index + 1}</li>)}</ul></ScrollArea>
     </section>
-    {project && <section id="research"><SectionHeading><SectionTitle>One research record, two compositions</SectionTitle></SectionHeading><div className="gallery-grid"><ResearchCard project={project} variant="summary" /><ResearchCard project={project} /></div></section>}
+    {project && <section id="research"><SectionHeading><SectionTitle>One research record, two compositions</SectionTitle></SectionHeading><div className="gallery-grid"><ResearchCard project={project} variant="summary" copy={englishResearchCardCopy} /><ResearchCard project={project} copy={englishResearchCardCopy} /></div></section>}
   </>;
 }

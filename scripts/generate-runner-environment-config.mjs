@@ -28,6 +28,7 @@ export function generateRunnerEnvironmentConfig({
   profiles = [],
   executionProfile = null,
   surface = "all",
+  enableExecutionProfiles = [],
 } = {}) {
   const environments = validateRunnerEnvironmentsConfig(config);
   if (!generationSurfaces.includes(surface)) {
@@ -35,6 +36,10 @@ export function generateRunnerEnvironmentConfig({
   }
   const byProfile = new Map(environments.map((environment) => [environment.profile, environment]));
   const requestedProfiles = [...new Set(profiles)];
+  const requestedEnableProfiles = [...new Set(enableExecutionProfiles)];
+  if (requestedEnableProfiles.length > 0 && surface !== "worker") {
+    throw new RunnerEnvironmentGenerationError("--enable-execution is only available with --surface worker.");
+  }
 
   let execution = null;
   if (executionProfile !== null) {
@@ -89,12 +94,39 @@ export function generateRunnerEnvironmentConfig({
   if (execution !== null) selectedProfiles.add(execution.profile);
 
   const selected = environments.filter((environment) => selectedProfiles.has(environment.profile));
+  const enabledProfiles = new Set();
+  for (const profile of requestedEnableProfiles) {
+    const environment = byProfile.get(profile);
+    if (!environment) {
+      throw new RunnerEnvironmentGenerationError(`Unknown Runner execution environment profile ${profile}.`);
+    }
+    if (!selectedProfiles.has(profile)) {
+      throw new RunnerEnvironmentGenerationError(
+        `Runner execution environment ${profile} is not in the generated allowlist; pass --profile ${profile}.`,
+      );
+    }
+    if (environment.state !== "approved") {
+      throw new RunnerEnvironmentGenerationError(
+        `Runner environment ${profile} is ${environment.state}; only an approved environment may declare executionEnabled=true.`,
+      );
+    }
+    enabledProfiles.add(profile);
+  }
   const approvedImages = selected.map((environment) => Object.freeze({
     imageDigest: environment.imageDigest,
     leanToolchain: environment.leanToolchain,
     mathlibRevision: environment.mathlibRevision,
   }));
   const values = { RUNNER_APPROVED_IMAGES_JSON: approvedImages };
+  if (surface === "worker") {
+    // Dispatch declarations default to disabled so a Worker deployment cannot
+    // route Runs to an environment whose execution window is not open.
+    values.RUNNER_EXECUTION_ENVIRONMENTS_JSON = selected.map((environment) => Object.freeze({
+      leanToolchain: environment.leanToolchain,
+      mathlibRevision: environment.mathlibRevision,
+      executionEnabled: enabledProfiles.has(environment.profile),
+    }));
+  }
   if (execution !== null) {
     values.PROOFWEAVE_E2B_RUNNER_IMAGE = execution.imageDigest;
     values.PROOFWEAVE_E2B_TEMPLATE_ID = execution.template.id;
@@ -107,6 +139,7 @@ export function generateRunnerEnvironmentConfig({
     surface,
     profiles: selected.map((environment) => environment.profile),
     executionProfile: execution?.profile ?? null,
+    executionEnabledProfiles: [...enabledProfiles],
     values,
   };
 }
@@ -150,6 +183,9 @@ Options:
                                  Defaults to every approved environment.
   --execution-profile <profile>  Emit PROOFWEAVE_E2B_RUNNER_IMAGE and E2B template id/build values.
   --surface <worker|render|all>  Target deployment surface (default: all). render requires --execution-profile.
+                                 worker also emits RUNNER_EXECUTION_ENVIRONMENTS_JSON, execution disabled.
+  --enable-execution <profile>   Declare executionEnabled=true for an approved environment in the
+                                 worker execution declaration (repeatable, --surface worker only).
   --format <env|json>            Output format (default: env).
   --config <path>                Registry path (default: config/runner-environments.json).
   --help                         Show this help.
@@ -166,6 +202,7 @@ async function main() {
     profiles: options.profiles,
     executionProfile: options.executionProfile,
     surface: options.surface,
+    enableExecutionProfiles: options.enableExecutionProfiles,
   });
   process.stdout.write(
     options.format === "json"
@@ -180,6 +217,7 @@ function parseArguments(argv) {
     profiles: [],
     executionProfile: null,
     surface: "all",
+    enableExecutionProfiles: [],
     format: "env",
     help: false,
   };
@@ -191,6 +229,8 @@ function parseArguments(argv) {
       options.configPath = requireValue(argv, ++index, argument);
     } else if (argument === "--profile") {
       options.profiles.push(requireValue(argv, ++index, argument));
+    } else if (argument === "--enable-execution") {
+      options.enableExecutionProfiles.push(requireValue(argv, ++index, argument));
     } else if (argument === "--execution-profile") {
       options.executionProfile = requireValue(argv, ++index, argument);
     } else if (argument === "--surface") {

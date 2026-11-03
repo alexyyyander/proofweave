@@ -2,15 +2,21 @@
 
 本文说明网站上的 proof-map 结构、状态等级和持续补全流程。它不是发布授权；任何 replay、评审、Receipt 或部署仍需各自证据。
 
-## 1. 三类结构
+## 1. 五类结构
 
 | 状态 | 含义 | 当前数量 |
 | --- | --- | --- |
-| `deep` | 已整理的 theorem-level argument map，含版本、依赖、跨解法关系、Lean 对齐和来源定位 | 4（003、032、084、159） |
+| `deep` | theorem-level argument map：4 个手工策展（003、032、084、159）+ 339 个由论文结构严格升级（前提依赖 9,157 条、对象引用 1,032 条、指认/提及 95 条，三类边分别用实线、虚线、点线显示） | 343 |
 | `draft` | 已有的 draft explanation，含 proof steps / Lean annotations，但未评审，步骤顺序不自动等于依赖 DAG | 0 |
-| `scaffold` | 只登记 claim、manuscripts、citations、upstream Lean scope；没有 theorem-level proof chain | 368 |
+| `paper` | 从 pinned 论文 LaTeX 机器抽取的完整引用图；没有前提依赖边的族保留此状态（当前 049、171、195、334） | 4 |
+| `lean` | 从 pinned comparator/solution 机器抽取的结构：形式化目标 → 求解定理 → 允许公理；不是定理级依赖图，未经评审 | 18 |
+| `scaffold` | 只登记 claim、manuscripts、citations、upstream Lean scope；没有定理级证明链，也没有可抽取的论文/Lean 结构 | 7 |
+
+论文结构当前覆盖 347 个族（548 篇论文、13,629 个陈述、14,401 条原始引用边）；其中 339 个已严格升级为 deep：证明句中作为前提使用的引用（含列表续引与被动式，9,157 条）进入 `dependsOn`；“the constant in Theorem X”这类对象引用（1,032 条）进入 `objectUses`；指认/导航类引用（“the case is Lemma X”“see Lemma X”等，95 条）进入 `mentions`。三类边在矩阵与网络图里分别用实线、虚线、点线显示，并在图例与节点抽屉中区分。另有 2,094 条未分类提及与 724 条背景引用不进入图，证明标题自指被排除，0 条成环边。049/195/334 只含证明标题引用，没有前提边，退回 paper；171 同样保留 paper；4 个维持原手工深图。另有 25 个族没有可解析的 LaTeX（18 个保留 Lean 派生结构，7 个保持骨架）。
 
 `scaffold` 不是“证明完成”，也不是“没有数学”。它表示来源记录已入索引，但定理陈述、证明依赖和 Lean 对齐尚未整理。
+
+`paper` 也不是“证明已完成”。节点是论文的定理型陈述，边是证明环境中的显式 `\\ref` 引用；引用可能是背景、上下文或重复引用，页面不得把引用图写成经验证的证明依赖，也不得写成重放或评审。升级为 `deep` 的机器升级图在 caveats 中保留同样声明。
 
 ## 2. URL 与数据
 
@@ -22,6 +28,9 @@
 - 目录快照：`data/publications/openai-math.json`
 - 状态登记：`data/proof-maps/manifest.json`
 - 深图数据：`data/proof-maps/deep/{number}.json`
+- Lean 派生结构：不单独存数据文件，由 family 页从 `lean-coverage.json` 的 comparators 渲染（≥1 个具名定理的族进入 `lean` 状态）
+- 论文派生结构：汇总 `data/proof-maps/paper-coverage.json`（计数），每族结构在 `data/proof-maps/paper/{number}.json`
+- 论文结构抽取器：`scripts/build-proof-map-paper-index.mjs`（`npm run proof:maps:paper:build`）
 - 深图校验器：`packages/domain/deep-proof-map.mjs`
 - 索引生成器：`packages/domain/proof-map-index.mjs`
 - 覆盖率报告：`npm run proof:maps:report`（`--json` 输出完整索引）
@@ -36,6 +45,14 @@
 4. 在 `data/publications/explanations/` 新增 artifact，并登记到 manifest 的 `draft`。
 5. 保持 `status: draft`、`reviewStatus: unreviewed`。
 
+### paper → deep
+
+`paper` 是自动状态（论文 LaTeX 至少解析出一个定理型陈述即进入），优先级高于 `lean`。升级由 `npm run proof:maps:promote` 完成：逐族读取每条引用在证明中的上下文，剔除明确背景措辞（cf.、recall、as in、analogous 等），用 DFS 破除成环边，生成符合 `validateDeepProofMap` 的定理级图，并把族登记到 manifest 的 `deep`。生成图在 caveats 中声明“由论文结构机器升级、引用不是审计过的依赖、未经评审”。不满足契约的族会留在 `paper`。
+
+### lean → deep
+
+没有可解析论文的 `lean` 族仍可按上一节从论文补出定理级节点与依赖，而不是从 Lean 结构反推证明顺序。
+
 ### draft → deep
 
 1. 为每条证明策略建立 theorem-level 节点和 `depends` 边；区分 `uses`、`cites`、`background`。
@@ -47,6 +64,8 @@
 ## 4. 不允许的捷径
 
 - 不要从标题/摘要自动编造 proof steps。
+- 不要把 Lean-derived 结构写成定理级依赖或证明 DAG；它只记录“形式化目标 → 求解定理 → 允许公理”。
+- 不要把论文的引用图写成证明依赖图；`\ref` 可能指向背景、定义或重复引用。
 - 不要把 citation graph 当作 proof dependency graph。
 - 不要把 `same-role` 写成 logical implication。
 - 不要把上游 Lean scope 写成 Proofweave replay。
@@ -58,13 +77,15 @@
 ```text
 catalog snapshot
   → scaffold entry (claim, manuscripts, scope, evidence gates)
+  → paper-derived structure (statements + proof references, automatic)
+  → lean-derived structure (pinned comparator → theorems → axioms, automatic)
   → draft explanation (proof steps + Lean annotations)
   → deep argument map (theorem edges + cross-solution links + Lean anchors)
   → independent review
   → replay / Receipt (separate gates)
 ```
 
-每周用 `npm run proof:maps:report` 检查 deep/draft/scaffold 数量和 scope 覆盖；优先挑 `scopeDocument=true` 的 scaffold，因为它们已经有 Lean scope 可作为对齐起点。深图数据用 `validateDeepProofMap` 校验节点引用、依赖无环、每条策略都有 final edge，并核对 Lean alignment 的 theorem name 与 module 确实出现在 `lean-coverage.json` 中。
+每周用 `npm run proof:maps:report` 检查 deep/lean/draft/scaffold 数量和 scope 覆盖；优先挑 `scopeDocument=true` 的 scaffold，因为它们已经有 Lean scope 可作为对齐起点。深图数据用 `validateDeepProofMap` 校验节点引用、依赖无环、每条策略都有 final edge，并核对 Lean alignment 的 theorem name 与 module 确实出现在 `lean-coverage.json` 中。
 
 ## 6. Lean 结构批量抽取（2026-10-31）
 
@@ -101,3 +122,41 @@ npm run proof:maps:lean:build
 - **159 · Erdős reciprocal sums**：单条 section-level 主策略；§2 的 triangular increment 由 §§3–9 的 detection/return/extraction 支撑，§10 迭代得到 Theorem 1.1，Corollary 1.2 是 Lean comparator 对齐的 reciprocal-sum consequence。外部 inverse theorem 与 almost-periodicity 标为 external input；quantitative bound 明确标注在 Lean alignment 之外。
 
 这三个深图仍是 `reviewStatus: unreviewed`。它们没有 statement review、independent review、kernel check、Proofweave replay 或 Receipt；页面和 caveats 不得省略这一点。
+
+## 8. 论文结构批量抽取（2026-11-02）
+
+`data/proof-maps/paper-coverage.json` 与 `data/proof-maps/paper/{number}.json` 来自 pinned OpenAI repository 的 LaTeX 源：
+
+- 从每篇论文的 `build/main.tex`、`paper.tex` 等入口递归读取 `\input` 的 section 文件；
+- 节点是 `theorem` / `lemma` / `proposition` / `corollary` 环境，保留 label、标题、陈述摘要与所在 section；
+- 边是 `proof` 环境里的 `\ref` 引用，方向为“被引用陈述 → 引用它的陈述”；
+- 当前覆盖 347 个族、548 篇论文、13,629 个陈述、14,401 条引用边；25 个族没有可解析的 LaTeX；
+- 抽取是纯文本解析，不运行 Lean、不验证引用是否真的是证明前提；
+- family 页提供与 deep 相同的 Matrix / Network 交互视图：列是论文章节、行是论文、边是证明内引用；Lean 派生族也使用同一视图（行是 comparator、列是目标/定理/公理）。
+
+生成命令：
+
+```bash
+npm run proof:maps:paper:build
+```
+
+缓存位于 `/tmp/proof-map-tex-cache`，按 repository + pinned revision 分目录；数据只对固定 revision 有效，换 revision 必须重跑。
+
+已知边界：部分论文用单文件 LaTeX（如 `paper.tex`），部分 statement 没有 label（用合成 id，无法被其他论文内部引用）；数学公式在陈述摘要里会退化为近似纯文本。
+
+逐族升级：
+
+```bash
+npm run proof:maps:promote            # 生成/更新 deep 图（已存在的策展深图不会被覆盖）
+npm run proof:maps:promote -- --dry-run
+npm run proof:maps:promote -- --family 005
+```
+
+严格判定（2026-11-02）：每条引用先定位到原句中的 `\ref`，再按紧邻上下文分类：
+
+- **前提依赖**（`dependsOn`）：引用之前紧邻 by/using/apply/follows from 等介词，之后同句出现 gives/applies/shows/identifies 等依赖动词，或属于 “by Lemmas A and B” 的列表续引、“Lemma X is used to …” 的被动式；
+- **对象引用**（`objectUses`）：引用以名词短语出现（“the constant in Theorem X”“the invariant open of Lemma X”“constructed in the proof of X”），证明使用 X 定义/保证的对象，而不是把 X 当推理前提；图上用虚线与前提依赖区分；
+- **指认 / 提及**（`mentions`）：“the case is Lemma X”“the remaining assertions are Lemma X”“see Lemma X”“proved in Lemma X”“we state Lemma X”等点名、识别或导航用途；它们进入图，但以更淡的点线与前两类区分；
+- **背景与标题**：cf./recall/as in/analogous、证明标题自指（`Proof of X`）以及无法归类的剩余提及，不进入图。
+
+所有边再经过 DFS 破除环。最终：前提边 9,157 条、对象引用 1,032 条、指认/提及边 95 条；2,094 条未分类提及与 724 条背景引用不进入图，证明标题自指（“Proof of X”）也排除。列表续引与被动式已计入前提边。

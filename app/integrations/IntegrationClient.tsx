@@ -8,16 +8,18 @@ import { useEffect, useState } from "react";
 import compatibilityContract from "@/packages/protocol/proofweave-client-compatibility.json";
 import { CodexConnectPrompt, CodexInstallPrompt, CodexSetupPrompt, CodexWorkflowPrompt } from "./CodexInstallPrompt";
 import { integrationRefreshHref } from "@/packages/protocol/integration-return-href.mjs";
+import { useI18n } from "@/app/i18n/client";
+import type { TranslationKey } from "@/app/i18n/translate";
 
-const authorizedScopes = [
-  "Read the frontier catalog",
-  "Create your bounded Attempts",
-  "Record provisional progress",
-  "Read only Attempts bound to this exact Agent certificate",
-  "Stage an owner-approved signed Artifact Bundle",
-  "Request and inspect that Agent's isolated Runner lifecycle",
-  "With review authority, discover only assignments addressed to your Person",
-  "With review authority, submit one owner-confirmed signed attestation",
+const authorizedScopeKeys: readonly TranslationKey[] = [
+  "integrations.scopes.catalog",
+  "integrations.scopes.attempts",
+  "integrations.scopes.progress",
+  "integrations.scopes.bound",
+  "integrations.scopes.bundle",
+  "integrations.scopes.runner",
+  "integrations.scopes.reviews",
+  "integrations.scopes.attestation",
 ];
 
 type SelectedTarget = Readonly<{
@@ -44,6 +46,7 @@ export function IntegrationClient({
   selectedTarget: SelectedTarget | null;
   returnHref: string;
 }) {
+  const { t } = useI18n();
   const router = useRouter();
   const [watchingConnection, setWatchingConnection] = useState(false);
   const [connectionNotice, setConnectionNotice] = useState<string | null>(null);
@@ -68,18 +71,18 @@ export function IntegrationClient({
         const payload = await response.json().catch(() => null);
         if (response.ok && payload?.summary?.agent?.connected) {
           if (!cancelled) {
-            setConnectionNotice("Connection approved. Returning to your selected research…");
+            setConnectionNotice(t("integrations.notice.approved"));
             router.replace(returnHref);
           }
           return;
         }
         if (!cancelled) {
           setConnectionNotice(response.status === 401
-            ? "Complete sign-in and browser approval; this page will keep checking."
-            : "Waiting for browser approval…");
+            ? t("integrations.notice.signIn")
+            : t("integrations.notice.waiting"));
         }
       } catch {
-        if (!cancelled) setConnectionNotice("Waiting for the website connection record…");
+        if (!cancelled) setConnectionNotice(t("integrations.notice.record"));
       }
       if (!cancelled && attempts < 120) timer = window.setTimeout(check, 2500);
     };
@@ -89,128 +92,128 @@ export function IntegrationClient({
       cancelled = true;
       if (timer !== null) window.clearTimeout(timer);
     };
-  }, [connection, returnHref, router, watchingConnection]);
+  }, [connection, returnHref, router, t, watchingConnection]);
 
   return <>
-    {selectedTarget && <section className="integration-target-context" aria-label="Selected research target">
+    {selectedTarget && <section className="integration-target-context" aria-label={t("integrations.target.aria")}>
       <div>
-        <span className="micro-label">Selected research · {selectedTarget.domain}</span>
+        <span className="micro-label">{t("integrations.target.label", { domain: selectedTarget.domain })}</span>
         <strong>{selectedTarget.title}</strong>
         <p>{selectedTarget.informalStatement}</p>
       </div>
       <div>
-        <span>Your target remains selected during connection.</span>
-        <Link href={`/explore/${selectedTarget.slug}`}>Inspect source <span aria-hidden="true">→</span></Link>
+        <span>{t("integrations.target.kept")}</span>
+        <Link href={`/explore/${selectedTarget.slug}`}>{t("integrations.target.inspect")} <span aria-hidden="true">→</span></Link>
       </div>
     </section>}
 
-    <section className="integration-grid integration-entry-grid" aria-label="Local Agent connection">
+    <section className="integration-grid integration-entry-grid" aria-label={t("integrations.entry.aria")}>
       <Surface as="article" className="integration-card integration-card-dark integration-primary-card integration-card-wide" id="codex-beta">
-        <span className="micro-label">{connection ? "Website authorization recorded" : isAuthenticated ? "One-time setup" : "Sign in first"}</span>
-        <SectionTitle>{connection ? `${connection.agentLabel} has active website authorization.` : "Approve your local Codex once."}</SectionTitle>
+        <span className="micro-label">{connection ? t("integrations.entry.authorized") : isAuthenticated ? t("integrations.entry.setup") : t("integrations.entry.signInFirst")}</span>
+        <SectionTitle>{connection ? t("integrations.entry.connectedTitle", { agent: connection.agentLabel }) : t("integrations.entry.connectTitle")}</SectionTitle>
         <p>{connection
-          ? "The website has an active Agent installation record. Run connection_status in Codex to verify this computer can still refresh OAuth before starting research."
+          ? t("integrations.entry.connectedBody")
           : isAuthenticated
-            ? "Copy one setup request into Codex. Codex checks whether the plugin is already installed, requests each required approval, and returns you here when the connection is ready."
-            : "Sign in with ChatGPT before connecting this computer. Your sign-in creates the Person identity that will own its Agent work."}</p>
+            ? t("integrations.entry.setupBody")
+            : t("integrations.entry.signInBody")}</p>
 
-        <ol className="integration-flow integration-flow-compact" aria-label="First research setup">
-          <li><b>{selectedTarget ? "✓" : "1"}</b><span><strong>Choose a problem.</strong> {selectedTarget ? `${selectedTarget.title} is selected.` : "Browse the public catalog and select one exact target."}</span></li>
-          <li><b>{connection ? "✓" : "2"}</b><span><strong>Authorize the local Agent.</strong> {connection ? "The website has recorded revocable authority; Codex still performs the live OAuth check." : "Codex handles installation checks and opens the approval page."}</span></li>
-          <li><b>3</b><span><strong>Return to your Workspace.</strong> Start or resume the saved research task for the selected problem.</span></li>
+        <ol className="integration-flow integration-flow-compact" aria-label={t("integrations.flow.aria")}>
+          <li><b>{selectedTarget ? "✓" : "1"}</b><span><strong>{t("integrations.flow.choose")}</strong> {selectedTarget ? t("integrations.flow.chooseSelected", { title: selectedTarget.title }) : t("integrations.flow.chooseBody")}</span></li>
+          <li><b>{connection ? "✓" : "2"}</b><span><strong>{t("integrations.flow.authorize")}</strong> {connection ? t("integrations.flow.authorizeConnected") : t("integrations.flow.authorizeBody")}</span></li>
+          <li><b>3</b><span><strong>{t("integrations.flow.return")}</strong> {t("integrations.flow.returnBody")}</span></li>
         </ol>
 
         {!controlPlaneWritesEnabled && <div className="integration-connect-action" role="status">
-          <strong>Connections are temporarily paused for maintenance.</strong>
-          <p>Public questions and verification records remain readable. No Agent connection, research task, or evidence write can complete while maintenance is active.</p>
+          <strong>{t("integrations.maintenance.title")}</strong>
+          <p>{t("integrations.maintenance.body")}</p>
         </div>}
 
         {connection ? <div className="integration-connected-callout integration-connected-callout-dark">
           <strong>{controlPlaneWritesEnabled
-            ? selectedTarget ? `Target ready: ${selectedTarget.title}` : "Website authorization record ready"
-            : "Your existing Workspace remains readable"}</strong>
+            ? selectedTarget ? t("integrations.connected.targetReady", { title: selectedTarget.title }) : t("integrations.connected.recordReady")
+            : t("integrations.connected.readable")}</strong>
           <p>{controlPlaneWritesEnabled
-            ? selectedTarget ? "Your selected target is preserved. Confirm connection_status in Codex, then open the Workspace to start or resume its saved research task." : "Confirm connection_status in Codex, then choose a target or open your Workspace to resume existing research."
-            : "You may inspect existing work now. Starting or updating research remains paused until maintenance ends."}</p>
+            ? selectedTarget ? t("integrations.connected.targetBody") : t("integrations.connected.recordBody")
+            : t("integrations.connected.readableBody")}</p>
           <ActionLink className="button button-primary" href={returnHref}>{controlPlaneWritesEnabled
-            ? selectedTarget ? "Return to selected research" : "Open my Workspace"
-            : "View my Workspace"} <span aria-hidden="true">→</span></ActionLink>
-        </div> : !controlPlaneWritesEnabled ? <Button className="button button-primary" type="button" disabled>Connection temporarily paused</Button> : !isAuthenticated ? <div className="integration-connect-action">
-          <ActionLink className="button button-primary" href={signInHref}>Continue with ChatGPT <span aria-hidden="true">→</span></ActionLink>
-          <p>ChatGPT sign-in is available. Google sign-in is {googleSignInAvailable ? "also available" : "not available yet"}.</p>
+            ? selectedTarget ? t("integrations.action.returnTarget") : t("integrations.action.openWorkspace")
+            : t("integrations.action.viewWorkspace")} <span aria-hidden="true">→</span></ActionLink>
+        </div> : !controlPlaneWritesEnabled ? <Button className="button button-primary" type="button" disabled>{t("integrations.action.paused")}</Button> : !isAuthenticated ? <div className="integration-connect-action">
+          <ActionLink className="button button-primary" href={signInHref}>{t("integrations.action.continueChatGPT")} <span aria-hidden="true">→</span></ActionLink>
+          <p>{t(googleSignInAvailable ? "integrations.action.googleAvailable" : "integrations.action.googleUnavailable")}</p>
         </div> : <div className="integration-connect-action">
           <CodexSetupPrompt targetTitle={selectedTarget?.title} returnHref={returnHref} onRequestCopied={() => setWatchingConnection(true)} />
-          <p>Paste the copied request into Codex. Installation and connection remain separate approval moments inside the same guided setup; nothing changes silently.</p>
+          <p>{t("integrations.action.pastePrompt")}</p>
           {connectionNotice && <p className="integration-connection-notice" aria-live="polite">{connectionNotice}</p>}
           <div className="integration-inline-links">
-            <Link href={pageHref}>Refresh connection status <span aria-hidden="true">↻</span></Link>
+            <Link href={pageHref}>{t("integrations.action.refresh")} <span aria-hidden="true">↻</span></Link>
           </div>
         </div>}
 
         <div className="integration-inline-links">
-          <Link href="/explore">Browse research first <span aria-hidden="true">→</span></Link>
+          <Link href="/explore">{t("integrations.action.browseFirst")} <span aria-hidden="true">→</span></Link>
         </div>
-        <p className="integration-note">The website status reflects authorization records, not a live check of your local Connector. Run <code>connection_status</code> before working. Connection does not upload a workspace, run Lean, claim verification, or create contribution credit. Sign-in: ChatGPT available · Google {googleSignInAvailable ? "available" : "not yet available"}.</p>
+        <p className="integration-note">{t("integrations.note", { google: t(googleSignInAvailable ? "integrations.note.googleAvailable" : "integrations.note.googleUnavailable") })}</p>
       </Surface>
 
       <Surface as="article" className="integration-card integration-card-wide integration-advanced-card">
-        <span className="micro-label">Optional details</span>
-        <SectionTitle>Inspect installation, permissions, and privacy.</SectionTitle>
+        <span className="micro-label">{t("integrations.advanced.label")}</span>
+        <SectionTitle>{t("integrations.advanced.title")}</SectionTitle>
         <div className="integration-disclosures">
           <details>
-            <summary>If the Proofweave plugin is missing</summary>
-            <p>Install from a local marketplace once. Codex downloads the public archive and checksum, verifies them before extraction, and asks before adding the local marketplace. No GitHub account or repository access is required.</p>
+            <summary>{t("integrations.install.missing")}</summary>
+            <p>{t("integrations.install.body")}</p>
             <CodexInstallPrompt />
             <details className="integration-command-details">
-              <summary>Show the auditable installation sequence</summary>
+              <summary>{t("integrations.install.steps")}</summary>
               <code>Download /downloads/proofweave-research-marketplace.tar and its .sha256 file</code>
               <code>shasum -a 256 -c proofweave-research-marketplace.tar.sha256</code>
               <code>tar -xf proofweave-research-marketplace.tar -C &quot;$PROOFWEAVE_MARKETPLACE_DIR&quot;</code>
               <code>codex plugin marketplace add &quot;$PROOFWEAVE_MARKETPLACE_DIR&quot;</code>
               <code>codex plugin add proofweave-research@proofweave-private-beta</code>
             </details>
-            <div className="integration-status integration-status-ready"><i aria-hidden="true" />Private beta: local install; no GitHub account required</div>
+            <div className="integration-status integration-status-ready"><i aria-hidden="true" />{t("integrations.install.ready")}</div>
           </details>
           <details>
-            <summary>Plugin updates and Codex restarts</summary>
-            <div className="integration-update-policy" aria-label="Connector update policy">
+            <summary>{t("integrations.update.summary")}</summary>
+            <div className="integration-update-policy" aria-label={t("integrations.update.aria")}>
               <div>
-                <span className="micro-label">Live compatibility</span>
-                <strong>Protocol v{compatibilityContract.connectorApiVersion} · tool schema v{compatibilityContract.toolSchemaVersion}</strong>
+                <span className="micro-label">{t("integrations.update.live")}</span>
+                <strong>{t("integrations.update.current", { api: compatibilityContract.connectorApiVersion, schema: compatibilityContract.toolSchemaVersion })}</strong>
               </div>
               <FieldList>
-                <Field label="Normal service updates">Continue this task</Field>
-                <Field label="Published plugin update">Review checksum and commands</Field>
-                <Field label="After an approved reinstall">Restart Codex</Field>
+                <Field label={t("integrations.update.normal")}>{t("integrations.update.normalValue")}</Field>
+                <Field label={t("integrations.update.plugin")}>{t("integrations.update.pluginValue")}</Field>
+                <Field label={t("integrations.update.reinstall")}>{t("integrations.update.reinstallValue")}</Field>
               </FieldList>
-              <p>Ask Codex to run <code>connection_status</code>. It checks the fixed same-origin distribution manifest without sending a token, key, workspace file, or research content. An available update is advice only: Codex must show its version, archive hash, size, and commands, then ask again before reinstalling.</p>
+              <p>{t("integrations.update.body")}</p>
             </div>
           </details>
           <details>
-            <summary>What can a research connection do?</summary>
-            <div className="integration-scopes" aria-label="Authorization scopes after activation">
-              {authorizedScopes.map((scope) => <span key={scope}>{scope}</span>)}
+            <summary>{t("integrations.scopes.summary")}</summary>
+            <div className="integration-scopes" aria-label={t("integrations.scopes.aria")}>
+              {authorizedScopeKeys.map((scope) => <span key={scope}>{t(scope)}</span>)}
             </div>
           </details>
           <details id="review-agent">
-            <summary>Connect a separate independent-review authority</summary>
-            <p>A review-scoped Agent sees only assignments addressed to your Person. Your own Agents still cannot independently verify your work.</p>
+            <summary>{t("integrations.review.summary")}</summary>
+            <p>{t("integrations.review.body")}</p>
             <div className="codex-install-actions"><CodexConnectPrompt role="review" returnHref="/reviews" /><CodexWorkflowPrompt workflow="review_queue" /></div>
           </details>
           {connection && <details>
-            <summary>Prepare a later research submission</summary>
-            <p>Codex prepares hashes locally and must show the exact signed Bundle draft before any owner-approved upload or Run request.</p>
+            <summary>{t("integrations.submission.summary")}</summary>
+            <p>{t("integrations.submission.body")}</p>
             <CodexWorkflowPrompt workflow="research_submission" />
           </details>}
           <details>
-            <summary>Why an old Connector may require approval again</summary>
-            <p>An OAuth token is bound to the deployment that issued it. If Codex reports an older Worker address, approving a new connection moves this computer to the current Site without deleting its Agent key. Separate legacy databases are never silently merged.</p>
+            <summary>{t("integrations.legacy.summary")}</summary>
+            <p>{t("integrations.legacy.body")}</p>
           </details>
         </div>
         <div className="integration-card-links">
-          <Link className="text-link" href={connection ? "/settings#delegation-setup" : "/settings"}>Inspect or revoke local connections <span>→</span></Link>
-          <a className="text-link" href="/codex-install.md" target="_blank" rel="noreferrer">Read the complete connection guide <span>→</span></a>
-          <Link className="text-link" href="/privacy">Read the privacy boundary <span>→</span></Link>
+          <Link className="text-link" href={connection ? "/settings#delegation-setup" : "/settings"}>{t("integrations.links.settings")} <span>→</span></Link>
+          <a className="text-link" href="/codex-install.md" target="_blank" rel="noreferrer">{t("integrations.links.guide")} <span>→</span></a>
+          <Link className="text-link" href="/privacy">{t("integrations.links.privacy")} <span>→</span></Link>
         </div>
       </Surface>
     </section>

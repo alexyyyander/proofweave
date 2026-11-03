@@ -14,6 +14,56 @@
 .home-showcase-shell button:focus-visible,
 .home-showcase-shell summary:focus-visible { outline: 2px solid #6d83e6; outline-offset: 4px; }
 
+/* The first screen offers exactly two actions. Every other surface is a branch
+   behind one of them, so nothing here competes with the doors. */
+.home-doors {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 30px;
+  max-width: 780px;
+}
+.home-door {
+  background: #101e35;
+  border: 1px solid rgba(206, 219, 245, .22);
+  color: #eef3ff;
+  display: grid;
+  gap: 9px;
+  padding: 20px;
+  text-decoration: none;
+  transition: background .15s ease, border-color .15s ease;
+}
+.home-door:hover { background: #17284a; border-color: rgba(178, 199, 255, .55); }
+.home-door__index {
+  color: #8ea6f5;
+  font-family: var(--font-code);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .09em;
+}
+.home-door strong {
+  font-family: var(--font-editorial);
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.25;
+  margin-top: 2px;
+}
+.home-door p { color: #b2bfd4; font-size: 12.5px; line-height: 1.55; margin: 0; }
+.home-door__action { color: #b9c8ff; font-size: 12px; font-weight: 600; margin-top: 4px; }
+.home-door__note {
+  border-top: 1px solid rgba(206, 219, 245, .16);
+  color: #8ea2c8;
+  font-size: 10.5px;
+  line-height: 1.4;
+  margin-top: 2px;
+  padding-top: 10px;
+}
+@media (max-width: 760px) {
+  .home-doors { grid-template-columns: 1fr; max-width: none; }
+  .home-door strong { font-size: 19px; }
+}
+
 /* The publication entry connects the navy introduction and proof journey. */
 .home-showcase-shell .home-publications-entry {
   --ink: #eef3ff;

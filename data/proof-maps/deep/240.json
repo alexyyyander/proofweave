@@ -1,0 +1,944 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "240",
+  "title": "Shelah's eventual categoricity and the prescribed-threshold obstruction",
+  "result": {
+    "id": "paper-result",
+    "label": "Shelah's eventual categoricity and the prescribed-threshold obstruction",
+    "statement": "Proves Shelah's eventual categoricity conjecture in ZFC: for each bound on the Löwenheim–Skolem number, a uniform threshold makes categoricity of an abstract elementary class in one cardinal above that threshold imply categoricity throughout the same tail. Categoricity means uniqueness up to isomorphism at a given cardinality. Under the continuum hypothesis, a proposed specific Hanf threshold need not suffice.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "countable-diagrams-and-their-tests",
+      "label": "Countable diagrams and their tests",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-abstract-elementary-class",
+      "label": "The abstract elementary class",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-models-at-the-prescribed-endpoint",
+      "label": "Two models at the prescribed endpoint",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-bound-on-uncountable-base-orders-and-categoricity-on-a-tai",
+      "label": "A bound on uncountable base orders and categoricity on a tail",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-endpoint-failure-and-its-logical-scope",
+      "label": "The endpoint failure and its logical scope",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-obstruction-to-booleanizing-the-canonical-point",
+      "label": "An obstruction to Booleanizing the canonical point",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "set-codes-and-models-indexed-by-orders",
+      "label": "Set codes and models indexed by orders",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reversing-maps-on-bounded-tuples",
+      "label": "Reversing maps on bounded tuples",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "stable-diagrams-and-amalgamation-at-closed-levels",
+      "label": "Stable diagrams and amalgamation at closed levels",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "working-schemes-and-uniform-comparison-of-diagrams",
+      "label": "Working schemes and uniform comparison of diagrams",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-one-dimensional-calculus",
+      "label": "The one-dimensional calculus",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "isolation-and-dominated-extensions",
+      "label": "Isolation and dominated extensions",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A CH obstruction to a prescribed categoricity threshold",
+      "title": "A CH obstruction to a prescribed categoricity threshold",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-CH-Obstruction-to-a-Prescribed-Categoricity-Threshold-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A CH obstruction to a prescribed categoricity threshold.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-aec-class"
+          ]
+        },
+        {
+          "id": "m1-col-coding",
+          "role": "countable-diagrams-and-their-tests",
+          "label": "lemma m1-col-coding",
+          "fullLabel": "lemma m1-col-coding",
+          "kind": "lemma",
+          "source": "Countable diagrams and their tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-col-quotients",
+          "role": "countable-diagrams-and-their-tests",
+          "label": "lemma m1-col-quotients",
+          "fullLabel": "lemma m1-col-quotients",
+          "kind": "lemma",
+          "source": "Countable diagrams and their tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-aec-order-size",
+          "role": "the-abstract-elementary-class",
+          "label": "lemma m1-aec-order-size",
+          "fullLabel": "lemma m1-aec-order-size",
+          "kind": "lemma",
+          "source": "The abstract elementary class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-aec-size",
+          "role": "the-abstract-elementary-class",
+          "label": "lemma m1-aec-size",
+          "fullLabel": "lemma m1-aec-size",
+          "kind": "lemma",
+          "source": "The abstract elementary class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-aec-representatives",
+          "role": "the-abstract-elementary-class",
+          "label": "lemma m1-aec-representatives",
+          "fullLabel": "lemma m1-aec-representatives",
+          "kind": "lemma",
+          "source": "The abstract elementary class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-aec-arrays",
+          "role": "the-abstract-elementary-class",
+          "label": "lemma m1-aec-arrays",
+          "fullLabel": "lemma m1-aec-arrays",
+          "kind": "lemma",
+          "source": "The abstract elementary class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-aec-order-coherence",
+          "role": "the-abstract-elementary-class",
+          "label": "lemma m1-aec-order-coherence",
+          "fullLabel": "lemma m1-aec-order-coherence",
+          "kind": "lemma",
+          "source": "The abstract elementary class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-aec-directed",
+          "role": "the-abstract-elementary-class",
+          "label": "lemma m1-aec-directed",
+          "fullLabel": "lemma m1-aec-directed",
+          "kind": "lemma",
+          "source": "The abstract elementary class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-aec-convex-hull",
+          "role": "the-abstract-elementary-class",
+          "label": "lemma m1-aec-convex-hull",
+          "fullLabel": "lemma m1-aec-convex-hull",
+          "kind": "lemma",
+          "source": "The abstract elementary class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-aec-ls",
+          "role": "the-abstract-elementary-class",
+          "label": "lemma m1-aec-ls",
+          "fullLabel": "lemma m1-aec-ls",
+          "kind": "lemma",
+          "source": "The abstract elementary class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-aec-class",
+          "role": "the-abstract-elementary-class",
+          "label": "theorem m1-aec-class",
+          "fullLabel": "theorem m1-aec-class",
+          "kind": "theorem",
+          "source": "The abstract elementary class",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-end-domination",
+          "role": "two-models-at-the-prescribed-endpoint",
+          "label": "lemma m1-end-domination",
+          "fullLabel": "lemma m1-end-domination",
+          "kind": "lemma",
+          "source": "Two models at the prescribed endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-end-hierarchy-size",
+          "role": "two-models-at-the-prescribed-endpoint",
+          "label": "lemma m1-end-hierarchy-size",
+          "fullLabel": "lemma m1-end-hierarchy-size",
+          "kind": "lemma",
+          "source": "Two models at the prescribed endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-end-countable-closures",
+          "role": "two-models-at-the-prescribed-endpoint",
+          "label": "lemma m1-end-countable-closures",
+          "fullLabel": "lemma m1-end-countable-closures",
+          "kind": "lemma",
+          "source": "Two models at the prescribed endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-end-diagrams",
+          "role": "two-models-at-the-prescribed-endpoint",
+          "label": "lemma m1-end-diagrams",
+          "fullLabel": "lemma m1-end-diagrams",
+          "kind": "lemma",
+          "source": "Two models at the prescribed endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-end-two-models",
+          "role": "two-models-at-the-prescribed-endpoint",
+          "label": "theorem m1-end-two-models",
+          "fullLabel": "theorem m1-end-two-models",
+          "kind": "theorem",
+          "source": "Two models at the prescribed endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-col-collapse",
+          "role": "a-bound-on-uncountable-base-orders-and-categoricity-on-a-tai",
+          "label": "lemma m1-col-collapse",
+          "fullLabel": "lemma m1-col-collapse",
+          "kind": "lemma",
+          "source": "A bound on uncountable base orders and categoricity on a tail",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-col-no-pattern",
+          "role": "a-bound-on-uncountable-base-orders-and-categoricity-on-a-tai",
+          "label": "lemma m1-col-no-pattern",
+          "fullLabel": "lemma m1-col-no-pattern",
+          "kind": "lemma",
+          "source": "A bound on uncountable base orders and categoricity on a tail",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cat-cardinals",
+          "role": "a-bound-on-uncountable-base-orders-and-categoricity-on-a-tai",
+          "label": "lemma m1-cat-cardinals",
+          "fullLabel": "lemma m1-cat-cardinals",
+          "kind": "lemma",
+          "source": "A bound on uncountable base orders and categoricity on a tail",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cat-finite-partition",
+          "role": "a-bound-on-uncountable-base-orders-and-categoricity-on-a-tai",
+          "label": "lemma m1-cat-finite-partition",
+          "fullLabel": "lemma m1-cat-finite-partition",
+          "kind": "lemma",
+          "source": "A bound on uncountable base orders and categoricity on a tail",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cat-finite-patterns",
+          "role": "a-bound-on-uncountable-base-orders-and-categoricity-on-a-tai",
+          "label": "lemma m1-cat-finite-patterns",
+          "fullLabel": "lemma m1-cat-finite-patterns",
+          "kind": "lemma",
+          "source": "A bound on uncountable base orders and categoricity on a tail",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cat-bounded",
+          "role": "a-bound-on-uncountable-base-orders-and-categoricity-on-a-tai",
+          "label": "proposition m1-cat-bounded",
+          "fullLabel": "proposition m1-cat-bounded",
+          "kind": "proposition",
+          "source": "A bound on uncountable base orders and categoricity on a tail",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cat-countable-base",
+          "role": "a-bound-on-uncountable-base-orders-and-categoricity-on-a-tai",
+          "label": "lemma m1-cat-countable-base",
+          "fullLabel": "lemma m1-cat-countable-base",
+          "kind": "lemma",
+          "source": "A bound on uncountable base orders and categoricity on a tail",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cat-tail",
+          "role": "a-bound-on-uncountable-base-orders-and-categoricity-on-a-tai",
+          "label": "theorem m1-cat-tail",
+          "fullLabel": "theorem m1-cat-tail",
+          "kind": "theorem",
+          "source": "A bound on uncountable base orders and categoricity on a tail",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-consistency",
+          "role": "the-endpoint-failure-and-its-logical-scope",
+          "label": "corollary m1-cor-consistency",
+          "fullLabel": "corollary m1-cor-consistency",
+          "kind": "corollary",
+          "source": "The endpoint failure and its logical scope",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-no-amalgamation",
+          "role": "the-endpoint-failure-and-its-logical-scope",
+          "label": "proposition m1-prop-no-amalgamation",
+          "fullLabel": "proposition m1-prop-no-amalgamation",
+          "kind": "proposition",
+          "source": "The endpoint failure and its logical scope",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bool-extension",
+          "role": "an-obstruction-to-booleanizing-the-canonical-point",
+          "label": "lemma m1-bool-extension",
+          "fullLabel": "lemma m1-bool-extension",
+          "kind": "lemma",
+          "source": "An obstruction to Booleanizing the canonical point",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bool-obstruction",
+          "role": "an-obstruction-to-booleanizing-the-canonical-point",
+          "label": "proposition m1-bool-obstruction",
+          "fullLabel": "proposition m1-bool-obstruction",
+          "kind": "proposition",
+          "source": "An obstruction to Booleanizing the canonical point",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Eventual categoricity for abstract elementary classes",
+      "title": "Eventual categoricity for abstract elementary classes",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Eventual-Categoricity-for-Abstract-Elementary-Classes-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Eventual categoricity for abstract elementary classes.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-main-uniform",
+          "role": "introduction",
+          "label": "theorem m2-main-uniform",
+          "fullLabel": "theorem m2-main-uniform",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-main-qualitative",
+          "role": "introduction",
+          "label": "theorem m2-main-qualitative",
+          "fullLabel": "theorem m2-main-qualitative",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-directed-colimits",
+          "role": "set-codes-and-models-indexed-by-orders",
+          "label": "lemma m2-found-directed-colimits",
+          "fullLabel": "lemma m2-found-directed-colimits",
+          "kind": "lemma",
+          "source": "Set codes and models indexed by orders",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-small-code",
+          "role": "set-codes-and-models-indexed-by-orders",
+          "label": "lemma m2-found-small-code",
+          "fullLabel": "lemma m2-found-small-code",
+          "kind": "lemma",
+          "source": "Set codes and models indexed by orders",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-uniform-reduction",
+          "role": "set-codes-and-models-indexed-by-orders",
+          "label": "proposition m2-found-uniform-reduction",
+          "fullLabel": "proposition m2-found-uniform-reduction",
+          "kind": "proposition",
+          "source": "Set codes and models indexed by orders",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-partition",
+          "role": "set-codes-and-models-indexed-by-orders",
+          "label": "lemma m2-found-partition",
+          "fullLabel": "lemma m2-found-partition",
+          "kind": "lemma",
+          "source": "Set codes and models indexed by orders",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-order-template",
+          "role": "set-codes-and-models-indexed-by-orders",
+          "label": "theorem m2-found-order-template",
+          "fullLabel": "theorem m2-found-order-template",
+          "kind": "theorem",
+          "source": "Set codes and models indexed by orders",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-order-basic",
+          "role": "reversing-maps-on-bounded-tuples",
+          "label": "lemma m2-found-order-basic",
+          "fullLabel": "lemma m2-found-order-basic",
+          "kind": "lemma",
+          "source": "Reversing maps on bounded tuples",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-balanced-cuts",
+          "role": "reversing-maps-on-bounded-tuples",
+          "label": "lemma m2-found-balanced-cuts",
+          "fullLabel": "lemma m2-found-balanced-cuts",
+          "kind": "lemma",
+          "source": "Reversing maps on bounded tuples",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-cut-segments",
+          "role": "reversing-maps-on-bounded-tuples",
+          "label": "lemma m2-found-cut-segments",
+          "fullLabel": "lemma m2-found-cut-segments",
+          "kind": "lemma",
+          "source": "Reversing maps on bounded tuples",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-order-orbits",
+          "role": "reversing-maps-on-bounded-tuples",
+          "label": "theorem m2-found-order-orbits",
+          "fullLabel": "theorem m2-found-order-orbits",
+          "kind": "theorem",
+          "source": "Reversing maps on bounded tuples",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-orbit-bound",
+          "role": "reversing-maps-on-bounded-tuples",
+          "label": "lemma m2-found-orbit-bound",
+          "fullLabel": "lemma m2-found-orbit-bound",
+          "kind": "lemma",
+          "source": "Reversing maps on bounded tuples",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-ordinal-support-closure",
+          "role": "reversing-maps-on-bounded-tuples",
+          "label": "lemma m2-found-ordinal-support-closure",
+          "fullLabel": "lemma m2-found-ordinal-support-closure",
+          "kind": "lemma",
+          "source": "Reversing maps on bounded tuples",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-append-segment",
+          "role": "reversing-maps-on-bounded-tuples",
+          "label": "lemma m2-found-append-segment",
+          "fullLabel": "lemma m2-found-append-segment",
+          "kind": "lemma",
+          "source": "Reversing maps on bounded tuples",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-alignment",
+          "role": "reversing-maps-on-bounded-tuples",
+          "label": "proposition m2-found-alignment",
+          "fullLabel": "proposition m2-found-alignment",
+          "kind": "proposition",
+          "source": "Reversing maps on bounded tuples",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-indecomposable-occurrences",
+          "role": "reversing-maps-on-bounded-tuples",
+          "label": "lemma m2-found-indecomposable-occurrences",
+          "fullLabel": "lemma m2-found-indecomposable-occurrences",
+          "kind": "lemma",
+          "source": "Reversing maps on bounded tuples",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-found-reversal",
+          "role": "reversing-maps-on-bounded-tuples",
+          "label": "theorem m2-found-reversal",
+          "fullLabel": "theorem m2-found-reversal",
+          "kind": "theorem",
+          "source": "Reversing maps on bounded tuples",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-canonical-classes",
+          "role": "stable-diagrams-and-amalgamation-at-closed-levels",
+          "label": "lemma m2-lev-canonical-classes",
+          "fullLabel": "lemma m2-lev-canonical-classes",
+          "kind": "lemma",
+          "source": "Stable diagrams and amalgamation at closed levels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-stabilization",
+          "role": "stable-diagrams-and-amalgamation-at-closed-levels",
+          "label": "proposition m2-lev-stabilization",
+          "fullLabel": "proposition m2-lev-stabilization",
+          "kind": "proposition",
+          "source": "Stable diagrams and amalgamation at closed levels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-closure-categoricity",
+          "role": "stable-diagrams-and-amalgamation-at-closed-levels",
+          "label": "proposition m2-lev-closure-categoricity",
+          "fullLabel": "proposition m2-lev-closure-categoricity",
+          "kind": "proposition",
+          "source": "Stable diagrams and amalgamation at closed levels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-parameter-orbits",
+          "role": "stable-diagrams-and-amalgamation-at-closed-levels",
+          "label": "lemma m2-lev-parameter-orbits",
+          "fullLabel": "lemma m2-lev-parameter-orbits",
+          "kind": "lemma",
+          "source": "Stable diagrams and amalgamation at closed levels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-block-transpositions",
+          "role": "stable-diagrams-and-amalgamation-at-closed-levels",
+          "label": "lemma m2-lev-block-transpositions",
+          "fullLabel": "lemma m2-lev-block-transpositions",
+          "kind": "lemma",
+          "source": "Stable diagrams and amalgamation at closed levels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-ordinal-vectors",
+          "role": "stable-diagrams-and-amalgamation-at-closed-levels",
+          "label": "lemma m2-lev-ordinal-vectors",
+          "fullLabel": "lemma m2-lev-ordinal-vectors",
+          "kind": "lemma",
+          "source": "Stable diagrams and amalgamation at closed levels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-testing",
+          "role": "stable-diagrams-and-amalgamation-at-closed-levels",
+          "label": "proposition m2-lev-testing",
+          "fullLabel": "proposition m2-lev-testing",
+          "kind": "proposition",
+          "source": "Stable diagrams and amalgamation at closed levels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-compact-placement",
+          "role": "stable-diagrams-and-amalgamation-at-closed-levels",
+          "label": "proposition m2-lev-compact-placement",
+          "fullLabel": "proposition m2-lev-compact-placement",
+          "kind": "proposition",
+          "source": "Stable diagrams and amalgamation at closed levels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-placed-lifts",
+          "role": "stable-diagrams-and-amalgamation-at-closed-levels",
+          "label": "lemma m2-lev-placed-lifts",
+          "fullLabel": "lemma m2-lev-placed-lifts",
+          "kind": "lemma",
+          "source": "Stable diagrams and amalgamation at closed levels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-amalgamation",
+          "role": "stable-diagrams-and-amalgamation-at-closed-levels",
+          "label": "theorem m2-lev-amalgamation",
+          "fullLabel": "theorem m2-lev-amalgamation",
+          "kind": "theorem",
+          "source": "Stable diagrams and amalgamation at closed levels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-directed-unions",
+          "role": "working-schemes-and-uniform-comparison-of-diagrams",
+          "label": "lemma m2-lev-directed-unions",
+          "fullLabel": "lemma m2-lev-directed-unions",
+          "kind": "lemma",
+          "source": "Working schemes and uniform comparison of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-rich-orders",
+          "role": "working-schemes-and-uniform-comparison-of-diagrams",
+          "label": "lemma m2-lev-rich-orders",
+          "fullLabel": "lemma m2-lev-rich-orders",
+          "kind": "lemma",
+          "source": "Working schemes and uniform comparison of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-single-model-package",
+          "role": "working-schemes-and-uniform-comparison-of-diagrams",
+          "label": "proposition m2-lev-single-model-package",
+          "fullLabel": "proposition m2-lev-single-model-package",
+          "kind": "proposition",
+          "source": "Working schemes and uniform comparison of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-named-package",
+          "role": "working-schemes-and-uniform-comparison-of-diagrams",
+          "label": "proposition m2-lev-named-package",
+          "fullLabel": "proposition m2-lev-named-package",
+          "kind": "proposition",
+          "source": "Working schemes and uniform comparison of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-scheme-diagram-routes",
+          "role": "working-schemes-and-uniform-comparison-of-diagrams",
+          "label": "proposition m2-lev-scheme-diagram-routes",
+          "fullLabel": "proposition m2-lev-scheme-diagram-routes",
+          "kind": "proposition",
+          "source": "Working schemes and uniform comparison of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lev-diagram-coding",
+          "role": "working-schemes-and-uniform-comparison-of-diagrams",
+          "label": "proposition m2-lev-diagram-coding",
+          "fullLabel": "proposition m2-lev-diagram-coding",
+          "kind": "proposition",
+          "source": "Working schemes and uniform comparison of diagrams",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-parameter-orbits",
+          "role": "the-one-dimensional-calculus",
+          "label": "lemma m2-calc-parameter-orbits",
+          "fullLabel": "lemma m2-calc-parameter-orbits",
+          "kind": "lemma",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-testing",
+          "role": "the-one-dimensional-calculus",
+          "label": "proposition m2-calc-testing",
+          "fullLabel": "proposition m2-calc-testing",
+          "kind": "proposition",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-compact-placement",
+          "role": "the-one-dimensional-calculus",
+          "label": "lemma m2-calc-compact-placement",
+          "fullLabel": "lemma m2-calc-compact-placement",
+          "kind": "lemma",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-placed-comparisons",
+          "role": "the-one-dimensional-calculus",
+          "label": "lemma m2-calc-placed-comparisons",
+          "fullLabel": "lemma m2-calc-placed-comparisons",
+          "kind": "lemma",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-scheme-amalgamation",
+          "role": "the-one-dimensional-calculus",
+          "label": "theorem m2-calc-scheme-amalgamation",
+          "fullLabel": "theorem m2-calc-scheme-amalgamation",
+          "kind": "theorem",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-mixed-realization",
+          "role": "the-one-dimensional-calculus",
+          "label": "corollary m2-calc-mixed-realization",
+          "fullLabel": "corollary m2-calc-mixed-realization",
+          "kind": "corollary",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-approximations",
+          "role": "the-one-dimensional-calculus",
+          "label": "lemma m2-calc-approximations",
+          "fullLabel": "lemma m2-calc-approximations",
+          "kind": "lemma",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-free-extension",
+          "role": "the-one-dimensional-calculus",
+          "label": "theorem m2-calc-free-extension",
+          "fullLabel": "theorem m2-calc-free-extension",
+          "kind": "theorem",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-average-descent",
+          "role": "the-one-dimensional-calculus",
+          "label": "lemma m2-calc-average-descent",
+          "fullLabel": "lemma m2-calc-average-descent",
+          "kind": "lemma",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-products",
+          "role": "the-one-dimensional-calculus",
+          "label": "proposition m2-calc-products",
+          "fullLabel": "proposition m2-calc-products",
+          "kind": "proposition",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-local-character",
+          "role": "the-one-dimensional-calculus",
+          "label": "proposition m2-calc-local-character",
+          "fullLabel": "proposition m2-calc-local-character",
+          "kind": "proposition",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-support-closure",
+          "role": "the-one-dimensional-calculus",
+          "label": "lemma m2-calc-support-closure",
+          "fullLabel": "lemma m2-calc-support-closure",
+          "kind": "lemma",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-universal-strip",
+          "role": "the-one-dimensional-calculus",
+          "label": "proposition m2-calc-universal-strip",
+          "fullLabel": "proposition m2-calc-universal-strip",
+          "kind": "proposition",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-retractions",
+          "role": "the-one-dimensional-calculus",
+          "label": "corollary m2-calc-retractions",
+          "fullLabel": "corollary m2-calc-retractions",
+          "kind": "corollary",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-calc-retraction-descent",
+          "role": "the-one-dimensional-calculus",
+          "label": "lemma m2-calc-retraction-descent",
+          "fullLabel": "lemma m2-calc-retraction-descent",
+          "kind": "lemma",
+          "source": "The one-dimensional calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-iso-free-isolation",
+          "role": "isolation-and-dominated-extensions",
+          "label": "lemma m2-iso-free-isolation",
+          "fullLabel": "lemma m2-iso-free-isolation",
+          "kind": "lemma",
+          "source": "Isolation and dominated extensions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-iso-alternative",
+          "role": "isolation-and-dominated-extensions",
+          "label": "proposition m2-iso-alternative",
+          "fullLabel": "proposition m2-iso-alternative",
+          "kind": "proposition",
+          "source": "Isolation and dominated extensions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-iso-prime",
+          "role": "isolation-and-dominated-extensions",
+          "label": "proposition m2-iso-prime",
+          "fullLabel": "proposition m2-iso-prime",
+          "kind": "proposition",
+          "source": "Isolation and dominated extensions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "A CH obstruction to a prescribed categoricity threshold",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-CH-Obstruction-to-a-Prescribed-Categoricity-Threshold-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Eventual categoricity for abstract elementary classes",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Eventual-Categoricity-for-Abstract-Elementary-Classes-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

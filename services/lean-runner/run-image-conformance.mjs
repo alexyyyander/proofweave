@@ -37,9 +37,14 @@ export function compareConformanceCase(fixture, result) {
     checks: Object.freeze({ ...result.checks }),
   });
   const expected = fixture.expected;
+  const expectedChecks = Object.keys(expected.checks).sort();
+  const observedChecks = Object.keys(observed.checks).sort();
+  const sameChecks = expectedChecks.length === observedChecks.length
+    && expectedChecks.every((key, index) => observedChecks[index] === key);
   const passed = observed.status === expected.status
     && observed.kernelStatus === expected.kernelStatus
-    && Object.keys(expected.checks).every((key) => observed.checks[key] === expected.checks[key]);
+    && sameChecks
+    && expectedChecks.every((key) => observed.checks[key] === expected.checks[key]);
   return Object.freeze({ expected, observed, passed });
 }
 

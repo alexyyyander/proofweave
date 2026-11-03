@@ -1,0 +1,699 @@
+{
+  "familyNumber": "238",
+  "familyTitle": "Optimal logarithmic mixing of the Thorp shuffle",
+  "manuscripts": [
+    {
+      "id": "Optimal-order-mixing-of-the-Thorp-shuffle-September-26-2026",
+      "title": "Optimal-order mixing of the Thorp shuffle",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Optimal-order-mixing-of-the-Thorp-shuffle-September-26-2026/paper.pdf"
+    },
+    {
+      "id": "Random-coordinate-frames-and-partial-permutation-laws-September-26-2026",
+      "title": "Random coordinate frames and partial permutation laws",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Random-coordinate-frames-and-partial-permutation-laws-September-26-2026/main.pdf"
+    },
+    {
+      "id": "From-partial-permutation-information-to-Fourier-bounds-September-26-2026",
+      "title": "From partial permutation information to Fourier bounds",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/From-partial-permutation-information-to-Fourier-bounds-September-26-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A conditional flow with one sweep of memory",
+    "Why the recent noise contracts",
+    "The representation degrees needed for the lift",
+    "From eight large marginals to the whole group",
+    "The chain and its elementary lower bound",
+    "Changing the position frame",
+    "Online observations and ordinary marginals",
+    "From large marginals to a finite degree sum",
+    "An elementary bound on representation degrees",
+    "Completion of the mixing bound",
+    "Fixed input laws and independent shears",
+    "Estimates that average the input labels",
+    "Symmetry accumulated between two visits to a coordinate",
+    "Fourier amplification of partial permutation laws",
+    "History events and conditional estimates",
+    "An averaged application of deferred columns",
+    "Random input domains and equivariant kernels",
+    "Character smoothing from half-deck information",
+    "Exact half-deck marginals and character amplification",
+    "What partial observations can determine",
+    "Degree sums, common trimming, and normalization",
+    "The complete transfer from disjoint coset systems"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-mixing",
+      "kind": "theorem",
+      "label": "Optimal-order mixing",
+      "statement": "[Optimal-order mixing] As d , \\[ \\|q_d^ *(1600d) -U_n\\|_ TV 0. \\] For every integer t0 , \\[ \\|q_d^ *t -U_n\\|_ TV 1- 2^ tn/2 n! . \\] Consequently the mixing time at distance 1/4 satisfies \\[ t_ mix…",
+      "section": "Introduction",
+      "manuscript": "Optimal-order mixing of the Thorp shuffle"
+    },
+    {
+      "id": "m1-lem-path-cylinder",
+      "kind": "lemma",
+      "label": "Path cylinders and conditional flow",
+      "statement": "[Path cylinders and conditional flow] For every feasible specification of the exposed paths through a time T , the visited time--edge coins are fixed and all other coins remain independent and fair.…",
+      "section": "A conditional flow with one sweep of memory",
+      "manuscript": "Optimal-order mixing of the Thorp shuffle"
+    },
+    {
+      "id": "m1-lem-energy-memory",
+      "kind": "lemma",
+      "label": "One-sweep energy identity",
+      "statement": "[One-sweep energy identity] For every \\(t d\\), E_t=_ j=1 ^d2^ -j b_ t-j .",
+      "section": "A conditional flow with one sweep of memory",
+      "manuscript": "Optimal-order mixing of the Thorp shuffle"
+    },
+    {
+      "id": "m1-lem-sequential-tv",
+      "kind": "lemma",
+      "label": "Sequential total variation",
+      "statement": "[Sequential total variation] For a random tuple (Z_1,,Z_k) of distinct positions, \\| L(Z_1,,Z_k)-U_ inj \\|_ TV _ j=1 ^k E\\| L(Z_j Z_1,,Z_ j-1 ) -U_ V\\ Z_1,,Z_ j-1 \\ \\|_ TV . Every expectation is…",
+      "section": "Why the recent noise contracts",
+      "manuscript": "Optimal-order mixing of the Thorp shuffle"
+    },
+    {
+      "id": "m1-prop-averaged-marginal",
+      "kind": "proposition",
+      "label": "Averaged ordered marginals",
+      "statement": "[Averaged ordered marginals] Let \\(n=2^d\\), \\(T=200d\\), and \\(1 k7n/8\\). Choose an ordered list \\(C=(c_1,,c_k)\\) uniformly among all lists of distinct labels, independently of the shuffle. Then E_C…",
+      "section": "Why the recent noise contracts",
+      "manuscript": "Optimal-order mixing of the Thorp shuffle"
+    },
+    {
+      "id": "m1-lem-reciprocal-degrees",
+      "kind": "lemma",
+      "label": "Reciprocal representation degrees",
+      "statement": "[Reciprocal representation degrees] The reciprocal-degree sums satisfy C_1:=_ s1 _ s (f^)^ -1 <, _ s\\\\\\ (s),(1^s)\\ (f^)^ -1 0(s).",
+      "section": "The representation degrees needed for the lift",
+      "manuscript": "Optimal-order mixing of the Thorp shuffle"
+    },
+    {
+      "id": "m1-prop-orbit-lift",
+      "kind": "proposition",
+      "label": "Eight-block Fourier bound",
+      "statement": "[Eight-block Fourier bound] Let \\(n\\) be a positive multiple of eight, and partition the labels of \\(G=S_n\\) into sets \\(M_1,,M_8\\) of size \\(n/8\\). For each \\(a\\), let \\(H_a\\) be the subgroup fixing…",
+      "section": "From eight large marginals to the whole group",
+      "manuscript": "Optimal-order mixing of the Thorp shuffle"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For n=2^d , \\[ \\|q_d^ *(32800d) -U_n\\|_ 0 (d). \\] The convergence is uniform…",
+      "statement": "For n=2^d , \\[ \\|q_d^ *(32800d) -U_n\\|_ 0 (d). \\] The convergence is uniform over every deterministic initial ordering of the deck.",
+      "section": "Introduction",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lem-lower",
+      "kind": "lemma",
+      "label": "Support lower bound",
+      "statement": "[Support lower bound] For every integer t0 , \\|q_d^ *t -U\\|_ 1- 2^ tn/2 n! . Consequently, t_ mix (d) 2n_2(3n! 4 ) =2d-O(1). For 0 t d , \\[ \\|q_d^ *t -U\\|_ 1-(e/ n)^n. \\] In particular, the distance…",
+      "section": "The chain and its elementary lower bound",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lem-one-card-lower",
+      "kind": "lemma",
+      "label": "One-card comparison",
+      "statement": "[One-card comparison] For a fixed initial card and an integer 0 t<d , its location law has support at most 2^t . Consequently the full permutation law has total-variation distance at least 1-2^t/n…",
+      "section": "The chain and its elementary lower bound",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lem-frames",
+      "kind": "lemma",
+      "label": "Fixed-schedule frame identity",
+      "statement": "[Fixed-schedule frame identity] Let T d , and let =(_1,,_d) be a permutation of 1,,d . Write i(t)=_ 1+((t-1) d) , and let X^ _0= and X^ _t=Q^ _t X^ _ t-1 , where the increments are independent and…",
+      "section": "Changing the position frame",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-cor-frames-marginals",
+      "kind": "corollary",
+      "label": "Endpoint distances and the input map",
+      "statement": "[Endpoint distances and the input map] Under Lemma~ , let 0 q n and let _q be uniform on ordered distinct q -tuples of positions. For every fixed ordered list C of q distinct labels, \\|…",
+      "section": "Changing the position frame",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lem-marginal-averaging",
+      "kind": "lemma",
+      "label": "Online averaging and cross-hyperplane contraction",
+      "statement": "[Online averaging and cross-hyperplane contraction] In the preceding setup, for 0 t<T and 1 j q , _ t+1 ^j=_t^j-12 _ \\ x,y\\ D_t^j\\=x+v_ t+1 (p_t^j(x)-p_t^j(y))^2 almost surely, where each unordered…",
+      "section": "Online observations and ordinary marginals",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-lem-tuple",
+      "kind": "lemma",
+      "label": "Terminal data and an ordinary tuple law",
+      "statement": "[Terminal data and an ordinary tuple law] In the preceding setup let be terminal data that determine the complete direction schedule, and suppose is independent of (,(Z_t)_ t=0 ^T) . For every 1 j q…",
+      "section": "Online observations and ordinary marginals",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-prop-marginals",
+      "kind": "proposition",
+      "label": "One partition with nearly complete marginals",
+      "statement": "[One partition with nearly complete marginals] There is a deterministic labeled partition M=(M_1,,M_k) into blocks of size m for which _ a=1 ^k_a( M) k_n=o(1)(d).",
+      "section": "Online observations and ordinary marginals",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lem-trim",
+      "kind": "lemma",
+      "label": "Simultaneous trimming",
+      "statement": "[Simultaneous trimming] Let \\(H_1,,H_k\\) be subgroups of a finite group \\(G\\), and let \\(\\) be a probability measure on \\(G\\). Put \\[ _a=\\|_ H_a -(U_G)_ H_a \\|_ , =_ a=1 ^k_a. \\] If \\(<1/2\\), there…",
+      "section": "From large marginals to a finite degree sum",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-prop-lift-orbit-sum",
+      "kind": "proposition",
+      "label": "Coset densities and squared subgroup degrees",
+      "statement": "[Coset densities and squared subgroup degrees] Let a finite set \\(X\\) be partitioned into \\(k1\\) nonempty sets \\(M_1,,M_k\\), and put \\(G=(X)\\). Let \\(H_a\\) be the subgroup permuting \\(M_a\\) and…",
+      "section": "From large marginals to a finite degree sum",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lem-degrees",
+      "kind": "lemma",
+      "label": "Summability of inverse degrees",
+      "statement": "[Summability of inverse degrees] There is an absolute finite constant C_0:=_ s 1 _ s (f^)^ -16 <. Moreover, _ s\\\\ \\ (s),(1^s)\\ (f^)^ -16 0 as s. The excluded partitions are interpreted as a set, so…",
+      "section": "An elementary bound on representation degrees",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-prop-lift",
+      "kind": "corollary",
+      "label": "From bounded coset densities to Fourier decay",
+      "statement": "[From bounded coset densities to Fourier decay] Let a finite set X be partitioned into k>18 nonempty sets M_1,,M_k , and put G=(X) . Let H_a be the subgroup that permutes M_a and fixes X M_a…",
+      "section": "An elementary bound on representation degrees",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lem-plancherel",
+      "kind": "lemma",
+      "label": "The full-group variation bound",
+      "statement": "[The full-group variation bound] For any probability measure on G , 4\\|-U\\|_ ^2 _ triv D_ \\|()\\|_ ^2, where the sum contains one representative of each nontrivial irreducible equivalence class.",
+      "section": "Completion of the mixing bound",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lem-fair-sign",
+      "kind": "lemma",
+      "label": "Fair sign",
+      "statement": "[Fair sign] For every d1 and every integer t1 , q_d^ *t ()=0 . If a probability measure is away from q_d^ *t in total variation, then |()|2 . If instead 0 q_d^ *t has mass m , then |()|1-m .",
+      "section": "Completion of the mixing bound",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lem-concentration",
+      "kind": "lemma",
+      "label": "Concentration estimates",
+      "statement": "[Concentration estimates] Let X_1,,X_r be independent random variables in [0,1] and put S=_iX_i . For a0 and r1 , \\[ (S- S a),(S- S-a) e^ -2a^2/r . \\] More generally, if (M_j)_ j=0 ^r is a real…",
+      "section": "Fixed input laws and independent shears",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-lem-fixed-balance",
+      "kind": "lemma",
+      "label": "Balance after the previous transverse switch",
+      "statement": "[Balance after the previous transverse switch] Fix any <N observed labels, and put m=N- . For s>d , let D_ s-1 be their available positions just before step s . Then \\ (|D_ s-1 W_s|,|D_ s-1…",
+      "section": "Fixed input laws and independent shears",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-prop-fixed-marginal",
+      "kind": "proposition",
+      "label": "Uniform large-marginal estimates",
+      "statement": "[Uniform large-marginal estimates] Let L2 be a fixed integer dividing N , and let 0 q N-N/L . For every ordered list C of q distinct labels, every periodic ordering of the standard axes, and every…",
+      "section": "Fixed input laws and independent shears",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-lem-keys",
+      "kind": "lemma",
+      "label": "Independent shear realization",
+      "statement": "[Independent shear realization] Fix an axis order and a horizon T d . Independently of the increments in , choose independent fair bits b_ sj for j i(s) , put b_ s,i(s) =0 , and write for all these…",
+      "section": "Fixed input laws and independent shears",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-prop-reservoir",
+      "kind": "proposition",
+      "label": "A reservoir of omitted labels",
+      "statement": "[A reservoir of omitted labels] Let d3 , b=N/8 , and T=257d . Let B be a uniform b -subset of input labels, independent of the shuffle. For any fixed ordering of V B , let _T(B) be the distance of…",
+      "section": "Estimates that average the input labels",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lifts-averaged-tuples",
+      "kind": "lemma",
+      "label": "Averaged tuple bound",
+      "statement": "[Averaged tuple bound] Fix an integer b2 dividing N , put m=N/b , and let t d be an integer. Let C be a uniformly sampled ordered tuple of N-m distinct input labels, independent of the shuffle, and…",
+      "section": "Estimates that average the input labels",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lifts-tuple-constants",
+      "kind": "corollary",
+      "label": "Block lengths for the averaged input",
+      "statement": "[Block lengths for the averaged input] For b=16 , the average distance in Lemma~ at t=513d is at most \\[ _N=12N^ 3/2 (N^ -8 +2^ N/16 )^ 1/2 =o(1). \\] At t=2049d it is at most N^ -10 for sufficiently…",
+      "section": "Estimates that average the input labels",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-prop-random-tuple",
+      "kind": "proposition",
+      "label": "Averaged tuples with no initial deterministic sweep",
+      "statement": "[Averaged tuples with no initial deterministic sweep] Let d3 , q=7N/8 , and T=1024d . For a uniformly sampled ordered distinct input tuple C , independent of X , _C\\| L(X_T(C) C)-_q\\|_ q N 2 (e^ -16d…",
+      "section": "Estimates that average the input labels",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-average-law",
+      "kind": "lemma",
+      "label": "Ordinary random-input marginals",
+      "statement": "[Ordinary random-input marginals] Let d6 , b=64 , q=N(1-1/b) , and T=2048d . The average, over uniform ordered lists of q distinct input labels, of their time- T physical image-law distance from _q…",
+      "section": "Estimates that average the input labels",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-lem-delayed-symmetry",
+      "kind": "lemma",
+      "label": "Delayed half-space symmetry",
+      "statement": "[Delayed half-space symmetry] Let V= F_2^d , N=2^d , and fix a coordinate i . Let j_1,,j_ d-1 list all coordinates other than i , in any order. Condition on a sigma field A which specifies a nonempty…",
+      "section": "Symmetry accumulated between two visits to a coordinate",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-prop-fourier-inputs",
+      "kind": "proposition",
+      "label": "Degree and coset inputs",
+      "statement": "[Degree and coset inputs] For every fixed \\(u>0\\), \\(C_u<\\) and \\(Z_u(s)0\\) as \\(s\\). Let \\(H_1,,H_r\\) be subgroups of a finite group \\(G\\), and let \\(\\) be a probability measure. Write \\(_H\\) for…",
+      "section": "Fourier amplification of partial permutation laws",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-prop-disjoint-transfer",
+      "kind": "proposition",
+      "label": "Fourier bounds from disjoint coset systems",
+      "statement": "[Fourier bounds from disjoint coset systems] Let \\(X\\) have \\(N\\) elements and \\(G=(X)\\). Let \\(M_1,,M_r\\) be disjoint nonempty subsets of \\(X\\), where \\(r1\\), and put \\(H_i=(M_i)\\), fixing the…",
+      "section": "Fourier amplification of partial permutation laws",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lem-subprobability-fourier",
+      "kind": "lemma",
+      "label": "Fourier normalization for retained mass",
+      "statement": "[Fourier normalization for retained mass] For a complex mass function \\(a\\) on a finite group \\(G\\), _ D_\\| a()\\|_ ^2 =|G|_g|a(g)|^2. If \\(0\\) has mass \\(m1\\), its transform is not divided by \\(m\\),…",
+      "section": "Fourier amplification of partial permutation laws",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-cor-512",
+      "kind": "corollary",
+      "label": "Two time blocks from the isotypic transfer",
+      "statement": "[Two time blocks from the isotypic transfer] For the Thorp shuffle on \\(N=2^d\\) cards, \\[ \\|q_d^ *(512d) -U_G\\|_ 0 (d). \\] The convergence is uniform over deterministic initial orderings.",
+      "section": "Fourier amplification of partial permutation laws",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-thm-2048",
+      "kind": "theorem",
+      "label": "Eight time blocks from the orbit estimate",
+      "statement": "[Eight time blocks from the orbit estimate] For the physical shuffle on \\(N=2^d\\) labeled cards, \\|q_d^ *(2048d) -U_G\\|_ =o(1). The fixed-list estimate at \\(257d\\) also gives a proof using eight time…",
+      "section": "Fourier amplification of partial permutation laws",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-average-marginals",
+      "kind": "proposition",
+      "label": "Sixteen time blocks from averaged input lists",
+      "statement": "[Sixteen time blocks from averaged input lists] Let \\(d6\\), \\(b=64\\), \\(q=N(1-1/b)\\), \\(T=2048d\\), and \\(_T=q_d^ *T \\). The average over uniform ordered lists of \\(q\\) distinct input labels of the…",
+      "section": "Fourier amplification of partial permutation laws",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-thm-32-block",
+      "kind": "theorem",
+      "label": "Thirty-two time blocks from coefficient projection",
+      "statement": "[Thirty-two time blocks from coefficient projection] The fixed-list marginal bound at \\(T=2049d\\) has a separate Hilbert--Schmidt amplification proving \\[ \\|q_d^ *(65568d) -U_G\\|_ =o(1). \\]",
+      "section": "Fourier amplification of partial permutation laws",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-thm-4096",
+      "kind": "theorem",
+      "label": "Four time blocks from the branching estimate",
+      "statement": "[Four time blocks from the branching estimate] The averaged-input estimate of Proposition~ has an amplification proving \\[ \\|q_d^ *(4096d) -U_G\\|_ =o(1). \\]",
+      "section": "Fourier amplification of partial permutation laws",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-shear-cor-order",
+      "kind": "corollary",
+      "label": "Mixing order and lower estimates",
+      "statement": "[Mixing order and lower estimates] For all sufficiently large \\(d\\), \\[ d<t_ mix (d)512d. \\] Thus the mixing time has order \\((d)\\) in physical shuffles. The one-card support bound also gives \\(t_…",
+      "section": "Fourier amplification of partial permutation laws",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-matching-invariance",
+      "kind": "lemma",
+      "label": "Matching and input-list invariance",
+      "statement": "[Matching and input-list invariance] Fix an integer T d and directions v_1,,v_T such that every consecutive d form a basis. There are invertible linear maps L_0,,L_T with L_0e_i=v_i for 1 i d such…",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-holes",
+      "kind": "lemma",
+      "label": "Conditional mass on unobserved positions",
+      "statement": "[Conditional mass on unobserved positions] Fix an integer T1 and nonzero directions v_1,,v_T . Let Z_0=I and Z_t=_tZ_ t-1 , where the _t are independent uniform switches in directions v_t . Fix…",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-conditional-interface",
+      "kind": "corollary",
+      "label": "Complete and chronological conditioning",
+      "statement": "[Complete and chronological conditioning] Fix integers T1 and 1 q n . Let v=(v_1,,v_T) be a random schedule of nonzero directions. Set Z_0=I , and suppose that, conditional on v , the increments of Z…",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-cross-energy",
+      "kind": "lemma",
+      "label": "Fresh-direction contraction",
+      "statement": "[Fresh-direction contraction] Suppose, given the generated past, the next direction is uniform outside a hyperplane J V . Split the m unobserved positions into the two cosets, denoting the resulting…",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-crossing-balance",
+      "kind": "lemma",
+      "label": "Balance supplied by an earlier crossing",
+      "statement": "[Balance supplied by an earlier crossing] Fix integers T d and r1 . For any fixed observed labels and any d<t T , if m positions remain unobserved, then \\[ \\ (|F_ t-1 J_t|,|F_ t-1 J_t|)<m/4\\ 2e^ -m/8…",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-backward-removal",
+      "kind": "lemma",
+      "label": "Removing exceptional histories in descending order",
+      "statement": "[Removing exceptional histories in descending order] Let T d be an integer, and let r2 divide n . Partition V into equal input blocks M_1,,M_r and, for each i , fix an order c_ i,1 ,,c_ i,q on its…",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-pointwise-applications",
+      "kind": "proposition",
+      "label": "Two applications of the retained event",
+      "statement": "[Two applications of the retained event] The physical shuffle has total-variation distance o(1) from uniform by time 4096d . The choices r=32 , T=2561d give the separate subprobability construction…",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-stopped-marginals",
+      "kind": "proposition",
+      "label": "Stopped partial-observation estimate",
+      "statement": "[Stopped partial-observation estimate] Let d4 . Put b=16 , m=n/b , q=n-m , and T=(2+20b)d=322d . For every fixed ordered list of q distinct input positions, its image under the physical shuffle at…",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-pruning-application",
+      "kind": "proposition",
+      "label": "The stopped-energy and pruning application",
+      "statement": "[The stopped-energy and pruning application] The stopped partial-observation estimate and spectral pruning give full-permutation distance o(1) by time 5152d .",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-reference-rows",
+      "kind": "lemma",
+      "label": "Conditional masses in trajectory-label coordinates",
+      "statement": "[Conditional masses in trajectory-label coordinates] Fix a realized cyclic history g=(g_0,,g_T) and a nonempty set F of labels. For u F , let p_t^ u,F (x) be the conditional probability under P that…",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-typical-history",
+      "kind": "lemma",
+      "label": "One typical event for all reservoir sizes",
+      "statement": "[One typical event for all reservoir sizes] Define the event on cyclic histories by G_ ent =_ m=n/L ^ n \\ g: E_ F:\\,|F|=m Z_T^F(g) n^ -8 \\ , where each average is uniform over subsets of labels. Then…",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-shadow-entropy",
+      "kind": "lemma",
+      "label": "Entropy comparison for arbitrary tilted histories",
+      "statement": "[Entropy comparison for arbitrary tilted histories] For every probability law on histories supported on G_ ent , D(\\| P) E_ X:\\,|X|=q D(_X\\|U_X)-n^ -2 .",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-entropy-tail",
+      "kind": "proposition",
+      "label": "Representation-coefficient tails from entropy",
+      "statement": "[Representation-coefficient tails from entropy] There is an absolute C such that for every irreducible unitary representation of G , of degree D , and unit vectors u,z , P\\ G_ ent , | z,(g_T)u| D^…",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-entropy-application",
+      "kind": "proposition",
+      "label": "The typical-history entropy application",
+      "statement": "[The typical-history entropy application] With L=128 , T=(1+100L)d , and b=32L , the shuffle has full-permutation distance o(1) at time bT .",
+      "section": "History events and conditional estimates",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-aux-theorem",
+      "kind": "theorem",
+      "label": "For the Thorp shuffle on n=2^d labeled cards, \\[ _ S_n \\|P_d^ 512040d…",
+      "statement": "For the Thorp shuffle on n=2^d labeled cards, \\[ _ S_n \\|P_d^ 512040d (,)-U_n\\|_ TV =o(1)(d), \\] where U_n is the uniform probability measure on S_n and one time step is one physical shuffle.…",
+      "section": "An averaged application of deferred columns",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-aux-directions",
+      "kind": "lemma",
+      "label": "Inverse-frame form of the shear law",
+      "statement": "[Inverse-frame form of the shear law] Conditional on , the increments of X are independent uniform switches in the coordinate directions e_ _i . For every t T , the conditional law of (Y_i)_ i=0 ^t…",
+      "section": "An averaged application of deferred columns",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-aux-energy",
+      "kind": "lemma",
+      "label": "Uniformly for 0 j<k , with expectation over the ordering and shuffle…",
+      "statement": "Uniformly for 0 j<k , with expectation over the ordering and shuffle construction, E E_T e^ -25d +T_n, _n=2n(n+1)(-n 16r ).",
+      "section": "An averaged application of deferred columns",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-aux-marginal",
+      "kind": "proposition",
+      "label": "Let C=(a_1,,a_k) be a uniformly chosen ordered list of distinct initial cards,…",
+      "statement": "Let C=(a_1,,a_k) be a uniformly chosen ordered list of distinct initial cards, independent of X_T , and let _k be uniform on ordered k -tuples of distinct positions. Then E_C\\| L(X_T(C) C)-_k\\|_ TV…",
+      "section": "An averaged application of deferred columns",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-aux-orbit-lift",
+      "kind": "lemma",
+      "label": "If is an irreducible unitary representation of G=S_n of dimension D , then the…",
+      "statement": "If is an irreducible unitary representation of G=S_n of dimension D , then the measure in satisfies \\|()\\|_ op C_rD^ -1/2+11/r , C_r=2rK_0.",
+      "section": "An averaged application of deferred columns",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lifts-random-four-blocks",
+      "kind": "proposition",
+      "label": "As d , with n=2^d , \\[ _ g_0 G \\|P_d^ 2052d (g_0,)-U_n\\|_ =\\|q_d^ *(2052d)…",
+      "statement": "As d , with n=2^d , \\[ _ g_0 G \\|P_d^ 2052d (g_0,)-U_n\\|_ =\\|q_d^ *(2052d) -U_n\\|_ 0. \\]",
+      "section": "Random input domains and equivariant kernels",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lifts-sixteen-theorem",
+      "kind": "theorem",
+      "label": "As d , with n=2^d , \\[ _ g_0 G \\|P_d^ 32784d (g_0,)-U_n\\|_ =\\|q_d^ *(32784d)…",
+      "statement": "As d , with n=2^d , \\[ _ g_0 G \\|P_d^ 32784d (g_0,)-U_n\\|_ =\\|q_d^ *(32784d) -U_n\\|_ 0. \\]",
+      "section": "Random input domains and equivariant kernels",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-lifts-neumann-theorem",
+      "kind": "proposition",
+      "label": "As d , with n=2^d , \\[ _ g_0 G \\|P_d^ 262152d (g_0,)-U_n\\|_ =\\|q_d^ *(262152d)…",
+      "statement": "As d , with n=2^d , \\[ _ g_0 G \\|P_d^ 262152d (g_0,)-U_n\\|_ =\\|q_d^ *(262152d) -U_n\\|_ 0. \\]",
+      "section": "Random input domains and equivariant kernels",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-char-main",
+      "kind": "theorem",
+      "label": "Let n=2^d , and count one physical Thorp shuffle as one time step, using n/2…",
+      "statement": "Let n=2^d , and count one physical Thorp shuffle as one time step, using n/2 independent fair switches. For all sufficiently large integers d , the worst-initial-deck total-variation mixing time at…",
+      "section": "Character smoothing from half-deck information",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-char-half-list",
+      "kind": "lemma",
+      "label": "Let be the product of L=100d consecutive layers in a periodic coordinate order…",
+      "statement": "Let be the product of L=100d consecutive layers in a periodic coordinate order on n=2^d positions. Uniformly over ordered lists of q n/2 distinct inputs, the law of their images under has…",
+      "section": "Character smoothing from half-deck information",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-char-one-pass",
+      "kind": "lemma",
+      "label": "Let b=2^h and let Y apply each of the h coordinate layers once, in any order,…",
+      "statement": "Let b=2^h and let Y apply each of the h coordinate layers once, in any order, using independent fair switches. For every irreducible representation _ of S_b , put T_= E_(Y) . Uniformly for all…",
+      "section": "Character smoothing from half-deck information",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-char-sweep-trace",
+      "kind": "lemma",
+      "label": "Let s=2^ and let G_s be a sweep using each of the coordinate directions once,…",
+      "statement": "Let s=2^ and let G_s be a sweep using each of the coordinate directions once, in any order, with independent fair switches. There are absolute a>0,C_1< such that, for every sufficiently large s and…",
+      "section": "Character smoothing from half-deck information",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-char-minimum-degree",
+      "kind": "lemma",
+      "label": "For even n6 , every irreducible representation of S_n other than trivial and…",
+      "statement": "For even n6 , every irreducible representation of S_n other than trivial and sign has degree at least n/2 .",
+      "section": "Character smoothing from half-deck information",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-frames-char-block-norm",
+      "kind": "proposition",
+      "label": "There is an absolute C_0 such that, for every sufficiently large n=2^d , every…",
+      "statement": "There is an absolute C_0 such that, for every sufficiently large n=2^d , every modified block above, and every irreducible of S_n of degree D other than trivial or sign, \\[ \\| E()\\|_ op C_0D^…",
+      "section": "Character smoothing from half-deck information",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-char-main",
+      "kind": "theorem",
+      "label": "Half-deck repair and character amplification",
+      "statement": "[Half-deck repair and character amplification] There are absolute positive integers C,K such that the Thorp shuffle on n=2^d cards has worst-start total-variation distance tending to zero from…",
+      "section": "Exact half-deck marginals and character amplification",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m2-char-repair",
+      "kind": "lemma",
+      "label": "Simultaneous marginal repair",
+      "statement": "[Simultaneous marginal repair] Partition a set of size 2s into two ordered sets J_1,J_2 , each of size s . Let A_0 be a random permutation. Suppose the ordered image of J_i under A_0 has…",
+      "section": "Exact half-deck marginals and character amplification",
+      "manuscript": "Random coordinate frames and partial permutation laws"
+    },
+    {
+      "id": "m3-l-main",
+      "kind": "theorem",
+      "label": "Complementary cosets control Fourier matrices",
+      "statement": "[Complementary cosets control Fourier matrices] Partition X into b nonempty sets M_1,,M_b . Put H_i=H_ M_i . Suppose f is a nonnegative measure on G of mass at most one and, for every g G and i ,…",
+      "section": "What partial observations can determine",
+      "manuscript": "From partial permutation information to Fourier bounds"
+    },
+    {
+      "id": "m3-l-degree-basic",
+      "kind": "lemma",
+      "label": "A short reciprocal-degree proof",
+      "statement": "[A short reciprocal-degree proof] For every u>0 , C_u< and \\[ Z_u(n):=_ n,\\ \\ (n),(1^n)\\ D_^ -u 0. \\] The excluded partitions form a set, so the unique partition of one is removed only once.",
+      "section": "Degree sums, common trimming, and normalization",
+      "manuscript": "From partial permutation information to Fourier bounds"
+    },
+    {
+      "id": "m3-l-partition-selection",
+      "kind": "lemma",
+      "label": "Selecting one partition",
+      "statement": "[Selecting one partition] If n is divisible by b and a law on S_n satisfies \\[ _ |M|=n/b \\|_ H_M -U_ G/H_M \\|_ , \\] there is a partition into b equal blocks for which the sum of the complementary…",
+      "section": "Degree sums, common trimming, and normalization",
+      "manuscript": "From partial permutation information to Fourier bounds"
+    },
+    {
+      "id": "m3-l-trim",
+      "kind": "lemma",
+      "label": "Two common trimming operations",
+      "statement": "[Two common trimming operations] Let H_1,,H_b be subgroups of a finite group G , let be a probability, and put _i=\\|_ H_i -U_ G/H_i \\|_ and =_i_i . There is a subprobability f with \\[ f(G)1-,…",
+      "section": "Degree sums, common trimming, and normalization",
+      "manuscript": "From partial permutation information to Fourier bounds"
+    },
+    {
+      "id": "m3-l-plancherel",
+      "kind": "lemma",
+      "label": "Plancherel with a mass deficit",
+      "statement": "[Plancherel with a mass deficit] For every complex mass function a on a finite group G , \\[ |G|_g|a(g)|^2=_ (G) D_\\| a()\\|_ ^2. \\] If f0 has mass z1 , then |G|_g|f(g)-zU(g)|^2&=_ D_\\| f()\\|_ ^2, \\\\…",
+      "section": "Degree sums, common trimming, and normalization",
+      "manuscript": "From partial permutation information to Fourier bounds"
+    },
+    {
+      "id": "m3-l-amplification",
+      "kind": "proposition",
+      "label": "Fourier amplification",
+      "statement": "[Fourier amplification] Let _n be probabilities on S_n with _n()=o(1) . Suppose either f_n is a nonnegative subprobability with f_n_n and mass tending to one, or f_n is a probability with \\|f_n-_n\\|_…",
+      "section": "Degree sums, common trimming, and normalization",
+      "manuscript": "From partial permutation information to Fourier bounds"
+    },
+    {
+      "id": "m3-l-single-orbit",
+      "kind": "lemma",
+      "label": "The orbit of a single vector",
+      "statement": "[The orbit of a single vector] Let H act unitarily on V , and suppose a vector v has components only in H -types belonging to a set (H) . Then \\[ \\ (h)v:h H\\ _ ()^2. \\] All copies of a type are…",
+      "section": "The complete transfer from disjoint coset systems",
+      "manuscript": "From partial permutation information to Fourier bounds"
+    },
+    {
+      "id": "m3-l-orbit-span",
+      "kind": "proposition",
+      "label": "Orbit-span transfer",
+      "statement": "[Orbit-span transfer] Under the assumptions of Theorem~ , for every u>0 , \\[ \\| f()\\|_ bBC_u\\,D^ -1/2+(u+2)/(2b) . \\]",
+      "section": "The complete transfer from disjoint coset systems",
+      "manuscript": "From partial permutation information to Fourier bounds"
+    },
+    {
+      "id": "m3-l-orbit-completion",
+      "kind": "corollary",
+      "label": "Four convolutions by the orbit argument",
+      "statement": "[Four convolutions by the orbit argument] Let n through multiples of eight. Suppose probabilities _n on S_n have sign mean o(1) and \\[ _ |M|=n/8 \\|_ n,H_M -U_ G/H_M \\|_ =o(1). \\] Then \\|_n^ *4…",
+      "section": "The complete transfer from disjoint coset systems",
+      "manuscript": "From partial permutation information to Fourier bounds"
+    },
+    {
+      "id": "m3-l-central-isotypic",
+      "kind": "lemma",
+      "label": "Cosetwise isotypic estimate",
+      "statement": "[Cosetwise isotypic estimate] Let H G and let f0 have mass z1 and satisfy f(gH) B/[G:H] . For an irreducible H -type of degree a , _ (G) D_\\| f()P_ ,H, \\|_ ^2 Bza^2.",
+      "section": "The complete transfer from disjoint coset systems",
+      "manuscript": "From partial permutation information to Fourier bounds"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m2-prop-marginals",
+      "to": "m2-thm-main",
+      "label": "prop:marginals",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix $k=64$ and let $d\\ge6$ grow. Put $T=1025d$ and $\\mu=q_d^{*T}$. Proposition~\\ref{prop:marginals} supplies a partition of the labels into $k$ sets of size $m=n/k$ for which the sum of the complementary marginal errors"
+    }
+  ]
+}

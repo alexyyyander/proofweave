@@ -1,0 +1,719 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "265",
+  "title": "Area laws and tensor networks for two-dimensional gapped systems",
+  "result": {
+    "id": "paper-result",
+    "label": "Area laws and tensor networks for two-dimensional gapped systems",
+    "statement": "Proves an entropy area law for unique ground states of finite-range Hamiltonians on arbitrary finite induced square-lattice domains, using only a uniform full-system spectral gap and bounds on the local interactions. On open L L squares, uniformly gapped nearest-neighbor ground states also admit projected entangled-pair state approximations with polynomial bond dimension and global vector error at most L −1 .",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "entropy-and-induced-graph-locality",
+      "label": "Entropy and induced-graph locality",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "marginal-tails-and-an-initial-box-estimate",
+      "label": "Marginal tails and an initial box estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "positive-constraints-and-truncation-near-a-finite-set",
+      "label": "Positive constraints and truncation near a finite set",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-conditional-operator-estimates",
+      "label": "Two conditional operator estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "symmetric-replicas-and-entropy-metrics",
+      "label": "Symmetric replicas and entropy metrics",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transport-through-finite-trees-of-metrics",
+      "label": "Transport through finite trees of metrics",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "norm-comparisons-from-an-auxiliary-pair",
+      "label": "Norm comparisons from an auxiliary pair",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "scanning-collars-and-improving-the-entropy-bound",
+      "label": "Scanning collars and improving the entropy bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "amplifying-the-collar-estimate",
+      "label": "Amplifying the collar estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-families-of-regions-and-the-area-bound",
+      "label": "Two families of regions and the area bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conventions-and-entropy-inputs",
+      "label": "Conventions and entropy inputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "information-bounds-for-separated-regions",
+      "label": "Information bounds for separated regions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "adaptive-finite-rank-constraints-on-small-patches",
+      "label": "Adaptive finite-rank constraints on small patches",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compression-of-distributed-density-networks",
+      "label": "Compression of distributed density networks",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "encoded-frames-and-changes-of-ownership",
+      "label": "Encoded frames and changes of ownership",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-planar-distribution-protocol",
+      "label": "A finite planar distribution protocol",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-the-protocol-to-a-peps",
+      "label": "From the protocol to a PEPS",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A two-dimensional area law from a global spectral gap",
+      "title": "A two-dimensional area law from a global spectral gap",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-two-dimensional-area-law-from-a-global-spectral-gap-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A two-dimensional area law from a global spectral gap.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-area",
+          "role": "introduction",
+          "label": "theorem m1-thm-area",
+          "fullLabel": "theorem m1-thm-area",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-zero-boundary"
+          ]
+        },
+        {
+          "id": "m1-cor-rectangles",
+          "role": "introduction",
+          "label": "corollary m1-cor-rectangles",
+          "fullLabel": "corollary m1-cor-rectangles",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-continuity",
+          "role": "entropy-and-induced-graph-locality",
+          "label": "lemma m1-lem-continuity",
+          "fullLabel": "lemma m1-lem-continuity",
+          "kind": "lemma",
+          "source": "Entropy and induced-graph locality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-zero-boundary",
+          "role": "entropy-and-induced-graph-locality",
+          "label": "lemma m1-lem-zero-boundary",
+          "fullLabel": "lemma m1-lem-zero-boundary",
+          "kind": "lemma",
+          "source": "Entropy and induced-graph locality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tail",
+          "role": "marginal-tails-and-an-initial-box-estimate",
+          "label": "lemma m1-lem-tail",
+          "fullLabel": "lemma m1-lem-tail",
+          "kind": "lemma",
+          "source": "Marginal tails and an initial box estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-initial-buffer",
+          "role": "marginal-tails-and-an-initial-box-estimate",
+          "label": "lemma m1-lem-initial-buffer",
+          "fullLabel": "lemma m1-lem-initial-buffer",
+          "kind": "lemma",
+          "source": "Marginal tails and an initial box estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-initial-box",
+          "role": "marginal-tails-and-an-initial-box-estimate",
+          "label": "proposition m1-prop-initial-box",
+          "fullLabel": "proposition m1-prop-initial-box",
+          "kind": "proposition",
+          "source": "Marginal tails and an initial box estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-quasilocal-lr",
+          "role": "positive-constraints-and-truncation-near-a-finite-set",
+          "label": "lemma m1-lem-quasilocal-lr",
+          "fullLabel": "lemma m1-lem-quasilocal-lr",
+          "kind": "lemma",
+          "source": "Positive constraints and truncation near a finite set",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-quasilocal-filter",
+          "role": "positive-constraints-and-truncation-near-a-finite-set",
+          "label": "lemma m1-lem-quasilocal-filter",
+          "fullLabel": "lemma m1-lem-quasilocal-filter",
+          "kind": "lemma",
+          "source": "Positive constraints and truncation near a finite set",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-positive",
+          "role": "positive-constraints-and-truncation-near-a-finite-set",
+          "label": "proposition m1-prop-positive",
+          "fullLabel": "proposition m1-prop-positive",
+          "kind": "proposition",
+          "source": "Positive constraints and truncation near a finite set",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-quasilocal-roots",
+          "role": "positive-constraints-and-truncation-near-a-finite-set",
+          "label": "lemma m1-lem-quasilocal-roots",
+          "fullLabel": "lemma m1-lem-quasilocal-roots",
+          "kind": "lemma",
+          "source": "Positive constraints and truncation near a finite set",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-truncation",
+          "role": "positive-constraints-and-truncation-near-a-finite-set",
+          "label": "proposition m1-prop-truncation",
+          "fullLabel": "proposition m1-prop-truncation",
+          "kind": "proposition",
+          "source": "Positive constraints and truncation near a finite set",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-movement",
+          "role": "two-conditional-operator-estimates",
+          "label": "lemma m1-lem-movement",
+          "fullLabel": "lemma m1-lem-movement",
+          "kind": "lemma",
+          "source": "Two conditional operator estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-conditional-phases",
+          "role": "two-conditional-operator-estimates",
+          "label": "lemma m1-lem-conditional-phases",
+          "fullLabel": "lemma m1-lem-conditional-phases",
+          "kind": "lemma",
+          "source": "Two conditional operator estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-skew",
+          "role": "two-conditional-operator-estimates",
+          "label": "lemma m1-lem-skew",
+          "fullLabel": "lemma m1-lem-skew",
+          "kind": "lemma",
+          "source": "Two conditional operator estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-schur",
+          "role": "symmetric-replicas-and-entropy-metrics",
+          "label": "lemma m1-lem-schur",
+          "fullLabel": "lemma m1-lem-schur",
+          "kind": "lemma",
+          "source": "Symmetric replicas and entropy metrics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-replicas-metric",
+          "role": "symmetric-replicas-and-entropy-metrics",
+          "label": "lemma m1-replicas-metric",
+          "fullLabel": "lemma m1-replicas-metric",
+          "kind": "lemma",
+          "source": "Symmetric replicas and entropy metrics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-relative-pin",
+          "role": "symmetric-replicas-and-entropy-metrics",
+          "label": "lemma m1-lem-relative-pin",
+          "fullLabel": "lemma m1-lem-relative-pin",
+          "kind": "lemma",
+          "source": "Symmetric replicas and entropy metrics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-symbol",
+          "role": "symmetric-replicas-and-entropy-metrics",
+          "label": "lemma m1-lem-symbol",
+          "fullLabel": "lemma m1-lem-symbol",
+          "kind": "lemma",
+          "source": "Symmetric replicas and entropy metrics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-transport-means",
+          "role": "transport-through-finite-trees-of-metrics",
+          "label": "lemma m1-transport-means",
+          "fullLabel": "lemma m1-transport-means",
+          "kind": "lemma",
+          "source": "Transport through finite trees of metrics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-transport-cp",
+          "role": "transport-through-finite-trees-of-metrics",
+          "label": "lemma m1-transport-cp",
+          "fullLabel": "lemma m1-transport-cp",
+          "kind": "lemma",
+          "source": "Transport through finite trees of metrics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-transport-fourier",
+          "role": "transport-through-finite-trees-of-metrics",
+          "label": "lemma m1-transport-fourier",
+          "fullLabel": "lemma m1-transport-fourier",
+          "kind": "lemma",
+          "source": "Transport through finite trees of metrics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-transport",
+          "role": "transport-through-finite-trees-of-metrics",
+          "label": "proposition m1-prop-transport",
+          "fullLabel": "proposition m1-prop-transport",
+          "kind": "proposition",
+          "source": "Transport through finite trees of metrics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-comparators",
+          "role": "norm-comparisons-from-an-auxiliary-pair",
+          "label": "proposition m1-prop-comparators",
+          "fullLabel": "proposition m1-prop-comparators",
+          "kind": "proposition",
+          "source": "Norm comparisons from an auxiliary pair",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-scanner-histories",
+          "role": "scanning-collars-and-improving-the-entropy-bound",
+          "label": "lemma m1-scanner-histories",
+          "fullLabel": "lemma m1-scanner-histories",
+          "kind": "lemma",
+          "source": "Scanning collars and improving the entropy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-scanner",
+          "role": "scanning-collars-and-improving-the-entropy-bound",
+          "label": "proposition m1-prop-scanner",
+          "fullLabel": "proposition m1-prop-scanner",
+          "kind": "proposition",
+          "source": "Scanning collars and improving the entropy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-scanner-templates",
+          "role": "scanning-collars-and-improving-the-entropy-bound",
+          "label": "lemma m1-scanner-templates",
+          "fullLabel": "lemma m1-scanner-templates",
+          "kind": "lemma",
+          "source": "Scanning collars and improving the entropy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-small-box",
+          "role": "scanning-collars-and-improving-the-entropy-bound",
+          "label": "proposition m1-prop-small-box",
+          "fullLabel": "proposition m1-prop-small-box",
+          "kind": "proposition",
+          "source": "Scanning collars and improving the entropy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-collar",
+          "role": "scanning-collars-and-improving-the-entropy-bound",
+          "label": "proposition m1-prop-collar",
+          "fullLabel": "proposition m1-prop-collar",
+          "kind": "proposition",
+          "source": "Scanning collars and improving the entropy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-amplification-local-products",
+          "role": "amplifying-the-collar-estimate",
+          "label": "lemma m1-lem-amplification-local-products",
+          "fullLabel": "lemma m1-lem-amplification-local-products",
+          "kind": "lemma",
+          "source": "Amplifying the collar estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-amplification",
+          "role": "amplifying-the-collar-estimate",
+          "label": "proposition m1-prop-amplification",
+          "fullLabel": "proposition m1-prop-amplification",
+          "kind": "proposition",
+          "source": "Amplifying the collar estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geometry-cancellation",
+          "role": "two-families-of-regions-and-the-area-bound",
+          "label": "lemma m1-geometry-cancellation",
+          "fullLabel": "lemma m1-geometry-cancellation",
+          "kind": "lemma",
+          "source": "Two families of regions and the area bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-two-families",
+          "role": "two-families-of-regions-and-the-area-bound",
+          "label": "proposition m1-prop-two-families",
+          "fullLabel": "proposition m1-prop-two-families",
+          "kind": "proposition",
+          "source": "Two families of regions and the area bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geometry-initial-stars",
+          "role": "two-families-of-regions-and-the-area-bound",
+          "label": "lemma m1-geometry-initial-stars",
+          "fullLabel": "lemma m1-geometry-initial-stars",
+          "kind": "lemma",
+          "source": "Two families of regions and the area bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geometry-repair-induction",
+          "role": "two-families-of-regions-and-the-area-bound",
+          "label": "lemma m1-geometry-repair-induction",
+          "fullLabel": "lemma m1-geometry-repair-induction",
+          "kind": "lemma",
+          "source": "Two families of regions and the area bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geometry-birth-separation",
+          "role": "two-families-of-regions-and-the-area-bound",
+          "label": "lemma m1-geometry-birth-separation",
+          "fullLabel": "lemma m1-geometry-birth-separation",
+          "kind": "lemma",
+          "source": "Two families of regions and the area bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Polynomial PEPS approximation of gapped square-grid ground states",
+      "title": "Polynomial PEPS approximation of gapped square-grid ground states",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-PEPS-approximation-of-gapped-square-grid-ground-states-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Polynomial PEPS approximation of gapped square-grid ground states.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-area-law",
+          "role": "conventions-and-entropy-inputs",
+          "label": "proposition m2-prop-area-law",
+          "fullLabel": "proposition m2-prop-area-law",
+          "kind": "proposition",
+          "source": "Conventions and entropy inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-fidelity",
+          "role": "conventions-and-entropy-inputs",
+          "label": "lemma m2-lem-fidelity",
+          "fullLabel": "lemma m2-lem-fidelity",
+          "kind": "lemma",
+          "source": "Conventions and entropy inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-coarse",
+          "role": "information-bounds-for-separated-regions",
+          "label": "proposition m2-prop-coarse",
+          "fullLabel": "proposition m2-prop-coarse",
+          "kind": "proposition",
+          "source": "Information bounds for separated regions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cell-cmi",
+          "role": "information-bounds-for-separated-regions",
+          "label": "lemma m2-lem-cell-cmi",
+          "fullLabel": "lemma m2-lem-cell-cmi",
+          "kind": "lemma",
+          "source": "Information bounds for separated regions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-reset",
+          "role": "information-bounds-for-separated-regions",
+          "label": "lemma m2-lem-reset",
+          "fullLabel": "lemma m2-lem-reset",
+          "kind": "lemma",
+          "source": "Information bounds for separated regions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-angular",
+          "role": "information-bounds-for-separated-regions",
+          "label": "proposition m2-prop-angular",
+          "fullLabel": "proposition m2-prop-angular",
+          "kind": "proposition",
+          "source": "Information bounds for separated regions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-patch",
+          "role": "adaptive-finite-rank-constraints-on-small-patches",
+          "label": "proposition m2-prop-patch",
+          "fullLabel": "proposition m2-prop-patch",
+          "kind": "proposition",
+          "source": "Adaptive finite-rank constraints on small patches",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-effects",
+          "role": "compression-of-distributed-density-networks",
+          "label": "lemma m2-lem-effects",
+          "fullLabel": "lemma m2-lem-effects",
+          "kind": "lemma",
+          "source": "Compression of distributed density networks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-compression",
+          "role": "compression-of-distributed-density-networks",
+          "label": "theorem m2-thm-compression",
+          "fullLabel": "theorem m2-thm-compression",
+          "kind": "theorem",
+          "source": "Compression of distributed density networks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-group-tensor",
+          "role": "encoded-frames-and-changes-of-ownership",
+          "label": "lemma m2-lem-group-tensor",
+          "fullLabel": "lemma m2-lem-group-tensor",
+          "kind": "lemma",
+          "source": "Encoded frames and changes of ownership",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-small-rewrite",
+          "role": "encoded-frames-and-changes-of-ownership",
+          "label": "lemma m2-lem-small-rewrite",
+          "fullLabel": "lemma m2-lem-small-rewrite",
+          "kind": "lemma",
+          "source": "Encoded frames and changes of ownership",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-splitting",
+          "role": "encoded-frames-and-changes-of-ownership",
+          "label": "lemma m2-lem-splitting",
+          "fullLabel": "lemma m2-lem-splitting",
+          "kind": "lemma",
+          "source": "Encoded frames and changes of ownership",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-birth",
+          "role": "encoded-frames-and-changes-of-ownership",
+          "label": "lemma m2-lem-birth",
+          "fullLabel": "lemma m2-lem-birth",
+          "kind": "lemma",
+          "source": "Encoded frames and changes of ownership",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-exchange",
+          "role": "encoded-frames-and-changes-of-ownership",
+          "label": "lemma m2-lem-exchange",
+          "fullLabel": "lemma m2-lem-exchange",
+          "kind": "lemma",
+          "source": "Encoded frames and changes of ownership",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-protocol",
+          "role": "a-finite-planar-distribution-protocol",
+          "label": "proposition m2-prop-protocol",
+          "fullLabel": "proposition m2-prop-protocol",
+          "kind": "proposition",
+          "source": "A finite planar distribution protocol",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-geometry-angular",
+          "role": "a-finite-planar-distribution-protocol",
+          "label": "lemma m2-lem-geometry-angular",
+          "fullLabel": "lemma m2-lem-geometry-angular",
+          "kind": "lemma",
+          "source": "A finite planar distribution protocol",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-columns",
+          "role": "from-the-protocol-to-a-peps",
+          "label": "lemma m2-lem-columns",
+          "fullLabel": "lemma m2-lem-columns",
+          "kind": "lemma",
+          "source": "From the protocol to a PEPS",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-routing",
+          "role": "from-the-protocol-to-a-peps",
+          "label": "lemma m2-lem-routing",
+          "fullLabel": "lemma m2-lem-routing",
+          "kind": "lemma",
+          "source": "From the protocol to a PEPS",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "A two-dimensional area law from a global spectral gap",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-two-dimensional-area-law-from-a-global-spectral-gap-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Polynomial PEPS approximation of gapped square-grid ground states",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Polynomial-PEPS-approximation-of-gapped-square-grid-ground-states-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

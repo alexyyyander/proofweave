@@ -1,0 +1,649 @@
+{
+  "familyNumber": "348",
+  "familyTitle": "Nonnegative-curvature Einstein classification and an <i>L</i><sup>2</sup> topological gap",
+  "manuscripts": [
+    {
+      "id": "Zero-Plane-Rigidity-for-Einstein-Four-Manifolds-October-4-2026",
+      "title": "Zero-Plane Rigidity for Einstein Four-Manifolds",
+      "date": "2026-10-04",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Zero-Plane-Rigidity-for-Einstein-Four-Manifolds-October-4-2026/einstein-boundary.pdf"
+    },
+    {
+      "id": "Positively-curved-Einstein-four-manifolds-September-23-2026",
+      "title": "Positively curved Einstein four-manifolds",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Positively-curved-Einstein-four-manifolds-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Curvature blocks and their covariant derivatives",
+    "Scalar estimates and the characteristic identities",
+    "Upper volume deficit and balanced Weyl moments",
+    "A weighted Hessian inequality for the Weyl blocks",
+    "Coupling the two Weyl blocks",
+    "The equality case and the parallel splitting",
+    "Exact polynomial certificates",
+    "Half-conformal flatness and the metric classification",
+    "Analytic foundations and characteristic formulas"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Zero-plane rigidity",
+      "statement": "[Zero-plane rigidity] Let (M^4,g) be a connected smooth closed Riemannian manifold satisfying \\[ Ric_g=3g, K_g()0 \\] for every tangent two-plane . If K_g(_0)=0 for at least one tangent two-plane,…",
+      "section": "Introduction",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-cor-nonnegative-classification",
+      "kind": "corollary",
+      "label": "Let (M^4,g) be connected, smooth, and closed, with Ric=3g and nonnegative…",
+      "statement": "Let (M^4,g) be connected, smooth, and closed, with Ric=3g and nonnegative sectional curvature. Its universal Riemannian cover is one of the round S^4 of curvature 1 , the complex projective plane…",
+      "section": "Introduction",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-curvature-blocks",
+      "kind": "lemma",
+      "label": "Curvature blocks and nonnegative sectional curvature",
+      "statement": "[Curvature blocks and nonnegative sectional curvature] There are symmetric trace-free endomorphisms TSym_0(^+) and USym_0(^-) such that the curvature operator is \\[ R_ ^2 = Id+T&0\\\\ 0&Id+U . \\] At a…",
+      "section": "Curvature blocks and their covariant derivatives",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-spin-algebra",
+      "kind": "lemma",
+      "label": "Representation rules",
+      "statement": "[Representation rules] A spin- j representation has weights -j,-j+1,,j for _3/(2i) , each once, and \\[ H_j H_ H_ j+ H_ j+-1 H_ |j-| . \\] In particular, the tangent, plus two-form, and plus trace-free…",
+      "section": "Curvature blocks and their covariant derivatives",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-quadratic-curvature-action",
+      "kind": "lemma",
+      "label": "Curvature-weighted operators",
+      "statement": "[Curvature-weighted operators] If A has smallest eigenvalue -x , then \\[ Q_j(A) x(j+1) 2j-1 Id. \\] Moreover, Q_2(A)=B_F(A) . The compression of B_F(A) , acting on an F factor, to a highest-spin…",
+      "section": "Curvature blocks and their covariant derivatives",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-weyl-derivative-equations",
+      "kind": "proposition",
+      "label": "Differential equations for the Weyl blocks",
+      "statement": "[Differential equations for the Weyl blocks] The tensor Z= T belongs to the parallel subbundle G of type (5/2,1/2) . On this bundle, put B_ op =Q_ 5/2 (T) . Then \\[ T=6(T-N), N=(T^2)_0=T^2-2v^2Id, \\]…",
+      "section": "Curvature blocks and their covariant derivatives",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-gradient-parametrization",
+      "kind": "lemma",
+      "label": "Parametrization of the Bianchi gradient space",
+      "statement": "[Parametrization of the Bianchi gradient space] There are unique vectors k,l such that Z_ ii =s_i p-3\\, s_i k, Z_ jk =-I_i(l+s_i k+ s_i 3 p), (i,j,k)\\ cyclic,\\\\ e=53|p|^2+5|k|^2+|l|^2. More…",
+      "section": "Curvature blocks and their covariant derivatives",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-weak-norm-equation",
+      "kind": "proposition",
+      "label": "Weak norm equation, including the zero set",
+      "statement": "[Weak norm equation, including the zero set] The function e/v , defined to be zero on \\ v=0\\ , belongs to L^1(M) , and v=6v(1- v)+e-|p|^2 v holds as an equality of distributions with an L^1 density.…",
+      "section": "Curvature blocks and their covariant derivatives",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-weighted-variance",
+      "kind": "proposition",
+      "label": "Weighted variance",
+      "statement": "[Weighted variance] For every real a H^1(M) , Var(a) := E E| a|^2 K , K=4+v^2+b^2.",
+      "section": "Scalar estimates and the characteristic identities",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-sharp-sobolev",
+      "kind": "proposition",
+      "label": "Normalized Sobolev inequality",
+      "statement": "[Normalized Sobolev inequality] For every real f H^1(M) , \\[ ( E|f|^4)^ 1/2 E(f^2+12| f|^2). \\]",
+      "section": "Scalar estimates and the characteristic identities",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-weyl-gap",
+      "kind": "proposition",
+      "label": "Weyl-norm gap",
+      "statement": "[Weyl-norm gap] For either Weyl block, v0or E v^21. If T0 and E v^2=1 , then T=0 and v==1 . The corresponding statements hold for U .",
+      "section": "Scalar estimates and the characteristic identities",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-characteristic-identities",
+      "kind": "proposition",
+      "label": "Characteristic identities",
+      "statement": "[Characteristic identities] Let n_+ and n_- be the finite nonnegative integer dimensions of the spaces of harmonic self-dual and anti-self-dual two-forms. The Euler characteristic and signature of M…",
+      "section": "Scalar estimates and the characteristic identities",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-upper-volume-deficit",
+      "kind": "proposition",
+      "label": "Upper volume deficit",
+      "statement": "[Upper volume deficit] One has \\[ V_M 8^2/3 1-3 40 s_0. \\]",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-geodesic-averages",
+      "kind": "lemma",
+      "label": "Geodesic averages",
+      "statement": "[Geodesic averages] At every time along the geodesic flow, \\[ E|A|^2=32s_0, E|A'|^232\\, E|A|^2. \\]",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-upper-polar",
+      "kind": "lemma",
+      "label": "Upper polar bound",
+      "statement": "[Upper polar bound] One has \\[ V_M2^2_0^ E D_c(t)\\,dt. \\]",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-discrete-jacobi",
+      "kind": "lemma",
+      "label": "The discrete Jacobi determinant",
+      "statement": "[The discrete Jacobi determinant] Fix a smooth symmetric normal curvature matrix on [0,t] , put a=t/N , and let L_N be the block tridiagonal matrix on nodes 1,,N-1 with diagonal blocks 2Id-a^2 R(ia)…",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-upper-radial",
+      "kind": "lemma",
+      "label": "Upper radial comparison",
+      "statement": "[Upper radial comparison] For 0<t< , set \\[ =t^2 ^2-t^2 , B=2t_0^t A(s)^2( s/t)\\,ds. \\] Before conjugacy, \\[ D(t)^3t\\,(Id- B), Id- B0. \\] At every time 0<t< , \\[ 1-D_c(t) ^3t 16\\ 1,^2(1,3-)\\ \\,|B|^2.…",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-sine-minorant",
+      "kind": "lemma",
+      "label": "A rational sine minorant",
+      "statement": "[A rational sine minorant] Put \\[ a_0=157 50 , b_0=22 7 , S(z)=a_0z-(b_0z)^3 6 +(a_0z)^5 120 -(b_0z)^7 5040 . \\] The constants satisfy a_0<<b_0 , and 0 S(z)( z) for 0 z1/2 . Its coefficients are \\[…",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-moment-obstruction",
+      "kind": "lemma",
+      "label": "Two constrained moments",
+      "statement": "[Two constrained moments] Every probability measure on [0,2] satisfying \\[ z^2\\,d1, (28z+6z^2)\\,d25 \\] satisfies \\[ 16( H\\,d)^2-\\,d<0. \\]",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-balanced-moments",
+      "kind": "proposition",
+      "label": "Balanced Weyl moments",
+      "statement": "[Balanced Weyl moments] If neither Weyl block is identically zero, then =0 and E v^2= E b^2 .",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-hessian-components",
+      "kind": "lemma",
+      "label": "The two Hessian components",
+      "statement": "[The two Hessian components] Let \\( H=T^*M G\\), and write \\(X= Z\\), so \\(X_ ij =_i_jT\\). Then \\[ X=Y+D_0, Y has type (3,1), D_0 has type (2,0). \\] If \\(Tr: H F\\) is contraction of the two derivative…",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-hessian-operator",
+      "kind": "lemma",
+      "label": "Nonnegativity on the highest Hessian type",
+      "statement": "[Nonnegativity on the highest Hessian type] The combined compressed operator P preserves all four types in H . On (3,1) it satisfies P(4-2x-2y)Id0 , and on the trace type it satisfies \\[ PTr^*…",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-weighted-hessian",
+      "kind": "proposition",
+      "label": "Weighted Hessian inequality",
+      "statement": "[Weighted Hessian inequality] For every global Lipschitz scalar weight m m_0>0 , 0 E, where \\(i,j\\) in the middle term are derivative indices and \\[ G_v=(-42-3b^2-10 3 v^2)e +75B+25 3 C_N-100 3 E_B…",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-hessian-matrices",
+      "kind": "lemma",
+      "label": "The quadratic-form matrices",
+      "statement": "[The quadratic-form matrices] At a point where \\(v>0\\), use the three vector parameters \\(p,k,l\\) in . Then \\(G_v\\) is the quadratic form, with scalar entries multiplying vector dot products, whose…",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-cubic-contraction",
+      "kind": "lemma",
+      "label": "The cubic contraction",
+      "statement": "[The cubic contraction] For every real tangent vector \\(a\\), with \\(Z_a=_i a_iZ_i\\), | tr(Z_a_jZ_j^2) 6| 45 35\\,|a|e^ 3/2 .",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-real-vector-projections",
+      "kind": "lemma",
+      "label": "Real-vector projection identities",
+      "statement": "[Real-vector projection identities] Let \\(P_+\\) be the projection in \\( H\\) onto total plus spin \\(3\\), retaining both possible minus spins. For any real tangent vector \\(a\\) and any \\(Z G\\), \\[…",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-hessian-projection-cost",
+      "kind": "proposition",
+      "label": "The projection cost",
+      "statement": "[The projection cost] For the weight , P(L_m)_Y,(L_m)_Y 24m 9 64 |p-q|^2 . The bracket on the right is nonnegative. Both assertions remain valid under the closed inequalities \\(v+b2\\) and \\(x+y2\\).",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-coupling-estimates",
+      "kind": "proposition",
+      "label": "Three bounds for the combined integrand",
+      "statement": "[Three bounds for the combined integrand] For this decomposition, define \\[ r=R_v|p|^2+R_b|q|^2, j=(|p|^2+|q|^2) (|p|^2 v +|q|^2 b ). \\] Then, almost everywhere, \\[ I_4-cj, I_22 r, I_0- ^2 c . \\] The…",
+      "section": "Coupling the two Weyl blocks",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-constant-norms",
+      "kind": "proposition",
+      "label": "Constancy of the two Weyl norms",
+      "statement": "[Constancy of the two Weyl norms] On a closed, simply connected, oriented four-manifold with Ric=3g , nonnegative sectional curvature, and neither Weyl block identically zero, one has v=b=1…",
+      "section": "The equality case and the parallel splitting",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-prop-parallel-blocks",
+      "kind": "proposition",
+      "label": "Parallel Weyl blocks",
+      "statement": "[Parallel Weyl blocks] Both T and U are parallel, with eigenvalues (2,-1,-1) .",
+      "section": "The equality case and the parallel splitting",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-bernstein-conversion",
+      "kind": "lemma",
+      "label": "Bernstein conversion",
+      "statement": "[Bernstein conversion] Let p be a polynomial of degree at most N on an interval [r,s] , and write \\[ p(r+(s-r)z)=_ j=0 ^N a_jz^j. \\] Its degree- N Bernstein expansion is \\[ p(r+(s-r)z)=_ i=0 ^N h_i…",
+      "section": "Exact polynomial certificates",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-scalar-certificates",
+      "kind": "lemma",
+      "label": "Scalar certificates",
+      "statement": "[Scalar certificates] For the polynomials in Section~ , the following bounds hold: \\[ C_0>0, 4C_0((h-A_0)(2-v)+25hv) -(2-v)(2A_0+L_0)^2>0(0 v2),\\\\ G,H>0(0 u1), Z_*0(0 u1/16),\\\\ Z_*^264A^2u^2GH(1/16…",
+      "section": "Exact polynomial certificates",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-matrix-certificates",
+      "kind": "lemma",
+      "label": "Matrix and boundary certificates",
+      "statement": "[Matrix and boundary certificates] The symmetric matrix represented by A is positive semidefinite on \\[ D=\\ (v,b):v,b0,\\ v+b2\\ . \\] The symmetric matrix represented by B is positive semidefinite on…",
+      "section": "Exact polynomial certificates",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m1-lem-potential-certificate",
+      "kind": "lemma",
+      "label": "The polynomial F",
+      "statement": "[The polynomial F ] The polynomial F=cE_0-^2 is nonnegative on D .",
+      "section": "Exact polynomial certificates",
+      "manuscript": "Zero-Plane Rigidity for Einstein Four-Manifolds"
+    },
+    {
+      "id": "m2-thm-classification",
+      "kind": "theorem",
+      "label": "Let (M,g) be a connected smooth closed Einstein four-manifold with strictly…",
+      "statement": "Let (M,g) be a connected smooth closed Einstein four-manifold with strictly positive sectional curvature, without an orientability assumption. There is a constant a>0 such that (M,ag) is isometric to…",
+      "section": "Introduction",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-curvature-blocks",
+      "kind": "lemma",
+      "label": "Curvature blocks and sectional positivity",
+      "statement": "[Curvature blocks and sectional positivity] There are symmetric trace-free endomorphisms TSym_0(^+) and USym_0(^-) such that the curvature operator is \\[ R_ ^2 = Id+T&0\\\\ 0&Id+U . \\] At a point where…",
+      "section": "Curvature blocks and their covariant derivatives",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-spin-algebra",
+      "kind": "lemma",
+      "label": "Representation rules",
+      "statement": "[Representation rules] A spin- j representation has weights -j,-j+1,,j for _3/(2i) , each once, and \\[ H_j H_ H_ j+ H_ j+-1 H_ |j-| . \\] In particular, the tangent, plus two-form, and plus trace-free…",
+      "section": "Curvature blocks and their covariant derivatives",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-quadratic-curvature-action",
+      "kind": "lemma",
+      "label": "Curvature-weighted operators",
+      "statement": "[Curvature-weighted operators] If A has smallest eigenvalue -x , then \\[ Q_j(A) x(j+1) 2j-1 Id. \\] Moreover, Q_2(A)=B_F(A) . The compression of B_F(A) , acting on an F factor, to a highest-spin…",
+      "section": "Curvature blocks and their covariant derivatives",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-weyl-derivative-equations",
+      "kind": "proposition",
+      "label": "Differential equations for the Weyl blocks",
+      "statement": "[Differential equations for the Weyl blocks] The tensor Z= T belongs to the parallel subbundle G of type (5/2,1/2) . On this bundle, put B_ op =Q_ 5/2 (T) . Then \\[ T=6(T-N), N=(T^2)_0=T^2-2v^2Id, \\]…",
+      "section": "Curvature blocks and their covariant derivatives",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-gradient-parametrization",
+      "kind": "lemma",
+      "label": "Parametrization of the Bianchi gradient space",
+      "statement": "[Parametrization of the Bianchi gradient space] There are unique vectors k,l such that Z_ ii =s_i p-3\\, s_i k, Z_ jk =-I_i(l+s_i k+ s_i 3 p), (i,j,k)\\ cyclic,\\\\ e=53|p|^2+5|k|^2+|l|^2. More…",
+      "section": "Curvature blocks and their covariant derivatives",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-weak-norm-equation",
+      "kind": "proposition",
+      "label": "Weak norm equation, including the zero set",
+      "statement": "[Weak norm equation, including the zero set] The function e/v , defined to be zero on \\ v=0\\ , belongs to L^1(M) , and v=6v(1- v)+e-|p|^2 v holds as an equality of distributions with an L^1 density.…",
+      "section": "Curvature blocks and their covariant derivatives",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-weighted-variance",
+      "kind": "proposition",
+      "label": "Weighted variance",
+      "statement": "[Weighted variance] For every real a H^1(M) , Var(a) := E E| a|^2 K , K=4+v^2+b^2.",
+      "section": "Scalar estimates and the characteristic identities",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-sharp-sobolev",
+      "kind": "proposition",
+      "label": "Normalized Sobolev inequality",
+      "statement": "[Normalized Sobolev inequality] For every real f H^1(M) , \\[ ( E|f|^4)^ 1/2 E(f^2+12| f|^2). \\]",
+      "section": "Scalar estimates and the characteristic identities",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-weyl-gap",
+      "kind": "proposition",
+      "label": "Weyl-norm gap",
+      "statement": "[Weyl-norm gap] For either Weyl block, v0or E v^21. If T0 and E v^2=1 , then T=0 and v==1 . The corresponding statements hold for U .",
+      "section": "Scalar estimates and the characteristic identities",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-characteristic-identities",
+      "kind": "proposition",
+      "label": "Characteristic identities",
+      "statement": "[Characteristic identities] Let n_+ and n_- be the finite nonnegative integer dimensions of the spaces of harmonic self-dual and anti-self-dual two-forms. The Euler characteristic and signature of M…",
+      "section": "Scalar estimates and the characteristic identities",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-upper-volume-deficit",
+      "kind": "proposition",
+      "label": "Upper volume deficit",
+      "statement": "[Upper volume deficit] One has \\[ V_M 8^2/3 1-3 40 s_0. \\]",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-geodesic-averages",
+      "kind": "lemma",
+      "label": "Geodesic averages",
+      "statement": "[Geodesic averages] At every time along the geodesic flow, \\[ E|A|^2=32s_0, E|A'|^232\\, E|A|^2. \\]",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-volume-topology",
+      "kind": "lemma",
+      "label": "Diameter, injectivity, and topology",
+      "statement": "[Diameter, injectivity, and topology] The diameter of M is at most , its injectivity radius is at least /3 , and M is simply connected. Every minimizing geodesic segment has no point conjugate to its…",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-upper-polar",
+      "kind": "lemma",
+      "label": "Upper polar bound",
+      "statement": "[Upper polar bound] One has \\[ V_M2^2_0^ E D_c(t)\\,dt. \\]",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-discrete-jacobi",
+      "kind": "lemma",
+      "label": "The discrete Jacobi determinant",
+      "statement": "[The discrete Jacobi determinant] Fix a smooth symmetric normal curvature matrix on [0,t] , put a=t/N , and let L_N be the block tridiagonal matrix on nodes 1,,N-1 with diagonal blocks 2Id-a^2 R(ia)…",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-upper-radial",
+      "kind": "lemma",
+      "label": "Upper radial comparison",
+      "statement": "[Upper radial comparison] For 0<t< , set \\[ =t^2 ^2-t^2 , B=2t_0^t A(s)^2( s/t)\\,ds. \\] Before conjugacy, \\[ D(t)^3t\\,(Id- B), Id- B0. \\] At every time 0<t< , \\[ 1-D_c(t) ^3t 16\\ 1,^2(1,3-)\\ \\,|B|^2.…",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-sine-minorant",
+      "kind": "lemma",
+      "label": "A rational sine minorant",
+      "statement": "[A rational sine minorant] Put \\[ a_0=157 50 , b_0=22 7 , S(z)=a_0z-(b_0z)^3 6 +(a_0z)^5 120 -(b_0z)^7 5040 . \\] The constants satisfy a_0<<b_0 , and 0 S(z)( z) for 0 z1/2 . Its coefficients are \\[…",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-moment-obstruction",
+      "kind": "lemma",
+      "label": "Two constrained moments",
+      "statement": "[Two constrained moments] Every probability measure on [0,2] satisfying \\[ z^2\\,d1, (28z+6z^2)\\,d25 \\] satisfies \\[ 16( H\\,d)^2-\\,d<0. \\]",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-balanced-moments",
+      "kind": "proposition",
+      "label": "Balanced Weyl moments",
+      "statement": "[Balanced Weyl moments] If neither Weyl block is identically zero, then =0 and E v^2= E b^2 .",
+      "section": "Upper volume deficit and balanced Weyl moments",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-hessian-components",
+      "kind": "lemma",
+      "label": "The two Hessian components",
+      "statement": "[The two Hessian components] Let \\( H=T^*M G\\), and write \\(X= Z\\), so \\(X_ ij =_i_jT\\). Then \\[ X=Y+D_0, Y has type (3,1), D_0 has type (2,0). \\] If \\(Tr: H F\\) is contraction of the two derivative…",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-hessian-operator",
+      "kind": "lemma",
+      "label": "Positivity on the highest Hessian type",
+      "statement": "[Positivity on the highest Hessian type] The combined compressed operator P preserves all four types in H . It is positive definite on (3,1) , and on the trace type it satisfies \\[ PTr^*…",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-weighted-hessian",
+      "kind": "proposition",
+      "label": "Weighted Hessian inequality",
+      "statement": "[Weighted Hessian inequality] For every global Lipschitz scalar weight m m_0>0 , 0 E, where \\(i,j\\) in the middle term are derivative indices and \\[ G_v=(-42-3b^2-10 3 v^2)e +75B+25 3 C_N-100 3 E_B…",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-hessian-matrices",
+      "kind": "lemma",
+      "label": "The quadratic-form matrices",
+      "statement": "[The quadratic-form matrices] At a point where \\(v>0\\), use the three vector parameters \\(p,k,l\\) in . Then \\(G_v\\) is the quadratic form, with scalar entries multiplying vector dot products, whose…",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-cubic-contraction",
+      "kind": "lemma",
+      "label": "The cubic contraction",
+      "statement": "[The cubic contraction] For every real tangent vector \\(a\\), with \\(Z_a=_i a_iZ_i\\), | tr(Z_a_jZ_j^2) 6| 45 35\\,|a|e^ 3/2 .",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-real-vector-projections",
+      "kind": "lemma",
+      "label": "Real-vector projection identities",
+      "statement": "[Real-vector projection identities] Let \\(P_+\\) be the projection in \\( H\\) onto total plus spin \\(3\\), retaining both possible minus spins. For any real tangent vector \\(a\\) and any \\(Z G\\), \\[…",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-hessian-projection-cost",
+      "kind": "proposition",
+      "label": "The projection cost",
+      "statement": "[The projection cost] For the weight , P(L_m)_Y,(L_m)_Y 24m 9 64 |p-q|^2 . The bracket on the right is nonnegative. Both assertions remain valid under the closed inequalities \\(v+b2\\) and \\(x+y2\\).",
+      "section": "A weighted Hessian inequality for the Weyl blocks",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-coupling-estimates",
+      "kind": "proposition",
+      "label": "Three bounds for the combined integrand",
+      "statement": "[Three bounds for the combined integrand] For this decomposition, define \\[ r=R_v|p|^2+R_b|q|^2, j=(|p|^2+|q|^2) (|p|^2 v +|q|^2 b ). \\] Then, almost everywhere, \\[ I_4-cj, I_22 r, I_0- ^2 c . \\] The…",
+      "section": "Coupling the two Weyl blocks",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-bernstein-conversion",
+      "kind": "lemma",
+      "label": "Bernstein conversion",
+      "statement": "[Bernstein conversion] Let p be a polynomial of degree at most N on an interval [r,s] , and write \\[ p(r+(s-r)z)=_ j=0 ^N a_jz^j. \\] Its degree- N Bernstein expansion is \\[ p(r+(s-r)z)=_ i=0 ^N h_i…",
+      "section": "Exact polynomial certificates",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-scalar-certificates",
+      "kind": "lemma",
+      "label": "Scalar certificates",
+      "statement": "[Scalar certificates] For the polynomials in Section~ , the following bounds hold: \\[ C_0>0, 4C_0((h-A_0)(2-v)+25hv) -(2-v)(2A_0+L_0)^2>0(0 v2),\\\\ G,H>0(0 u1), Z_*0(0 u1/16),\\\\ Z_*^264A^2u^2GH(1/16…",
+      "section": "Exact polynomial certificates",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-matrix-certificates",
+      "kind": "lemma",
+      "label": "Matrix and boundary certificates",
+      "statement": "[Matrix and boundary certificates] The symmetric matrix represented by A is positive semidefinite on \\[ D=\\ (v,b):v,b0,\\ v+b2\\ . \\] The symmetric matrix represented by B is positive semidefinite on…",
+      "section": "Exact polynomial certificates",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-potential-certificate",
+      "kind": "lemma",
+      "label": "The polynomial F",
+      "statement": "[The polynomial F ] The polynomial F=cE_0-^2 is nonnegative on D .",
+      "section": "Exact polynomial certificates",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-one-block-vanishes",
+      "kind": "proposition",
+      "label": "Half-conformal flatness",
+      "statement": "[Half-conformal flatness] At least one of T,U vanishes identically; equivalently, the metric is half-conformally flat.",
+      "section": "Half-conformal flatness and the metric classification",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-one-block-alternatives",
+      "kind": "lemma",
+      "label": "The one-block harmonic alternatives",
+      "statement": "[The one-block harmonic alternatives] Suppose U=0 and T0 . Then \\[ V_M ^2 =8-2n_+ 3 , s_0= E v^2=3n_+ 4-n_+ , n_+=1 or 2. \\] In the second case, s_0=3 and V_M=4^2/3 .",
+      "section": "Half-conformal flatness and the metric classification",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-conditional-lower-volume",
+      "kind": "proposition",
+      "label": "Conditional lower volume bound",
+      "statement": "[Conditional lower volume bound] If s_0= E(v^2+b^2)=3 , then V_M>4^2/3 .",
+      "section": "Half-conformal flatness and the metric classification",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-lower-polar",
+      "kind": "lemma",
+      "label": "Lower polar bound",
+      "statement": "[Lower polar bound] One has \\[ V_M2^2_0^ /3 E D(t)\\,dt. \\]",
+      "section": "Half-conformal flatness and the metric classification",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-lower-radial",
+      "kind": "lemma",
+      "label": "Lower radial comparison",
+      "statement": "[Lower radial comparison] If s_0=3 and 0<t</3 , then, with =3t , \\[ E D(t) t^3( )^ 5/6 e^ -^2/36 . \\] Moreover, \\[ -( )- ^2 6 12()^4 +13()^6. \\]",
+      "section": "Half-conformal flatness and the metric classification",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-prop-parallel-models",
+      "kind": "proposition",
+      "label": "The remaining parallel tensors",
+      "statement": "[The remaining parallel tensors] Up to reversing orientation, either T=U=0 , or U=0 and T is parallel with eigenvalues 2,-1,-1 .",
+      "section": "Half-conformal flatness and the metric classification",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-model-curvature",
+      "kind": "lemma",
+      "label": "Curvature of the standard models",
+      "statement": "[Curvature of the standard models] The two tensors in Proposition~ are the curvature tensors of the unit round sphere and of twice the Fubini--Study metric induced by the Hopf quotient of the unit…",
+      "section": "Half-conformal flatness and the metric classification",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-global-isometry",
+      "kind": "lemma",
+      "label": "Global continuation of the model isometry",
+      "statement": "[Global continuation of the model isometry] The local identifications furnished by Lemma~ extend to global isometries.",
+      "section": "Half-conformal flatness and the metric classification",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-cor-oriented-classification",
+      "kind": "corollary",
+      "label": "The oriented classification",
+      "statement": "[The oriented classification] Every connected oriented smooth closed Einstein four-manifold with strictly positive sectional curvature is, after positive scaling, isometric to the round S^4 or to…",
+      "section": "Half-conformal flatness and the metric classification",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-form-complex-laplacians",
+      "kind": "lemma",
+      "label": "The form-complex Laplacians",
+      "statement": "[The form-complex Laplacians] Consider the elliptic complex \\[ ^0\\ d\\ ^1 \\ 2\\,d^+\\ ^+, d^+=P_+d. \\] Its three Laplacians are the Hodge Laplacians on the indicated bundles. Written as -+E , their…",
+      "section": "Analytic foundations and characteristic formulas",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    },
+    {
+      "id": "m2-lem-signed-heat-coefficient",
+      "kind": "lemma",
+      "label": "Local signed heat coefficient",
+      "statement": "[Local signed heat coefficient] For the three operators in Lemma~ , let str denote the trace on ^0 minus that on ^1 plus that on ^+ . Write for their connection curvatures. The constant local…",
+      "section": "Analytic foundations and characteristic formulas",
+      "manuscript": "Positively curved Einstein four-manifolds"
+    }
+  ],
+  "edges": []
+}

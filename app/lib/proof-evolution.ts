@@ -4,7 +4,7 @@ export type ProofEvolutionGoal = "origin" | "simplify" | "explicitize" | "elemen
 export type ExplicitConstant = "existential" | "explicit" | "effective" | "asymptotic";
 export type LeanStatus = "formalized_upstream" | "not_formalized" | "not_separately_formalized";
 export type ProofDetailLevel = "lemma" | "grouped" | "summary" | "section";
-export type ProofStepKind = "theorem" | "lemma" | "corollary" | "construction" | "bound" | "assembly" | "external";
+export type ProofStepKind = "theorem" | "lemma" | "proposition" | "corollary" | "construction" | "bound" | "assembly" | "external";
 export type VersionEdgeRelation = "simplifies" | "explicitizes" | "recombines" | "stronger";
 export type LedgerStatus = "used" | "replaced" | "removed" | "not_used" | "explicit" | "existential" | "effective";
 
@@ -36,6 +36,8 @@ export type ProofStep = {
   detail: string;
   source: string;
   dependsOn: string[];
+  objectUses?: string[];
+  mentions?: string[];
 };
 
 export type ProofVersion = {
@@ -154,7 +156,7 @@ export type ArgumentMapExtraNode = {
   statement: string;
 };
 
-export type ArgumentMapEdgeType = "depends" | "proves" | "implies" | "same-role" | "replaces" | "bypasses";
+export type ArgumentMapEdgeType = "depends" | "object" | "mentions" | "proves" | "implies" | "same-role" | "replaces" | "bypasses";
 
 export type ArgumentMapEdge = {
   from: string;

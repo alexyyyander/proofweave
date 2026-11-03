@@ -1,0 +1,390 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "316",
+  "title": "Curtis’s conjecture",
+  "result": {
+    "id": "paper-result",
+    "label": "Curtis’s conjecture",
+    "statement": "Proves Curtis’s conjecture: the positive-degree mod-two stable Hurewicz image of the sphere is spanned by the images of the Hopf-invariant-one classes η , ν , σ and the Kervaire-invariant-one classes that exist.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "weights-primitives-and-homology-suspension",
+      "label": "Weights, primitives, and homology suspension",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "mapping-cone-squares-and-a-module-extension",
+      "label": "Mapping-cone squares and a module extension",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "excluding-fourth-and-higher-powers",
+      "label": "Excluding fourth and higher powers",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-obstruction-in-steenrod-modules",
+      "label": "An obstruction in Steenrod modules",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-last-nonzero-suspension-and-the-sphere",
+      "label": "The last nonzero suspension and the sphere",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The Stable Hurewicz Image of the Sphere at Two",
+      "title": "The Stable Hurewicz Image of the Sphere at Two",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Stable-Hurewicz-Image-of-the-Sphere-at-Two-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The Stable Hurewicz Image of the Sphere at Two.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-curtis",
+          "role": "introduction",
+          "label": "theorem m1-thm-curtis",
+          "fullLabel": "theorem m1-thm-curtis",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-hopf-case"
+          ]
+        },
+        {
+          "id": "m1-cor-eccles-spheres",
+          "role": "introduction",
+          "label": "corollary m1-cor-eccles-spheres",
+          "fullLabel": "corollary m1-cor-eccles-spheres",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-finite-image",
+          "role": "introduction",
+          "label": "corollary m1-cor-finite-image",
+          "fullLabel": "corollary m1-cor-finite-image",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-free-ring",
+          "role": "weights-primitives-and-homology-suspension",
+          "label": "proposition m1-prop-free-ring",
+          "fullLabel": "proposition m1-prop-free-ring",
+          "kind": "proposition",
+          "source": "Weights, primitives, and homology suspension",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-weight-suspension",
+          "role": "weights-primitives-and-homology-suspension",
+          "label": "lemma m1-lem-weight-suspension",
+          "fullLabel": "lemma m1-lem-weight-suspension",
+          "kind": "lemma",
+          "source": "Weights, primitives, and homology suspension",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-linear-diagonal",
+          "role": "weights-primitives-and-homology-suspension",
+          "label": "lemma m1-lem-linear-diagonal",
+          "fullLabel": "lemma m1-lem-linear-diagonal",
+          "kind": "lemma",
+          "source": "Weights, primitives, and homology suspension",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-dickson-ring",
+          "role": "weights-primitives-and-homology-suspension",
+          "label": "lemma m1-lem-dickson-ring",
+          "fullLabel": "lemma m1-lem-dickson-ring",
+          "kind": "lemma",
+          "source": "Weights, primitives, and homology suspension",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-weight-modules",
+          "role": "weights-primitives-and-homology-suspension",
+          "label": "lemma m1-lem-weight-modules",
+          "fullLabel": "lemma m1-lem-weight-modules",
+          "kind": "lemma",
+          "source": "Weights, primitives, and homology suspension",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-zero-weights",
+          "role": "weights-primitives-and-homology-suspension",
+          "label": "lemma m1-lem-zero-weights",
+          "fullLabel": "lemma m1-lem-zero-weights",
+          "kind": "lemma",
+          "source": "Weights, primitives, and homology suspension",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-suspension-kernel",
+          "role": "weights-primitives-and-homology-suspension",
+          "label": "lemma m1-lem-suspension-kernel",
+          "fullLabel": "lemma m1-lem-suspension-kernel",
+          "kind": "lemma",
+          "source": "Weights, primitives, and homology suspension",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-primitive-roots",
+          "role": "weights-primitives-and-homology-suspension",
+          "label": "lemma m1-lem-primitive-roots",
+          "fullLabel": "lemma m1-lem-primitive-roots",
+          "kind": "lemma",
+          "source": "Weights, primitives, and homology suspension",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cone-square",
+          "role": "mapping-cone-squares-and-a-module-extension",
+          "label": "lemma m1-lem-cone-square",
+          "fullLabel": "lemma m1-lem-cone-square",
+          "kind": "lemma",
+          "source": "Mapping-cone squares and a module extension",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-cone-extension",
+          "role": "mapping-cone-squares-and-a-module-extension",
+          "label": "proposition m1-prop-cone-extension",
+          "fullLabel": "proposition m1-prop-cone-extension",
+          "kind": "proposition",
+          "source": "Mapping-cone squares and a module extension",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-tensor-detection",
+          "role": "mapping-cone-squares-and-a-module-extension",
+          "label": "corollary m1-cor-tensor-detection",
+          "fullLabel": "corollary m1-cor-tensor-detection",
+          "kind": "corollary",
+          "source": "Mapping-cone squares and a module extension",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-no-fourth-powers",
+          "role": "excluding-fourth-and-higher-powers",
+          "label": "proposition m1-prop-no-fourth-powers",
+          "fullLabel": "proposition m1-prop-no-fourth-powers",
+          "kind": "proposition",
+          "source": "Excluding fourth and higher powers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-weight-product",
+          "role": "excluding-fourth-and-higher-powers",
+          "label": "lemma m1-lem-weight-product",
+          "fullLabel": "lemma m1-lem-weight-product",
+          "kind": "lemma",
+          "source": "Excluding fourth and higher powers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pairing",
+          "role": "excluding-fourth-and-higher-powers",
+          "label": "lemma m1-lem-pairing",
+          "fullLabel": "lemma m1-lem-pairing",
+          "kind": "lemma",
+          "source": "Excluding fourth and higher powers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-block-nilpotence",
+          "role": "excluding-fourth-and-higher-powers",
+          "label": "lemma m1-lem-block-nilpotence",
+          "fullLabel": "lemma m1-lem-block-nilpotence",
+          "kind": "lemma",
+          "source": "Excluding fourth and higher powers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-algebra-obstruction",
+          "role": "an-obstruction-in-steenrod-modules",
+          "label": "lemma m1-lem-algebra-obstruction",
+          "fullLabel": "lemma m1-lem-algebra-obstruction",
+          "kind": "lemma",
+          "source": "An obstruction in Steenrod modules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [],
+          "mentions": [
+            "m1-lem-algebra-odd-tensor"
+          ]
+        },
+        {
+          "id": "m1-lem-algebra-milnor-quotient",
+          "role": "an-obstruction-in-steenrod-modules",
+          "label": "lemma m1-lem-algebra-milnor-quotient",
+          "fullLabel": "lemma m1-lem-algebra-milnor-quotient",
+          "kind": "lemma",
+          "source": "An obstruction in Steenrod modules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-milnor-coinvariants",
+          "role": "an-obstruction-in-steenrod-modules",
+          "label": "lemma m1-lem-milnor-coinvariants",
+          "fullLabel": "lemma m1-lem-milnor-coinvariants",
+          "kind": "lemma",
+          "source": "An obstruction in Steenrod modules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cartier",
+          "role": "an-obstruction-in-steenrod-modules",
+          "label": "lemma m1-lem-cartier",
+          "fullLabel": "lemma m1-lem-cartier",
+          "kind": "lemma",
+          "source": "An obstruction in Steenrod modules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-algebra-functional-halving",
+          "role": "an-obstruction-in-steenrod-modules",
+          "label": "lemma m1-lem-algebra-functional-halving",
+          "fullLabel": "lemma m1-lem-algebra-functional-halving",
+          "kind": "lemma",
+          "source": "An obstruction in Steenrod modules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tor-injection",
+          "role": "an-obstruction-in-steenrod-modules",
+          "label": "lemma m1-lem-tor-injection",
+          "fullLabel": "lemma m1-lem-tor-injection",
+          "kind": "lemma",
+          "source": "An obstruction in Steenrod modules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-algebra-odd-tensor",
+          "role": "an-obstruction-in-steenrod-modules",
+          "label": "lemma m1-lem-algebra-odd-tensor",
+          "fullLabel": "lemma m1-lem-algebra-odd-tensor",
+          "kind": "lemma",
+          "source": "An obstruction in Steenrod modules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-algebra-near-top-square",
+          "role": "an-obstruction-in-steenrod-modules",
+          "label": "lemma m1-lem-algebra-near-top-square",
+          "fullLabel": "lemma m1-lem-algebra-near-top-square",
+          "kind": "lemma",
+          "source": "An obstruction in Steenrod modules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-algebra-even-vanishing",
+          "role": "an-obstruction-in-steenrod-modules",
+          "label": "lemma m1-lem-algebra-even-vanishing",
+          "fullLabel": "lemma m1-lem-algebra-even-vanishing",
+          "kind": "lemma",
+          "source": "An obstruction in Steenrod modules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-last-root",
+          "role": "the-last-nonzero-suspension-and-the-sphere",
+          "label": "lemma m1-lem-last-root",
+          "fullLabel": "lemma m1-lem-last-root",
+          "kind": "lemma",
+          "source": "The last nonzero suspension and the sphere",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-hopf-case",
+          "role": "the-last-nonzero-suspension-and-the-sphere",
+          "label": "proposition m1-prop-hopf-case",
+          "fullLabel": "proposition m1-prop-hopf-case",
+          "kind": "proposition",
+          "source": "The last nonzero suspension and the sphere",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-kervaire-case",
+          "role": "the-last-nonzero-suspension-and-the-sphere",
+          "label": "proposition m1-prop-kervaire-case",
+          "fullLabel": "proposition m1-prop-kervaire-case",
+          "kind": "proposition",
+          "source": "The last nonzero suspension and the sphere",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The Stable Hurewicz Image of the Sphere at Two",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Stable-Hurewicz-Image-of-the-Sphere-at-Two-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

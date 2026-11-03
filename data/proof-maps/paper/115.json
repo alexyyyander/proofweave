@@ -1,0 +1,372 @@
+{
+  "familyNumber": "115",
+  "familyTitle": "Sampling and counting contingency tables with arbitrary margins",
+  "manuscripts": [
+    {
+      "id": "Exact-Uniform-Sampling-of-Contingency-Tables-with-Arbitrary-Margins-September-24-2026",
+      "title": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Uniform-Sampling-of-Contingency-Tables-with-Arbitrary-Margins-September-24-2026/main.pdf"
+    },
+    {
+      "id": "An-FPRAS-for-Cell-Bounded-Contingency-Tables-September-24-2026",
+      "title": "An FPRAS for Cell-Bounded Contingency Tables",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-FPRAS-for-Cell-Bounded-Contingency-Tables-September-24-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The binary model and the padded graph",
+    "Quadratic signatures and balanced summation",
+    "Transport and the graph variance bound",
+    "Sampling a dense completion block",
+    "Sampling algorithms and exact correction",
+    "Tight capacities and two scales",
+    "Integer signatures and the softened count",
+    "Paired binary states and two factorial lifts",
+    "Transport, observable variance, and trace mixing",
+    "A bounded approximation procedure for the weights",
+    "The annealing algorithm and its implementation",
+    "Counting and sampling bounded integral flows"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For arbitrary nonnegative integer margins of equal total, the following…",
+      "statement": "For arbitrary nonnegative integer margins of equal total, the following algorithms exist in the model of unbiased random bits and bit operations. [label=( *)] Given an integer k1 , a bounded-time…",
+      "section": "Introduction",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-lem-repair",
+      "kind": "lemma",
+      "label": "Repair and preservation of prefixes",
+      "statement": "[Repair and preservation of prefixes] The repair is a feasible transversal. For each fixed ordered pair (s,t) it is injective on small states and extends to an injection \\[ (X,A) ( R(X),A),&v S,\\\\ (…",
+      "section": "The binary model and the padded graph",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-lem-small-entry",
+      "kind": "lemma",
+      "label": "Small entries",
+      "statement": "[Small entries] Consider the uniform law on all nonnegative integer tables with prescribed margins, with at most m rows and n columns and no entry restrictions. If both margins incident to a cell are…",
+      "section": "The binary model and the padded graph",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-prop-stationary-success",
+      "kind": "proposition",
+      "label": "Stationary mass and unpadding",
+      "statement": "[Stationary mass and unpadding] The masses satisfy 0<Z_0(1+d^2)Z_0, _ (C+1)^ -2d . Draw X with law and then a uniform A F_X . Declare success if X is a transversal and every large entry of A is at…",
+      "section": "The binary model and the padded graph",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-lem-laminar-signature",
+      "kind": "lemma",
+      "label": "Laminar factors",
+      "statement": "[Laminar factors] With no balanced slots summed, every two-removal matrix just defined has at most one positive eigenvalue.",
+      "section": "Quadratic signatures and balanced summation",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-lem-pair-summation",
+      "kind": "lemma",
+      "label": "Pair summation",
+      "statement": "[Pair summation] Fix a box-valid display p on the old active coordinates, a fresh slot of capacity B2 , and fixed context and balanced sums as above. Choose its displayed occupancy D'\\ B,B+1\\ so that…",
+      "section": "Quadratic signatures and balanced summation",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-prop-signature",
+      "kind": "proposition",
+      "label": "Signature after balanced summation",
+      "statement": "[Signature after balanced summation] Fix 0<<1 . For arbitrary box-valid fixed context , arbitrary balanced-slot summation set R , and arbitrary box-valid active display p satisfying , the matrix \\[…",
+      "section": "Quadratic signatures and balanced summation",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-lem-child-logconcavity",
+      "kind": "lemma",
+      "label": "Child log-concavity",
+      "statement": "[Child log-concavity] At every context with positive transversal mass, the child masses (z_j)_ j=0 ^U are log-concave and their positive support is an integer interval. If z_a,z_b>0 and a j b , then…",
+      "section": "Transport and the graph variance bound",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-lem-transport",
+      "kind": "lemma",
+      "label": "Conditional transport",
+      "statement": "[Conditional transport] Let be a row-major context, and let children l-1,l of its next slot have positive masses z_-,z_+ and means H_-,H_+ . Then (z_-,z_+)(H_--H_+)^2 A_0 E_(H), A_0=2+2d(U+1)^2.",
+      "section": "Transport and the graph variance bound",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-thm-poincare",
+      "kind": "theorem",
+      "label": "Graph Poincar\\'e inequality",
+      "statement": "[Graph Poincar\\'e inequality] For every real function H on the feasible small graph, _ f/ H ((1+2d^2)4d^2(U+1)^6+2)E(H) 770d^4U^6 E(H). In particular, the feasible graph is connected.",
+      "section": "Transport and the graph variance bound",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-thm-dense-draw",
+      "kind": "theorem",
+      "label": "Dense completion draw",
+      "statement": "[Dense completion draw] Let a rectangular block have at most m rows and n columns, nonnegative integer margins of equal total less than C , and every margin at least L=d^ 12 . For each integer h1 ,…",
+      "section": "Sampling a dense completion block",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-prop-bin-acceptance",
+      "kind": "proposition",
+      "label": "Bin rejection",
+      "statement": "[Bin rejection] An ideal trial succeeds with probability at least 1/64 . Conditional on success, its output is exactly uniform on the feasible integer tables.",
+      "section": "Sampling a dense completion block",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-lem-integral-interpolation",
+      "kind": "lemma",
+      "label": "Finite-box integral interpolation",
+      "statement": "[Finite-box integral interpolation] Let S_1,S_2,S_0 be bounded finite unions of open axis-aligned boxes in ^q , and let 0<t<1 , with (1-t)S_1+tS_2 S_0 . Let f_1,f_2,f_0 be positive continuous…",
+      "section": "Sampling a dense completion block",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-lem-mixing",
+      "kind": "lemma",
+      "label": "Conductance and mixing",
+      "statement": "[Conductance and mixing] Let P be a reversible kernel on a nonempty finite set V , with stationary probabilities (x)>0 and P(x,x)1/2 . Set Q(x,y)=(x)P(x,y) and \\[ E_P(H)=_ \\ x,y\\ V…",
+      "section": "Sampling a dense completion block",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-prop-bin-gap",
+      "kind": "proposition",
+      "label": "Bin conductance and mixing",
+      "statement": "[Bin conductance and mixing] For every nontrivial cut of the bin states, its stationary edge conductance divided by the smaller stationary side mass is at least \\[ _B=1 10^5d^2K_0 . \\] Starting at…",
+      "section": "Sampling a dense completion block",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-prop-small-chain",
+      "kind": "proposition",
+      "label": "Small-chain bound",
+      "statement": "[Small-chain bound] The kernel P is lazy and reversible for (X)=f(X)/ . On every edge it satisfies \\[ P(X,Y) 1 128d^2 \\ 1,f(Y) f(X) \\ . \\] If there is more than one state, its inverse spectral gap is…",
+      "section": "Sampling algorithms and exact correction",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-thm-almost-uniform",
+      "kind": "theorem",
+      "label": "Almost-uniform sampling",
+      "statement": "[Almost-uniform sampling] The preceding procedure returns a feasible table with law p_k satisfying \\[ (p_k,Uniform())2^ -k . \\] Its worst-case number of bit operations is bounded by a fixed…",
+      "section": "Sampling algorithms and exact correction",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-prop-law-tabulation",
+      "kind": "proposition",
+      "label": "Law tabulation",
+      "statement": "[Law tabulation] For fixed margins and k , the entire law p_k can be computed exactly in \\[ 2^ 500db poly(d,b,k) \\] bit operations. It has a common dyadic denominator: p_k(z)=a_z/2^R , where a_z are…",
+      "section": "Sampling algorithms and exact correction",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m1-thm-exact-sampling",
+      "kind": "theorem",
+      "label": "Exact sampling",
+      "statement": "[Exact sampling] There is an algorithm using unbiased random bits that terminates almost surely, outputs an exactly uniform element of , and has expected bit running time polynomial in d,b .",
+      "section": "Sampling algorithms and exact correction",
+      "manuscript": "Exact Uniform Sampling of Contingency Tables with Arbitrary Margins"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There is one randomized algorithm with the following guarantee. Given (r,c,b)…",
+      "statement": "There is one randomized algorithm with the following guarantee. Given (r,c,b) as above and rational ,(0,1) , it outputs a nonnegative rational Z such that \\[ ((1-)Z(r,c,b) Z (1+)Z(r,c,b))1-. \\] If…",
+      "section": "Introduction",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-forest",
+      "kind": "lemma",
+      "label": "Forest estimates",
+      "statement": "[Forest estimates] For a free cell e , every tree cell t on the path joining its endpoints satisfies b_e b_t . For every box-valid integer small profile (x,y) and every real free vector z_ e F…",
+      "section": "Tight capacities and two scales",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-prop-contamination",
+      "kind": "proposition",
+      "label": "Contamination bound",
+      "statement": "[Contamination bound] For the feasible tightened instance, \\[ Z C(H)(1+/32)Z. \\]",
+      "section": "Tight capacities and two scales",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-integer-signature",
+      "kind": "lemma",
+      "label": "Integer signature under balanced summation",
+      "statement": "[Integer signature under balanced summation] Suppose \\(M_t1\\) for every pair that is summed. For every box-valid display \\(z\\) on the remaining coordinates with \\(_i z_i=r+2\\), the symmetric matrix…",
+      "section": "Integer signatures and the softened count",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-cor-hj-signatures",
+      "kind": "corollary",
+      "label": "For \\(0 j H\\), the matrix of two-removal weights of \\(h_j\\) at every box-valid…",
+      "statement": "For \\(0 j H\\), the matrix of two-removal weights of \\(h_j\\) at every box-valid display of total \\(p+2\\) has at most one positive eigenvalue. The corresponding two-addition matrix at every box-valid…",
+      "section": "Integer signatures and the softened count",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-tree-marginal",
+      "kind": "lemma",
+      "label": "Log-concave tree marginals",
+      "statement": "[Log-concave tree marginals] For integers \\(v<k<w\\) such that \\(a_t(v),a_t(w)>0\\), a_t(k) a_t(v)^ (w-k)/(w-v) a_t(w)^ (k-v)/(w-v) . Consequently the positive support of \\(a_t\\) is an integer interval.",
+      "section": "Integer signatures and the softened count",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-binary-contraction",
+      "kind": "lemma",
+      "label": "Binary contractions",
+      "statement": "[Binary contractions] The addition property, with positivity on the entire valid-degree domain, is preserved by fixing elements included or excluded and by summing a two-element group at occupancy…",
+      "section": "Paired binary states and two factorial lifts",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-binary-signatures",
+      "kind": "lemma",
+      "label": "Signatures of the two lifts",
+      "statement": "[Signatures of the two lifts] The weight \\(f_j\\) has the omission property, and \\( f_j\\) has the addition property. These properties and positivity remain valid after fixing any included or excluded…",
+      "section": "Paired binary states and two factorial lifts",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-defect-inequalities",
+      "kind": "lemma",
+      "label": "Pair inequalities for defect masses",
+      "statement": "[Pair inequalities for defect masses] For every partial assignment \\(\\) and distinct unassigned labels \\(i,l\\), 4 c_ il ^ c_ li ^ z_^2. For three distinct unassigned labels \\(i,l,k\\), c_ il ^ c_ lk ^…",
+      "section": "Paired binary states and two factorial lifts",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-transport",
+      "kind": "lemma",
+      "label": "One-hole transport",
+      "statement": "[One-hole transport] Fix disjoint sets of included and excluded elements. Let F be the set of fixed inclusions, and partition the remaining elements into two singleton slots P_0,P_1 and s ordinary…",
+      "section": "Transport, observable variance, and trace mixing",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-prop-transversal-variance",
+      "kind": "proposition",
+      "label": "Suppose the multipliers satisfy~ . For every real function g on X , C_(g) C_ p…",
+      "statement": "Suppose the multipliers satisfy~ . For every real function g on X , C_(g) C_ p D(g).",
+      "section": "Transport, observable variance, and trace mixing",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-defect-mean",
+      "kind": "lemma",
+      "label": "Suppose the multipliers satisfy~ , and let g be a real function on X . For each…",
+      "statement": "Suppose the multipliers satisfy~ , and let g be a real function on X . For each defect type il there is a conditional transversal mean g' such that ( g_ il - g')^2 C_ d C D(g), ( g'- E_ g)^24_(g).",
+      "section": "Transport, observable variance, and trace mixing",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-prop-observable-variance",
+      "kind": "proposition",
+      "label": "Observable variance",
+      "statement": "[Observable variance] Suppose the multipliers satisfy~ . For every real g on X , _( Qg) (9C_ p +2C_ d ) D(g) C K_ obs E(g).",
+      "section": "Transport, observable variance, and trace mixing",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-time-average",
+      "kind": "lemma",
+      "label": "Time averages from a dominated initial law",
+      "statement": "[Time averages from a dominated initial law] Suppose the multipliers satisfy~ . Let G be a real function on X with QG=G . Suppose S_0 has law satisfying (S) U(S) for every state. For N1 consecutive…",
+      "section": "Transport, observable variance, and trace mixing",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-trace",
+      "kind": "lemma",
+      "label": "Trace mixing and return cost",
+      "statement": "[Trace mixing and return cost] Suppose the multipliers satisfy~ . The trace kernel P_ tr is irreducible, reversible with stationary law , and has holding probability at least 1/2 . Its inverse…",
+      "section": "Transport, observable variance, and trace mixing",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-prop-weight-oracle",
+      "kind": "proposition",
+      "label": "Weight evaluation",
+      "statement": "[Weight evaluation] Fix a box-valid small-count profile (x,y) with total p , an integer 0 j H , and rational parameters 0<_ in ,<1/4 . There is a randomized procedure returning a positive rational h…",
+      "section": "A bounded approximation procedure for the weights",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-integral-interpolation",
+      "kind": "lemma",
+      "label": "Integral interpolation",
+      "statement": "[Integral interpolation] Let S_0,S_1,S_2 be finite unions of bounded open axis-aligned boxes contained in a common compact box. Let 0<t<1 and suppose (1-t)S_1+tS_2 S_0 . Let f_0,f_1,f_2 be positive…",
+      "section": "A bounded approximation procedure for the weights",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-bin-conductance",
+      "kind": "lemma",
+      "label": "Bin conductance",
+      "statement": "[Bin conductance] For e1 , every nontrivial cut of this chain has stationary flow divided by its smaller stationary side mass at least \\[ =1 10^4d^2B . \\]",
+      "section": "A bounded approximation procedure for the weights",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-dyadic-integer-draw",
+      "kind": "lemma",
+      "label": "Finite-bit uniform integer draw",
+      "statement": "[Finite-bit uniform integer draw] For a positive integer M and 0<<1 , choose the smallest nonnegative integer k with M2^ -k . If Y is uniform on \\ 0,,2^k-1\\ , then MY/2^k has total-variation distance…",
+      "section": "A bounded approximation procedure for the weights",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-initialization",
+      "kind": "lemma",
+      "label": "Exact initialization",
+      "statement": "[Exact initialization] For every state of the enlarged binary state space and \\(0 j<H\\), 12 f_ j+1 f_j 1. Consequently the ideal multiplier \\(C(j)/c_ il (j)\\) changes by a factor in \\([1/2,2]\\)…",
+      "section": "The annealing algorithm and its implementation",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-prop-annealing",
+      "kind": "proposition",
+      "label": "Accuracy of the reference experiment",
+      "statement": "[Accuracy of the reference experiment] With probability at least \\(1-1/50\\), the reference experiment does not abort, every stored multiplier collection is good at its own parameter in the sense of ,…",
+      "section": "The annealing algorithm and its implementation",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-lem-bounded-implementation",
+      "kind": "lemma",
+      "label": "Coupling and bounded computation",
+      "statement": "[Coupling and bounded computation] The implemented run uses a number of bit operations bounded, on every execution, by a fixed polynomial in \\(L\\) and \\(^ -1 \\). It returns a nonnegative rational of…",
+      "section": "The annealing algorithm and its implementation",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    },
+    {
+      "id": "m2-cor-integral-flows",
+      "kind": "corollary",
+      "label": "Bounded integral flows",
+      "statement": "[Bounded integral flows] For the network data above, there are algorithms with these guarantees. [label=()] Given rational ,(0,1) , the counting algorithm outputs a nonnegative rational Z_ flow…",
+      "section": "Counting and sampling bounded integral flows",
+      "manuscript": "An FPRAS for Cell-Bounded Contingency Tables"
+    }
+  ],
+  "edges": []
+}

@@ -1,0 +1,921 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "351",
+  "title": "Scalar curvature and finite-time Ricci-flow singularities",
+  "result": {
+    "id": "paper-result",
+    "label": "Scalar curvature and finite-time Ricci-flow singularities",
+    "statement": "Proves that a smooth Ricci flow on a closed four-manifold extends past any finite time at which scalar curvature remains uniformly bounded. A higher-dimensional counterexample has bounded scalar curvature but unbounded full curvature at its finite maximal time, disproving the unrestricted scalar-curvature extension conjecture.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-construction-used-as-input",
+      "label": "The construction used as input",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "geometric-identities-and-profile-consequences",
+      "label": "Geometric identities and profile consequences",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "curvature-at-the-radius-and-cap-scales",
+      "label": "Curvature at the radius and cap scales",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-dimension-explicit-ricci-reaction-bound",
+      "label": "A dimension-explicit Ricci reaction bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "comparison-and-the-scalar-curvature-bound",
+      "label": "Comparison and the scalar-curvature bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-static-input-and-its-normalization",
+      "label": "The static input and its normalization",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "small-scale-geometry-and-the-outermost-scale",
+      "label": "Small-scale geometry and the outermost scale",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "concentration-estimates-for-the-ricci-equation",
+      "label": "Concentration estimates for the Ricci equation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-exterior-extension-determined-by-a-fixed-collar",
+      "label": "An exterior extension determined by a fixed collar",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "functional-change-and-the-contradiction",
+      "label": "Functional change and the contradiction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "tree-geometry-and-the-renormalized-functional",
+      "label": "Tree geometry and the renormalized functional",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selection-of-paths-at-several-exponential-ends",
+      "label": "Selection of paths at several exponential ends",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "augmented-inverses-and-the-analytic-family",
+      "label": "Augmented inverses and the analytic family",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "tail-expansions-and-prescribed-growth",
+      "label": "Tail expansions and prescribed growth",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "expansion-in-one-length",
+      "label": "Expansion in one length",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "scalar-expansions-and-the-tree-inequality",
+      "label": "Scalar expansions and the tree inequality",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A closed Ricci flow with bounded scalar curvature and finite-time curvature blowup",
+      "title": "A closed Ricci flow with bounded scalar curvature and finite-time curvature blowup",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-closed-Ricci-flow-with-bounded-scalar-curvature-and-finite-time-curvature-blowup-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A closed Ricci flow with bounded scalar curvature and finite-time curvature blowup.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-scalar-inner"
+          ]
+        },
+        {
+          "id": "m1-prop-input",
+          "role": "the-construction-used-as-input",
+          "label": "proposition m1-prop-input",
+          "fullLabel": "proposition m1-prop-input",
+          "kind": "proposition",
+          "source": "The construction used as input",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-gradients",
+          "role": "geometric-identities-and-profile-consequences",
+          "label": "lemma m1-lem-gradients",
+          "fullLabel": "lemma m1-lem-gradients",
+          "kind": "lemma",
+          "source": "Geometric identities and profile consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-gap",
+          "role": "geometric-identities-and-profile-consequences",
+          "label": "lemma m1-lem-gap",
+          "fullLabel": "lemma m1-lem-gap",
+          "kind": "lemma",
+          "source": "Geometric identities and profile consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-uniform",
+          "role": "geometric-identities-and-profile-consequences",
+          "label": "lemma m1-lem-uniform",
+          "fullLabel": "lemma m1-lem-uniform",
+          "kind": "lemma",
+          "source": "Geometric identities and profile consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-annuli",
+          "role": "geometric-identities-and-profile-consequences",
+          "label": "lemma m1-lem-annuli",
+          "fullLabel": "lemma m1-lem-annuli",
+          "kind": "lemma",
+          "source": "Geometric identities and profile consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-full-curvature",
+          "role": "curvature-at-the-radius-and-cap-scales",
+          "label": "proposition m1-prop-full-curvature",
+          "fullLabel": "proposition m1-prop-full-curvature",
+          "kind": "proposition",
+          "source": "Curvature at the radius and cap scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-r-curvature",
+          "role": "curvature-at-the-radius-and-cap-scales",
+          "label": "lemma m1-lem-r-curvature",
+          "fullLabel": "lemma m1-lem-r-curvature",
+          "kind": "lemma",
+          "source": "Curvature at the radius and cap scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pole-size",
+          "role": "curvature-at-the-radius-and-cap-scales",
+          "label": "lemma m1-lem-pole-size",
+          "fullLabel": "lemma m1-lem-pole-size",
+          "kind": "lemma",
+          "source": "Curvature at the radius and cap scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cap-slope",
+          "role": "curvature-at-the-radius-and-cap-scales",
+          "label": "lemma m1-lem-cap-slope",
+          "fullLabel": "lemma m1-lem-cap-slope",
+          "kind": "lemma",
+          "source": "Curvature at the radius and cap scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-heat-perturbation",
+          "role": "a-dimension-explicit-ricci-reaction-bound",
+          "label": "lemma m1-lem-heat-perturbation",
+          "fullLabel": "lemma m1-lem-heat-perturbation",
+          "kind": "lemma",
+          "source": "A dimension-explicit Ricci reaction bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-largeq-derivatives",
+          "role": "a-dimension-explicit-ricci-reaction-bound",
+          "label": "lemma m1-lem-largeq-derivatives",
+          "fullLabel": "lemma m1-lem-largeq-derivatives",
+          "kind": "lemma",
+          "source": "A dimension-explicit Ricci reaction bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-reaction",
+          "role": "a-dimension-explicit-ricci-reaction-bound",
+          "label": "proposition m1-prop-reaction",
+          "fullLabel": "proposition m1-prop-reaction",
+          "kind": "proposition",
+          "source": "A dimension-explicit Ricci reaction bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-ricci-barrier",
+          "role": "comparison-and-the-scalar-curvature-bound",
+          "label": "proposition m1-prop-ricci-barrier",
+          "fullLabel": "proposition m1-prop-ricci-barrier",
+          "kind": "proposition",
+          "source": "Comparison and the scalar-curvature bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-scalar-inner",
+          "role": "comparison-and-the-scalar-curvature-bound",
+          "label": "proposition m1-prop-scalar-inner",
+          "fullLabel": "proposition m1-prop-scalar-inner",
+          "kind": "proposition",
+          "source": "Comparison and the scalar-curvature bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-exterior",
+          "role": "comparison-and-the-scalar-curvature-bound",
+          "label": "proposition m1-prop-exterior",
+          "fullLabel": "proposition m1-prop-exterior",
+          "kind": "proposition",
+          "source": "Comparison and the scalar-curvature bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-rates",
+          "role": "comparison-and-the-scalar-curvature-bound",
+          "label": "corollary m1-cor-rates",
+          "fullLabel": "corollary m1-cor-rates",
+          "kind": "corollary",
+          "source": "Comparison and the scalar-curvature bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Bounded scalar curvature and smooth extension of four-dimensional Ricci flow",
+      "title": "Bounded scalar curvature and smooth extension of four-dimensional Ricci flow",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bounded-scalar-curvature-and-smooth-extension-of-four-dimensional-Ricci-flow-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Bounded scalar curvature and smooth extension of four-dimensional Ricci flow.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-extension",
+          "role": "introduction",
+          "label": "theorem m2-thm-extension",
+          "fullLabel": "theorem m2-thm-extension",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-scalar-blowup",
+          "role": "introduction",
+          "label": "corollary m2-cor-scalar-blowup",
+          "fullLabel": "corollary m2-cor-scalar-blowup",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-ell-functional",
+          "role": "the-static-input-and-its-normalization",
+          "label": "lemma m2-ell-functional",
+          "fullLabel": "lemma m2-ell-functional",
+          "kind": "lemma",
+          "source": "The static input and its normalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-tree-inequality",
+          "role": "the-static-input-and-its-normalization",
+          "label": "theorem m2-thm-tree-inequality",
+          "fullLabel": "theorem m2-thm-tree-inequality",
+          "kind": "theorem",
+          "source": "The static input and its normalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-degeneration",
+          "role": "small-scale-geometry-and-the-outermost-scale",
+          "label": "theorem m2-thm-degeneration",
+          "fullLabel": "theorem m2-thm-degeneration",
+          "kind": "theorem",
+          "source": "Small-scale geometry and the outermost scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-geom-neck",
+          "role": "small-scale-geometry-and-the-outermost-scale",
+          "label": "lemma m2-geom-neck",
+          "fullLabel": "lemma m2-geom-neck",
+          "kind": "lemma",
+          "source": "Small-scale geometry and the outermost scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-root-scale",
+          "role": "small-scale-geometry-and-the-outermost-scale",
+          "label": "proposition m2-prop-root-scale",
+          "fullLabel": "proposition m2-prop-root-scale",
+          "kind": "proposition",
+          "source": "Small-scale geometry and the outermost scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-geom-geodesic-radius",
+          "role": "small-scale-geometry-and-the-outermost-scale",
+          "label": "lemma m2-geom-geodesic-radius",
+          "fullLabel": "lemma m2-geom-geodesic-radius",
+          "kind": "lemma",
+          "source": "Small-scale geometry and the outermost scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-geom-slow-motion",
+          "role": "small-scale-geometry-and-the-outermost-scale",
+          "label": "lemma m2-geom-slow-motion",
+          "fullLabel": "lemma m2-geom-slow-motion",
+          "kind": "lemma",
+          "source": "Small-scale geometry and the outermost scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-geom-scale-change-time",
+          "role": "small-scale-geometry-and-the-outermost-scale",
+          "label": "lemma m2-geom-scale-change-time",
+          "fullLabel": "lemma m2-geom-scale-change-time",
+          "kind": "lemma",
+          "source": "Small-scale geometry and the outermost scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-buffered-intervals",
+          "role": "small-scale-geometry-and-the-outermost-scale",
+          "label": "proposition m2-prop-buffered-intervals",
+          "fullLabel": "proposition m2-prop-buffered-intervals",
+          "kind": "proposition",
+          "source": "Small-scale geometry and the outermost scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-geom-rescaled-motion",
+          "role": "small-scale-geometry-and-the-outermost-scale",
+          "label": "corollary m2-geom-rescaled-motion",
+          "fullLabel": "corollary m2-geom-rescaled-motion",
+          "kind": "corollary",
+          "source": "Small-scale geometry and the outermost scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-geom-exterior-geometry",
+          "role": "small-scale-geometry-and-the-outermost-scale",
+          "label": "proposition m2-geom-exterior-geometry",
+          "fullLabel": "proposition m2-geom-exterior-geometry",
+          "kind": "proposition",
+          "source": "Small-scale geometry and the outermost scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-para-local-smoothing",
+          "role": "concentration-estimates-for-the-ricci-equation",
+          "label": "lemma m2-para-local-smoothing",
+          "fullLabel": "lemma m2-para-local-smoothing",
+          "kind": "lemma",
+          "source": "Concentration estimates for the Ricci equation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-para-radial-lemma",
+          "role": "concentration-estimates-for-the-ricci-equation",
+          "label": "lemma m2-para-radial-lemma",
+          "fullLabel": "lemma m2-para-radial-lemma",
+          "kind": "lemma",
+          "source": "Concentration estimates for the Ricci equation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-para-mean-lemma",
+          "role": "concentration-estimates-for-the-ricci-equation",
+          "label": "lemma m2-para-mean-lemma",
+          "fullLabel": "lemma m2-para-mean-lemma",
+          "kind": "lemma",
+          "source": "Concentration estimates for the Ricci equation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-exterior-ricci",
+          "role": "concentration-estimates-for-the-ricci-equation",
+          "label": "proposition m2-prop-exterior-ricci",
+          "fullLabel": "proposition m2-prop-exterior-ricci",
+          "kind": "proposition",
+          "source": "Concentration estimates for the Ricci equation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-para-maximal-lemma",
+          "role": "concentration-estimates-for-the-ricci-equation",
+          "label": "lemma m2-para-maximal-lemma",
+          "fullLabel": "lemma m2-para-maximal-lemma",
+          "kind": "lemma",
+          "source": "Concentration estimates for the Ricci equation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-interior-ricci",
+          "role": "concentration-estimates-for-the-ricci-equation",
+          "label": "proposition m2-prop-interior-ricci",
+          "fullLabel": "proposition m2-prop-interior-ricci",
+          "kind": "proposition",
+          "source": "Concentration estimates for the Ricci equation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-collar-extension",
+          "role": "an-exterior-extension-determined-by-a-fixed-collar",
+          "label": "theorem m2-thm-collar-extension",
+          "fullLabel": "theorem m2-thm-collar-extension",
+          "kind": "theorem",
+          "source": "An exterior extension determined by a fixed collar",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-collar-potential",
+          "role": "an-exterior-extension-determined-by-a-fixed-collar",
+          "label": "lemma m2-collar-potential",
+          "fullLabel": "lemma m2-collar-potential",
+          "kind": "lemma",
+          "source": "An exterior extension determined by a fixed collar",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-collar-newton",
+          "role": "an-exterior-extension-determined-by-a-fixed-collar",
+          "label": "lemma m2-collar-newton",
+          "fullLabel": "lemma m2-collar-newton",
+          "kind": "lemma",
+          "source": "An exterior extension determined by a fixed collar",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-final-collar-position",
+          "role": "functional-change-and-the-contradiction",
+          "label": "lemma m2-final-collar-position",
+          "fullLabel": "lemma m2-final-collar-position",
+          "kind": "lemma",
+          "source": "Functional change and the contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-final-collar-bound",
+          "role": "functional-change-and-the-contradiction",
+          "label": "lemma m2-final-collar-bound",
+          "fullLabel": "lemma m2-final-collar-bound",
+          "kind": "lemma",
+          "source": "Functional change and the contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-final-variation",
+          "role": "functional-change-and-the-contradiction",
+          "label": "proposition m2-final-variation",
+          "fullLabel": "proposition m2-final-variation",
+          "kind": "proposition",
+          "source": "Functional change and the contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-final-functional-smallness",
+          "role": "functional-change-and-the-contradiction",
+          "label": "proposition m2-final-functional-smallness",
+          "fullLabel": "proposition m2-final-functional-smallness",
+          "kind": "proposition",
+          "source": "Functional change and the contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-final-energy-vanishes",
+          "role": "functional-change-and-the-contradiction",
+          "label": "corollary m2-final-energy-vanishes",
+          "fullLabel": "corollary m2-final-energy-vanishes",
+          "kind": "corollary",
+          "source": "Functional change and the contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-final-ricci-envelope",
+          "role": "functional-change-and-the-contradiction",
+          "label": "lemma m2-final-ricci-envelope",
+          "fullLabel": "lemma m2-final-ricci-envelope",
+          "kind": "lemma",
+          "source": "Functional change and the contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-final-good-points",
+          "role": "functional-change-and-the-contradiction",
+          "label": "lemma m2-final-good-points",
+          "fullLabel": "lemma m2-final-good-points",
+          "kind": "lemma",
+          "source": "Functional change and the contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-final-root-fixed",
+          "role": "functional-change-and-the-contradiction",
+          "label": "proposition m2-final-root-fixed",
+          "fullLabel": "proposition m2-final-root-fixed",
+          "kind": "proposition",
+          "source": "Functional change and the contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "label": "Path selection and an elliptic inequality on degenerating Ricci-flat trees",
+      "title": "Path selection and an elliptic inequality on degenerating Ricci-flat trees",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#c98b5c",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Path-selection-and-an-elliptic-inequality-on-degenerating-Ricci-flat-trees-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Path selection and an elliptic inequality on degenerating Ricci-flat trees.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m3-ell-functional",
+          "role": "tree-geometry-and-the-renormalized-functional",
+          "label": "lemma m3-ell-functional",
+          "fullLabel": "lemma m3-ell-functional",
+          "kind": "lemma",
+          "source": "Tree geometry and the renormalized functional",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-thm-tree-inequality",
+          "role": "tree-geometry-and-the-renormalized-functional",
+          "label": "theorem m3-thm-tree-inequality",
+          "fullLabel": "theorem m3-thm-tree-inequality",
+          "kind": "theorem",
+          "source": "Tree geometry and the renormalized functional",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [],
+          "mentions": [
+            "m3-ell-functional"
+          ]
+        },
+        {
+          "id": "m3-thm-path-selection",
+          "role": "selection-of-paths-at-several-exponential-ends",
+          "label": "theorem m3-thm-path-selection",
+          "fullLabel": "theorem m3-thm-path-selection",
+          "kind": "theorem",
+          "source": "Selection of paths at several exponential ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m3-path-centers"
+          ]
+        },
+        {
+          "id": "m3-path-variation",
+          "role": "selection-of-paths-at-several-exponential-ends",
+          "label": "corollary m3-path-variation",
+          "fullLabel": "corollary m3-path-variation",
+          "kind": "corollary",
+          "source": "Selection of paths at several exponential ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-path-sector-uniqueness",
+          "role": "selection-of-paths-at-several-exponential-ends",
+          "label": "lemma m3-path-sector-uniqueness",
+          "fullLabel": "lemma m3-path-sector-uniqueness",
+          "kind": "lemma",
+          "source": "Selection of paths at several exponential ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-path-clock",
+          "role": "selection-of-paths-at-several-exponential-ends",
+          "label": "lemma m3-path-clock",
+          "fullLabel": "lemma m3-path-clock",
+          "kind": "lemma",
+          "source": "Selection of paths at several exponential ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-path-family-limits",
+          "role": "selection-of-paths-at-several-exponential-ends",
+          "label": "lemma m3-path-family-limits",
+          "fullLabel": "lemma m3-path-family-limits",
+          "kind": "lemma",
+          "source": "Selection of paths at several exponential ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-path-prepared-contours",
+          "role": "selection-of-paths-at-several-exponential-ends",
+          "label": "lemma m3-path-prepared-contours",
+          "fullLabel": "lemma m3-path-prepared-contours",
+          "kind": "lemma",
+          "source": "Selection of paths at several exponential ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-path-roots",
+          "role": "selection-of-paths-at-several-exponential-ends",
+          "label": "lemma m3-path-roots",
+          "fullLabel": "lemma m3-path-roots",
+          "kind": "lemma",
+          "source": "Selection of paths at several exponential ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-path-detection",
+          "role": "selection-of-paths-at-several-exponential-ends",
+          "label": "lemma m3-path-detection",
+          "fullLabel": "lemma m3-path-detection",
+          "kind": "lemma",
+          "source": "Selection of paths at several exponential ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-path-adjoin-p",
+          "role": "selection-of-paths-at-several-exponential-ends",
+          "label": "lemma m3-path-adjoin-p",
+          "fullLabel": "lemma m3-path-adjoin-p",
+          "kind": "lemma",
+          "source": "Selection of paths at several exponential ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-path-centers",
+          "role": "selection-of-paths-at-several-exponential-ends",
+          "label": "proposition m3-path-centers",
+          "fullLabel": "proposition m3-path-centers",
+          "kind": "proposition",
+          "source": "Selection of paths at several exponential ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-path-sign-elimination",
+          "role": "selection-of-paths-at-several-exponential-ends",
+          "label": "lemma m3-path-sign-elimination",
+          "fullLabel": "lemma m3-path-sign-elimination",
+          "kind": "lemma",
+          "source": "Selection of paths at several exponential ends",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-disconnected-inverse",
+          "role": "augmented-inverses-and-the-analytic-family",
+          "label": "lemma m3-ell-disconnected-inverse",
+          "fullLabel": "lemma m3-ell-disconnected-inverse",
+          "kind": "lemma",
+          "source": "Augmented inverses and the analytic family",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-seam-inverse",
+          "role": "augmented-inverses-and-the-analytic-family",
+          "label": "lemma m3-ell-seam-inverse",
+          "fullLabel": "lemma m3-ell-seam-inverse",
+          "kind": "lemma",
+          "source": "Augmented inverses and the analytic family",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-complex-inverse",
+          "role": "augmented-inverses-and-the-analytic-family",
+          "label": "lemma m3-ell-complex-inverse",
+          "fullLabel": "lemma m3-ell-complex-inverse",
+          "kind": "lemma",
+          "source": "Augmented inverses and the analytic family",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-gauge",
+          "role": "augmented-inverses-and-the-analytic-family",
+          "label": "lemma m3-ell-gauge",
+          "fullLabel": "lemma m3-ell-gauge",
+          "kind": "lemma",
+          "source": "Augmented inverses and the analytic family",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-analytic-family",
+          "role": "augmented-inverses-and-the-analytic-family",
+          "label": "lemma m3-ell-analytic-family",
+          "fullLabel": "lemma m3-ell-analytic-family",
+          "kind": "lemma",
+          "source": "Augmented inverses and the analytic family",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-comparison",
+          "role": "augmented-inverses-and-the-analytic-family",
+          "label": "lemma m3-ell-comparison",
+          "fullLabel": "lemma m3-ell-comparison",
+          "kind": "lemma",
+          "source": "Augmented inverses and the analytic family",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-flat-tail",
+          "role": "tail-expansions-and-prescribed-growth",
+          "label": "lemma m3-ell-flat-tail",
+          "fullLabel": "lemma m3-ell-flat-tail",
+          "kind": "lemma",
+          "source": "Tail expansions and prescribed growth",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-prescribed-tails",
+          "role": "tail-expansions-and-prescribed-growth",
+          "label": "lemma m3-ell-prescribed-tails",
+          "fullLabel": "lemma m3-ell-prescribed-tails",
+          "kind": "lemma",
+          "source": "Tail expansions and prescribed growth",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-triangular",
+          "role": "tail-expansions-and-prescribed-growth",
+          "label": "lemma m3-ell-triangular",
+          "fullLabel": "lemma m3-ell-triangular",
+          "kind": "lemma",
+          "source": "Tail expansions and prescribed growth",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-one-length",
+          "role": "expansion-in-one-length",
+          "label": "lemma m3-ell-one-length",
+          "fullLabel": "lemma m3-ell-one-length",
+          "kind": "lemma",
+          "source": "Expansion in one length",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-finite-parts",
+          "role": "scalar-expansions-and-the-tree-inequality",
+          "label": "lemma m3-ell-finite-parts",
+          "fullLabel": "lemma m3-ell-finite-parts",
+          "kind": "lemma",
+          "source": "Scalar expansions and the tree inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-all-orders",
+          "role": "scalar-expansions-and-the-tree-inequality",
+          "label": "proposition m3-ell-all-orders",
+          "fullLabel": "proposition m3-ell-all-orders",
+          "kind": "proposition",
+          "source": "Scalar expansions and the tree inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ell-differential",
+          "role": "scalar-expansions-and-the-tree-inequality",
+          "label": "lemma m3-ell-differential",
+          "fullLabel": "lemma m3-ell-differential",
+          "kind": "lemma",
+          "source": "Scalar expansions and the tree inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "A closed Ricci flow with bounded scalar curvature and finite-time curvature blowup",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-closed-Ricci-flow-with-bounded-scalar-curvature-and-finite-time-curvature-blowup-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Bounded scalar curvature and smooth extension of four-dimensional Ricci flow",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bounded-scalar-curvature-and-smooth-extension-of-four-dimensional-Ricci-flow-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Path selection and an elliptic inequality on degenerating Ricci-flat trees",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Path-selection-and-an-elliptic-inequality-on-degenerating-Ricci-flat-trees-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

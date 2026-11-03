@@ -1,0 +1,811 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "250",
+  "title": "Boone–Higman embeddings with higher finiteness",
+  "result": {
+    "id": "paper-result",
+    "label": "Boone–Higman embeddings with higher finiteness",
+    "statement": "A finitely generated group has decidable word problem exactly when it embeds in a finitely presented simple group, proving the Boone–Higman conjecture. The target can have type F ∞ : a classifying space with finitely many cells in each dimension. A single group of type F ∞ can also contain every finitely presented group.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-group-input-and-the-algebraic-data",
+      "label": "The group input and the algebraic data",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finitely-presented-affine-group",
+      "label": "A finitely presented affine group",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "annihilating-the-steinberg-kernel",
+      "label": "Annihilating the Steinberg kernel",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-two-transitive-envelope",
+      "label": "The two-transitive envelope",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-algebra-construction",
+      "label": "The algebra construction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "coding-with-a-decreasing-dependency-bound",
+      "label": "Coding with a decreasing dependency bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-finite-compiler",
+      "label": "The finite compiler",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-homological-device-for-ascending-tori",
+      "label": "A homological device for ascending tori",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "encoding-the-diagrams-and-their-actions",
+      "label": "Encoding the diagrams and their actions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-highly-transitive-action-with-finite-type-stabilizers",
+      "label": "A highly transitive action with finite-type stabilizers",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-simple-overgroup",
+      "label": "The simple overgroup",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-universal-finitely-presented-group",
+      "label": "A universal finitely presented group",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-finite-systems-of-idempotents",
+      "label": "Two finite systems of idempotents",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "faithful-finite-diagram-envelopes",
+      "label": "Faithful finite diagram envelopes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-ascending-torus-theorem",
+      "label": "The ascending-torus theorem",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "uniform-fillings-with-finitely-many-simplex-types",
+      "label": "Uniform fillings with finitely many simplex types",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-controlled-fillings-to-finite-skeleta",
+      "label": "From controlled fillings to finite skeleta",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Finite algebraic envelopes and the Boone–Higman conjecture",
+      "title": "Finite algebraic envelopes and the Boone–Higman conjecture",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-algebraic-envelopes-and-the-Boone-Higman-conjecture-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Finite algebraic envelopes and the Boone–Higman conjecture.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-envelope",
+          "role": "introduction",
+          "label": "theorem m1-thm-envelope",
+          "fullLabel": "theorem m1-thm-envelope",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-group-input"
+          ]
+        },
+        {
+          "id": "m1-lem-group-input",
+          "role": "the-group-input-and-the-algebraic-data",
+          "label": "lemma m1-lem-group-input",
+          "fullLabel": "lemma m1-lem-group-input",
+          "kind": "lemma",
+          "source": "The group input and the algebraic data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-algebra-package",
+          "role": "the-group-input-and-the-algebraic-data",
+          "label": "theorem m1-thm-algebra-package",
+          "fullLabel": "theorem m1-thm-algebra-package",
+          "kind": "theorem",
+          "source": "The group input and the algebraic data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-algebra-embeddings"
+          ]
+        },
+        {
+          "id": "m1-thm-zaremsky",
+          "role": "the-group-input-and-the-algebraic-data",
+          "label": "theorem m1-thm-zaremsky",
+          "fullLabel": "theorem m1-thm-zaremsky",
+          "kind": "theorem",
+          "source": "The group input and the algebraic data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cyclic-module",
+          "role": "a-finitely-presented-affine-group",
+          "label": "lemma m1-lem-cyclic-module",
+          "fullLabel": "lemma m1-lem-cyclic-module",
+          "kind": "lemma",
+          "source": "A finitely presented affine group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-affine-presentation",
+          "role": "a-finitely-presented-affine-group",
+          "label": "lemma m1-lem-affine-presentation",
+          "fullLabel": "lemma m1-lem-affine-presentation",
+          "kind": "lemma",
+          "source": "A finitely presented affine group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-affine",
+          "role": "a-finitely-presented-affine-group",
+          "label": "proposition m1-prop-affine",
+          "fullLabel": "proposition m1-prop-affine",
+          "kind": "proposition",
+          "source": "A finitely presented affine group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transition",
+          "role": "a-finitely-presented-affine-group",
+          "label": "lemma m1-lem-transition",
+          "fullLabel": "lemma m1-lem-transition",
+          "kind": "lemma",
+          "source": "A finitely presented affine group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-kernel",
+          "role": "annihilating-the-steinberg-kernel",
+          "label": "theorem m1-thm-kernel",
+          "fullLabel": "theorem m1-thm-kernel",
+          "kind": "theorem",
+          "source": "Annihilating the Steinberg kernel",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-external-roots",
+          "role": "annihilating-the-steinberg-kernel",
+          "label": "lemma m1-lem-external-roots",
+          "fullLabel": "lemma m1-lem-external-roots",
+          "kind": "lemma",
+          "source": "Annihilating the Steinberg kernel",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-corner-centrality",
+          "role": "annihilating-the-steinberg-kernel",
+          "label": "lemma m1-lem-corner-centrality",
+          "fullLabel": "lemma m1-lem-corner-centrality",
+          "kind": "lemma",
+          "source": "Annihilating the Steinberg kernel",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-corner-comparison",
+          "role": "annihilating-the-steinberg-kernel",
+          "label": "lemma m1-lem-corner-comparison",
+          "fullLabel": "lemma m1-lem-corner-comparison",
+          "kind": "lemma",
+          "source": "Annihilating the Steinberg kernel",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-orthogonal-root-images",
+          "role": "annihilating-the-steinberg-kernel",
+          "label": "lemma m1-lem-orthogonal-root-images",
+          "fullLabel": "lemma m1-lem-orthogonal-root-images",
+          "kind": "lemma",
+          "source": "Annihilating the Steinberg kernel",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mapping-torus",
+          "role": "the-two-transitive-envelope",
+          "label": "lemma m1-lem-mapping-torus",
+          "fullLabel": "lemma m1-lem-mapping-torus",
+          "kind": "lemma",
+          "source": "The two-transitive envelope",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-affine-limit",
+          "role": "the-two-transitive-envelope",
+          "label": "lemma m1-lem-affine-limit",
+          "fullLabel": "lemma m1-lem-affine-limit",
+          "kind": "lemma",
+          "source": "The two-transitive envelope",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-two-transitive-action",
+          "role": "the-two-transitive-envelope",
+          "label": "proposition m1-prop-two-transitive-action",
+          "fullLabel": "proposition m1-prop-two-transitive-action",
+          "kind": "proposition",
+          "source": "The two-transitive envelope",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-partial-affine",
+          "role": "the-algebra-construction",
+          "label": "lemma m1-lem-partial-affine",
+          "fullLabel": "lemma m1-lem-partial-affine",
+          "kind": "lemma",
+          "source": "The algebra construction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-monoids",
+          "role": "the-algebra-construction",
+          "label": "theorem m1-thm-monoids",
+          "fullLabel": "theorem m1-thm-monoids",
+          "kind": "theorem",
+          "source": "The algebra construction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-algebra-embeddings",
+          "role": "the-algebra-construction",
+          "label": "lemma m1-lem-algebra-embeddings",
+          "fullLabel": "lemma m1-lem-algebra-embeddings",
+          "kind": "lemma",
+          "source": "The algebra construction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-binary-tail-corner",
+          "role": "the-algebra-construction",
+          "label": "lemma m1-lem-binary-tail-corner",
+          "fullLabel": "lemma m1-lem-binary-tail-corner",
+          "kind": "lemma",
+          "source": "The algebra construction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-compiler",
+          "role": "coding-with-a-decreasing-dependency-bound",
+          "label": "lemma m1-lem-compiler",
+          "fullLabel": "lemma m1-lem-compiler",
+          "kind": "lemma",
+          "source": "Coding with a decreasing dependency bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-bootstrap",
+          "role": "coding-with-a-decreasing-dependency-bound",
+          "label": "lemma m1-lem-bootstrap",
+          "fullLabel": "lemma m1-lem-bootstrap",
+          "kind": "lemma",
+          "source": "Coding with a decreasing dependency bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-compiler-components",
+          "role": "the-finite-compiler",
+          "label": "lemma m1-lem-compiler-components",
+          "fullLabel": "lemma m1-lem-compiler-components",
+          "kind": "lemma",
+          "source": "The finite compiler",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Simple F∞ overgroups of groups with decidable word problem",
+      "title": "Simple F∞ overgroups of groups with decidable word problem",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Simple-F-infinity-overgroups-of-groups-with-decidable-word-problem-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Simple F∞ overgroups of groups with decidable word problem.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-thm-action"
+          ]
+        },
+        {
+          "id": "m2-lem-idempotents",
+          "role": "a-homological-device-for-ascending-tori",
+          "label": "lemma m2-lem-idempotents",
+          "fullLabel": "lemma m2-lem-idempotents",
+          "kind": "lemma",
+          "source": "A homological device for ascending tori",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-torus",
+          "role": "a-homological-device-for-ascending-tori",
+          "label": "theorem m2-thm-torus",
+          "fullLabel": "theorem m2-thm-torus",
+          "kind": "theorem",
+          "source": "A homological device for ascending tori",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-torus-presentation",
+          "role": "a-homological-device-for-ascending-tori",
+          "label": "lemma m2-lem-torus-presentation",
+          "fullLabel": "lemma m2-lem-torus-presentation",
+          "kind": "lemma",
+          "source": "A homological device for ascending tori",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-product-criterion",
+          "role": "a-homological-device-for-ascending-tori",
+          "label": "lemma m2-lem-product-criterion",
+          "fullLabel": "lemma m2-lem-product-criterion",
+          "kind": "lemma",
+          "source": "A homological device for ascending tori",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-controlled-additivity",
+          "role": "a-homological-device-for-ascending-tori",
+          "label": "lemma m2-lem-controlled-additivity",
+          "fullLabel": "lemma m2-lem-controlled-additivity",
+          "kind": "lemma",
+          "source": "A homological device for ascending tori",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-uniform-fillings",
+          "role": "a-homological-device-for-ascending-tori",
+          "label": "proposition m2-prop-uniform-fillings",
+          "fullLabel": "proposition m2-prop-uniform-fillings",
+          "kind": "proposition",
+          "source": "A homological device for ascending tori",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-finite-extension",
+          "role": "a-homological-device-for-ascending-tori",
+          "label": "lemma m2-lem-finite-extension",
+          "fullLabel": "lemma m2-lem-finite-extension",
+          "kind": "lemma",
+          "source": "A homological device for ascending tori",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-enlargement",
+          "role": "encoding-the-diagrams-and-their-actions",
+          "label": "lemma m2-lem-enlargement",
+          "fullLabel": "lemma m2-lem-enlargement",
+          "kind": "lemma",
+          "source": "Encoding the diagrams and their actions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-ring-data",
+          "role": "encoding-the-diagrams-and-their-actions",
+          "label": "theorem m2-thm-ring-data",
+          "fullLabel": "theorem m2-thm-ring-data",
+          "kind": "theorem",
+          "source": "Encoding the diagrams and their actions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-compiler",
+          "role": "encoding-the-diagrams-and-their-actions",
+          "label": "lemma m2-lem-compiler",
+          "fullLabel": "lemma m2-lem-compiler",
+          "kind": "lemma",
+          "source": "Encoding the diagrams and their actions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-action-monoid-normal-form",
+          "role": "encoding-the-diagrams-and-their-actions",
+          "label": "lemma m2-lem-action-monoid-normal-form",
+          "fullLabel": "lemma m2-lem-action-monoid-normal-form",
+          "kind": "lemma",
+          "source": "Encoding the diagrams and their actions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-bounded-action-calculus",
+          "role": "encoding-the-diagrams-and-their-actions",
+          "label": "lemma m2-lem-bounded-action-calculus",
+          "fullLabel": "lemma m2-lem-bounded-action-calculus",
+          "kind": "lemma",
+          "source": "Encoding the diagrams and their actions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-encoding-bootstrap",
+          "role": "encoding-the-diagrams-and-their-actions",
+          "label": "lemma m2-lem-encoding-bootstrap",
+          "fullLabel": "lemma m2-lem-encoding-bootstrap",
+          "kind": "lemma",
+          "source": "Encoding the diagrams and their actions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-encoding-embeddings",
+          "role": "encoding-the-diagrams-and-their-actions",
+          "label": "lemma m2-lem-encoding-embeddings",
+          "fullLabel": "lemma m2-lem-encoding-embeddings",
+          "kind": "lemma",
+          "source": "Encoding the diagrams and their actions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-encoding-finite-presentation",
+          "role": "encoding-the-diagrams-and-their-actions",
+          "label": "lemma m2-lem-encoding-finite-presentation",
+          "fullLabel": "lemma m2-lem-encoding-finite-presentation",
+          "kind": "lemma",
+          "source": "Encoding the diagrams and their actions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-action",
+          "role": "a-highly-transitive-action-with-finite-type-stabilizers",
+          "label": "theorem m2-thm-action",
+          "fullLabel": "theorem m2-thm-action",
+          "kind": "theorem",
+          "source": "A highly transitive action with finite-type stabilizers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-lem-stage-faithful-transitive"
+          ]
+        },
+        {
+          "id": "m2-lem-diagonal",
+          "role": "a-highly-transitive-action-with-finite-type-stabilizers",
+          "label": "lemma m2-lem-diagonal",
+          "fullLabel": "lemma m2-lem-diagonal",
+          "kind": "lemma",
+          "source": "A highly transitive action with finite-type stabilizers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-stage-permutations",
+          "role": "a-highly-transitive-action-with-finite-type-stabilizers",
+          "label": "lemma m2-lem-stage-permutations",
+          "fullLabel": "lemma m2-lem-stage-permutations",
+          "kind": "lemma",
+          "source": "A highly transitive action with finite-type stabilizers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-stage-faithful-transitive",
+          "role": "a-highly-transitive-action-with-finite-type-stabilizers",
+          "label": "lemma m2-lem-stage-faithful-transitive",
+          "fullLabel": "lemma m2-lem-stage-faithful-transitive",
+          "kind": "lemma",
+          "source": "A highly transitive action with finite-type stabilizers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-stage-stabilizer-torus",
+          "role": "a-highly-transitive-action-with-finite-type-stabilizers",
+          "label": "lemma m2-lem-stage-stabilizer-torus",
+          "fullLabel": "lemma m2-lem-stage-stabilizer-torus",
+          "kind": "lemma",
+          "source": "A highly transitive action with finite-type stabilizers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-stage-kernel",
+          "role": "a-highly-transitive-action-with-finite-type-stabilizers",
+          "label": "theorem m2-thm-stage-kernel",
+          "fullLabel": "theorem m2-thm-stage-kernel",
+          "kind": "theorem",
+          "source": "A highly transitive action with finite-type stabilizers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-steinberg-lift",
+          "role": "a-highly-transitive-action-with-finite-type-stabilizers",
+          "label": "lemma m2-lem-steinberg-lift",
+          "fullLabel": "lemma m2-lem-steinberg-lift",
+          "kind": "lemma",
+          "source": "A highly transitive action with finite-type stabilizers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-stage-stabilizer-factor",
+          "role": "a-highly-transitive-action-with-finite-type-stabilizers",
+          "label": "lemma m2-lem-stage-stabilizer-factor",
+          "fullLabel": "lemma m2-lem-stage-stabilizer-factor",
+          "kind": "lemma",
+          "source": "A highly transitive action with finite-type stabilizers",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-twisted-transfer",
+          "role": "the-simple-overgroup",
+          "label": "theorem m2-thm-twisted-transfer",
+          "fullLabel": "theorem m2-thm-twisted-transfer",
+          "kind": "theorem",
+          "source": "The simple overgroup",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "label": "A universal group of type F∞",
+      "title": "A universal group of type F∞",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#c98b5c",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-universal-group-of-type-F-infinity-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A universal group of type F∞.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m3-thm-main",
+          "role": "introduction",
+          "label": "theorem m3-thm-main",
+          "fullLabel": "theorem m3-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m3-lem-universal",
+            "m3-prop-self-map"
+          ]
+        },
+        {
+          "id": "m3-cor-recursive",
+          "role": "introduction",
+          "label": "corollary m3-cor-recursive",
+          "fullLabel": "corollary m3-cor-recursive",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-hnn-injection",
+          "role": "a-universal-finitely-presented-group",
+          "label": "lemma m3-lem-hnn-injection",
+          "fullLabel": "lemma m3-lem-hnn-injection",
+          "kind": "lemma",
+          "source": "A universal finitely presented group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-universal",
+          "role": "a-universal-finitely-presented-group",
+          "label": "lemma m3-lem-universal",
+          "fullLabel": "lemma m3-lem-universal",
+          "kind": "lemma",
+          "source": "A universal finitely presented group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-idempotents",
+          "role": "two-finite-systems-of-idempotents",
+          "label": "lemma m3-lem-idempotents",
+          "fullLabel": "lemma m3-lem-idempotents",
+          "kind": "lemma",
+          "source": "Two finite systems of idempotents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-finite-envelope",
+          "role": "faithful-finite-diagram-envelopes",
+          "label": "proposition m3-prop-finite-envelope",
+          "fullLabel": "proposition m3-prop-finite-envelope",
+          "kind": "proposition",
+          "source": "Faithful finite diagram envelopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-self-map",
+          "role": "faithful-finite-diagram-envelopes",
+          "label": "corollary m3-prop-self-map",
+          "fullLabel": "corollary m3-prop-self-map",
+          "kind": "corollary",
+          "source": "Faithful finite diagram envelopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-thm-torus",
+          "role": "the-ascending-torus-theorem",
+          "label": "theorem m3-thm-torus",
+          "fullLabel": "theorem m3-thm-torus",
+          "kind": "theorem",
+          "source": "The ascending-torus theorem",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-torus-presentation",
+          "role": "the-ascending-torus-theorem",
+          "label": "lemma m3-lem-torus-presentation",
+          "fullLabel": "lemma m3-lem-torus-presentation",
+          "kind": "lemma",
+          "source": "The ascending-torus theorem",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-controlled-additivity",
+          "role": "uniform-fillings-with-finitely-many-simplex-types",
+          "label": "lemma m3-lem-controlled-additivity",
+          "fullLabel": "lemma m3-lem-controlled-additivity",
+          "kind": "lemma",
+          "source": "Uniform fillings with finitely many simplex types",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-uniform-fillings",
+          "role": "uniform-fillings-with-finitely-many-simplex-types",
+          "label": "proposition m3-prop-uniform-fillings",
+          "fullLabel": "proposition m3-prop-uniform-fillings",
+          "kind": "proposition",
+          "source": "Uniform fillings with finitely many simplex types",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-product-criterion",
+          "role": "from-controlled-fillings-to-finite-skeleta",
+          "label": "lemma m3-lem-product-criterion",
+          "fullLabel": "lemma m3-lem-product-criterion",
+          "kind": "lemma",
+          "source": "From controlled fillings to finite skeleta",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Finite algebraic envelopes and the Boone–Higman conjecture",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-algebraic-envelopes-and-the-Boone-Higman-conjecture-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Simple F∞ overgroups of groups with decidable word problem",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Simple-F-infinity-overgroups-of-groups-with-decidable-word-problem-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A universal group of type F∞",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-universal-group-of-type-F-infinity-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

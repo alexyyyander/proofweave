@@ -47,6 +47,12 @@ test("conformance comparison fails on any status, kernel, or check drift", () =>
     checks: { ...observed.checks, allowedAxioms: "failed" },
   }).passed, false);
   assert.equal(compareConformanceCase(fixture, { ...observed, kernelStatus: "rejected" }).passed, false);
+  assert.equal(compareConformanceCase(fixture, {
+    ...observed,
+    checks: { ...observed.checks, unexpectedCheck: "passed" },
+  }).passed, false);
+  const withoutLeanBuild = { network: observed.checks.network, noSorry: observed.checks.noSorry, allowedAxioms: observed.checks.allowedAxioms };
+  assert.equal(compareConformanceCase(fixture, { ...observed, checks: withoutLeanBuild }).passed, false);
 });
 
 test("conformance reports hash their fixture set, image, and cases and honor skipped cases", async () => {

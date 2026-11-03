@@ -1,0 +1,617 @@
+{
+  "familyNumber": "266",
+  "familyTitle": "Exactly three mutually unbiased bases in dimension six",
+  "manuscripts": [
+    {
+      "id": "The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026",
+      "title": "The maximum number of mutually unbiased bases in dimension six",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026.pdf"
+    },
+    {
+      "id": "Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026",
+      "title": "Exact Fourier certificates for complex Hadamard matrices of order six",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Equivalences and an exhaustive seed cover",
+    "Completion over a fixed seed ball",
+    "Certified phase balls and their atlas",
+    "Refining the phase-ball cover",
+    "Excluding two further bases in a phase ball",
+    "Finite execution and the recorded certificate",
+    "Certified arithmetic",
+    "Injective moments and a dichotomy for one Hadamard matrix",
+    "The cubic alternative",
+    "Complete families and the cubic obstruction",
+    "Mixed moments and the remaining case",
+    "Exact verification of the two certificates"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Computer-assisted",
+      "statement": "[Computer-assisted] Under the arithmetic and compiler conditions in Appendix~ , the fresh complete execution documented in Section~ certifies that there are no four pairwise mutually unbiased…",
+      "section": "Introduction",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-lem-three-mub-six",
+      "kind": "lemma",
+      "label": "Three mutually unbiased bases in dimension six",
+      "statement": "[Three mutually unbiased bases in dimension six] There exist three pairwise mutually unbiased orthonormal bases in C^6 .",
+      "section": "Introduction",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-cor-adjoint-cartan",
+      "kind": "corollary",
+      "label": "Adjoint-closed Cartan subalgebras",
+      "statement": "[Adjoint-closed Cartan subalgebras] Under the arithmetic and compiler conditions of Appendix~ , using the complete execution documented in Section~ as in Theorem~ , the maximum number of pairwise…",
+      "section": "Introduction",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-seed-equivalences",
+      "kind": "lemma",
+      "label": "Equivalences",
+      "statement": "[Equivalences] Extendibility is invariant under row or column permutations, multiplication of rows or columns by unit scalars, complex conjugation, and transposition.",
+      "section": "Equivalences and an exhaustive seed cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-seed-horizontal",
+      "kind": "lemma",
+      "label": "Horizontal phase representatives",
+      "statement": "[Horizontal phase representatives] The map is the orthogonal projection onto the horizontal subspace. In particular, \\| z\\|_F\\|z\\|_F . If two phase representatives have difference z , the second is…",
+      "section": "Equivalences and an exhaustive seed cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-seed-arrangement",
+      "kind": "lemma",
+      "label": "Seed arrangement",
+      "statement": "[Seed arrangement] Every exact Hadamard matrix has an equivalent dephased representative for which a pair of rows attaining the minimum gap among all row and column pairs is the first pair, and its…",
+      "section": "Equivalences and an exhaustive seed cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-seed-gap-stability",
+      "kind": "lemma",
+      "label": "Stability of circular gaps",
+      "statement": "[Stability of circular gaps] If each point of one circular multiset is matched to a point of another at circular distance at most , their gaps differ by at most 2 .",
+      "section": "Equivalences and an exhaustive seed cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-seed-gap-filters",
+      "kind": "lemma",
+      "label": "Necessary midpoint gap filters",
+      "statement": "[Necessary midpoint gap filters] For every bin pair containing lists as in Lemma~ , the midpoint gaps, including the fixed zero, satisfy g_ x,mid 1-l-1 N , g_ y,mid 1-l+2 N .",
+      "section": "Equivalences and an exhaustive seed cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-seed-sum-test",
+      "kind": "lemma",
+      "label": "Necessary sum test",
+      "statement": "[Necessary sum test] If 1+_ j=0 ^4e(u_j+_j)=0 and |_j| w/2 , then \\|c+J\\|5 w^2 4 . In particular, for every v R^2 , |v c|5 w^2 4 \\|v\\| + w2_ j=0 ^4|v J_j|.",
+      "section": "Equivalences and an exhaustive seed cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-seed-shared-interval",
+      "kind": "lemma",
+      "label": "Shared-coordinate intervals",
+      "statement": "[Shared-coordinate intervals] Let t be the position of a shared entry in one of the two lists. Every feasible displacement satisfies, for each v R^2 , |Nv c+(v J_t)h_t| E\\|v\\|+12_ j t |v J_j|. If a=v…",
+      "section": "Equivalences and an exhaustive seed cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-seed-dual-support",
+      "kind": "lemma",
+      "label": "Support bounds for center reuse",
+      "statement": "[Support bounds for center reuse] Let u' be a previously retained midpoint with the same selected position s , and let k=N(u-u') Z^9 . Every feasible displacement in the current bin pair satisfies…",
+      "section": "Equivalences and an exhaustive seed cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-seed-cover",
+      "kind": "proposition",
+      "label": "Exhaustive seed cover",
+      "statement": "[Exhaustive seed cover] For a completed execution of the specified covout traversal under the arithmetic conditions of Section~ , the written rational midpoint centers, each with its recorded…",
+      "section": "Equivalences and an exhaustive seed cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-completion-frames",
+      "kind": "lemma",
+      "label": "Fixed frames",
+      "statement": "[Fixed frames] Let p^4 have unit-modulus entries, let S=_j p_j , and set M=( 1\\ p) . The squared singular values of M are 4 |S| . If |S|<4 , then M(M^*M)^ -1 =1 16-|S|^2 (4 1-p S\\,,\\;4p- 1 S). Under…",
+      "section": "Completion over a fixed seed ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-completion-polar",
+      "kind": "lemma",
+      "label": "Polar comparison",
+      "statement": "[Polar comparison] For a feasible completion let Y=K_C^*D'K_B . Then 6I-Y^*Y &=K_B^*B'^*B'K_B+ K_B^*D'^*P_CD'K_B0,\\\\ tr(6I-Y^*Y) & (b_1')^2+ ( E'_ op b_1'+6\\,c_1')^2 m_C^2 q, where q=R_s^2(1+A_*^2+6…",
+      "section": "Completion over a fixed seed ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-completion-unitary-cover",
+      "kind": "lemma",
+      "label": "A closed covering of U(2)",
+      "statement": "[A closed covering of U(2) ] Every V U(2) has a representation V=e() e()(2 t)&e()(2 t)\\\\ -e(-)(2 t)&e(-)(2 t) , with 012 , 0 t14 , and 0,1 . For an integer N_u divisible by four, the products of…",
+      "section": "Completion over a fixed seed ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-completion-unitary-taylor",
+      "kind": "lemma",
+      "label": "Uniform cell Taylor estimates",
+      "statement": "[Uniform cell Taylor estimates] For the cell and displacement in , V-U_F6 h, V-U-dU[]_F 42 2h^2.",
+      "section": "Completion over a fixed seed ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-completion-comparison-pieces",
+      "kind": "lemma",
+      "label": "Orthogonal comparison pieces",
+      "statement": "[Orthogonal comparison pieces] The matrices ZP_B , P_CZP_K , and (I-P_C)ZP_K are pairwise Frobenius-orthogonal and sum to Z . They satisfy ZP_B&=(- C E_0^*-C' E^*-D' B^*)G_B^*,\\\\ P_CZP_K&=G_C(-E'^*…",
+      "section": "Completion over a fixed seed ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-completion-l-bound",
+      "kind": "lemma",
+      "label": "A row-block operator bound",
+      "statement": "[A row-block operator bound] For every cell midpoint U U(2) , _ op L:=(6,\\; C_0_ op 1+(A_0/m_B)^2). Also DP_K_ op =6 and D_ op (6, C_0_ op A_0 m_B ).",
+      "section": "Completion over a fixed seed ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-completion-linear-remainder",
+      "kind": "lemma",
+      "label": "Linear remainder bound",
+      "statement": "[Linear remainder bound] Every feasible completion associated to the cell satisfies Z- J(s,)_F E_r, E_r= e_ off ^2+ ( 6 42 2h^2+p)^2 , where e_ off = R_s^2(L+A_0+1) 2m +zR_s m .",
+      "section": "Completion over a fixed seed ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-completion-norm-exclusion",
+      "kind": "lemma",
+      "label": "Norm exclusion",
+      "statement": "[Norm exclusion] A feasible completion associated to a cell must satisfy _ i,j=0 ^3(|D_ ij |-1)^2 z^2.",
+      "section": "Completion over a fixed seed ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-completion-directional-exclusion",
+      "kind": "lemma",
+      "label": "Directional exclusion",
+      "statement": "[Directional exclusion] Let y^ 20 be arbitrary, split as two pairs y_X,y_Y^2 and a flat part y_D^ 16 , and write \\[ g=J_ all ^*y=(g_s,g_)^9^4. \\] Every feasible completion associated to the cell…",
+      "section": "Completion over a fixed seed ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-completion-dual-certificates",
+      "kind": "corollary",
+      "label": "Dual certificates",
+      "statement": "[Dual certificates] A cell contains no feasible completion if fails, or if some real direction y violates . The choice of y may be heuristic; only its final inequality must be certified. Positive…",
+      "section": "Completion over a fixed seed ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-completion-recursion",
+      "kind": "proposition",
+      "label": "Completion coverage conditional on successful termination",
+      "statement": "[Completion coverage conditional on successful termination] Fix a seed ball for which the frame and bound constructions are certified. Suppose that every final unitary cell is either excluded by a…",
+      "section": "Completion over a fixed seed ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-remainder",
+      "kind": "lemma",
+      "label": "Quadratic and difference remainders",
+      "statement": "[Quadratic and difference remainders] There is a real \\(30\\)-vector \\( R_P(x)\\) such that \\[ F(P+x)=F(P)+L_Px+ R_P(x). \\] Put \\(a_ ij (x)=\\|x_i-x_j\\|^2\\), where \\(x_i\\) is row \\(i\\) of \\(x\\). Then |(…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-remainder-constants",
+      "kind": "lemma",
+      "label": "Two computable remainder constants",
+      "statement": "[Two computable remainder constants] Two sufficient choices in are \\[ b=8\\,\\|M\\|, b=6\\,\\| S\\|, \\] where the \\(30\\)-by-\\(216\\) real matrix \\( S\\) has row \\[ S_ a,: =M_ :,a ^*( e_i- e_j)^* \\] when…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-root-bounds",
+      "kind": "proposition",
+      "label": "Sufficient conditions for a Root certificate",
+      "statement": "[Sufficient conditions for a Root certificate] Let \\(P,T\\) and the nonnegative constants be as in Definition~ . Suppose the basic bounds hold and an auxiliary stored real \\(36\\)-by-\\(30\\) matrix…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-stored-root-certificate",
+      "kind": "proposition",
+      "label": "Certificates produced by the source",
+      "statement": "[Certificates produced by the source] A successful call to buildH::patch, under the arithmetic conditions of Section~ , certifies , , and a valid remainder constant \\( C\\). Therefore it produces…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-transport",
+      "kind": "lemma",
+      "label": "Equivalence transport",
+      "statement": "[Equivalence transport] Let \\(\\) permute rows and columns of a phase matrix, with optional transpose and optional simultaneous change of all signs. Then \\(\\) is a real linear isometry commuting with…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-arc-bounds",
+      "kind": "lemma",
+      "label": "Arc and weighted-arc bounds",
+      "statement": "[Arc and weighted-arc bounds] Suppose \\(m_j=|D_j|>0\\) at every lower-right position and put \\(D_j^=D_j/m_j\\). Choose the shortest angular displacement, in radians, \\(d_j\\) from \\(D_j^\\) to \\(D'_j\\).…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-center-correction",
+      "kind": "lemma",
+      "label": "Stored center and support representation",
+      "statement": "[Stored center and support representation] Let \\(P_0\\) be the stored Candidate phase matrix. On a successful preparation path there is a correction \\(\\), in cycles, with \\|\\|210^ -6 , such that, up…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-direct-bound",
+      "kind": "lemma",
+      "label": "A direct displacement bound",
+      "statement": "[A direct displacement bound] Either of the following is an upper bound for \\( u\\): S_1= &R_s\\|(X^*)_s\\| +h\\|(X^*)_\\|_1 +E_r\\|_D\\| +\\|_D\\|_arc^3/6, \\\\ S_2= &R_s\\|_s\\| +weighted (_ j I_D _j^2/m_j)^…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-ellipsoid-containment",
+      "kind": "lemma",
+      "label": "Ellipsoid containment",
+      "statement": "[Ellipsoid containment] For real linear maps \\(A,B\\), vectors \\(\\|s\\| r\\), \\(\\|v\\| q\\), and \\(>0\\), the sum \\(As+Bv\\) belongs to the ellipsoid \\[ \\ G^ 1/2 w:\\|w\\|1\\ whenever…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-ellipsoid-norm",
+      "kind": "lemma",
+      "label": "Offset ellipsoid norm bound",
+      "statement": "[Offset ellipsoid norm bound] Let \\(G0\\) and \\(U^k\\). For every \\(>_ (G)\\) and \\(\\|w\\|1\\), \\|U+G^ 1/2 w\\|^2 (1+U^*( I-G)^ -1 U). The simpler upper bound \\(\\|U\\|+ _ (G) \\) for the norm is also valid.…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-bootstrap",
+      "kind": "proposition",
+      "label": "Finite improvement of a certified radius",
+      "statement": "[Finite improvement of a certified radius] Suppose \\(s_0\\|\\|\\) and \\(t_0\\|T^*\\|\\) for every feasible solution in a completion cell, using the particular alignment . Starting with any such upper…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-atlas-merge",
+      "kind": "lemma",
+      "label": "A certified atlas merge",
+      "statement": "[A certified atlas merge] Let a local Record have center \\(P\\) and radius \\(r\\). Let \\(Q\\) be an existing certified atlas center. Suppose an allowed \\(\\) and integer matrix \\(N\\) have been selected,…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-phase-a-cover",
+      "kind": "proposition",
+      "label": "Output meaning of a successful A stage",
+      "statement": "[Output meaning of a successful A stage] Suppose the initial seed cover is valid and the completion search processes all its seeds with no failed or unresolved seed. Then the A-stage Records cover,…",
+      "section": "Certified phase balls and their atlas",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-refine-approximate-projection",
+      "kind": "lemma",
+      "label": "Put A=I-TT^* . For every x^ 36 , with =T^*x , \\|T\\|1+o_P, \\|A\\|1+o_P,…",
+      "statement": "Put A=I-TT^* . For every x^ 36 , with =T^*x , \\|T\\|1+o_P, \\|A\\|1+o_P, \\|x\\|^2(1+o_P)\\|\\|^2+\\|Ax\\|^2. These statements do not require x or the columns of T to be horizontal.",
+      "section": "Refining the phase-ball cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-refine-relation-estimates",
+      "kind": "proposition",
+      "label": "Suppose t\\|\\| . Choose upper bounds D& R+\\|d_q\\|, v_0 n_P(R)+n_q,\\\\ &_P+_PD,…",
+      "statement": "Suppose t\\|\\| . Choose upper bounds D& R+\\|d_q\\|, v_0 n_P(R)+n_q,\\\\ &_P+_PD, e_0_P_Q. Let S_h= S and choose \\|S_h^*A\\|, =(1+o_P)(1+o_P)(1+o_Q). Then d& D, & d^2&(1+o_P)t^2+\\|\\|^2, \\\\ \\|\\|& \\…",
+      "section": "Refining the phase-ball cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-refine-iteration-certificate",
+      "kind": "lemma",
+      "label": "Every iterate in -- is an upper bound for the distance d of every parent…",
+      "statement": "Every iterate in -- is an upper bound for the distance d of every parent solution with \\|-_q\\| t . The same conclusion holds if any proposed bound is replaced by a larger certified number, or if the…",
+      "section": "Refining the phase-ball cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-refine-rho-certificate",
+      "kind": "lemma",
+      "label": "Every usable returned threshold certifies \\[ \\|-_q\\| [e(P+)] S(Q,a). \\] The…",
+      "statement": "Every usable returned threshold certifies \\[ \\|-_q\\| [e(P+)] S(Q,a). \\] The search need not find the largest possible threshold. In particular, its correctness does not require monotonicity of the…",
+      "section": "Refining the phase-ball cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-refine-farthest-corner",
+      "kind": "lemma",
+      "label": "For every tangent box, _ B(u,h) \\|-_q\\| =(_ a=1 ^k(|u_a-_ q,a |+h)^2)^ 1/2 .…",
+      "statement": "For every tangent box, _ B(u,h) \\|-_q\\| =(_ a=1 ^k(|u_a-_ q,a |+h)^2)^ 1/2 . Consequently, if a certified upper bound t_B for this expression satisfies D(t_B) r , all parent solutions with tangent…",
+      "section": "Refining the phase-ball cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-refine-atlas-assignment",
+      "kind": "lemma",
+      "label": "Suppose a box has been certified into S(Q,r) , with r< . A signed…",
+      "statement": "Suppose a box has been certified into S(Q,r) , with r< . A signed permutation/transpose map may be used to arrange Q . If an existing atlas center Z has a certified aligned distance from Q , then…",
+      "section": "Refining the phase-ball cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-refine-cover-preservation",
+      "kind": "proposition",
+      "label": "Suppose Stage B is run on a finite list of records with valid Root…",
+      "statement": "Suppose Stage B is run on a finite list of records with valid Root certificates, under the arithmetic assumptions and error bounds of Section~ . On a completed run, let A be its final atlas of…",
+      "section": "Refining the phase-ball cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-refine-batch-cover",
+      "kind": "corollary",
+      "label": "Under the hypotheses of Proposition~ , suppose a batching invocation completes…",
+      "statement": "Under the hypotheses of Proposition~ , suppose a batching invocation completes with no bad parents and every emitted batch is included. Then the input solution sets are covered, up to the permitted…",
+      "section": "Refining the phase-ball cover",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-exclude-bin-geometry",
+      "kind": "lemma",
+      "label": "Bin displacement bounds",
+      "statement": "[Bin displacement bounds] Every such x satisfies _jx_j=0, \\|x\\| X_M:= 29 6 \\,a, \\|x\\|_1 L_M:=5a, \\|x\\|_ I_M:=32a.",
+      "section": "Excluding two further bases in a phase ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-exclude-direct-single",
+      "kind": "lemma",
+      "label": "Direct displacement tests",
+      "statement": "[Direct displacement tests] If \\|x\\| X , \\|x\\|_1 L , and \\|\\| r , then \\|S'-S\\|2(KX+r), |S'_i-S_i|2(L/6+r). Consequently, with =2(L/6+r) , unbiasedness requires \\ 0,1-\\ ^2 |S_i|^2(1+)^2,…",
+      "section": "Excluding two further bases in a phase ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-exclude-weighted-single",
+      "kind": "lemma",
+      "label": "Weighted Taylor estimate",
+      "statement": "[Weighted Taylor estimate] Suppose \\|x\\| X and \\|x\\|_ I . For every y^6 , the unbiasedness equations imply |y(c+Jx-B)| E(y;X,I), where E(y;X,I):= &nN_y+. For a bin, this gives the necessary support…",
+      "section": "Excluding two further bases in a phase ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-exclude-cluster-cover",
+      "kind": "lemma",
+      "label": "Certified clustering",
+      "statement": "[Certified clustering] Suppose each retained bin midpoint u is assigned to a center v and an integer vector m Z^6 . Let \\[ h=u-v-m-16(_j(u_j-v_j-m_j))1. \\] If the assigned radius is at least…",
+      "section": "Excluding two further bases in a phase ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-exclude-distinct-labels",
+      "kind": "lemma",
+      "label": "Distinct labels",
+      "statement": "[Distinct labels] Two vectors in the same ball B_ vec (v,s) with s<.1 are neither orthogonal nor mutually unbiased. Hence the twelve vectors in two further mutually unbiased orthonormal bases must…",
+      "section": "Excluding two further bases in a phase ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-exclude-edge-taylor",
+      "kind": "lemma",
+      "label": "Edge Taylor equations",
+      "statement": "[Edge Taylor equations] For the indicated relation, the following necessary residual bound holds: \\|q_ O +D_ O z\\| & E_ O := r_e^2, &q_ O &= (ReS,ImS)^* 2 , \\\\ |q_ U +D_ U z| & E_ U :=…",
+      "section": "Excluding two further bases in a phase ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-exclude-joint-support",
+      "kind": "lemma",
+      "label": "Joint necessary support",
+      "statement": "[Joint necessary support] Suppose one vector from each of the two balls is unbiased to the coordinate basis and to the same second basis, whose matrix is e(P+)/6 , and the pair has relation E . For…",
+      "section": "Excluding two further bases in a phase ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-exclude-graph-search",
+      "kind": "lemma",
+      "label": "Complete graph search",
+      "statement": "[Complete graph search] The mode- 1 search of graph::exist, started with both pools equal to the full vertex set and first-clique target size six, returns false only if is impossible. A work-cap…",
+      "section": "Excluding two further bases in a phase ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-exclude-local-certificate",
+      "kind": "proposition",
+      "label": "Local exclusion certificate",
+      "statement": "[Local exclusion certificate] Assume the root certificate -- and the arithmetic guarantees of Section~ . If Stage C returns a negative result for the Record, then no exact Hadamard e(P+) in its…",
+      "section": "Excluding two further bases in a phase ball",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-execute-finite-theorem",
+      "kind": "theorem",
+      "label": "Finite-execution certificate",
+      "statement": "[Finite-execution certificate] Use the seven specified source files and the arithmetic conditions of Appendix~ . Suppose the invocations in Section~ meet all of its terminal conditions, with the…",
+      "section": "Finite execution and the recorded certificate",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-round-accumulation",
+      "kind": "lemma",
+      "label": "Accumulation and norm bounds",
+      "statement": "[Accumulation and norm bounds] For m2000 , a dot product on exact stored inputs, formed as separate products and successive additions, satisfies |fl\\!(_ i=1 ^m a_i b_i) -_ i=1 ^m a_i b_i| _m_ i=1…",
+      "section": "Certified arithmetic",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-round-expair",
+      "kind": "lemma",
+      "label": "Unit-exponential error",
+      "statement": "[Unit-exponential error] At a finite stored x with |x|16 , expair differs from e(x)=(2 i x) in complex modulus by less than 210^ -14 . For all its uses in the certificate, including argument…",
+      "section": "Certified arithmetic",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m1-round-spectral",
+      "kind": "lemma",
+      "label": "The stored spectral upper bound",
+      "statement": "[The stored spectral upper bound] For an exact stored symmetric k -by- k matrix G with k10 and |G_ ij |10 , spectralUpper returns an upper bound for \\|G\\| .",
+      "section": "Certified arithmetic",
+      "manuscript": "The maximum number of mutually unbiased bases in dimension six"
+    },
+    {
+      "id": "m2-thm-fourier",
+      "kind": "theorem",
+      "label": "Fourier vanishing",
+      "statement": "[Fourier vanishing] Let H be a complex Hadamard matrix of order six. If H is not equivalent to the cubic matrix T in , then \\[ g_H()=0for every coordinate permutation . \\]",
+      "section": "Introduction",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "No complete family",
+      "statement": "[No complete family] There do not exist seven orthonormal bases B_r=(b_ r,0 ,,b_ r,5 ) of ^6 , 1 r7 , such that \\[ | b_ r,i ,b_ s,j |^2=16 (r s,\\ 0 i,j5). \\]",
+      "section": "Introduction",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-cor-dichotomy",
+      "kind": "corollary",
+      "label": "Dichotomy",
+      "statement": "[Dichotomy] For every 66 Hadamard matrix H , at least one of the following conditions holds: [label=( *),ref=] g_ H^ ()=0 for every row permutation ; the entrywise square H^ 2 is a Hadamard matrix.",
+      "section": "Injective moments and a dichotomy for one Hadamard matrix",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-lem-contraction",
+      "kind": "lemma",
+      "label": "Contraction of an order-one row",
+      "statement": "[Contraction of an order-one row] Let A be a balanced exponent matrix with p rows and q6 columns, and suppose row i has order one. For i , let A_ i be obtained by adding row i to row and then…",
+      "section": "Injective moments and a dichotomy for one Hadamard matrix",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-lem-partitions",
+      "kind": "lemma",
+      "label": "Equality-pattern expansion",
+      "statement": "[Equality-pattern expansion] Let a_1,,a_n^6 be balanced charges satisfying _ j=1 ^n a_j=0 , and let A be the matrix with these columns. For a set partition S of \\ 1,,n\\ , form A_ S by replacing the…",
+      "section": "Injective moments and a dichotomy for one Hadamard matrix",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-prop-pair-certificate",
+      "kind": "proposition",
+      "label": "Single-matrix certificate",
+      "statement": "[Single-matrix certificate] For every 66 Hadamard matrix H and for each q\\ q_ cross ,q_ same \\ , 3 |L_ H |^2_H + |g_ H ()g_ H (q)|^2 _H=0.",
+      "section": "Injective moments and a dichotomy for one Hadamard matrix",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-prop-cubic-classification",
+      "kind": "proposition",
+      "label": "Classification of the cubic alternative",
+      "statement": "[Classification of the cubic alternative] Suppose that H and its entrywise square H^ 2 are Hadamard matrices of order six. By multiplying rows and columns by unit complex numbers and permuting rows…",
+      "section": "The cubic alternative",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-lem-basic",
+      "kind": "lemma",
+      "label": "For each fixed reference basis the following identities hold. First, g_s(d)=0(d…",
+      "statement": "For each fixed reference basis the following identities hold. First, g_s(d)=0(d D), _ s r g_s(a)=0((a)=2). For arbitrary charges \\(a,b\\) and each coordinate \\(i\\), _ j=0 ^5…",
+      "section": "Complete families and the cubic obstruction",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-prop-cubic-exclusion",
+      "kind": "proposition",
+      "label": "In a set of seven mutually unbiased bases in ^6 , no transition Hadamard matrix…",
+      "statement": "In a set of seven mutually unbiased bases in ^6 , no transition Hadamard matrix H can have H^ 2 Hadamard.",
+      "section": "Complete families and the cubic obstruction",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-lem-cubic-symmetry",
+      "kind": "lemma",
+      "label": "Every permutation of the rows of T can be completed to a symmetry of T by…",
+      "statement": "Every permutation of the rows of T can be completed to a symmetry of T by column permutations, row and column phase factors, and, if necessary, complex conjugation. Consequently |G(b)| is constant on…",
+      "section": "Complete families and the cubic obstruction",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-lem-gram",
+      "kind": "lemma",
+      "label": "Gram entries",
+      "statement": "[Gram entries] For balanced a,v , put b=(a,-v,v-a) . If (s,t)\\ 0,1\\ ^2 and (s,t)(1,1) , then \\,(F_s(a)F_t(v)) = M((s,t,0); b). For the remaining case, \\,(F_1(a)F_1(v)) =15 M((1,1,0); b) +45…",
+      "section": "Mixed moments and the remaining case",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-lem-mixed-reductions",
+      "kind": "lemma",
+      "label": "Mixed-moment reductions",
+      "statement": "[Mixed-moment reductions] Under , the following operations and identities are valid. [label=( *)] A common coordinate permutation of all charges, simultaneous negation of all charges, a simultaneous…",
+      "section": "Mixed moments and the remaining case",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-prop-mixed-certificate",
+      "kind": "proposition",
+      "label": "Mixed-moment certificate",
+      "statement": "[Mixed-moment certificate] Each matrix Z_ specified above is positive definite. Under the mixed-moment identities of Lemma~ , the forms satisfy 5_ 10^ 15-e_ (Y_^*Z_ Y_) &…",
+      "section": "Mixed moments and the remaining case",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    },
+    {
+      "id": "m2-lem-exact-elimination",
+      "kind": "lemma",
+      "label": "Exact substitutions",
+      "statement": "[Exact substitutions] Let W^ r N consist of selected moment equations after their denominators have been cleared. Suppose a set J of r columns gives a square submatrix W_J invertible modulo a prime.…",
+      "section": "Exact verification of the two certificates",
+      "manuscript": "Exact Fourier certificates for complex Hadamard matrices of order six"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m2-cor-dichotomy",
+      "to": "m2-thm-fourier",
+      "label": "cor:dichotomy",
+      "context": "[Proof of Theorem~\\ref{thm:fourier}] If $g_H(\\pi\\alpha)$ were nonzero for some coordinate permutation $\\pi$, Corollary~\\ref{cor:dichotomy} would imply that $H^{\\circ2}$ is Hadamard. Proposition~\\ref{prop:cubic-classification} would then make $H$ equivalent t"
+    },
+    {
+      "from": "m2-cor-dichotomy",
+      "to": "m2-thm-main",
+      "label": "cor:dichotomy",
+      "context": "[Completion of the proof of Theorem~\\ref{thm:main}] If seven mutually unbiased bases existed, Corollary~\\ref{cor:dichotomy} would give case (M) or case (C) for each transition matrix. Proposition~\\ref{prop:cubic-exclusion} excludes case (C), s"
+    }
+  ]
+}

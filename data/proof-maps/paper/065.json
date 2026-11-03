@@ -1,0 +1,541 @@
+{
+  "familyNumber": "065",
+  "familyTitle": "Virasoro constraints for complete intersections and projective-bundle towers",
+  "manuscripts": [
+    {
+      "id": "Virasoro-Constraints-under-Projectivization-October-5-2026",
+      "title": "Virasoro Constraints under Projectivization",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Virasoro-Constraints-under-Projectivization-October-5-2026/virasoro-constraints-under-projectivization.pdf"
+    },
+    {
+      "id": "Virasoro-Constraints-for-Projective-Complete-Intersections-September-24-2026",
+      "title": "Virasoro Constraints for Projective Complete Intersections",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Virasoro-Constraints-for-Projective-Complete-Intersections-September-24-2026/article.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Descendant potentials and quantization",
+    "The master space and its fixed theories",
+    "Ancestor localization for the master space",
+    "A grading and a shift in genus zero",
+    "Spectral projections and block gradings",
+    "The ordinary theory on a fixed component",
+    "Continuation and the ordinary constraints",
+    "Operators, tensor tests, and conventions",
+    "First-page contractions and locality",
+    "Evaluation correspondences on expanded configurations",
+    "Cap tests for the contact identity",
+    "Transport by capped chains",
+    "Detection of primitive error tensors",
+    "Induction for complete intersections"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let B be a smooth connected projective variety over , and let E be an algebraic…",
+      "statement": "Let B be a smooth connected projective variety over , and let E be an algebraic vector bundle of rank r2 on B . Let X= P_B(E) parametrize one-dimensional subspaces of the fibers of E . Then \\[ (B)\\ \\…",
+      "section": "Introduction",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-conv-covariance",
+      "kind": "lemma",
+      "label": "Projective covariance",
+      "statement": "[Projective covariance] Suppose M and M^ -1 admit quantized actions, and A and MAM^ -1 admit coefficientwise quadratic quantizations. If and ' are the source and target pairings, then U_M_(A)U_M^ -1…",
+      "section": "Descendant potentials and quantization",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-conv-finite-support",
+      "kind": "lemma",
+      "label": "Suppose a potential has finite descendant-index support at fixed curve…",
+      "statement": "Suppose a potential has finite descendant-index support at fixed curve coefficient, power, and variable order, and has powers bounded below at fixed curve coefficient and variable order. Let A be an…",
+      "section": "Descendant potentials and quantization",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-geo-curve-labels",
+      "kind": "lemma",
+      "label": "For P=X or W , the map H_2(P;) H_2(B;), d (_*d,_d c_1( O_P(1))) is an…",
+      "statement": "For P=X or W , the map H_2(P;) H_2(B;), d (_*d,_d c_1( O_P(1))) is an isomorphism, including torsion. An effective class has an effective base pushforward and a nonnegative tautological degree l .",
+      "section": "The master space and its fixed theories",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-loc-factorization",
+      "kind": "proposition",
+      "label": "Ancestor localization",
+      "statement": "[Ancestor localization] There are classes u_F H_F with coefficients of positive Novikov filtration, for F=B,X , and a symplectic power series R(z)(H^ fix )[[z]] , with R- of positive Novikov…",
+      "section": "Ancestor localization for the master space",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-loc-leg-geometry",
+      "kind": "lemma",
+      "label": "A moving leg has degree m1 on a line joining a point x X to its image b=(x) B .…",
+      "statement": "A moving leg has degree m1 on a line joining a point x X to its image b=(x) B . Its map from P^1 is totally ramified over x and b , and its markings and nodes lie at these two points. For any…",
+      "section": "Ancestor localization for the master space",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-loc-vertex-conversion",
+      "kind": "lemma",
+      "label": "Vertex conversion",
+      "statement": "[Vertex conversion] In the summed vertex correlators with background , an insertion at a distinguished flag transforms as h a- S(u,a)h a- . The transformation remains valid with additional powers of…",
+      "section": "Ancestor localization for the master space",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-shift-grading-lemma",
+      "kind": "lemma",
+      "label": "With S_W=S_W(0,z) in the convention fixed above, G_a=S_WG_dS_W^ -1 .",
+      "statement": "With S_W=S_W(0,z) in the convention fixed above, G_a=S_WG_dS_W^ -1 .",
+      "section": "A grading and a shift in genus zero",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-shift-operator",
+      "kind": "proposition",
+      "label": "There is a shift operator \\[ T_a=A(z,,Q,y)e^ z_ \\] on the small…",
+      "statement": "There is a shift operator \\[ T_a=A(z,,Q,y)e^ z_ \\] on the small quantum-cohomology module of W , whose matrix A is polynomial in z, at every curve coefficient in the chosen equivariant basis. Its…",
+      "section": "A grading and a shift in genus zero",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-shift-polynomiality",
+      "kind": "lemma",
+      "label": "For every fixed actual base class , the matrix coefficients of A and of c are…",
+      "statement": "For every fixed actual base class , the matrix coefficients of A and of c are polynomials in y,z, (with no z dependence in c ). In particular they are holomorphic functions of y before any…",
+      "section": "A grading and a shift in genus zero",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-shift-commutation-lemma",
+      "kind": "lemma",
+      "label": "The grading and shift commute: [G_a,T_a]=0.",
+      "statement": "The grading and shift commute: [G_a,T_a]=0.",
+      "section": "A grading and a shift in genus zero",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-shift-fiber-operator",
+      "kind": "lemma",
+      "label": "On H_T^*(W) with the fiber quantum product, T_a(z,Q^ >0 )=(p+).",
+      "statement": "On H_T^*(W) with the fiber quantum product, T_a(z,Q^ >0 )=(p+).",
+      "section": "A grading and a shift in genus zero",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-shift-spectrum-proposition",
+      "kind": "proposition",
+      "label": "For generic (y,) , the distinct eigenvalue branches of T_a(z,Q^ >0 ) are +h,…",
+      "statement": "For generic (y,) , the distinct eigenvalue branches of T_a(z,Q^ >0 ) are +h, h^r(h+)=y. Each branch may have multiplicity and a nontrivial nilpotent part. For 0 , near y=0 there is one branch tending…",
+      "section": "A grading and a shift in genus zero",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-spec-calculus",
+      "kind": "lemma",
+      "label": "Coefficientwise holomorphic calculus",
+      "statement": "[Coefficientwise holomorphic calculus] For T as above and a scalar holomorphic function f on a neighborhood of (T^ (0) ) , held fixed independently of the parameters, define f(T)=1 2 i _ f()R_T()\\,d,…",
+      "section": "Spectral projections and block gradings",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-spec-gauge",
+      "kind": "lemma",
+      "label": "Change of frame for resolvents",
+      "statement": "[Change of frame for resolvents] Let T and T' have coefficientwise resolvents on a common contour, constructed as in Lemma~ . Suppose these resolvents belong to the same algebra . If M and M^ -1…",
+      "section": "Spectral projections and block gradings",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-spec-commutators",
+      "kind": "proposition",
+      "label": "Removal of coefficient differentiation",
+      "statement": "[Removal of coefficient differentiation] The operators in satisfy [P_i,]=0, [ L_i,]=zP_i, [G_a,P_i]=[G_a, L_i]=0. In particular P_i and M_i= L_i-zP_i_ are matrix series, without coefficient…",
+      "section": "Spectral projections and block gradings",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-spec-modes",
+      "kind": "proposition",
+      "label": "Modes and their coefficient bounds",
+      "statement": "[Modes and their coefficient bounds] Define A_ -1,i =z^ -1 P_i, A_ k,i =z^ -1 (zD_i)^ k+1 (k0). Each A_ k,i is a series in powers z^m with m-1 , whose coefficients are matrix differential operators…",
+      "section": "Spectral projections and block gradings",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-spec-zero",
+      "kind": "proposition",
+      "label": "Comparison at zero fiber degree",
+      "statement": "[Comparison at zero fiber degree] The projectors P_B,P_X and the cluster logarithm L_X have holomorphic coefficient germs through y=0 . Their Taylor expansions at y=0 satisfy P_F=S_W_FS_W^ -1…",
+      "section": "Spectral projections and block gradings",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-fixed-equivalence",
+      "kind": "proposition",
+      "label": "Fix a germ at 0 . Near Q=y=0 , use the full Novikov completion with a formal y…",
+      "statement": "Fix a germ at 0 . Near Q=y=0 , use the full Novikov completion with a formal y adjoined, allowing polynomial dependence on y in each coefficient. Let F=B denote the branch near the eigenvalue zero,…",
+      "section": "The ordinary theory on a fixed component",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-fixed-classical",
+      "kind": "lemma",
+      "label": "The following identities hold in the formal Laurent calculus of Lemma~ : _F^ -1…",
+      "statement": "The following identities hold in the formal Laurent calculus of Lemma~ : _F^ -1 G_F_F &=_ 0,F +_+nw z , \\\\ _F^ -1 T_F_F &=y^j( _F( )- _F( +z) z )e^ z_ . Under the same change of space, the logarithm…",
+      "section": "The ordinary theory on a fixed component",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-fixed-qrr-normalized",
+      "kind": "lemma",
+      "label": "Quantum Riemann--Roch in the normalized twist",
+      "statement": "[Quantum Riemann--Roch in the normalized twist] With the quantization and dilaton translations of Section~ , Z_ F,ntw =(invertible scalar)\\, U_ _ F,0 Z_F. This is an invertible identity formal in ^…",
+      "section": "The ordinary theory on a fixed component",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-fixed-rank-scaling",
+      "kind": "lemma",
+      "label": "Put m_F=a^ -n . The actual inverse Euler twist is obtained from the normalized…",
+      "statement": "Put m_F=a^ -n . The actual inverse Euler twist is obtained from the normalized twist by the substitutions /m_F, Q^ y^l Q^ y^l a^ -_d c_N , where d is the corresponding actual class on F . Its pairing…",
+      "section": "The ordinary theory on a fixed component",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-cont-polynomiality",
+      "kind": "lemma",
+      "label": "Polynomial coefficients and ancestor bounds",
+      "statement": "[Polynomial coefficients and ancestor bounds] Fix a genus g , an actual base class , and a list of insertions b_i_i^ a_i , 1 i n . Their connected invariant in W , summed over fiber degree with…",
+      "section": "Continuation and the ordinary constraints",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-cont-finite-tests",
+      "kind": "lemma",
+      "label": "Finite coefficient tests",
+      "statement": "[Finite coefficient tests] Fix k-1 , a power ^ G-1 , a base class , and an insertion monomial of degree N in . Its coefficient is a finite sum of holomorphic germs on the spectral covering of the…",
+      "section": "Continuation and the ordinary constraints",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-cont-monodromy",
+      "kind": "lemma",
+      "label": "The monodromy of acts transitively on its r+1 branches.",
+      "statement": "The monodromy of acts transitively on its r+1 branches.",
+      "section": "Continuation and the ordinary constraints",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-cont-projective-transfer",
+      "kind": "proposition",
+      "label": "If the ordinary descendant potential of B satisfies its ordinary modes…",
+      "statement": "If the ordinary descendant potential of B satisfies its ordinary modes projectively, then the same is true for X .",
+      "section": "Continuation and the ordinary constraints",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-cont-commutators",
+      "kind": "lemma",
+      "label": "For every smooth projective complex variety Y , with the operators of Section~…",
+      "statement": "For every smooth projective complex variety Y , with the operators of Section~ , one has [L_ -1 ^Y,L_1^Y]=-2L_0^Y, [L_0^Y,L_k^Y]=-kL_k^Y(k-1,\\ k0).",
+      "section": "Continuation and the ordinary constraints",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m1-cont-exact",
+      "kind": "corollary",
+      "label": "Projective satisfaction of all the ordinary modes by Z_Y implies (Y) with…",
+      "statement": "Projective satisfaction of all the ordinary modes by Z_Y implies (Y) with exactly the constant specified in L_0^Y .",
+      "section": "Continuation and the ordinary constraints",
+      "manuscript": "Virasoro Constraints under Projectivization"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let \\(X^N_\\) be a smooth complete intersection. Its ordinary, unreduced total…",
+      "statement": "Let \\(X^N_\\) be a smooth complete intersection. Its ordinary, unreduced total descendant potential satisfies the Virasoro constraints in every genus and curve class, with arbitrary insertions from…",
+      "section": "Introduction",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-conv-positive-rule",
+      "kind": "proposition",
+      "label": "Positive coefficient rule",
+      "statement": "[Positive coefficient rule] A labelled coefficient of \\(L_k^XZ_X\\), for fixed \\(k>0\\), is a finite linear combination of the following operations on the disconnected Gromov--Witten tensors: [label=(…",
+      "section": "Operators, tensor tests, and conventions",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-fp-pairing",
+      "kind": "lemma",
+      "label": "The first-page pairing",
+      "statement": "[The first-page pairing] The complex C_Y has a perfect graded-symmetric chain pairing of degree 2n and Tate type (-n) . On elements of total degrees k and 2n-k it is B_Y((v,a,b),(w,a',b')) = &_v_ Y_v…",
+      "section": "First-page contractions and locality",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-fp-first-index",
+      "kind": "lemma",
+      "label": "First Hodge index",
+      "statement": "[First Hodge index] On C_Y , let P act by the first Hodge index, including the Tate twist. Then Pd=dP . Consequently (f(P))_ C_Y is closed for every function f on the finite spectrum of P .",
+      "section": "First-page contractions and locality",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-fp-ordered-comparison",
+      "kind": "lemma",
+      "label": "Ordered comparison",
+      "statement": "[Ordered comparison] The residue formula for _Z , restricted to increasing tuples, gives with the properties stated above.",
+      "section": "First-page contractions and locality",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-fp-pullback",
+      "kind": "lemma",
+      "label": "Ordered pullbacks",
+      "statement": "[Ordered pullbacks] Each projection of the ordered configuration model to induces a bifiltered chain pullback of the K models. On weight pages its terms are ordinary pullbacks on the relevant…",
+      "section": "First-page contractions and locality",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-fp-trace-normalization",
+      "kind": "lemma",
+      "label": "Normalization of the trace",
+      "statement": "[Normalization of the trace] Normalize the residue and Tate factors so that the trace of an extending top class is the sum of its component integrals. Under multiplicative nearby comparison, the…",
+      "section": "First-page contractions and locality",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-fp-leading-class",
+      "kind": "lemma",
+      "label": "The leading specialization of an extending class",
+      "statement": "[The leading specialization of an extending class] Suppose ^ \\,r is smooth and semistable and carries an algebraic class of codimension c restricting to a prescribed correspondence on the smooth…",
+      "section": "First-page contractions and locality",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-fp-scalar-limit",
+      "kind": "lemma",
+      "label": "Graded limits of scalar diagrams",
+      "statement": "[Graded limits of scalar diagrams] Consider a closed tensor diagram made from flat Hodge tensors of prescribed types, flat singles of fixed Hodge type, pairings and inverse pairings, and functions of…",
+      "section": "First-page contractions and locality",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-fp-chain-contraction",
+      "kind": "lemma",
+      "label": "Contraction on a complex",
+      "statement": "[Contraction on a complex] Let C be a finite complex with a perfect chain pairing and let T be a chain functional on a tensor product of copies of C , possibly with fixed cycles and fixed degree…",
+      "section": "First-page contractions and locality",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-fp-local-algebra",
+      "kind": "proposition",
+      "label": "Local first-page algebra",
+      "statement": "[Local first-page algebra] Fix the arities of a scalar test as in , applied to one coefficient operation of . For each of its evaluation correspondences, assume the extending class and…",
+      "section": "First-page contractions and locality",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-ev-configuration",
+      "kind": "lemma",
+      "label": "Ordered charts and central components",
+      "statement": "[Ordered charts and central components] The family Q_I B is projective and semistable, with smooth total space. Its projections to the factors of Y are logarithmic maps. Let I=I_0 I_1 be an…",
+      "section": "Evaluation correspondences on expanded configurations",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-ev-aligned-cut",
+      "kind": "lemma",
+      "label": "Labelled cut in the aligned expansion",
+      "statement": "[Labelled cut in the aligned expansion] Fix bounded discrete data for labelled connected source components in M , permitting their disjoint union, and choose one cut of the globally aligned target…",
+      "section": "Evaluation correspondences on expanded configurations",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-ev-restriction",
+      "kind": "proposition",
+      "label": "Restriction with recorded assignments",
+      "statement": "[Restriction with recorded assignments] The class _I is an actual extending correspondence on the smooth total configuration family. Let i_:Q_ Q_I be a central component, with the recorded side and…",
+      "section": "Evaluation correspondences on expanded configurations",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-ev-groups",
+      "kind": "proposition",
+      "label": "Group product with retained evaluations",
+      "statement": "[Group product with retained evaluations] The separation morphism satisfies _*[ K_]^ = _ a=1 ^u[ K_ ^ (a) ]^ . Ordinary cotangent classes and joint evaluations of the retained positions are preserved…",
+      "section": "Evaluation correspondences on expanded configurations",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-cap-linearization",
+      "kind": "lemma",
+      "label": "Single-root linearization",
+      "statement": "[Single-root linearization] Restrict to classes with zero projection to T . For any finite bound on contact order, the connected genus-zero single-root generating series have jointly surjective…",
+      "section": "Cap tests for the contact identity",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-cap-span",
+      "kind": "lemma",
+      "label": "Finite cap spanning",
+      "statement": "[Finite cap spanning] For the fiber classes of , finitely many coefficient rows in the ordinary zero-section variables span the full dual of F_ H (E) over (()) . Equivalently, after using G_ to…",
+      "section": "Cap tests for the contact identity",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-cap-bounded-rows",
+      "kind": "lemma",
+      "label": "Bounded rows",
+      "statement": "[Bounded rows] Fix a finite list of auxiliary rows and a counting bound d . [label=( *)] For Q , a bound on its relative contact total bounds its effective curve degrees. For P , a fixed nonnegative…",
+      "section": "Cap tests for the contact identity",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-cap-q",
+      "kind": "lemma",
+      "label": "Incoming tests from Q",
+      "statement": "[Incoming tests from Q ] Modulo q^ d+1 , the Q cap realizes every linear functional on F_ H (D) by finitely many ordinary coefficient rows with external coefficients having nonnegative q -powers and…",
+      "section": "Cap tests for the contact identity",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-cap-p",
+      "kind": "lemma",
+      "label": "Outgoing states from P",
+      "statement": "[Outgoing states from P ] Modulo q^ d+1 , every prescribed state supported in F_ H (D) can be prepared by finite combinations of P rows with imposed nonnegative left-section degrees. The coefficients…",
+      "section": "Cap tests for the contact identity",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-cap-identity",
+      "kind": "proposition",
+      "label": "Cap realization of the contact identity",
+      "statement": "[Cap realization of the contact identity] Fix H,d0 in either configuration. Replace a seam by a right cap Q on its left and a left cap P on its right. There is a finite combination of ordinary…",
+      "section": "Cap tests for the contact identity",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-cap-uniform",
+      "kind": "lemma",
+      "label": "Uniform preparation",
+      "statement": "[Uniform preparation] For any finite ordered list of switches and a fixed counting bound, the preceding tests can be chosen successively so that they are valid for every subset of switch…",
+      "section": "Cap tests for the contact identity",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-sew-geometry",
+      "kind": "lemma",
+      "label": "Realization and common local geometry",
+      "statement": "[Realization and common local geometry] For either configuration in , chains of arbitrarily large length and all unions of capped subchains obtained from them have projective semistable realizations…",
+      "section": "Transport by capped chains",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-sew-transport",
+      "kind": "theorem",
+      "label": "Tested transport",
+      "statement": "[Tested transport] Consider either configuration of , with the coherent admissible singles and degree data just specified. Suppose that all three short target types satisfy the absolute Virasoro…",
+      "section": "Transport by capped chains",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-sew-preparation",
+      "kind": "lemma",
+      "label": "Preparations valid for every subset",
+      "statement": "[Preparations valid for every subset] For any fixed finite ordered list of switches, one can choose a contact bound and cap identity test at each switch so that the following hold simultaneously for…",
+      "section": "Transport by capped chains",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-sew-busy-bound",
+      "kind": "lemma",
+      "label": "A bound on busy switches",
+      "statement": "[A bound on busy switches] There are constants B and r_0 , depending on the fixed test, k , and n , but independent of chain length, surgery subset, contact bounds and auxiliary row arities, with the…",
+      "section": "Transport by capped chains",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-sew-idle-equality",
+      "kind": "lemma",
+      "label": "Equality at an idle switch",
+      "statement": "[Equality at an idle switch] Fix a local operation pattern and a switch j outside its busy set. Keep its recorded component assignments and all data off the surgery region at j . Sum all relative-map…",
+      "section": "Transport by capped chains",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-det-operations",
+      "kind": "lemma",
+      "label": "Available primitive operations",
+      "statement": "[Available primitive operations] Suppose \\(X\\) has a detection subspace. Its primitive coevaluation and any function of either Hodge index on a primitive leg are finite linear combinations of the…",
+      "section": "Detection of primitive error tensors",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-det-norm",
+      "kind": "lemma",
+      "label": "A positive scalar test",
+      "statement": "[A positive scalar test] Let \\(E(J_^*)^ r \\) be a coefficient tensor obtained by applying one positive Virasoro coefficient rule, with fixed coherent \\(B_0\\)-inputs in all other slots. Its positive…",
+      "section": "Detection of primitive error tensors",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-det-detection",
+      "kind": "theorem",
+      "label": "Detection",
+      "statement": "[Detection] Assume that \\(X\\) has a detection subspace, and that all admissible scalar tests of every positive Virasoro coefficient vanish, with degree weights distinguishing the curve classes under…",
+      "section": "Detection of primitive error tensors",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-ind-toric",
+      "kind": "proposition",
+      "label": "Toric bundle transfer",
+      "statement": "[Toric bundle transfer] Suppose that the first-Hodge Virasoro constraints hold for B , in all genera and with all descendant insertions. They then hold for E with the same scope. The assertion can be…",
+      "section": "Induction for complete intersections",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-ind-blowup-data",
+      "kind": "lemma",
+      "label": "Blowup detection data",
+      "statement": "[Blowup detection data] Let M be an n -dimensional smooth complete intersection and let S M be a smooth codimension-two complete intersection cut by two ambient equations. Write p: M=_S M M , j:E M ,…",
+      "section": "Induction for complete intersections",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-ind-degrees",
+      "kind": "lemma",
+      "label": "Degree separation",
+      "statement": "[Degree separation] The ordinary and blowup configurations used in can be equipped with coherent numerical divisor tests which distinguish every curve class with a possibly nonzero ordinary…",
+      "section": "Induction for complete intersections",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    },
+    {
+      "id": "m2-ind-deformation",
+      "kind": "lemma",
+      "label": "Passage to special smooth fibers",
+      "statement": "[Passage to special smooth fibers] Suppose the tested constraints, and hence the constraints detected by , hold on very general members of one of the smooth complete-intersection families or nested…",
+      "section": "Induction for complete intersections",
+      "manuscript": "Virasoro Constraints for Projective Complete Intersections"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-cont-projective-transfer",
+      "to": "m1-thm-main",
+      "label": "cont:projective-transfer",
+      "context": "[Proof of Theorem~\\ref{thm:main}] The hypothesis $\\V(B)$ gives projective satisfaction on $B$. By Proposition~\\ref{cont:projective-transfer}, it passes to $X$. Corollary~\\ref{cont:exact} gives the prescribed ordinary Virasoro equations. All constructions used"
+    }
+  ]
+}

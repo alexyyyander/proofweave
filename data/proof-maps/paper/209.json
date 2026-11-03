@@ -1,0 +1,77 @@
+{
+  "familyNumber": "209",
+  "familyTitle": "Integral counterexamples to Gersten’s conjecture",
+  "manuscripts": [
+    {
+      "id": "An-Integral-Degree-Three-Gersten-Counterexample-September-26-2026",
+      "title": "An integral degree-three Gersten counterexample",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Integral-Degree-Three-Gersten-Counterexample-September-26-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The model and its distinguished divisor",
+    "Lifting on the divisor",
+    "The field comparison and norm detector",
+    "Detection on the projective curve"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "The ring A is a two-dimensional Noetherian regular local domain of mixed…",
+      "statement": "The ring A is a two-dimensional Noetherian regular local domain of mixed characteristic (0,5) , with m_A^2 . There is an integral class c K_3(A) such that \\[ c|_ A =0, c|_ A[1/] 50 in G_3(A[1/];/5).…",
+      "section": "Introduction",
+      "manuscript": "An integral degree-three Gersten counterexample"
+    },
+    {
+      "id": "m1-lem-model",
+      "kind": "lemma",
+      "label": "The generic fiber C=_L is an integral projective curve. The ring A=_ ,m is a…",
+      "statement": "The generic fiber C=_L is an integral projective curve. The ring A=_ ,m is a two-dimensional Noetherian regular local domain of mixed characteristic (0,5) with m_A^2 . For every closed point q C with…",
+      "section": "The model and its distinguished divisor",
+      "manuscript": "An integral degree-three Gersten counterexample"
+    },
+    {
+      "id": "m1-prop-integral",
+      "kind": "proposition",
+      "label": "There exists b K_3(S) whose restriction to D , followed by coefficient…",
+      "statement": "There exists b K_3(S) whose restriction to D , followed by coefficient reduction, is a_D . If j: S A and c=j_*b G_3(A)=K_3(A) , then c|_ A =0 . Moreover, for T= A[1/] and i: D T , \\[ c|_T5=i_*a_Din…",
+      "section": "Lifting on the divisor",
+      "manuscript": "An integral degree-three Gersten counterexample"
+    },
+    {
+      "id": "m1-lem-field",
+      "kind": "lemma",
+      "label": "Multiplicative field comparison",
+      "statement": "[Multiplicative field comparison] For L=_5() and the fixed above, every finite extension E/L has an isomorphism _E:E^/E^ 5 _3(E;/5), u E^ 5 _E. The degree-three motivic edge identifies the target…",
+      "section": "The field comparison and norm detector",
+      "manuscript": "An integral degree-three Gersten counterexample"
+    },
+    {
+      "id": "m1-lem-norm-detector",
+      "kind": "lemma",
+      "label": "Norm detector",
+      "statement": "[Norm detector] For every finite extension E/L and every u E^ , _ E/L _E(u)=_L(N_ E/L u). Consequently \\[ _L=(v_L5)_L^ -1 : K_3(L;/5)/5 \\] satisfies \\[ _L(_ E/L (a))=0 for every a K_3(E;/5) if 5. \\]",
+      "section": "The field comparison and norm detector",
+      "manuscript": "An integral degree-three Gersten counterexample"
+    },
+    {
+      "id": "m1-lem-opens",
+      "kind": "lemma",
+      "label": "Let =R m , where R=V[x,y]/(F) and m=(,x,y) . For h put \\[ U_h= R[1/,1/h] C. \\]…",
+      "statement": "Let =R m , where R=V[x,y]/(F) and m=(,x,y) . For h put \\[ U_h= R[1/,1/h] C. \\] Then the refinement maps U_ hk U_h are affine and flat, and T=_ h U_h, _ h G_3(U_h;/5) \\ \\ G_3(T;/5). Every U_h contains…",
+      "section": "Detection on the projective curve",
+      "manuscript": "An integral degree-three Gersten counterexample"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-integral",
+      "to": "m1-thm-main",
+      "label": "prop:integral",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Take the integral class $c\\in K_3(A)$ constructed in Proposition~\\ref{prop:integral}, and put \\[ w=(q_0)_*\\theta_D(t)\\in G_3(C;\\Z/5). \\] Coherent $G$-theory provides proper pushforward even when $C$ is s"
+    }
+  ]
+}

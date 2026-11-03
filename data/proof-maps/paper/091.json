@@ -1,0 +1,86 @@
+{
+  "familyNumber": "091",
+  "familyTitle": "Logarithmic and <i>L</i><sub><i>p</i></sub> Brunn–Minkowski inequalities and the B-conjecture",
+  "manuscripts": [
+    {
+      "id": "The-logarithmic-Brunn-Minkowski-conjecture-September-23-2026",
+      "title": "The logarithmic Brunn–Minkowski conjecture",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-logarithmic-Brunn-Minkowski-conjecture-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "From a variance bound to volume",
+    "Moment coordinates on the whole space",
+    "Density of the even tests",
+    "A tensor estimate for the divergence tests",
+    "Volume and measure consequences"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Even logarithmic Brunn--Minkowski inequality",
+      "statement": "[Even logarithmic Brunn--Minkowski inequality] Let n1 and let K,L^n be convex bodies satisfying K=-K and L=-L . For every 01 , | W[h_K^ 1- h_L^]| |K|^ 1- |L|^.",
+      "section": "Introduction",
+      "manuscript": "The logarithmic Brunn–Minkowski conjecture"
+    },
+    {
+      "id": "m1-cor-lp",
+      "kind": "corollary",
+      "label": "Symmetric L_p Brunn--Minkowski inequality",
+      "statement": "[Symmetric L_p Brunn--Minkowski inequality] Let n1 , let K,L^n be full-dimensional origin-symmetric convex bodies, and let 0<p<1 . For every 01 , | W\\!|^ p/n (1-)|K|^ p/n +|L|^ p/n .",
+      "section": "Introduction",
+      "manuscript": "The logarithmic Brunn–Minkowski conjecture"
+    },
+    {
+      "id": "m1-prop-variance",
+      "kind": "proposition",
+      "label": "Variance bound",
+      "statement": "[Variance bound] Let n2 , N1 , q2 be an even integer, and >0 . Let p_1,,p_N^n\\ 0\\ and h_1,,h_N>0 . Set _i(x)=( p_i,x h_i )^q, V(x)= 2 |x|^2+_ i=1 ^N_i(x), d=Z^ -1 e^ -V(x) \\,dx, where Z=_ ^n e^ -V(x)…",
+      "section": "From a variance bound to volume",
+      "manuscript": "The logarithmic Brunn–Minkowski conjecture"
+    },
+    {
+      "id": "m1-lem-moment",
+      "kind": "lemma",
+      "label": "Moment coordinates",
+      "statement": "[Moment coordinates] Let n2 , >0 , and let V C^(^n) be even with D^2V I . Set \\[ Z=_ ^n e^ -V(x) \\,dx, d(x)=Z^ -1 e^ -V(x) \\,dx. \\] There is an even C^(^n) such that d(z)=e^ -(z) \\,dz is a…",
+      "section": "Moment coordinates on the whole space",
+      "manuscript": "The logarithmic Brunn–Minkowski conjecture"
+    },
+    {
+      "id": "m1-lem-density",
+      "kind": "lemma",
+      "label": "Density of even tests",
+      "statement": "[Density of even tests] Let d=(x)\\,dx be a probability measure on ^n with a smooth, strictly positive, even density. Let be a smooth even symmetric matrix field with 0<(x) I for some finite , and set…",
+      "section": "Density of the even tests",
+      "manuscript": "The logarithmic Brunn–Minkowski conjecture"
+    },
+    {
+      "id": "m1-lem-tensor",
+      "kind": "lemma",
+      "label": "Moment-coordinate tensor estimate",
+      "statement": "[Moment-coordinate tensor estimate] Let d=Z^ -1 e^ -V dx and d=e^ - dz be smooth probability measures on ^n . Suppose D_z^2 is positive definite and x=(z) is a smooth diffeomorphism pushing to . For…",
+      "section": "A tensor estimate for the divergence tests",
+      "manuscript": "The logarithmic Brunn–Minkowski conjecture"
+    },
+    {
+      "id": "m1-cor-measure",
+      "kind": "corollary",
+      "label": "Measure inequality and scalar (B) -conjecture",
+      "statement": "[Measure inequality and scalar (B) -conjecture] Let n1 , let be an even log-concave Radon measure on ^n , and let K,L^n be origin-symmetric convex bodies. Then, for every 01 , ( W[h_K^ 1- h_L^]) (K)^…",
+      "section": "Volume and measure consequences",
+      "manuscript": "The logarithmic Brunn–Minkowski conjecture"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-moment",
+      "to": "m1-prop-variance",
+      "label": "lem:moment",
+      "context": "[Proof of Proposition~\\ref{prop:variance}] The potential is smooth and even, and $D^2V\\ge\\eps I$. Lemma~\\ref{lem:moment} therefore supplies the moment coordinates, with $0<\\tau\\le (4/\\eps)I$. Put \\[ H_i=D_x^2\\psi_i,\\qquad a_i=\\E\\psi_i. \\]"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "242",
+  "title": "Single-fold Diophantine representations and undecidability under an at-most-one-solution promise",
+  "result": {
+    "id": "paper-result",
+    "label": "Single-fold Diophantine representations and undecidability under an at-most-one-solution promise",
+    "statement": "Every recursively enumerable set of tuples of natural numbers has a Diophantine representation with exactly one auxiliary solution for each member and none for nonmembers. This proves the single-fold conjecture and hence the finite-fold conjecture. Diophantine solvability over the nonnegative integers remains undecidable even with an at-most-one-solution promise.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "polynomial-constructions-with-unique-witnesses",
+      "label": "Polynomial constructions with unique witnesses",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-rank-one-curve-with-unique-arithmetic-codes",
+      "label": "A rank-one curve with unique arithmetic codes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniquely-represented-function-with-intermediate-growth",
+      "label": "A uniquely represented function with intermediate growth",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-power-graph-from-a-growth-function",
+      "label": "A power graph from a growth function",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "testing-containment-of-binary-digits",
+      "label": "Testing containment of binary digits",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "one-witness-for-a-halting-computation",
+      "label": "One witness for a halting computation",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Single-fold Diophantine representations",
+      "title": "Single-fold Diophantine representations",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Single-fold-Diophantine-representations-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Single-fold Diophantine representations.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-counter-universality"
+          ]
+        },
+        {
+          "id": "m1-cor-unique-h10",
+          "role": "introduction",
+          "label": "corollary m1-cor-unique-h10",
+          "fullLabel": "corollary m1-cor-unique-h10",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-composition",
+          "role": "polynomial-constructions-with-unique-witnesses",
+          "label": "lemma m1-lem-composition",
+          "fullLabel": "lemma m1-lem-composition",
+          "kind": "lemma",
+          "source": "Polynomial constructions with unique witnesses",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-rank-one",
+          "role": "a-rank-one-curve-with-unique-arithmetic-codes",
+          "label": "proposition m1-prop-rank-one",
+          "fullLabel": "proposition m1-prop-rank-one",
+          "kind": "proposition",
+          "source": "A rank-one curve with unique arithmetic codes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rational-codes",
+          "role": "a-rank-one-curve-with-unique-arithmetic-codes",
+          "label": "lemma m1-lem-rational-codes",
+          "fullLabel": "lemma m1-lem-rational-codes",
+          "kind": "lemma",
+          "source": "A rank-one curve with unique arithmetic codes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-point-arithmetic",
+          "role": "a-rank-one-curve-with-unique-arithmetic-codes",
+          "label": "lemma m1-lem-point-arithmetic",
+          "fullLabel": "lemma m1-lem-point-arithmetic",
+          "kind": "lemma",
+          "source": "A rank-one curve with unique arithmetic codes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-representatives",
+          "role": "a-uniquely-represented-function-with-intermediate-growth",
+          "label": "lemma m1-lem-representatives",
+          "fullLabel": "lemma m1-lem-representatives",
+          "kind": "lemma",
+          "source": "A uniquely represented function with intermediate growth",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-growth",
+          "role": "a-uniquely-represented-function-with-intermediate-growth",
+          "label": "proposition m1-prop-growth",
+          "fullLabel": "proposition m1-prop-growth",
+          "kind": "proposition",
+          "source": "A uniquely represented function with intermediate growth",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pell-sequences",
+          "role": "a-power-graph-from-a-growth-function",
+          "label": "lemma m1-lem-pell-sequences",
+          "fullLabel": "lemma m1-lem-pell-sequences",
+          "kind": "lemma",
+          "source": "A power graph from a growth function",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-power",
+          "role": "a-power-graph-from-a-growth-function",
+          "label": "proposition m1-prop-power",
+          "fullLabel": "proposition m1-prop-power",
+          "kind": "proposition",
+          "source": "A power graph from a growth function",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-subset",
+          "role": "testing-containment-of-binary-digits",
+          "label": "proposition m1-prop-subset",
+          "fullLabel": "proposition m1-prop-subset",
+          "kind": "proposition",
+          "source": "Testing containment of binary digits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-counter-universality",
+          "role": "one-witness-for-a-halting-computation",
+          "label": "lemma m1-lem-counter-universality",
+          "fullLabel": "lemma m1-lem-counter-universality",
+          "kind": "lemma",
+          "source": "One witness for a halting computation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-machine-compiler",
+          "role": "one-witness-for-a-halting-computation",
+          "label": "proposition m1-prop-machine-compiler",
+          "fullLabel": "proposition m1-prop-machine-compiler",
+          "kind": "proposition",
+          "source": "One witness for a halting computation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Single-fold Diophantine representations",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Single-fold-Diophantine-representations-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

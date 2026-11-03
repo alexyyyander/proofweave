@@ -1,0 +1,509 @@
+{
+  "familyNumber": "082",
+  "familyTitle": "Annular variation and dyadic absolute bounds for the triangular Hilbert transform",
+  "manuscripts": [
+    {
+      "id": "Annular-variation-of-the-triangular-Hilbert-transform-at-the-symmetric-point-October-5-2026",
+      "title": "Annular variation of the triangular Hilbert transform at the symmetric point",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Annular-variation-of-the-triangular-Hilbert-transform-at-the-symmetric-point-October-5-2026/annular-variation.pdf"
+    },
+    {
+      "id": "An-L3-bound-for-the-dyadic-triangular-Hilbert-form-October-5-2026",
+      "title": "An L³ bound for the dyadic triangular Hilbert form",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-L3-bound-for-the-dyadic-triangular-Hilbert-form-October-5-2026/dyadic-triangular-hilbert.pdf"
+    },
+    {
+      "id": "The-maximal-triangular-Hilbert-transform-at-the-symmetric-point-September-24-2026",
+      "title": "The maximal triangular Hilbert transform at the symmetric point",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-maximal-triangular-Hilbert-transform-at-the-symmetric-point-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Truncations, coordinates, and maximal averages",
+    "Dimension-free matrix inequalities",
+    "Gaussian heat dissipation",
+    "Repeated masks and smooth annuli",
+    "A uniform frequency-block estimate",
+    "Rough kernels and the annular endpoint errors",
+    "Maximal estimates and principal values",
+    "The matrix energy and its curvature",
+    "A triangular trace estimate",
+    "Energy increase under a dyadic split",
+    "Summation and passage to measurable inputs",
+    "A matrix energy and its Hessian",
+    "A mixed trace inequality",
+    "Output-dependent truncations and energy jumps",
+    "From masked energies to the maximal transform",
+    "General inputs and principal values"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-variation",
+      "kind": "theorem",
+      "label": "Full annular variation",
+      "statement": "[Full annular variation] For every real r>2 there is a finite constant C_r such that \\[ \\|V_r(F,G)\\|_ L^ 3/2 (^2) C_r\\|F\\|_ L^3(^2) \\|G\\|_ L^3(^2) \\] for all complex F,G L^3(^2) .",
+      "section": "Introduction",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-thm-count",
+      "kind": "theorem",
+      "label": "Disjoint-annulus count estimate",
+      "statement": "[Disjoint-annulus count estimate] There is an absolute constant C such that, for every integer n1 and every complex F,G L^3(^2) , \\| S_n(F,G)\\|_ 3/2 C n(2+n)\\|F\\|_3\\|G\\|_3.",
+      "section": "Introduction",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-finite-truncations",
+      "kind": "lemma",
+      "label": "Finite truncations",
+      "statement": "[Finite truncations] For F,G L^3(^2) , all finite annular integrals defining B_ ,R (F,G) are absolutely convergent outside one common null set. On its complement they depend continuously on (,R) in…",
+      "section": "Truncations, coordinates, and maximal averages",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-line-maximal",
+      "kind": "lemma",
+      "label": "Line maximal estimates",
+      "statement": "[Line maximal estimates] On either space, the centered maximal operator satisfies \\[ \\ Mf>\\ 3\\|f\\|_1, \\|Mf\\|_p^p 6p\\,2^ p-1 p-1 \\|f\\|_p^p (1<p<). \\] Let g_(t)=(2)^ -1/2 e^ -t^2/(2) . There is an…",
+      "section": "Truncations, coordinates, and maximal averages",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-hessian",
+      "kind": "lemma",
+      "label": "Supported Hessian",
+      "statement": "[Supported Hessian] On the cone of matrices positive definite on a fixed support, is smooth and \\[ d_P(K)=32( P K), d^2_P(K,L)= B_P(K,L). \\] In an orthonormal eigenbasis for the positive eigenvalues…",
+      "section": "Dimension-free matrix inequalities",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-order",
+      "kind": "lemma",
+      "label": "Order comparison",
+      "statement": "[Order comparison] If P,Q0 on the same space, a1 , and P aQ , then every Hermitian K supported on P is supported on Q , and b_P(K) a^ -1/2 b_Q(K).",
+      "section": "Dimension-free matrix inequalities",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-insertion",
+      "kind": "lemma",
+      "label": "Inserted Gram bound",
+      "statement": "[Inserted Gram bound] For a linear map R:E F and a Hermitian map L:F F , the matrix R^*LR is supported on R^*R , and b_ R^*R (R^*LR) 34 L_ ^2(R^*R).",
+      "section": "Dimension-free matrix inequalities",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-joint-convexity",
+      "kind": "lemma",
+      "label": "Joint convexity under probability averages",
+      "statement": "[Joint convexity under probability averages] Let (,) be a probability space and E a fixed subspace of a finite-dimensional complex Hilbert space. Suppose T_0 and K_=K_^* are measurable matrices, T_=E…",
+      "section": "Dimension-free matrix inequalities",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-rank-change",
+      "kind": "lemma",
+      "label": "Rank changes and entrywise derivatives",
+      "statement": "[Rank changes and entrywise derivatives] For rectangular complex matrices R_-,R_+ of the same size, set R(z)=(1-z)R_-+zR_+ and D=R_+-R_- . Then (R_+^*R_+)-(R_-^*R_-) =3_0^1Re R(z)R(z)^*R(z),D_ \\, z.…",
+      "section": "Dimension-free matrix inequalities",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-mixed-trace",
+      "kind": "lemma",
+      "label": "Mixed trace inequality",
+      "statement": "[Mixed trace inequality] For Hermitian maps D_v:H_v H_v , put D_* =_v D_v_ . Then |(D_0W_0D_1W_1D_2W_2)| 53D_*_ v=0 ^2b_ T_v (R_v^*D_vR_v). The constant is independent of the dimensions and no Gram…",
+      "section": "Dimension-free matrix inequalities",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-heat-identities",
+      "kind": "lemma",
+      "label": "Heat identities",
+      "statement": "[Heat identities] For fixed finite arrays and arbitrary positive rates, the energies e_v are smooth in the centers and positive variances. For s>0 , 2_s e_v &=_i_i_ p_i ^2e_v -_vV_v-_ w v _wY_ v,w ,…",
+      "section": "Gaussian heat dissipation",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-plane-dissipation",
+      "kind": "lemma",
+      "label": "Plane dissipation",
+      "statement": "[Plane dissipation] For fixed finite arrays and arbitrary positive rates, 2_sJ(d,s)_ _d _w V_w\\,_d. In particular, put =11/10 . For each permutation of (1,,) , -_sJ(d,s) c_*_ _d _wV_w\\,_d,\\\\ c_* =12\\…",
+      "section": "Gaussian heat dissipation",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-initial-energy",
+      "kind": "lemma",
+      "label": "Initial energy",
+      "statement": "[Initial energy] For all d and all variances _v h^2 , _ _d \\|W_v\\|_ ^3\\,_d M n_v^3, M=1+2/ ,\\\\ _ _d _ve_v\\,_d 22 M_v n_v^3. These bounds also hold with the original right-hand sides if any entries…",
+      "section": "Gaussian heat dissipation",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-single-edge-energy",
+      "kind": "lemma",
+      "label": "Single-edge energy",
+      "statement": "[Single-edge energy] Fix v w , retain the weighted block C=C_ v,w , and delete the other block of the star at v . For arbitrary positive rates, set \\[ e^e_ v,w &=(CC^*), V^e_ v,w =b_ C^*C (C^*N_vC),…",
+      "section": "Gaussian heat dissipation",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-prop-smooth-switches",
+      "kind": "proposition",
+      "label": "Smooth annuli with repeated choices",
+      "statement": "[Smooth annuli with repeated choices] Let G_v C_c^(^2) be complex. At each output pair (a,b) , make a step choice of at most n1 disjoint radius intervals (_j,R_j) and coefficients |_j|1 . For \\[ K_…",
+      "section": "Repeated masks and smooth annuli",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-repeated-dissipation",
+      "kind": "lemma",
+      "label": "Repeated-mask dissipation",
+      "statement": "[Repeated-mask dissipation] Use the masked arrays above and variances _v=_vs , where is any permutation of (1,11/10,11/10) . With n_v denoting the norms of the original arrays, _ s_- ^ s_+ _ _0…",
+      "section": "Repeated masks and smooth annuli",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-prop-frequency-block",
+      "kind": "proposition",
+      "label": "Frequency-block estimate",
+      "statement": "[Frequency-block estimate] Let I Z be finite and nonempty, and set L_k=2^k . Let A_0,A_1,A_2 be finite arrays on the lattice u_i=ih , with the norms n_v defined in the heat-flow preliminaries.…",
+      "section": "A uniform frequency-block estimate",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-frequency-boundary",
+      "kind": "lemma",
+      "label": "A uniform mixed boundary estimate",
+      "statement": "[A uniform mixed boundary estimate] Fix distinct vertices v,w\\ 0,1\\ , so that \\ v,w\\ =\\ 0,1\\ . Let the edge joining v,w have array B , indexed in the original endpoint order (0,1) , and let the edge…",
+      "section": "A uniform frequency-block estimate",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-cor-frequency-continuum",
+      "kind": "corollary",
+      "label": "Continuous frequency-block estimate",
+      "statement": "[Continuous frequency-block estimate] Let q,D,_D, I be as in Proposition~ . Suppose that _ a,b,k () is constant in (a,b) on every cell of one finite rectangular partition, independent of and common…",
+      "section": "A uniform frequency-block estimate",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-lem-gaussian-envelope",
+      "kind": "lemma",
+      "label": "Gaussian envelope",
+      "statement": "[Gaussian envelope] Suppose that c>0 and that a measurable kernel f satisfies |f(z)| e^ -cz^2 w(z) , where w0 and \\|w\\|_5 . Then, for every L>0 , _ |F(x+t,y)G(x,y+t)|\\,|_L f(t)|\\, t C_c\\, M_ F,G…",
+      "section": "Rough kernels and the annular endpoint errors",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-prop-rough-family",
+      "kind": "proposition",
+      "label": "Rough kernel families",
+      "statement": "[Rough kernel families] Fix A1 and c>0 . Let n1 , and let I Z be finite. For k I , let K_ a,b,k and m_ a,b,k \\ 0,1,2,\\ be finite-valued step choices in (a,b) , with K_ a,b,k =0 whenever m_ a,b,k =0 .…",
+      "section": "Rough kernels and the annular endpoint errors",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-cor-odd-family",
+      "kind": "corollary",
+      "label": "Odd kernel families",
+      "statement": "[Odd kernel families] Proposition~ remains valid if the three moment conditions in are replaced by the assumption that every K_ a,b,k is odd almost everywhere.",
+      "section": "Rough kernels and the annular endpoint errors",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-prop-endpoint-errors",
+      "kind": "proposition",
+      "label": "Endpoint errors",
+      "statement": "[Endpoint errors] At each (a,b) , choose at most n pairwise disjoint open radius intervals (_j,R_j) with 0<_j<R_j< , and complex coefficients _j with |_j|1 . Suppose that these choices form a…",
+      "section": "Rough kernels and the annular endpoint errors",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-cor-maximal",
+      "kind": "corollary",
+      "label": "The hard maximal operator",
+      "statement": "[The hard maximal operator] For complex F,G L^3(^2) , define \\[ B_*(F,G)(x,y) =_ 0<<R< |B_ ,R (F,G)(x,y)| \\] on the common full-measure set of Lemma~ , and set it to zero elsewhere. This function is…",
+      "section": "Maximal estimates and principal values",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-cor-bilinear-pv",
+      "kind": "corollary",
+      "label": "Joint bilinear principal values",
+      "statement": "[Joint bilinear principal values] For every complex F,G L^3(^2) , the joint limit \\[ B(F,G)=_ 0\\ B_ ,R (F,G) \\] exists almost everywhere and in L^p(^2) , and \\[ \\|B(F,G)\\|_p C_M\\|F\\|_3\\|G\\|_3. \\]…",
+      "section": "Maximal estimates and principal values",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-cor-scalar-pv",
+      "kind": "corollary",
+      "label": "Flat scalar principal values",
+      "statement": "[Flat scalar principal values] For every complex L^3 triple, each finite flat truncation is absolutely integrable, and \\[ _ 0<<R< | L_ ,R (F_0,F_1,F_2)| C_M_ v=0 ^2\\|F_v\\|_3. \\] Its joint scalar…",
+      "section": "Maximal estimates and principal values",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m1-prop-flat-equivalence",
+      "kind": "proposition",
+      "label": "Scalar equivalence",
+      "statement": "[Scalar equivalence] For every complex G_0,G_1,G_2 L^3(^2) , each finite simplex truncation is absolutely integrable, and \\[ _ 0<<R< |_ ,R (G_0,G_1,G_2)| C_M_ v=0 ^2\\|G_v\\|_3. \\] Its joint scalar…",
+      "section": "Maximal estimates and principal values",
+      "manuscript": "Annular variation of the triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "For every finite \\(S\\) and all real bounded compactly supported measurable…",
+      "statement": "For every finite \\(S\\) and all real bounded compactly supported measurable functions \\(F_0,F_1,F_2\\) on \\(_+^2\\), _ k S _ I_k L_ I (F_0,F_1,F_2) 40_ v=0 ^2F_v_ L^3(_+^2) .",
+      "section": "Introduction",
+      "manuscript": "An L³ bound for the dyadic triangular Hilbert form"
+    },
+    {
+      "id": "m2-lem-hessian",
+      "kind": "lemma",
+      "label": "Hessian of the energy",
+      "statement": "[Hessian of the energy] On matrices positive definite on a fixed support, \\(\\) is smooth and, for a symmetric direction \\(K\\) on that support, \\[ d_P(K)=32( P\\,K), d^2_P(K,K)=b_P(K). \\] In…",
+      "section": "The matrix energy and its curvature",
+      "manuscript": "An L³ bound for the dyadic triangular Hilbert form"
+    },
+    {
+      "id": "m2-lem-order",
+      "kind": "lemma",
+      "label": "Order comparison",
+      "statement": "[Order comparison] Suppose \\(P,Q\\) are positive semidefinite matrices on the same space, \\(a1\\), and \\(P aQ\\). Every symmetric \\(K\\) supported on \\(P\\) is supported on \\(Q\\), and b_P(K) a^ -1/2…",
+      "section": "The matrix energy and its curvature",
+      "manuscript": "An L³ bound for the dyadic triangular Hilbert form"
+    },
+    {
+      "id": "m2-cor-gap",
+      "kind": "corollary",
+      "label": "A midpoint gap",
+      "statement": "[A midpoint gap] If \\(T0\\) and \\(U=U^*\\) satisfy \\(-T U T\\), then \\(U\\) is supported on \\(T\\) and (T+U)+ (T-U)2-(T) 1 22 b_T(U).",
+      "section": "The matrix energy and its curvature",
+      "manuscript": "An L³ bound for the dyadic triangular Hilbert form"
+    },
+    {
+      "id": "m2-prop-trace",
+      "kind": "proposition",
+      "label": "Mixed trace estimate",
+      "statement": "[Mixed trace estimate] For the maps in , let \\(D_v:H_v H_v\\) be symmetric with \\(D_v_ 1\\), and put \\(U_v=R_v^*D_vR_v\\). Then \\(U_v\\) is supported on \\(T_v\\), and (D_0W_0D_1W_1D_2W_2) 53_ v=0 ^2 b_…",
+      "section": "A triangular trace estimate",
+      "manuscript": "An L³ bound for the dyadic triangular Hilbert form"
+    },
+    {
+      "id": "m2-prop-increase",
+      "kind": "proposition",
+      "label": "Local energy increase",
+      "statement": "[Local energy increase] For \\( I_k\\), \\(k m+1\\), define \\[ ( I) =14_ I'ch( I) e( I')-e( I). \\] Then \\(( I)0\\), and ( I) 10 2 3 \\,( I).",
+      "section": "Energy increase under a dyadic split",
+      "manuscript": "An L³ bound for the dyadic triangular Hilbert form"
+    },
+    {
+      "id": "m2-lem-total",
+      "kind": "lemma",
+      "label": "Total energy",
+      "statement": "[Total energy] For the step functions of Section~ and every \\(k m\\), set \\[ J_k=_ I_k 2^ 2k e( I). \\] Then 0 J_k22_ v=0 ^2F_v_3^3. For \\(k m+1\\), _ I_k 2^ 2k ( I) =J_ k-1 -J_k.",
+      "section": "Summation and passage to measurable inputs",
+      "manuscript": "An L³ bound for the dyadic triangular Hilbert form"
+    },
+    {
+      "id": "m2-lem-continuity",
+      "kind": "lemma",
+      "label": "Continuity at one scale",
+      "statement": "[Continuity at one scale] For every \\(k\\) and real \\(F_v L^3(_+^2)\\), _ I_k L_ I (F_0,F_1,F_2) _ v=0 ^2F_v_3. Consequently the sequence \\((L_ I (F_0,F_1,F_2))_ I_k \\) depends continuously on the…",
+      "section": "Summation and passage to measurable inputs",
+      "manuscript": "An L³ bound for the dyadic triangular Hilbert form"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "There is an absolute constant C such that, for every pair of complex functions…",
+      "statement": "There is an absolute constant C such that, for every pair of complex functions F,G L^3(^2) , \\[ \\|B_*(F,G)\\|_ L^ 3/2 (^2) C\\|F\\|_ L^3(^2) \\|G\\|_ L^3(^2) . \\] The supremum is over both finite hard…",
+      "section": "Introduction",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-hessian",
+      "kind": "lemma",
+      "label": "Energy derivatives",
+      "statement": "[Energy derivatives] On the cone of matrices positive definite on a fixed support, is smooth. For Hermitian directions K,L on that support, \\[ d_P(K)=32( P K), d^2_P(K,L)= B_P(K,L). \\] If p_i>0 are…",
+      "section": "A matrix energy and its Hessian",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-order",
+      "kind": "lemma",
+      "label": "Order comparison",
+      "statement": "[Order comparison] Let P,Q be positive semidefinite matrices on the same Hilbert space, let a1 , and suppose P aQ . Every Hermitian K supported on P is supported on Q , and b_P(K) a^ -1/2 b_Q(K).",
+      "section": "A matrix energy and its Hessian",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-insertion",
+      "kind": "lemma",
+      "label": "Inserted Gram bound",
+      "statement": "[Inserted Gram bound] Let R:E F be a linear map between finite-dimensional complex Hilbert spaces, and let L:F F be Hermitian. The matrix R^*LR is supported on R^*R , and b_ R^*R (R^*LR) 34 L_…",
+      "section": "A matrix energy and its Hessian",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-mixed-trace",
+      "kind": "lemma",
+      "label": "Mixed trace estimate",
+      "statement": "[Mixed trace estimate] Let W_v:H_ v+1 H_v be linear maps between finite-dimensional complex Hilbert spaces, with row stars R_v and Gram matrices T_v as in -- . For Hermitian maps D_v:H_v H_v , put…",
+      "section": "A mixed trace inequality",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-star-smoothness",
+      "kind": "lemma",
+      "label": "For fixed finite edge arrays, each e_v is smooth in all centers and positive…",
+      "statement": "For fixed finite edge arrays, each e_v is smooth in all centers and positive variances. If only the parameters at vertex v vary, the support of T_v is fixed. If the parameters at either or both other…",
+      "section": "Gaussian heat dissipation",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-heat-identities",
+      "kind": "lemma",
+      "label": "Fix a positive vector and set _i=_i s . For all centers and all s>0 , 2_s e_v…",
+      "statement": "Fix a positive vector and set _i=_i s . For all centers and all s>0 , 2_s e_v &=_i_i_ p_i ^2e_v -_vV_v-_ w v _wY_ v,w , \\\\ _ p_ v+1 _ p_ v-1 e_v&=Z_v.",
+      "section": "Gaussian heat dissipation",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-neighbors",
+      "kind": "lemma",
+      "label": "For every choice of the weighted matrices and every vertex w , Y_ w+1,w +Y_…",
+      "statement": "For every choice of the weighted matrices and every vertex w , Y_ w+1,w +Y_ w-1,w 2\\,V_w.",
+      "section": "Gaussian heat dissipation",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-plane-dissipation",
+      "kind": "lemma",
+      "label": "Fix finite edge arrays and a positive vector , and evaluate the energies at…",
+      "statement": "Fix finite edge arrays and a positive vector , and evaluate the energies at _i=_i s . Set \\[ J_v(d,s)=_ _d e_v\\,_d, J(d,s)=_vJ_v(d,s), _=_i_i. \\] These integrals are finite, continuously…",
+      "section": "Gaussian heat dissipation",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-initial-energy",
+      "kind": "lemma",
+      "label": "Initial energy",
+      "statement": "[Initial energy] Let h>0 , let N0 be an integer, and let A_v(i,j) be the finite complex arrays above. For any d and variances _v h^2 , _ _d _ve_v\\,_d C_0 S(A), C_0=22(1+2/ ). The same bound holds if…",
+      "section": "Gaussian heat dissipation",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-line-maximal",
+      "kind": "lemma",
+      "label": "One-dimensional maximal estimates",
+      "statement": "[One-dimensional maximal estimates] On either of these measure spaces, write M for the corresponding centered maximal operator. For f L^1 and >0 , \\[ \\ Mf>\\ 3\\|f\\|_1. \\] For every 1<q< and f L^q ,…",
+      "section": "Output-dependent truncations and energy jumps",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-rank-change",
+      "kind": "lemma",
+      "label": "A derivative through rank changes",
+      "statement": "[A derivative through rank changes] For finite rectangular complex matrices R_-,R_+ of the same size, put R(z)=(1-z)R_-+zR_+ and D=R_+-R_- . Then &(R_+^*R_+)-(R_-^*R_-)\\\\ &=3_0^1Re R(z)R(z)^*R(z),D_…",
+      "section": "Output-dependent truncations and energy jumps",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-prop-masked-dissipation",
+      "kind": "proposition",
+      "label": "Dissipation with output-dependent endpoints",
+      "statement": "[Dissipation with output-dependent endpoints] For every h>0 , N0 , complex arrays A_v on \\ -N,,N\\ ^2 , and endpoint choices as above, let be any permutation of (1,11/10,11/10) and use variances…",
+      "section": "Output-dependent truncations and energy jumps",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-prop-selected-kernel",
+      "kind": "proposition",
+      "label": "Selected smooth truncations",
+      "statement": "[Selected smooth truncations] Let h>0 , let N0 be an integer, set u_i=ih , and let A_v(i,j) , v=0,1,2 , be complex arrays indexed by -N i,j N . Assign an arbitrary endpoint pair h_ ij <_ ij < to each…",
+      "section": "From masked energies to the maximal transform",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-prop-smooth-kernel-maximal",
+      "kind": "proposition",
+      "label": "For all complex F,G C_c^(^2) , \\[ \\|_ 0<<R |B^I_ ,R (F,G)|\\|_ L^ 3/2 (^2)…",
+      "statement": "For all complex F,G C_c^(^2) , \\[ \\|_ 0<<R |B^I_ ,R (F,G)|\\|_ L^ 3/2 (^2) C\\|F\\|_ L^3(^2) \\|G\\|_ L^3(^2) . \\] The supremum is measurable and the constant is absolute.",
+      "section": "From masked energies to the maximal transform",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-maximal-hard-kernel",
+      "kind": "lemma",
+      "label": "There are an absolute constant C and functions E_r , r>0 , such that, for t0 ,…",
+      "statement": "There are an absolute constant C and functions E_r , r>0 , such that, for t0 , apart from endpoint values, I_ ,R (t) =c_0 t 1_ \\ <|t|<R\\ +E_(t)-E_R(t), c_0=-2 36 , and |E_r(t)|C r (1+|t| r )^ -2 (t0).",
+      "section": "From masked energies to the maximal transform",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-pointwise-endpoint-error",
+      "kind": "lemma",
+      "label": "For complex F,G C_c^(^2) and every r>0 , \\[ |_ F(x+t,y)G(x,y+t)E_r(t)\\, t| C^…",
+      "statement": "For complex F,G C_c^(^2) and every r>0 , \\[ |_ F(x+t,y)G(x,y+t)E_r(t)\\, t| C^ 1/2 . \\] The right side has L^ 3/2 (^2) norm at most C\\|F\\|_3\\|G\\|_3 .",
+      "section": "From masked energies to the maximal transform",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-prop-compact-maximal",
+      "kind": "proposition",
+      "label": "Compact smooth inputs",
+      "statement": "[Compact smooth inputs] For all complex F,G C_c^(^2) , \\[ \\|B_*(F,G)\\|_ L^ 3/2 (^2) C\\|F\\|_ L^3(^2) \\|G\\|_ L^3(^2) , \\] with an absolute constant. The supremum defining B_* is over both finite hard…",
+      "section": "From masked energies to the maximal transform",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-lem-finite-truncations",
+      "kind": "lemma",
+      "label": "Finite truncations",
+      "statement": "[Finite truncations] For complex F,G L^3(^2) , there is a set of full measure on which every finite truncation is absolutely convergent and depends continuously on (,R) in 0<<R< . The resulting…",
+      "section": "General inputs and principal values",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-thm-bilinear-pv",
+      "kind": "theorem",
+      "label": "Joint bilinear principal values",
+      "statement": "[Joint bilinear principal values] For all complex F,G L^3(^2) , the joint limit \\[ B(F,G)=_ 0\\ B_ ,R (F,G) \\] exists almost everywhere and in L^ 3/2 (^2) , with \\|B(F,G)\\|_ 3/2 C_M\\|F\\|_3\\|G\\|_3 .…",
+      "section": "General inputs and principal values",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-cor-scalar-pv",
+      "kind": "corollary",
+      "label": "Flat scalar principal values",
+      "statement": "[Flat scalar principal values] For complex F_0,F_1,F_2 L^3(^2) , every finite flat truncation is absolutely integrable, and \\[ _ 0<<R< | L_ ,R (F_0,F_1,F_2)| C_M_ v=0 ^2\\|F_v\\|_3. \\] Its joint scalar…",
+      "section": "General inputs and principal values",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    },
+    {
+      "id": "m3-prop-flat-equivalence",
+      "kind": "proposition",
+      "label": "Scalar equivalence",
+      "statement": "[Scalar equivalence] For all complex G_0,G_1,G_2 L^3(^2) , every finite simplex truncation is absolutely integrable, and \\[ _ 0<<R< |_ ,R (G_0,G_1,G_2)| C_M_ v=0 ^2\\|G_v\\|_3. \\] Its joint scalar…",
+      "section": "General inputs and principal values",
+      "manuscript": "The maximal triangular Hilbert transform at the symmetric point"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-mixed-trace",
+      "to": "m1-prop-smooth-switches",
+      "label": "lem:mixed-trace",
+      "context": "[Proof of Proposition~\\ref{prop:smooth-switches}] Put $\\lambda=11/10$ and use base variances $\\lambda s$ at all vertices. In Lemma~\\ref{lem:mixed-trace}, insert the diagonal matrix with entries $k_s(u_i-p_v)/g_{\\lambda s}(u_i-p_v)$ at vertex $v$. It is Hermitian and unifo"
+    }
+  ]
+}

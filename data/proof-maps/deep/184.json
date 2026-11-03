@@ -1,0 +1,384 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "184",
+  "title": "Correspondence coloring with a fixed forbidden subgraph",
+  "result": {
+    "id": "paper-result",
+    "label": "Correspondence coloring with a fixed forbidden subgraph",
+    "statement": "Proves the Alon–Krivelevich–Sudakov coloring conjecture in correspondence-coloring form: graphs avoiding any fixed subgraph F need OF( / ) colors when their maximum degree Δ is sufficiently large. Also proves the Ajtai–Erdős–Komlós–Szemerédi independence conjecture: for fixed r ≥ 4, every n -vertex K r -free graph of average degree d ≥ 2 has an independent set of size (n d/d).",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-weight-adjustment-with-bounded-participation",
+      "label": "Local weight adjustment with bounded participation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "controlling-triangles-by-splitting-vertices",
+      "label": "Controlling triangles by splitting vertices",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "coloring-rounds-with-dependent-entry-weights",
+      "label": "Coloring rounds with dependent entry weights",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-extremal-weight-and-its-cross-mass-bound",
+      "label": "An extremal weight and its cross-mass bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-cross-mass-to-triangle-mass",
+      "label": "From cross mass to triangle mass",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-walks-and-entropy",
+      "label": "Local walks and entropy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "splitting-vertices-and-bounding-triangle-mass",
+      "label": "Splitting vertices and bounding triangle mass",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-triangle-mass-to-independent-sets",
+      "label": "From triangle mass to independent sets",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Correspondence coloring graphs with a forbidden clique",
+      "title": "Correspondence coloring graphs with a forbidden clique",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Correspondence-Coloring-Graphs-with-a-Forbidden-Clique-October-5-2026/correspondence-coloring-forbidden-clique.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Correspondence coloring graphs with a forbidden clique.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-forbidden",
+          "role": "introduction",
+          "label": "corollary m1-cor-forbidden",
+          "fullLabel": "corollary m1-cor-forbidden",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-adjustment",
+          "role": "local-weight-adjustment-with-bounded-participation",
+          "label": "lemma m1-lem-adjustment",
+          "fullLabel": "lemma m1-lem-adjustment",
+          "kind": "lemma",
+          "source": "Local weight adjustment with bounded participation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sparse-multipliers",
+          "role": "local-weight-adjustment-with-bounded-participation",
+          "label": "lemma m1-lem-sparse-multipliers",
+          "fullLabel": "lemma m1-lem-sparse-multipliers",
+          "kind": "lemma",
+          "source": "Local weight adjustment with bounded participation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-cross",
+          "role": "local-weight-adjustment-with-bounded-participation",
+          "label": "lemma m1-lem-local-cross",
+          "fullLabel": "lemma m1-lem-local-cross",
+          "kind": "lemma",
+          "source": "Local weight adjustment with bounded participation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-cross-transfer",
+          "role": "local-weight-adjustment-with-bounded-participation",
+          "label": "corollary m1-lem-local-cross-transfer",
+          "fullLabel": "corollary m1-lem-local-cross-transfer",
+          "kind": "corollary",
+          "source": "Local weight adjustment with bounded participation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-triangle-bound",
+          "role": "local-weight-adjustment-with-bounded-participation",
+          "label": "proposition m1-prop-triangle-bound",
+          "fullLabel": "proposition m1-prop-triangle-bound",
+          "kind": "proposition",
+          "source": "Local weight adjustment with bounded participation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-triangle-splitting",
+          "role": "controlling-triangles-by-splitting-vertices",
+          "label": "lemma m1-lem-triangle-splitting",
+          "fullLabel": "lemma m1-lem-triangle-splitting",
+          "kind": "lemma",
+          "source": "Controlling triangles by splitting vertices",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-walk-entropy-bound",
+          "role": "controlling-triangles-by-splitting-vertices",
+          "label": "lemma m1-lem-walk-entropy-bound",
+          "fullLabel": "lemma m1-lem-walk-entropy-bound",
+          "kind": "lemma",
+          "source": "Controlling triangles by splitting vertices",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-one-round",
+          "role": "coloring-rounds-with-dependent-entry-weights",
+          "label": "proposition m1-prop-one-round",
+          "fullLabel": "proposition m1-prop-one-round",
+          "kind": "proposition",
+          "source": "Coloring rounds with dependent entry weights",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-round-expectation"
+          ]
+        },
+        {
+          "id": "m1-lem-round-expectation",
+          "role": "coloring-rounds-with-dependent-entry-weights",
+          "label": "lemma m1-lem-round-expectation",
+          "fullLabel": "lemma m1-lem-round-expectation",
+          "kind": "lemma",
+          "source": "Coloring rounds with dependent entry weights",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-read-concentration",
+          "role": "coloring-rounds-with-dependent-entry-weights",
+          "label": "lemma m1-lem-read-concentration",
+          "fullLabel": "lemma m1-lem-read-concentration",
+          "kind": "lemma",
+          "source": "Coloring rounds with dependent entry weights",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-activation-collisions",
+          "role": "coloring-rounds-with-dependent-entry-weights",
+          "label": "lemma m1-lem-activation-collisions",
+          "fullLabel": "lemma m1-lem-activation-collisions",
+          "kind": "lemma",
+          "source": "Coloring rounds with dependent entry weights",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "A logarithmic independence bound for clique-free graphs",
+      "title": "A logarithmic independence bound for clique-free graphs",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Logarithmic-Independence-Bound-for-Clique-Free-Graphs-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A logarithmic independence bound for clique-free graphs.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-optimizer",
+          "role": "an-extremal-weight-and-its-cross-mass-bound",
+          "label": "lemma m2-lem-optimizer",
+          "fullLabel": "lemma m2-lem-optimizer",
+          "kind": "lemma",
+          "source": "An extremal weight and its cross-mass bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sparse-multipliers",
+          "role": "an-extremal-weight-and-its-cross-mass-bound",
+          "label": "lemma m2-lem-sparse-multipliers",
+          "fullLabel": "lemma m2-lem-sparse-multipliers",
+          "kind": "lemma",
+          "source": "An extremal weight and its cross-mass bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cross-mass",
+          "role": "an-extremal-weight-and-its-cross-mass-bound",
+          "label": "lemma m2-lem-cross-mass",
+          "fullLabel": "lemma m2-lem-cross-mass",
+          "kind": "lemma",
+          "source": "An extremal weight and its cross-mass bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-weighted-triangles",
+          "role": "from-cross-mass-to-triangle-mass",
+          "label": "theorem m2-thm-weighted-triangles",
+          "fullLabel": "theorem m2-thm-weighted-triangles",
+          "kind": "theorem",
+          "source": "From cross mass to triangle mass",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-invariant-preservation",
+          "role": "from-cross-mass-to-triangle-mass",
+          "label": "lemma m2-lem-invariant-preservation",
+          "fullLabel": "lemma m2-lem-invariant-preservation",
+          "kind": "lemma",
+          "source": "From cross mass to triangle mass",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-triangle-peeling",
+          "role": "from-cross-mass-to-triangle-mass",
+          "label": "lemma m2-lem-triangle-peeling",
+          "fullLabel": "lemma m2-lem-triangle-peeling",
+          "kind": "lemma",
+          "source": "From cross mass to triangle mass",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-entropy-smoothing",
+          "role": "local-walks-and-entropy",
+          "label": "lemma m2-lem-entropy-smoothing",
+          "fullLabel": "lemma m2-lem-entropy-smoothing",
+          "kind": "lemma",
+          "source": "Local walks and entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-shared-rejection",
+          "role": "splitting-vertices-and-bounding-triangle-mass",
+          "label": "lemma m2-lem-shared-rejection",
+          "fullLabel": "lemma m2-lem-shared-rejection",
+          "kind": "lemma",
+          "source": "Splitting vertices and bounding triangle mass",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-reverse-admissibility",
+          "role": "splitting-vertices-and-bounding-triangle-mass",
+          "label": "lemma m2-lem-reverse-admissibility",
+          "fullLabel": "lemma m2-lem-reverse-admissibility",
+          "kind": "lemma",
+          "source": "Splitting vertices and bounding triangle mass",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-weighted-splitting",
+          "role": "splitting-vertices-and-bounding-triangle-mass",
+          "label": "lemma m2-lem-weighted-splitting",
+          "fullLabel": "lemma m2-lem-weighted-splitting",
+          "kind": "lemma",
+          "source": "Splitting vertices and bounding triangle mass",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-neighborhood-reduction",
+          "role": "splitting-vertices-and-bounding-triangle-mass",
+          "label": "proposition m2-prop-neighborhood-reduction",
+          "fullLabel": "proposition m2-prop-neighborhood-reduction",
+          "kind": "proposition",
+          "source": "Splitting vertices and bounding triangle mass",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-maximum-degree",
+          "role": "from-triangle-mass-to-independent-sets",
+          "label": "proposition m2-prop-maximum-degree",
+          "fullLabel": "proposition m2-prop-maximum-degree",
+          "kind": "proposition",
+          "source": "From triangle mass to independent sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Correspondence coloring graphs with a forbidden clique",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Correspondence-Coloring-Graphs-with-a-Forbidden-Clique-October-5-2026/correspondence-coloring-forbidden-clique.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A logarithmic independence bound for clique-free graphs",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Logarithmic-Independence-Bound-for-Clique-Free-Graphs-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

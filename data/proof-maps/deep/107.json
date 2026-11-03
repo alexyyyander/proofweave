@@ -1,0 +1,874 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "107",
+  "title": "Matrix multiplication with exponent at most 9/4",
+  "result": {
+    "id": "paper-result",
+    "label": "Matrix multiplication with exponent at most 9/4",
+    "statement": "Proves 9/4 over ℂ, giving O (n^ 9/4+ ) arithmetic operations for square matrix multiplication. In characteristic zero, some inner dimension n a with a > 0.465 permits n^ 2+o(1) rectangular multiplication. Further square bounds give ω ω < 2.371054886006746 over every fixed field.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "tensors-and-their-characters",
+      "label": "Tensors and their characters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "separating-a-shared-tensor-leg",
+      "label": "Separating a shared tensor leg",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-inequalities-for-polynomial-multiplication",
+      "label": "Two inequalities for polynomial multiplication",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "discrete-growth-and-the-arithmetic-exponent",
+      "label": "Discrete growth and the arithmetic exponent",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "existence-of-detecting-characters",
+      "label": "Existence of detecting characters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "tensors-and-arithmetic-exponents",
+      "label": "Tensors and arithmetic exponents",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-tensor-constructions",
+      "label": "Finite tensor constructions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "banked-constructions-and-attainable-values",
+      "label": "Banked constructions and attainable values",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "arithmetic-progression-restrictions-and-differential-compari",
+      "label": "Arithmetic-progression restrictions and differential comparison",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-three-state-boundary-seed",
+      "label": "The three-state boundary seed",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-rational-certificate-for-the-comparison-bound",
+      "label": "A rational certificate for the comparison bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conditional-labels-and-entropy",
+      "label": "Conditional labels and entropy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recursive-completion-trees",
+      "label": "Recursive completion trees",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-exact-finite-family-optimization",
+      "label": "An exact finite-family optimization",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "three-parameter-certificates",
+      "label": "Three parameter certificates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "comparison-with-ordinary-combinations",
+      "label": "Comparison with ordinary combinations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-exception-characteristic-transfer",
+      "label": "Finite-exception characteristic transfer",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "rank-and-the-basic-tensor",
+      "label": "Rank and the basic tensor",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-joint-extraction-at-several-depths",
+      "label": "A joint extraction at several depths",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recovering-the-ideal-outputs-and-composing-extractions",
+      "label": "Recovering the ideal outputs and composing extractions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "terminal-dimensions-and-the-rank-comparison",
+      "label": "Terminal dimensions and the rank comparison",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exact-parameters-and-numerical-certification",
+      "label": "Exact parameters and numerical certification",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent",
+      "title": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-02",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from An Upper Bound of 9/4 for the Matrix Multiplication Exponent.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-existence",
+          "role": "tensors-and-their-characters",
+          "label": "lemma m1-lem-existence",
+          "fullLabel": "lemma m1-lem-existence",
+          "kind": "lemma",
+          "source": "Tensors and their characters",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-interpolation",
+          "role": "tensors-and-their-characters",
+          "label": "lemma m1-lem-interpolation",
+          "fullLabel": "lemma m1-lem-interpolation",
+          "kind": "lemma",
+          "source": "Tensors and their characters",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-separation",
+          "role": "separating-a-shared-tensor-leg",
+          "label": "proposition m1-prop-separation",
+          "fullLabel": "proposition m1-prop-separation",
+          "kind": "proposition",
+          "source": "Separating a shared tensor leg",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-entropy",
+          "role": "separating-a-shared-tensor-leg",
+          "label": "corollary m1-cor-entropy",
+          "fullLabel": "corollary m1-cor-entropy",
+          "kind": "corollary",
+          "source": "Separating a shared tensor leg",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-concavity",
+          "role": "two-inequalities-for-polynomial-multiplication",
+          "label": "lemma m1-lem-concavity",
+          "fullLabel": "lemma m1-lem-concavity",
+          "kind": "lemma",
+          "source": "Two inequalities for polynomial multiplication",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tripling",
+          "role": "two-inequalities-for-polynomial-multiplication",
+          "label": "lemma m1-lem-tripling",
+          "fullLabel": "lemma m1-lem-tripling",
+          "kind": "lemma",
+          "source": "Two inequalities for polynomial multiplication",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-growth",
+          "role": "discrete-growth-and-the-arithmetic-exponent",
+          "label": "lemma m1-lem-growth",
+          "fullLabel": "lemma m1-lem-growth",
+          "kind": "lemma",
+          "source": "Discrete growth and the arithmetic exponent",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-multiplicativity",
+          "role": "existence-of-detecting-characters",
+          "label": "lemma m1-lem-multiplicativity",
+          "fullLabel": "lemma m1-lem-multiplicativity",
+          "kind": "lemma",
+          "source": "Existence of detecting characters",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds",
+      "title": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Complex Matrix Multiplication Below 2.258 and Rectangular Bounds.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rank-exponent",
+          "role": "tensors-and-arithmetic-exponents",
+          "label": "lemma m2-lem-rank-exponent",
+          "fullLabel": "lemma m2-lem-rank-exponent",
+          "kind": "lemma",
+          "source": "Tensors and arithmetic exponents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-border-overhead",
+          "role": "tensors-and-arithmetic-exponents",
+          "label": "lemma m2-lem-border-overhead",
+          "fullLabel": "lemma m2-lem-border-overhead",
+          "kind": "lemma",
+          "source": "Tensors and arithmetic exponents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rectangular-sum",
+          "role": "tensors-and-arithmetic-exponents",
+          "label": "lemma m2-lem-rectangular-sum",
+          "fullLabel": "lemma m2-lem-rectangular-sum",
+          "kind": "lemma",
+          "source": "Tensors and arithmetic exponents",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-alg-cw-rank",
+          "role": "finite-tensor-constructions",
+          "label": "lemma m2-alg-cw-rank",
+          "fullLabel": "lemma m2-alg-cw-rank",
+          "kind": "lemma",
+          "source": "Finite tensor constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-asi",
+          "role": "finite-tensor-constructions",
+          "label": "theorem m2-thm-asi",
+          "fullLabel": "theorem m2-thm-asi",
+          "kind": "theorem",
+          "source": "Finite tensor constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-group",
+          "role": "finite-tensor-constructions",
+          "label": "lemma m2-lem-group",
+          "fullLabel": "lemma m2-lem-group",
+          "kind": "lemma",
+          "source": "Finite tensor constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-alg-payload",
+          "role": "finite-tensor-constructions",
+          "label": "lemma m2-alg-payload",
+          "fullLabel": "lemma m2-alg-payload",
+          "kind": "lemma",
+          "source": "Finite tensor constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-hierarchy",
+          "role": "finite-tensor-constructions",
+          "label": "lemma m2-lem-hierarchy",
+          "fullLabel": "lemma m2-lem-hierarchy",
+          "kind": "lemma",
+          "source": "Finite tensor constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-alg-completion",
+          "role": "finite-tensor-constructions",
+          "label": "lemma m2-alg-completion",
+          "fullLabel": "lemma m2-alg-completion",
+          "kind": "lemma",
+          "source": "Finite tensor constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-elementary",
+          "role": "finite-tensor-constructions",
+          "label": "theorem m2-thm-elementary",
+          "fullLabel": "theorem m2-thm-elementary",
+          "kind": "theorem",
+          "source": "Finite tensor constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-alg-parity",
+          "role": "finite-tensor-constructions",
+          "label": "lemma m2-alg-parity",
+          "fullLabel": "lemma m2-alg-parity",
+          "kind": "lemma",
+          "source": "Finite tensor constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-alg-orientation-banks",
+          "role": "finite-tensor-constructions",
+          "label": "lemma m2-alg-orientation-banks",
+          "fullLabel": "lemma m2-alg-orientation-banks",
+          "kind": "lemma",
+          "source": "Finite tensor constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-alg-completion-hierarchy",
+          "role": "finite-tensor-constructions",
+          "label": "lemma m2-alg-completion-hierarchy",
+          "fullLabel": "lemma m2-alg-completion-hierarchy",
+          "kind": "lemma",
+          "source": "Finite tensor constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-alg-recipe-composition",
+          "role": "finite-tensor-constructions",
+          "label": "proposition m2-alg-recipe-composition",
+          "fullLabel": "proposition m2-alg-recipe-composition",
+          "kind": "proposition",
+          "source": "Finite tensor constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-values",
+          "role": "banked-constructions-and-attainable-values",
+          "label": "proposition m2-prop-values",
+          "fullLabel": "proposition m2-prop-values",
+          "kind": "proposition",
+          "source": "Banked constructions and attainable values",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-val-canonical-symmetry",
+          "role": "banked-constructions-and-attainable-values",
+          "label": "lemma m2-val-canonical-symmetry",
+          "fullLabel": "lemma m2-val-canonical-symmetry",
+          "kind": "lemma",
+          "source": "Banked constructions and attainable values",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-val-recompile",
+          "role": "banked-constructions-and-attainable-values",
+          "label": "lemma m2-val-recompile",
+          "fullLabel": "lemma m2-val-recompile",
+          "kind": "lemma",
+          "source": "Banked constructions and attainable values",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-monotonicity",
+          "role": "banked-constructions-and-attainable-values",
+          "label": "proposition m2-prop-monotonicity",
+          "fullLabel": "proposition m2-prop-monotonicity",
+          "kind": "proposition",
+          "source": "Banked constructions and attainable values",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-val-ap-set",
+          "role": "banked-constructions-and-attainable-values",
+          "label": "lemma m2-val-ap-set",
+          "fullLabel": "lemma m2-val-ap-set",
+          "kind": "lemma",
+          "source": "Banked constructions and attainable values",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-matching",
+          "role": "banked-constructions-and-attainable-values",
+          "label": "proposition m2-prop-matching",
+          "fullLabel": "proposition m2-prop-matching",
+          "kind": "proposition",
+          "source": "Banked constructions and attainable values",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-face",
+          "role": "banked-constructions-and-attainable-values",
+          "label": "proposition m2-prop-face",
+          "fullLabel": "proposition m2-prop-face",
+          "kind": "proposition",
+          "source": "Banked constructions and attainable values",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-ap",
+          "role": "arithmetic-progression-restrictions-and-differential-compari",
+          "label": "theorem m2-thm-ap",
+          "fullLabel": "theorem m2-thm-ap",
+          "kind": "theorem",
+          "source": "Arithmetic-progression restrictions and differential comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-ap-behrend",
+          "role": "arithmetic-progression-restrictions-and-differential-compari",
+          "label": "lemma m2-ap-behrend",
+          "fullLabel": "lemma m2-ap-behrend",
+          "kind": "lemma",
+          "source": "Arithmetic-progression restrictions and differential comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-compile",
+          "role": "arithmetic-progression-restrictions-and-differential-compari",
+          "label": "lemma m2-lem-compile",
+          "fullLabel": "lemma m2-lem-compile",
+          "kind": "lemma",
+          "source": "Arithmetic-progression restrictions and differential comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-ap-corridor",
+          "role": "arithmetic-progression-restrictions-and-differential-compari",
+          "label": "lemma m2-ap-corridor",
+          "fullLabel": "lemma m2-ap-corridor",
+          "kind": "lemma",
+          "source": "Arithmetic-progression restrictions and differential comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-w-ap",
+          "role": "arithmetic-progression-restrictions-and-differential-compari",
+          "label": "corollary m2-cor-w-ap",
+          "fullLabel": "corollary m2-cor-w-ap",
+          "kind": "corollary",
+          "source": "Arithmetic-progression restrictions and differential comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-ap-comparison",
+          "role": "arithmetic-progression-restrictions-and-differential-compari",
+          "label": "corollary m2-ap-comparison",
+          "fullLabel": "corollary m2-ap-comparison",
+          "kind": "corollary",
+          "source": "Arithmetic-progression restrictions and differential comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-ap-chart-error",
+          "role": "arithmetic-progression-restrictions-and-differential-compari",
+          "label": "lemma m2-ap-chart-error",
+          "fullLabel": "lemma m2-ap-chart-error",
+          "kind": "lemma",
+          "source": "Arithmetic-progression restrictions and differential comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cert-w-correction",
+          "role": "the-three-state-boundary-seed",
+          "label": "lemma m2-cert-w-correction",
+          "fullLabel": "lemma m2-cert-w-correction",
+          "kind": "lemma",
+          "source": "The three-state boundary seed",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cert-w-seed",
+          "role": "the-three-state-boundary-seed",
+          "label": "proposition m2-cert-w-seed",
+          "fullLabel": "proposition m2-cert-w-seed",
+          "kind": "proposition",
+          "source": "The three-state boundary seed",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-certificate",
+          "role": "a-rational-certificate-for-the-comparison-bound",
+          "label": "theorem m2-thm-certificate",
+          "fullLabel": "theorem m2-thm-certificate",
+          "kind": "theorem",
+          "source": "A rational certificate for the comparison bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-ap-covariance",
+          "role": "a-rational-certificate-for-the-comparison-bound",
+          "label": "lemma m2-ap-covariance",
+          "fullLabel": "lemma m2-ap-covariance",
+          "kind": "lemma",
+          "source": "A rational certificate for the comparison bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cert-interior-lemma",
+          "role": "a-rational-certificate-for-the-comparison-bound",
+          "label": "lemma m2-cert-interior-lemma",
+          "fullLabel": "lemma m2-cert-interior-lemma",
+          "kind": "lemma",
+          "source": "A rational certificate for the comparison bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cert-boundary-lemma",
+          "role": "a-rational-certificate-for-the-comparison-bound",
+          "label": "lemma m2-cert-boundary-lemma",
+          "fullLabel": "lemma m2-cert-boundary-lemma",
+          "kind": "lemma",
+          "source": "A rational certificate for the comparison bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-entropy",
+          "role": "conditional-labels-and-entropy",
+          "label": "theorem m2-thm-entropy",
+          "fullLabel": "theorem m2-thm-entropy",
+          "kind": "theorem",
+          "source": "Conditional labels and entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-balance",
+          "role": "conditional-labels-and-entropy",
+          "label": "corollary m2-cor-balance",
+          "fullLabel": "corollary m2-cor-balance",
+          "kind": "corollary",
+          "source": "Conditional labels and entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-completion",
+          "role": "recursive-completion-trees",
+          "label": "lemma m2-lem-completion",
+          "fullLabel": "lemma m2-lem-completion",
+          "kind": "lemma",
+          "source": "Recursive completion trees",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-score-optimality",
+          "role": "an-exact-finite-family-optimization",
+          "label": "lemma m2-lem-score-optimality",
+          "fullLabel": "lemma m2-lem-score-optimality",
+          "kind": "lemma",
+          "source": "An exact finite-family optimization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-shape-optimization",
+          "role": "an-exact-finite-family-optimization",
+          "label": "theorem m2-thm-shape-optimization",
+          "fullLabel": "theorem m2-thm-shape-optimization",
+          "kind": "theorem",
+          "source": "An exact finite-family optimization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-uniform-update",
+          "role": "three-parameter-certificates",
+          "label": "lemma m2-lem-uniform-update",
+          "fullLabel": "lemma m2-lem-uniform-update",
+          "kind": "lemma",
+          "source": "Three parameter certificates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-plane-preservation",
+          "role": "comparison-with-ordinary-combinations",
+          "label": "lemma m2-lem-plane-preservation",
+          "fullLabel": "lemma m2-lem-plane-preservation",
+          "kind": "lemma",
+          "source": "Comparison with ordinary combinations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-comparison",
+          "role": "comparison-with-ordinary-combinations",
+          "label": "proposition m2-prop-comparison",
+          "fullLabel": "proposition m2-prop-comparison",
+          "kind": "proposition",
+          "source": "Comparison with ordinary combinations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-extra-inputs",
+          "role": "comparison-with-ordinary-combinations",
+          "label": "proposition m2-prop-extra-inputs",
+          "fullLabel": "proposition m2-prop-extra-inputs",
+          "kind": "proposition",
+          "source": "Comparison with ordinary combinations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-characteristic-transfer",
+          "role": "finite-exception-characteristic-transfer",
+          "label": "corollary m2-cor-characteristic-transfer",
+          "fullLabel": "corollary m2-cor-characteristic-transfer",
+          "kind": "corollary",
+          "source": "Finite-exception characteristic transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-characteristic-zero-dual",
+          "role": "finite-exception-characteristic-transfer",
+          "label": "corollary m2-cor-characteristic-zero-dual",
+          "fullLabel": "corollary m2-cor-characteristic-zero-dual",
+          "kind": "corollary",
+          "source": "Finite-exception characteristic transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "label": "Staggered extraction for exact matrix multiplication over every field",
+      "title": "Staggered extraction for exact matrix multiplication over every field",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#c98b5c",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Staggered extraction for exact matrix multiplication over every field.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m3-thm-main",
+          "role": "introduction",
+          "label": "theorem m3-thm-main",
+          "fullLabel": "theorem m3-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-direct-sum",
+          "role": "rank-and-the-basic-tensor",
+          "label": "lemma m3-lem-direct-sum",
+          "fullLabel": "lemma m3-lem-direct-sum",
+          "kind": "lemma",
+          "source": "Rank and the basic tensor",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-cw-rank",
+          "role": "rank-and-the-basic-tensor",
+          "label": "lemma m3-lem-cw-rank",
+          "fullLabel": "lemma m3-lem-cw-rank",
+          "kind": "lemma",
+          "source": "Rank and the basic tensor",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-thm-joint-step",
+          "role": "a-joint-extraction-at-several-depths",
+          "label": "theorem m3-thm-joint-step",
+          "fullLabel": "theorem m3-thm-joint-step",
+          "kind": "theorem",
+          "source": "A joint extraction at several depths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-compatibility-count",
+          "role": "a-joint-extraction-at-several-depths",
+          "label": "lemma m3-lem-compatibility-count",
+          "fullLabel": "lemma m3-lem-compatibility-count",
+          "kind": "lemma",
+          "source": "A joint extraction at several depths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-orbit-masks",
+          "role": "recovering-the-ideal-outputs-and-composing-extractions",
+          "label": "lemma m3-lem-orbit-masks",
+          "fullLabel": "lemma m3-lem-orbit-masks",
+          "kind": "lemma",
+          "source": "Recovering the ideal outputs and composing extractions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-hole-repair",
+          "role": "recovering-the-ideal-outputs-and-composing-extractions",
+          "label": "lemma m3-lem-hole-repair",
+          "fullLabel": "lemma m3-lem-hole-repair",
+          "kind": "lemma",
+          "source": "Recovering the ideal outputs and composing extractions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-replication",
+          "role": "recovering-the-ideal-outputs-and-composing-extractions",
+          "label": "lemma m3-lem-replication",
+          "fullLabel": "lemma m3-lem-replication",
+          "kind": "lemma",
+          "source": "Recovering the ideal outputs and composing extractions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-leaf-volume",
+          "role": "terminal-dimensions-and-the-rank-comparison",
+          "label": "proposition m3-prop-leaf-volume",
+          "fullLabel": "proposition m3-prop-leaf-volume",
+          "kind": "proposition",
+          "source": "Terminal dimensions and the rank comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-staggered-yield",
+          "role": "terminal-dimensions-and-the-rank-comparison",
+          "label": "proposition m3-prop-staggered-yield",
+          "fullLabel": "proposition m3-prop-staggered-yield",
+          "kind": "proposition",
+          "source": "Terminal dimensions and the rank comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-numerical-certificate",
+          "role": "exact-parameters-and-numerical-certification",
+          "label": "proposition m3-prop-numerical-certificate",
+          "fullLabel": "proposition m3-prop-numerical-certificate",
+          "kind": "proposition",
+          "source": "Exact parameters and numerical certification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Staggered extraction for exact matrix multiplication over every field",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf",
+      "kind": "paper"
+    }
+  ]
+}

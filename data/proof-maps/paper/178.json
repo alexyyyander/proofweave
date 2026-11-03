@@ -1,0 +1,312 @@
+{
+  "familyNumber": "178",
+  "familyTitle": "Deterministic nonbipartite Ramanujan graphs in every fixed degree",
+  "manuscripts": [
+    {
+      "id": "Deterministic-nonbipartite-Ramanujan-graphs-in-every-fixed-degree-September-23-2026",
+      "title": "Deterministic nonbipartite Ramanujan graphs in every fixed degree",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Deterministic-nonbipartite-Ramanujan-graphs-in-every-fixed-degree-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Simultaneous deterministic choice",
+    "Partial configurations and their deterministic estimates",
+    "Pairing down to a sparse boundary",
+    "Cleanup of the unresolved boundary",
+    "Completion from a separated boundary",
+    "Local projectors and exact spectral repair",
+    "The algorithm and its bit complexity"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every integer d3 there are constants n_0(d) and k_d and a deterministic…",
+      "statement": "For every integer d3 there are constants n_0(d) and k_d and a deterministic algorithm with the following property. On input an even integer n n_0(d) , the algorithm outputs the adjacency list of a…",
+      "section": "Introduction",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-cor-target-size",
+      "kind": "corollary",
+      "label": "For every fixed d3 , a deterministic polynomial-time algorithm, on every…",
+      "statement": "For every fixed d3 , a deterministic polynomial-time algorithm, on every sufficiently large integer input N , produces a simple connected nonbipartite d -regular Ramanujan graph G with N |V(G)| N+12N…",
+      "section": "Introduction",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-discounted-accounts",
+      "kind": "lemma",
+      "label": "Discounted accounts",
+      "statement": "[Discounted accounts] At a state x , let (x) be a nonempty finite set of candidate transitions with a specified probability distribution. For each index i in a finite set let Z_i(x)1 be a nonnegative…",
+      "section": "Simultaneous deterministic choice",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-scalar-excess",
+      "kind": "lemma",
+      "label": "Scalar upper-excess account",
+      "statement": "[Scalar upper-excess account] Let an alive scalar quantity have current value X and upper threshold T . On its ordinary next transitions suppose the threshold is unchanged and, for a fixed scale b>0…",
+      "section": "Simultaneous deterministic choice",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-positive-excess-account",
+      "kind": "corollary",
+      "label": "Positive-excess account at a prescribed scale",
+      "statement": "[Positive-excess account at a prescribed scale] Let B_s>0 and >0 . Suppose an alive scalar quantity has an ordinary increment with | E| , E^2 , and || B_s . For each fixed even p2 , the upper-excess…",
+      "section": "Simultaneous deterministic choice",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lemma-configuration-algebra",
+      "kind": "lemma",
+      "label": "Path generating function and exposure identities",
+      "statement": "[Path generating function and exposure identities] Let C be the incidence matrix of all dn stubs. On resolved stubs let P_* exchange partners, and on S let it be the averaging projection. Set…",
+      "section": "Partial configurations and their deterministic estimates",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lemma-structure",
+      "kind": "lemma",
+      "label": "Structural accounts",
+      "statement": "[Structural accounts] Fix J= .9_qn and a sufficiently large fixed integer r_* . The joint discounted-account rule can maintain, through the early and cleanup phases, the following bound for every…",
+      "section": "Partial configurations and their deterministic estimates",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lemma-path-majorants",
+      "kind": "lemma",
+      "label": "Absolute path bounds",
+      "statement": "[Absolute path bounds] In the partial-configuration setting above, let an output label denote either a vertex coordinate projected onto 1^ , or a current centered stub _x . For a label i write \\[…",
+      "section": "Partial configurations and their deterministic estimates",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lemma-pencil-coefficients",
+      "kind": "lemma",
+      "label": "Polynomial operator bounds",
+      "statement": "[Polynomial operator bounds] If the precision is positive for both signs at h , then \\|h^jQ_j|_ 1^ \\| C(1+j)^2, \\|P\\| C(1+L)^3. For a fixed stub endpoint, the signed column of P over global vertices…",
+      "section": "Partial configurations and their deterministic estimates",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lemma-local-laws-implications",
+      "kind": "lemma",
+      "label": "Consequences of the resolvent bounds",
+      "statement": "[Consequences of the resolvent bounds] At a current early or cleanup state, assume l l_0 , the core bound , and actual girth at least g_0 . Assume positivity and at every tracked primary and…",
+      "section": "Partial configurations and their deterministic estimates",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-prop-early-phase",
+      "kind": "proposition",
+      "label": "Early pairing",
+      "statement": "[Early pairing] For the fixed parameters of the construction and all sufficiently large \\(n\\), the simultaneous discounted-account rule can be run from the empty pairing down to \\(l_1\\) unresolved…",
+      "section": "Pairing down to a sparse boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-early-pair-contractions",
+      "kind": "lemma",
+      "label": "Uniform pair contractions",
+      "statement": "[Uniform pair contractions] Let \\(A,C\\) be centered \\(l\\)-by-\\(l\\) matrices, with \\(A\\) symmetric, and let a subscript \\(p\\) denote their \\(\\ u,v\\ \\) blocks. For a full uniform ordered distinct pair,…",
+      "section": "Pairing down to a sparse boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-early-trace-transitions",
+      "kind": "lemma",
+      "label": "Trace transition bounds",
+      "statement": "[Trace transition bounds] Under the current bootstrap bounds, the conditional means and second moments of the trace errors satisfy -- at all tracked points. At primary points, \\( T\\) has the lower…",
+      "section": "Pairing down to a sparse boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-early-trace-accounts",
+      "kind": "lemma",
+      "label": "Trace control by weighted choice",
+      "statement": "[Trace control by weighted choice] The trace-square accounts and the inverse-\\( T\\) account have bounded discount loss under the bootstrap bounds and imply the trace conclusions of Proposition~ with…",
+      "section": "Pairing down to a sparse boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-early-index-words",
+      "kind": "lemma",
+      "label": "Index-word classification",
+      "statement": "[Index-word classification] Expand every occurrence of \\(H_0\\) as \\(- h F- hJ_2/(l-2)\\), every intermediate factor as \\(T+D_E\\), and each outer factor as \\(P+E\\). A resulting scalar word has two…",
+      "section": "Pairing down to a sparse boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-early-entry-mean",
+      "kind": "lemma",
+      "label": "Signed entry mean",
+      "statement": "[Signed entry mean] For every existing output pair, conditionally on its survival, | E E_ ij | _l, _l=C. This includes recentered stub outputs.",
+      "section": "Pairing down to a sparse boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-early-near-reference",
+      "kind": "lemma",
+      "label": "Aligned short-path residual",
+      "statement": "[Aligned short-path residual] Fix an integer \\(k\\). For \\(i X\\), \\(u S\\) at actual vertex distance at most \\(k\\), remove from the actual part of \\(p_i(u)\\) the monomial of the unique short path. The…",
+      "section": "Pairing down to a sparse boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-early-low-squares",
+      "kind": "lemma",
+      "label": "Control of squared entry sums",
+      "statement": "[Control of squared entry sums] For any fixed radius \\(R_c\\), the simultaneous accounts retain &T_S=_ x S e_x(x)^2 n^, T_V=_ i V E_ ii ^2 n^ n/l_0,\\\\ &T_ XS,k =_ i X,\\ x S\\\\ dist(vtxi,vtxx) k…",
+      "section": "Pairing down to a sparse boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-early-interpolation",
+      "kind": "lemma",
+      "label": "Interpolation and a kernel inequality",
+      "statement": "[Interpolation and a kernel inequality] Let a measure of bounded mass satisfy \\(|z|^2 n^ - \\) and \\(|z|^p M\\). For every fixed \\(0<t<p\\), |z|^t n^ -_t (1+M)^ t/p , _t>0, for sufficiently large \\(n\\).…",
+      "section": "Pairing down to a sparse boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-early-linearization",
+      "kind": "lemma",
+      "label": "Linearization and its residual",
+      "statement": "[Linearization and its residual] For every surviving output pair, decompose its actual increment as \\( E_ ij =B_e L_ ij + N_ ij \\), where \\( L\\) is linear in \\(z\\) and evaluated on the old output…",
+      "section": "Pairing down to a sparse boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-early-high-moments",
+      "kind": "lemma",
+      "label": "High moments",
+      "statement": "[High moments] There is a constant \\(C_*\\), independent of every sufficiently large even order \\(p\\), with the following property. After \\(p\\) is fixed, one may choose a fixed \\(_p>0\\), a fixed near…",
+      "section": "Pairing down to a sparse boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-prop-cleanup",
+      "kind": "proposition",
+      "label": "Cleanup estimates",
+      "statement": "[Cleanup estimates] Assume the early-phase estimates at l_1 , and maintain the structural estimators during cleanup. With the simultaneous discounted-account choice rule, the cleanup interval can be…",
+      "section": "Cleanup of the unresolved boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-cleanup-pathwise",
+      "kind": "lemma",
+      "label": "Pathwise summation",
+      "statement": "[Pathwise summation] Fix any chosen cleanup history up to its current state, and fix a label i while it is alive. With u_t the prescribed first endpoint of step t , one has _t A_i^t(u_t)^2 n^, _t (j_…",
+      "section": "Cleanup of the unresolved boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-cleanup-traces",
+      "kind": "lemma",
+      "label": "Persistence of scalar estimates",
+      "statement": "[Persistence of scalar estimates] At a current cleanup state, assume positive definiteness and at every tracked point for both signs, together with the level-dependent entry and T_S bootstrap bounds.…",
+      "section": "Cleanup of the unresolved boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-cleanup-words",
+      "kind": "lemma",
+      "label": "Endpoint word classification",
+      "statement": "[Endpoint word classification] After expansion of a numerical update difference and of its formal truncation tail, every term is covered by the following classes: a term containing a non-pure swap R…",
+      "section": "Cleanup of the unresolved boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-cleanup-diagonal",
+      "kind": "lemma",
+      "label": "Cumulative diagonal-square budgets",
+      "statement": "[Cumulative diagonal-square budgets] Under the cleanup bootstrap, through every chosen history segment, \\[ _t\\|m\\|_2 n^, _tV_t n^+Cf_bT_ cap , \\] where T_ cap is the chosen bootstrap cap for T_S .",
+      "section": "Cleanup of the unresolved boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-cleanup-jumps",
+      "kind": "lemma",
+      "label": "Level-sensitive jump bound",
+      "statement": "[Level-sensitive jump bound] For a surviving entry E_ ij of total level k , every allowed cleanup step satisfies \\[ | E_ ij |/B_k n^ -2 \\] for all sufficiently large n .",
+      "section": "Cleanup of the unresolved boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-cleanup-entry-budgets",
+      "kind": "lemma",
+      "label": "Individual predictable entry budgets",
+      "statement": "[Individual predictable entry budgets] For every fixed entry while its labels are alive, and through every chosen history segment, there is a fixed c_5>0 such that &_ t:nonspecial survival\\\\ has…",
+      "section": "Cleanup of the unresolved boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-prop-boundary-completion",
+      "kind": "proposition",
+      "label": "Completion of the separated boundary",
+      "statement": "[Completion of the separated boundary] Under these inputs, the account rule can deterministically complete the pairing. Every added edge is simple and preserves the girth exclusion. At the end the…",
+      "section": "Completion from a separated boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-boundary-smooth-reference",
+      "kind": "lemma",
+      "label": "Sparse rows and a small compressed operator",
+      "statement": "[Sparse rows and a small compressed operator] There are constants r_P'>0 and C such that _0:=V_0^T P_0V_0 =I+ D_0on H_0, \\| D_0\\| C R_0 . For every global vertex coordinate i , the vector p_ i,0…",
+      "section": "Completion from a separated boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-boundary-pair-averages",
+      "kind": "lemma",
+      "label": "Coefficient and averaging bounds",
+      "statement": "[Coefficient and averaging bounds] Suppose that D1=0 , _x(D^2)_ xx C_0 and _ x,y |D_ xy |=o(1) . Then \\|H\\| C , and \\[ |H_ uu | C(l^ -1 +|D_ vv |+|D_ uv |). \\] The conditional absolute mean of…",
+      "section": "Completion from a separated boundary",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-repair-projector",
+      "kind": "lemma",
+      "label": "Projector estimate from diagonal comparison",
+      "statement": "[Projector estimate from diagonal comparison] Assume x_i^>-e/20 for all nonconstant indices i and both signs. Suppose the final resolvents R_(z)=(z- A_G)^ -1 |_ 1^ at the primary points z=z(h)…",
+      "section": "Local projectors and exact spectral repair",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-lem-repair-bulk",
+      "kind": "lemma",
+      "label": "Bulk estimates and typical edges",
+      "statement": "[Bulk estimates and typical edges] The projector estimate implies _p_ pp C W_b . If w_p W_b is a primary gap, every entry of R_B^-R_(s+w_p) is O(W_b) . For the typical-edge assertion below, the…",
+      "section": "Local projectors and exact spectral repair",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-thm-exact-repair",
+      "kind": "theorem",
+      "label": "Exact repair by simultaneous switches",
+      "statement": "[Exact repair by simultaneous switches] Fix an integer d3 and a constant C_01 . Put \\[ q=d-1, s=2 q, a=10^ -4 ,\\\\ e=n^ -2/3+a , W_b=n^ -2/3+100a , M= n^ 1/3+10a . \\] There are constants n_0,k ,…",
+      "section": "Local projectors and exact spectral repair",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    },
+    {
+      "id": "m1-prop-bit-complexity",
+      "kind": "proposition",
+      "label": "For each fixed d and the fixed choices in Section~ , every stage of the…",
+      "statement": "For each fixed d and the fixed choices in Section~ , every stage of the preceding construction is implementable with polynomially many bit operations in n .",
+      "section": "The algorithm and its bit complexity",
+      "manuscript": "Deterministic nonbipartite Ramanujan graphs in every fixed degree"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-early-phase",
+      "to": "m1-thm-main",
+      "label": "prop:early-phase",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Start with $d$ distinguishable stubs at each of $n$ vertices. Apply Proposition~\\ref{prop:early-phase}, rejecting stub pairs whose vertices have distance at most the girth exclusion radius. The rejected-pair graph has maxi"
+    }
+  ]
+}

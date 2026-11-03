@@ -2,38 +2,42 @@ import { Suspense } from "react";
 import Link from "../ui/NavigationLink";
 import { BrandMark } from "../ui";
 import { getCurrentUser, providerAwareSignOutPath, signInPath } from "@/app/auth";
+import { LocaleSwitcher } from "@/app/i18n/LocaleSwitcher";
+import { getI18n } from "@/app/i18n/server";
 import { navigationGroups, primaryNavigation, type ActivePage } from "@/app/lib/navigation";
 
-export function Header({ active, activeHref, skipTarget = "main-content" }: { active: ActivePage; activeHref?: string; skipTarget?: string }) {
+export async function Header({ active, activeHref, skipTarget = "main-content" }: { active: ActivePage; activeHref?: string; skipTarget?: string }) {
+  const { t } = await getI18n();
 
   return <>
-    <a className="skip-link" href={`#${skipTarget}`}>Skip to main content</a>
+    <a className="skip-link" href={`#${skipTarget}`}>{t("common.skipToMainContent")}</a>
     <header className="site-header">
-      <Link className="brand" href="/" aria-label="Proofweave home"><BrandMark /><span>Proofweave</span></Link>
-      <nav className="main-nav" aria-label="Primary navigation">
-        {primaryNavigation.map((item) => <Link aria-current={active === item.page ? "page" : undefined} className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{item.label}</Link>)}
+      <Link className="brand" href="/" aria-label={t("header.homeAria")}><BrandMark /><span>Proofweave</span></Link>
+      <nav className="main-nav" aria-label={t("header.primaryNavAria")}>
+        {primaryNavigation.map((item) => <Link aria-current={active === item.page ? "page" : undefined} className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{t(item.labelKey)}</Link>)}
       </nav>
       <div className="header-actions">
+        <LocaleSwitcher />
         <details className="site-directory-menu" name="header-overlays">
-          <summary aria-label="Open Proofweave directory"><span>Menu</span><i aria-hidden="true">⌄</i></summary>
+          <summary aria-label={t("header.directoryMenuAria")}><span>{t("header.menu")}</span><i aria-hidden="true">⌄</i></summary>
           <div className="site-directory-popover">
             <div className="site-directory-intro">
-              <strong>Directory</strong>
-              <p>Five core surfaces. Supporting modules stay task-oriented.</p>
-              <small>Use the core pages to orient, act, inspect, and understand.</small>
+              <strong>{t("header.directory")}</strong>
+              <p>{t("header.directoryIntro")}</p>
+              <small>{t("header.directoryHint")}</small>
             </div>
-            <nav className="site-directory-groups" aria-label="Proofweave menu">
-              {navigationGroups.map((group) => <div key={group.label}>
-                <strong>{group.label}</strong>
+            <nav className="site-directory-groups" aria-label={t("header.directoryGroupsAria")}>
+              {navigationGroups.map((group) => <div key={group.labelKey}>
+                <strong>{t(group.labelKey)}</strong>
                 {group.items.map((item) => {
                   const isActive = navigationItemActive(active, item.href, activeHref);
-                  return <Link aria-current={isActive ? "page" : undefined} className={isActive ? "is-active" : ""} href={item.href} key={item.href}>{item.label}<span aria-hidden="true">→</span></Link>;
+                  return <Link aria-current={isActive ? "page" : undefined} className={isActive ? "is-active" : ""} href={item.href} key={item.href}>{t(item.labelKey)}<span aria-hidden="true">→</span></Link>;
                 })}
               </div>)}
             </nav>
           </div>
         </details>
-        <Suspense fallback={<span className="account-loading" role="status" aria-label="Loading account" />}><AccountMenu active={active} /></Suspense>
+        <Suspense fallback={<span className="account-loading" role="status" aria-label={t("common.loadingAccount")} />}><AccountMenu active={active} /></Suspense>
       </div>
     </header>
   </>;
@@ -66,17 +70,17 @@ function navigationItemActive(active: ActivePage, href: string, activeHref?: str
 }
 
 async function AccountMenu({ active }: { active: ActivePage }) {
-  const user = await getCurrentUser();
+  const [{ t }, user] = await Promise.all([getI18n(), getCurrentUser()]);
   return (user
           ? <details className={active === "profile" || active === "settings" ? "account-menu is-active" : "account-menu"} name="header-overlays">
-            <summary aria-label={`Open account menu for ${user.displayName}`}><span className="account-avatar" aria-hidden="true">{initials(user.displayName)}</span><span className="account-menu-name">{user.displayName}</span><span className="account-chevron" aria-hidden="true">⌄</span></summary>
+            <summary aria-label={t("header.accountMenuAria", { name: user.displayName })}><span className="account-avatar" aria-hidden="true">{initials(user.displayName)}</span><span className="account-menu-name">{user.displayName}</span><span className="account-chevron" aria-hidden="true">⌄</span></summary>
             <div className="account-popover">
               <div className="account-popover-identity"><strong>{user.displayName}</strong><span>{user.email} · {user.providerLabel}</span></div>
-              <Link href="/profile">My profile <span>→</span></Link>
-              <Link href="/reviews">My reviews <span>→</span></Link>
-              <Link href="/settings">Agent settings <span>→</span></Link>
-              <Link className="account-sign-out" href={providerAwareSignOutPath(user, "/")}>Sign out <span>→</span></Link>
+              <Link href="/profile">{t("header.myProfile")} <span>→</span></Link>
+              <Link href="/reviews">{t("header.myReviews")} <span>→</span></Link>
+              <Link href="/settings">{t("header.agentSettings")} <span>→</span></Link>
+              <Link className="account-sign-out" href={providerAwareSignOutPath(user, "/")}>{t("header.signOut")} <span>→</span></Link>
             </div>
           </details>
-          : <Link className="header-sign-in" href={signInPath("/profile")}>Sign in</Link>);
+          : <Link className="header-sign-in" href={signInPath("/profile")}>{t("header.signIn")}</Link>);
 }

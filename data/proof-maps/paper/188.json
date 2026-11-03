@@ -1,0 +1,127 @@
+{
+  "familyNumber": "188",
+  "familyTitle": "The sharp terminal leave in random triangle removal",
+  "manuscripts": [
+    {
+      "id": "The-Sharp-Terminal-Leave-in-Random-Triangle-Removal-September-25-2026",
+      "title": "The sharp terminal leave in random triangle removal",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Sharp-Terminal-Leave-in-Random-Triangle-Removal-September-25-2026/The-Sharp-Terminal-Leave-in-Random-Triangle-Removal-September-25-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A uniform early prefix",
+    "Exact queries and independent unfoldings",
+    "Stable unfolded probabilities",
+    "Coupling the finite and independent tests",
+    "Counting and visiting collision witnesses"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For the uniform triangle-removal process starting from K_n , \\[ 0. \\] In…",
+      "statement": "For the uniform triangle-removal process starting from K_n , \\[ 0. \\] In particular, \\[ F_n n^ 3/2 1 22 , F_n n^ 3/2 1 22 . \\]",
+      "section": "Introduction",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    },
+    {
+      "id": "m1-prop-prefix",
+      "kind": "proposition",
+      "label": "Good prefix",
+      "statement": "[Good prefix] There are constants c>0 and C_0< and an event G_n measurable from the process through step i_0 such that \\[ ( G_n^c) (- ( n)^ 4/3 )=n^ -(1) \\] for all sufficiently large n . On this…",
+      "section": "A uniform early prefix",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    },
+    {
+      "id": "m1-lem-priority",
+      "kind": "lemma",
+      "label": "Priority representation",
+      "statement": "[Priority representation] For any finite simple graph G , the graph sequence indexed by the accepted triangles in this scan has the law of uniform sequential triangle removal started from G .",
+      "section": "Exact queries and independent unfoldings",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    },
+    {
+      "id": "m1-lem-finite-test",
+      "kind": "lemma",
+      "label": "Exact paired test",
+      "statement": "[Exact paired test] For any finite simple graph with distinct triangle priorities, the finite test terminates. A root call at (e,t) returns true exactly when e is untouched before t in the priority…",
+      "section": "Exact queries and independent unfoldings",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    },
+    {
+      "id": "m1-lem-unfolding-finite",
+      "kind": "lemma",
+      "label": "Finite evaluation",
+      "statement": "[Finite evaluation] For a fixed good graph G , independent unfoldings can be constructed so that, almost surely, every possible call and all thresholds t have finite evaluations. Their outputs are…",
+      "section": "Exact queries and independent unfoldings",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    },
+    {
+      "id": "m1-prop-products",
+      "kind": "proposition",
+      "label": "Product identities",
+      "statement": "[Product identities] For every triangle T=\\ e,f,g\\ and t , the independent unfolding satisfies ( the pair \\ f,g\\ T returns true at t ) =q_ f,T (t)q_ g,T (t), q_e(t)&=_ S e (1-I_ e,S (t)),\\\\ q_ e,T…",
+      "section": "Exact queries and independent unfoldings",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    },
+    {
+      "id": "m1-prop-semigroup",
+      "kind": "proposition",
+      "label": "There are fixed constants C_1,J< such that every graph G satisfying the degree,…",
+      "statement": "There are fixed constants C_1,J< such that every graph G satisfying the degree, codegree and link-cycle conditions of Proposition~ obeys _ 0 s n e^ -sA/D _ C_1(1+ n)^J for all sufficiently large n .",
+      "section": "Stable unfolded probabilities",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    },
+    {
+      "id": "m1-prop-unfolding",
+      "kind": "proposition",
+      "label": "For every graph G satisfying Proposition~ , the independent-unfolding…",
+      "statement": "For every graph G satisfying Proposition~ , the independent-unfolding probabilities obey q_e(t)=(1+o(1))q(t), q_ e,T (t)=(1+o(1))q(t), I_ e,T (t)=O\\!( n D ). The estimates hold uniformly over G , 0…",
+      "section": "Stable unfolded probabilities",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    },
+    {
+      "id": "m1-lem-coupling",
+      "kind": "lemma",
+      "label": "Coupling by exposed triangle types",
+      "statement": "[Coupling by exposed triangle types] Let X^ fin ,X^ ind \\ 0,1\\ ^k be the vectors of root answers in the two experiments, where 1 denotes true. For every H\\ 0,1\\ ^k , \\[ |(X^ fin H) -(X^ ind H)| _ ind…",
+      "section": "Coupling the finite and independent tests",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    },
+    {
+      "id": "m1-lem-witness",
+      "kind": "lemma",
+      "label": "A geometric witness for a collision",
+      "statement": "[A geometric witness for a collision] If the initial root labels are all distinct, then every occurrence of C_k produces an extra-edge witness. Moreover, uniformly over the graphs under…",
+      "section": "Coupling the finite and independent tests",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    },
+    {
+      "id": "m1-lem-embeddings",
+      "kind": "lemma",
+      "label": "Embedding an extra edge",
+      "statement": "[Embedding an extra edge] For every such pattern with r\\ 1,2\\ roots and non-root calls, the number of embeddings of J^+ into G is at most (2m)^r(2D)^ D^ -B for all sufficiently large n , uniformly…",
+      "section": "Counting and visiting collision witnesses",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    },
+    {
+      "id": "m1-lem-visitation",
+      "kind": "lemma",
+      "label": "Visiting an embedded pattern",
+      "statement": "[Visiting an embedded pattern] Conditional on the prescribed ordered root labels, the probability that all calls in the embedded pattern are visited is at most C_D^3(2 )^ h!\\,_1!\\,_2! . This includes…",
+      "section": "Counting and visiting collision witnesses",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    },
+    {
+      "id": "m1-prop-collision",
+      "kind": "proposition",
+      "label": "Uniform collision bound",
+      "statement": "[Uniform collision bound] Fix k\\ 1,2\\ and sample k independent uniform oriented edges of G , with replacement. Execute the independent root queries at threshold 1 , executing every root regardless of…",
+      "section": "Counting and visiting collision witnesses",
+      "manuscript": "The sharp terminal leave in random triangle removal"
+    }
+  ],
+  "edges": []
+}

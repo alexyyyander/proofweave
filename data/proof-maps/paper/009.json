@@ -1,0 +1,523 @@
+{
+  "familyNumber": "009",
+  "familyTitle": "Function-field reconstruction from Milnor K-theory and Galois data",
+  "manuscripts": [
+    {
+      "id": "Reconstruction-of-Function-Fields-from-Mod-ell-Milnor-K-Theory-October-5-2026",
+      "title": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Reconstruction-of-Function-Fields-from-Mod-ell-Milnor-K-Theory-October-5-2026/mod-ell-bogomolov-pop.pdf"
+    },
+    {
+      "id": "The-Bogomolov-Pop-reconstruction-theorem-September-23-2026",
+      "title": "The Bogomolov-Pop reconstruction theorem",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Bogomolov-Pop-reconstruction-theorem-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Alternating characters and quasi-divisorial valuations",
+    "Recognizing points on residual curves",
+    "A uniform bound for the support of a pencil",
+    "Recovering curve subfields",
+    "True divisors and rational subfields",
+    "Recovering the field from simultaneous values",
+    "Compatibility and uniqueness",
+    "The reconstruction problem",
+    "Kummer duality and the group input",
+    "Recovering the local data",
+    "Finite tests on residual curves",
+    "A uniform bound for pencils",
+    "Recovering the curve subfields",
+    "From the recovered quotients to the field"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Let be any prime. Let K/k and L/l be finitely generated extensions of arbitrary…",
+      "statement": "Let be any prime. Let K/k and L/l be finitely generated extensions of arbitrary algebraically closed fields, with k, l and (K/k),(L/l)2 . Then is bijective. In particular, a compatible isomorphism…",
+      "section": "Introduction",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-thm-local-input",
+      "kind": "theorem",
+      "label": "Alternating-pair valuation theory",
+      "statement": "[Alternating-pair valuation theory] Let~\\(F\\) be a field and set \\(A_F^ =\\ f A_F:f(-1)=0\\ \\). Every valuative subset~\\( A_F\\) has a unique coarsest valuation~\\(v_\\) with~\\( I_ v_ \\). In particular,…",
+      "section": "Alternating characters and quasi-divisorial valuations",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-local-abhyankar",
+      "kind": "lemma",
+      "label": "For every valuation~\\(v\\) of~\\(F\\), the field~\\( v\\) is algebraically closed,…",
+      "statement": "For every valuation~\\(v\\) of~\\(F\\), the field~\\( v\\) is algebraically closed, the group~\\(vF/v\\) is torsion free, and (vF/v)+(Fv/ v) s. Here~\\((G)=_(G_)\\). If equality holds, then \\(Fv/ v\\) is…",
+      "section": "Alternating characters and quasi-divisorial valuations",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-residue-duality",
+      "kind": "lemma",
+      "label": "Suppose~\\(vF/v\\) is free abelian of finite rank. Then restriction to units…",
+      "statement": "Suppose~\\(vF/v\\) is free abelian of finite rank. Then restriction to units induces a canonical topological isomorphism D_v/I_v\\ \\ A_ Fv . Two elements of~\\(D_v\\) are alternating if and only if their…",
+      "section": "Alternating characters and quasi-divisorial valuations",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-local-approximation",
+      "kind": "lemma",
+      "label": "Let~\\(v_1,v_2\\) be incomparable valuations of a field, and let~\\(u\\) be their…",
+      "statement": "Let~\\(v_1,v_2\\) be incomparable valuations of a field, and let~\\(u\\) be their finest common coarsening. Then \\[ U_ v_1 ^1U_ v_2 ^1=U_u, D_ v_1 D_ v_2 =I_u. \\]",
+      "section": "Alternating characters and quasi-divisorial valuations",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-prop-local-dimension",
+      "kind": "proposition",
+      "label": "The maximum dimension of an alternating subspace of~\\(A_F\\) is~\\(s\\). If~\\(S…",
+      "statement": "The maximum dimension of an alternating subspace of~\\(A_F\\) is~\\(s\\). If~\\(S A_F\\) is alternating of dimension~\\(s\\), and~\\(v\\) is the valuation associated to its valuative part~\\(S_0\\), then…",
+      "section": "Alternating characters and quasi-divisorial valuations",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-prop-quasi-recovery",
+      "kind": "proposition",
+      "label": "Assume~\\(s2\\). A line~\\(H A_F\\) is the inertia of a quasi-divisorial valuation…",
+      "statement": "Assume~\\(s2\\). A line~\\(H A_F\\) is the inertia of a quasi-divisorial valuation if and only if H=S_1 S_2 for alternating subspaces S_1,S_2 A_F of dimension s. The quasi-divisorial valuation~\\(v\\)…",
+      "section": "Alternating characters and quasi-divisorial valuations",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-local-flag-uniqueness",
+      "kind": "lemma",
+      "label": "If~\\(v\\) is a quasi-prime~\\(r\\)-divisor, with~\\(r1\\), then its value group has…",
+      "statement": "If~\\(v\\) is a quasi-prime~\\(r\\)-divisor, with~\\(r1\\), then its value group has no nonzero~\\(\\)-divisible convex subgroup. Moreover~\\(v=v_ I_v \\); in particular its inertia determines the valuation.",
+      "section": "Alternating characters and quasi-divisorial valuations",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-cor-flag-matching",
+      "kind": "corollary",
+      "label": "For the fields~\\(K/k,L/l\\) of Theorem~ , a compatible isomorphism~\\(\\) forces…",
+      "statement": "For the fields~\\(K/k,L/l\\) of Theorem~ , a compatible isomorphism~\\(\\) forces \\((K/k)=(L/l)=d\\), say. Its dual~\\(\\) matches the inertia--decomposition pairs of quasi-prime divisors, and,…",
+      "section": "Alternating characters and quasi-divisorial valuations",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-thm-density-input",
+      "kind": "theorem",
+      "label": "Pop's residual density input",
+      "statement": "[Pop's residual density input] Let \\(F/\\) be a function field over an algebraically closed field of characteristic different from \\(\\). Suppose that a valuation \\(v\\) of \\(F\\), with \\(Fv/ v\\) a…",
+      "section": "Recognizing points on residual curves",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-residual-density-mod-ell",
+      "kind": "lemma",
+      "label": "For a quasi-prime \\((d-1)\\)-divisor \\(v\\) of \\(F/\\), the set \\(J_v\\) contains…",
+      "statement": "For a quasi-prime \\((d-1)\\)-divisor \\(v\\) of \\(F/\\), the set \\(J_v\\) contains the inertia line \\(I_u A_ F_0 \\) of every c.r.\\ quasi-prime divisor \\(u\\) of \\(F_0/_0\\).",
+      "section": "Recognizing points on residual curves",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-residual-valuative",
+      "kind": "lemma",
+      "label": "Every element of \\(S_F^ in \\) is valuative. Every element of \\(J_v\\) is…",
+      "statement": "Every element of \\(S_F^ in \\) is valuative. Every element of \\(J_v\\) is valuative as a character of \\(F_0\\).",
+      "section": "Recognizing points on residual curves",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-curve-orders",
+      "kind": "lemma",
+      "label": "Point orders",
+      "statement": "[Point orders] Let \\(B/b\\) be a function field of transcendence degree one over an algebraically closed field, and let \\(C/b\\) be its smooth projective curve. For \\(x C(b)\\), let \\(_x=_x A_B\\). The…",
+      "section": "Recognizing points on residual curves",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-prop-point-recognition",
+      "kind": "proposition",
+      "label": "For a quasi-prime \\((d-1)\\)-divisor \\(v\\) of \\(F/\\), the family \\( L_v\\)…",
+      "statement": "For a quasi-prime \\((d-1)\\)-divisor \\(v\\) of \\(F/\\), the family \\( L_v\\) satisfies the preceding two conditions if and only if \\( v\\) is algebraic over a finite field. When this holds, \\( L_v\\)…",
+      "section": "Recognizing points on residual curves",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-kummer-kernel",
+      "kind": "lemma",
+      "label": "Let E/F be a finitely generated field extension, where F and _ F . The kernel…",
+      "statement": "Let E/F be a finitely generated field extension, where F and _ F . The kernel of V_F V_E is finite dimensional over .",
+      "section": "A uniform bound for the support of a pencil",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-support-bertini",
+      "kind": "lemma",
+      "label": "Let U be a smooth integral locally closed subvariety of projective space over…",
+      "statement": "Let U be a smooth integral locally closed subvariety of projective space over an algebraically closed field, of dimension at least two. Let Y U be a finite \\' e tale morphism with Y integral. For…",
+      "section": "A uniform bound for the support of a pencil",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-prop-finite-curve-test",
+      "kind": "proposition",
+      "label": "Finite curve test",
+      "statement": "[Finite curve test] There is an integer G_X0 , depending only on the embedded model X , with the following property. Given g_1,,g_m L^ whose classes in V_L are independent, there is a quasi-prime…",
+      "section": "A uniform bound for the support of a pencil",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-prop-uniform-support",
+      "kind": "proposition",
+      "label": "For every t K k , \\[ _ a k s_X(([t-a]))<. \\]",
+      "statement": "For every t K k , \\[ _ a k s_X(([t-a]))<. \\]",
+      "section": "A uniform bound for the support of a pencil",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-constant-descent",
+      "kind": "lemma",
+      "label": "Descent from algebraically closed constants",
+      "statement": "[Descent from algebraically closed constants] Let F/B be a finitely generated regular extension, where (B) and _ B . If g F^ has an -th root in F B , then its class in V_F lies in the image of V_B .",
+      "section": "Recovering curve subfields",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-curve-intersection",
+      "kind": "lemma",
+      "label": "Intersections of curve subfields",
+      "statement": "[Intersections of curve subfields] Let F/ be a finitely generated extension of an algebraically closed field of characteristic different from . If P,Q F are distinct curve subfields, then \\[ _(V_P…",
+      "section": "Recovering curve subfields",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-curve-incidence",
+      "kind": "lemma",
+      "label": "Incidence descent",
+      "statement": "[Incidence descent] Let X_l^n be a normal integral projective variety of dimension d2 over an algebraically closed field l of characteristic different from , and put L=l(X) . Let S be an infinite set…",
+      "section": "Recovering curve subfields",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-thm-curve-matching",
+      "kind": "theorem",
+      "label": "Correspondence of curve subfields",
+      "statement": "[Correspondence of curve subfields] For every curve subfield E K there is a unique curve subfield P L such that (V_E)=V_P . This assignment is a bijection between the curve subfields of K/k and those…",
+      "section": "Recovering curve subfields",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-prop-true-divisors",
+      "kind": "proposition",
+      "label": "Recognition of true divisors",
+      "statement": "[Recognition of true divisors] Let F/ be one of K/k or L/l . A quasi-divisorial valuation v of F/ is a true prime divisor if and only if there is a curve subfield E F for which _(V_E D_v^)<.…",
+      "section": "True divisors and rational subfields",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-prop-good-matching",
+      "kind": "proposition",
+      "label": "Recognition of good subfields",
+      "statement": "[Recognition of good subfields] The curve-subfield correspondence of Theorem~ restricts to a bijection on good subfields. For matched good subfields E K and P L , the induced character isomorphism…",
+      "section": "True divisors and rational subfields",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-good-functions",
+      "kind": "lemma",
+      "label": "A supply of good functions",
+      "statement": "[A supply of good functions] Let F/ be a finitely generated extension of an algebraically closed field with (F/)2 and () . On an integral model of F/ , let q be a smooth closed point and let a,b be…",
+      "section": "True divisors and rational subfields",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-common-partner",
+      "kind": "lemma",
+      "label": "A common partner",
+      "statement": "[A common partner] For any finite list of good functions t_1,,t_m of F/ there is a good function s such that s is algebraically independent of each t_i over and \\[ t_i+cs\\ is good for every i and…",
+      "section": "True divisors and rational subfields",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-simultaneous-values",
+      "kind": "lemma",
+      "label": "Simultaneous values",
+      "statement": "[Simultaneous values] For every finite tuple \\( t\\) of good functions there are dense open subsets \\(U X_ t \\) and \\(U' Y_ t \\) such that (_i B_ t_i )(U(k)) Y_ t (l), (_i B_ t_i ^ -1 )(U'(l)) X_ t…",
+      "section": "Recovering the field from simultaneous values",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-cofinite-rational",
+      "kind": "lemma",
+      "label": "A perfect rational function in one variable that is injective on a cofinite…",
+      "statement": "A perfect rational function in one variable that is injective on a cofinite subset of \\(^1(l)\\) agrees there with a unique member of \\( H_l\\). In characteristic zero, \\( H_l=_2(l)\\); in…",
+      "section": "Recovering the field from simultaneous values",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-field-affine",
+      "kind": "lemma",
+      "label": "Transported addition",
+      "statement": "[Transported addition] Let \\(t,s\\) be algebraically independent good functions such that \\(z_c=t+cs\\) is good for every \\(c k^\\). For every \\(c k^\\) there is a perfect rational function \\(R_c…",
+      "section": "Recovering the field from simultaneous values",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-prop-constant-alignment",
+      "kind": "proposition",
+      "label": "Alignment of the constants",
+      "statement": "[Alignment of the constants] The fields \\(k\\) and \\(l\\) have the same characteristic. There is a field isomorphism \\(:k l\\) such that, for every good function \\(t\\), there is \\(H_t H_l\\) with B_t=H_t…",
+      "section": "Recovering the field from simultaneous values",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-thm-field-isomorphism",
+      "kind": "theorem",
+      "label": "There is a field isomorphism \\[ :K^i\\ \\ L^i, |_k=, \\] such that \\((t)=u_t\\) for…",
+      "statement": "There is a field isomorphism \\[ :K^i\\ \\ L^i, |_k=, \\] such that \\((t)=u_t\\) for every good function \\(t\\). In particular, if \\(k(t)\\) and \\(l(t')\\) are matched good rational subfields, then…",
+      "section": "Recovering the field from simultaneous values",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-restriction-rank",
+      "kind": "lemma",
+      "label": "Let v be a true prime divisor of K/k and let E K be a curve subfield. The…",
+      "statement": "Let v be a true prime divisor of K/k and let E K be a curve subfield. The restriction v|_E is trivial if and only if the image of D_v A_E is infinite-dimensional. If v|_E is nontrivial, this image…",
+      "section": "Compatibility and uniqueness",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-lem-separate-divisors",
+      "kind": "lemma",
+      "label": "For distinct true prime divisors v_1,v_2 of K/k , there is a good rational…",
+      "statement": "For distinct true prime divisors v_1,v_2 of K/k , there is a good rational subfield E K such that v_1|_E is trivial and v_2|_E is nontrivial.",
+      "section": "Compatibility and uniqueness",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-prop-global-scalar",
+      "kind": "proposition",
+      "label": "Let :V_K V_K be a compatible -linear automorphism. If (V_E)=V_E for every good…",
+      "statement": "Let :V_K V_K be a compatible -linear automorphism. If (V_E)=V_E for every good rational subfield E K , then =a\\,id for one a^ .",
+      "section": "Compatibility and uniqueness",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m1-prop-uniqueness",
+      "kind": "proposition",
+      "label": "Suppose :K^i K^i is a field automorphism preserving k whose action on V_K is a…",
+      "statement": "Suppose :K^i K^i is a field automorphism preserving k whose action on V_K is a scalar. Then is the identity in characteristic zero and an integral power of Frobenius in positive characteristic.",
+      "section": "Compatibility and uniqueness",
+      "manuscript": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Bogomolov--Pop reconstruction",
+      "statement": "[Bogomolov--Pop reconstruction] Let k and l be arbitrary algebraically closed fields of characteristics different from , and let K/k and L/l be function fields with (K/k),(L/l)2 . Then \\[ _ K,L…",
+      "section": "The reconstruction problem",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-prelim-duality",
+      "kind": "lemma",
+      "label": "Continuous evaluation",
+      "statement": "[Continuous evaluation] The group F^/^ is free abelian. Consequently W_F is a product of copies of , and evaluation gives \\[ F=_ cont (W_F,), F/^e F=F^/F^ ^e . \\] The module F is torsion free, and…",
+      "section": "Kummer duality and the group input",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-prelim-completion",
+      "kind": "lemma",
+      "label": "Subfields and finite extensions",
+      "statement": "[Subfields and finite extensions] Let E F be function fields over the same algebraically closed field . If E is relatively algebraically closed in F , then E F is injective, its image is closed and…",
+      "section": "Kummer duality and the group input",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-prelim-central-lift",
+      "kind": "lemma",
+      "label": "Lifting bracket-compatible isomorphisms",
+      "statement": "[Lifting bracket-compatible isomorphisms] Every bracket-compatible isomorphism in Theorem~ is the abelianization of a continuous isomorphism _L^c_K^c . This holds also for =2 .",
+      "section": "Kummer duality and the group input",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-prelim-curve-kernel",
+      "kind": "lemma",
+      "label": "Curve kernels",
+      "statement": "[Curve kernels] If char , then \\[ (E^/E^ ( _P)_P_ P C Z/) (C)[]. \\] Its dimension over is 2g(C) . The kernel of all exact point orders on E is the Tate module T_(C) and has -rank 2g(C) .",
+      "section": "Kummer duality and the group input",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-local-commuting",
+      "kind": "lemma",
+      "label": "Let F/ be a function field over an algebraically closed field of characteristic…",
+      "statement": "Let F/ be a function field over an algebraically closed field of characteristic different from~ . Under Kummer duality W_F=_F^a , two elements of W_F are alternating if and only if their commutator…",
+      "section": "Recovering the local data",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-local-residue",
+      "kind": "lemma",
+      "label": "For a quasi-prime r -divisor v of F/ , restriction to units induces a canonical…",
+      "statement": "For a quasi-prime r -divisor v of F/ , restriction to units induces a canonical topological isomorphism \\[ D_v/I_v W_ Fv . \\] If f,g D_v , they are alternating if and only if their residual…",
+      "section": "Recovering the local data",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-local-dimension",
+      "kind": "lemma",
+      "label": "For F/ as above, in any characteristic, s is the maximum dimension of an…",
+      "statement": "For F/ as above, in any characteristic, s is the maximum dimension of an alternating subspace of G_F . If S has dimension s , its valuative subspace is I_u for its associated valuation u , and u…",
+      "section": "Recovering the local data",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-local-quasiprime",
+      "kind": "lemma",
+      "label": "Assume s2 . A line H G_F is the inertia space of a quasi-prime divisor if and…",
+      "statement": "Assume s2 . A line H G_F is the inertia space of a quasi-prime divisor if and only if there are two s -dimensional alternating subspaces S_1,S_2 with S_1 S_2=H . The valuation is unique. If 0 h H ,…",
+      "section": "Recovering the local data",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-local-transport",
+      "kind": "proposition",
+      "label": "Let K/k and L/l be function fields over algebraically closed fields of…",
+      "statement": "Let K/k and L/l be function fields over algebraically closed fields of characteristic different from~ , each of transcendence degree at least two. Let :W_L W_K be a continuous bracket-compatible…",
+      "section": "Recovering the local data",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-local-criterion-hypotheses",
+      "kind": "lemma",
+      "label": "Every quasi-prime (s-1) -divisor v of F/ satisfies the two hypotheses of the…",
+      "statement": "Every quasi-prime (s-1) -divisor v of F/ satisfies the two hypotheses of the residual-curve criterion.",
+      "section": "Recovering the local data",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-local-curves",
+      "kind": "proposition",
+      "label": "In the setting of Proposition~ , let w and v be matched quasi-prime (d-1)…",
+      "statement": "In the setting of Proposition~ , let w and v be matched quasi-prime (d-1) -divisors. Then lw is algebraic over a finite field if and only if kv is. When this holds, the induced isomorphism W_ Lw W_…",
+      "section": "Recovering the local data",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-tests-residual",
+      "kind": "lemma",
+      "label": "Finite residual tests",
+      "statement": "[Finite residual tests] There is an integer G_X0 , depending only on the embedded variety X , with the following property. Given g_1,,g_r L^ and q=^e , e1 , there is a quasi-prime (d-1) -divisor w of…",
+      "section": "Finite tests on residual curves",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-tests-bertini",
+      "kind": "lemma",
+      "label": "Hyperplane sections of a quasi-finite map",
+      "statement": "[Hyperplane sections of a quasi-finite map] Let V be an integral variety over an algebraically closed field, and let f:V P^N be quasi-finite, with V=a2 . For a general hyperplane H , the inverse…",
+      "section": "Finite tests on residual curves",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-pencil-uniform",
+      "kind": "theorem",
+      "label": "Uniform pencil support",
+      "statement": "[Uniform pencil support] For every t K k , there is a finite constant B_t such that \\[ _ DSupp_X() D B_t for every a k. \\] In particular, all these supports are finite, with a bound independent of…",
+      "section": "A uniform bound for pencils",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-pencil-finite",
+      "kind": "corollary",
+      "label": "For every z K^ , the class has finite support on X .",
+      "statement": "For every z K^ , the class has finite support on X .",
+      "section": "A uniform bound for pencils",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-recovery-curves",
+      "kind": "theorem",
+      "label": "The map gives a bijection between the completed curve subfields of K/k and…",
+      "statement": "The map gives a bijection between the completed curve subfields of K/k and those of L/l . More precisely, for every curve subfield E K there is a unique curve subfield P L such that \\[ ( E)= P. \\]",
+      "section": "Recovering the curve subfields",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-recovery-residue-powers",
+      "kind": "lemma",
+      "label": "The set S is infinite. For every z E^ , every j1 , and every representative g…",
+      "statement": "The set S is infinite. For every z E^ , every j1 , and every representative g L^ of ^j , all but finitely many D S satisfy ord_D(g)=0, g|_D l(D)^ ^j .",
+      "section": "Recovering the curve subfields",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-recovery-incidence",
+      "kind": "lemma",
+      "label": "Let l be algebraically closed, let X/l be a normal integral projective variety…",
+      "statement": "Let l be algebraically closed, let X/l be a normal integral projective variety of dimension d2 , and let S be an infinite set of prime divisors of bounded degree in a fixed projective embedding. Let…",
+      "section": "Recovering the curve subfields",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-recovery-kummer-descent",
+      "kind": "lemma",
+      "label": "Let M/P be a regular field extension, let q be prime to the characteristic, and…",
+      "statement": "Let M/P be a regular field extension, let q be prime to the characteristic, and suppose _q P . If g M^ becomes a q -th power in M P , then its class in M^/M^ q comes from a unique class in P^/P^ q .",
+      "section": "Recovering the curve subfields",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-recovery-intersection",
+      "kind": "lemma",
+      "label": "Let N/l be a function field over algebraically closed constants of…",
+      "statement": "Let N/l be a function field over algebraically closed constants of characteristic different from . If P and Q are distinct curve subfields of N/l , then P Q N has finite -rank.",
+      "section": "Recovering the curve subfields",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-recovery-divisorial",
+      "kind": "proposition",
+      "label": "A quasi-prime divisor v of K/k is divisorial if and only if D_v^ E=0 for some…",
+      "statement": "A quasi-prime divisor v of K/k is divisorial if and only if D_v^ E=0 for some curve subfield E of K/k . Consequently preserves divisorial inertia and decomposition groups in both directions.",
+      "section": "Recovering the curve subfields",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-recovery-rational",
+      "kind": "proposition",
+      "label": "The point inertia lines of every curve subfield E are precisely the saturations…",
+      "statement": "The point inertia lines of every curve subfield E are precisely the saturations of the nonzero images _E(I_v) for divisorial valuations v of K/k . The correspondence of Theorem~ preserves these lines…",
+      "section": "Recovering the curve subfields",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    },
+    {
+      "id": "m2-reconstruction-pop",
+      "kind": "proposition",
+      "label": "Pop's reconstruction theorems",
+      "statement": "[Pop's reconstruction theorems] Let F/ and F'/' be function fields of transcendence degree greater than one over algebraically closed fields of characteristic different from . From _F^c_F^a and the…",
+      "section": "From the recovered quotients to the field",
+      "manuscript": "The Bogomolov-Pop reconstruction theorem"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-local-dimension",
+      "to": "m1-thm-main",
+      "label": "prop:local-dimension",
+      "context": "[Proof of Theorem~\\ref{thm:main}] A compatible $\\Theta$ gives equal transcendence degrees by Proposition~\\ref{prop:local-dimension}. Theorem~\\ref{thm:field-isomorphism} produces a field isomorphism $\\alpha:K^i\\to L^i$ respecting constants; in particul"
+    },
+    {
+      "from": "m1-thm-field-isomorphism",
+      "to": "m1-thm-main",
+      "label": "thm:field-isomorphism",
+      "context": "[Proof of Theorem~\\ref{thm:main}] A compatible $\\Theta$ gives equal transcendence degrees by Proposition~\\ref{prop:local-dimension}. Theorem~\\ref{thm:field-isomorphism} produces a field isomorphism $\\alpha:K^i\\to L^i$ respecting constants; in particular, the characteristics agree. Propos"
+    }
+  ]
+}

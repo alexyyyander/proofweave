@@ -1,0 +1,590 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "083",
+  "title": "Hilbert transforms along Lipschitz directions",
+  "result": {
+    "id": "paper-result",
+    "label": "Hilbert transforms along Lipschitz directions",
+    "statement": "Proves a uniform strong L 2 bound for the planar Hilbert transform along any Lipschitz unit vector field, at integration lengths bounded by an absolute multiple of its reciprocal Lipschitz constant. The estimate is uniform over inner truncations and yields an L 2 -bounded principal-value operator, establishing Stein's weak-type conjecture at this short scale.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "short-transforms-and-band-reduction",
+      "label": "Short transforms and band reduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "ordinary-tiles-and-the-popular-forest",
+      "label": "Ordinary tiles and the popular forest",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reference-line-concentration-and-significant-directions",
+      "label": "Reference-line concentration and significant directions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-strict-finite-fourier-inequality-with-constant-one",
+      "label": "A strict finite Fourier inequality with constant one",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "angular-hierarchy-and-predicted-factors",
+      "label": "Angular hierarchy and predicted factors",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "residual-terms-and-integration-along-paths",
+      "label": "Residual terms and integration along paths",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "interpolation-boundary-averaging-and-completion",
+      "label": "Interpolation, boundary averaging, and completion",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A uniform Hilbert transform estimate for Lipschitz directions",
+      "title": "A uniform Hilbert transform estimate for Lipschitz directions",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-uniform-Hilbert-transform-estimate-for-Lipschitz-directions-September-25-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A uniform Hilbert transform estimate for Lipschitz directions.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "short-transforms-and-band-reduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-red-kakeya",
+          "role": "short-transforms-and-band-reduction",
+          "label": "theorem m1-red-kakeya",
+          "fullLabel": "theorem m1-red-kakeya",
+          "kind": "theorem",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-red-fixed-time",
+          "role": "short-transforms-and-band-reduction",
+          "label": "lemma m1-red-fixed-time",
+          "fullLabel": "lemma m1-red-fixed-time",
+          "kind": "lemma",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-band-restricted",
+          "role": "short-transforms-and-band-reduction",
+          "label": "theorem m1-thm-band-restricted",
+          "fullLabel": "theorem m1-thm-band-restricted",
+          "kind": "theorem",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-red-restricted-strong",
+          "role": "short-transforms-and-band-reduction",
+          "label": "lemma m1-red-restricted-strong",
+          "fullLabel": "lemma m1-red-restricted-strong",
+          "kind": "lemma",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-red-carleson",
+          "role": "short-transforms-and-band-reduction",
+          "label": "lemma m1-red-carleson",
+          "fullLabel": "lemma m1-red-carleson",
+          "kind": "lemma",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-red-commutator",
+          "role": "short-transforms-and-band-reduction",
+          "label": "lemma m1-red-commutator",
+          "fullLabel": "lemma m1-red-commutator",
+          "kind": "lemma",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-red-composition-commutator",
+          "role": "short-transforms-and-band-reduction",
+          "label": "corollary m1-red-composition-commutator",
+          "fullLabel": "corollary m1-red-composition-commutator",
+          "kind": "corollary",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-red-band-implies-main",
+          "role": "short-transforms-and-band-reduction",
+          "label": "proposition m1-red-band-implies-main",
+          "fullLabel": "proposition m1-red-band-implies-main",
+          "kind": "proposition",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-red-time-reduction",
+          "role": "short-transforms-and-band-reduction",
+          "label": "lemma m1-red-time-reduction",
+          "fullLabel": "lemma m1-red-time-reduction",
+          "kind": "lemma",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-red-scale-truncation",
+          "role": "short-transforms-and-band-reduction",
+          "label": "lemma m1-red-scale-truncation",
+          "fullLabel": "lemma m1-red-scale-truncation",
+          "kind": "lemma",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-red-bin-levels",
+          "role": "short-transforms-and-band-reduction",
+          "label": "lemma m1-red-bin-levels",
+          "fullLabel": "lemma m1-red-bin-levels",
+          "kind": "lemma",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-red-packet-representation",
+          "role": "short-transforms-and-band-reduction",
+          "label": "proposition m1-red-packet-representation",
+          "fullLabel": "proposition m1-red-packet-representation",
+          "kind": "proposition",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-red-model-suffices",
+          "role": "short-transforms-and-band-reduction",
+          "label": "proposition m1-red-model-suffices",
+          "fullLabel": "proposition m1-red-model-suffices",
+          "kind": "proposition",
+          "source": "Short transforms and band reduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tile-prop-model",
+          "role": "ordinary-tiles-and-the-popular-forest",
+          "label": "proposition m1-tile-prop-model",
+          "fullLabel": "proposition m1-tile-prop-model",
+          "kind": "proposition",
+          "source": "Ordinary tiles and the popular forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tile-lem-synthesis",
+          "role": "ordinary-tiles-and-the-popular-forest",
+          "label": "lemma m1-tile-lem-synthesis",
+          "fullLabel": "lemma m1-tile-lem-synthesis",
+          "kind": "lemma",
+          "source": "Ordinary tiles and the popular forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tile-lem-size",
+          "role": "ordinary-tiles-and-the-popular-forest",
+          "label": "lemma m1-tile-lem-size",
+          "fullLabel": "lemma m1-tile-lem-size",
+          "kind": "lemma",
+          "source": "Ordinary tiles and the popular forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tile-lem-density",
+          "role": "ordinary-tiles-and-the-popular-forest",
+          "label": "lemma m1-tile-lem-density",
+          "fullLabel": "lemma m1-tile-lem-density",
+          "kind": "lemma",
+          "source": "Ordinary tiles and the popular forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tile-lem-tree",
+          "role": "ordinary-tiles-and-the-popular-forest",
+          "label": "lemma m1-tile-lem-tree",
+          "fullLabel": "lemma m1-tile-lem-tree",
+          "kind": "lemma",
+          "source": "Ordinary tiles and the popular forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-forest-prop-count",
+          "role": "ordinary-tiles-and-the-popular-forest",
+          "label": "proposition m1-forest-prop-count",
+          "fullLabel": "proposition m1-forest-prop-count",
+          "kind": "proposition",
+          "source": "Ordinary tiles and the popular forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-forest-lem-mask",
+          "role": "ordinary-tiles-and-the-popular-forest",
+          "label": "lemma m1-forest-lem-mask",
+          "fullLabel": "lemma m1-forest-lem-mask",
+          "kind": "lemma",
+          "source": "Ordinary tiles and the popular forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-conc-single-scale",
+          "role": "reference-line-concentration-and-significant-directions",
+          "label": "lemma m1-conc-single-scale",
+          "fullLabel": "lemma m1-conc-single-scale",
+          "kind": "lemma",
+          "source": "Reference-line concentration and significant directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-conc-coefficient-carleson",
+          "role": "reference-line-concentration-and-significant-directions",
+          "label": "lemma m1-conc-coefficient-carleson",
+          "fullLabel": "lemma m1-conc-coefficient-carleson",
+          "kind": "lemma",
+          "source": "Reference-line concentration and significant directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-conc-annular-variation",
+          "role": "reference-line-concentration-and-significant-directions",
+          "label": "lemma m1-conc-annular-variation",
+          "fullLabel": "lemma m1-conc-annular-variation",
+          "kind": "lemma",
+          "source": "Reference-line concentration and significant directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-conc-john-nirenberg",
+          "role": "reference-line-concentration-and-significant-directions",
+          "label": "lemma m1-conc-john-nirenberg",
+          "fullLabel": "lemma m1-conc-john-nirenberg",
+          "kind": "lemma",
+          "source": "Reference-line concentration and significant directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-conc-line-moments",
+          "role": "reference-line-concentration-and-significant-directions",
+          "label": "proposition m1-conc-line-moments",
+          "fullLabel": "proposition m1-conc-line-moments",
+          "kind": "proposition",
+          "source": "Reference-line concentration and significant directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-conc-top-good",
+          "role": "reference-line-concentration-and-significant-directions",
+          "label": "corollary m1-conc-top-good",
+          "fullLabel": "corollary m1-conc-top-good",
+          "kind": "corollary",
+          "source": "Reference-line concentration and significant directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-conc-mask-removal",
+          "role": "reference-line-concentration-and-significant-directions",
+          "label": "proposition m1-conc-mask-removal",
+          "fullLabel": "proposition m1-conc-mask-removal",
+          "kind": "proposition",
+          "source": "Reference-line concentration and significant directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-count-simultaneous",
+          "role": "reference-line-concentration-and-significant-directions",
+          "label": "proposition m1-count-simultaneous",
+          "fullLabel": "proposition m1-count-simultaneous",
+          "kind": "proposition",
+          "source": "Reference-line concentration and significant directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-count-line-lemma",
+          "role": "reference-line-concentration-and-significant-directions",
+          "label": "lemma m1-count-line-lemma",
+          "fullLabel": "lemma m1-count-line-lemma",
+          "kind": "lemma",
+          "source": "Reference-line concentration and significant directions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-finite-fourier",
+          "role": "a-strict-finite-fourier-inequality-with-constant-one",
+          "label": "proposition m1-phase-finite-fourier",
+          "fullLabel": "proposition m1-phase-finite-fourier",
+          "kind": "proposition",
+          "source": "A strict finite Fourier inequality with constant one",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-quantile-gap",
+          "role": "a-strict-finite-fourier-inequality-with-constant-one",
+          "label": "lemma m1-phase-quantile-gap",
+          "fullLabel": "lemma m1-phase-quantile-gap",
+          "kind": "lemma",
+          "source": "A strict finite Fourier inequality with constant one",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hier-weight-variation",
+          "role": "angular-hierarchy-and-predicted-factors",
+          "label": "lemma m1-hier-weight-variation",
+          "fullLabel": "lemma m1-hier-weight-variation",
+          "kind": "lemma",
+          "source": "Angular hierarchy and predicted factors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hier-amplitudes",
+          "role": "angular-hierarchy-and-predicted-factors",
+          "label": "lemma m1-hier-amplitudes",
+          "fullLabel": "lemma m1-hier-amplitudes",
+          "kind": "lemma",
+          "source": "Angular hierarchy and predicted factors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hier-mass-motion",
+          "role": "angular-hierarchy-and-predicted-factors",
+          "label": "lemma m1-hier-mass-motion",
+          "fullLabel": "lemma m1-hier-mass-motion",
+          "kind": "lemma",
+          "source": "Angular hierarchy and predicted factors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hier-moving-weights",
+          "role": "angular-hierarchy-and-predicted-factors",
+          "label": "lemma m1-hier-moving-weights",
+          "fullLabel": "lemma m1-hier-moving-weights",
+          "kind": "lemma",
+          "source": "Angular hierarchy and predicted factors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hier-amplitude-motion",
+          "role": "angular-hierarchy-and-predicted-factors",
+          "label": "lemma m1-hier-amplitude-motion",
+          "fullLabel": "lemma m1-hier-amplitude-motion",
+          "kind": "lemma",
+          "source": "Angular hierarchy and predicted factors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hier-good-paths",
+          "role": "angular-hierarchy-and-predicted-factors",
+          "label": "lemma m1-hier-good-paths",
+          "fullLabel": "lemma m1-hier-good-paths",
+          "kind": "lemma",
+          "source": "Angular hierarchy and predicted factors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hier-path-expansion",
+          "role": "angular-hierarchy-and-predicted-factors",
+          "label": "lemma m1-hier-path-expansion",
+          "fullLabel": "lemma m1-hier-path-expansion",
+          "kind": "lemma",
+          "source": "Angular hierarchy and predicted factors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hier-marking",
+          "role": "angular-hierarchy-and-predicted-factors",
+          "label": "lemma m1-hier-marking",
+          "fullLabel": "lemma m1-hier-marking",
+          "kind": "lemma",
+          "source": "Angular hierarchy and predicted factors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pred-marked-comparison",
+          "role": "angular-hierarchy-and-predicted-factors",
+          "label": "proposition m1-pred-marked-comparison",
+          "fullLabel": "proposition m1-pred-marked-comparison",
+          "kind": "proposition",
+          "source": "Angular hierarchy and predicted factors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pred-fourier-average",
+          "role": "angular-hierarchy-and-predicted-factors",
+          "label": "lemma m1-pred-fourier-average",
+          "fullLabel": "lemma m1-pred-fourier-average",
+          "kind": "lemma",
+          "source": "Angular hierarchy and predicted factors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-res-block-square",
+          "role": "residual-terms-and-integration-along-paths",
+          "label": "lemma m1-res-block-square",
+          "fullLabel": "lemma m1-res-block-square",
+          "kind": "lemma",
+          "source": "Residual terms and integration along paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-res-common-weight-variation",
+          "role": "residual-terms-and-integration-along-paths",
+          "label": "lemma m1-res-common-weight-variation",
+          "fullLabel": "lemma m1-res-common-weight-variation",
+          "kind": "lemma",
+          "source": "Residual terms and integration along paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-res-path-product",
+          "role": "residual-terms-and-integration-along-paths",
+          "label": "theorem m1-res-path-product",
+          "fullLabel": "theorem m1-res-path-product",
+          "kind": "theorem",
+          "source": "Residual terms and integration along paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-assembly-vertices",
+          "role": "interpolation-boundary-averaging-and-completion",
+          "label": "proposition m1-assembly-vertices",
+          "fullLabel": "proposition m1-assembly-vertices",
+          "kind": "proposition",
+          "source": "Interpolation, boundary averaging, and completion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-assembly-interpolation",
+          "role": "interpolation-boundary-averaging-and-completion",
+          "label": "lemma m1-assembly-interpolation",
+          "fullLabel": "lemma m1-assembly-interpolation",
+          "kind": "lemma",
+          "source": "Interpolation, boundary averaging, and completion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-assembly-boundary-loss",
+          "role": "interpolation-boundary-averaging-and-completion",
+          "label": "lemma m1-assembly-boundary-loss",
+          "fullLabel": "lemma m1-assembly-boundary-loss",
+          "kind": "lemma",
+          "source": "Interpolation, boundary averaging, and completion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-assembly-improved-model",
+          "role": "interpolation-boundary-averaging-and-completion",
+          "label": "theorem m1-assembly-improved-model",
+          "fullLabel": "theorem m1-assembly-improved-model",
+          "kind": "theorem",
+          "source": "Interpolation, boundary averaging, and completion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-assembly-all-model-estimates",
+          "role": "interpolation-boundary-averaging-and-completion",
+          "label": "theorem m1-assembly-all-model-estimates",
+          "fullLabel": "theorem m1-assembly-all-model-estimates",
+          "kind": "theorem",
+          "source": "Interpolation, boundary averaging, and completion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "A uniform Hilbert transform estimate for Lipschitz directions",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-uniform-Hilbert-transform-estimate-for-Lipschitz-directions-September-25-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

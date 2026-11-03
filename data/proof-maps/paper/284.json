@@ -1,0 +1,145 @@
+{
+  "familyNumber": "284",
+  "familyTitle": "The optimal quartic separation between randomized and quantum queries",
+  "manuscripts": [
+    {
+      "id": "A-Nearly-Quartic-Separation-Between-Randomized-and-Quantum-Query-Complexity-October-5-2026",
+      "title": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Nearly-Quartic-Separation-Between-Randomized-and-Quantum-Query-Complexity-October-5-2026/quartic-query-separation.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "An addressed certificate with outward pointers",
+    "Quantum search with probabilistic comparisons",
+    "The randomized lower bound",
+    "The universal quartic bound"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "The optimal power is _ tot =4 . More precisely, (f)=O((1+(f))^4) for every…",
+      "statement": "The optimal power is _ tot =4 . More precisely, (f)=O((1+(f))^4) for every total Boolean function. For each fixed integer k2 , there are positive constants c_k,C_k,b_k and total Boolean functions F_…",
+      "section": "Introduction",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    },
+    {
+      "id": "m1-lem-forrelation",
+      "kind": "lemma",
+      "label": "For each fixed integer k2 , the functions P_ k,m have the following properties.…",
+      "statement": "For each fixed integer k2 , the functions P_ k,m have the following properties. For all sufficiently large powers of four m , (P_ k,m )>L, L= m^ 1-1/k (_2 m)^2 . For every 0<<1/2 , a quantum…",
+      "section": "An addressed certificate with outward pointers",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    },
+    {
+      "id": "m1-lem-local-tests",
+      "kind": "lemma",
+      "label": "For every input to F_ k,m and every pair (i,s)^r , the assertion that i wins at…",
+      "statement": "For every input to F_ k,m and every pair (i,s)^r , the assertion that i wins at address s is a conjunction of \\[ K_ k,m =m+(m-1)+r(S_ k,m +2) =O_k(m( m)^3) \\] Boolean tests. Each test can be…",
+      "section": "An addressed certificate with outward pointers",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    },
+    {
+      "id": "m1-lem-amplification",
+      "kind": "lemma",
+      "label": "Bounded amplification",
+      "statement": "[Bounded amplification] Let A be a quantum state preparation with a designated success bit. Its success probability is p , and, if p>0 , its normalized successful state is g . Let 0<1/2 and 0<<1/2 .…",
+      "section": "Quantum search with probabilistic comparisons",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    },
+    {
+      "id": "m1-prop-tournament",
+      "kind": "proposition",
+      "label": "A tournament for probabilistic comparisons",
+      "statement": "[A tournament for probabilistic comparisons] For m2 , put \\[ T=(1000m), =1 1000T . \\] Suppose a coherent comparison circuit, controlled by two candidate indices and reversible with all workspace…",
+      "section": "Quantum search with probabilistic comparisons",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    },
+    {
+      "id": "m1-prop-quantum",
+      "kind": "proposition",
+      "label": "For every fixed k2 , the total functions of Section~ satisfy \\[ (F_ k,m ) m(…",
+      "statement": "For every fixed k2 , the total functions of Section~ satisfy \\[ (F_ k,m ) m( m)^ O_k(1) . \\]",
+      "section": "Quantum search with probabilistic comparisons",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    },
+    {
+      "id": "m1-lem-adaptive-product",
+      "kind": "lemma",
+      "label": "Let P D , where D^n , let be a distribution on D , and let L be a nonnegative…",
+      "statement": "Let P D , where D^n , let be a distribution on D , and let L be a nonnegative integer. Suppose every deterministic algorithm making at most L queries computes P under with success probability at most…",
+      "section": "The randomized lower bound",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    },
+    {
+      "id": "m1-prop-classical",
+      "kind": "proposition",
+      "label": "For each fixed integer k2 and every sufficiently large power of four m , the…",
+      "statement": "For each fixed integer k2 and every sufficiently large power of four m , the total function of Section~ satisfies (F_ k,m )> G:=mL 100 , L= m^ 1-1/k (_2m)^2 .",
+      "section": "The randomized lower bound",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    },
+    {
+      "id": "m1-thm-quartic-upper",
+      "kind": "theorem",
+      "label": "[ ] Every total Boolean function satisfies \\[ (f)(f)=O((1+(f))^4). \\]",
+      "statement": "[ ] Every total Boolean function satisfies \\[ (f)(f)=O((1+(f))^4). \\]",
+      "section": "The universal quartic bound",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    },
+    {
+      "id": "m1-lem-adversary",
+      "kind": "lemma",
+      "label": "Nonnegative spectral adversary bound",
+      "statement": "[Nonnegative spectral adversary bound] Let f be a nonconstant total Boolean function. Let be a nonzero real symmetric matrix, indexed by inputs, with nonnegative entries and _ xy =0 whenever…",
+      "section": "The universal quartic bound",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    },
+    {
+      "id": "m1-lem-bs-lambda",
+      "kind": "lemma",
+      "label": "For every nonconstant total Boolean function, \\[ (f)=O((f)^2), (f)=O((f)). \\]",
+      "statement": "For every nonconstant total Boolean function, \\[ (f)=O((f)^2), (f)=O((f)). \\]",
+      "section": "The universal quartic bound",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    },
+    {
+      "id": "m1-lem-degree-lambda",
+      "kind": "lemma",
+      "label": ", using",
+      "statement": "[ , using ] Every nonconstant total Boolean function satisfies (f)(f)^2 .",
+      "section": "The universal quartic bound",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    },
+    {
+      "id": "m1-lem-degree-bs",
+      "kind": "lemma",
+      "label": "[ ] Every total Boolean function satisfies (f)(f)(f) .",
+      "statement": "[ ] Every total Boolean function satisfies (f)(f)(f) .",
+      "section": "The universal quartic bound",
+      "manuscript": "A Nearly Quartic Separation Between Randomized and Quantum Query Complexity"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-quantum",
+      "to": "m1-thm-main",
+      "label": "prop:quantum",
+      "context": "[Proof of Theorem~\\ref{thm:main}] For each fixed $k\\ge2$, Proposition~\\ref{prop:quantum} gives $\\Q(F_{k,m})\\le C_k\\sqrt m(\\log m)^{b_k}$ for suitable constants. Proposition~\\ref{prop:classical} gives \\[ \\R(F"
+    },
+    {
+      "from": "m1-lem-bs-lambda",
+      "to": "m1-thm-quartic-upper",
+      "label": "lem:bs-lambda",
+      "context": "[Proof of Theorem~\\ref{thm:quartic-upper}] For nonconstant $f$, Lemmas~\\ref{lem:bs-lambda} and \\ref{lem:degree-lambda} give both $\\bs(f)=O(\\Q(f)^2)$ and $\\deg(f)=O(\\Q(f)^2)$. Lemma~\\ref{lem:degree-bs} then give"
+    },
+    {
+      "from": "m1-lem-degree-lambda",
+      "to": "m1-thm-quartic-upper",
+      "label": "lem:degree-lambda",
+      "context": "[Proof of Theorem~\\ref{thm:quartic-upper}] For nonconstant $f$, Lemmas~\\ref{lem:bs-lambda} and \\ref{lem:degree-lambda} give both $\\bs(f)=O(\\Q(f)^2)$ and $\\deg(f)=O(\\Q(f)^2)$. Lemma~\\ref{lem:degree-bs} then gives $\\D(f)=O(\\Q(f)^4)$. Since"
+    }
+  ]
+}

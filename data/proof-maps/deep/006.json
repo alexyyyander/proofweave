@@ -1,0 +1,922 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "006",
+  "title": "Goldfeld’s conjecture: densities and mean analytic rank",
+  "result": {
+    "id": "paper-result",
+    "label": "Goldfeld’s conjecture: densities and mean analytic rank",
+    "statement": "Proves Goldfeld's conjecture for quadratic twists of every elliptic curve over ℚ: analytic ranks zero and one each have density 1/2, and the mean analytic rank tends to 1/2. Both statements order signed squarefree twist parameters by absolute value.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selmer-ranks-and-local-conventions",
+      "label": "Selmer ranks and local conventions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "arithmetic-estimates-for-finite-twist-families",
+      "label": "Arithmetic estimates for finite twist families",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "coefficients-that-detect-analytic-rank",
+      "label": "Coefficients that detect analytic rank",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "trace-identities-and-prime-substitutions",
+      "label": "Trace identities and prime substitutions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "prime-graphs-and-simultaneous-unit-coefficients",
+      "label": "Prime graphs and simultaneous unit coefficients",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-converse-with-rational-two-torsion",
+      "label": "The converse with rational two-torsion",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selmer-matrices-and-three-state-relations",
+      "label": "Selmer matrices and three-state relations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "proof-of-auxiliary-nonvanishing",
+      "label": "Proof of auxiliary nonvanishing",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transfer-on-a-binary-cube",
+      "label": "Transfer on a binary cube",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "cyclotomic-interpolation-at-analytic-rank-zero",
+      "label": "Cyclotomic interpolation at analytic rank zero",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "heegner-points-and-transfer",
+      "label": "Heegner points and transfer",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves",
+      "title": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-07",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Goldfelds-analytic-density-conjecture-and-the-2-converse-for-elliptic-curves-October-7-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Goldfeld's analytic density conjecture and the 2-converse for elliptic curves.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main-converse",
+          "role": "introduction",
+          "label": "theorem m1-thm-main-converse",
+          "fullLabel": "theorem m1-thm-main-converse",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-main-density",
+          "role": "introduction",
+          "label": "theorem m1-thm-main-density",
+          "fullLabel": "theorem m1-thm-main-density",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-finite-descent",
+          "role": "introduction",
+          "label": "corollary m1-cor-finite-descent",
+          "fullLabel": "corollary m1-cor-finite-descent",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pr-ranks",
+          "role": "selmer-ranks-and-local-conventions",
+          "label": "lemma m1-pr-ranks",
+          "fullLabel": "lemma m1-pr-ranks",
+          "kind": "lemma",
+          "source": "Selmer ranks and local conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pr-invariance",
+          "role": "selmer-ranks-and-local-conventions",
+          "label": "lemma m1-pr-invariance",
+          "fullLabel": "lemma m1-pr-invariance",
+          "kind": "lemma",
+          "source": "Selmer ranks and local conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pr-residual-cases",
+          "role": "selmer-ranks-and-local-conventions",
+          "label": "lemma m1-pr-residual-cases",
+          "fullLabel": "lemma m1-pr-residual-cases",
+          "kind": "lemma",
+          "source": "Selmer ranks and local conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pr-finite-descent",
+          "role": "selmer-ranks-and-local-conventions",
+          "label": "lemma m1-pr-finite-descent",
+          "fullLabel": "lemma m1-pr-finite-descent",
+          "kind": "lemma",
+          "source": "Selmer ranks and local conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-cyclotomic-interpolation",
+          "role": "arithmetic-estimates-for-finite-twist-families",
+          "label": "theorem m1-thm-cyclotomic-interpolation",
+          "fullLabel": "theorem m1-thm-cyclotomic-interpolation",
+          "kind": "theorem",
+          "source": "Arithmetic estimates for finite twist families",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-heegner-comparison",
+          "role": "arithmetic-estimates-for-finite-twist-families",
+          "label": "proposition m1-prop-heegner-comparison",
+          "fullLabel": "proposition m1-prop-heegner-comparison",
+          "kind": "proposition",
+          "source": "Arithmetic estimates for finite twist families",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-heegner-interpolation",
+          "role": "arithmetic-estimates-for-finite-twist-families",
+          "label": "theorem m1-thm-heegner-interpolation",
+          "fullLabel": "theorem m1-thm-heegner-interpolation",
+          "kind": "theorem",
+          "source": "Arithmetic estimates for finite twist families",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-h-base-selmer-bound",
+          "role": "arithmetic-estimates-for-finite-twist-families",
+          "label": "lemma m1-lem-h-base-selmer-bound",
+          "fullLabel": "lemma m1-lem-h-base-selmer-bound",
+          "kind": "lemma",
+          "source": "Arithmetic estimates for finite twist families",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-cyclotomic-bound",
+          "role": "arithmetic-estimates-for-finite-twist-families",
+          "label": "theorem m1-thm-cyclotomic-bound",
+          "fullLabel": "theorem m1-thm-cyclotomic-bound",
+          "kind": "theorem",
+          "source": "Arithmetic estimates for finite twist families",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-heegner-genus-bound",
+          "role": "arithmetic-estimates-for-finite-twist-families",
+          "label": "theorem m1-thm-heegner-genus-bound",
+          "fullLabel": "theorem m1-thm-heegner-genus-bound",
+          "kind": "theorem",
+          "source": "Arithmetic estimates for finite twist families",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-heegner-ring-bound",
+          "role": "arithmetic-estimates-for-finite-twist-families",
+          "label": "theorem m1-thm-heegner-ring-bound",
+          "fullLabel": "theorem m1-thm-heegner-ring-bound",
+          "kind": "theorem",
+          "source": "Arithmetic estimates for finite twist families",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-rough-nonvanishing",
+          "role": "arithmetic-estimates-for-finite-twist-families",
+          "label": "proposition m1-prop-rough-nonvanishing",
+          "fullLabel": "proposition m1-prop-rough-nonvanishing",
+          "kind": "proposition",
+          "source": "Arithmetic estimates for finite twist families",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-even-coefficients",
+          "role": "coefficients-that-detect-analytic-rank",
+          "label": "proposition m1-prop-even-coefficients",
+          "fullLabel": "proposition m1-prop-even-coefficients",
+          "kind": "proposition",
+          "source": "Coefficients that detect analytic rank",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-odd-coefficients",
+          "role": "coefficients-that-detect-analytic-rank",
+          "label": "proposition m1-prop-odd-coefficients",
+          "fullLabel": "proposition m1-prop-odd-coefficients",
+          "kind": "proposition",
+          "source": "Coefficients that detect analytic rank",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cs-fixed-weight-uniformity",
+          "role": "coefficients-that-detect-analytic-rank",
+          "label": "lemma m1-cs-fixed-weight-uniformity",
+          "fullLabel": "lemma m1-cs-fixed-weight-uniformity",
+          "kind": "lemma",
+          "source": "Coefficients that detect analytic rank",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-unit-symbol-detection",
+          "role": "coefficients-that-detect-analytic-rank",
+          "label": "proposition m1-prop-unit-symbol-detection",
+          "fullLabel": "proposition m1-prop-unit-symbol-detection",
+          "kind": "proposition",
+          "source": "Coefficients that detect analytic rank",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tc-shell-bound",
+          "role": "trace-identities-and-prime-substitutions",
+          "label": "lemma m1-tc-shell-bound",
+          "fullLabel": "lemma m1-tc-shell-bound",
+          "kind": "lemma",
+          "source": "Trace identities and prime substitutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tc-unary-integrality",
+          "role": "trace-identities-and-prime-substitutions",
+          "label": "lemma m1-tc-unary-integrality",
+          "fullLabel": "lemma m1-tc-unary-integrality",
+          "kind": "lemma",
+          "source": "Trace identities and prime substitutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tc-trace-algebra",
+          "role": "trace-identities-and-prime-substitutions",
+          "label": "lemma m1-tc-trace-algebra",
+          "fullLabel": "lemma m1-tc-trace-algebra",
+          "kind": "lemma",
+          "source": "Trace identities and prime substitutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tc-inertia-identity",
+          "role": "trace-identities-and-prime-substitutions",
+          "label": "lemma m1-tc-inertia-identity",
+          "fullLabel": "lemma m1-tc-inertia-identity",
+          "kind": "lemma",
+          "source": "Trace identities and prime substitutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tc-rational-rules",
+          "role": "trace-identities-and-prime-substitutions",
+          "label": "proposition m1-tc-rational-rules",
+          "fullLabel": "proposition m1-tc-rational-rules",
+          "kind": "proposition",
+          "source": "Trace identities and prime substitutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tc-simple-twins",
+          "role": "trace-identities-and-prime-substitutions",
+          "label": "proposition m1-tc-simple-twins",
+          "fullLabel": "proposition m1-tc-simple-twins",
+          "kind": "proposition",
+          "source": "Trace identities and prime substitutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tc-root-character",
+          "role": "trace-identities-and-prime-substitutions",
+          "label": "lemma m1-tc-root-character",
+          "fullLabel": "lemma m1-tc-root-character",
+          "kind": "lemma",
+          "source": "Trace identities and prime substitutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tc-irreducible-rules",
+          "role": "trace-identities-and-prime-substitutions",
+          "label": "proposition m1-tc-irreducible-rules",
+          "fullLabel": "proposition m1-tc-irreducible-rules",
+          "kind": "proposition",
+          "source": "Trace identities and prime substitutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-tc-minimum-transfer",
+          "role": "trace-identities-and-prime-substitutions",
+          "label": "lemma m1-tc-minimum-transfer",
+          "fullLabel": "lemma m1-tc-minimum-transfer",
+          "kind": "lemma",
+          "source": "Trace identities and prime substitutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-symbol-rules",
+          "role": "trace-identities-and-prime-substitutions",
+          "label": "theorem m1-thm-symbol-rules",
+          "fullLabel": "theorem m1-thm-symbol-rules",
+          "kind": "theorem",
+          "source": "Trace identities and prime substitutions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-gr-realization",
+          "role": "prime-graphs-and-simultaneous-unit-coefficients",
+          "label": "lemma m1-gr-realization",
+          "fullLabel": "lemma m1-gr-realization",
+          "kind": "lemma",
+          "source": "Prime graphs and simultaneous unit coefficients",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-gr-forest",
+          "role": "prime-graphs-and-simultaneous-unit-coefficients",
+          "label": "lemma m1-gr-forest",
+          "fullLabel": "lemma m1-gr-forest",
+          "kind": "lemma",
+          "source": "Prime graphs and simultaneous unit coefficients",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-gr-network",
+          "role": "prime-graphs-and-simultaneous-unit-coefficients",
+          "label": "lemma m1-gr-network",
+          "fullLabel": "lemma m1-gr-network",
+          "kind": "lemma",
+          "source": "Prime graphs and simultaneous unit coefficients",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-gr-programs",
+          "role": "prime-graphs-and-simultaneous-unit-coefficients",
+          "label": "lemma m1-gr-programs",
+          "fullLabel": "lemma m1-gr-programs",
+          "kind": "lemma",
+          "source": "Prime graphs and simultaneous unit coefficients",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-gr-address",
+          "role": "prime-graphs-and-simultaneous-unit-coefficients",
+          "label": "theorem m1-gr-address",
+          "fullLabel": "theorem m1-gr-address",
+          "kind": "theorem",
+          "source": "Prime graphs and simultaneous unit coefficients",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pw-minimum-seeds",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "lemma m1-pw-minimum-seeds",
+          "fullLabel": "lemma m1-pw-minimum-seeds",
+          "kind": "lemma",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pw-reserves",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "lemma m1-pw-reserves",
+          "fullLabel": "lemma m1-pw-reserves",
+          "kind": "lemma",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pw-packets",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "lemma m1-pw-packets",
+          "fullLabel": "lemma m1-pw-packets",
+          "kind": "lemma",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pw-even-base",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "proposition m1-pw-even-base",
+          "fullLabel": "proposition m1-pw-even-base",
+          "kind": "proposition",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pw-partitionable-even",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "proposition m1-pw-partitionable-even",
+          "fullLabel": "proposition m1-pw-partitionable-even",
+          "kind": "proposition",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pw-rough-companion",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "lemma m1-pw-rough-companion",
+          "fullLabel": "lemma m1-pw-rough-companion",
+          "kind": "lemma",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pw-odd-lower",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "proposition m1-pw-odd-lower",
+          "fullLabel": "proposition m1-pw-odd-lower",
+          "kind": "proposition",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pw-recurrence",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "lemma m1-pw-recurrence",
+          "fullLabel": "lemma m1-pw-recurrence",
+          "kind": "lemma",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pw-split-witness",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "lemma m1-pw-split-witness",
+          "fullLabel": "lemma m1-pw-split-witness",
+          "kind": "lemma",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pw-coinvariants",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "lemma m1-pw-coinvariants",
+          "fullLabel": "lemma m1-pw-coinvariants",
+          "kind": "lemma",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pw-fixed-companion-families",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "proposition m1-pw-fixed-companion-families",
+          "fullLabel": "proposition m1-pw-fixed-companion-families",
+          "kind": "proposition",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pw-odd-base",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "proposition m1-pw-odd-base",
+          "fullLabel": "proposition m1-pw-odd-base",
+          "kind": "proposition",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-rational-converse",
+          "role": "the-converse-with-rational-two-torsion",
+          "label": "theorem m1-thm-rational-converse",
+          "fullLabel": "theorem m1-thm-rational-converse",
+          "kind": "theorem",
+          "source": "The converse with rational two-torsion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lm-arithmetic-realization",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "lemma m1-lem-lm-arithmetic-realization",
+          "fullLabel": "lemma m1-lem-lm-arithmetic-realization",
+          "kind": "lemma",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-selmer-matrix-bound",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "proposition m1-prop-selmer-matrix-bound",
+          "fullLabel": "proposition m1-prop-selmer-matrix-bound",
+          "kind": "proposition",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lm-site-relations",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "lemma m1-lem-lm-site-relations",
+          "fullLabel": "lemma m1-lem-lm-site-relations",
+          "kind": "lemma",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-binary-tensor-span",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "lemma m1-lem-binary-tensor-span",
+          "fullLabel": "lemma m1-lem-binary-tensor-span",
+          "kind": "lemma",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lm-address-program",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "lemma m1-lem-lm-address-program",
+          "fullLabel": "lemma m1-lem-lm-address-program",
+          "kind": "lemma",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-irreducible-converse",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "theorem m1-thm-irreducible-converse",
+          "fullLabel": "theorem m1-thm-irreducible-converse",
+          "kind": "theorem",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sa-profile",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "lemma m1-lem-sa-profile",
+          "fullLabel": "lemma m1-lem-sa-profile",
+          "kind": "lemma",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sa-punctured-cube",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "lemma m1-lem-sa-punctured-cube",
+          "fullLabel": "lemma m1-lem-sa-punctured-cube",
+          "kind": "lemma",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sa-root-calibration",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "lemma m1-lem-sa-root-calibration",
+          "fullLabel": "lemma m1-lem-sa-root-calibration",
+          "kind": "lemma",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-sa-bounded-companion",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "proposition m1-prop-sa-bounded-companion",
+          "fullLabel": "proposition m1-prop-sa-bounded-companion",
+          "kind": "proposition",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-sa-prefix"
+          ]
+        },
+        {
+          "id": "m1-lem-sa-prefix",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "lemma m1-lem-sa-prefix",
+          "fullLabel": "lemma m1-lem-sa-prefix",
+          "kind": "lemma",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sa-balanced-copies",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "lemma m1-lem-sa-balanced-copies",
+          "fullLabel": "lemma m1-lem-sa-balanced-copies",
+          "kind": "lemma",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sa-interface",
+          "role": "selmer-matrices-and-three-state-relations",
+          "label": "lemma m1-lem-sa-interface",
+          "fullLabel": "lemma m1-lem-sa-interface",
+          "kind": "lemma",
+          "source": "Selmer matrices and three-state relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-nv-odd-first-moment",
+          "role": "proof-of-auxiliary-nonvanishing",
+          "label": "lemma m1-nv-odd-first-moment",
+          "fullLabel": "lemma m1-nv-odd-first-moment",
+          "kind": "lemma",
+          "source": "Proof of auxiliary nonvanishing",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-h-laurent-expansions",
+          "role": "transfer-on-a-binary-cube",
+          "label": "lemma m1-lem-h-laurent-expansions",
+          "fullLabel": "lemma m1-lem-h-laurent-expansions",
+          "kind": "lemma",
+          "source": "Transfer on a binary cube",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-h-bounded-poles",
+          "role": "transfer-on-a-binary-cube",
+          "label": "lemma m1-lem-h-bounded-poles",
+          "fullLabel": "lemma m1-lem-h-bounded-poles",
+          "kind": "lemma",
+          "source": "Transfer on a binary cube",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-h-pivot-clearing",
+          "role": "transfer-on-a-binary-cube",
+          "label": "lemma m1-lem-h-pivot-clearing",
+          "fullLabel": "lemma m1-lem-h-pivot-clearing",
+          "kind": "lemma",
+          "source": "Transfer on a binary cube",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-h-boolean-coefficients",
+          "role": "transfer-on-a-binary-cube",
+          "label": "lemma m1-lem-h-boolean-coefficients",
+          "fullLabel": "lemma m1-lem-h-boolean-coefficients",
+          "kind": "lemma",
+          "source": "Transfer on a binary cube",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-h-boolean-transfer",
+          "role": "transfer-on-a-binary-cube",
+          "label": "lemma m1-lem-h-boolean-transfer",
+          "fullLabel": "lemma m1-lem-h-boolean-transfer",
+          "kind": "lemma",
+          "source": "Transfer on a binary cube",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rl-finite-model",
+          "role": "transfer-on-a-binary-cube",
+          "label": "lemma m1-rl-finite-model",
+          "fullLabel": "lemma m1-rl-finite-model",
+          "kind": "lemma",
+          "source": "Transfer on a binary cube",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cy-positive-model",
+          "role": "cyclotomic-interpolation-at-analytic-rank-zero",
+          "label": "lemma m1-lem-cy-positive-model",
+          "fullLabel": "lemma m1-lem-cy-positive-model",
+          "kind": "lemma",
+          "source": "Cyclotomic interpolation at analytic rank zero",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cy-kato-class",
+          "role": "cyclotomic-interpolation-at-analytic-rank-zero",
+          "label": "lemma m1-lem-cy-kato-class",
+          "fullLabel": "lemma m1-lem-cy-kato-class",
+          "kind": "lemma",
+          "source": "Cyclotomic interpolation at analytic rank zero",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-cy-specialization",
+          "role": "cyclotomic-interpolation-at-analytic-rank-zero",
+          "label": "proposition m1-prop-cy-specialization",
+          "fullLabel": "proposition m1-prop-cy-specialization",
+          "kind": "proposition",
+          "source": "Cyclotomic interpolation at analytic rank zero",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cy-residual-free",
+          "role": "cyclotomic-interpolation-at-analytic-rank-zero",
+          "label": "lemma m1-lem-cy-residual-free",
+          "fullLabel": "lemma m1-lem-cy-residual-free",
+          "kind": "lemma",
+          "source": "Cyclotomic interpolation at analytic rank zero",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cy-cyclotomic-poles",
+          "role": "cyclotomic-interpolation-at-analytic-rank-zero",
+          "label": "lemma m1-lem-cy-cyclotomic-poles",
+          "fullLabel": "lemma m1-lem-cy-cyclotomic-poles",
+          "kind": "lemma",
+          "source": "Cyclotomic interpolation at analytic rank zero",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rl-finite-limits",
+          "role": "heegner-points-and-transfer",
+          "label": "lemma m1-rl-finite-limits",
+          "fullLabel": "lemma m1-rl-finite-limits",
+          "kind": "lemma",
+          "source": "Heegner points and transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rl-kummer",
+          "role": "heegner-points-and-transfer",
+          "label": "lemma m1-rl-kummer",
+          "fullLabel": "lemma m1-rl-kummer",
+          "kind": "lemma",
+          "source": "Heegner points and transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rl-characters",
+          "role": "heegner-points-and-transfer",
+          "label": "proposition m1-rl-characters",
+          "fullLabel": "proposition m1-rl-characters",
+          "kind": "proposition",
+          "source": "Heegner points and transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rl-local-acyclic",
+          "role": "heegner-points-and-transfer",
+          "label": "lemma m1-rl-local-acyclic",
+          "fullLabel": "lemma m1-rl-local-acyclic",
+          "kind": "lemma",
+          "source": "Heegner points and transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-h-central-valuation",
+          "role": "heegner-points-and-transfer",
+          "label": "lemma m1-lem-h-central-valuation",
+          "fullLabel": "lemma m1-lem-h-central-valuation",
+          "kind": "lemma",
+          "source": "Heegner points and transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rl-evaluation",
+          "role": "heegner-points-and-transfer",
+          "label": "lemma m1-rl-evaluation",
+          "fullLabel": "lemma m1-rl-evaluation",
+          "kind": "lemma",
+          "source": "Heegner points and transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rl-kernel",
+          "role": "heegner-points-and-transfer",
+          "label": "lemma m1-rl-kernel",
+          "fullLabel": "lemma m1-rl-kernel",
+          "kind": "lemma",
+          "source": "Heegner points and transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rl-irreducibility",
+          "role": "heegner-points-and-transfer",
+          "label": "lemma m1-rl-irreducibility",
+          "fullLabel": "lemma m1-rl-irreducibility",
+          "kind": "lemma",
+          "source": "Heegner points and transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Goldfelds-analytic-density-conjecture-and-the-2-converse-for-elliptic-curves-October-7-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The mean analytic rank of quadratic twists of elliptic curves",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-mean-analytic-rank-of-quadratic-twists-of-elliptic-curves-October-6-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

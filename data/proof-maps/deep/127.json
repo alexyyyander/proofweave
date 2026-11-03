@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "127",
+  "title": "Average sensitivity of polynomial threshold functions",
+  "result": {
+    "id": "paper-result",
+    "label": "Average sensitivity of polynomial threshold functions",
+    "statement": "Proves that a degree-at-most- d polynomial threshold function on the uniform n -dimensional Boolean cube has average sensitivity at most 8d n, uniformly for 1 d n. Average sensitivity counts expected output changes under single-bit flips. This establishes the asymptotic Gotsman–Linial conjecture, allowing polynomial zeros with sign (0)=1.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-one-sided-coupling-estimate",
+      "label": "A one-sided coupling estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recovering-edges-from-the-anticommutator",
+      "label": "Recovering edges from the anticommutator",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "noise-sensitivity-and-agnostic-learning",
+      "label": "Noise sensitivity and agnostic learning",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Average sensitivity of polynomial threshold functions",
+      "title": "Average sensitivity of polynomial threshold functions",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Average-Sensitivity-of-Polynomial-Threshold-Functions-September-25-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Average sensitivity of polynomial threshold functions.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-coupling",
+          "role": "a-one-sided-coupling-estimate",
+          "label": "lemma m1-lem-coupling",
+          "fullLabel": "lemma m1-lem-coupling",
+          "kind": "lemma",
+          "source": "A one-sided coupling estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-edges",
+          "role": "recovering-edges-from-the-anticommutator",
+          "label": "lemma m1-lem-edges",
+          "fullLabel": "lemma m1-lem-edges",
+          "kind": "lemma",
+          "source": "Recovering edges from the anticommutator",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-noise-sensitivity",
+          "role": "noise-sensitivity-and-agnostic-learning",
+          "label": "corollary m1-cor-noise-sensitivity",
+          "fullLabel": "corollary m1-cor-noise-sensitivity",
+          "kind": "corollary",
+          "source": "Noise sensitivity and agnostic learning",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-agnostic-learning",
+          "role": "noise-sensitivity-and-agnostic-learning",
+          "label": "corollary m1-cor-agnostic-learning",
+          "fullLabel": "corollary m1-cor-agnostic-learning",
+          "kind": "corollary",
+          "source": "Noise sensitivity and agnostic learning",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Average sensitivity of polynomial threshold functions",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Average-Sensitivity-of-Polynomial-Threshold-Functions-September-25-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

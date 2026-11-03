@@ -108,6 +108,11 @@ function launcher(overrides) {
       require(specifier) {
         if (specifier === "react") return { ...react, useMemo: (fn) => fn(), useState: (value) => [value, () => {}] };
         if (specifier === "next/link") return { __esModule: true, default: "a" };
+        if (specifier === "@/app/i18n/client") {
+          const { en } = load(resolve(root, "app/i18n/dictionaries/en.ts"));
+          const { createTranslator } = load(resolve(root, "app/i18n/translate.ts"));
+          return { useI18n: () => ({ t: createTranslator(en), locale: "en" }) };
+        }
         if (specifier === "@/app/components/ui") return {
           Button: "button",
           Select: "select",
@@ -137,7 +142,7 @@ function launcher(overrides) {
         validFrom: "2000-01-01T00:00:00Z", validUntil: "2100-01-01T00:00:00Z" }],
       agentInstallations: [{ agentId: "agent", agentLabel: "My Agent", status: "active", delegationCertificateId: "delegation" }],
     },
-    catalogTargets: [{ id: "target", slug: "target-0", title: "Selected question", source: { leanToolchain: "lean" }, runnerAvailability: { status: "executable", label: "Runner ready", detail: "The exact Lean environment is ready." } }],
+    catalogTargets: [{ id: "target", slug: "target-0", title: "Selected question", source: { leanToolchain: "lean" }, runnerAvailability: { status: "executable", reason: "executable", label: "Runner ready", detail: "The exact Lean environment is ready." } }],
     initialTargetSlug: "target-0", initialParentNodeId: null,
     isAuthenticated: true, storageAvailable: true, writeAvailability: "available", signInPath: "/sign-in",
     onAttemptReady: (attempt) => selected.push(attempt), ...overrides,

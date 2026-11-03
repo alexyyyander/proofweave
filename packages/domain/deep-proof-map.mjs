@@ -1,6 +1,6 @@
 export const DEEP_PROOF_MAP_SCHEMA_VERSION = "pw-deep-proof-map-v1";
 
-const STEP_KINDS = new Set(["theorem", "lemma", "corollary", "construction", "bound", "assembly", "external"]);
+const STEP_KINDS = new Set(["theorem", "lemma", "proposition", "corollary", "construction", "bound", "assembly", "external"]);
 const PROOF_DETAIL_LEVELS = new Set(["lemma", "grouped", "summary", "section"]);
 const LEAN_STATUSES = new Set(["formalized_upstream", "not_formalized", "not_separately_formalized"]);
 const EDGE_TYPES = new Set(["proves", "implies", "same-role", "replaces", "bypasses"]);
@@ -86,6 +86,8 @@ function assertAcyclic(nodes, strategyId) {
  */
 export function validateDeepProofMap(data, collection, leanCoverage = null) {
   expectObject(data, "deep proof map");
+  const machineDerived = data.machineDerived === true;
+  if (data.machineDerived !== undefined && !machineDerived) fail("machineDerived must be true when present");
   if (data.schemaVersion !== DEEP_PROOF_MAP_SCHEMA_VERSION) fail(`schemaVersion must be ${DEEP_PROOF_MAP_SCHEMA_VERSION}`);
   if (data.status !== "deep") fail('status must be "deep"');
   if (data.reviewStatus !== "unreviewed") fail('reviewStatus must be "unreviewed"');
@@ -134,7 +136,7 @@ export function validateDeepProofMap(data, collection, leanCoverage = null) {
     if (!Array.isArray(strategy.authors) || strategy.authors.length === 0) fail(`${label}.authors must not be empty`);
     for (const author of strategy.authors) expectString(author, `${label}.authors entry`);
     expectDate(strategy.date, `${label}.date`);
-    if (!Number.isInteger(strategy.pages) || strategy.pages < 1 || strategy.pages > 1000) fail(`${label}.pages must be an integer between 1 and 1000`);
+    if (!Number.isInteger(strategy.pages) || strategy.pages < 0 || strategy.pages > 1000) fail(`${label}.pages must be an integer between 0 and 1000 (0 records an unknown page count)`);
     if (typeof strategy.color !== "string" || !/^#[0-9a-f]{6}$/i.test(strategy.color)) fail(`${label}.color must be a six-digit hex color`);
     expectEnum(strategy.proofDetail, PROOF_DETAIL_LEVELS, `${label}.proofDetail`);
     if (strategy.leanStatus !== undefined) expectEnum(strategy.leanStatus, LEAN_STATUSES, `${label}.leanStatus`);
@@ -157,18 +159,35 @@ export function validateDeepProofMap(data, collection, leanCoverage = null) {
       expectEnum(node.kind, STEP_KINDS, `${nodeLabel}.kind`);
       expectArray(node.dependsOn, `${nodeLabel}.dependsOn`);
       for (const dependency of node.dependsOn) expectId(dependency, `${nodeLabel}.dependsOn entry`);
+      for (const field of ["objectUses", "mentions"]) {
+        if (node[field] === undefined) continue;
+        expectArray(node[field], `${nodeLabel}.${field}`);
+        for (const target of node[field]) {
+          expectId(target, `${nodeLabel}.${field} entry`);
+          if (target === node.id) fail(`${nodeLabel}.${field} must not reference itself`);
+        }
+      }
       if (node.role === "result") resultNodeCount += 1;
       const fullId = qualified(strategy.id, node.id);
       if (nodeByQualifiedId.has(fullId)) fail(`duplicate qualified node id ${fullId}`);
       nodeByQualifiedId.set(fullId, { strategyId: strategy.id, node });
     }
-    if (resultNodeCount === 0) fail(`${label} must contain at least one node with role "result"`);
+    if (!machineDerived && resultNodeCount === 0) fail(`${label} must contain at least one node with role "result"`);
+    if (machineDerived && resultNodeCount !== 0) fail(`${label} must not assign an unverified result role`);
     resultNodesByStrategy.set(strategy.id, resultNodeCount);
     assertAcyclic(nodes, strategy.id);
+    for (const node of nodes) {
+      for (const field of ["objectUses", "mentions"]) {
+        for (const target of node[field] ?? []) {
+          if (!nodeIds.has(target)) fail(`${label}: node ${node.id} references unknown node ${target} in ${field}`);
+        }
+      }
+    }
   }
 
   const finalEdges = expectArray(data.finalEdges, "finalEdges");
-  if (finalEdges.length === 0) fail("finalEdges must not be empty");
+  if (!machineDerived && finalEdges.length === 0) fail("finalEdges must not be empty");
+  if (machineDerived && finalEdges.length !== 0) fail("machine-derived maps must not infer final edges");
   const strategiesWithFinalEdge = new Set();
   const finalEdgeKeys = new Set();
   for (const [index, edge] of finalEdges.entries()) {
@@ -188,7 +207,7 @@ export function validateDeepProofMap(data, collection, leanCoverage = null) {
     finalEdgeKeys.add(key);
   }
   for (const strategyId of strategyIds) {
-    if (!strategiesWithFinalEdge.has(strategyId)) fail(`strategy ${strategyId} has no final edge to the shared result`);
+    if (!machineDerived && !strategiesWithFinalEdge.has(strategyId)) fail(`strategy ${strategyId} has no final edge to the shared result`);
   }
 
   const crossEdges = Array.isArray(data.crossEdges) ? data.crossEdges : fail("crossEdges must be an array");

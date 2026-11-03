@@ -1,0 +1,720 @@
+{
+  "familyNumber": "227",
+  "familyTitle": "Critical SK autocorrelation processes and dynamics across the temperature transition",
+  "manuscripts": [
+    {
+      "id": "Universality-of-critical-quench-autocorrelations-in-the-Sherrington-Kirkpatrick-model-October-5-2026",
+      "title": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universality-of-critical-quench-autocorrelations-in-the-Sherrington-Kirkpatrick-model-October-5-2026/main.pdf"
+    },
+    {
+      "id": "Functional-universality-of-critical-SK-autocorrelations-October-5-2026",
+      "title": "Functional universality of critical SK autocorrelations",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Functional-universality-of-critical-SK-autocorrelations-October-5-2026/critical-sk-autocorrelations.pdf"
+    },
+    {
+      "id": "A-spectral-gap-throughout-the-high-temperature-Sherrington-Kirkpatrick-phase-September-24-2026",
+      "title": "A spectral gap throughout the high-temperature Sherrington–Kirkpatrick phase",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-spectral-gap-throughout-the-high-temperature-Sherrington-Kirkpatrick-phase-September-24-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The stationary edge input",
+    "Gaussian estimates at the bottom edge scales",
+    "Warming at the critical time scale",
+    "Positive-time Gaussian limits and the uniform start",
+    "Selection of the entrance law",
+    "Smooth truncation of clock histories",
+    "Projecting the clock scores",
+    "Replacement and functional universality",
+    "The conditioned edge measure and the Gaussian inputs",
+    "Quantitative estimates for the observations",
+    "Conditional variance at the exact cap scale",
+    "The gradient on the conditioned edge measure",
+    "Microscopic relaxation and the effective coefficient"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Critical quench universality",
+      "statement": "[Critical quench universality] There is a measurable family \\((h_s^g)_ s>0 \\), with \\(h_s^g L^2(_g)\\), such that for almost every \\(g\\) the following properties hold. For every \\(s>0\\), \\(h_s^g0\\)…",
+      "section": "Introduction",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-prop-stationary-inputs",
+      "kind": "proposition",
+      "label": "Stationary inputs",
+      "statement": "[Stationary inputs] The following hold for the edge law and the Gaussian finite models. Let \\(b+g_1>0\\), \\(_a=(g_a+b)^ -1 \\). Almost surely \\(_a_a=\\) and \\(_a_a^2<\\). If \\(Z_a\\) are independent…",
+      "section": "The stationary edge input",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-prop-edge-estimates",
+      "kind": "proposition",
+      "label": "Cap estimates with a tight lower threshold",
+      "statement": "[Cap estimates with a tight lower threshold] Fix \\(0<C_1<\\), \\(0 R<\\), positive tolerances \\(_ sp ,_0,_v,_g\\), and \\(>0\\). For every \\(>0\\) there are finite positive constants \\(K,C,c,a,v_0\\), a…",
+      "section": "Gaussian estimates at the bottom edge scales",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-edge-spectral",
+      "kind": "lemma",
+      "label": "Spectral estimates above a tight threshold",
+      "statement": "[Spectral estimates above a tight threshold] In the convention , the measures \\(_p=k_p^ -1 _i_ d_i/p^2 \\) converge on fixed bounded intervals to \\(^ -1 v\\,_ \\ v>0\\ dv\\). Their distribution functions…",
+      "section": "Gaussian estimates at the bottom edge scales",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-edge-norm-density",
+      "kind": "lemma",
+      "label": "Saddles and squared-norm densities",
+      "statement": "[Saddles and squared-norm densities] On the spectral restrictions of Lemma~ , the saddle and length conclusions in Proposition~ hold. For a saddle field in a fixed ball let \\[ Y N(m, R), R=R_ p,_p(h)…",
+      "section": "Gaussian estimates at the bottom edge scales",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-edge-spherical-tails",
+      "kind": "lemma",
+      "label": "Spherical projection and pair tails",
+      "statement": "[Spherical projection and pair tails] Fix a field radius and a fixed number of replicas. On the spectral restrictions above, for every \\(p\\) with \\(k_p K\\) and \\(p C_1r_n\\), both the uncapped…",
+      "section": "Gaussian estimates at the bottom edge scales",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-edge-limit-growth",
+      "kind": "corollary",
+      "label": "Growth of the limiting spectral rates",
+      "statement": "[Growth of the limiting spectral rates] For GOE-almost every \\(g\\), and every \\(b\\) with \\(b+g_1>0\\), there are finite positive constants \\(c_ g,b ,C_ g,b \\) such that c_ g,b (1+i)^ 2/3 g_i+b C_ g,b…",
+      "section": "Gaussian estimates at the bottom edge scales",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-edge-gram-cell",
+      "kind": "lemma",
+      "label": "Two-replica overlap cells",
+      "statement": "[Two-replica overlap cells] Let \\( R_n=\\ -1+2j/n:0 j n\\ \\) and \\(I_r=[r-1/n,r+1/n]\\). The overlap of two independent uniform cube spins has mass \\[ p_n(r)=2^ -n n n(1+r)/2 , r R_n, \\] whereas the…",
+      "section": "Gaussian estimates at the bottom edge scales",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-edge-replica-comparison",
+      "kind": "lemma",
+      "label": "A Haar second moment at the low scales",
+      "statement": "[A Haar second moment at the low scales] On the spectral restrictions above, for every fixed spectral field in a prescribed ball and every \\(K k_p\\), \\(p C_1r_n\\), E_U(L_p(h)-1)^2 C_Rn^ -1/4 . The…",
+      "section": "Gaussian estimates at the bottom edge scales",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-edge-cube-caps",
+      "kind": "lemma",
+      "label": "Uniform cube cap estimates",
+      "statement": "[Uniform cube cap estimates] The static, curvature, and projection assertions -- hold on ordinary Gaussian disorder events of arbitrarily large limiting probability, with a tight threshold and every…",
+      "section": "Gaussian estimates at the bottom edge scales",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-edge-path-annuli",
+      "kind": "lemma",
+      "label": "The observation annuli",
+      "statement": "[The observation annuli] On the fixed spectral restrictions, there are \\(a_ an ,c,C>0\\) such that for every dyadic interval \\([q,2q]\\) with fixed buffers inside the enlarged scale range, P\\ p:…",
+      "section": "Gaussian estimates at the bottom edge scales",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-edge-score-covariance",
+      "kind": "lemma",
+      "label": "Integrated score and covariance error",
+      "statement": "[Integrated score and covariance error] Let \\(I=[q,2q]\\), with a prescribed fixed multiplicative enlargement inside the scale range. At path fields write \\[ a_p=P_p(m_p-m_p^ sp ), D_p=p^2K_p-I_ _p .…",
+      "section": "Gaussian estimates at the bottom edge scales",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-edge-annular-extension",
+      "kind": "lemma",
+      "label": "An extension on the parent annulus",
+      "statement": "[An extension on the parent annulus] Choose \\(>0\\) sufficiently small compared with \\(^2\\), then the coarse curvature tolerance \\(_ aux \\) sufficiently small compared with \\(\\). One can choose \\(s_…",
+      "section": "Gaussian estimates at the bottom edge scales",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-edge-positive-curvature",
+      "kind": "lemma",
+      "label": "Positive covariance error",
+      "statement": "[Positive covariance error] For some \\(a,c,C>0\\), uniformly at every deterministic scale \\(K k_p\\), \\(p r_n\\), apart from activation points, P( G \\ p^2K_p(1+Ck_p^ -a )I_ _p \\ ) C e^ -c k_p^a . The…",
+      "section": "Gaussian estimates at the bottom edge scales",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-thm-warming",
+      "kind": "theorem",
+      "label": "Warming from arbitrary initial laws",
+      "statement": "[Warming from arbitrary initial laws] Suppose that the couplings are Gaussian. Fix \\(>0\\), an integer \\(m1\\), and \\(0<<1/100\\). There are measurable disorder events \\( G_n\\), a constant \\(C<\\), and…",
+      "section": "Warming at the critical time scale",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-warm-profiles",
+      "kind": "proposition",
+      "label": "Restricted dissipation profiles",
+      "statement": "[Restricted dissipation profiles] Fix \\(C_ lev <\\) and \\(0<<1/100\\). With tight constants, there are a threshold \\(K_0<\\) and a number \\(>0\\) such that every \\(0 f1\\) satisfying N==e^ -L , K_0 L C_…",
+      "section": "Warming at the critical time scale",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-warm-small-profile",
+      "kind": "lemma",
+      "label": "Entropy between two observation scales",
+      "statement": "[Entropy between two observation scales] Fix \\(C_ lev <\\). For every fixed \\(>0\\), there are tight \\(K_0\\) and \\(>0\\) such that every \\(f\\) satisfying with \\(L n^\\) satisfies \\, (f) N c_ L^ 5/3- .",
+      "section": "Warming at the critical time scale",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-warm-product",
+      "kind": "lemma",
+      "label": "Product-posterior entropy bounds",
+      "statement": "[Product-posterior entropy bounds] Fix the at most two product endpoints used below. Each has precision \\(t'I+W\\) for a fixed \\(t'>3\\), chosen from the fixed path parameters before \\(f\\). On the…",
+      "section": "Warming at the critical time scale",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-warm-posterior-mean",
+      "kind": "lemma",
+      "label": "Square-root energy in a reweighted posterior mean",
+      "statement": "[Square-root energy in a reweighted posterior mean] Fix an operator-norm bound for \\(J_*\\) and the parameters in , with \\(j(1+)^2<1\\). For every sufficiently small fixed \\(>0\\), impose the ordinary…",
+      "section": "Warming at the critical time scale",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-warm-large-retention",
+      "kind": "lemma",
+      "label": "Retention at order-\\(n\\) entropy",
+      "statement": "[Retention at order-\\(n\\) entropy] Fix \\(0<<C_ lev <\\), \\(C_E<\\), and \\(0<<1\\). On Gaussian disorder events of probability tending to one, every test with \\( n L C_ lev n\\) and (f)N C_E n^ 1- has an…",
+      "section": "Warming at the critical time scale",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-warm-log-layer",
+      "kind": "lemma",
+      "label": "A bounded test from a logarithmic level",
+      "statement": "[A bounded test from a logarithmic level] Fix \\(b>0\\) and \\(r>0\\). Let \\(z>0\\) be a density and suppose that, for some \\(d v/2\\) and sufficiently large \\(v\\), \\[ B= b(v/d)^r>0 . \\] Define u= U_d(z)…",
+      "section": "Warming at the critical time scale",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-warm-entropy-profile",
+      "kind": "lemma",
+      "label": "Entropy dissipation for every density",
+      "statement": "[Entropy dissipation for every density] With tight constants, every strictly positive density \\(z\\) with \\(_(z) K_1\\) satisfies (z) c\\,_(z)^ 1.662 .",
+      "section": "Warming at the critical time scale",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-warm-support-profile",
+      "kind": "lemma",
+      "label": "A support profile",
+      "statement": "[A support profile] With the constants and \\(\\) of Proposition~ , every nonnegative \\(g\\), supported on a set of \\(\\)-mass \\(e^ -L_ supp \\) with \\(L_ supp K_0\\), satisfies (g) c\\,_n(L_ supp ), _n(L)=…",
+      "section": "Warming at the critical time scale",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-warm-kernel-log-tail",
+      "kind": "corollary",
+      "label": "A polynomial tail bound for the heat-kernel logarithm",
+      "statement": "[A polynomial tail bound for the heat-kernel logarithm] Fix \\(>0\\), \\(A>0\\), \\(0<C_<\\), and \\(>0\\). On Gaussian disorder events of limiting lower probability at least \\(1-\\), with a fixed constant…",
+      "section": "Warming at the critical time scale",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-prop-gaussian-subsequence",
+      "kind": "proposition",
+      "label": "Positive-time Gaussian subsequential limits",
+      "statement": "[Positive-time Gaussian subsequential limits] Every sequence of Gaussian system sizes tending to infinity has a further represented subsequence on which the following assertions hold almost surely.…",
+      "section": "Positive-time Gaussian limits and the uniform start",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-prop-uniform-seed-escape",
+      "kind": "proposition",
+      "label": "An escape estimate from the uniform start",
+      "statement": "[An escape estimate from the uniform start] There is a measurable admissible choice \\(b=b(g)\\) such that, almost surely, r_a:=g_a+b>0, D_g(b)>0, c_g(1+a)^ 2/3 r_a C_g(1+a)^ 2/3 (a1) for finite…",
+      "section": "Positive-time Gaussian limits and the uniform start",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-thm-entrance-selection",
+      "kind": "theorem",
+      "label": "Entrance selection",
+      "statement": "[Entrance selection] For every \\(g\\) as above, there is at most one family \\((h_s)_ s>0 \\) of probability densities with respect to \\(_g\\) with the following properties: \\(h_s0\\), \\(_g[h_s]=1\\), and…",
+      "section": "Selection of the entrance law",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-entr-angular-realization",
+      "kind": "lemma",
+      "label": "Angular realization",
+      "statement": "[Angular realization] Let \\(w\\) be a bounded probability density with respect to \\(\\). There is a continuous process \\(X(t)=(X_i(t))_ i1 \\) on \\(^\\), with law \\(( S_t w)\\) at time \\(t\\), and…",
+      "section": "Selection of the entrance law",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-entr-kernels",
+      "kind": "lemma",
+      "label": "Resolvent kernels",
+      "statement": "[Resolvent kernels] For \\(L\\) defined above, let \\[ K(z)=1 D+z L(z) (z>0), \\] where a hat denotes the Laplace transform and every kernel is zero on negative times. The function \\(L\\) is locally…",
+      "section": "Selection of the entrance law",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-entr-stochastic-kernels",
+      "kind": "lemma",
+      "label": "Stochastic kernel bounds",
+      "statement": "[Stochastic kernel bounds] Let \\((W_i)\\) be independent Brownian motions in a filtration, let \\((y_i)\\) be measurable at time zero with \\(_i y_i^2/(2r_i)=1\\), and let \\(q\\) be progressively…",
+      "section": "Selection of the entrance law",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-entr-volterra",
+      "kind": "lemma",
+      "label": "The renormalized Volterra equation",
+      "statement": "[The renormalized Volterra equation] Let the processes be as in -- , and let \\(A_y\\) be the candidate seed response defined above. Almost surely, for \\(0<t1\\), f(t)=A_y(t)+22_i_0^t…",
+      "section": "Selection of the entrance law",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-entr-escaping-seeds",
+      "kind": "lemma",
+      "label": "Escaping seeds",
+      "statement": "[Escaping seeds] Suppose that, along a sequence of initial states possibly random, \\(_i p_i=1\\) and \\(p_i0\\) in probability for every fixed \\(i\\). Then A_y K in probability, uniformly on compact…",
+      "section": "Selection of the entrance law",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-hist-static-support",
+      "kind": "lemma",
+      "label": "Static support",
+      "statement": "[Static support] There is a smooth function _n() with the following properties. On its support, and on the support of any of its derivatives of order at most K , the matrix satisfies ^ 2 (A_2(d)) e^…",
+      "section": "Smooth truncation of clock histories",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-hist-cutoff-hazards",
+      "kind": "lemma",
+      "label": "A smooth cap",
+      "statement": "[A smooth cap] For every level in there is a smooth W_N:(0,1) such that e^lW_N(l) e^ CN , 1-W_N(l) e^ -( n)^2/2 (l N/2). For 1 k K its derivative in l satisfies globally |W_N^ (k) | W_N + |W_N^ (k) |…",
+      "section": "Smooth truncation of clock histories",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-hist-kernel-caps",
+      "kind": "lemma",
+      "label": "Deterministic kernel consequences",
+      "statement": "[Deterministic kernel consequences] For every node I of length d , 0<k_I(x,y) k_I(x,y) p_d(x,y), k_I(x,y) e^ CN(d) . Both k_I and k_I are symmetric in (x,y) . If an interval of length h lies inside a…",
+      "section": "Smooth truncation of clock histories",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-hist-gaussian-survival",
+      "kind": "lemma",
+      "label": "Gaussian survival",
+      "statement": "[Gaussian survival] For every A< and >0 , there are Gaussian disorder events of limiting lower probability at least 1- on which _n=1 and the mass lost by the checks in any complete query is at most…",
+      "section": "Smooth truncation of clock histories",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-hist-conditional-interior",
+      "kind": "lemma",
+      "label": "Conditional interiors and prefix bounds",
+      "statement": "[Conditional interiors and prefix bounds] Let I be a fixed node of a checked root in a tested path law. Given the marked history outside the interior of I and its two boundary states, the conditional…",
+      "section": "Smooth truncation of clock histories",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-hist-history-overlaps",
+      "kind": "lemma",
+      "label": "Overlaps along a checked history",
+      "statement": "[Overlaps along a checked history] With arbitrarily high inverse-polynomial probability under a tested path law, simultaneously for times in any one of its checked root intervals,…",
+      "section": "Smooth truncation of clock histories",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-hist-crude-ratios",
+      "kind": "lemma",
+      "label": "Coarse coefficients and moments",
+      "statement": "[Coarse coefficients and moments] On the size support in , for all nodes, boundaries and e , and 1 l K , \\[ |[u^l] k_I^u k_I | +|[u^l]k_I^u k_I | +|[u^l]w_I^u w_I | +|[u^l]1-w_I^u 1-w_I | n^ C_K . \\]…",
+      "section": "Smooth truncation of clock histories",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-score-hellinger",
+      "kind": "lemma",
+      "label": "Likelihood and intensity bounds",
+      "statement": "[Likelihood and intensity bounds] Let F_t be the natural filtration of a nonexplosive marked path, augmented by an initial -field, and let Q P be a change of law up to a finite stopping time , with…",
+      "section": "Projecting the clock scores",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-score-raw-size",
+      "kind": "lemma",
+      "label": "Raw coefficient size and reversal",
+      "statement": "[Raw coefficient size and reversal] For every fixed 1 p< and 1 l K , under ordinary forward dynamics on an interval of length d1 , \\|_ t I |_ l,e ([ I,t])|\\|_ L^p C_ p,K d^ l/2 . For every marked…",
+      "section": "Projecting the clock scores",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-score-one-insertion",
+      "kind": "lemma",
+      "label": "One compensated insertion",
+      "statement": "[One compensated insertion] Let H have length d1 within an admissible oriented portion of a checked root. Suppose v_i(t) is predictable, |v_i(t)|1 , and does not depend on the index j of the other…",
+      "section": "Projecting the clock scores",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-score-raw-projection",
+      "kind": "lemma",
+      "label": "Representations after compensating the last score",
+      "statement": "[Representations after compensating the last score] Fix an admissible oriented law Q , its oriented filtration, and any permitted auxiliary-data augmentation. Fix a dyadic subtree H of length d in…",
+      "section": "Projecting the clock scores",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-prop-clock-scores",
+      "kind": "proposition",
+      "label": "Conditional clock scores and raw representations",
+      "statement": "[Conditional clock scores and raw representations] (i) Conditional coefficients. For every deterministic matrix on , every tested path law, and every node I of length D in its checked roots, the…",
+      "section": "Projecting the clock scores",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-prop-universality",
+      "kind": "proposition",
+      "label": "Transfer to Rademacher disorder",
+      "statement": "[Transfer to Rademacher disorder] For the Rademacher coupling law, \\[ _ Rad (A_ n,J ,B_ n,J ) _g(A_g,B_g) \\] in C_ loc ((0,)) C_ loc ((0,)^2) , where (A_g,B_g) is the Gaussian limit obtained by…",
+      "section": "Replacement and functional universality",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-repl-history-derivatives",
+      "kind": "lemma",
+      "label": "Averaged derivatives of histories",
+      "statement": "[Averaged derivatives of histories] There are constants a>0 and C_K< with the following property for all sufficiently small fixed >0 . Fix A,B< , at most K histories of the form , and integers j_0…",
+      "section": "Replacement and functional universality",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-repl-observable-derivatives",
+      "kind": "lemma",
+      "label": "Derivatives of the localized observable",
+      "statement": "[Derivatives of the localized observable] The parameter >0 can be chosen so that there are a_0>0 and 0<<0.01 with, for every disorder matrix J , 1 n2 _e|_e^4(J)| & n^ -a_0 , \\\\ 1 n2 _e|_e^k(J)| & n^…",
+      "section": "Replacement and functional universality",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m1-repl-comparison",
+      "kind": "lemma",
+      "label": "Entrywise replacement",
+      "statement": "[Entrywise replacement] For every sequence of query sets and tests satisfying , \\[ E_ Rad \\! - E_ G \\!0 . \\]",
+      "section": "Replacement and functional universality",
+      "manuscript": "Universality of critical quench autocorrelations in the Sherrington–Kirkpatrick model"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Functional universality",
+      "statement": "[Functional universality] There is a Borel probability law Q_ crit on C_ loc ((0,)) such that, for each of the two choices of D , \\[ _D(A_ n,J ) Q_ crit (n). \\] The law Q_ crit is not a point mass.…",
+      "section": "Introduction",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-edge-spectral",
+      "kind": "lemma",
+      "label": "Spectral bounds",
+      "statement": "[Spectral bounds] The GOE eigenvalues have the following additional properties. _a|_a|3 with probability tending to one. There are tight random bounds K_n0 and C_n>0 such that g_ a,n C_n^ -1 a^ 2/3…",
+      "section": "The conditioned edge measure and the Gaussian inputs",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-prop-edge-conditioned-law",
+      "kind": "proposition",
+      "label": "The conditioned edge measure",
+      "statement": "[The conditioned edge measure] Formula~ defines a finite random variable, and \\[ D_n(b_n):=n^ 1/3 -_ a=1 ^n l_ a,n \\ \\ D(b) \\] jointly with the edge coordinates. Almost surely _a l_a= . The law of…",
+      "section": "The conditioned edge measure and the Gaussian inputs",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-edge-bulk-weight",
+      "kind": "lemma",
+      "label": "The bulk spectral weight",
+      "statement": "[The bulk spectral weight] For a spherical Gibbs spin, the random probability measure \\[ 1n_a Y_a^2_ _a \\] converges in probability, conditionally on the spectral data as above, to (2-)^ -1 d_ sc () .",
+      "section": "The conditioned edge measure and the Gaussian inputs",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-edge-biased-law",
+      "kind": "lemma",
+      "label": "Spherical identity under Haar bias",
+      "statement": "[Spherical identity under Haar bias] Under P , U^ T X has exactly the spherical Gibbs law in spectral coordinates. After the row sign change sending X to 1 , conditional on y=U^ T X the eigenframe is…",
+      "section": "The conditioned edge measure and the Gaussian inputs",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-prop-edge-cap-inputs",
+      "kind": "proposition",
+      "label": "Cap inputs",
+      "statement": "[Cap inputs] Fix a finite field radius R and positive fixed error tolerances. There are sufficiently small constants p_ top ,s_0>0 such that the following hold with probability tending to one in the…",
+      "section": "The conditioned edge measure and the Gaussian inputs",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-edge-static-interpolation",
+      "kind": "lemma",
+      "label": "Interpolation between cap scales",
+      "statement": "[Interpolation between cap scales] The value, projected-mean, and cube projection-tail conclusions of Proposition~ hold at every scale in the stated range, after prescribing slightly smaller errors…",
+      "section": "The conditioned edge measure and the Gaussian inputs",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-observations-annulus",
+      "kind": "lemma",
+      "label": "The observation annulus",
+      "statement": "[The observation annulus] There are a,>0 and a sufficiently small fixed upper scale p_ top >0 such that |_p(h_p)| C k_p^ -a p^2 (r p p_ top ) outside a set of P -probability at most C(-n^) . On…",
+      "section": "Quantitative estimates for the observations",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-observations-replicas",
+      "kind": "lemma",
+      "label": "Replica comparison",
+      "statement": "[Replica comparison] Fix a bounded range for \\|h\\|/(p^2M_p) and take the upper scale sufficiently small. Uniformly for fields in this range, E_U L_p(h)^2 (C+Cnp^4). For a sufficiently large fixed C_1…",
+      "section": "Quantitative estimates for the observations",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-cor-observations-static",
+      "kind": "corollary",
+      "label": "Cube edge marginals",
+      "statement": "[Cube edge marginals] Jointly with the spectral variables, in the sense of Remark~ , the quenched cube integrals of continuous cylinder functions of polynomial growth converge to their integrals…",
+      "section": "Quantitative estimates for the observations",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-cor-observations-means",
+      "kind": "corollary",
+      "label": "Mean moments and the initial score",
+      "statement": "[Mean moments and the initial score] For every fixed j< , after reducing the fixed upper scale if needed, E(\\|m_p\\|/M_p)^j + E(\\|m_p^ sp \\|/M_p)^j C_j. At the smallest scale, E \\|m_r-m_r^ sp \\|^2…",
+      "section": "Quantitative estimates for the observations",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-observations-score",
+      "kind": "lemma",
+      "label": "Integrated score",
+      "statement": "[Integrated score] There is a fixed >0 such that, on each scale interval of a fixed bounded ratio about q , \\|a_p^ err \\|^2\\,d(p^2) Ck_q(q^+k_q^ - ) outside a set of P -probability at most C(-n^) .…",
+      "section": "Quantitative estimates for the observations",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-observations-curvature",
+      "kind": "lemma",
+      "label": "Integrated covariance error",
+      "statement": "[Integrated covariance error] Put D_p^K=p^2K_p- on H_p . After decreasing >0 if necessary, _q^ 2q \\|D_p^K\\|_ F ^2 k_p \\,d p C(q^+k_q^ - ) outside an event whose intersection with G_n has P…",
+      "section": "Quantitative estimates for the observations",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-observations-angular",
+      "kind": "lemma",
+      "label": "Angular score",
+      "statement": "[Angular score] For a cap field h , write h=U^ T h and _p( h)=_p(U h) . Let A be a fixed skew-symmetric matrix supported on finitely many leading spectral coordinates, and set R=(A h)_ h . There is…",
+      "section": "Quantitative estimates for the observations",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-prop-variance-main",
+      "kind": "proposition",
+      "label": "Conditional variance",
+      "statement": "[Conditional variance] There is a fixed p_*>0 with the following property. For every >0 there are finite constants C , >0 and disorder events V_n with _n P( V_n)1- such that, on V_n , simultaneously…",
+      "section": "Conditional variance at the exact cap scale",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-prop-variance-curvature",
+      "kind": "proposition",
+      "label": "Positive covariance error",
+      "statement": "[Positive covariance error] There are fixed a,,C>0 and a sufficiently small fixed p_*>0 such that, for each deterministic p away from the activation scales, p^2K_p(1+C(p^a+k_p^ -a )) outside an event…",
+      "section": "Conditional variance at the exact cap scale",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-variance-extension",
+      "kind": "lemma",
+      "label": "An annular extension for the transition",
+      "statement": "[An annular extension for the transition] Choose >0 sufficiently small compared with ^2 , then the coarse curvature tolerance _0 sufficiently small compared with . The annulus width s_0 and the fixed…",
+      "section": "Conditional variance at the exact cap scale",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-variance-radial",
+      "kind": "lemma",
+      "label": "Removing the radial error",
+      "statement": "[Removing the radial error] On the coarse annulus, let D=p^2K_p- , e=h_p/\\|h_p\\| , z=D_ e , and define, on e^ , \\[ E_p=(D_ +zz^ T /|D_ ee |)_+, \\] extended by zero on e . Put s_p^+=\\|D_+\\| . Then D…",
+      "section": "Conditional variance at the exact cap scale",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-variance-compression",
+      "kind": "lemma",
+      "label": "Compression by the unused frame",
+      "statement": "[Compression by the unused frame] For x=c/p , \\|P_cE_pP_c\\| C( E_p k_p +x^3\\|E_p\\|) outside a set of P -probability at most C(-a_ k_p) . This is an unconditional assertion with respect to the unused…",
+      "section": "Conditional variance at the exact cap scale",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-variance-start",
+      "kind": "lemma",
+      "label": "The fixed-scale starting bound",
+      "statement": "[The fixed-scale starting bound] On disorder events of probability tending to one, for a sufficiently small fixed p_ top >0 and every real function f on the cube, \\[ V_ p_ top (f) C(f)+Ce^ -a n…",
+      "section": "Conditional variance at the exact cap scale",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-prop-gradient-domain",
+      "kind": "proposition",
+      "label": "The conditioned gradient",
+      "statement": "[The conditioned gradient] The Euclidean gradient on smooth compact cylinder functions is closable from L^2() to L^2(;^2) . Its closed graph consists exactly of the pairs satisfying . In particular,…",
+      "section": "The gradient on the conditioned edge measure",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-gradient-compensated",
+      "kind": "lemma",
+      "label": "Approximation with a compensated derivative",
+      "statement": "[Approximation with a compensated derivative] Let =_ i1 N(0,l_i) , where l_i>0 , _i l_i= and _i l_i^2< , and let S_y=_i(y_i^2-l_i) . Suppose that f,a L^2() and G L^2(;^2) satisfy, coordinatewise in…",
+      "section": "The gradient on the conditioned edge measure",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-gradient-smoothing",
+      "kind": "lemma",
+      "label": "Smoothing estimates",
+      "statement": "[Smoothing estimates] For r p p_* in the range of Proposition~ , Q_\\|_ u_p F_p\\|^2 C T E(f)+o(1), and \\|n^ 1/3 (f-S_pf)\\|_ L^2() & Cp^ -1 T E(f)+o(1),\\\\ \\|n^ 1/3 (D_iS_pf)_i-J_p^f\\|_ L^2(; R^n) & CpT…",
+      "section": "The gradient on the conditioned edge measure",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-prop-gradient-observation",
+      "kind": "proposition",
+      "label": "Limit of the observation slopes",
+      "statement": "[Limit of the observation slopes] Suppose f_n satisfies the preceding bounds and has weak cylinder limit F . Choose a subsequence on which T E(f_n) tends to its liminf. After further extraction in…",
+      "section": "The gradient on the conditioned edge measure",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-prop-micro-moment-measure",
+      "kind": "proposition",
+      "label": "Microscopic moment measure",
+      "statement": "[Microscopic moment measure] There is a deterministic finite positive measure on [0,) whose moments are given by . For fixed leading indices a,a' , polynomials Q,Q' , and a bounded continuous…",
+      "section": "Microscopic relaxation and the effective coefficient",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-micro-contractions",
+      "kind": "lemma",
+      "label": "Connected contractions",
+      "statement": "[Connected contractions] Suppose the edge matrices have uniformly bounded operator norms and that the traces and paths in converge for every fixed word. For a fixed connected G and fixed continuous…",
+      "section": "Microscopic relaxation and the effective coefficient",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-micro-weighted-recursion",
+      "kind": "lemma",
+      "label": "Weighted difference recursion",
+      "statement": "[Weighted difference recursion] Fix K< . Suppose that W is symmetric, has zero diagonal, and obeys \\[ \\|W\\| K, _n:=_ i,j |W_ ij | n^ -49/100 . \\] There is C=C(K)1 such that, for each fixed integer m1…",
+      "section": "Microscopic relaxation and the effective coefficient",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-cor-micro-moment-density",
+      "kind": "corollary",
+      "label": "Determination by moments and polynomial density",
+      "statement": "[Determination by moments and polynomial density] Let the matrices and normalized linear functions above vary with n , and suppose the moments of the finite measures \\[ _ n,a (B)= Y_a,H1_B(H)Y_a_…",
+      "section": "Microscopic relaxation and the effective coefficient",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-micro-recovery",
+      "kind": "lemma",
+      "label": "Cylinder recovery",
+      "statement": "[Cylinder recovery] Let F be a smooth compact cylinder, and let Q be a polynomial with Q(0)=1 . Define f_ n,Q (X)=F(x)+n^ -1/3 _aF_ ,a (x)(Q(H)-1)Y_a, where the sum is over the finitely many…",
+      "section": "Microscopic relaxation and the effective coefficient",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-micro-positivity",
+      "kind": "lemma",
+      "label": "Positivity of the effective coefficient",
+      "statement": "[Positivity of the effective coefficient] One has c_*=(\\ 0\\ )>0 .",
+      "section": "Microscopic relaxation and the effective coefficient",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-lem-micro-divergence",
+      "kind": "lemma",
+      "label": "Multiplied divergence",
+      "statement": "[Multiplied divergence] For a fixed polynomial Q , fixed leading index a , and smooth compact cylinder , \\[ D_w^*((x)A_a^Q) =(x)HQ(H)Y_a+o_ L^2() (1), \\|HQ(H)Y_a\\|_2^2 Q^2\\,d. \\]",
+      "section": "Microscopic relaxation and the effective coefficient",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    },
+    {
+      "id": "m2-thm-micro-relaxation",
+      "kind": "theorem",
+      "label": "Relaxed energy",
+      "statement": "[Relaxed energy] The constant c_*=(\\ 0\\ ) is deterministic and strictly positive. On any quenched represented subsequence, suppose that \\|f_n\\|_ Cn^D for fixed C,D , that the L^2 norms and T(f_n) are…",
+      "section": "Microscopic relaxation and the effective coefficient",
+      "manuscript": "Functional universality of critical SK autocorrelations"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-edge-spectral",
+      "to": "m1-prop-edge-estimates",
+      "label": "edge:spectral",
+      "context": "[Proof of Proposition~\\ref{prop:edge-estimates}] Lemmas~\\ref{edge:spectral} and \\ref{edge:norm-density} prove the spectral and saddle assertions. Lemmas~\\ref{edge:spherical-tails}, \\ref{edge:cub"
+    },
+    {
+      "from": "m1-edge-norm-density",
+      "to": "m1-prop-edge-estimates",
+      "label": "edge:norm-density",
+      "context": "[Proof of Proposition~\\ref{prop:edge-estimates}] Lemmas~\\ref{edge:spectral} and \\ref{edge:norm-density} prove the spectral and saddle assertions. Lemmas~\\ref{edge:spherical-tails}, \\ref{edge:cube-caps}, and \\ref{edge:path-"
+    },
+    {
+      "from": "m1-edge-spherical-tails",
+      "to": "m1-prop-edge-estimates",
+      "label": "edge:spherical-tails",
+      "context": "[Proof of Proposition~\\ref{prop:edge-estimates}] Lemmas~\\ref{edge:spectral} and \\ref{edge:norm-density} prove the spectral and saddle assertions. Lemmas~\\ref{edge:spherical-tails}, \\ref{edge:cube-caps}, and \\ref{edge:path-annuli} prove the static, curvature, projection, and ordinary annulus asserti"
+    },
+    {
+      "from": "m1-warm-small-profile",
+      "to": "m1-warm-profiles",
+      "label": "warm:small-profile",
+      "context": "[Proof of Proposition~\\ref{warm:profiles}] Fix \\(C_{\\mathrm{lev}},\\xi\\) and a desired disorder confidence. Apply Lemma~\\ref{warm:small-profile} with \\(\\kappa<\\min\\{\\xi,\\,5/3-1.662\\}\\). After fixing its \\(M\\), choose its \\(\\delta>0\\) as in that proof. For \\(L\\le"
+    },
+    {
+      "from": "m1-prop-edge-estimates",
+      "to": "m1-thm-main",
+      "label": "prop:edge-estimates",
+      "context": "[Proof of Theorem~\\ref{thm:main}] In Gaussian disorder, Proposition~\\ref{prop:edge-estimates} supplies the cap estimates used in Theorem~\\ref{thm:warming}. Apply that theorem to the initial law \\(\\nu_n\\). Proposit"
+    },
+    {
+      "from": "m1-thm-warming",
+      "to": "m1-thm-main",
+      "label": "thm:warming",
+      "context": "[Proof of Theorem~\\ref{thm:main}] In Gaussian disorder, Proposition~\\ref{prop:edge-estimates} supplies the cap estimates used in Theorem~\\ref{thm:warming}. Apply that theorem to the initial law \\(\\nu_n\\). Proposition~\\ref{prop:gaussian-subsequence} then supplies, on a furth"
+    }
+  ]
+}

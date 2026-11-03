@@ -1,0 +1,1012 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "331",
+  "title": "Reflexive midpoint convexity and diamond distortion",
+  "result": {
+    "id": "paper-result",
+    "label": "Reflexive midpoint convexity and diamond distortion",
+    "statement": "Constructs a real reflexive Banach space with an asymptotically midpoint uniformly convex norm but no equivalent asymptotically uniformly convex norm, extending Baudier's separation to reflexive spaces. In the same space, depth- k countably branching diamonds require distortion at least 1+k/12 , so midpoint uniform convexity does not force uniformly bounded diamond distortion even under reflexivity.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-coordinate-structure-of-the-forest",
+      "label": "The coordinate structure of the forest",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "why-no-equivalent-norm-is-auc",
+      "label": "Why no equivalent norm is AUC",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-paired-extension-of-segment-tests",
+      "label": "A paired extension of segment tests",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-approximate-midpoints-to-diamonds",
+      "label": "From approximate midpoints to diamonds",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-infinite-height-coordinate-predual",
+      "label": "The infinite-height coordinate predual",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-convex-representations",
+      "label": "Finite convex representations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "cancellation-at-the-boundary",
+      "label": "Cancellation at the boundary",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "asymptotic-midpoint-growth",
+      "label": "Asymptotic midpoint growth",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "coordinate-variants-and-bounded-paths",
+      "label": "Coordinate variants and bounded paths",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-infinite-height-renorming-obstruction",
+      "label": "The infinite-height renorming obstruction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "clipping-cumulative-segment-sums",
+      "label": "Clipping cumulative segment sums",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "frontier-shifts-and-separated-families",
+      "label": "Frontier shifts and separated families",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-radial-deficit-and-separate-endpoint-laws",
+      "label": "A radial deficit and separate endpoint laws",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "further-consequences-of-the-joint-budget",
+      "label": "Further consequences of the joint budget",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "atomic-gauges-and-finite-coordinate-polars",
+      "label": "Atomic gauges and finite-coordinate polars",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-coordinate-toolkit",
+      "label": "A finite-coordinate toolkit",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "stability-from-a-nearly-norming-head-test",
+      "label": "Stability from a nearly norming head test",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "endpoint-distributions-and-conditional-recovery",
+      "label": "Endpoint distributions and conditional recovery",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "original-coefficients-cancellation-and-recovery",
+      "label": "Original coefficients: cancellation and recovery",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "alternative-cancellation-estimates",
+      "label": "Alternative cancellation estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "signs-determined-by-the-target-tail",
+      "label": "Signs determined by the target tail",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "choosing-signs-at-the-boundary",
+      "label": "Choosing signs at the boundary",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "trimming-by-maximal-splitting-gain",
+      "label": "Trimming by maximal splitting gain",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "sequential-cancellation-in-the-forest",
+      "label": "Sequential cancellation in the forest",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "qualitative-midpoint-arguments-in-infinite-height",
+      "label": "Qualitative midpoint arguments in infinite height",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space",
+      "title": "Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-27",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Asymptotic-midpoint-uniform-convexity-and-unbounded-diamond-distortion-in-a-reflexive-tree-space-September-27-2026/manuscript.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-forest-structure",
+          "role": "the-coordinate-structure-of-the-forest",
+          "label": "lemma m1-lem-forest-structure",
+          "fullLabel": "lemma m1-lem-forest-structure",
+          "kind": "lemma",
+          "source": "The coordinate structure of the forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cones",
+          "role": "the-coordinate-structure-of-the-forest",
+          "label": "lemma m1-lem-cones",
+          "fullLabel": "lemma m1-lem-cones",
+          "kind": "lemma",
+          "source": "The coordinate structure of the forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-modulus-conventions",
+          "role": "why-no-equivalent-norm-is-auc",
+          "label": "lemma m1-lem-modulus-conventions",
+          "fullLabel": "lemma m1-lem-modulus-conventions",
+          "kind": "lemma",
+          "source": "Why no equivalent norm is AUC",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-bounded-tree",
+          "role": "why-no-equivalent-norm-is-auc",
+          "label": "lemma m1-lem-bounded-tree",
+          "fullLabel": "lemma m1-lem-bounded-tree",
+          "kind": "lemma",
+          "source": "Why no equivalent norm is AUC",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-paired",
+          "role": "a-paired-extension-of-segment-tests",
+          "label": "lemma m1-lem-paired",
+          "fullLabel": "lemma m1-lem-paired",
+          "kind": "lemma",
+          "source": "A paired extension of segment tests",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lens",
+          "role": "from-approximate-midpoints-to-diamonds",
+          "label": "lemma m1-lem-lens",
+          "fullLabel": "lemma m1-lem-lens",
+          "kind": "lemma",
+          "source": "From approximate midpoints to diamonds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Midpoint lenses in segment spaces",
+      "title": "Midpoint lenses in segment spaces",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-27",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Midpoint-lenses-in-segment-spaces-September-27-2026/manuscript.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Midpoint lenses in segment spaces.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main-tail",
+          "role": "introduction",
+          "label": "theorem m2-thm-main-tail",
+          "fullLabel": "theorem m2-thm-main-tail",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-forest-structure",
+          "role": "the-coordinate-structure-of-the-forest",
+          "label": "lemma m2-lem-forest-structure",
+          "fullLabel": "lemma m2-lem-forest-structure",
+          "kind": "lemma",
+          "source": "The coordinate structure of the forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cones",
+          "role": "the-coordinate-structure-of-the-forest",
+          "label": "lemma m2-lem-cones",
+          "fullLabel": "lemma m2-lem-cones",
+          "kind": "lemma",
+          "source": "The coordinate structure of the forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-binf-projections",
+          "role": "the-infinite-height-coordinate-predual",
+          "label": "lemma m2-binf-projections",
+          "fullLabel": "lemma m2-binf-projections",
+          "kind": "lemma",
+          "source": "The infinite-height coordinate predual",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-binf-finite-hull",
+          "role": "the-infinite-height-coordinate-predual",
+          "label": "lemma m2-binf-finite-hull",
+          "fullLabel": "lemma m2-binf-finite-hull",
+          "kind": "lemma",
+          "source": "The infinite-height coordinate predual",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-binf-cones",
+          "role": "the-infinite-height-coordinate-predual",
+          "label": "lemma m2-binf-cones",
+          "fullLabel": "lemma m2-binf-cones",
+          "kind": "lemma",
+          "source": "The infinite-height coordinate predual",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-finite-hull",
+          "role": "finite-convex-representations",
+          "label": "lemma m2-lem-finite-hull",
+          "fullLabel": "lemma m2-lem-finite-hull",
+          "kind": "lemma",
+          "source": "Finite convex representations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-closed-atomic-ball",
+          "role": "finite-convex-representations",
+          "label": "corollary m2-cor-closed-atomic-ball",
+          "fullLabel": "corollary m2-cor-closed-atomic-ball",
+          "kind": "corollary",
+          "source": "Finite convex representations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-opposite-crossing",
+          "role": "cancellation-at-the-boundary",
+          "label": "lemma m2-lem-opposite-crossing",
+          "fullLabel": "lemma m2-lem-opposite-crossing",
+          "kind": "lemma",
+          "source": "Cancellation at the boundary",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mol-cor-all-radius-averaged",
+          "role": "asymptotic-midpoint-growth",
+          "label": "corollary m2-mol-cor-all-radius-averaged",
+          "fullLabel": "corollary m2-mol-cor-all-radius-averaged",
+          "kind": "corollary",
+          "source": "Asymptotic midpoint growth",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-foundation-order-convex",
+          "role": "coordinate-variants-and-bounded-paths",
+          "label": "lemma m2-foundation-order-convex",
+          "fullLabel": "lemma m2-foundation-order-convex",
+          "kind": "lemma",
+          "source": "Coordinate variants and bounded paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-foundation-height-variants",
+          "role": "coordinate-variants-and-bounded-paths",
+          "label": "proposition m2-foundation-height-variants",
+          "fullLabel": "proposition m2-foundation-height-variants",
+          "kind": "proposition",
+          "source": "Coordinate variants and bounded paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-foundation-weak-null-growth",
+          "role": "coordinate-variants-and-bounded-paths",
+          "label": "lemma m2-foundation-weak-null-growth",
+          "fullLabel": "lemma m2-foundation-weak-null-growth",
+          "kind": "lemma",
+          "source": "Coordinate variants and bounded paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-foundation-bounded-tree",
+          "role": "coordinate-variants-and-bounded-paths",
+          "label": "proposition m2-foundation-bounded-tree",
+          "fullLabel": "proposition m2-foundation-bounded-tree",
+          "kind": "proposition",
+          "source": "Coordinate variants and bounded paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-foundation-forest-obstruction",
+          "role": "coordinate-variants-and-bounded-paths",
+          "label": "corollary m2-foundation-forest-obstruction",
+          "fullLabel": "corollary m2-foundation-forest-obstruction",
+          "kind": "corollary",
+          "source": "Coordinate variants and bounded paths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-binf-obstruction",
+          "role": "the-infinite-height-renorming-obstruction",
+          "label": "proposition m2-binf-obstruction",
+          "fullLabel": "proposition m2-binf-obstruction",
+          "kind": "proposition",
+          "source": "The infinite-height renorming obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-sign-obstruction",
+          "role": "the-infinite-height-renorming-obstruction",
+          "label": "proposition m2-stab-sign-obstruction",
+          "fullLabel": "proposition m2-stab-sign-obstruction",
+          "kind": "proposition",
+          "source": "The infinite-height renorming obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-clip-crossing",
+          "role": "clipping-cumulative-segment-sums",
+          "label": "lemma m2-clip-crossing",
+          "fullLabel": "lemma m2-clip-crossing",
+          "kind": "lemma",
+          "source": "Clipping cumulative segment sums",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-clip-two-clips",
+          "role": "clipping-cumulative-segment-sums",
+          "label": "lemma m2-clip-two-clips",
+          "fullLabel": "lemma m2-clip-two-clips",
+          "kind": "lemma",
+          "source": "Clipping cumulative segment sums",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-clip-paired-modulus",
+          "role": "clipping-cumulative-segment-sums",
+          "label": "corollary m2-clip-paired-modulus",
+          "fullLabel": "corollary m2-clip-paired-modulus",
+          "kind": "corollary",
+          "source": "Clipping cumulative segment sums",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-dir-primal-add-head-tail-lens",
+          "role": "clipping-cumulative-segment-sums",
+          "label": "proposition m2-dir-primal-add-head-tail-lens",
+          "fullLabel": "proposition m2-dir-primal-add-head-tail-lens",
+          "kind": "proposition",
+          "source": "Clipping cumulative segment sums",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-clip-selection-prop",
+          "role": "clipping-cumulative-segment-sums",
+          "label": "proposition m2-clip-selection-prop",
+          "fullLabel": "proposition m2-clip-selection-prop",
+          "kind": "proposition",
+          "source": "Clipping cumulative segment sums",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-clip-frontier-prop",
+          "role": "frontier-shifts-and-separated-families",
+          "label": "proposition m2-clip-frontier-prop",
+          "fullLabel": "proposition m2-clip-frontier-prop",
+          "kind": "proposition",
+          "source": "Frontier shifts and separated families",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-dir-primal-add-independent-threshold",
+          "role": "frontier-shifts-and-separated-families",
+          "label": "lemma m2-dir-primal-add-independent-threshold",
+          "fullLabel": "lemma m2-dir-primal-add-independent-threshold",
+          "kind": "lemma",
+          "source": "Frontier shifts and separated families",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-dir-primal-add-separated",
+          "role": "frontier-shifts-and-separated-families",
+          "label": "proposition m2-dir-primal-add-separated",
+          "fullLabel": "proposition m2-dir-primal-add-separated",
+          "kind": "proposition",
+          "source": "Frontier shifts and separated families",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-tail",
+          "role": "a-radial-deficit-and-separate-endpoint-laws",
+          "label": "proposition m2-thm-tail",
+          "fullLabel": "proposition m2-thm-tail",
+          "kind": "proposition",
+          "source": "A radial deficit and separate endpoint laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-max-modulus",
+          "role": "a-radial-deficit-and-separate-endpoint-laws",
+          "label": "corollary m2-cor-max-modulus",
+          "fullLabel": "corollary m2-cor-max-modulus",
+          "kind": "corollary",
+          "source": "A radial deficit and separate endpoint laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-endpoint",
+          "role": "a-radial-deficit-and-separate-endpoint-laws",
+          "label": "proposition m2-prop-endpoint",
+          "fullLabel": "proposition m2-prop-endpoint",
+          "kind": "proposition",
+          "source": "A radial deficit and separate endpoint laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mol-prop-conditional-joint",
+          "role": "further-consequences-of-the-joint-budget",
+          "label": "proposition m2-mol-prop-conditional-joint",
+          "fullLabel": "proposition m2-mol-prop-conditional-joint",
+          "kind": "proposition",
+          "source": "Further consequences of the joint budget",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-presentation-identity",
+          "role": "atomic-gauges-and-finite-coordinate-polars",
+          "label": "proposition m2-presentation-identity",
+          "fullLabel": "proposition m2-presentation-identity",
+          "kind": "proposition",
+          "source": "Atomic gauges and finite-coordinate polars",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-presentation-subtrees",
+          "role": "atomic-gauges-and-finite-coordinate-polars",
+          "label": "proposition m2-presentation-subtrees",
+          "fullLabel": "proposition m2-presentation-subtrees",
+          "kind": "proposition",
+          "source": "Atomic gauges and finite-coordinate polars",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-coef-pointwise",
+          "role": "a-finite-coordinate-toolkit",
+          "label": "lemma m2-stab-coef-pointwise",
+          "fullLabel": "lemma m2-stab-coef-pointwise",
+          "kind": "lemma",
+          "source": "A finite-coordinate toolkit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-coef-head-conflict",
+          "role": "a-finite-coordinate-toolkit",
+          "label": "lemma m2-stab-coef-head-conflict",
+          "fullLabel": "lemma m2-stab-coef-head-conflict",
+          "kind": "lemma",
+          "source": "A finite-coordinate toolkit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-coef-original-products",
+          "role": "a-finite-coordinate-toolkit",
+          "label": "lemma m2-stab-coef-original-products",
+          "fullLabel": "lemma m2-stab-coef-original-products",
+          "kind": "lemma",
+          "source": "A finite-coordinate toolkit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-coef-gate-bound",
+          "role": "a-finite-coordinate-toolkit",
+          "label": "lemma m2-stab-coef-gate-bound",
+          "fullLabel": "lemma m2-stab-coef-gate-bound",
+          "kind": "lemma",
+          "source": "A finite-coordinate toolkit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-coef-tail-assembly",
+          "role": "a-finite-coordinate-toolkit",
+          "label": "lemma m2-stab-coef-tail-assembly",
+          "fullLabel": "lemma m2-stab-coef-tail-assembly",
+          "kind": "lemma",
+          "source": "A finite-coordinate toolkit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-weighted",
+          "role": "stability-from-a-nearly-norming-head-test",
+          "label": "theorem m2-stab-weighted",
+          "fullLabel": "theorem m2-stab-weighted",
+          "kind": "theorem",
+          "source": "Stability from a nearly norming head test",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-bounded-multiplier",
+          "role": "stability-from-a-nearly-norming-head-test",
+          "label": "corollary m2-stab-bounded-multiplier",
+          "fullLabel": "corollary m2-stab-bounded-multiplier",
+          "kind": "corollary",
+          "source": "Stability from a nearly norming head test",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-supported-pair",
+          "role": "stability-from-a-nearly-norming-head-test",
+          "label": "corollary m2-stab-supported-pair",
+          "fullLabel": "corollary m2-stab-supported-pair",
+          "kind": "corollary",
+          "source": "Stability from a nearly norming head test",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-original-crossing",
+          "role": "stability-from-a-nearly-norming-head-test",
+          "label": "proposition m2-stab-original-crossing",
+          "fullLabel": "proposition m2-stab-original-crossing",
+          "kind": "proposition",
+          "source": "Stability from a nearly norming head test",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-small-center-tail",
+          "role": "stability-from-a-nearly-norming-head-test",
+          "label": "proposition m2-stab-small-center-tail",
+          "fullLabel": "proposition m2-stab-small-center-tail",
+          "kind": "proposition",
+          "source": "Stability from a nearly norming head test",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-averaged-gain",
+          "role": "stability-from-a-nearly-norming-head-test",
+          "label": "corollary m2-stab-averaged-gain",
+          "fullLabel": "corollary m2-stab-averaged-gain",
+          "kind": "corollary",
+          "source": "Stability from a nearly norming head test",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-molw-average",
+          "role": "endpoint-distributions-and-conditional-recovery",
+          "label": "theorem m2-molw-average",
+          "fullLabel": "theorem m2-molw-average",
+          "kind": "theorem",
+          "source": "Endpoint distributions and conditional recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-molw-modulus",
+          "role": "endpoint-distributions-and-conditional-recovery",
+          "label": "corollary m2-molw-modulus",
+          "fullLabel": "corollary m2-molw-modulus",
+          "kind": "corollary",
+          "source": "Endpoint distributions and conditional recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mola-conditional",
+          "role": "endpoint-distributions-and-conditional-recovery",
+          "label": "proposition m2-mola-conditional",
+          "fullLabel": "proposition m2-mola-conditional",
+          "kind": "proposition",
+          "source": "Endpoint distributions and conditional recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mol-closed-hull-signed",
+          "role": "endpoint-distributions-and-conditional-recovery",
+          "label": "proposition m2-mol-closed-hull-signed",
+          "fullLabel": "proposition m2-mol-closed-hull-signed",
+          "kind": "proposition",
+          "source": "Endpoint distributions and conditional recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-molb-unscaled-tail",
+          "role": "endpoint-distributions-and-conditional-recovery",
+          "label": "proposition m2-molb-unscaled-tail",
+          "fullLabel": "proposition m2-molb-unscaled-tail",
+          "kind": "proposition",
+          "source": "Endpoint distributions and conditional recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-coef-exact-tail",
+          "role": "original-coefficients-cancellation-and-recovery",
+          "label": "proposition m2-stab-coef-exact-tail",
+          "fullLabel": "proposition m2-stab-coef-exact-tail",
+          "kind": "proposition",
+          "source": "Original coefficients: cancellation and recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mola-actual",
+          "role": "original-coefficients-cancellation-and-recovery",
+          "label": "proposition m2-mola-actual",
+          "fullLabel": "proposition m2-mola-actual",
+          "kind": "proposition",
+          "source": "Original coefficients: cancellation and recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-coef-unit-head-lens",
+          "role": "original-coefficients-cancellation-and-recovery",
+          "label": "corollary m2-stab-coef-unit-head-lens",
+          "fullLabel": "corollary m2-stab-coef-unit-head-lens",
+          "kind": "corollary",
+          "source": "Original coefficients: cancellation and recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-coef-approximate-tail",
+          "role": "original-coefficients-cancellation-and-recovery",
+          "label": "proposition m2-stab-coef-approximate-tail",
+          "fullLabel": "proposition m2-stab-coef-approximate-tail",
+          "kind": "proposition",
+          "source": "Original coefficients: cancellation and recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-molb-prop-original-lens",
+          "role": "original-coefficients-cancellation-and-recovery",
+          "label": "proposition m2-molb-prop-original-lens",
+          "fullLabel": "proposition m2-molb-prop-original-lens",
+          "kind": "proposition",
+          "source": "Original coefficients: cancellation and recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-molx-actual-center-fourth",
+          "role": "original-coefficients-cancellation-and-recovery",
+          "label": "proposition m2-molx-actual-center-fourth",
+          "fullLabel": "proposition m2-molx-actual-center-fourth",
+          "kind": "proposition",
+          "source": "Original coefficients: cancellation and recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-coef-modulus-conversions",
+          "role": "original-coefficients-cancellation-and-recovery",
+          "label": "proposition m2-stab-coef-modulus-conversions",
+          "fullLabel": "proposition m2-stab-coef-modulus-conversions",
+          "kind": "proposition",
+          "source": "Original coefficients: cancellation and recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-coef-conditional-modulus",
+          "role": "original-coefficients-cancellation-and-recovery",
+          "label": "proposition m2-stab-coef-conditional-modulus",
+          "fullLabel": "proposition m2-stab-coef-conditional-modulus",
+          "kind": "proposition",
+          "source": "Original coefficients: cancellation and recovery",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-molb-lem-matching",
+          "role": "alternative-cancellation-estimates",
+          "label": "lemma m2-molb-lem-matching",
+          "fullLabel": "lemma m2-molb-lem-matching",
+          "kind": "lemma",
+          "source": "Alternative cancellation estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-molb-prop-matching-lens",
+          "role": "alternative-cancellation-estimates",
+          "label": "proposition m2-molb-prop-matching-lens",
+          "fullLabel": "proposition m2-molb-prop-matching-lens",
+          "kind": "proposition",
+          "source": "Alternative cancellation estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-molx-minimum-tail",
+          "role": "alternative-cancellation-estimates",
+          "label": "proposition m2-molx-minimum-tail",
+          "fullLabel": "proposition m2-molx-minimum-tail",
+          "kind": "proposition",
+          "source": "Alternative cancellation estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-molc-oriented-lens",
+          "role": "alternative-cancellation-estimates",
+          "label": "proposition m2-molc-oriented-lens",
+          "fullLabel": "proposition m2-molc-oriented-lens",
+          "kind": "proposition",
+          "source": "Alternative cancellation estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-molb-prop-target-signs",
+          "role": "signs-determined-by-the-target-tail",
+          "label": "proposition m2-molb-prop-target-signs",
+          "fullLabel": "proposition m2-molb-prop-target-signs",
+          "kind": "proposition",
+          "source": "Signs determined by the target tail",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-sign-parent-lens",
+          "role": "choosing-signs-at-the-boundary",
+          "label": "proposition m2-stab-sign-parent-lens",
+          "fullLabel": "proposition m2-stab-sign-parent-lens",
+          "kind": "proposition",
+          "source": "Choosing signs at the boundary",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-sign-parent-modulus",
+          "role": "choosing-signs-at-the-boundary",
+          "label": "corollary m2-stab-sign-parent-modulus",
+          "fullLabel": "corollary m2-stab-sign-parent-modulus",
+          "kind": "corollary",
+          "source": "Choosing signs at the boundary",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-sign-forest-parent-lens",
+          "role": "choosing-signs-at-the-boundary",
+          "label": "corollary m2-stab-sign-forest-parent-lens",
+          "fullLabel": "corollary m2-stab-sign-forest-parent-lens",
+          "kind": "corollary",
+          "source": "Choosing signs at the boundary",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-sign-exit-lens",
+          "role": "choosing-signs-at-the-boundary",
+          "label": "proposition m2-stab-sign-exit-lens",
+          "fullLabel": "proposition m2-stab-sign-exit-lens",
+          "kind": "proposition",
+          "source": "Choosing signs at the boundary",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-sign-exit-modulus",
+          "role": "choosing-signs-at-the-boundary",
+          "label": "corollary m2-stab-sign-exit-modulus",
+          "fullLabel": "corollary m2-stab-sign-exit-modulus",
+          "kind": "corollary",
+          "source": "Choosing signs at the boundary",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-trim-vanishing-lens",
+          "role": "trimming-by-maximal-splitting-gain",
+          "label": "proposition m2-stab-trim-vanishing-lens",
+          "fullLabel": "proposition m2-stab-trim-vanishing-lens",
+          "kind": "proposition",
+          "source": "Trimming by maximal splitting gain",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-stab-trim-modulus",
+          "role": "trimming-by-maximal-splitting-gain",
+          "label": "corollary m2-stab-trim-modulus",
+          "fullLabel": "corollary m2-stab-trim-modulus",
+          "kind": "corollary",
+          "source": "Trimming by maximal splitting gain",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mol-finite-head-pair",
+          "role": "sequential-cancellation-in-the-forest",
+          "label": "lemma m2-mol-finite-head-pair",
+          "fullLabel": "lemma m2-mol-finite-head-pair",
+          "kind": "lemma",
+          "source": "Sequential cancellation in the forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mola-sequential",
+          "role": "sequential-cancellation-in-the-forest",
+          "label": "lemma m2-mola-sequential",
+          "fullLabel": "lemma m2-mola-sequential",
+          "kind": "lemma",
+          "source": "Sequential cancellation in the forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mola-uniform-sequential",
+          "role": "sequential-cancellation-in-the-forest",
+          "label": "corollary m2-mola-uniform-sequential",
+          "fullLabel": "corollary m2-mola-uniform-sequential",
+          "kind": "corollary",
+          "source": "Sequential cancellation in the forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mola-separated-sequential",
+          "role": "sequential-cancellation-in-the-forest",
+          "label": "corollary m2-mola-separated-sequential",
+          "fullLabel": "corollary m2-mola-separated-sequential",
+          "kind": "corollary",
+          "source": "Sequential cancellation in the forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-molx-coordinate-null",
+          "role": "sequential-cancellation-in-the-forest",
+          "label": "corollary m2-molx-coordinate-null",
+          "fullLabel": "corollary m2-molx-coordinate-null",
+          "kind": "corollary",
+          "source": "Sequential cancellation in the forest",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-molc-sequential-positive",
+          "role": "qualitative-midpoint-arguments-in-infinite-height",
+          "label": "proposition m2-molc-sequential-positive",
+          "fullLabel": "proposition m2-molc-sequential-positive",
+          "kind": "proposition",
+          "source": "Qualitative midpoint arguments in infinite height",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Asymptotic midpoint uniform convexity and unbounded diamond distortion in a reflexive tree space",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Asymptotic-midpoint-uniform-convexity-and-unbounded-diamond-distortion-in-a-reflexive-tree-space-September-27-2026/manuscript.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Midpoint lenses in segment spaces",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Midpoint-lenses-in-segment-spaces-September-27-2026/manuscript.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Distortion of countably branching diamonds from midpoint and tree energies",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Diamond-distortion-from-midpoint-and-tree-energies-September-27-2026/manuscript.pdf",
+      "kind": "paper"
+    }
+  ]
+}

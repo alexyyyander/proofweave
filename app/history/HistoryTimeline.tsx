@@ -3,6 +3,9 @@
 import { CardTitle, SectionTitle, Field, Button, FieldList, Input, SectionHeading, Surface } from "@/app/components/ui";
 
 import { useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import type { TranslationKey } from "@/app/i18n/translate";
+import { useI18n } from "@/app/i18n/client";
+import type { Locale } from "@/app/i18n/config";
 
 export type EvidenceTone = "formal" | "reviewed" | "reproduced" | "announced" | "corrected";
 
@@ -12,9 +15,11 @@ export type HistoryMilestone = {
   title: string;
   system: string;
   summary: string;
+  summaryKey?: TranslationKey;
   aiRole: string;
   humanRole: string;
   evidence: string;
+  evidenceKey?: TranslationKey;
   evidenceTone: EvidenceTone;
   significance: string;
   sources: Array<{ label: string; href: string }>;
@@ -31,11 +36,14 @@ export type HistoryMilestone = {
   latest?: boolean;
   special?: "jacobian" | "openai-ten" | "riemann";
   shortTitle: string;
+  shortTitleKey?: TranslationKey;
   timelineDate: string;
   timelineLane: "above" | "below";
 };
 
 export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[] }) {
+  const { t, locale } = useI18n();
+  const dateLabel = (item: HistoryMilestone) => formatMilestoneDate(item, locale);
   const [activeNumber, setActiveNumber] = useState(milestones.at(-1)?.number ?? milestones[0]?.number);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -119,29 +127,29 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
     <section className="history-timeline" id="timeline" aria-labelledby="timeline-title">
       <SectionHeading as="div" className="history-timeline-heading">
         <div>
-          <p className="eyebrow">{milestones.length} moments · one accelerating frontier</p>
-          <SectionTitle id="timeline-title">Follow the record across 2026.</SectionTitle>
+          <p className="eyebrow">{t("history.timeline.eyebrow", { count: milestones.length })}</p>
+          <SectionTitle id="timeline-title">{t("history.timeline.title")}</SectionTitle>
         </div>
-        <p>Use Spacing or scroll over the timeline: wheel up to stretch, down to compress around the pointer. Select a numbered point in the compact view; expand to 4× to show every title. Zoom in to separate busy days. First entry and Latest entry jump directly to a record.</p>
+        <p>{t("history.timeline.instructions")}</p>
       </SectionHeading>
 
-      <div className="history-timeline-controls" aria-label="Timeline controls">
+      <div className="history-timeline-controls" aria-label={t("history.timeline.controlsAria")}>
         <div className="history-timeline-presets">
-          <Button type="button" aria-pressed={zoom === 1} onClick={() => changeZoom(1, .5)}>Full record</Button>
-          <Button type="button" onClick={recentDays}>Recent days</Button>
+          <Button type="button" aria-pressed={zoom === 1} onClick={() => changeZoom(1, .5)}>{t("history.timeline.fullRecord")}</Button>
+          <Button type="button" onClick={recentDays}>{t("history.timeline.recentDays")}</Button>
         </div>
         <div className="history-timeline-zoom">
-          <Button type="button" aria-label="Zoom out timeline" disabled={zoom === 1} onClick={() => changeZoom(Math.max(1, Math.round(zoom / 1.5)))}>−</Button>
-          <label htmlFor="history-zoom">Spacing</label>
-          <Input id="history-zoom" type="range" min="1" max="32" step="0.25" value={zoom} aria-valuetext={`${zoom} times the full-record width`} onChange={(event) => changeZoom(Number(event.target.value))} />
+          <Button type="button" aria-label={t("history.timeline.zoomOut")} disabled={zoom === 1} onClick={() => changeZoom(Math.max(1, Math.round(zoom / 1.5)))}>−</Button>
+          <label htmlFor="history-zoom">{t("history.timeline.spacing")}</label>
+          <Input id="history-zoom" type="range" min="1" max="32" step="0.25" value={zoom} aria-valuetext={t("history.timeline.zoomValue", { zoom })} onChange={(event) => changeZoom(Number(event.target.value))} />
           <output htmlFor="history-zoom">{zoom}×</output>
-          <Button type="button" aria-label="Zoom in timeline" disabled={zoom === 32} onClick={() => changeZoom(Math.min(32, Math.ceil(zoom * 1.5)))}>+</Button>
+          <Button type="button" aria-label={t("history.timeline.zoomIn")} disabled={zoom === 32} onClick={() => changeZoom(Math.min(32, Math.ceil(zoom * 1.5)))}>+</Button>
         </div>
         <div className="history-timeline-pan" style={{ flexWrap: "wrap", maxWidth: "100%" }}>
-          <Button type="button" onClick={() => focusTab(0)}>First entry</Button>
-          <Button type="button" onClick={() => focusTab(milestones.length - 1)}>Latest entry</Button>
-          <Button type="button" aria-label="Earlier dates" onClick={() => viewportRef.current?.scrollBy({ left: -viewportWidth * .7 })}>←</Button>
-          <Button type="button" aria-label="Later dates" onClick={() => viewportRef.current?.scrollBy({ left: viewportWidth * .7 })}>→</Button>
+          <Button type="button" onClick={() => focusTab(0)}>{t("history.timeline.firstEntry")}</Button>
+          <Button type="button" onClick={() => focusTab(milestones.length - 1)}>{t("history.timeline.latestEntry")}</Button>
+          <Button type="button" aria-label={t("history.timeline.earlier")} onClick={() => viewportRef.current?.scrollBy({ left: -viewportWidth * .7 })}>←</Button>
+          <Button type="button" aria-label={t("history.timeline.later")} onClick={() => viewportRef.current?.scrollBy({ left: viewportWidth * .7 })}>→</Button>
         </div>
       </div>
       <div
@@ -170,8 +178,8 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
         }}
         onScroll={(event) => { centerRef.current = (event.currentTarget.scrollLeft + event.currentTarget.clientWidth / 2) / canvasWidth; }}
       >
-        <div className="history-time-visual" role="tablist" aria-label="AI mathematics milestones from January to October 2026" style={{ width: `${canvasWidth}px`, "--timeline-axis-y": `${84 + nodeClearance + aboveTracks * 80}px`, "--timeline-node-clearance": `${nodeClearance}px`, height: `${168 + 2 * nodeClearance + (aboveTracks + belowTracks) * 80}px` } as CSSProperties}>
-          <div className="history-time-axis" aria-hidden="true">{timelineTicks(zoom).map(({ label, date }) => <span key={date} style={{ left: `${timelinePosition(date)}%` }}>{label}</span>)}</div>
+        <div className="history-time-visual" role="tablist" aria-label={t("history.timeline.tablistAria")} style={{ width: `${canvasWidth}px`, "--timeline-axis-y": `${84 + nodeClearance + aboveTracks * 80}px`, "--timeline-node-clearance": `${nodeClearance}px`, height: `${168 + 2 * nodeClearance + (aboveTracks + belowTracks) * 80}px` } as CSSProperties}>
+          <div className="history-time-axis" aria-hidden="true">{timelineTicks(zoom, locale).map(({ label, date }) => <span key={date} style={{ left: `${timelinePosition(date)}%` }}>{label}</span>)}</div>
           {layout.map(({ item, timelineTrack, timelineNodeOffset }, index) => {
               const isActive = item.number === activeNumber;
               const position = timelinePosition(item.timelineDate);
@@ -180,8 +188,8 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
               return (
                 <Button
                   aria-controls={`history-panel-${item.number}`}
-                  aria-label={`${item.date}: ${item.title}. ${item.evidence}`}
-                  title={`${item.date}: ${item.title}`}
+                  aria-label={`${dateLabel(item)}: ${item.title}. ${item.evidence}`}
+                  title={`${dateLabel(item)}: ${item.title}`}
                   aria-selected={isActive}
                   className={`history-timepoint is-${item.timelineLane} tone-${item.evidenceTone}${isActive ? " is-active" : ""}${item.latest ? " is-latest" : ""}${edgeClass}${nodeClass}`}
                   id={`history-tab-${item.number}`}
@@ -213,7 +221,7 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                   tabIndex={isActive ? 0 : -1}
                   type="button"
                 >
-                  <span className="history-timepoint-copy" style={compact && !isActive ? { display: "none" } : undefined}><time dateTime={item.timelineDate}>{item.date}</time><strong>{item.shortTitle}</strong>{item.latest ? <em>Latest entry</em> : null}</span>
+                  <span className="history-timepoint-copy" style={compact && !isActive ? { display: "none" } : undefined}><time dateTime={item.timelineDate}>{dateLabel(item)}</time><strong>{item.shortTitle}</strong>{item.latest ? <em>{t("history.timeline.latestBadge")}</em> : null}</span>
                   <span className="history-timepoint-node"><b>{item.number}</b></span>
                 </Button>
               );
@@ -241,15 +249,15 @@ export function HistoryTimeline({ milestones }: { milestones: HistoryMilestone[]
                 <p className="history-entry-summary">{item.summary}</p>
 
                 {item.special === "jacobian" ? <>
-                  <div className="history-jacobian-proof"><div><span>CONSTANT JACOBIAN</span><strong>det JF = −2</strong></div><div><span>NON-INJECTIVITY</span><strong>3 inputs → (−¼, 0, 0)</strong></div></div>
-                  <details className="history-jacobian-formula"><summary>Inspect the exact polynomial map <span aria-hidden="true">+</span></summary><div><code>F₁ = (1 + xy)³z + y²(1 + xy)(4 + 3xy)</code><code>F₂ = y + 3x(1 + xy)²z + 3xy²(4 + 3xy)</code><code>F₃ = 2x − 3x²y − x³z</code><p><strong>Collision:</strong> (0, 0, −¼), (1, −3/2, 13/2), and (−1, 3/2, 13/2) all map to (−¼, 0, 0).</p></div></details>
-                </> : item.special === "openai-ten" ? <div className="history-ten-proofs"><div><span>PORTFOLIO</span><strong>10 results</strong></div><div><span>PUBLIC ARTIFACT</span><strong>Lean 4 modules</strong></div><details><summary>Show the ten result areas <span aria-hidden="true">+</span></summary><ol><li>Sphere packing</li><li>Binary and spherical codes</li><li>Non-sofic groups</li><li>Connes&apos;s rigidity</li><li>Arithmetic circuit complexity</li><li>Quantum parallel repetition</li><li>Closest vector problem</li><li>Ehrhart&apos;s volume conjecture</li><li>Multicolor Ramsey numbers</li><li>Extremal number conjectures</li></ol></details></div> : item.special === "riemann" ? <div className="history-riemann-proof"><div><span>KNOWN LOWER BOUND</span><strong>41.6% → 67.2%</strong></div><div><span>RH ITSELF</span><strong>Not proved</strong></div></div> : null}
+                  <div className="history-jacobian-proof"><div><span>{t("history.timeline.jacobian.constant")}</span><strong>det JF = −2</strong></div><div><span>{t("history.timeline.jacobian.noninjective")}</span><strong>3 inputs → (−¼, 0, 0)</strong></div></div>
+                  <details className="history-jacobian-formula"><summary>{t("history.timeline.jacobian.inspect")} <span aria-hidden="true">+</span></summary><div><code>F₁ = (1 + xy)³z + y²(1 + xy)(4 + 3xy)</code><code>F₂ = y + 3x(1 + xy)²z + 3xy²(4 + 3xy)</code><code>F₃ = 2x − 3x²y − x³z</code><p><strong>{t("history.timeline.jacobian.collision")}</strong> {t("history.timeline.jacobian.collisionDetail")}</p></div></details>
+                </> : item.special === "openai-ten" ? <div className="history-ten-proofs"><div><span>{t("history.timeline.ten.portfolio")}</span><strong>{t("history.timeline.ten.results")}</strong></div><div><span>{t("history.timeline.ten.publicArtifact")}</span><strong>{t("history.timeline.ten.modules")}</strong></div><details><summary>{t("history.timeline.ten.showAreas")} <span aria-hidden="true">+</span></summary><ol><li>{t("history.timeline.ten.area.spherePacking")}</li><li>{t("history.timeline.ten.area.codes")}</li><li>{t("history.timeline.ten.area.nonSofic")}</li><li>{t("history.timeline.ten.area.connes")}</li><li>{t("history.timeline.ten.area.circuit")}</li><li>{t("history.timeline.ten.area.quantum")}</li><li>{t("history.timeline.ten.area.cvp")}</li><li>{t("history.timeline.ten.area.ehrhart")}</li><li>{t("history.timeline.ten.area.ramsey")}</li><li>{t("history.timeline.ten.area.extremal")}</li></ol></details></div> : item.special === "riemann" ? <div className="history-riemann-proof"><div><span>{t("history.timeline.riemann.known")}</span><strong>41.6% → 67.2%</strong></div><div><span>{t("history.timeline.riemann.itself")}</span><strong>{t("history.timeline.riemann.notProved")}</strong></div></div> : null}
 
-                {item.reproduction ? <div className="history-reproduction-inline"><div><span className="history-reproduction-label">Lean replay path</span><strong>{item.reproduction.label}</strong><p>{item.reproduction.detail}</p>{item.reproduction.command ? <code>{item.reproduction.command}</code> : null}</div><div className="history-reproduction-links"><a href={item.reproduction.href} rel="noreferrer" target="_blank">Open artifact <span aria-hidden="true">↗</span></a>{item.reproduction.workspaceHref && item.reproduction.workspaceLabel ? <a href={item.reproduction.workspaceHref}>{item.reproduction.workspaceLabel} <span aria-hidden="true">→</span></a> : null}</div></div> : null}
+                {item.reproduction ? <div className="history-reproduction-inline"><div><span className="history-reproduction-label">{t("history.timeline.replayPath")}</span><strong>{item.reproduction.label}</strong><p>{item.reproduction.detail}</p>{item.reproduction.command ? <code>{item.reproduction.command}</code> : null}</div><div className="history-reproduction-links"><a href={item.reproduction.href} rel="noreferrer" target="_blank">{t("history.timeline.openArtifact")} <span aria-hidden="true">↗</span></a>{item.reproduction.workspaceHref && item.reproduction.workspaceLabel ? <a href={item.reproduction.workspaceHref}>{item.reproduction.workspaceLabel} <span aria-hidden="true">→</span></a> : null}</div></div> : null}
 
-                <FieldList layout="stacked" className="history-role-grid"><Field label="AI contribution">{item.aiRole}</Field><Field label="Human contribution">{item.humanRole}</Field><Field label={<>{item.frontier ? "Evidence today" : "Why it mattered"}</>}> {item.significance}</Field></FieldList>
+                <FieldList layout="stacked" className="history-role-grid"><Field label={t("history.timeline.aiContribution")}>{item.aiRole}</Field><Field label={t("history.timeline.humanContribution")}>{item.humanRole}</Field><Field label={<>{item.frontier ? t("history.timeline.evidenceToday") : t("history.timeline.whyMattered")}</>}> {item.significance}</Field></FieldList>
 
-                {item.frontier ? <div className="history-frontier-boundary"><strong>What this does—and does not—establish</strong><p>{item.boundary ?? (item.special === "riemann" ? "This improves a lower bound for a related zeta-zero problem. It does not prove or disprove the Riemann Hypothesis; the formal artifact is public, while a Proofweave replay receipt is still pending." : "The displayed algebraic claims can be checked now. The scholarly publication and attribution record are still forming, and the two-dimensional Jacobian Conjecture remains open.")}</p></div> : null}
+                {item.frontier ? <div className="history-frontier-boundary"><strong>{t("history.timeline.boundaryTitle")}</strong><p>{item.boundary ?? (item.special === "riemann" ? t("history.timeline.boundaryRiemann") : t("history.timeline.boundaryDefault"))}</p></div> : null}
 
                 <footer>{item.sources.map((source) => <a href={source.href} key={source.href} rel="noreferrer" target="_blank">{source.label} <span aria-hidden="true">↗</span></a>)}</footer>
               </Surface>
@@ -280,18 +288,27 @@ function distributeTimelineLabels(milestones: HistoryMilestone[], width: number)
   });
 }
 
+function formatMilestoneDate(item: HistoryMilestone, locale: Locale): string {
+  if (locale === "en") return item.date;
+  const parsed = new Date(`${item.timelineDate}T00:00:00Z`);
+  return Number.isFinite(parsed.getTime())
+    ? new Intl.DateTimeFormat(locale, { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" }).format(parsed)
+    : item.date;
+}
+
 function timelinePosition(date: string) {
   const start = Date.parse("2026-01-01T00:00:00Z");
   const end = Date.parse("2026-10-31T00:00:00Z");
   return 2 + 96 * (Date.parse(`${date}T00:00:00Z`) - start) / (end - start);
 }
 
-function timelineTicks(zoom: number) {
+function timelineTicks(zoom: number, locale: Locale) {
   const ticks: Array<{ date: string; label: string }> = [];
   const step = zoom >= 12 ? 1 : zoom >= 4 ? 7 : 0;
-  const formatter = new Intl.DateTimeFormat("en", { month: "short", ...(step ? { day: "numeric" } as const : {}), timeZone: "UTC" });
+  const formatter = new Intl.DateTimeFormat(locale, { month: "short", ...(step ? { day: "numeric" } as const : {}), timeZone: "UTC" });
   for (let day = new Date("2026-01-01T00:00:00Z"); day <= new Date("2026-10-31T00:00:00Z");) {
-    ticks.push({ date: day.toISOString().slice(0, 10), label: formatter.format(day).toUpperCase() });
+    const label = formatter.format(day);
+    ticks.push({ date: day.toISOString().slice(0, 10), label: locale === "en" ? label.toUpperCase() : label });
     if (step) day.setUTCDate(day.getUTCDate() + step);
     else day.setUTCMonth(day.getUTCMonth() + 1);
   }

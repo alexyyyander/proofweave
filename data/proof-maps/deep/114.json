@@ -1,0 +1,507 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "114",
+  "title": "Approximate counting of common integer polymatroid bases",
+  "result": {
+    "id": "paper-result",
+    "label": "Approximate counting of common integer polymatroid bases",
+    "statement": "Gives a fully polynomial randomized approximation scheme for counting common integer bases of two integral polymatroids of equal total rank, supplied by exact rank-value oracles. Capacities are binary-encoded, each integer vector counts once, and oracle calls and bit operations outside the oracles are polynomial on every execution. For matroids presented by independence oracles, the results also cover common independent sets of prescribed, unrestricted, or maximum cardinality, even when the ranks differ.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "polyhedral-tools-and-a-feasible-center",
+      "label": "Polyhedral tools and a feasible center",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "integer-signatures-and-difference-counts",
+      "label": "Integer signatures and difference counts",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "partitions-shift-averages-and-controlled-expansion",
+      "label": "Partitions, shift averages, and controlled expansion",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "polynomial-port-ranges-and-positive-weights",
+      "label": "Polynomial port ranges and positive weights",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "evaluating-the-weights-with-bounded-rational-computation",
+      "label": "Evaluating the weights with bounded rational computation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "counting-the-balanced-port-profiles",
+      "label": "Counting the balanced port profiles",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quadratic-signature-inequalities",
+      "label": "Quadratic signature inequalities",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-transport-inequality",
+      "label": "A transport inequality",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-chain-and-its-observable-poincar-e-bound",
+      "label": "A chain and its observable Poincar\\'e bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-consequences-for-simulation",
+      "label": "Two consequences for simulation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "counting-and-sampling-common-independent-sets",
+      "label": "Counting and sampling common independent sets",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities",
+      "title": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-FPRAS-for-Common-Integer-Polymatroid-Bases-with-Binary-Capacities-October-5-2026/polymatroid-fpras.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from An FPRAS for Common Integer Polymatroid Bases with Binary Capacities.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-oracle-tools",
+          "role": "polyhedral-tools-and-a-feasible-center",
+          "label": "proposition m1-prop-oracle-tools",
+          "fullLabel": "proposition m1-prop-oracle-tools",
+          "kind": "proposition",
+          "source": "Polyhedral tools and a feasible center",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-base-calculus",
+          "role": "polyhedral-tools-and-a-feasible-center",
+          "label": "lemma m1-lem-base-calculus",
+          "fullLabel": "lemma m1-lem-base-calculus",
+          "kind": "lemma",
+          "source": "Polyhedral tools and a feasible center",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-expansion-matroid",
+          "role": "polyhedral-tools-and-a-feasible-center",
+          "label": "lemma m1-lem-expansion-matroid",
+          "fullLabel": "lemma m1-lem-expansion-matroid",
+          "kind": "lemma",
+          "source": "Polyhedral tools and a feasible center",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-polyhedral-controls",
+          "role": "polyhedral-tools-and-a-feasible-center",
+          "label": "lemma m1-lem-polyhedral-controls",
+          "fullLabel": "lemma m1-lem-polyhedral-controls",
+          "kind": "lemma",
+          "source": "Polyhedral tools and a feasible center",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-center",
+          "role": "polyhedral-tools-and-a-feasible-center",
+          "label": "lemma m1-lem-center",
+          "fullLabel": "lemma m1-lem-center",
+          "kind": "lemma",
+          "source": "Polyhedral tools and a feasible center",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-balanced-summation",
+          "role": "integer-signatures-and-difference-counts",
+          "label": "lemma m1-lem-balanced-summation",
+          "fullLabel": "lemma m1-lem-balanced-summation",
+          "kind": "lemma",
+          "source": "Integer signatures and difference counts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rank-signatures",
+          "role": "integer-signatures-and-difference-counts",
+          "label": "lemma m1-lem-rank-signatures",
+          "fullLabel": "lemma m1-lem-rank-signatures",
+          "kind": "lemma",
+          "source": "Integer signatures and difference counts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-shift-logconcavity",
+          "role": "integer-signatures-and-difference-counts",
+          "label": "proposition m1-prop-shift-logconcavity",
+          "fullLabel": "proposition m1-prop-shift-logconcavity",
+          "kind": "proposition",
+          "source": "Integer signatures and difference counts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-generator-prefixes",
+          "role": "partitions-shift-averages-and-controlled-expansion",
+          "label": "lemma m1-lem-generator-prefixes",
+          "fullLabel": "lemma m1-lem-generator-prefixes",
+          "kind": "lemma",
+          "source": "Partitions, shift averages, and controlled expansion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-partitions",
+          "role": "partitions-shift-averages-and-controlled-expansion",
+          "label": "lemma m1-lem-partitions",
+          "fullLabel": "lemma m1-lem-partitions",
+          "kind": "lemma",
+          "source": "Partitions, shift averages, and controlled expansion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-shift-average",
+          "role": "partitions-shift-averages-and-controlled-expansion",
+          "label": "lemma m1-lem-shift-average",
+          "fullLabel": "lemma m1-lem-shift-average",
+          "kind": "lemma",
+          "source": "Partitions, shift averages, and controlled expansion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-refinement-witnesses",
+          "role": "partitions-shift-averages-and-controlled-expansion",
+          "label": "lemma m1-lem-refinement-witnesses",
+          "fullLabel": "lemma m1-lem-refinement-witnesses",
+          "kind": "lemma",
+          "source": "Partitions, shift averages, and controlled expansion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-expansion",
+          "role": "partitions-shift-averages-and-controlled-expansion",
+          "label": "proposition m1-prop-expansion",
+          "fullLabel": "proposition m1-prop-expansion",
+          "kind": "proposition",
+          "source": "Partitions, shift averages, and controlled expansion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tree-coordinates",
+          "role": "polynomial-port-ranges-and-positive-weights",
+          "label": "lemma m1-lem-tree-coordinates",
+          "fullLabel": "lemma m1-lem-tree-coordinates",
+          "kind": "lemma",
+          "source": "Polynomial port ranges and positive weights",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-port-penalties",
+          "role": "polynomial-port-ranges-and-positive-weights",
+          "label": "lemma m1-lem-port-penalties",
+          "fullLabel": "lemma m1-lem-port-penalties",
+          "kind": "lemma",
+          "source": "Polynomial port ranges and positive weights",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-smooth-derivatives",
+          "role": "polynomial-port-ranges-and-positive-weights",
+          "label": "lemma m1-lem-smooth-derivatives",
+          "fullLabel": "lemma m1-lem-smooth-derivatives",
+          "kind": "lemma",
+          "source": "Polynomial port ranges and positive weights",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-block-signatures",
+          "role": "polynomial-port-ranges-and-positive-weights",
+          "label": "lemma m1-lem-block-signatures",
+          "fullLabel": "lemma m1-lem-block-signatures",
+          "kind": "lemma",
+          "source": "Polynomial port ranges and positive weights",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-port-model",
+          "role": "polynomial-port-ranges-and-positive-weights",
+          "label": "proposition m1-prop-port-model",
+          "fullLabel": "proposition m1-prop-port-model",
+          "kind": "proposition",
+          "source": "Polynomial port ranges and positive weights",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-weight-bounds",
+          "role": "evaluating-the-weights-with-bounded-rational-computation",
+          "label": "lemma m1-lem-weight-bounds",
+          "fullLabel": "lemma m1-lem-weight-bounds",
+          "kind": "lemma",
+          "source": "Evaluating the weights with bounded rational computation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-volume-lift",
+          "role": "evaluating-the-weights-with-bounded-rational-computation",
+          "label": "lemma m1-lem-volume-lift",
+          "fullLabel": "lemma m1-lem-volume-lift",
+          "kind": "lemma",
+          "source": "Evaluating the weights with bounded rational computation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-weight-evaluator",
+          "role": "evaluating-the-weights-with-bounded-rational-computation",
+          "label": "proposition m1-prop-weight-evaluator",
+          "fullLabel": "proposition m1-prop-weight-evaluator",
+          "kind": "proposition",
+          "source": "Evaluating the weights with bounded rational computation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-counting-lifts",
+          "role": "counting-the-balanced-port-profiles",
+          "label": "lemma m1-lem-counting-lifts",
+          "fullLabel": "lemma m1-lem-counting-lifts",
+          "kind": "lemma",
+          "source": "Counting the balanced port profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-counting-transport",
+          "role": "counting-the-balanced-port-profiles",
+          "label": "proposition m1-prop-counting-transport",
+          "fullLabel": "proposition m1-prop-counting-transport",
+          "kind": "proposition",
+          "source": "Counting the balanced port profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-counting-initialization",
+          "role": "counting-the-balanced-port-profiles",
+          "label": "lemma m1-lem-counting-initialization",
+          "fullLabel": "lemma m1-lem-counting-initialization",
+          "kind": "lemma",
+          "source": "Counting the balanced port profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-counting-reference",
+          "role": "counting-the-balanced-port-profiles",
+          "label": "proposition m1-prop-counting-reference",
+          "fullLabel": "proposition m1-prop-counting-reference",
+          "kind": "proposition",
+          "source": "Counting the balanced port profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-counting-bits",
+          "role": "counting-the-balanced-port-profiles",
+          "label": "lemma m1-lem-counting-bits",
+          "fullLabel": "lemma m1-lem-counting-bits",
+          "kind": "lemma",
+          "source": "Counting the balanced port profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Approximate counting of common bases of two matroids",
+      "title": "Approximate counting of common bases of two matroids",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Approximate-counting-of-common-bases-of-two-matroids-September-23-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Approximate counting of common bases of two matroids.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-bh",
+          "role": "quadratic-signature-inequalities",
+          "label": "theorem m2-thm-bh",
+          "fullLabel": "theorem m2-thm-bh",
+          "kind": "theorem",
+          "source": "Quadratic signature inequalities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-coefficient",
+          "role": "quadratic-signature-inequalities",
+          "label": "lemma m2-lem-coefficient",
+          "fullLabel": "lemma m2-lem-coefficient",
+          "kind": "lemma",
+          "source": "Quadratic signature inequalities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-transport",
+          "role": "a-transport-inequality",
+          "label": "lemma m2-lem-transport",
+          "fullLabel": "lemma m2-lem-transport",
+          "kind": "lemma",
+          "source": "A transport inequality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-transversalvariance",
+          "role": "a-chain-and-its-observable-poincar-e-bound",
+          "label": "lemma m2-lem-transversalvariance",
+          "fullLabel": "lemma m2-lem-transversalvariance",
+          "kind": "lemma",
+          "source": "A chain and its observable Poincar\\'e bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-defecttransfer",
+          "role": "a-chain-and-its-observable-poincar-e-bound",
+          "label": "lemma m2-lem-defecttransfer",
+          "fullLabel": "lemma m2-lem-defecttransfer",
+          "kind": "lemma",
+          "source": "A chain and its observable Poincar\\'e bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-observable",
+          "role": "a-chain-and-its-observable-poincar-e-bound",
+          "label": "proposition m2-prop-observable",
+          "fullLabel": "proposition m2-prop-observable",
+          "kind": "proposition",
+          "source": "A chain and its observable Poincar\\'e bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-timeaverages",
+          "role": "two-consequences-for-simulation",
+          "label": "lemma m2-lem-timeaverages",
+          "fullLabel": "lemma m2-lem-timeaverages",
+          "kind": "lemma",
+          "source": "Two consequences for simulation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-trace",
+          "role": "two-consequences-for-simulation",
+          "label": "lemma m2-lem-trace",
+          "fullLabel": "lemma m2-lem-trace",
+          "kind": "lemma",
+          "source": "Two consequences for simulation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-intersection",
+          "role": "counting-and-sampling-common-independent-sets",
+          "label": "corollary m2-cor-intersection",
+          "fullLabel": "corollary m2-cor-intersection",
+          "kind": "corollary",
+          "source": "Counting and sampling common independent sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "An FPRAS for Common Integer Polymatroid Bases with Binary Capacities",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-FPRAS-for-Common-Integer-Polymatroid-Bases-with-Binary-Capacities-October-5-2026/polymatroid-fpras.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Approximate counting of common bases of two matroids",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Approximate-counting-of-common-bases-of-two-matroids-September-23-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

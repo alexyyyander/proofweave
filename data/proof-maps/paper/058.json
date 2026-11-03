@@ -1,0 +1,628 @@
+{
+  "familyNumber": "058",
+  "familyTitle": "Semialgebraic universal covers and bounded domains",
+  "manuscripts": [
+    {
+      "id": "Semialgebraic-universal-covers-of-normal-projective-varieties-September-24-2026",
+      "title": "Semialgebraic universal covers of normal projective varieties",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Semialgebraic-universal-covers-of-normal-projective-varieties-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Symmetry-of-semialgebraic-bounded-domains-with-compact-quotient-September-24-2026",
+      "title": "Symmetry of semialgebraic bounded domains with compact quotient",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Symmetry-of-semialgebraic-bounded-domains-with-compact-quotient-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Assembly of the classification",
+    "Preparation, kernels, and projective holes",
+    "Localization with triangular recenterings",
+    "Successive faces and projective windows",
+    "The intrinsic quotient",
+    "The transverse action and the fibre group",
+    "Compact fibres and the affine factor",
+    "Quasi-projective covering spaces",
+    "Smoothness and a proper intrinsic distance",
+    "Boundary preparation and independent supports",
+    "An open cone of limiting interior",
+    "Weighted scaling and the quadratic model",
+    "Symmetry of the quadratic model"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "The Koll\\'ar--Pardon classification",
+      "statement": "[The Koll\\'ar--Pardon classification] Let \\(X\\) be a connected normal projective variety over \\(\\), and let \\( X\\) be its universal cover. The following conditions are equivalent: [label=( *)] \\( X\\)…",
+      "section": "Introduction",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-cor-remmert-semialgebraic",
+      "kind": "corollary",
+      "label": "Remmert reduction of semialgebraic covers",
+      "statement": "[Remmert reduction of semialgebraic covers] Let \\(X\\) be a connected normal projective complex variety whose ordinary universal cover \\(U\\) has a semialgebraic projective-open presentation. Write \\(U…",
+      "section": "Assembly of the classification",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-cor-singer-semialgebraic",
+      "kind": "corollary",
+      "label": "Singer vanishing for semialgebraic covers",
+      "statement": "[Singer vanishing for semialgebraic covers] Let \\(X\\) be a smooth connected closed aspherical projective complex \\(n\\)-fold whose ordinary universal cover has a semialgebraic projective-open…",
+      "section": "Assembly of the classification",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-prep-puiseux",
+      "kind": "lemma",
+      "label": "Power bounds and generic Puiseux preparation",
+      "statement": "[Power bounds and generic Puiseux preparation] Let A be globally subanalytic and let f(v,t) be globally subanalytic for v A and 0<t<(v) , where is positive. If f(v,t)>0 , there is an integer N such…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-prep-projective-models",
+      "kind": "lemma",
+      "label": "Projective models with parameters",
+      "statement": "[Projective models with parameters] Suppose an algebraic family in projective coordinates is pulled back by a local analytic parameter map. Suppose an irreducible member is specified by a marked…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-prep-kernel-pseudoconvexity",
+      "kind": "lemma",
+      "label": "Pseudoconvexity of open kernels",
+      "statement": "[Pseudoconvexity of open kernels] An open kernel of locally pseudoconvex open sets is locally pseudoconvex. The assertion also holds in varying manifolds equipped with smoothly converging holomorphic…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-prep-finite-jet-specialization",
+      "kind": "lemma",
+      "label": "Finite-jet specialization",
+      "statement": "[Finite-jet specialization] In bounded projective charts let a family of sets be described by finitely many Boolean combinations of equations and inequalities polynomial in the real fibre coordinates…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-prep-generic-distance-convergence",
+      "kind": "lemma",
+      "label": "Generic convergence of distance tests",
+      "statement": "[Generic convergence of distance tests] Let x range over an open real box U , let K be compact and globally subanalytic, and let d_t(x,z) be a bounded globally subanalytic family of functions on K ,…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-prep-generic-freezing",
+      "kind": "corollary",
+      "label": "Freezing the real center",
+      "statement": "[Freezing the real center] Let a definable family be written using Reb and Imb , and let R_t0 be a fixed real power matrix, independent of the real center x . For the substitution \\[ b=x+R_t(u+iv) \\]…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-prep-power-diagonalization",
+      "kind": "lemma",
+      "label": "Power diagonalization",
+      "statement": "[Power diagonalization] Let f(e,t,v) be a bounded globally subanalytic function with iterated limit f_ 00 (v)=_ t0 _ e0 f(e,t,v) . There is an integer N_0 such that for every integer N>N_0 , \\[ _ t0…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-holes-polynomial-maximum",
+      "kind": "lemma",
+      "label": "Polynomial maximum over the holes",
+      "statement": "[Polynomial maximum over the holes] Let B be a complex manifold and let J B C be closed. Assume that J B is proper, its fibres are locally bounded in the line coordinate, and (B C) J is locally…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-holes-boundary-trapping",
+      "kind": "lemma",
+      "label": "Boundary trapping",
+      "statement": "[Boundary trapping] Let a proper holomorphic submersion be given near a relatively compact parameter interval I on the boundary of a one-sided complex disc. Let G be locally pseudoconvex on that…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-holes-interior-trapping",
+      "kind": "lemma",
+      "label": "Interior trapping",
+      "statement": "[Interior trapping] Let G be open and locally pseudoconvex over a whole connected base box, with the preceding local confinement hypotheses. Suppose a relative divisor D is holomorphic in a whole…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-holes-tangency-propagation",
+      "kind": "lemma",
+      "label": "Tangency propagation in a connected fibre",
+      "statement": "[Tangency propagation in a connected fibre] Let q:Q be a holomorphic submersion, let G Q be open and locally pseudoconvex, and let A be a divisor in Q_0 . Suppose Q_0 A is connected. Assume that on…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-holes-thin-analyticity",
+      "kind": "theorem",
+      "label": "Analyticity of a thin pseudoconcave set",
+      "statement": "[Analyticity of a thin pseudoconcave set] Let M be a complex manifold of dimension n , and let A M be closed and subanalytic, with real dimension at most 2n-2 . If M A is locally pseudoconvex, then A…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-holes-relative-divisor-container",
+      "kind": "lemma",
+      "label": "A relative divisor containing a proper subset",
+      "statement": "[A relative divisor containing a proper subset] Let q:Q B be a smooth projective family with connected fibres, and let A Q be a relative algebraic subset with analytic coefficient data, proper in…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-holes-bounded-containers",
+      "kind": "lemma",
+      "label": "Bounded algebraic containers",
+      "statement": "[Bounded algebraic containers] Consider a smooth proper projective family with connected fibres, and a bounded-data semialgebraic family of subsets of those fibres. There is a degree bound, depending…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-holes-projective-propagation",
+      "kind": "proposition",
+      "label": "Projective-fibre propagation",
+      "statement": "[Projective-fibre propagation] Let q:Q B be smooth, proper, and projective, with connected smooth fibres. Let G Q be open, subanalytic, locally pseudoconvex, and fibrewise semialgebraic with bounded…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-holes-container-propagation",
+      "kind": "corollary",
+      "label": "Continuation of a fixed container",
+      "statement": "[Continuation of a fixed container] In Proposition , let D be a relative analytic divisor defined on the full parameter box and proper in every fibre. If J D over a nonempty open subregion of S_0 ,…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-holes-section-test",
+      "kind": "corollary",
+      "label": "A section detects the projection domain",
+      "statement": "[A section detects the projection domain] Suppose a full-box container D as in Corollary is available. A local holomorphic section of q avoiding D lies in G at every parameter of S_0 . Near a…",
+      "section": "Preparation, kernels, and projective holes",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-loc-theorem",
+      "kind": "theorem",
+      "label": "Accessible upper containment",
+      "statement": "[Accessible upper containment] Under these hypotheses, at generic x , for every finite L>|p| and every >0 there is t_0=t_0(x,L,)>0 such that 0<t<t_0 A_t^x(L)\\ Z:dist(Z,P_x)<\\ . Consequently, if t_n0…",
+      "section": "Localization with triangular recenterings",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-loc-puiseux",
+      "kind": "lemma",
+      "label": "Generic analytic power parametrization",
+      "statement": "[Generic analytic power parametrization] Let U R^k be open and let f:U(0,) R^m be bounded and globally subanalytic. Outside a closed subanalytic subset of U of dimension less than k , locally in x ,…",
+      "section": "Localization with triangular recenterings",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-loc-paths",
+      "kind": "lemma",
+      "label": "Uniformly controlled replacement paths",
+      "statement": "[Uniformly controlled replacement paths] Let U R^k be open, let D U(0,) R^n be a bounded globally subanalytic family of open sets, and let v,w be bounded subanalytic sections that belong to the same…",
+      "section": "Localization with triangular recenterings",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-loc-matrix-outer",
+      "kind": "corollary",
+      "label": "Semidefinite outer tests",
+      "statement": "[Semidefinite outer tests] Suppose, in addition, that the marked kernel is described recursively by strict positive-definiteness tests for finitely many continuous Hermitian matrix functions M_j(Z) ,…",
+      "section": "Localization with triangular recenterings",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-win-plaques",
+      "kind": "lemma",
+      "label": "Algebraicity of the null plaques",
+      "statement": "[Algebraicity of the null plaques] Let M be a regular patch of a real algebraic hypersurface in a smooth complex algebraic n -fold. Suppose one side is locally pseudoconvex and the Levi form has…",
+      "section": "Successive faces and projective windows",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-win-period",
+      "kind": "lemma",
+      "label": "The period matrix",
+      "statement": "[The period matrix] In the situation of Lemma~ , there is a real analytic (r+1) -parameter family of plaques, with coordinates (s,w) ^r , whose complexification evaluates with full complex rank near…",
+      "section": "Successive faces and projective windows",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-win-seed-bergman",
+      "kind": "lemma",
+      "label": "The whole seed fibre has a Bergman function",
+      "statement": "[The whole seed fibre has a Bergman function] At every z_0 in a sufficiently small original plaque patch, the component of the kernel fibre containing (i,0) is precisely \\[ T_A=\\ (s,w)^ r+1 : s>( w)^…",
+      "section": "Successive faces and projective windows",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-win-first-epigraph",
+      "kind": "lemma",
+      "label": "Exact first epigraph",
+      "statement": "[Exact first epigraph] There is a connected semialgebraic locally pseudoconvex domain V_2 L such that H is holomorphic on V_2 , H>0 there, and E=\\ (s,w,z):z V_2, s>( w)^ T ( H(z))^ -1 w\\ . In…",
+      "section": "Successive faces and projective windows",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-win-finite-taylor",
+      "kind": "lemma",
+      "label": "Finite Taylor extraction",
+      "statement": "[Finite Taylor extraction] Suppose A_t(x) and A_t(x)^ -1 have joint Puiseux expansions on a real parameter neighborhood, with polynomial bounds in t^ -1 , and R_t(x) has the same property and tends…",
+      "section": "Successive faces and projective windows",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-win-siegel-normalization",
+      "kind": "lemma",
+      "label": "Normalizing a varying Siegel matrix",
+      "statement": "[Normalizing a varying Siegel matrix] Let S_2 be a fixed parameter domain with normalization R_t^2(x_2) , open-kernel component P_2 , and a fixed interior seed p_2 . Let H_* be symmetric and…",
+      "section": "Successive faces and projective windows",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-win-construction",
+      "kind": "theorem",
+      "label": "Projective windows",
+      "statement": "[Projective windows] Let Y be a connected smooth projective variety and let V Y be a nonempty connected semialgebraic open subset that is locally pseudoconvex at its boundary. The following data…",
+      "section": "Successive faces and projective windows",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-win-tower-properties",
+      "kind": "proposition",
+      "label": "The domain P of Theorem~ is diffeomorphic to ^ 2d , where d=_ P . In particular…",
+      "statement": "The domain P of Theorem~ is diffeomorphic to ^ 2d , where d=_ P . In particular it is contractible. It is Stein and biholomorphic to a bounded domain of the same complex dimension. Complete real…",
+      "section": "Successive faces and projective windows",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-quo-pseudoconvex",
+      "kind": "lemma",
+      "label": "The open set \\(V\\) is locally pseudoconvex in \\(Y\\).",
+      "statement": "The open set \\(V\\) is locally pseudoconvex in \\(Y\\).",
+      "section": "The intrinsic quotient",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-quo-tower",
+      "kind": "lemma",
+      "label": "The domain \\(P\\) is diffeomorphic to \\(^ 2d \\), is Stein, and is biholomorphic…",
+      "statement": "The domain \\(P\\) is diffeomorphic to \\(^ 2d \\), is Stein, and is biholomorphic to a bounded domain in \\(^d\\). Its Kobayashi distance is a proper distance inducing its usual topology.",
+      "section": "The intrinsic quotient",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-quo-guard",
+      "kind": "lemma",
+      "label": "There are normalized accessible parameter regions \\(A_i\\ |Z|<R_i\\ \\), where…",
+      "statement": "There are normalized accessible parameter regions \\(A_i\\ |Z|<R_i\\ \\), where \\(R_i\\), and holomorphic functions \\(h\\) on their neighbourhoods, given by the same formula h(Z)=(-_jtr (I-iM_j(Z))), with…",
+      "section": "The intrinsic quotient",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-quo-incidence",
+      "kind": "lemma",
+      "label": "The union \\(U_i=_ b H_i (Z_b V)\\) is open in \\(V\\). Distinct fibres in this…",
+      "statement": "The union \\(U_i=_ b H_i (Z_b V)\\) is open in \\(V\\). Distinct fibres in this union are disjoint, and there is a holomorphic submersion \\[ _i:U_i H_i, _i^ -1 (b)=Z_b V. \\] These fibres are connected.…",
+      "section": "The intrinsic quotient",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-quo-cutoff-normal",
+      "kind": "lemma",
+      "label": "Let \\(D\\) be a complex manifold, let \\(A_i D\\) be open, and let \\(h_i O(A_i)\\)…",
+      "statement": "Let \\(D\\) be a complex manifold, let \\(A_i D\\) be open, and let \\(h_i O(A_i)\\) satisfy \\(|h_i| C\\). Suppose that, for every \\(x A_i D\\), \\[ _ A_i z x |h_i(z)|_i, _i0. \\] Extend \\(h_i\\) by zero…",
+      "section": "The intrinsic quotient",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-quo-trapping",
+      "kind": "corollary",
+      "label": "Let \\(D_i\\) exhaust a connected complex manifold \\(D\\), and let \\(g_i:D_i V\\)…",
+      "statement": "Let \\(D_i\\) exhaust a connected complex manifold \\(D\\), and let \\(g_i:D_i V\\) be holomorphic. Suppose that at points \\(x_i x\\) the images belong to \\(U_i\\), and their normalized parameters…",
+      "section": "The intrinsic quotient",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-quo-inverse-tightness",
+      "kind": "lemma",
+      "label": "For every compact \\(K P\\), the images \\(_i(K)\\) eventually lie in a compact…",
+      "statement": "For every compact \\(K P\\), the images \\(_i(K)\\) eventually lie in a compact subset of one fixed chart \\(M_j\\).",
+      "section": "The intrinsic quotient",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-quo-descent",
+      "kind": "lemma",
+      "label": "The map \\(f\\) descends uniquely to an equivariant holomorphic map \\(f_X: X M\\).…",
+      "statement": "The map \\(f\\) descends uniquely to an equivariant holomorphic map \\(f_X: X M\\). Its fibres are connected and, locally on \\(M\\), have simultaneous projective compactifications with analytic holes.…",
+      "section": "The intrinsic quotient",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-quo-projection",
+      "kind": "theorem",
+      "label": "Intrinsic projection",
+      "statement": "[Intrinsic projection] Under the hypotheses of condition~(i) of Theorem~ and the boundary construction of Theorem~ , there are a contractible Stein manifold \\(M\\), biholomorphic to the boundedly…",
+      "section": "The intrinsic quotient",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-grp-liouville",
+      "kind": "lemma",
+      "label": "Let a:W Z be a connected regular covering of a compact connected K\\\"ahler…",
+      "statement": "Let a:W Z be a connected regular covering of a compact connected K\\\"ahler manifold. If its deck group is virtually abelian, every bounded holomorphic function on W is constant.",
+      "section": "The transverse action and the fibre group",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-grp-finite-level-projection",
+      "kind": "lemma",
+      "label": "Let q:Q B be a proper holomorphic map from a complex manifold, let h:Q C be a…",
+      "statement": "Let q:Q B be a proper holomorphic map from a complex manifold, let h:Q C be a meromorphic map to a projective variety, and let G_0 Q be open with h|_ G_0 holomorphic. Fix s C . If \\[ q(G_0 h^ -1 (s))…",
+      "section": "The transverse action and the fibre group",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-grp-countable-core-level",
+      "kind": "lemma",
+      "label": "For every such s , the set D_s is countable and locally finite in M . The union…",
+      "statement": "For every such s , the set D_s is countable and locally finite in M . The union of these sets, as s runs through very general values, is dense in M .",
+      "section": "The transverse action and the fibre group",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-grp-discrete",
+      "kind": "proposition",
+      "label": "The image is discrete in Aut(M) and acts cocompactly on M .",
+      "statement": "The image is discrete in Aut(M) and acts cocompactly on M .",
+      "section": "The transverse action and the fibre group",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-grp-free-finite-index",
+      "kind": "lemma",
+      "label": "There is a torsion-free finite-index subgroup _1 acting freely on M . Its…",
+      "statement": "There is a torsion-free finite-index subgroup _1 acting freely on M . Its inverse image in corresponds to a connected finite cover of the original normal projective variety X .",
+      "section": "The transverse action and the fibre group",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-grp-discrete-symmetric",
+      "kind": "theorem",
+      "label": "Under the intrinsic-projection hypotheses recalled above, the transverse image…",
+      "statement": "Under the intrinsic-projection hypotheses recalled above, the transverse image is discrete and cocompact. After a finite cover it acts freely, and M is biholomorphic to a bounded symmetric domain,…",
+      "section": "The transverse action and the fibre group",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-grp-compactifiable-cover",
+      "kind": "lemma",
+      "label": "Let a:U N be a connected regular covering of a smooth connected projective…",
+      "statement": "Let a:U N be a connected regular covering of a smooth connected projective manifold, with deck group K . Suppose U is a Zariski open subset, in the analytic sense, of a smooth projective manifold U .…",
+      "section": "The transverse action and the fibre group",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-grp-kernel-abelian",
+      "kind": "theorem",
+      "label": "After the finite-cover replacement of Lemma~ , let K=() . The group K is…",
+      "statement": "After the finite-cover replacement of Lemma~ , let K=() . The group K is finitely generated and virtually abelian. For each m M , it acts on f^ -1 (m) as the deck group of a connected regular…",
+      "section": "The transverse action and the fibre group",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-cmp-characteristic",
+      "kind": "lemma",
+      "label": "The characteristic fibre cover",
+      "statement": "[The characteristic fibre cover] There is a characteristic finite-index subgroup K' K which is free abelian. The quotient X=U/K' is normal and its map p: X M is proper and flat. It is topologically…",
+      "section": "Compact fibres and the affine factor",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-cmp-albanese",
+      "kind": "lemma",
+      "label": "Relative Albanese descent",
+      "statement": "[Relative Albanese descent] There is an integer a0 with K' Z^ 2a and a smooth proper family of Albanese torsors q: A M and a proper morphism \\[ : X A \\] over M whose restriction to N_m is its…",
+      "section": "Compact fibres and the affine factor",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-cmp-affine-base",
+      "kind": "proposition",
+      "label": "The proper map to the affine base",
+      "statement": "[The proper map to the affine base] There is a -equivariant proper flat surjection \\[ j:U T, T M C^a, \\] whose fibres are connected, simply connected, normal projective varieties. The action of on T…",
+      "section": "Compact fibres and the affine factor",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-cmp-closed-rigidity",
+      "kind": "lemma",
+      "label": "Rigidity for invariant closed subsets",
+      "statement": "[Rigidity for invariant closed subsets] Let a countable discrete group act properly and cocompactly by diffeomorphisms on a contractible smooth manifold T homeomorphic to R^b . If a nonempty closed…",
+      "section": "Compact fibres and the affine factor",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-cmp-chow-base",
+      "kind": "lemma",
+      "label": "The semialgebraic space of fibres",
+      "statement": "[The semialgebraic space of fibres] Fix a semialgebraic realization U Z , where Z is projective, and a projective embedding of Z . Let n be the fibre dimension of j and d the degree of one fibre. In…",
+      "section": "Compact fibres and the affine factor",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-cmp-polarized-locus",
+      "kind": "lemma",
+      "label": "Integral marking of polarized isomorphism classes",
+      "statement": "[Integral marking of polarized isomorphism classes] For every fixed polarized fibre (F,L_F) of j , the locus of fibres polarized-isomorphic to it is semialgebraic in C .",
+      "section": "Compact fibres and the affine factor",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-cmp-product",
+      "kind": "proposition",
+      "label": "Triviality of the compact factor",
+      "statement": "[Triviality of the compact factor] There is a simply connected normal projective variety F such that \\[ X M C^a F. \\]",
+      "section": "Compact fibres and the affine factor",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-cmp-converse",
+      "kind": "proposition",
+      "label": "The converse",
+      "statement": "[The converse] If X D C^m F , with D a bounded symmetric domain and F projective, then X is biholomorphic to a semialgebraic open subset of a projective variety.",
+      "section": "Compact fibres and the affine factor",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-cor-quasiprojective",
+      "kind": "corollary",
+      "label": "Quasi-projective covers",
+      "statement": "[Quasi-projective covers] Let \\(X\\) be a connected normal projective variety over \\(\\), with ordinary universal cover \\(U\\). The following are equivalent: [label=( *)] \\(U\\) is biholomorphic to a…",
+      "section": "Quasi-projective covering spaces",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m1-cor-affine-uniformization",
+      "kind": "corollary",
+      "label": "Projective affine-space uniformization",
+      "statement": "[Projective affine-space uniformization] Let \\(X\\) be a connected smooth projective complex \\(n\\)-fold, where \\(n0\\). If its ordinary universal cover is biholomorphic to \\(^n\\), then there is a…",
+      "section": "Quasi-projective covering spaces",
+      "manuscript": "Semialgebraic universal covers of normal projective varieties"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let \\(U\\) be a nonempty connected semialgebraic bounded open subset of a…",
+      "statement": "Let \\(U\\) be a nonempty connected semialgebraic bounded open subset of a complex affine variety. Suppose that a group \\(\\) of biholomorphisms acts properly discontinuously on \\(U\\) and that \\(U/\\) is…",
+      "section": "Introduction",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-lem-singular-montel",
+      "kind": "lemma",
+      "label": "Let W be an open subset of a reduced complex affine algebraic set. The family…",
+      "statement": "Let W be an open subset of a reduced complex affine algebraic set. The family of holomorphic functions h on W with |h| 1 is locally equicontinuous. Every sequence in this family has a subsequence…",
+      "section": "Smoothness and a proper intrinsic distance",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-prop-smoothness",
+      "kind": "proposition",
+      "label": "If U is not a point, then it is a complex manifold of positive dimension and…",
+      "statement": "If U is not a point, then it is a complex manifold of positive dimension and lies in the smooth locus of a single irreducible component V of the ambient variety.",
+      "section": "Smoothness and a proper intrinsic distance",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-prop-proper-distance",
+      "kind": "proposition",
+      "label": "The function d_U is a finite distance inducing the usual topology of U . Every…",
+      "statement": "The function d_U is a finite distance inducing the usual topology of U . Every closed d_U -ball is compact.",
+      "section": "Smoothness and a proper intrinsic distance",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-lem-continuity",
+      "kind": "lemma",
+      "label": "Continuity principle",
+      "statement": "[Continuity principle] Let be a smooth ambient coordinate neighborhood, and let A:[0,1] be continuous, with each A_t=A(t,) holomorphic on . Suppose \\[ A_t() U(0 t1), A_0() U. \\] Then A_t() U for…",
+      "section": "Smoothness and a proper intrinsic distance",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-lem-rank-dichotomy",
+      "kind": "lemma",
+      "label": "Complex rank of a boundary cell",
+      "statement": "[Complex rank of a boundary cell] Let S be a connected real-analytic semialgebraic cell in V_ reg . Either T_pS+iT_pS=T_pV outside an intrinsic null set of S , or S is contained in a proper complex…",
+      "section": "Boundary preparation and independent supports",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-lem-ramified-parameters",
+      "kind": "lemma",
+      "label": "Ramification with parameters",
+      "statement": "[Ramification with parameters] Let B^d be a semialgebraic open set and let b:B(0,t_0) be a bounded semialgebraic function. There is a null set E B such that, for every s_* B E , there are a…",
+      "section": "Boundary preparation and independent supports",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-prop-boundary-data",
+      "kind": "proposition",
+      "label": "Generic boundary data",
+      "statement": "[Generic boundary data] In the coordinates of Equation~ , almost every s_* B has the following two properties. [label=( *)] There are a neighborhood B_* B of s_* , a number >0 , and a real-analytic…",
+      "section": "Boundary preparation and independent supports",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-prop-supported-point",
+      "kind": "proposition",
+      "label": "A good supported point",
+      "statement": "[A good supported point] There are a boundary cell S in the first alternative of Lemma~ , a good point p S , and k=2n-_ S entire functions h_1,,h_k on ^N such that h_j(p)=1, |h_j(q)|(-|q-p|^2)(q U),…",
+      "section": "Boundary preparation and independent supports",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-lem-disc-family",
+      "kind": "lemma",
+      "label": "Interior balls from approaching graphs",
+      "statement": "[Interior balls from approaching graphs] Let be open in a neighborhood of 0^k . Assume that the continuity principle of Lemma~ holds for continuous deformations of closed analytic discs contained in…",
+      "section": "An open cone of limiting interior",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-prop-noncollapse",
+      "kind": "proposition",
+      "label": "Noncollapse",
+      "statement": "[Noncollapse] At the point selected in Proposition~ , the excluded cone in Proposition~ satisfies F^k .",
+      "section": "An open cone of limiting interior",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-prop-scaling-limit",
+      "kind": "proposition",
+      "label": "Two-sided convergence of the scaled sets",
+      "statement": "[Two-sided convergence of the scaled sets] There are an invertible real linear map L:^k^k and a vector Q of real quadratic forms on ^m such that, with \\[ R(Z,W)=L(ImW)-Q(Z), O=\\ (Z,W):R(Z,W) F\\ , \\]…",
+      "section": "Weighted scaling and the quadratic model",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-thm-quadratic-model",
+      "kind": "theorem",
+      "label": "Quadratic model",
+      "statement": "[Quadratic model] Under the hypotheses of Theorem~ , with n1 , there are integers 1 k n , m=n-k , a nonempty connected open cone C^k , and a vector H of Hermitian forms on ^m such that U is…",
+      "section": "Weighted scaling and the quadratic model",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    },
+    {
+      "id": "m2-thm-model-symmetry",
+      "kind": "theorem",
+      "label": "Vey",
+      "statement": "[Vey] Let D^m^k be a connected domain biholomorphic to a bounded domain. Suppose that D contains a point (0,w) and is invariant under \\[ (z,w)(z,w+a), (z,w)(e^ i z,w), (z,w)(r^ 1/2 z,rw) \\] for every…",
+      "section": "Symmetry of the quadratic model",
+      "manuscript": "Symmetry of semialgebraic bounded domains with compact quotient"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m2-thm-quadratic-model",
+      "to": "m2-thm-main",
+      "label": "thm:quadratic-model",
+      "context": "[Completion of the proof of Theorem~\\ref{thm:main}] The zero-dimensional case is a point. Otherwise, Theorem~\\ref{thm:quadratic-model} identifies $U$ biholomorphically with the domain in Equation~\\eqref{eq:model}. We check every hypothesis of Theorem~\\r"
+    }
+  ]
+}

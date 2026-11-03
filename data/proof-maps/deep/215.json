@@ -1,0 +1,979 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "215",
+  "title": "Canonical `O(3)` continuum limit and exact `O(4)` mass asymptotics",
+  "result": {
+    "id": "paper-result",
+    "label": "Canonical `O(3)` continuum limit and exact `O(4)` mass asymptotics",
+    "statement": "Constructs the canonical continuum limit of the two-dimensional nearest-neighbor O(3) model: a non-Gaussian local relativistic theory with a unique vacuum and a positive mass gap. For the square-lattice O(4) model, determines the exact leading asymptotic of the full transfer gap, m lat ( ) 32e^ /4-1/2 ,e^ - . The family also proves exponential spin-correlation decay for two-dimensional nearest-neighbor O(n) models with n ≥ 3 at every positive temperature.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-preliminary-correlation-length",
+      "label": "A preliminary correlation length",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "block-observations-and-the-free-kernels",
+      "label": "Block observations and the free kernels",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "prescribing-the-terminal-coupling",
+      "label": "Prescribing the terminal coupling",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "integrated-comparison-of-endpoint-densities",
+      "label": "Integrated comparison of endpoint densities",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "trace-estimates-uniform-in-the-cutoff",
+      "label": "Trace estimates uniform in the cutoff",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exact-renormalization-of-the-spin-sources",
+      "label": "Exact renormalization of the spin sources",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "continuum-and-infinite-volume-limits",
+      "label": "Continuum and infinite-volume limits",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "reconstruction-mass-gap-and-non-gaussian-correlations",
+      "label": "Reconstruction, mass gap, and non-Gaussian correlations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "trajectories-with-a-bounded-bare-offset",
+      "label": "Trajectories with a bounded bare offset",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "volume-estimates-uniform-in-the-bare-offset",
+      "label": "Volume estimates uniform in the bare offset",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "continuum-fields-at-a-fixed-bare-coupling-offset",
+      "label": "Continuum fields at a fixed bare-coupling offset",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "uniqueness-after-canonical-normalization",
+      "label": "Uniqueness after canonical normalization",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-continuum-field-and-the-uniform-lattice-inputs",
+      "label": "The continuum field and the uniform lattice inputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transfer-spectra-and-volume-comparison",
+      "label": "Transfer spectra and volume comparison",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-even-transfer-sector",
+      "label": "The even transfer sector",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "visibility-of-the-lowest-transfer-energy",
+      "label": "Visibility of the lowest transfer energy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-linear-bound-on-the-low-energy-state-count",
+      "label": "A linear bound on the low-energy state count",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-the-state-count-to-an-isolated-mass",
+      "label": "From the state count to an isolated mass",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The canonical massive continuum limit of the two-dimensional O(3) model",
+      "title": "The canonical massive continuum limit of the two-dimensional O(3) model",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-04",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-canonical-massive-continuum-limit-of-the-two-dimensional-O3-model-October-4-2026/massive-continuum-o3.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The canonical massive continuum limit of the two-dimensional O(3) model.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-canonical",
+          "role": "introduction",
+          "label": "theorem m1-thm-canonical",
+          "fullLabel": "theorem m1-thm-canonical",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-finite-beta"
+          ]
+        },
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-canonical-physics",
+          "role": "introduction",
+          "label": "corollary m1-cor-canonical-physics",
+          "fullLabel": "corollary m1-cor-canonical-physics",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-preliminary",
+          "role": "a-preliminary-correlation-length",
+          "label": "proposition m1-prop-preliminary",
+          "fullLabel": "proposition m1-prop-preliminary",
+          "kind": "proposition",
+          "source": "A preliminary correlation length",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-prelim-iteration",
+          "role": "a-preliminary-correlation-length",
+          "label": "lemma m1-lem-prelim-iteration",
+          "fullLabel": "lemma m1-lem-prelim-iteration",
+          "kind": "lemma",
+          "source": "A preliminary correlation length",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-prelim-initial-reduction",
+          "role": "a-preliminary-correlation-length",
+          "label": "lemma m1-lem-prelim-initial-reduction",
+          "fullLabel": "lemma m1-lem-prelim-initial-reduction",
+          "kind": "lemma",
+          "source": "A preliminary correlation length",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-free-inclined-geometry",
+          "role": "block-observations-and-the-free-kernels",
+          "label": "lemma m1-lem-free-inclined-geometry",
+          "fullLabel": "lemma m1-lem-free-inclined-geometry",
+          "kind": "lemma",
+          "source": "Block observations and the free kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-free-small-chord-mean",
+          "role": "block-observations-and-the-free-kernels",
+          "label": "corollary m1-cor-free-small-chord-mean",
+          "fullLabel": "corollary m1-cor-free-small-chord-mean",
+          "kind": "corollary",
+          "source": "Block observations and the free kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-free-bounds",
+          "role": "block-observations-and-the-free-kernels",
+          "label": "proposition m1-prop-free-bounds",
+          "fullLabel": "proposition m1-prop-free-bounds",
+          "kind": "proposition",
+          "source": "Block observations and the free kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-free-positive",
+          "role": "block-observations-and-the-free-kernels",
+          "label": "proposition m1-prop-free-positive",
+          "fullLabel": "proposition m1-prop-free-positive",
+          "kind": "proposition",
+          "source": "Block observations and the free kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-rg-step",
+          "role": "block-observations-and-the-free-kernels",
+          "label": "theorem m1-thm-rg-step",
+          "fullLabel": "theorem m1-thm-rg-step",
+          "kind": "theorem",
+          "source": "Block observations and the free kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rg-ambient",
+          "role": "block-observations-and-the-free-kernels",
+          "label": "lemma m1-lem-rg-ambient",
+          "fullLabel": "lemma m1-lem-rg-ambient",
+          "kind": "lemma",
+          "source": "Block observations and the free kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rg-prediction",
+          "role": "block-observations-and-the-free-kernels",
+          "label": "lemma m1-lem-rg-prediction",
+          "fullLabel": "lemma m1-lem-rg-prediction",
+          "kind": "lemma",
+          "source": "Block observations and the free kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rg-reserves",
+          "role": "block-observations-and-the-free-kernels",
+          "label": "lemma m1-lem-rg-reserves",
+          "fullLabel": "lemma m1-lem-rg-reserves",
+          "kind": "lemma",
+          "source": "Block observations and the free kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-rg-joint",
+          "role": "block-observations-and-the-free-kernels",
+          "label": "proposition m1-prop-rg-joint",
+          "fullLabel": "proposition m1-prop-rg-joint",
+          "kind": "proposition",
+          "source": "Block observations and the free kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rg-canonical-contraction",
+          "role": "block-observations-and-the-free-kernels",
+          "label": "lemma m1-lem-rg-canonical-contraction",
+          "fullLabel": "lemma m1-lem-rg-canonical-contraction",
+          "kind": "lemma",
+          "source": "Block observations and the free kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-rg-error-contraction",
+          "role": "block-observations-and-the-free-kernels",
+          "label": "lemma m1-lem-rg-error-contraction",
+          "fullLabel": "lemma m1-lem-rg-error-contraction",
+          "kind": "lemma",
+          "source": "Block observations and the free kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-kinetic-increment",
+          "role": "prescribing-the-terminal-coupling",
+          "label": "lemma m1-lem-kinetic-increment",
+          "fullLabel": "lemma m1-lem-kinetic-increment",
+          "kind": "lemma",
+          "source": "Prescribing the terminal coupling",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-shooting",
+          "role": "prescribing-the-terminal-coupling",
+          "label": "proposition m1-prop-shooting",
+          "fullLabel": "proposition m1-prop-shooting",
+          "kind": "proposition",
+          "source": "Prescribing the terminal coupling",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-endpoint-matching",
+          "role": "prescribing-the-terminal-coupling",
+          "label": "proposition m1-prop-endpoint-matching",
+          "fullLabel": "proposition m1-prop-endpoint-matching",
+          "kind": "proposition",
+          "source": "Prescribing the terminal coupling",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-integrated-comparison",
+          "role": "integrated-comparison-of-endpoint-densities",
+          "label": "proposition m1-prop-integrated-comparison",
+          "fullLabel": "proposition m1-prop-integrated-comparison",
+          "kind": "proposition",
+          "source": "Integrated comparison of endpoint densities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-comparison-remainder",
+          "role": "integrated-comparison-of-endpoint-densities",
+          "label": "lemma m1-lem-comparison-remainder",
+          "fullLabel": "lemma m1-lem-comparison-remainder",
+          "kind": "lemma",
+          "source": "Integrated comparison of endpoint densities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-row-exponential-moment",
+          "role": "integrated-comparison-of-endpoint-densities",
+          "label": "lemma m1-lem-row-exponential-moment",
+          "fullLabel": "lemma m1-lem-row-exponential-moment",
+          "kind": "lemma",
+          "source": "Integrated comparison of endpoint densities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-editable-regions",
+          "role": "integrated-comparison-of-endpoint-densities",
+          "label": "lemma m1-lem-editable-regions",
+          "fullLabel": "lemma m1-lem-editable-regions",
+          "kind": "lemma",
+          "source": "Integrated comparison of endpoint densities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-terminal-alignment",
+          "role": "integrated-comparison-of-endpoint-densities",
+          "label": "corollary m1-cor-terminal-alignment",
+          "fullLabel": "corollary m1-cor-terminal-alignment",
+          "kind": "corollary",
+          "source": "Integrated comparison of endpoint densities",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-trace-small-box",
+          "role": "trace-estimates-uniform-in-the-cutoff",
+          "label": "proposition m1-prop-trace-small-box",
+          "fullLabel": "proposition m1-prop-trace-small-box",
+          "kind": "proposition",
+          "source": "Trace estimates uniform in the cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-trace-concentration",
+          "role": "trace-estimates-uniform-in-the-cutoff",
+          "label": "lemma m1-lem-trace-concentration",
+          "fullLabel": "lemma m1-lem-trace-concentration",
+          "kind": "lemma",
+          "source": "Trace estimates uniform in the cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-trace-doubling",
+          "role": "trace-estimates-uniform-in-the-cutoff",
+          "label": "proposition m1-prop-trace-doubling",
+          "fullLabel": "proposition m1-prop-trace-doubling",
+          "kind": "proposition",
+          "source": "Trace estimates uniform in the cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-trace-uniform",
+          "role": "trace-estimates-uniform-in-the-cutoff",
+          "label": "theorem m1-thm-trace-uniform",
+          "fullLabel": "theorem m1-thm-trace-uniform",
+          "kind": "theorem",
+          "source": "Trace estimates uniform in the cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-trace-physical-gap",
+          "role": "trace-estimates-uniform-in-the-cutoff",
+          "label": "corollary m1-cor-trace-physical-gap",
+          "fullLabel": "corollary m1-cor-trace-physical-gap",
+          "kind": "corollary",
+          "source": "Trace estimates uniform in the cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-source-step",
+          "role": "exact-renormalization-of-the-spin-sources",
+          "label": "proposition m1-prop-source-step",
+          "fullLabel": "proposition m1-prop-source-step",
+          "kind": "proposition",
+          "source": "Exact renormalization of the spin sources",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-source-endpoints",
+          "role": "exact-renormalization-of-the-spin-sources",
+          "label": "corollary m1-cor-source-endpoints",
+          "fullLabel": "corollary m1-cor-source-endpoints",
+          "kind": "corollary",
+          "source": "Exact renormalization of the spin sources",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-source-products",
+          "role": "exact-renormalization-of-the-spin-sources",
+          "label": "proposition m1-prop-source-products",
+          "fullLabel": "proposition m1-prop-source-products",
+          "kind": "proposition",
+          "source": "Exact renormalization of the spin sources",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-moment-majorants",
+          "role": "continuum-and-infinite-volume-limits",
+          "label": "proposition m1-prop-moment-majorants",
+          "fullLabel": "proposition m1-prop-moment-majorants",
+          "kind": "proposition",
+          "source": "Continuum and infinite-volume limits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-continuum-limit",
+          "role": "continuum-and-infinite-volume-limits",
+          "label": "proposition m1-prop-continuum-limit",
+          "fullLabel": "proposition m1-prop-continuum-limit",
+          "kind": "proposition",
+          "source": "Continuum and infinite-volume limits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-euclidean-regularity",
+          "role": "continuum-and-infinite-volume-limits",
+          "label": "proposition m1-prop-euclidean-regularity",
+          "fullLabel": "proposition m1-prop-euclidean-regularity",
+          "kind": "proposition",
+          "source": "Continuum and infinite-volume limits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-boundary-strips",
+          "role": "continuum-and-infinite-volume-limits",
+          "label": "lemma m1-lem-boundary-strips",
+          "fullLabel": "lemma m1-lem-boundary-strips",
+          "kind": "lemma",
+          "source": "Continuum and infinite-volume limits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-reflection-positivity",
+          "role": "reconstruction-mass-gap-and-non-gaussian-correlations",
+          "label": "lemma m1-lem-reflection-positivity",
+          "fullLabel": "lemma m1-lem-reflection-positivity",
+          "kind": "lemma",
+          "source": "Reconstruction, mass gap, and non-Gaussian correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-slab-clustering",
+          "role": "reconstruction-mass-gap-and-non-gaussian-correlations",
+          "label": "proposition m1-prop-slab-clustering",
+          "fullLabel": "proposition m1-prop-slab-clustering",
+          "kind": "proposition",
+          "source": "Reconstruction, mass gap, and non-Gaussian correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-os-reconstruction",
+          "role": "reconstruction-mass-gap-and-non-gaussian-correlations",
+          "label": "proposition m1-prop-os-reconstruction",
+          "fullLabel": "proposition m1-prop-os-reconstruction",
+          "kind": "proposition",
+          "source": "Reconstruction, mass gap, and non-Gaussian correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-continuum-gap",
+          "role": "reconstruction-mass-gap-and-non-gaussian-correlations",
+          "label": "proposition m1-prop-continuum-gap",
+          "fullLabel": "proposition m1-prop-continuum-gap",
+          "kind": "proposition",
+          "source": "Reconstruction, mass gap, and non-Gaussian correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-non-gaussian",
+          "role": "reconstruction-mass-gap-and-non-gaussian-correlations",
+          "label": "proposition m1-prop-non-gaussian",
+          "fullLabel": "proposition m1-prop-non-gaussian",
+          "kind": "proposition",
+          "source": "Reconstruction, mass gap, and non-Gaussian correlations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-rg-input",
+          "role": "trajectories-with-a-bounded-bare-offset",
+          "label": "proposition m1-prop-rg-input",
+          "fullLabel": "proposition m1-prop-rg-input",
+          "kind": "proposition",
+          "source": "Trajectories with a bounded bare offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sensitivity",
+          "role": "trajectories-with-a-bounded-bare-offset",
+          "label": "lemma m1-lem-sensitivity",
+          "fullLabel": "lemma m1-lem-sensitivity",
+          "kind": "lemma",
+          "source": "Trajectories with a bounded bare offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-admission",
+          "role": "trajectories-with-a-bounded-bare-offset",
+          "label": "proposition m1-prop-admission",
+          "fullLabel": "proposition m1-prop-admission",
+          "kind": "proposition",
+          "source": "Trajectories with a bounded bare offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-retuning",
+          "role": "trajectories-with-a-bounded-bare-offset",
+          "label": "lemma m1-lem-retuning",
+          "fullLabel": "lemma m1-lem-retuning",
+          "kind": "lemma",
+          "source": "Trajectories with a bounded bare offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-matching",
+          "role": "trajectories-with-a-bounded-bare-offset",
+          "label": "proposition m1-prop-matching",
+          "fullLabel": "proposition m1-prop-matching",
+          "kind": "proposition",
+          "source": "Trajectories with a bounded bare offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-finite-beta",
+          "role": "volume-estimates-uniform-in-the-bare-offset",
+          "label": "lemma m1-lem-finite-beta",
+          "fullLabel": "lemma m1-lem-finite-beta",
+          "kind": "lemma",
+          "source": "Volume estimates uniform in the bare offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-band-endpoints",
+          "role": "volume-estimates-uniform-in-the-bare-offset",
+          "label": "lemma m1-lem-band-endpoints",
+          "fullLabel": "lemma m1-lem-band-endpoints",
+          "kind": "lemma",
+          "source": "Volume estimates uniform in the bare offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-endpoint-comparison",
+          "role": "volume-estimates-uniform-in-the-bare-offset",
+          "label": "proposition m1-prop-endpoint-comparison",
+          "fullLabel": "proposition m1-prop-endpoint-comparison",
+          "kind": "proposition",
+          "source": "Volume estimates uniform in the bare offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-offset-box-test",
+          "role": "volume-estimates-uniform-in-the-bare-offset",
+          "label": "lemma m1-lem-offset-box-test",
+          "fullLabel": "lemma m1-lem-offset-box-test",
+          "kind": "lemma",
+          "source": "Volume estimates uniform in the bare offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-uniform-volume",
+          "role": "volume-estimates-uniform-in-the-bare-offset",
+          "label": "proposition m1-prop-uniform-volume",
+          "fullLabel": "proposition m1-prop-uniform-volume",
+          "kind": "proposition",
+          "source": "Volume estimates uniform in the bare offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-inclined-periods",
+          "role": "volume-estimates-uniform-in-the-bare-offset",
+          "label": "lemma m1-lem-inclined-periods",
+          "fullLabel": "lemma m1-lem-inclined-periods",
+          "kind": "lemma",
+          "source": "Volume estimates uniform in the bare offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-source-input",
+          "role": "continuum-fields-at-a-fixed-bare-coupling-offset",
+          "label": "proposition m1-prop-source-input",
+          "fullLabel": "proposition m1-prop-source-input",
+          "kind": "proposition",
+          "source": "Continuum fields at a fixed bare-coupling offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-source-comparison",
+          "role": "continuum-fields-at-a-fixed-bare-coupling-offset",
+          "label": "lemma m1-lem-source-comparison",
+          "fullLabel": "lemma m1-lem-source-comparison",
+          "kind": "lemma",
+          "source": "Continuum fields at a fixed bare-coupling offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-moment-bound",
+          "role": "continuum-fields-at-a-fixed-bare-coupling-offset",
+          "label": "lemma m1-lem-moment-bound",
+          "fullLabel": "lemma m1-lem-moment-bound",
+          "kind": "lemma",
+          "source": "Continuum fields at a fixed bare-coupling offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-offset-limits",
+          "role": "continuum-fields-at-a-fixed-bare-coupling-offset",
+          "label": "proposition m1-prop-offset-limits",
+          "fullLabel": "proposition m1-prop-offset-limits",
+          "kind": "proposition",
+          "source": "Continuum fields at a fixed bare-coupling offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-two-point-tails",
+          "role": "continuum-fields-at-a-fixed-bare-coupling-offset",
+          "label": "lemma m1-lem-two-point-tails",
+          "fullLabel": "lemma m1-lem-two-point-tails",
+          "kind": "lemma",
+          "source": "Continuum fields at a fixed bare-coupling offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-normalization",
+          "role": "continuum-fields-at-a-fixed-bare-coupling-offset",
+          "label": "proposition m1-prop-normalization",
+          "fullLabel": "proposition m1-prop-normalization",
+          "kind": "proposition",
+          "source": "Continuum fields at a fixed bare-coupling offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-shooting-normalization",
+          "role": "continuum-fields-at-a-fixed-bare-coupling-offset",
+          "label": "lemma m1-lem-shooting-normalization",
+          "fullLabel": "lemma m1-lem-shooting-normalization",
+          "kind": "lemma",
+          "source": "Continuum fields at a fixed bare-coupling offset",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-two-scales",
+          "role": "uniqueness-after-canonical-normalization",
+          "label": "proposition m1-prop-two-scales",
+          "fullLabel": "proposition m1-prop-two-scales",
+          "kind": "proposition",
+          "source": "Uniqueness after canonical normalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-dense-periods",
+          "role": "uniqueness-after-canonical-normalization",
+          "label": "lemma m1-lem-dense-periods",
+          "fullLabel": "lemma m1-lem-dense-periods",
+          "kind": "lemma",
+          "source": "Uniqueness after canonical normalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "An Isolated Particle Pole for the Two-Dimensional O(3) Spin Field",
+      "title": "An Isolated Particle Pole for the Two-Dimensional O(3) Spin Field",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-04",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Isolated-Particle-Pole-for-the-Two-Dimensional-O3-Spin-Field-October-4-2026/o3-particle-pole.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from An Isolated Particle Pole for the Two-Dimensional O(3) Spin Field.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-intro-main",
+          "role": "introduction",
+          "label": "theorem m2-intro-main",
+          "fullLabel": "theorem m2-intro-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inp-contracts",
+          "role": "the-continuum-field-and-the-uniform-lattice-inputs",
+          "label": "proposition m2-inp-contracts",
+          "fullLabel": "proposition m2-inp-contracts",
+          "kind": "proposition",
+          "source": "The continuum field and the uniform lattice inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inp-kernel",
+          "role": "the-continuum-field-and-the-uniform-lattice-inputs",
+          "label": "lemma m2-inp-kernel",
+          "fullLabel": "lemma m2-inp-kernel",
+          "kind": "lemma",
+          "source": "The continuum field and the uniform lattice inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inp-tails",
+          "role": "the-continuum-field-and-the-uniform-lattice-inputs",
+          "label": "lemma m2-inp-tails",
+          "fullLabel": "lemma m2-inp-tails",
+          "kind": "lemma",
+          "source": "The continuum field and the uniform lattice inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tra-pressure",
+          "role": "transfer-spectra-and-volume-comparison",
+          "label": "lemma m2-tra-pressure",
+          "fullLabel": "lemma m2-tra-pressure",
+          "kind": "lemma",
+          "source": "Transfer spectra and volume comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tra-gap",
+          "role": "transfer-spectra-and-volume-comparison",
+          "label": "corollary m2-tra-gap",
+          "fullLabel": "corollary m2-tra-gap",
+          "kind": "corollary",
+          "source": "Transfer spectra and volume comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tra-insertion",
+          "role": "transfer-spectra-and-volume-comparison",
+          "label": "lemma m2-tra-insertion",
+          "fullLabel": "lemma m2-tra-insertion",
+          "kind": "lemma",
+          "source": "Transfer spectra and volume comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tra-comparison",
+          "role": "transfer-spectra-and-volume-comparison",
+          "label": "proposition m2-tra-comparison",
+          "fullLabel": "proposition m2-tra-comparison",
+          "kind": "proposition",
+          "source": "Transfer spectra and volume comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tra-moments",
+          "role": "transfer-spectra-and-volume-comparison",
+          "label": "corollary m2-tra-moments",
+          "fullLabel": "corollary m2-tra-moments",
+          "kind": "corollary",
+          "source": "Transfer spectra and volume comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-par-covariance",
+          "role": "the-even-transfer-sector",
+          "label": "proposition m2-par-covariance",
+          "fullLabel": "proposition m2-par-covariance",
+          "kind": "proposition",
+          "source": "The even transfer sector",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-par-association",
+          "role": "the-even-transfer-sector",
+          "label": "lemma m2-par-association",
+          "fullLabel": "lemma m2-par-association",
+          "kind": "lemma",
+          "source": "The even transfer sector",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-par-even-gap",
+          "role": "the-even-transfer-sector",
+          "label": "proposition m2-par-even-gap",
+          "fullLabel": "proposition m2-par-even-gap",
+          "kind": "proposition",
+          "source": "The even transfer sector",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-vis-proposition",
+          "role": "visibility-of-the-lowest-transfer-energy",
+          "label": "proposition m2-vis-proposition",
+          "fullLabel": "proposition m2-vis-proposition",
+          "kind": "proposition",
+          "source": "Visibility of the lowest transfer energy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-vis-row-lemma",
+          "role": "visibility-of-the-lowest-transfer-energy",
+          "label": "lemma m2-vis-row-lemma",
+          "fullLabel": "lemma m2-vis-row-lemma",
+          "kind": "lemma",
+          "source": "Visibility of the lowest transfer energy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-vis-weight-lemma",
+          "role": "visibility-of-the-lowest-transfer-energy",
+          "label": "lemma m2-vis-weight-lemma",
+          "fullLabel": "lemma m2-vis-weight-lemma",
+          "kind": "lemma",
+          "source": "Visibility of the lowest transfer energy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cou-linear",
+          "role": "a-linear-bound-on-the-low-energy-state-count",
+          "label": "proposition m2-cou-linear",
+          "fullLabel": "proposition m2-cou-linear",
+          "kind": "proposition",
+          "source": "A linear bound on the low-energy state count",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cou-polynomial",
+          "role": "a-linear-bound-on-the-low-energy-state-count",
+          "label": "lemma m2-cou-polynomial",
+          "fullLabel": "lemma m2-cou-polynomial",
+          "kind": "lemma",
+          "source": "A linear bound on the low-energy state count",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mass-moments",
+          "role": "from-the-state-count-to-an-isolated-mass",
+          "label": "lemma m2-mass-moments",
+          "fullLabel": "lemma m2-mass-moments",
+          "kind": "lemma",
+          "source": "From the state count to an isolated mass",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The canonical massive continuum limit of the two-dimensional O(3) model",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-canonical-massive-continuum-limit-of-the-two-dimensional-O3-model-October-4-2026/massive-continuum-o3.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "An Isolated Particle Pole for the Two-Dimensional O(3) Spin Field",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Isolated-Particle-Pole-for-the-Two-Dimensional-O3-Spin-Field-October-4-2026/o3-particle-pole.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Exact mass asymptotics for the two-dimensional O(4) lattice model",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-mass-asymptotics-for-the-two-dimensional-O4-lattice-model-October-5-2026/exact-mass-o4.pdf",
+      "kind": "paper"
+    }
+  ]
+}

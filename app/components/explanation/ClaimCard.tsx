@@ -1,63 +1,64 @@
 import { Badge, CardTitle, Field, FieldList, Surface } from "@/app/components/ui";
 import type { ClaimExplanation, ClaimExplanationLevel } from "./explanations";
+import type { TranslationKey, Translator } from "@/app/i18n/translate";
 import "./explanation.css";
 
-const levelLabels: Record<ClaimExplanationLevel, string> = {
-  plain: "Plain language",
-  undergraduate: "Undergraduate",
-  expert: "Expert",
+const levelKeys: Record<ClaimExplanationLevel, TranslationKey> = {
+  plain: "explanation.level.plain",
+  undergraduate: "explanation.level.undergraduate",
+  expert: "explanation.level.expert",
 };
 
 /**
  * Shows what one draft explanation says is assumed, concluded, and explicitly
  * not proven. Nothing here represents a platform verification or a review.
  */
-export function ClaimCard({ explanation }: { explanation: ClaimExplanation }) {
+export function ClaimCard({ explanation, t }: { explanation: ClaimExplanation; t: Translator }) {
   return <Surface as="article" tone="card" className="explanation-card explanation-claim-card">
     <header className="explanation-card-header">
-      <span className="explanation-eyebrow">Conclusion card</span>
+      <span className="explanation-eyebrow">{t("explanation.claim.eyebrow")}</span>
       <div className="explanation-badges">
-        <Badge>{levelLabels[explanation.level]}</Badge>
-        <Badge tone="warning">Draft · unreviewed</Badge>
+        <Badge>{t(levelKeys[explanation.level])}</Badge>
+        <Badge tone="warning">{t("explanation.draft")}</Badge>
       </div>
     </header>
-    <CardTitle>{explanation.title ?? `OpenAI result family ${explanation.familyNumber}`}</CardTitle>
-    <p className="explanation-card-subtitle">OpenAI result family {explanation.familyNumber}</p>
+    <CardTitle>{explanation.title ?? t("explanation.claim.family", { number: explanation.familyNumber })}</CardTitle>
+    <p className="explanation-card-subtitle">{t("explanation.claim.family", { number: explanation.familyNumber })}</p>
 
     <FieldList layout="stacked" className="explanation-fields">
-      <Field label="Assumptions">
+      <Field label={t("explanation.claim.assumptions")}>
         {explanation.assumptions.length > 0
           ? <ul className="explanation-list">
               {explanation.assumptions.map((assumption) => <li key={assumption}>{assumption}</li>)}
             </ul>
-          : <p>No assumptions are recorded in this draft.</p>}
+          : <p>{t("explanation.claim.noAssumptions")}</p>}
       </Field>
-      <Field label="Conclusion">
+      <Field label={t("explanation.claim.conclusion")}>
         <p>{explanation.conclusion}</p>
       </Field>
-      <Field label="Explicitly not proven">
+      <Field label={t("explanation.claim.notProven")}>
         {explanation.notProven.length > 0
           ? <ul className="explanation-list explanation-not-proven">
               {explanation.notProven.map((limitation) => <li key={limitation}>{limitation}</li>)}
             </ul>
-          : <p>This draft records no explicit non-claims. That absence is itself unreviewed.</p>}
+          : <p>{t("explanation.claim.noNonClaims")}</p>}
       </Field>
-      <Field label="Scope of this draft">
+      <Field label={t("explanation.claim.scope")}>
         <p>{explanation.scopeNote}</p>
       </Field>
-      <Field label="Evidence status">
-        <p><strong>Draft, not reviewed.</strong> This artifact is a model-drafted explanation of the pinned source snapshot. It is not a Proofweave replay, a statement review, an independent review, or a receipt.</p>
+      <Field label={t("explanation.claim.evidenceStatus")}>
+        <p>{t("explanation.claim.evidenceBody")}</p>
       </Field>
-      {explanation.glossary.length > 0 && <Field label="Glossary">
+      {explanation.glossary.length > 0 && <Field label={t("explanation.claim.glossary")}>
         <FieldList className="explanation-glossary">
           {explanation.glossary.map((entry) => <Field key={entry.term} label={entry.term}>{entry.definition}</Field>)}
         </FieldList>
-        <p className="explanation-caveat">Glossary definitions are draft paraphrases and have not been reviewed.</p>
+        <p className="explanation-caveat">{t("explanation.claim.glossaryCaveat")}</p>
       </Field>}
     </FieldList>
 
     <footer className="explanation-card-footer">
-      <span>Sources used by this draft</span>
+      <span>{t("explanation.claim.sources")}</span>
       <ul>
         {explanation.sources.map((source) => <li key={source.url}>
           <a href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a>

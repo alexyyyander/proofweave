@@ -1,0 +1,612 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "130",
+  "title": "Exact Fourier transforms below `n n`",
+  "result": {
+    "id": "paper-result",
+    "label": "Exact Fourier transforms below `n n`",
+    "statement": "Gives a deterministic length- n discrete Fourier transform algorithm using O(n( n)^ 1- ) operations for every n , with explicit =10^ -13 . The model uses exact complex arithmetic, unrestricted coefficients and a supplied root of unity, and counts scalar preparation and logarithmic-word indexing.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-explicit-saving-for-a-fixed-two-coordinate-transform",
+      "label": "An explicit saving for a fixed two-coordinate transform",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compiling-a-fourier-transform-on-its-own-coordinates",
+      "label": "Compiling a Fourier transform on its own coordinates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "synchronizing-tensor-factors-in-linear-array-work",
+      "label": "Synchronizing tensor factors in linear array work",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "working-lengths-and-the-transform-at-every-length",
+      "label": "Working lengths and the transform at every length",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "effective-synthesis-and-uniform-compilation",
+      "label": "Effective synthesis and uniform compilation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "positive-words-and-tensor-amplification",
+      "label": "Positive words and tensor amplification",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-a-finite-win-to-exact-fourier-circuits",
+      "label": "From a finite win to exact Fourier circuits",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "packing-finite-comparisons-into-global-prices",
+      "label": "Packing finite comparisons into global prices",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "triangular-matrices-and-invertible-corners",
+      "label": "Triangular matrices and invertible corners",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "changing-the-coefficient-boundary-and-specializing-prices",
+      "label": "Changing the coefficient boundary and specializing prices",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "pivoting-and-the-price-of-a-dense-pair",
+      "label": "Pivoting and the price of a dense pair",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "signed-matrices-and-the-reflection-contradiction",
+      "label": "Signed matrices and the reflection contradiction",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "An explicit power saving for the exact discrete Fourier transform",
+      "title": "An explicit power saving for the exact discrete Fourier transform",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-explicit-power-saving-for-the-exact-discrete-Fourier-transform-September-25-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from An explicit power saving for the exact discrete Fourier transform.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-decimal",
+          "role": "introduction",
+          "label": "corollary m1-cor-decimal",
+          "fullLabel": "corollary m1-cor-decimal",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-polynomial-multiplication",
+          "role": "introduction",
+          "label": "corollary m1-cor-polynomial-multiplication",
+          "fullLabel": "corollary m1-cor-polynomial-multiplication",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-net-scalar",
+          "role": "an-explicit-saving-for-a-fixed-two-coordinate-transform",
+          "label": "lemma m1-net-scalar",
+          "fullLabel": "lemma m1-net-scalar",
+          "kind": "lemma",
+          "source": "An explicit saving for a fixed two-coordinate transform",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-net-edge",
+          "role": "an-explicit-saving-for-a-fixed-two-coordinate-transform",
+          "label": "lemma m1-net-edge",
+          "fullLabel": "lemma m1-net-edge",
+          "kind": "lemma",
+          "source": "An explicit saving for a fixed two-coordinate transform",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-net-residuals",
+          "role": "an-explicit-saving-for-a-fixed-two-coordinate-transform",
+          "label": "lemma m1-net-residuals",
+          "fullLabel": "lemma m1-net-residuals",
+          "kind": "lemma",
+          "source": "An explicit saving for a fixed two-coordinate transform",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-net-finite-interface",
+          "role": "an-explicit-saving-for-a-fixed-two-coordinate-transform",
+          "label": "proposition m1-net-finite-interface",
+          "fullLabel": "proposition m1-net-finite-interface",
+          "kind": "proposition",
+          "source": "An explicit saving for a fixed two-coordinate transform",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-net-indexing",
+          "role": "an-explicit-saving-for-a-fixed-two-coordinate-transform",
+          "label": "lemma m1-net-indexing",
+          "fullLabel": "lemma m1-net-indexing",
+          "kind": "lemma",
+          "source": "An explicit saving for a fixed two-coordinate transform",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-net-tensor-bound",
+          "role": "an-explicit-saving-for-a-fixed-two-coordinate-transform",
+          "label": "theorem m1-net-tensor-bound",
+          "fullLabel": "theorem m1-net-tensor-bound",
+          "kind": "theorem",
+          "source": "An explicit saving for a fixed two-coordinate transform",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-compiler",
+          "role": "compiling-a-fourier-transform-on-its-own-coordinates",
+          "label": "proposition m1-loc-compiler",
+          "fullLabel": "proposition m1-loc-compiler",
+          "kind": "proposition",
+          "source": "Compiling a Fourier transform on its own coordinates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-newton-reduction",
+          "role": "compiling-a-fourier-transform-on-its-own-coordinates",
+          "label": "lemma m1-loc-newton-reduction",
+          "fullLabel": "lemma m1-loc-newton-reduction",
+          "kind": "lemma",
+          "source": "Compiling a Fourier transform on its own coordinates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-replay",
+          "role": "compiling-a-fourier-transform-on-its-own-coordinates",
+          "label": "lemma m1-loc-replay",
+          "fullLabel": "lemma m1-loc-replay",
+          "kind": "lemma",
+          "source": "Compiling a Fourier transform on its own coordinates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-toeplitz",
+          "role": "compiling-a-fourier-transform-on-its-own-coordinates",
+          "label": "lemma m1-loc-toeplitz",
+          "fullLabel": "lemma m1-loc-toeplitz",
+          "kind": "lemma",
+          "source": "Compiling a Fourier transform on its own coordinates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-loc-fourier",
+          "role": "compiling-a-fourier-transform-on-its-own-coordinates",
+          "label": "lemma m1-loc-fourier",
+          "fullLabel": "lemma m1-loc-fourier",
+          "kind": "lemma",
+          "source": "Compiling a Fourier transform on its own coordinates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sector-address",
+          "role": "synchronizing-tensor-factors-in-linear-array-work",
+          "label": "lemma m1-lem-sector-address",
+          "fullLabel": "lemma m1-lem-sector-address",
+          "kind": "lemma",
+          "source": "Synchronizing tensor factors in linear array work",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-tensor-fourier",
+          "role": "synchronizing-tensor-factors-in-linear-array-work",
+          "label": "proposition m1-prop-tensor-fourier",
+          "fullLabel": "proposition m1-prop-tensor-fourier",
+          "kind": "proposition",
+          "source": "Synchronizing tensor factors in linear array work",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-prime-lengths",
+          "role": "working-lengths-and-the-transform-at-every-length",
+          "label": "lemma m1-lem-prime-lengths",
+          "fullLabel": "lemma m1-lem-prime-lengths",
+          "kind": "lemma",
+          "source": "Working lengths and the transform at every length",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-syn-local-certificate",
+          "role": "effective-synthesis-and-uniform-compilation",
+          "label": "lemma m1-syn-local-certificate",
+          "fullLabel": "lemma m1-syn-local-certificate",
+          "kind": "lemma",
+          "source": "Effective synthesis and uniform compilation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-syn-extraction",
+          "role": "effective-synthesis-and-uniform-compilation",
+          "label": "lemma m1-syn-extraction",
+          "fullLabel": "lemma m1-syn-extraction",
+          "kind": "lemma",
+          "source": "Effective synthesis and uniform compilation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-syn-printer",
+          "role": "effective-synthesis-and-uniform-compilation",
+          "label": "theorem m1-syn-printer",
+          "fullLabel": "theorem m1-syn-printer",
+          "kind": "theorem",
+          "source": "Effective synthesis and uniform compilation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Finite tensor savings and exact Fourier circuits",
+      "title": "Finite tensor savings and exact Fourier circuits",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-tensor-savings-and-exact-Fourier-circuits-September-25-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Finite tensor savings and exact Fourier circuits.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-generation",
+          "role": "positive-words-and-tensor-amplification",
+          "label": "lemma m2-lem-generation",
+          "fullLabel": "lemma m2-lem-generation",
+          "kind": "lemma",
+          "source": "Positive words and tensor amplification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-amplification",
+          "role": "positive-words-and-tensor-amplification",
+          "label": "lemma m2-lem-amplification",
+          "fullLabel": "lemma m2-lem-amplification",
+          "kind": "lemma",
+          "source": "Positive words and tensor amplification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fft-dirty-layers",
+          "role": "from-a-finite-win-to-exact-fourier-circuits",
+          "label": "lemma m2-fft-dirty-layers",
+          "fullLabel": "lemma m2-fft-dirty-layers",
+          "kind": "lemma",
+          "source": "From a finite win to exact Fourier circuits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-fft-toeplitz-layers",
+          "role": "from-a-finite-win-to-exact-fourier-circuits",
+          "label": "lemma m2-fft-toeplitz-layers",
+          "fullLabel": "lemma m2-fft-toeplitz-layers",
+          "kind": "lemma",
+          "source": "From a finite win to exact Fourier circuits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-fourier-layers",
+          "role": "from-a-finite-win-to-exact-fourier-circuits",
+          "label": "lemma m2-lem-fourier-layers",
+          "fullLabel": "lemma m2-lem-fourier-layers",
+          "kind": "lemma",
+          "source": "From a finite win to exact Fourier circuits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-win-to-fourier",
+          "role": "from-a-finite-win-to-exact-fourier-circuits",
+          "label": "proposition m2-prop-win-to-fourier",
+          "fullLabel": "proposition m2-prop-win-to-fourier",
+          "kind": "proposition",
+          "source": "From a finite win to exact Fourier circuits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-prices",
+          "role": "packing-finite-comparisons-into-global-prices",
+          "label": "theorem m2-thm-prices",
+          "fullLabel": "theorem m2-thm-prices",
+          "kind": "theorem",
+          "source": "Packing finite comparisons into global prices",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-price-packing",
+          "role": "packing-finite-comparisons-into-global-prices",
+          "label": "lemma m2-price-packing",
+          "fullLabel": "lemma m2-price-packing",
+          "kind": "lemma",
+          "source": "Packing finite comparisons into global prices",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-price-word-bounds",
+          "role": "packing-finite-comparisons-into-global-prices",
+          "label": "corollary m2-price-word-bounds",
+          "fullLabel": "corollary m2-price-word-bounds",
+          "kind": "corollary",
+          "source": "Packing finite comparisons into global prices",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-corner",
+          "role": "triangular-matrices-and-invertible-corners",
+          "label": "theorem m2-thm-corner",
+          "fullLabel": "theorem m2-thm-corner",
+          "kind": "theorem",
+          "source": "Triangular matrices and invertible corners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-shear-dag",
+          "role": "triangular-matrices-and-invertible-corners",
+          "label": "lemma m2-lem-shear-dag",
+          "fullLabel": "lemma m2-lem-shear-dag",
+          "kind": "lemma",
+          "source": "Triangular matrices and invertible corners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-scalar-convolution",
+          "role": "triangular-matrices-and-invertible-corners",
+          "label": "lemma m2-lem-scalar-convolution",
+          "fullLabel": "lemma m2-lem-scalar-convolution",
+          "kind": "lemma",
+          "source": "Triangular matrices and invertible corners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-triangular",
+          "role": "triangular-matrices-and-invertible-corners",
+          "label": "lemma m2-lem-triangular",
+          "fullLabel": "lemma m2-lem-triangular",
+          "kind": "lemma",
+          "source": "Triangular matrices and invertible corners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-corner-lem-cascade",
+          "role": "triangular-matrices-and-invertible-corners",
+          "label": "lemma m2-corner-lem-cascade",
+          "fullLabel": "lemma m2-corner-lem-cascade",
+          "kind": "lemma",
+          "source": "Triangular matrices and invertible corners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-dag-price",
+          "role": "triangular-matrices-and-invertible-corners",
+          "label": "corollary m2-cor-dag-price",
+          "fullLabel": "corollary m2-cor-dag-price",
+          "kind": "corollary",
+          "source": "Triangular matrices and invertible corners",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-boundary-comparison",
+          "role": "changing-the-coefficient-boundary-and-specializing-prices",
+          "label": "lemma m2-lem-boundary-comparison",
+          "fullLabel": "lemma m2-lem-boundary-comparison",
+          "kind": "lemma",
+          "source": "Changing the coefficient boundary and specializing prices",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-feedback",
+          "role": "changing-the-coefficient-boundary-and-specializing-prices",
+          "label": "theorem m2-thm-feedback",
+          "fullLabel": "theorem m2-thm-feedback",
+          "kind": "theorem",
+          "source": "Changing the coefficient boundary and specializing prices",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-specialization",
+          "role": "changing-the-coefficient-boundary-and-specializing-prices",
+          "label": "theorem m2-thm-specialization",
+          "fullLabel": "theorem m2-thm-specialization",
+          "kind": "theorem",
+          "source": "Changing the coefficient boundary and specializing prices",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-pivot-bound",
+          "role": "pivoting-and-the-price-of-a-dense-pair",
+          "label": "lemma m2-lem-pivot-bound",
+          "fullLabel": "lemma m2-lem-pivot-bound",
+          "kind": "lemma",
+          "source": "Pivoting and the price of a dense pair",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-pivot-lem-one-port",
+          "role": "pivoting-and-the-price-of-a-dense-pair",
+          "label": "lemma m2-pivot-lem-one-port",
+          "fullLabel": "lemma m2-pivot-lem-one-port",
+          "kind": "lemma",
+          "source": "Pivoting and the price of a dense pair",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-scalar-pivot",
+          "role": "pivoting-and-the-price-of-a-dense-pair",
+          "label": "lemma m2-lem-scalar-pivot",
+          "fullLabel": "lemma m2-lem-scalar-pivot",
+          "kind": "lemma",
+          "source": "Pivoting and the price of a dense pair",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-pivot-cor-basis-exchange",
+          "role": "pivoting-and-the-price-of-a-dense-pair",
+          "label": "corollary m2-pivot-cor-basis-exchange",
+          "fullLabel": "corollary m2-pivot-cor-basis-exchange",
+          "kind": "corollary",
+          "source": "Pivoting and the price of a dense pair",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-pair-price",
+          "role": "pivoting-and-the-price-of-a-dense-pair",
+          "label": "lemma m2-lem-pair-price",
+          "fullLabel": "lemma m2-lem-pair-price",
+          "kind": "lemma",
+          "source": "Pivoting and the price of a dense pair",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-reflect-triangular-price",
+          "role": "signed-matrices-and-the-reflection-contradiction",
+          "label": "lemma m2-reflect-triangular-price",
+          "fullLabel": "lemma m2-reflect-triangular-price",
+          "kind": "lemma",
+          "source": "Signed matrices and the reflection contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-reflect-sparse-reflection",
+          "role": "signed-matrices-and-the-reflection-contradiction",
+          "label": "lemma m2-reflect-sparse-reflection",
+          "fullLabel": "lemma m2-reflect-sparse-reflection",
+          "kind": "lemma",
+          "source": "Signed matrices and the reflection contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-finite-win",
+          "role": "signed-matrices-and-the-reflection-contradiction",
+          "label": "theorem m2-thm-finite-win",
+          "fullLabel": "theorem m2-thm-finite-win",
+          "kind": "theorem",
+          "source": "Signed matrices and the reflection contradiction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "An explicit power saving for the exact discrete Fourier transform",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-explicit-power-saving-for-the-exact-discrete-Fourier-transform-September-25-2026/main.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Finite tensor savings and exact Fourier circuits",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Finite-tensor-savings-and-exact-Fourier-circuits-September-25-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

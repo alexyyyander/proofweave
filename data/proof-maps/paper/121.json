@@ -1,0 +1,219 @@
+{
+  "familyNumber": "121",
+  "familyTitle": "Almost-linear approximation of edit distance",
+  "manuscripts": [
+    {
+      "id": "An-Almost-Linear-Approximation-Scheme-for-Edit-Distance-September-24-2026",
+      "title": "An Almost-Linear Approximation Scheme for Edit Distance",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-Almost-Linear-Approximation-Scheme-for-Edit-Distance-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Alignment geometry and computational parameters",
+    "Simultaneous coarse estimates",
+    "A seed-to-refinement construction",
+    "Predicted bands and the refined tables",
+    "A comparison tree and cost-weighted curvature",
+    "Conditional regret and the first crossing",
+    "Accuracy and the sequence of seed passes",
+    "Finite optimization and exact sampling",
+    "Lazy evaluation and the expected work bound"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is one uniform randomized algorithm that, given x,y and a rational (0,1)…",
+      "statement": "There is one uniform randomized algorithm that, given x,y and a rational (0,1) , returns a nonnegative integer D such that \\[ 23. \\] For every fixed rational , its worst-case expected running time on…",
+      "section": "Introduction",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-geometry",
+      "kind": "lemma",
+      "label": "For every interval state, c(I,q) |z(I,q)| . Both c(I,) and |z(I,)| are 1…",
+      "statement": "For every interval state, c(I,q) |z(I,q)| . Both c(I,) and |z(I,)| are 1 -Lipschitz in the endpoint metric. If I is partitioned, in order, into I_1,,I_m , and =(s_1,,s_m) is any list of valid child…",
+      "section": "Alignment geometry and computational parameters",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-thm-seed",
+      "kind": "theorem",
+      "label": "Initial estimates",
+      "statement": "[Initial estimates] With the parameters and labeled interval tree of Section~ , there is a lazily evaluated random table U^ (0) (I,q) of integers in [0,N] such that, with probability at least 0.99 ,…",
+      "section": "Simultaneous coarse estimates",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-shift-tree",
+      "kind": "lemma",
+      "label": "At the root o , \\[ d T_o(0), T_o(0)(1+2BD_0)dif k d. \\]",
+      "statement": "At the root o , \\[ d T_o(0), T_o(0)(1+2BD_0)dif k d. \\]",
+      "section": "Simultaneous coarse estimates",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-coarse-precision",
+      "kind": "lemma",
+      "label": "Except on an event of probability less than 0.01 , simultaneously for all…",
+      "statement": "Except on an event of probability less than 0.01 , simultaneously for all initial entries, all guesses, all their nodes, and all shifts, T_w(v)/f_w-a_w T_w(v) f_wT_w(v)+a_w, f_w=(1+ 1- )^ height(w) 2.",
+      "section": "Simultaneous coarse estimates",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-thm-refinement",
+      "kind": "theorem",
+      "label": "Refinement",
+      "statement": "[Refinement] Use the parameters and interval tree of Section~ in the large-input branch. Let A be a power of two with 1 A A_ init , and let U be an integer table on every labeled tree node and every…",
+      "section": "A seed-to-refinement construction",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-initial-cones",
+      "kind": "lemma",
+      "label": "Initial cones",
+      "statement": "[Initial cones] For the fixed seed in Theorem~ , \\ c/a,|z|\\ w_02Fc, (w_0(I,)) L_0. At a nonleaf, the following local rule computes this global minimum exactly. If U(I,q)=0 , return zero. Otherwise…",
+      "section": "A seed-to-refinement construction",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-cone-locality",
+      "kind": "lemma",
+      "label": "Cone locality",
+      "statement": "[Cone locality] Fix a good seed as in Theorem~ . Take a minimum of w_0(I,q) and any family of cones of slope L with nonnegative base costs at representatives (b,r) . If w_0(I,q)=0 , its value is…",
+      "section": "A seed-to-refinement construction",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-refinement-invariants",
+      "kind": "lemma",
+      "label": "For a seed satisfying Theorem~ , every outcome of the refinement obeys \\…",
+      "statement": "For a seed satisfying Theorem~ , every outcome of the refinement obeys \\ c/a,|z|\\ & d_t d_ t-1 w_0, \\\\ d_t(I,q)&(1+)d_t(I,q')+L|q-q'|_1. At nonleaves one also has B_I(d_t)(q) d_t(I,q) B_I(d_ t-1…",
+      "section": "Predicted bands and the refined tables",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-group-accuracy",
+      "kind": "lemma",
+      "label": "One-group accuracy",
+      "statement": "[One-group accuracy] Under the seed hypothesis of Theorem~ , fix complete child tables and one group at time t . With conditional probability at least 1-H^ -4 , all action-cost estimates used to…",
+      "section": "Predicted bands and the refined tables",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-comparison-tree",
+      "kind": "lemma",
+      "label": "Comparison costs",
+      "statement": "[Comparison costs] At each nonterminal of the comparison tree, (b,r) is a representative, b satisfies the local scale restriction~ , and ^* is a wide action whose endpoint shifts are within 6b of…",
+      "section": "A comparison tree and cost-weighted curvature",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-curvature-telescope",
+      "kind": "lemma",
+      "label": "Total curvature",
+      "statement": "[Total curvature] On the fixed comparison tree, put h=Le+w_0(I,q)/T at each nonterminal. Then _ nonterminal (K+G) 4C_ term +3_ nonterminal e +4_ nonterminal h. Consequently, _ nonterminal (K+G)…",
+      "section": "A comparison tree and cost-weighted curvature",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-cor-bad-node-cost",
+      "kind": "corollary",
+      "label": "The total true cost of bad nodes satisfies _ bad c 10000FH^ 1/4 (1+J/P+J/T)D.",
+      "statement": "The total true cost of bad nodes satisfies _ bad c 10000FH^ 1/4 (1+J/P+J/T)D.",
+      "section": "A comparison tree and cost-weighted curvature",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-comparison-band",
+      "kind": "lemma",
+      "label": "Comparison-band coverage",
+      "statement": "[Comparison-band coverage] At a non-bad comparison node with | v|1- , the action ^* belongs to C_ b,r . Its representative is not skipped: the band is nonempty, h_64Fb , and the rounded action (b,r)…",
+      "section": "A comparison tree and cost-weighted curvature",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-generic-regret",
+      "kind": "lemma",
+      "label": "At every nonterminal comparison node, _ t=1 ^S R_t _i( d_0- d_S)(I_i,q_i)…",
+      "statement": "At every nonterminal comparison node, _ t=1 ^S R_t _i( d_0- d_S)(I_i,q_i) _i(m_i-|z_i|) W-|z(I,r)|, where z_i=z(I_i,q_i) . In particular, the bound is at most 4Fc . If the node is not bad and | v|>1-…",
+      "section": "Conditional regret and the first crossing",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-entropy",
+      "kind": "lemma",
+      "label": "Monotone costs with fixed block masses",
+      "statement": "[Monotone costs with fixed block masses] Let Q be a nonempty compact convex set of probability vectors in R^d , containing a vector with every coordinate positive. Partition the coordinates into…",
+      "section": "Conditional regret and the first crossing",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-prop-node-regret",
+      "kind": "proposition",
+      "label": "Condition on the complete child tables at such a comparison node. Then &h_( d_…",
+      "statement": "Condition on the complete child tables at such a comparison node. Then &h_( d_ C +2+SH^ -3 )\\\\ &+2 c+2SH^ -4 Fc. Here h_64Fb and d_ C 4(p_*+21) .",
+      "section": "Conditional regret and the first crossing",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-seed-amplification",
+      "kind": "lemma",
+      "label": "Conditional on any fixed good preceding seed, the next seed is good for factor…",
+      "statement": "Conditional on any fixed good preceding seed, the next seed is good for factor 4a except with probability at most (10H-H^2) .",
+      "section": "Accuracy and the sequence of seed passes",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-finite-optimizer",
+      "kind": "lemma",
+      "label": "A finite entropy optimizer",
+      "statement": "[A finite entropy optimizer] Let Q be the convex hull of a nonempty finite list of rational probability vectors in R^d , and suppose that every coordinate is positive in at least one listed vector.…",
+      "section": "Finite optimization and exact sampling",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-cor-online-local-cost",
+      "kind": "corollary",
+      "label": "Local cost of the online rule",
+      "statement": "[Local cost of the online rule] For a band in the edit-distance algorithm, the numerical mixture in Section~ can be constructed and sampled with local expected bit cost 2^ o(H) , using only already…",
+      "section": "Finite optimization and exact sampling",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-unconditional-sizes",
+      "kind": "lemma",
+      "label": "Unconditional size bounds",
+      "statement": "[Unconditional size bounds] On every execution, all local searches are finite. The warmup values are nonnegative integers bounded by (2L_0+1)N , and every refinement value satisfies 0 d_t(I,q)…",
+      "section": "Lazy evaluation and the expected work bound",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-current-index-budget",
+      "kind": "lemma",
+      "label": "Current-index calls",
+      "statement": "[Current-index calls] Evaluating one refinement entry d_t(I,q) requires at most M^ O(1) distinct child entries at the same pass, copy, and index t . This bound holds for all seeds and all sample…",
+      "section": "Lazy evaluation and the expected work bound",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-lem-local-work",
+      "kind": "lemma",
+      "label": "Local evaluation cost",
+      "statement": "[Local evaluation cost] After collapsing the finite auxiliary calculations into table-entry evaluations, one warmup or refinement entry has at most H^ O(p_*+1) distinct inputs at earlier indices or…",
+      "section": "Lazy evaluation and the expected work bound",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    },
+    {
+      "id": "m1-thm-work",
+      "kind": "theorem",
+      "label": "Charged expected running time",
+      "statement": "[Charged expected running time] The large-input algorithm has worst-case expected running time N^ 1+o(1) on the logarithmic-word RAM, over its internal randomness. This includes input processing,…",
+      "section": "Lazy evaluation and the expected work bound",
+      "manuscript": "An Almost-Linear Approximation Scheme for Edit Distance"
+    }
+  ],
+  "edges": []
+}

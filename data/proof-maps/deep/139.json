@@ -1,0 +1,490 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "139",
+  "title": "Subpolynomial query complexity for log-concave sampling",
+  "result": {
+    "id": "paper-result",
+    "label": "Subpolynomial query complexity for log-concave sampling",
+    "statement": "For C 2 potentials with a supplied minimizer and I ^2V 2I, proves that sampling within total variation 1/10 requires only C d^ exact value-and-gradient queries for every fixed ε > 0. The bound holds on every run, with unrestricted computation between queries. A logarithmic lower bound also holds, so the optimal power-law exponent in this oracle model is zero.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-near-quadratic-sampling-problem",
+      "label": "The near-quadratic sampling problem",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "gaussian-transport-and-tensor-derivatives",
+      "label": "Gaussian transport and tensor derivatives",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "dimension-bounds-for-material-derivatives",
+      "label": "Dimension bounds for material derivatives",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-stationary-flow-for-noisy-means",
+      "label": "A stationary flow for noisy means",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-formulas-for-the-two-flows",
+      "label": "Finite formulas for the two flows",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-evaluation-of-nested-conditional-means",
+      "label": "Finite evaluation of nested conditional means",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-noisy-conditional-samples-to-the-target-law",
+      "label": "From noisy conditional samples to the target law",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-logarithmic-oracle-lower-bound",
+      "label": "A logarithmic oracle lower bound",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Subpolynomial query complexity for well-conditioned log-concave sampling",
+      "title": "Subpolynomial query complexity for well-conditioned log-concave sampling",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-26",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Subpolynomial-query-complexity-for-well-conditioned-log-concave-sampling-September-26-2026/article.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Subpolynomial query complexity for well-conditioned log-concave sampling.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-primitive",
+          "role": "the-near-quadratic-sampling-problem",
+          "label": "theorem m1-thm-primitive",
+          "fullLabel": "theorem m1-thm-primitive",
+          "kind": "theorem",
+          "source": "The near-quadratic sampling problem",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-convex-preliminaries",
+          "role": "the-near-quadratic-sampling-problem",
+          "label": "lemma m1-lem-convex-preliminaries",
+          "fullLabel": "lemma m1-lem-convex-preliminaries",
+          "kind": "lemma",
+          "source": "The near-quadratic sampling problem",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-coupling-smoothing",
+          "role": "the-near-quadratic-sampling-problem",
+          "label": "lemma m1-lem-coupling-smoothing",
+          "fullLabel": "lemma m1-lem-coupling-smoothing",
+          "kind": "lemma",
+          "source": "The near-quadratic sampling problem",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-appell-cumulants",
+          "role": "gaussian-transport-and-tensor-derivatives",
+          "label": "lemma m1-lem-appell-cumulants",
+          "fullLabel": "lemma m1-lem-appell-cumulants",
+          "kind": "lemma",
+          "source": "Gaussian transport and tensor derivatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-gaussian-jets",
+          "role": "gaussian-transport-and-tensor-derivatives",
+          "label": "proposition m1-prop-gaussian-jets",
+          "fullLabel": "proposition m1-prop-gaussian-jets",
+          "kind": "proposition",
+          "source": "Gaussian transport and tensor derivatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-transport",
+          "role": "gaussian-transport-and-tensor-derivatives",
+          "label": "proposition m1-prop-transport",
+          "fullLabel": "proposition m1-prop-transport",
+          "kind": "proposition",
+          "source": "Gaussian transport and tensor derivatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-material-identities",
+          "role": "dimension-bounds-for-material-derivatives",
+          "label": "lemma m1-lem-material-identities",
+          "fullLabel": "lemma m1-lem-material-identities",
+          "kind": "lemma",
+          "source": "Dimension bounds for material derivatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-split-contraction",
+          "role": "dimension-bounds-for-material-derivatives",
+          "label": "lemma m1-lem-split-contraction",
+          "fullLabel": "lemma m1-lem-split-contraction",
+          "kind": "lemma",
+          "source": "Dimension bounds for material derivatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-tensor-divergence",
+          "role": "dimension-bounds-for-material-derivatives",
+          "label": "theorem m1-thm-tensor-divergence",
+          "fullLabel": "theorem m1-thm-tensor-divergence",
+          "kind": "theorem",
+          "source": "Dimension bounds for material derivatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-divergence-l2",
+          "role": "dimension-bounds-for-material-derivatives",
+          "label": "lemma m1-lem-divergence-l2",
+          "fullLabel": "lemma m1-lem-divergence-l2",
+          "kind": "lemma",
+          "source": "Dimension bounds for material derivatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-path-derivatives",
+          "role": "dimension-bounds-for-material-derivatives",
+          "label": "corollary m1-cor-path-derivatives",
+          "fullLabel": "corollary m1-cor-path-derivatives",
+          "kind": "corollary",
+          "source": "Dimension bounds for material derivatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transport-derivatives",
+          "role": "a-stationary-flow-for-noisy-means",
+          "label": "lemma m1-lem-transport-derivatives",
+          "fullLabel": "lemma m1-lem-transport-derivatives",
+          "kind": "lemma",
+          "source": "A stationary flow for noisy means",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-centering-kernel",
+          "role": "a-stationary-flow-for-noisy-means",
+          "label": "lemma m1-lem-centering-kernel",
+          "fullLabel": "lemma m1-lem-centering-kernel",
+          "kind": "lemma",
+          "source": "A stationary flow for noisy means",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-centering-law",
+          "role": "a-stationary-flow-for-noisy-means",
+          "label": "proposition m1-prop-centering-law",
+          "fullLabel": "proposition m1-prop-centering-law",
+          "kind": "proposition",
+          "source": "A stationary flow for noisy means",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-stationary-derivatives",
+          "role": "a-stationary-flow-for-noisy-means",
+          "label": "lemma m1-lem-stationary-derivatives",
+          "fullLabel": "lemma m1-lem-stationary-derivatives",
+          "kind": "lemma",
+          "source": "A stationary flow for noisy means",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-probability-circuit",
+          "role": "finite-formulas-for-the-two-flows",
+          "label": "proposition m1-prop-probability-circuit",
+          "fullLabel": "proposition m1-prop-probability-circuit",
+          "kind": "proposition",
+          "source": "Finite formulas for the two flows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-kernel-angle-errors",
+          "role": "finite-formulas-for-the-two-flows",
+          "label": "lemma m1-lem-kernel-angle-errors",
+          "fullLabel": "lemma m1-lem-kernel-angle-errors",
+          "kind": "lemma",
+          "source": "Finite formulas for the two flows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-kernel-endpoint-quadrature",
+          "role": "finite-formulas-for-the-two-flows",
+          "label": "lemma m1-lem-kernel-endpoint-quadrature",
+          "fullLabel": "lemma m1-lem-kernel-endpoint-quadrature",
+          "kind": "lemma",
+          "source": "Finite formulas for the two flows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-kernel-circuit",
+          "role": "finite-formulas-for-the-two-flows",
+          "label": "proposition m1-prop-kernel-circuit",
+          "fullLabel": "proposition m1-prop-kernel-circuit",
+          "kind": "proposition",
+          "source": "Finite formulas for the two flows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-mean-circuit",
+          "role": "finite-formulas-for-the-two-flows",
+          "label": "proposition m1-prop-mean-circuit",
+          "fullLabel": "proposition m1-prop-mean-circuit",
+          "kind": "proposition",
+          "source": "Finite formulas for the two flows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-exact-mean-circuits",
+          "role": "finite-formulas-for-the-two-flows",
+          "label": "corollary m1-prop-exact-mean-circuits",
+          "fullLabel": "corollary m1-prop-exact-mean-circuits",
+          "kind": "corollary",
+          "source": "Finite formulas for the two flows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-numerical-interface",
+          "role": "finite-formulas-for-the-two-flows",
+          "label": "theorem m1-thm-numerical-interface",
+          "fullLabel": "theorem m1-thm-numerical-interface",
+          "kind": "theorem",
+          "source": "Finite formulas for the two flows",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-compiler-absorption",
+          "role": "finite-evaluation-of-nested-conditional-means",
+          "label": "lemma m1-lem-compiler-absorption",
+          "fullLabel": "lemma m1-lem-compiler-absorption",
+          "kind": "lemma",
+          "source": "Finite evaluation of nested conditional means",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-compiler-height",
+          "role": "finite-evaluation-of-nested-conditional-means",
+          "label": "lemma m1-lem-compiler-height",
+          "fullLabel": "lemma m1-lem-compiler-height",
+          "kind": "lemma",
+          "source": "Finite evaluation of nested conditional means",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-compiler-count",
+          "role": "finite-evaluation-of-nested-conditional-means",
+          "label": "lemma m1-lem-compiler-count",
+          "fullLabel": "lemma m1-lem-compiler-count",
+          "kind": "lemma",
+          "source": "Finite evaluation of nested conditional means",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-compiler-terminal",
+          "role": "finite-evaluation-of-nested-conditional-means",
+          "label": "lemma m1-lem-compiler-terminal",
+          "fullLabel": "lemma m1-lem-compiler-terminal",
+          "kind": "lemma",
+          "source": "Finite evaluation of nested conditional means",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-compiler-sizes",
+          "role": "finite-evaluation-of-nested-conditional-means",
+          "label": "lemma m1-lem-compiler-sizes",
+          "fullLabel": "lemma m1-lem-compiler-sizes",
+          "kind": "lemma",
+          "source": "Finite evaluation of nested conditional means",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-compiler-lipschitz",
+          "role": "finite-evaluation-of-nested-conditional-means",
+          "label": "lemma m1-lem-compiler-lipschitz",
+          "fullLabel": "lemma m1-lem-compiler-lipschitz",
+          "kind": "lemma",
+          "source": "Finite evaluation of nested conditional means",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-compiler-accuracy",
+          "role": "finite-evaluation-of-nested-conditional-means",
+          "label": "proposition m1-prop-compiler-accuracy",
+          "fullLabel": "proposition m1-prop-compiler-accuracy",
+          "kind": "proposition",
+          "source": "Finite evaluation of nested conditional means",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-proximal-contraction",
+          "role": "from-noisy-conditional-samples-to-the-target-law",
+          "label": "lemma m1-lem-proximal-contraction",
+          "fullLabel": "lemma m1-lem-proximal-contraction",
+          "kind": "lemma",
+          "source": "From noisy conditional samples to the target law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-noised-mixing",
+          "role": "from-noisy-conditional-samples-to-the-target-law",
+          "label": "proposition m1-prop-noised-mixing",
+          "fullLabel": "proposition m1-prop-noised-mixing",
+          "kind": "proposition",
+          "source": "From noisy conditional samples to the target law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-descent-moments",
+          "role": "from-noisy-conditional-samples-to-the-target-law",
+          "label": "lemma m1-lem-descent-moments",
+          "fullLabel": "lemma m1-lem-descent-moments",
+          "kind": "lemma",
+          "source": "From noisy conditional samples to the target law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mode-gaussian",
+          "role": "from-noisy-conditional-samples-to-the-target-law",
+          "label": "lemma m1-lem-mode-gaussian",
+          "fullLabel": "lemma m1-lem-mode-gaussian",
+          "kind": "lemma",
+          "source": "From noisy conditional samples to the target law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-upper",
+          "role": "from-noisy-conditional-samples-to-the-target-law",
+          "label": "theorem m1-thm-upper",
+          "fullLabel": "theorem m1-thm-upper",
+          "kind": "theorem",
+          "source": "From noisy conditional samples to the target law",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-lower",
+          "role": "a-logarithmic-oracle-lower-bound",
+          "label": "theorem m1-thm-lower",
+          "fullLabel": "theorem m1-thm-lower",
+          "kind": "theorem",
+          "source": "A logarithmic oracle lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-deferred-haar",
+          "role": "a-logarithmic-oracle-lower-bound",
+          "label": "lemma m1-lem-deferred-haar",
+          "fullLabel": "lemma m1-lem-deferred-haar",
+          "kind": "lemma",
+          "source": "A logarithmic oracle lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lower-span-statistic",
+          "role": "a-logarithmic-oracle-lower-bound",
+          "label": "lemma m1-lem-lower-span-statistic",
+          "fullLabel": "lemma m1-lem-lower-span-statistic",
+          "kind": "lemma",
+          "source": "A logarithmic oracle lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lower-target-statistic",
+          "role": "a-logarithmic-oracle-lower-bound",
+          "label": "lemma m1-lem-lower-target-statistic",
+          "fullLabel": "lemma m1-lem-lower-target-statistic",
+          "kind": "lemma",
+          "source": "A logarithmic oracle lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Subpolynomial query complexity for well-conditioned log-concave sampling",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Subpolynomial-query-complexity-for-well-conditioned-log-concave-sampling-September-26-2026/article.pdf",
+      "kind": "paper"
+    }
+  ]
+}

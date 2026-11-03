@@ -6,7 +6,9 @@ const collection = JSON.parse(await readFile(new URL("data/publications/openai-m
 const manifest = JSON.parse(await readFile(new URL("data/proof-maps/manifest.json", base), "utf8"));
 const leanResponse = await readFile(new URL("data/proof-maps/lean-coverage.json", base), "utf8").catch(() => null);
 const lean = leanResponse ? JSON.parse(leanResponse) : null;
-const index = buildProofMapIndex(collection, manifest, lean);
+const paperResponse = await readFile(new URL("data/proof-maps/paper-coverage.json", base), "utf8").catch(() => null);
+const paper = paperResponse ? JSON.parse(paperResponse) : null;
+const index = buildProofMapIndex(collection, manifest, lean, paper);
 const json = process.argv.includes("--json");
 
 if (json) {
@@ -16,6 +18,8 @@ if (json) {
   console.log(`  families: ${index.summary.families}`);
   console.log(`  deep: ${index.summary.deep}`);
   console.log(`  draft: ${index.summary.draft}`);
+  console.log(`  paper-derived: ${index.summary.paper} (${index.summary.paperStatements} statements, ${index.summary.paperEdges} references)`);
+  console.log(`  lean-derived: ${index.summary.lean}`);
   console.log(`  scaffold: ${index.summary.scaffold}`);
   console.log(`  manuscripts: ${index.summary.manuscripts}`);
   console.log(`  families with Lean scope: ${index.summary.scopeFamilies}/${index.summary.families}`);
@@ -26,9 +30,9 @@ if (json) {
   console.log(`  Lean theorem names: ${index.summary.leanTheoremNames}`);
   console.log("");
   console.log("Curated families:");
-  for (const entry of index.entries.filter((candidate) => candidate.status !== "scaffold")) {
+  for (const entry of index.entries.filter((candidate) => candidate.status === "deep" || candidate.status === "draft")) {
     console.log(`  ${entry.familyNumber}  ${entry.status.padEnd(7)}  ${entry.title}`);
   }
   console.log("");
-  console.log("Next work queue: use status=scaffold in /proof-evolution; each entry names the next curation step.");
+  console.log("Next work queue: use status=lean or status=scaffold in /proof-evolution; each entry names the next curation step.");
 }

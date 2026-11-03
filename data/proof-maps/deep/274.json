@@ -1,0 +1,372 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "274",
+  "title": "Parity is not in QAC<sup>0</sup>",
+  "result": {
+    "id": "paper-result",
+    "label": "Parity is not in QAC<sup>0</sup>",
+    "statement": "Resolves Moore's parity conjecture in the measured-output model: constant-depth quantum circuits with arbitrary one-qubit gates, unbounded-arity Toffoli gates and polynomially many total qubits cannot compute parity with any fixed positive worst-case advantage. Ancillas start in zero, one output qubit is measured, and all other registers may be discarded. Xu–Li's reductions give the same bounded-error obstruction for strict majority.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "product-projections-and-localization",
+      "label": "Product projections and localization",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-polynomial-approximation-with-controlled-coefficients",
+      "label": "A polynomial approximation with controlled coefficients",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "depth-reduction-for-small-support-projections",
+      "label": "Depth reduction for small-support projections",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-finite-scale-induction",
+      "label": "The finite scale induction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "consequences-of-localization-and-parity",
+      "label": "Consequences of localization and parity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "product-tests-and-regular-trajectories",
+      "label": "Product tests and regular trajectories",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-polynomial-filters",
+      "label": "Two polynomial filters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "propagation-of-low-degree-perturbations",
+      "label": "Propagation of low-degree perturbations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "transporting-excitation-tails",
+      "label": "Transporting excitation tails",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "projection-insertion-and-pruning",
+      "label": "Projection insertion and pruning",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Product-projection localization and the QAC0 parity lower bound",
+      "title": "Product-projection localization and the QAC0 parity lower bound",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Product-projection-localization-and-the-QAC0-parity-lower-bound-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Product-projection localization and the QAC0 parity lower bound.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-parity",
+          "role": "introduction",
+          "label": "theorem m1-thm-parity",
+          "fullLabel": "theorem m1-thm-parity",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-localization",
+          "role": "product-projections-and-localization",
+          "label": "theorem m1-thm-localization",
+          "fullLabel": "theorem m1-thm-localization",
+          "kind": "theorem",
+          "source": "Product projections and localization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-polynomial",
+          "role": "a-polynomial-approximation-with-controlled-coefficients",
+          "label": "lemma m1-lem-polynomial",
+          "fullLabel": "lemma m1-lem-polynomial",
+          "kind": "lemma",
+          "source": "A polynomial approximation with controlled coefficients",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-base",
+          "role": "depth-reduction-for-small-support-projections",
+          "label": "lemma m1-lem-base",
+          "fullLabel": "lemma m1-lem-base",
+          "kind": "lemma",
+          "source": "Depth reduction for small-support projections",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-propagation",
+          "role": "depth-reduction-for-small-support-projections",
+          "label": "lemma m1-lem-propagation",
+          "fullLabel": "lemma m1-lem-propagation",
+          "kind": "lemma",
+          "source": "Depth reduction for small-support projections",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-small-support",
+          "role": "depth-reduction-for-small-support-projections",
+          "label": "lemma m1-lem-small-support",
+          "fullLabel": "lemma m1-lem-small-support",
+          "kind": "lemma",
+          "source": "Depth reduction for small-support projections",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-backward",
+          "role": "the-finite-scale-induction",
+          "label": "lemma m1-lem-backward",
+          "fullLabel": "lemma m1-lem-backward",
+          "kind": "lemma",
+          "source": "The finite scale induction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-state-preparation",
+          "role": "consequences-of-localization-and-parity",
+          "label": "corollary m1-cor-state-preparation",
+          "fullLabel": "corollary m1-cor-state-preparation",
+          "kind": "corollary",
+          "source": "Consequences of localization and parity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-quantum-lmn",
+          "role": "consequences-of-localization-and-parity",
+          "label": "corollary m1-cor-quantum-lmn",
+          "fullLabel": "corollary m1-cor-quantum-lmn",
+          "kind": "corollary",
+          "source": "Consequences of localization and parity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-symmetric-functions",
+          "role": "consequences-of-localization-and-parity",
+          "label": "corollary m1-cor-symmetric-functions",
+          "fullLabel": "corollary m1-cor-symmetric-functions",
+          "kind": "corollary",
+          "source": "Consequences of localization and parity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-majority-average",
+          "role": "consequences-of-localization-and-parity",
+          "label": "corollary m1-cor-majority-average",
+          "fullLabel": "corollary m1-cor-majority-average",
+          "kind": "corollary",
+          "source": "Consequences of localization and parity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Regular trajectories, pruning and quantum parity",
+      "title": "Regular trajectories, pruning and quantum parity",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Regular-trajectories-pruning-and-quantum-parity-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Regular trajectories, pruning and quantum parity.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-parity",
+          "role": "introduction",
+          "label": "theorem m2-thm-parity",
+          "fullLabel": "theorem m2-thm-parity",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-uniformization",
+          "role": "product-tests-and-regular-trajectories",
+          "label": "lemma m2-lem-uniformization",
+          "fullLabel": "lemma m2-lem-uniformization",
+          "kind": "lemma",
+          "source": "Product tests and regular trajectories",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-degree-shift",
+          "role": "product-tests-and-regular-trajectories",
+          "label": "lemma m2-lem-degree-shift",
+          "fullLabel": "lemma m2-lem-degree-shift",
+          "kind": "lemma",
+          "source": "Product tests and regular trajectories",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-zero-filter",
+          "role": "two-polynomial-filters",
+          "label": "lemma m2-lem-zero-filter",
+          "fullLabel": "lemma m2-lem-zero-filter",
+          "kind": "lemma",
+          "source": "Two polynomial filters",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-tail-filter",
+          "role": "two-polynomial-filters",
+          "label": "lemma m2-lem-tail-filter",
+          "fullLabel": "lemma m2-lem-tail-filter",
+          "kind": "lemma",
+          "source": "Two polynomial filters",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-propagation",
+          "role": "propagation-of-low-degree-perturbations",
+          "label": "proposition m2-prop-propagation",
+          "fullLabel": "proposition m2-prop-propagation",
+          "kind": "proposition",
+          "source": "Propagation of low-degree perturbations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-tail-transport",
+          "role": "transporting-excitation-tails",
+          "label": "lemma m2-lem-tail-transport",
+          "fullLabel": "lemma m2-lem-tail-transport",
+          "kind": "lemma",
+          "source": "Transporting excitation tails",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-exponent-budget",
+          "role": "transporting-excitation-tails",
+          "label": "lemma m2-lem-exponent-budget",
+          "fullLabel": "lemma m2-lem-exponent-budget",
+          "kind": "lemma",
+          "source": "Transporting excitation tails",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-projection-insertion",
+          "role": "projection-insertion-and-pruning",
+          "label": "proposition m2-prop-projection-insertion",
+          "fullLabel": "proposition m2-prop-projection-insertion",
+          "kind": "proposition",
+          "source": "Projection insertion and pruning",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-product-tail",
+          "role": "projection-insertion-and-pruning",
+          "label": "corollary m2-cor-product-tail",
+          "fullLabel": "corollary m2-cor-product-tail",
+          "kind": "corollary",
+          "source": "Projection insertion and pruning",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-overlap-tail",
+          "role": "projection-insertion-and-pruning",
+          "label": "corollary m2-cor-overlap-tail",
+          "fullLabel": "corollary m2-cor-overlap-tail",
+          "kind": "corollary",
+          "source": "Projection insertion and pruning",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-retained-layer",
+          "role": "projection-insertion-and-pruning",
+          "label": "lemma m2-lem-retained-layer",
+          "fullLabel": "lemma m2-lem-retained-layer",
+          "kind": "lemma",
+          "source": "Projection insertion and pruning",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-pruning",
+          "role": "projection-insertion-and-pruning",
+          "label": "proposition m2-prop-pruning",
+          "fullLabel": "proposition m2-prop-pruning",
+          "kind": "proposition",
+          "source": "Projection insertion and pruning",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Product-projection localization and the QAC0 parity lower bound",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Product-projection-localization-and-the-QAC0-parity-lower-bound-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Regular trajectories, pruning and quantum parity",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Regular-trajectories-pruning-and-quantum-parity-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

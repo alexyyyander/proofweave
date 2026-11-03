@@ -1,0 +1,685 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "245",
+  "title": "Weak normalization implies strong normalization in pure type systems",
+  "result": {
+    "id": "paper-result",
+    "label": "Weak normalization implies strong normalization in pure type systems",
+    "statement": "Proves that weak normalization implies strong normalization for every pure type system: if every legal expression in every valid context has a β -normal form, every β -reduction sequence terminates. This resolves the β -Barendregt–Geuvers–Klop conjecture, including nonfunctional rules and open contexts.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "structural-properties",
+      "label": "Structural properties",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "sort-profiles-and-normalization-candidates",
+      "label": "Sort profiles and normalization candidates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-component-constructions",
+      "label": "Two component constructions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "observation-spaces-and-substitution-stable-candidates",
+      "label": "Observation spaces and substitution-stable candidates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-typed-calculus-for-the-forbidden-configuration",
+      "label": "A typed calculus for the forbidden configuration",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "typed-data-channels",
+      "label": "Typed data channels",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "relational-coding-of-the-diagonal-argument",
+      "label": "Relational coding of the diagonal argument",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-guarded-diagonal-argument",
+      "label": "The guarded diagonal argument",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exclusion-and-completion-of-the-proof",
+      "label": "Exclusion and completion of the proof",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Weak and strong normalization in pure type systems",
+      "title": "Weak and strong normalization in pure type systems",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weak-and-strong-normalization-in-pure-type-systems-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Weak and strong normalization in pure type systems.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pts-validity",
+          "role": "structural-properties",
+          "label": "lemma m1-pts-validity",
+          "fullLabel": "lemma m1-pts-validity",
+          "kind": "lemma",
+          "source": "Structural properties",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pts-thinning",
+          "role": "structural-properties",
+          "label": "lemma m1-pts-thinning",
+          "fullLabel": "lemma m1-pts-thinning",
+          "kind": "lemma",
+          "source": "Structural properties",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pts-substitution",
+          "role": "structural-properties",
+          "label": "lemma m1-pts-substitution",
+          "fullLabel": "lemma m1-pts-substitution",
+          "kind": "lemma",
+          "source": "Structural properties",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pts-context-conversion",
+          "role": "structural-properties",
+          "label": "lemma m1-pts-context-conversion",
+          "fullLabel": "lemma m1-pts-context-conversion",
+          "kind": "lemma",
+          "source": "Structural properties",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pts-generation",
+          "role": "structural-properties",
+          "label": "lemma m1-pts-generation",
+          "fullLabel": "lemma m1-pts-generation",
+          "kind": "lemma",
+          "source": "Structural properties",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pts-correctness",
+          "role": "structural-properties",
+          "label": "lemma m1-pts-correctness",
+          "fullLabel": "lemma m1-pts-correctness",
+          "kind": "lemma",
+          "source": "Structural properties",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pts-confluence",
+          "role": "structural-properties",
+          "label": "lemma m1-pts-confluence",
+          "fullLabel": "lemma m1-pts-confluence",
+          "kind": "lemma",
+          "source": "Structural properties",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pts-subject-reduction",
+          "role": "structural-properties",
+          "label": "lemma m1-pts-subject-reduction",
+          "fullLabel": "lemma m1-pts-subject-reduction",
+          "kind": "lemma",
+          "source": "Structural properties",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pts-neutral-uniqueness",
+          "role": "structural-properties",
+          "label": "lemma m1-pts-neutral-uniqueness",
+          "fullLabel": "lemma m1-pts-neutral-uniqueness",
+          "kind": "lemma",
+          "source": "Structural properties",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pts-normalizing-judgments",
+          "role": "structural-properties",
+          "label": "lemma m1-pts-normalizing-judgments",
+          "fullLabel": "lemma m1-pts-normalizing-judgments",
+          "kind": "lemma",
+          "source": "Structural properties",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pts-finite-restriction",
+          "role": "structural-properties",
+          "label": "lemma m1-pts-finite-restriction",
+          "fullLabel": "lemma m1-pts-finite-restriction",
+          "kind": "lemma",
+          "source": "Structural properties",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pts-saturated-context",
+          "role": "structural-properties",
+          "label": "lemma m1-pts-saturated-context",
+          "fullLabel": "lemma m1-pts-saturated-context",
+          "kind": "lemma",
+          "source": "Structural properties",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-normal-profiles",
+          "role": "sort-profiles-and-normalization-candidates",
+          "label": "lemma m1-lem-normal-profiles",
+          "fullLabel": "lemma m1-lem-normal-profiles",
+          "kind": "lemma",
+          "source": "Sort profiles and normalization candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-feasible-profiles",
+          "role": "sort-profiles-and-normalization-candidates",
+          "label": "lemma m1-lem-feasible-profiles",
+          "fullLabel": "lemma m1-lem-feasible-profiles",
+          "kind": "lemma",
+          "source": "Sort profiles and normalization candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-test-properties",
+          "role": "sort-profiles-and-normalization-candidates",
+          "label": "lemma m1-lem-test-properties",
+          "fullLabel": "lemma m1-lem-test-properties",
+          "kind": "lemma",
+          "source": "Sort profiles and normalization candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sn-head-expansion",
+          "role": "sort-profiles-and-normalization-candidates",
+          "label": "lemma m1-lem-sn-head-expansion",
+          "fullLabel": "lemma m1-lem-sn-head-expansion",
+          "kind": "lemma",
+          "source": "Sort profiles and normalization candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-candidate-lattice",
+          "role": "sort-profiles-and-normalization-candidates",
+          "label": "lemma m1-lem-candidate-lattice",
+          "fullLabel": "lemma m1-lem-candidate-lattice",
+          "kind": "lemma",
+          "source": "Sort profiles and normalization candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sn-fundamental",
+          "role": "sort-profiles-and-normalization-candidates",
+          "label": "lemma m1-lem-sn-fundamental",
+          "fullLabel": "lemma m1-lem-sn-fundamental",
+          "kind": "lemma",
+          "source": "Sort profiles and normalization candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-advance-component",
+          "role": "sort-profiles-and-normalization-candidates",
+          "label": "proposition m1-prop-advance-component",
+          "fullLabel": "proposition m1-prop-advance-component",
+          "kind": "proposition",
+          "source": "Sort profiles and normalization candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-interfaces-imply-sn",
+          "role": "sort-profiles-and-normalization-candidates",
+          "label": "proposition m1-prop-interfaces-imply-sn",
+          "fullLabel": "proposition m1-prop-interfaces-imply-sn",
+          "kind": "proposition",
+          "source": "Sort profiles and normalization candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-signed-component",
+          "role": "two-component-constructions",
+          "label": "proposition m1-prop-signed-component",
+          "fullLabel": "proposition m1-prop-signed-component",
+          "kind": "proposition",
+          "source": "Two component constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-support-dependence",
+          "role": "two-component-constructions",
+          "label": "lemma m1-lem-support-dependence",
+          "fullLabel": "lemma m1-lem-support-dependence",
+          "kind": "lemma",
+          "source": "Two component constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-support-substitution",
+          "role": "two-component-constructions",
+          "label": "lemma m1-lem-support-substitution",
+          "fullLabel": "lemma m1-lem-support-substitution",
+          "kind": "lemma",
+          "source": "Two component constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-one-child-component",
+          "role": "two-component-constructions",
+          "label": "proposition m1-prop-one-child-component",
+          "fullLabel": "proposition m1-prop-one-child-component",
+          "kind": "proposition",
+          "source": "Two component constructions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-obs-graph-lemma",
+          "role": "observation-spaces-and-substitution-stable-candidates",
+          "label": "lemma m1-obs-graph-lemma",
+          "fullLabel": "lemma m1-obs-graph-lemma",
+          "kind": "lemma",
+          "source": "Observation spaces and substitution-stable candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-obs-plain-construction",
+          "role": "observation-spaces-and-substitution-stable-candidates",
+          "label": "lemma m1-obs-plain-construction",
+          "fullLabel": "lemma m1-obs-plain-construction",
+          "kind": "lemma",
+          "source": "Observation spaces and substitution-stable candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-obs-structural-invariance",
+          "role": "observation-spaces-and-substitution-stable-candidates",
+          "label": "lemma m1-obs-structural-invariance",
+          "fullLabel": "lemma m1-obs-structural-invariance",
+          "kind": "lemma",
+          "source": "Observation spaces and substitution-stable candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-obs-goodness-basic",
+          "role": "observation-spaces-and-substitution-stable-candidates",
+          "label": "lemma m1-obs-goodness-basic",
+          "fullLabel": "lemma m1-obs-goodness-basic",
+          "kind": "lemma",
+          "source": "Observation spaces and substitution-stable candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-obs-substitution",
+          "role": "observation-spaces-and-substitution-stable-candidates",
+          "label": "lemma m1-obs-substitution",
+          "fullLabel": "lemma m1-obs-substitution",
+          "kind": "lemma",
+          "source": "Observation spaces and substitution-stable candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-obs-reduction-transport",
+          "role": "observation-spaces-and-substitution-stable-candidates",
+          "label": "lemma m1-obs-reduction-transport",
+          "fullLabel": "lemma m1-obs-reduction-transport",
+          "kind": "lemma",
+          "source": "Observation spaces and substitution-stable candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-obs-normal-independence",
+          "role": "observation-spaces-and-substitution-stable-candidates",
+          "label": "lemma m1-obs-normal-independence",
+          "fullLabel": "lemma m1-obs-normal-independence",
+          "kind": "lemma",
+          "source": "Observation spaces and substitution-stable candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-obs-interface-theorem",
+          "role": "observation-spaces-and-substitution-stable-candidates",
+          "label": "proposition m1-obs-interface-theorem",
+          "fullLabel": "proposition m1-obs-interface-theorem",
+          "kind": "proposition",
+          "source": "Observation spaces and substitution-stable candidates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-enc-labelled-metatheory",
+          "role": "a-typed-calculus-for-the-forbidden-configuration",
+          "label": "lemma m1-lem-enc-labelled-metatheory",
+          "fullLabel": "lemma m1-lem-enc-labelled-metatheory",
+          "kind": "lemma",
+          "source": "A typed calculus for the forbidden configuration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-enc-terminal-converters",
+          "role": "a-typed-calculus-for-the-forbidden-configuration",
+          "label": "lemma m1-lem-enc-terminal-converters",
+          "fullLabel": "lemma m1-lem-enc-terminal-converters",
+          "kind": "lemma",
+          "source": "A typed calculus for the forbidden configuration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-enc-propositional",
+          "role": "a-typed-calculus-for-the-forbidden-configuration",
+          "label": "lemma m1-lem-enc-propositional",
+          "fullLabel": "lemma m1-lem-enc-propositional",
+          "kind": "lemma",
+          "source": "A typed calculus for the forbidden configuration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-enc-data-cancellation",
+          "role": "a-typed-calculus-for-the-forbidden-configuration",
+          "label": "lemma m1-lem-enc-data-cancellation",
+          "fullLabel": "lemma m1-lem-enc-data-cancellation",
+          "kind": "lemma",
+          "source": "A typed calculus for the forbidden configuration",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-chan-paths",
+          "role": "typed-data-channels",
+          "label": "lemma m1-chan-paths",
+          "fullLabel": "lemma m1-chan-paths",
+          "kind": "lemma",
+          "source": "Typed data channels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-chan-rounding",
+          "role": "typed-data-channels",
+          "label": "lemma m1-chan-rounding",
+          "fullLabel": "lemma m1-chan-rounding",
+          "kind": "lemma",
+          "source": "Typed data channels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-chan-double-laws",
+          "role": "typed-data-channels",
+          "label": "lemma m1-chan-double-laws",
+          "fullLabel": "lemma m1-chan-double-laws",
+          "kind": "lemma",
+          "source": "Typed data channels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-chan-marker-laws",
+          "role": "typed-data-channels",
+          "label": "lemma m1-chan-marker-laws",
+          "fullLabel": "lemma m1-chan-marker-laws",
+          "kind": "lemma",
+          "source": "Typed data channels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-chan-point-laws",
+          "role": "typed-data-channels",
+          "label": "lemma m1-chan-point-laws",
+          "fullLabel": "lemma m1-chan-point-laws",
+          "kind": "lemma",
+          "source": "Typed data channels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-chan-access",
+          "role": "typed-data-channels",
+          "label": "lemma m1-chan-access",
+          "fullLabel": "lemma m1-chan-access",
+          "kind": "lemma",
+          "source": "Typed data channels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-equivalence",
+          "role": "relational-coding-of-the-diagonal-argument",
+          "label": "lemma m1-rel-equivalence",
+          "fullLabel": "lemma m1-rel-equivalence",
+          "kind": "lemma",
+          "source": "Relational coding of the diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-pair-congruence",
+          "role": "relational-coding-of-the-diagonal-argument",
+          "label": "lemma m1-rel-pair-congruence",
+          "fullLabel": "lemma m1-rel-pair-congruence",
+          "kind": "lemma",
+          "source": "Relational coding of the diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-lift-properties",
+          "role": "relational-coding-of-the-diagonal-argument",
+          "label": "lemma m1-rel-lift-properties",
+          "fullLabel": "lemma m1-rel-lift-properties",
+          "kind": "lemma",
+          "source": "Relational coding of the diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-tags",
+          "role": "relational-coding-of-the-diagonal-argument",
+          "label": "lemma m1-rel-tags",
+          "fullLabel": "lemma m1-rel-tags",
+          "kind": "lemma",
+          "source": "Relational coding of the diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-query-realization",
+          "role": "relational-coding-of-the-diagonal-argument",
+          "label": "lemma m1-rel-query-realization",
+          "fullLabel": "lemma m1-rel-query-realization",
+          "kind": "lemma",
+          "source": "Relational coding of the diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-observation-equivalence",
+          "role": "relational-coding-of-the-diagonal-argument",
+          "label": "lemma m1-rel-observation-equivalence",
+          "fullLabel": "lemma m1-rel-observation-equivalence",
+          "kind": "lemma",
+          "source": "Relational coding of the diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-witnesses",
+          "role": "relational-coding-of-the-diagonal-argument",
+          "label": "lemma m1-rel-witnesses",
+          "fullLabel": "lemma m1-rel-witnesses",
+          "kind": "lemma",
+          "source": "Relational coding of the diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-pair-laws",
+          "role": "relational-coding-of-the-diagonal-argument",
+          "label": "lemma m1-rel-pair-laws",
+          "fullLabel": "lemma m1-rel-pair-laws",
+          "kind": "lemma",
+          "source": "Relational coding of the diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-response-predicate",
+          "role": "the-guarded-diagonal-argument",
+          "label": "lemma m1-rel-response-predicate",
+          "fullLabel": "lemma m1-rel-response-predicate",
+          "kind": "lemma",
+          "source": "The guarded diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-shift",
+          "role": "the-guarded-diagonal-argument",
+          "label": "lemma m1-rel-shift",
+          "fullLabel": "lemma m1-rel-shift",
+          "kind": "lemma",
+          "source": "The guarded diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-ind-congruence",
+          "role": "the-guarded-diagonal-argument",
+          "label": "lemma m1-rel-ind-congruence",
+          "fullLabel": "lemma m1-rel-ind-congruence",
+          "kind": "lemma",
+          "source": "The guarded diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-wf",
+          "role": "the-guarded-diagonal-argument",
+          "label": "lemma m1-rel-wf",
+          "fullLabel": "lemma m1-rel-wf",
+          "kind": "lemma",
+          "source": "The guarded diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rel-contradiction",
+          "role": "the-guarded-diagonal-argument",
+          "label": "proposition m1-rel-contradiction",
+          "fullLabel": "proposition m1-rel-contradiction",
+          "kind": "proposition",
+          "source": "The guarded diagonal argument",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-enc-no-normal-proof",
+          "role": "exclusion-and-completion-of-the-proof",
+          "label": "lemma m1-lem-enc-no-normal-proof",
+          "fullLabel": "lemma m1-lem-enc-no-normal-proof",
+          "kind": "lemma",
+          "source": "Exclusion and completion of the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-enc-exclusion",
+          "role": "exclusion-and-completion-of-the-proof",
+          "label": "proposition m1-prop-enc-exclusion",
+          "fullLabel": "proposition m1-prop-enc-exclusion",
+          "kind": "proposition",
+          "source": "Exclusion and completion of the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Weak and strong normalization in pure type systems",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Weak-and-strong-normalization-in-pure-type-systems-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

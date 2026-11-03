@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { Badge, Surface, cx } from "@/app/components/ui";
+import { useI18n } from "@/app/i18n/client";
+import type { TranslationKey, Translator } from "@/app/i18n/translate";
 import { ProofNetworkGraph } from "./ProofNetworkGraph";
 import {
   versionById,
@@ -10,6 +12,7 @@ import {
   type LeanSubsystem,
   type ProofEvolutionData,
   type ProofStep,
+  type ProofStepKind,
   type ProofVersion,
 } from "@/app/lib/proof-evolution";
 
@@ -23,6 +26,17 @@ const TOP = 64;
 const STEP_ROW = 84;
 const SUBSYS_ROW = 76;
 const GRAPH_WIDTH = 980;
+
+const kindKeys: Record<ProofStepKind, TranslationKey> = {
+  theorem: "proofMaps.label.kind.theorem",
+  lemma: "proofMaps.label.kind.lemma",
+  proposition: "proofMaps.label.kind.proposition",
+  corollary: "proofMaps.label.kind.corollary",
+  construction: "proofMaps.label.kind.construction",
+  bound: "proofMaps.label.kind.bound",
+  assembly: "proofMaps.label.kind.assembly",
+  external: "proofMaps.label.kind.external",
+};
 
 const primaryVersionIds = ["openai-2026-10-01", "banks-2026-10-11", "kerr-2026-10-15", "green-2026-10-17", "barreto-2026-10-19"];
 
@@ -68,6 +82,7 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
   selectedVersion: ProofVersion;
   onSelectVersion: (id: string) => void;
 }) {
+  const { t, locale } = useI18n();
   const [selectedStepId, setSelectedStepId] = useState("prime-bias");
   const [selectedSubsystemId, setSelectedSubsystemId] = useState("Characters");
   const [view, setView] = useState<"network" | "layers">("network");
@@ -108,16 +123,16 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
   };
 
   return <div className="lean-structure-view">
-    <div className="lean-structure-stats" aria-label="Lean structure summary">
-      <Stat label="Upstream modules" value={lean.summary.oaiModules.toLocaleString("en-US")} detail={`${lean.topLevelModules.length} direct from Main.lean`} />
-      <Stat label="Lines" value={lean.summary.totalLines.toLocaleString("en-US")} detail="fetched source" />
-      <Stat label="Declarations" value={lean.summary.declarations.toLocaleString("en-US")} detail="theorem / lemma / def / structure" />
-      <Stat label="Sorry / axiom" value={`${lean.summary.sorry} / ${lean.summary.axioms}`} detail="textual scan, not kernel audit" />
-      <Stat label="External imports" value={lean.summary.mathlibImports.toLocaleString("en-US")} detail="unique Mathlib modules" />
+    <div className="lean-structure-stats" aria-label={t("proofMaps.lean.statsAria")}>
+      <Stat label={t("proofMaps.lean.statModules")} value={lean.summary.oaiModules.toLocaleString(locale)} detail={t("proofMaps.lean.statModulesDetail", { count: lean.topLevelModules.length })} />
+      <Stat label={t("proofMaps.lean.statLines")} value={lean.summary.totalLines.toLocaleString(locale)} detail={t("proofMaps.lean.statLinesDetail")} />
+      <Stat label={t("proofMaps.lean.statDeclarations")} value={lean.summary.declarations.toLocaleString(locale)} detail={t("proofMaps.lean.statDeclarationsDetail")} />
+      <Stat label={t("proofMaps.lean.statSorryAxiom")} value={`${lean.summary.sorry} / ${lean.summary.axioms}`} detail={t("proofMaps.lean.statSorryAxiomDetail")} />
+      <Stat label={t("proofMaps.lean.statExternal")} value={lean.summary.mathlibImports.toLocaleString(locale)} detail={t("proofMaps.lean.statExternalDetail")} />
     </div>
 
-    <div className="lean-version-strip" aria-label="Select a proof version">
-      <span className="lean-structure-eyebrow">Proof version</span>
+    <div className="lean-version-strip" aria-label={t("proofMaps.lean.versionStripAria")}>
+      <span className="lean-structure-eyebrow">{t("proofMaps.lean.proofVersion")}</span>
       {primaryVersions.map((version) => <button
         type="button"
         key={version.id}
@@ -126,20 +141,20 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
         onClick={() => onSelectVersion(version.id)}
       >
         <strong>{version.label}</strong>
-        <small>{version.pages} pp · {version.lean.status === "formalized_upstream" ? "Lean" : "no Lean"}</small>
+        <small>{t("proofMaps.evolution.pages", { count: version.pages })} · {version.lean.status === "formalized_upstream" ? t("proofMaps.evolution.lean") : t("proofMaps.lean.noLeanShort")}</small>
       </button>)}
     </div>
 
     {!isFormalizedRoute && <div className="lean-mapping-banner">
-      <Badge tone="warning">No Lean mapping</Badge>
-      <p>The fetched Lean closure follows the OpenAI 9-page route. Select OpenAI to see the step-to-module alignment; the right column remains the actual upstream Lean structure.</p>
+      <Badge tone="warning">{t("proofMaps.lean.noMapping")}</Badge>
+      <p>{t("proofMaps.lean.noMappingBody")}</p>
     </div>}
 
-    <div className="lean-view-toggle" aria-label="Graph view">
-      <span className="lean-structure-eyebrow">Graph view</span>
-      <button type="button" className={cx("lean-view-button", view === "network" && "is-selected")} aria-pressed={view === "network"} onClick={() => setView("network")}>Network</button>
-      <button type="button" className={cx("lean-view-button", view === "layers" && "is-selected")} aria-pressed={view === "layers"} onClick={() => setView("layers")}>Layered</button>
-      <span className="lean-view-note">Force-directed network or fixed layered reading.</span>
+    <div className="lean-view-toggle" aria-label={t("proofMaps.lean.viewAria")}>
+      <span className="lean-structure-eyebrow">{t("proofMaps.lean.viewAria")}</span>
+      <button type="button" className={cx("lean-view-button", view === "network" && "is-selected")} aria-pressed={view === "network"} onClick={() => setView("network")}>{t("proofMaps.lean.network")}</button>
+      <button type="button" className={cx("lean-view-button", view === "layers" && "is-selected")} aria-pressed={view === "layers"} onClick={() => setView("layers")}>{t("proofMaps.lean.layered")}</button>
+      <span className="lean-view-note">{t("proofMaps.lean.viewNote")}</span>
     </div>
     {view === "network" ? <ProofNetworkGraph
       data={data}
@@ -151,15 +166,15 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
       onSelectStep={chooseStep}
       onSelectSubsystem={setSelectedSubsystemId}
     /> : (
-    <div className="lean-combined-scroll" tabIndex={0} aria-label="Combined proof and Lean structure graph">
+    <div className="lean-combined-scroll" tabIndex={0} aria-label={t("proofMaps.lean.combinedAria")}>
       <div className="lean-combined-graph" style={{ width: GRAPH_WIDTH, height: graphHeight }}>
         <div className="lean-graph-label is-left" style={{ left: LEFT_X, top: 18 }}>
-          <span>Proof chain</span>
-          <strong>{selectedVersion.label} · {selectedVersion.pages} pp</strong>
+          <span>{t("proofMaps.lean.proofChain")}</span>
+          <strong>{t("proofMaps.lean.proofChainMeta", { label: selectedVersion.label, pages: selectedVersion.pages })}</strong>
         </div>
         <div className="lean-graph-label is-right" style={{ left: RIGHT_X, top: 18 }}>
-          <span>Lean structure</span>
-          <strong>{lean.summary.oaiModules} modules · {subsystems.length} subsystems shown</strong>
+          <span>{t("proofMaps.lean.leanStructureLabel")}</span>
+          <strong>{t("proofMaps.lean.leanStructureMeta", { modules: lean.summary.oaiModules.toLocaleString(locale), subsystems: subsystems.length })}</strong>
         </div>
         <svg className="lean-combined-edges" viewBox={`0 0 ${GRAPH_WIDTH} ${graphHeight}`} aria-hidden="true">
           <defs>
@@ -178,7 +193,7 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
             const to = subsystemPositions.get(edge.to);
             if (!from || !to) return null;
             return <path key={`import-${edge.from}-${edge.to}`} d={subsystemPath(from, to)} className="lean-combined-import-edge" markerEnd="url(#lean-combined-arrow)">
-              <title>{`${edge.from} imports ${edge.to}: ${edge.count} modules`}</title>
+              <title>{t("proofMaps.lean.importsTitle", { from: edge.from, to: edge.to, count: edge.count })}</title>
             </path>;
           })}
           {isFormalizedRoute && steps.flatMap((step) => {
@@ -194,7 +209,7 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
               className={cx("lean-combined-align-edge", `is-${alignment.confidence}`, selectedStep?.id === step.id && "is-highlighted")}
               markerEnd="url(#lean-combined-arrow)"
             >
-              <title>{`${step.label} → ${primary}: ${alignment.confidence}`}</title>
+              <title>{t("proofMaps.lean.alignmentTitle", { step: step.label, subsystem: primary ?? "", confidence: alignment.confidence })}</title>
             </path>];
           })}
         </svg>
@@ -211,7 +226,7 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
             aria-pressed={selectedStep?.id === step.id}
             onClick={() => chooseStep(step.id)}
           >
-            <span className="lean-node-top"><span>{step.kind}</span>{alignment ? <span className="lean-align-dot" aria-label="has Lean alignment" /> : <span className="lean-no-align">no Lean</span>}</span>
+            <span className="lean-node-top"><span>{kindKeys[step.kind] ? t(kindKeys[step.kind]) : step.kind}</span>{alignment ? <span className="lean-align-dot" aria-label={t("proofMaps.lean.hasAlignment")} /> : <span className="lean-no-align">{t("proofMaps.lean.noLeanShort")}</span>}</span>
             <strong>{step.label}</strong>
             <small>{step.source}</small>
           </button>;
@@ -229,9 +244,9 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
             aria-pressed={selectedSubsystem.id === subsystem.id}
             onClick={() => setSelectedSubsystemId(subsystem.id)}
           >
-            <span className="lean-node-top"><span>subsystem</span><span>{subsystem.moduleCount} mod</span></span>
+            <span className="lean-node-top"><span>{t("proofMaps.lean.subsystem")}</span><span>{t("proofMaps.lean.moduleShort", { count: subsystem.moduleCount })}</span></span>
             <strong>{subsystem.label}</strong>
-            <small>{subsystem.lines.toLocaleString("en-US")} lines · {subsystem.declarations} decls</small>
+            <small>{t("proofMaps.lean.subsystemMeta", { lines: subsystem.lines.toLocaleString(locale), decls: subsystem.declarations.toLocaleString(locale) })}</small>
           </button>;
         })}
       </div>
@@ -240,7 +255,7 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
 
     <div className="lean-selection-grid">
       <Surface tone="card" className="lean-selection-card">
-        <span className="lean-structure-eyebrow">Selected paper step</span>
+        <span className="lean-structure-eyebrow">{t("proofMaps.lean.selectedPaperStep")}</span>
         {selectedStep ? <>
           <h3>{selectedStep.label}</h3>
           <p>{selectedStep.detail}</p>
@@ -256,53 +271,53 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
               })}
             </div>
             <p className="lean-selection-note">{selectedAlignment.note}</p>
-          </> : <p className="lean-selection-note">No Lean alignment is recorded for this version. The formalized route is OpenAI&apos;s interpolation-determinant proof; switch to OpenAI to inspect it.</p>}
-        </> : <p className="lean-selection-note">This version has no proof steps in the dataset.</p>}
+          </> : <p className="lean-selection-note">{t("proofMaps.lean.noAlignmentForVersion")}</p>}
+        </> : <p className="lean-selection-note">{t("proofMaps.lean.noSteps")}</p>}
       </Surface>
 
       <Surface tone="card" className="lean-selection-card">
-        <span className="lean-structure-eyebrow">Selected Lean subsystem</span>
+        <span className="lean-structure-eyebrow">{t("proofMaps.lean.selectedSubsystem")}</span>
         {selectedSubsystem ? <>
           <h3>{selectedSubsystem.label}</h3>
-          <p>{selectedSubsystem.moduleCount} modules · {selectedSubsystem.lines.toLocaleString("en-US")} lines · {selectedSubsystem.declarations.toLocaleString("en-US")} declarations.</p>
+          <p>{t("proofMaps.lean.subsystemSummary", { modules: selectedSubsystem.moduleCount.toLocaleString(locale), lines: selectedSubsystem.lines.toLocaleString(locale), declarations: selectedSubsystem.declarations.toLocaleString(locale) })}</p>
           <div className="lean-module-mini-list">
             {selectedSubsystem.modules.slice(0, 7).map((id) => {
               const moduleInfo = moduleById.get(id);
               return moduleInfo ? <a key={id} href={moduleInfo.url} target="_blank" rel="noreferrer">
                 <code>{shortModule(id)}</code>
-                <span>{moduleInfo.lines} lines · {moduleInfo.declarations} decls</span>
+                <span>{t("proofMaps.lean.subsystemMeta", { lines: moduleInfo.lines.toLocaleString(locale), decls: moduleInfo.declarations.toLocaleString(locale) })}</span>
               </a> : null;
             })}
           </div>
-          <p className="lean-selection-note">Open the module explorer below for all {selectedSubsystem.moduleCount} modules and their import counts.</p>
-        </> : <p className="lean-selection-note">No subsystem selected.</p>}
+          <p className="lean-selection-note">{t("proofMaps.lean.explorerHint", { count: selectedSubsystem.moduleCount })}</p>
+        </> : <p className="lean-selection-note">{t("proofMaps.lean.noSubsystem")}</p>}
       </Surface>
     </div>
 
     <section className="lean-subsection" aria-labelledby="lean-explorer-title">
       <div className="lean-subsection-heading">
-        <span className="lean-structure-eyebrow">Actual structure</span>
-        <h3 id="lean-explorer-title">Module explorer</h3>
-        <p>Every subsystem below is derived from the fetched import closure. Expand a subsystem to see its modules, line counts, declaration counts, and source links.</p>
+        <span className="lean-structure-eyebrow">{t("proofMaps.lean.actualStructure")}</span>
+        <h3 id="lean-explorer-title">{t("proofMaps.lean.explorerTitle")}</h3>
+        <p>{t("proofMaps.lean.explorerBody")}</p>
       </div>
       <div className="lean-explorer-grid">
         {subsystems.map((subsystem) => <details className="lean-subsystem-card" key={subsystem.id}>
           <summary>
             <div>
               <strong>{subsystem.label}</strong>
-              <span>{subsystem.moduleCount} modules · {subsystem.lines.toLocaleString("en-US")} lines · {subsystem.declarations.toLocaleString("en-US")} declarations</span>
+              <span>{t("proofMaps.lean.subsystemSummary", { modules: subsystem.moduleCount.toLocaleString(locale), lines: subsystem.lines.toLocaleString(locale), declarations: subsystem.declarations.toLocaleString(locale) })}</span>
             </div>
-            <span className="lean-import-summary">{topImports(subsystem, lean)}</span>
+            <span className="lean-import-summary">{topImports(subsystem, lean, t)}</span>
           </summary>
           <div className="lean-module-list">
             {subsystem.modules.map((id) => {
               const moduleInfo = moduleById.get(id);
               return moduleInfo ? <div className="lean-module-row" key={id}>
                 <code>{shortModule(id)}</code>
-                <span>{moduleInfo.lines} lines</span>
-                <span>{moduleInfo.declarations} decls</span>
-                <span>{moduleInfo.importsOai} OAI imports</span>
-                <a href={moduleInfo.url} target="_blank" rel="noreferrer">source ↗</a>
+                <span>{t("proofMaps.lean.moduleLines", { count: moduleInfo.lines.toLocaleString(locale) })}</span>
+                <span>{t("proofMaps.lean.moduleDecls", { count: moduleInfo.declarations.toLocaleString(locale) })}</span>
+                <span>{t("proofMaps.lean.moduleImports", { count: moduleInfo.importsOai.toLocaleString(locale) })}</span>
+                <a href={moduleInfo.url} target="_blank" rel="noreferrer">{t("proofMaps.lean.sourceLink")}</a>
               </div> : null;
             })}
           </div>
@@ -310,20 +325,20 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
         <details className="lean-subsystem-card lean-main-card">
           <summary>
             <div>
-              <strong>Main.lean</strong>
-              <span>{lean.topLevelModules.length} direct imports · root module</span>
+              <strong>{t("proofMaps.lean.mainEntry")}</strong>
+              <span>{t("proofMaps.lean.mainMeta", { count: lean.topLevelModules.length })}</span>
             </div>
-            <span className="lean-import-summary">entry point</span>
+            <span className="lean-import-summary">{t("proofMaps.lean.entryPoint")}</span>
           </summary>
           <div className="lean-module-list">
             {lean.topLevelModules.map((id) => {
               const moduleInfo = moduleById.get(id);
               return moduleInfo ? <div className="lean-module-row" key={id}>
                 <code>{shortModule(id)}</code>
-                <span>{moduleInfo.lines} lines</span>
-                <span>{moduleInfo.declarations} decls</span>
+                <span>{t("proofMaps.lean.moduleLines", { count: moduleInfo.lines.toLocaleString(locale) })}</span>
+                <span>{t("proofMaps.lean.moduleDecls", { count: moduleInfo.declarations.toLocaleString(locale) })}</span>
                 <span>{moduleInfo.subsystem}</span>
-                <a href={moduleInfo.url} target="_blank" rel="noreferrer">source ↗</a>
+                <a href={moduleInfo.url} target="_blank" rel="noreferrer">{t("proofMaps.lean.sourceLink")}</a>
               </div> : null;
             })}
           </div>
@@ -331,9 +346,9 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
       </div>
       <div className="lean-external-card">
         <div>
-          <span className="lean-structure-eyebrow">External libraries</span>
-          <h4>{lean.externalImports.mathlibCount} Mathlib modules + {lean.externalImports.pnt.length} PNT import</h4>
-          <p>The closure imports {lean.externalImports.mathlibCount} unique Mathlib modules. The external <code>{lean.externalImports.pnt[0] ?? "PrimeNumberTheoremAnd"}</code> module was not fetched (404 at the pinned path); it is counted as external, not as part of the 306-module OAI closure.</p>
+          <span className="lean-structure-eyebrow">{t("proofMaps.lean.externalLibraries")}</span>
+          <h4>{t("proofMaps.lean.externalTitle", { mathlib: lean.externalImports.mathlibCount.toLocaleString(locale), pnt: lean.externalImports.pnt.length })}</h4>
+          <p>{t("proofMaps.lean.externalBodyA", { mathlib: lean.externalImports.mathlibCount.toLocaleString(locale) })}<code>{lean.externalImports.pnt[0] ?? "PrimeNumberTheoremAnd"}</code>{t("proofMaps.lean.externalBodyB")}</p>
         </div>
         <div className="lean-prefix-list">
           {lean.externalImports.mathlibPrefixes.slice(0, 8).map((prefix) => <span key={prefix.prefix}><code>{prefix.prefix}</code> {prefix.count}</span>)}
@@ -343,18 +358,18 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
 
     <section className="lean-subsection" aria-labelledby="lean-anchors-title">
       <div className="lean-subsection-heading">
-        <span className="lean-structure-eyebrow">Declaration anchors</span>
-        <h3 id="lean-anchors-title">From the paper steps to the actual Lean declarations</h3>
-        <p>These are source-located declarations, not a kernel dependency trace. The final theorem calls W50 and W22 directly; the other anchors mark the closest named declarations for the paper&apos;s main lemmas.</p>
+        <span className="lean-structure-eyebrow">{t("proofMaps.lean.anchorsEyebrow")}</span>
+        <h3 id="lean-anchors-title">{t("proofMaps.lean.anchorsTitle")}</h3>
+        <p>{t("proofMaps.lean.anchorsBody")}</p>
       </div>
-      <div className="lean-table-scroll" tabIndex={0} aria-label="Lean declaration anchors">
+      <div className="lean-table-scroll" tabIndex={0} aria-label={t("proofMaps.lean.anchorsAria")}>
         <table className="lean-anchor-table">
-          <thead><tr><th scope="col">Role</th><th scope="col">Declaration</th><th scope="col">Module / line</th><th scope="col">Paper step</th></tr></thead>
+          <thead><tr><th scope="col">{t("proofMaps.lean.colRole")}</th><th scope="col">{t("proofMaps.lean.colDeclaration")}</th><th scope="col">{t("proofMaps.lean.colModuleLine")}</th><th scope="col">{t("proofMaps.lean.colPaperStep")}</th></tr></thead>
           <tbody>
             {lean.anchors.map((anchor) => <tr key={anchor.id}>
               <th scope="row">{anchor.role}</th>
               <td><code>{anchor.fullName}</code><span>{anchor.kind}</span></td>
-              <td>{anchor.module ? <a href={anchor.url ?? "#"} target="_blank" rel="noreferrer">{shortModule(anchor.module)}:{anchor.line} ↗</a> : <span>Not located</span>}<small>{anchor.note}</small></td>
+              <td>{anchor.module ? <a href={anchor.url ?? "#"} target="_blank" rel="noreferrer">{shortModule(anchor.module)}:{anchor.line} ↗</a> : <span>{t("proofMaps.lean.notLocated")}</span>}<small>{anchor.note}</small></td>
               <td>{stepLabel(openai, anchor.paperStepId)}</td>
             </tr>)}
           </tbody>
@@ -364,19 +379,19 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
 
     <section className="lean-subsection" aria-labelledby="lean-alignment-title">
       <div className="lean-subsection-heading">
-        <span className="lean-structure-eyebrow">Paper ↔ Lean alignment</span>
-        <h3 id="lean-alignment-title">Where each OpenAI step lands</h3>
-        <p>Source-anchored rows are backed by a located declaration; inferred rows are curatorial hypotheses based on module names and nearby lemmas. None of these is a verified line-by-line mapping.</p>
+        <span className="lean-structure-eyebrow">{t("proofMaps.lean.alignmentEyebrow")}</span>
+        <h3 id="lean-alignment-title">{t("proofMaps.lean.alignmentHeading")}</h3>
+        <p>{t("proofMaps.lean.alignmentBody")}</p>
       </div>
-      <div className="lean-table-scroll" tabIndex={0} aria-label="Paper to Lean alignment">
+      <div className="lean-table-scroll" tabIndex={0} aria-label={t("proofMaps.lean.alignmentAria")}>
         <table className="lean-alignment-table">
-          <thead><tr><th scope="col">OpenAI step</th><th scope="col">Confidence</th><th scope="col">Lean subsystems</th><th scope="col">Anchors / note</th></tr></thead>
+          <thead><tr><th scope="col">{t("proofMaps.lean.colOpenAiStep")}</th><th scope="col">{t("proofMaps.lean.colConfidence")}</th><th scope="col">{t("proofMaps.lean.colLeanSubsystems")}</th><th scope="col">{t("proofMaps.lean.colAnchorsNote")}</th></tr></thead>
           <tbody>
             {lean.paperAlignments.map((alignment) => <tr key={alignment.stepId}>
               <th scope="row">{stepLabel(openai, alignment.stepId)}</th>
               <td><Badge tone={alignment.confidence === "source-anchored" ? "positive" : "warning"}>{alignment.confidence}</Badge></td>
               <td>{alignment.subsystems.map((id) => <Badge key={id}>{id}</Badge>)}</td>
-              <td><span>{alignment.anchors.map((id) => anchorById.get(id)?.declaration).filter(Boolean).join(" · ") || "No anchor"}</span><small>{alignment.note}</small></td>
+              <td><span>{alignment.anchors.map((id) => anchorById.get(id)?.declaration).filter(Boolean).join(" · ") || t("proofMaps.lean.noAnchor")}</span><small>{alignment.note}</small></td>
             </tr>)}
           </tbody>
         </table>
@@ -384,9 +399,9 @@ export function LeanStructureView({ data, lean, selectedVersion, onSelectVersion
     </section>
 
     <div className="lean-structure-caveat">
-      <strong>What this view is, and is not</strong>
+      <strong>{t("proofMaps.lean.caveatTitle")}</strong>
       <ul>{lean.caveats.map((caveat) => <li key={caveat}>{caveat}</li>)}</ul>
-      <p>Pinned source: <code>{lean.commit.slice(0, 12)}</code> · root <code>{lean.root}</code> · {lean.summary.fetchedModules} modules fetched.</p>
+      <p>{t("proofMaps.lean.pinnedSourceA")}<code>{lean.commit.slice(0, 12)}</code>{t("proofMaps.lean.pinnedSourceB")}<code>{lean.root}</code>{t("proofMaps.lean.pinnedSourceC", { modules: lean.summary.fetchedModules.toLocaleString(locale) })}</p>
     </div>
   </div>;
 }
@@ -403,12 +418,14 @@ function AnchorRow({ anchor, paperVersion }: { anchor: LeanAnchor; paperVersion:
   </div>;
 }
 
-function topImports(subsystem: LeanSubsystem, lean: LeanStructureData) {
+function topImports(subsystem: LeanSubsystem, lean: LeanStructureData, t: Translator) {
   const imports = lean.subsystemEdges
     .filter((edge) => edge.from === subsystem.id && edge.to !== subsystem.id)
     .sort((a, b) => b.count - a.count)
     .slice(0, 3);
-  return imports.length > 0 ? `imports ${imports.map((edge) => `${edge.to} (${edge.count})`).join(", ")}` : "no cross-subsystem imports";
+  return imports.length > 0
+    ? t("proofMaps.lean.topImports", { list: imports.map((edge) => `${edge.to} (${edge.count})`).join(", ") })
+    : t("proofMaps.lean.noImports");
 }
 
 function stepPath(from: { x: number; y: number }, to: { x: number; y: number }) {

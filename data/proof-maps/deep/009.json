@@ -1,0 +1,744 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "009",
+  "title": "Function-field reconstruction from Milnor K-theory and Galois data",
+  "result": {
+    "id": "paper-result",
+    "label": "Function-field reconstruction from Milnor K-theory and Galois data",
+    "statement": "Reconstructs function fields of transcendence degree at least two over algebraically closed constants from K^ M 1/ , K^ M 2/ , and their product. These data recover the perfect closure and constants when ℓ differs from the characteristic, and the original field and its named base in equal characteristic. Also proves Bogomolov–Pop reconstruction from abelian-by-central pro- ℓ Galois data away from the characteristic.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "alternating-characters-and-quasi-divisorial-valuations",
+      "label": "Alternating characters and quasi-divisorial valuations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recognizing-points-on-residual-curves",
+      "label": "Recognizing points on residual curves",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniform-bound-for-the-support-of-a-pencil",
+      "label": "A uniform bound for the support of a pencil",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recovering-curve-subfields",
+      "label": "Recovering curve subfields",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "true-divisors-and-rational-subfields",
+      "label": "True divisors and rational subfields",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recovering-the-field-from-simultaneous-values",
+      "label": "Recovering the field from simultaneous values",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compatibility-and-uniqueness",
+      "label": "Compatibility and uniqueness",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-reconstruction-problem",
+      "label": "The reconstruction problem",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "kummer-duality-and-the-group-input",
+      "label": "Kummer duality and the group input",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recovering-the-local-data",
+      "label": "Recovering the local data",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-tests-on-residual-curves",
+      "label": "Finite tests on residual curves",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniform-bound-for-pencils",
+      "label": "A uniform bound for pencils",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recovering-the-curve-subfields",
+      "label": "Recovering the curve subfields",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-the-recovered-quotients-to-the-field",
+      "label": "From the recovered quotients to the field",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory",
+      "title": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Reconstruction-of-Function-Fields-from-Mod-ell-Milnor-K-Theory-October-5-2026/mod-ell-bogomolov-pop.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-local-dimension"
+          ]
+        },
+        {
+          "id": "m1-thm-local-input",
+          "role": "alternating-characters-and-quasi-divisorial-valuations",
+          "label": "theorem m1-thm-local-input",
+          "fullLabel": "theorem m1-thm-local-input",
+          "kind": "theorem",
+          "source": "Alternating characters and quasi-divisorial valuations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-abhyankar",
+          "role": "alternating-characters-and-quasi-divisorial-valuations",
+          "label": "lemma m1-lem-local-abhyankar",
+          "fullLabel": "lemma m1-lem-local-abhyankar",
+          "kind": "lemma",
+          "source": "Alternating characters and quasi-divisorial valuations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-residue-duality",
+          "role": "alternating-characters-and-quasi-divisorial-valuations",
+          "label": "lemma m1-lem-residue-duality",
+          "fullLabel": "lemma m1-lem-residue-duality",
+          "kind": "lemma",
+          "source": "Alternating characters and quasi-divisorial valuations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-approximation",
+          "role": "alternating-characters-and-quasi-divisorial-valuations",
+          "label": "lemma m1-lem-local-approximation",
+          "fullLabel": "lemma m1-lem-local-approximation",
+          "kind": "lemma",
+          "source": "Alternating characters and quasi-divisorial valuations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-local-dimension",
+          "role": "alternating-characters-and-quasi-divisorial-valuations",
+          "label": "proposition m1-prop-local-dimension",
+          "fullLabel": "proposition m1-prop-local-dimension",
+          "kind": "proposition",
+          "source": "Alternating characters and quasi-divisorial valuations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-quasi-recovery",
+          "role": "alternating-characters-and-quasi-divisorial-valuations",
+          "label": "proposition m1-prop-quasi-recovery",
+          "fullLabel": "proposition m1-prop-quasi-recovery",
+          "kind": "proposition",
+          "source": "Alternating characters and quasi-divisorial valuations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-flag-uniqueness",
+          "role": "alternating-characters-and-quasi-divisorial-valuations",
+          "label": "lemma m1-lem-local-flag-uniqueness",
+          "fullLabel": "lemma m1-lem-local-flag-uniqueness",
+          "kind": "lemma",
+          "source": "Alternating characters and quasi-divisorial valuations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-flag-matching",
+          "role": "alternating-characters-and-quasi-divisorial-valuations",
+          "label": "corollary m1-cor-flag-matching",
+          "fullLabel": "corollary m1-cor-flag-matching",
+          "kind": "corollary",
+          "source": "Alternating characters and quasi-divisorial valuations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-density-input",
+          "role": "recognizing-points-on-residual-curves",
+          "label": "theorem m1-thm-density-input",
+          "fullLabel": "theorem m1-thm-density-input",
+          "kind": "theorem",
+          "source": "Recognizing points on residual curves",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-residual-density-mod-ell",
+          "role": "recognizing-points-on-residual-curves",
+          "label": "lemma m1-lem-residual-density-mod-ell",
+          "fullLabel": "lemma m1-lem-residual-density-mod-ell",
+          "kind": "lemma",
+          "source": "Recognizing points on residual curves",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-residual-valuative",
+          "role": "recognizing-points-on-residual-curves",
+          "label": "lemma m1-lem-residual-valuative",
+          "fullLabel": "lemma m1-lem-residual-valuative",
+          "kind": "lemma",
+          "source": "Recognizing points on residual curves",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-curve-orders",
+          "role": "recognizing-points-on-residual-curves",
+          "label": "lemma m1-lem-curve-orders",
+          "fullLabel": "lemma m1-lem-curve-orders",
+          "kind": "lemma",
+          "source": "Recognizing points on residual curves",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-point-recognition",
+          "role": "recognizing-points-on-residual-curves",
+          "label": "proposition m1-prop-point-recognition",
+          "fullLabel": "proposition m1-prop-point-recognition",
+          "kind": "proposition",
+          "source": "Recognizing points on residual curves",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-kummer-kernel",
+          "role": "a-uniform-bound-for-the-support-of-a-pencil",
+          "label": "lemma m1-lem-kummer-kernel",
+          "fullLabel": "lemma m1-lem-kummer-kernel",
+          "kind": "lemma",
+          "source": "A uniform bound for the support of a pencil",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-support-bertini",
+          "role": "a-uniform-bound-for-the-support-of-a-pencil",
+          "label": "lemma m1-lem-support-bertini",
+          "fullLabel": "lemma m1-lem-support-bertini",
+          "kind": "lemma",
+          "source": "A uniform bound for the support of a pencil",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-finite-curve-test",
+          "role": "a-uniform-bound-for-the-support-of-a-pencil",
+          "label": "proposition m1-prop-finite-curve-test",
+          "fullLabel": "proposition m1-prop-finite-curve-test",
+          "kind": "proposition",
+          "source": "A uniform bound for the support of a pencil",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-uniform-support",
+          "role": "a-uniform-bound-for-the-support-of-a-pencil",
+          "label": "proposition m1-prop-uniform-support",
+          "fullLabel": "proposition m1-prop-uniform-support",
+          "kind": "proposition",
+          "source": "A uniform bound for the support of a pencil",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-constant-descent",
+          "role": "recovering-curve-subfields",
+          "label": "lemma m1-lem-constant-descent",
+          "fullLabel": "lemma m1-lem-constant-descent",
+          "kind": "lemma",
+          "source": "Recovering curve subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-curve-intersection",
+          "role": "recovering-curve-subfields",
+          "label": "lemma m1-lem-curve-intersection",
+          "fullLabel": "lemma m1-lem-curve-intersection",
+          "kind": "lemma",
+          "source": "Recovering curve subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-curve-incidence",
+          "role": "recovering-curve-subfields",
+          "label": "lemma m1-lem-curve-incidence",
+          "fullLabel": "lemma m1-lem-curve-incidence",
+          "kind": "lemma",
+          "source": "Recovering curve subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-curve-matching",
+          "role": "recovering-curve-subfields",
+          "label": "theorem m1-thm-curve-matching",
+          "fullLabel": "theorem m1-thm-curve-matching",
+          "kind": "theorem",
+          "source": "Recovering curve subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-true-divisors",
+          "role": "true-divisors-and-rational-subfields",
+          "label": "proposition m1-prop-true-divisors",
+          "fullLabel": "proposition m1-prop-true-divisors",
+          "kind": "proposition",
+          "source": "True divisors and rational subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-good-matching",
+          "role": "true-divisors-and-rational-subfields",
+          "label": "proposition m1-prop-good-matching",
+          "fullLabel": "proposition m1-prop-good-matching",
+          "kind": "proposition",
+          "source": "True divisors and rational subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-good-functions",
+          "role": "true-divisors-and-rational-subfields",
+          "label": "lemma m1-lem-good-functions",
+          "fullLabel": "lemma m1-lem-good-functions",
+          "kind": "lemma",
+          "source": "True divisors and rational subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-common-partner",
+          "role": "true-divisors-and-rational-subfields",
+          "label": "lemma m1-lem-common-partner",
+          "fullLabel": "lemma m1-lem-common-partner",
+          "kind": "lemma",
+          "source": "True divisors and rational subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-simultaneous-values",
+          "role": "recovering-the-field-from-simultaneous-values",
+          "label": "lemma m1-lem-simultaneous-values",
+          "fullLabel": "lemma m1-lem-simultaneous-values",
+          "kind": "lemma",
+          "source": "Recovering the field from simultaneous values",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cofinite-rational",
+          "role": "recovering-the-field-from-simultaneous-values",
+          "label": "lemma m1-lem-cofinite-rational",
+          "fullLabel": "lemma m1-lem-cofinite-rational",
+          "kind": "lemma",
+          "source": "Recovering the field from simultaneous values",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-field-affine",
+          "role": "recovering-the-field-from-simultaneous-values",
+          "label": "lemma m1-lem-field-affine",
+          "fullLabel": "lemma m1-lem-field-affine",
+          "kind": "lemma",
+          "source": "Recovering the field from simultaneous values",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-constant-alignment",
+          "role": "recovering-the-field-from-simultaneous-values",
+          "label": "proposition m1-prop-constant-alignment",
+          "fullLabel": "proposition m1-prop-constant-alignment",
+          "kind": "proposition",
+          "source": "Recovering the field from simultaneous values",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-field-isomorphism",
+          "role": "recovering-the-field-from-simultaneous-values",
+          "label": "theorem m1-thm-field-isomorphism",
+          "fullLabel": "theorem m1-thm-field-isomorphism",
+          "kind": "theorem",
+          "source": "Recovering the field from simultaneous values",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-restriction-rank",
+          "role": "compatibility-and-uniqueness",
+          "label": "lemma m1-lem-restriction-rank",
+          "fullLabel": "lemma m1-lem-restriction-rank",
+          "kind": "lemma",
+          "source": "Compatibility and uniqueness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-separate-divisors",
+          "role": "compatibility-and-uniqueness",
+          "label": "lemma m1-lem-separate-divisors",
+          "fullLabel": "lemma m1-lem-separate-divisors",
+          "kind": "lemma",
+          "source": "Compatibility and uniqueness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-global-scalar",
+          "role": "compatibility-and-uniqueness",
+          "label": "proposition m1-prop-global-scalar",
+          "fullLabel": "proposition m1-prop-global-scalar",
+          "kind": "proposition",
+          "source": "Compatibility and uniqueness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-uniqueness",
+          "role": "compatibility-and-uniqueness",
+          "label": "proposition m1-prop-uniqueness",
+          "fullLabel": "proposition m1-prop-uniqueness",
+          "kind": "proposition",
+          "source": "Compatibility and uniqueness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "The Bogomolov-Pop reconstruction theorem",
+      "title": "The Bogomolov-Pop reconstruction theorem",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Bogomolov-Pop-reconstruction-theorem-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The Bogomolov-Pop reconstruction theorem.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "the-reconstruction-problem",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "The reconstruction problem",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prelim-duality",
+          "role": "kummer-duality-and-the-group-input",
+          "label": "lemma m2-prelim-duality",
+          "fullLabel": "lemma m2-prelim-duality",
+          "kind": "lemma",
+          "source": "Kummer duality and the group input",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prelim-completion",
+          "role": "kummer-duality-and-the-group-input",
+          "label": "lemma m2-prelim-completion",
+          "fullLabel": "lemma m2-prelim-completion",
+          "kind": "lemma",
+          "source": "Kummer duality and the group input",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prelim-central-lift",
+          "role": "kummer-duality-and-the-group-input",
+          "label": "lemma m2-prelim-central-lift",
+          "fullLabel": "lemma m2-prelim-central-lift",
+          "kind": "lemma",
+          "source": "Kummer duality and the group input",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prelim-curve-kernel",
+          "role": "kummer-duality-and-the-group-input",
+          "label": "lemma m2-prelim-curve-kernel",
+          "fullLabel": "lemma m2-prelim-curve-kernel",
+          "kind": "lemma",
+          "source": "Kummer duality and the group input",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-local-commuting",
+          "role": "recovering-the-local-data",
+          "label": "lemma m2-local-commuting",
+          "fullLabel": "lemma m2-local-commuting",
+          "kind": "lemma",
+          "source": "Recovering the local data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-local-residue",
+          "role": "recovering-the-local-data",
+          "label": "lemma m2-local-residue",
+          "fullLabel": "lemma m2-local-residue",
+          "kind": "lemma",
+          "source": "Recovering the local data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-local-dimension",
+          "role": "recovering-the-local-data",
+          "label": "lemma m2-local-dimension",
+          "fullLabel": "lemma m2-local-dimension",
+          "kind": "lemma",
+          "source": "Recovering the local data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-local-quasiprime",
+          "role": "recovering-the-local-data",
+          "label": "lemma m2-local-quasiprime",
+          "fullLabel": "lemma m2-local-quasiprime",
+          "kind": "lemma",
+          "source": "Recovering the local data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-local-transport",
+          "role": "recovering-the-local-data",
+          "label": "proposition m2-local-transport",
+          "fullLabel": "proposition m2-local-transport",
+          "kind": "proposition",
+          "source": "Recovering the local data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-local-criterion-hypotheses",
+          "role": "recovering-the-local-data",
+          "label": "lemma m2-local-criterion-hypotheses",
+          "fullLabel": "lemma m2-local-criterion-hypotheses",
+          "kind": "lemma",
+          "source": "Recovering the local data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-local-curves",
+          "role": "recovering-the-local-data",
+          "label": "proposition m2-local-curves",
+          "fullLabel": "proposition m2-local-curves",
+          "kind": "proposition",
+          "source": "Recovering the local data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tests-residual",
+          "role": "finite-tests-on-residual-curves",
+          "label": "lemma m2-tests-residual",
+          "fullLabel": "lemma m2-tests-residual",
+          "kind": "lemma",
+          "source": "Finite tests on residual curves",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tests-bertini",
+          "role": "finite-tests-on-residual-curves",
+          "label": "lemma m2-tests-bertini",
+          "fullLabel": "lemma m2-tests-bertini",
+          "kind": "lemma",
+          "source": "Finite tests on residual curves",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-pencil-uniform",
+          "role": "a-uniform-bound-for-pencils",
+          "label": "theorem m2-pencil-uniform",
+          "fullLabel": "theorem m2-pencil-uniform",
+          "kind": "theorem",
+          "source": "A uniform bound for pencils",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-pencil-finite",
+          "role": "a-uniform-bound-for-pencils",
+          "label": "corollary m2-pencil-finite",
+          "fullLabel": "corollary m2-pencil-finite",
+          "kind": "corollary",
+          "source": "A uniform bound for pencils",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-recovery-curves",
+          "role": "recovering-the-curve-subfields",
+          "label": "theorem m2-recovery-curves",
+          "fullLabel": "theorem m2-recovery-curves",
+          "kind": "theorem",
+          "source": "Recovering the curve subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-recovery-residue-powers",
+          "role": "recovering-the-curve-subfields",
+          "label": "lemma m2-recovery-residue-powers",
+          "fullLabel": "lemma m2-recovery-residue-powers",
+          "kind": "lemma",
+          "source": "Recovering the curve subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-recovery-incidence",
+          "role": "recovering-the-curve-subfields",
+          "label": "lemma m2-recovery-incidence",
+          "fullLabel": "lemma m2-recovery-incidence",
+          "kind": "lemma",
+          "source": "Recovering the curve subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-recovery-kummer-descent",
+          "role": "recovering-the-curve-subfields",
+          "label": "lemma m2-recovery-kummer-descent",
+          "fullLabel": "lemma m2-recovery-kummer-descent",
+          "kind": "lemma",
+          "source": "Recovering the curve subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-recovery-intersection",
+          "role": "recovering-the-curve-subfields",
+          "label": "lemma m2-recovery-intersection",
+          "fullLabel": "lemma m2-recovery-intersection",
+          "kind": "lemma",
+          "source": "Recovering the curve subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-recovery-divisorial",
+          "role": "recovering-the-curve-subfields",
+          "label": "proposition m2-recovery-divisorial",
+          "fullLabel": "proposition m2-recovery-divisorial",
+          "kind": "proposition",
+          "source": "Recovering the curve subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-recovery-rational",
+          "role": "recovering-the-curve-subfields",
+          "label": "proposition m2-recovery-rational",
+          "fullLabel": "proposition m2-recovery-rational",
+          "kind": "proposition",
+          "source": "Recovering the curve subfields",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-reconstruction-pop",
+          "role": "from-the-recovered-quotients-to-the-field",
+          "label": "proposition m2-reconstruction-pop",
+          "fullLabel": "proposition m2-reconstruction-pop",
+          "kind": "proposition",
+          "source": "From the recovered quotients to the field",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Reconstruction of Function Fields from Mod-ℓ Milnor K-Theory",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Reconstruction-of-Function-Fields-from-Mod-ell-Milnor-K-Theory-October-5-2026/mod-ell-bogomolov-pop.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The Bogomolov-Pop reconstruction theorem",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Bogomolov-Pop-reconstruction-theorem-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

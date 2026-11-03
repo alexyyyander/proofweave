@@ -1,0 +1,640 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "120",
+  "title": "Almost-linear-time exact matching and prescribed-degree factors in general graphs",
+  "result": {
+    "id": "paper-result",
+    "label": "Almost-linear-time exact matching and prescribed-degree factors in general graphs",
+    "statement": "Gives a randomized algorithm finding an exact maximum-cardinality matching in any simple undirected graph in (n+m)^ 1+o(1) word time, with success probability at least 2/3. The time bound holds on every computation path. The same guarantees apply to finding a spanning subgraph with prescribed admissible vertex degrees, or deciding that none exists.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conventions-and-static-primitives",
+      "label": "Conventions and static primitives",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "matching-states-and-structural-operations",
+      "label": "Matching states and structural operations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-projection-and-the-perfect-matching-bound",
+      "label": "Local projection and the perfect-matching bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "priced-logarithmic-steps",
+      "label": "Priced logarithmic steps",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-resource-preserving-static-routing-sparsifier",
+      "label": "A resource-preserving static routing sparsifier",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "frozen-decompositions-and-cycle-quality",
+      "label": "Frozen decompositions and cycle quality",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "maintaining-and-exposing-the-cycle-backend",
+      "label": "Maintaining and exposing the cycle backend",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "explicit-output-and-one-uniform-program",
+      "label": "Explicit output and one uniform program",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "prescribed-degree-factors",
+      "label": "Prescribed-degree factors",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs",
+      "title": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Almost-Linear-Time-Maximum-Cardinality-Matching-in-Sparse-General-Graphs-September-24-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Almost-Linear-Time Maximum-Cardinality Matching in General Graphs.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-integral-flow",
+          "role": "conventions-and-static-primitives",
+          "label": "lemma m1-lem-integral-flow",
+          "fullLabel": "lemma m1-lem-integral-flow",
+          "kind": "lemma",
+          "source": "Conventions and static primitives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prelim-small-violation",
+          "role": "conventions-and-static-primitives",
+          "label": "lemma m1-prelim-small-violation",
+          "fullLabel": "lemma m1-prelim-small-violation",
+          "kind": "lemma",
+          "source": "Conventions and static primitives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-capacity-scaling",
+          "role": "conventions-and-static-primitives",
+          "label": "lemma m1-lem-capacity-scaling",
+          "fullLabel": "lemma m1-lem-capacity-scaling",
+          "kind": "lemma",
+          "source": "Conventions and static primitives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fallback",
+          "role": "conventions-and-static-primitives",
+          "label": "lemma m1-lem-fallback",
+          "fullLabel": "lemma m1-lem-fallback",
+          "kind": "lemma",
+          "source": "Conventions and static primitives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-match-bottom-surplus",
+          "role": "matching-states-and-structural-operations",
+          "label": "lemma m1-match-bottom-surplus",
+          "fullLabel": "lemma m1-match-bottom-surplus",
+          "kind": "lemma",
+          "source": "Matching states and structural operations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-match-deletion",
+          "role": "matching-states-and-structural-operations",
+          "label": "lemma m1-match-deletion",
+          "fullLabel": "lemma m1-match-deletion",
+          "kind": "lemma",
+          "source": "Matching states and structural operations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-match-top-maintenance",
+          "role": "matching-states-and-structural-operations",
+          "label": "lemma m1-match-top-maintenance",
+          "fullLabel": "lemma m1-match-top-maintenance",
+          "kind": "lemma",
+          "source": "Matching states and structural operations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-match-exchange-projection",
+          "role": "matching-states-and-structural-operations",
+          "label": "lemma m1-match-exchange-projection",
+          "fullLabel": "lemma m1-match-exchange-projection",
+          "kind": "lemma",
+          "source": "Matching states and structural operations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-match-tight-contraction",
+          "role": "matching-states-and-structural-operations",
+          "label": "lemma m1-match-tight-contraction",
+          "fullLabel": "lemma m1-match-tight-contraction",
+          "kind": "lemma",
+          "source": "Matching states and structural operations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-match-pair-action",
+          "role": "matching-states-and-structural-operations",
+          "label": "lemma m1-match-pair-action",
+          "fullLabel": "lemma m1-match-pair-action",
+          "kind": "lemma",
+          "source": "Matching states and structural operations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-match-materialization",
+          "role": "matching-states-and-structural-operations",
+          "label": "lemma m1-match-materialization",
+          "fullLabel": "lemma m1-match-materialization",
+          "kind": "lemma",
+          "source": "Matching states and structural operations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-projection",
+          "role": "local-projection-and-the-perfect-matching-bound",
+          "label": "lemma m1-lem-projection",
+          "fullLabel": "lemma m1-lem-projection",
+          "kind": "lemma",
+          "source": "Local projection and the perfect-matching bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-proj-threshold",
+          "role": "local-projection-and-the-perfect-matching-bound",
+          "label": "lemma m1-proj-threshold",
+          "fullLabel": "lemma m1-proj-threshold",
+          "kind": "lemma",
+          "source": "Local projection and the perfect-matching bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-proj-local-cut",
+          "role": "local-projection-and-the-perfect-matching-bound",
+          "label": "lemma m1-proj-local-cut",
+          "fullLabel": "lemma m1-proj-local-cut",
+          "kind": "lemma",
+          "source": "Local projection and the perfect-matching bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-accounting",
+          "role": "local-projection-and-the-perfect-matching-bound",
+          "label": "lemma m1-phase-accounting",
+          "fullLabel": "lemma m1-phase-accounting",
+          "kind": "lemma",
+          "source": "Local projection and the perfect-matching bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-stall",
+          "role": "local-projection-and-the-perfect-matching-bound",
+          "label": "lemma m1-phase-stall",
+          "fullLabel": "lemma m1-phase-stall",
+          "kind": "lemma",
+          "source": "Local projection and the perfect-matching bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-guard-adequacy",
+          "role": "local-projection-and-the-perfect-matching-bound",
+          "label": "lemma m1-phase-guard-adequacy",
+          "fullLabel": "lemma m1-phase-guard-adequacy",
+          "kind": "lemma",
+          "source": "Local projection and the perfect-matching bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-subcubic",
+          "role": "local-projection-and-the-perfect-matching-bound",
+          "label": "theorem m1-thm-subcubic",
+          "fullLabel": "theorem m1-thm-subcubic",
+          "kind": "theorem",
+          "source": "Local projection and the perfect-matching bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-priced-steps",
+          "role": "priced-logarithmic-steps",
+          "label": "lemma m1-lem-priced-steps",
+          "fullLabel": "lemma m1-lem-priced-steps",
+          "kind": "lemma",
+          "source": "Priced logarithmic steps",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-flat-cycle",
+          "role": "priced-logarithmic-steps",
+          "label": "lemma m1-lem-flat-cycle",
+          "fullLabel": "lemma m1-lem-flat-cycle",
+          "kind": "lemma",
+          "source": "Priced logarithmic steps",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-update-anchor-core",
+            "m1-lem-backend-reduction"
+          ]
+        },
+        {
+          "id": "m1-engine-tree-cost",
+          "role": "priced-logarithmic-steps",
+          "label": "lemma m1-engine-tree-cost",
+          "fullLabel": "lemma m1-engine-tree-cost",
+          "kind": "lemma",
+          "source": "Priced logarithmic steps",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-engine-refresh-bound",
+          "role": "priced-logarithmic-steps",
+          "label": "lemma m1-engine-refresh-bound",
+          "fullLabel": "lemma m1-engine-refresh-bound",
+          "kind": "lemma",
+          "source": "Priced logarithmic steps",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-routing-helper",
+          "role": "a-resource-preserving-static-routing-sparsifier",
+          "label": "lemma m1-lem-routing-helper",
+          "fullLabel": "lemma m1-lem-routing-helper",
+          "kind": "lemma",
+          "source": "A resource-preserving static routing sparsifier",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-route-sampling"
+          ]
+        },
+        {
+          "id": "m1-route-sampling",
+          "role": "a-resource-preserving-static-routing-sparsifier",
+          "label": "lemma m1-route-sampling",
+          "fullLabel": "lemma m1-route-sampling",
+          "kind": "lemma",
+          "source": "A resource-preserving static routing sparsifier",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-route-overlay",
+          "role": "a-resource-preserving-static-routing-sparsifier",
+          "label": "lemma m1-route-overlay",
+          "fullLabel": "lemma m1-route-overlay",
+          "kind": "lemma",
+          "source": "A resource-preserving static routing sparsifier",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-route-cheeger",
+          "role": "a-resource-preserving-static-routing-sparsifier",
+          "label": "lemma m1-route-cheeger",
+          "fullLabel": "lemma m1-route-cheeger",
+          "kind": "lemma",
+          "source": "A resource-preserving static routing sparsifier",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-route-router",
+          "role": "a-resource-preserving-static-routing-sparsifier",
+          "label": "lemma m1-route-router",
+          "fullLabel": "lemma m1-route-router",
+          "kind": "lemma",
+          "source": "A resource-preserving static routing sparsifier",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-back-base",
+          "role": "frozen-decompositions-and-cycle-quality",
+          "label": "lemma m1-back-base",
+          "fullLabel": "lemma m1-back-base",
+          "kind": "lemma",
+          "source": "Frozen decompositions and cycle quality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-back-covers",
+          "role": "frozen-decompositions-and-cycle-quality",
+          "label": "lemma m1-back-covers",
+          "fullLabel": "lemma m1-back-covers",
+          "kind": "lemma",
+          "source": "Frozen decompositions and cycle quality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-back-forest-family",
+          "role": "frozen-decompositions-and-cycle-quality",
+          "label": "lemma m1-back-forest-family",
+          "fullLabel": "lemma m1-back-forest-family",
+          "kind": "lemma",
+          "source": "Frozen decompositions and cycle quality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-back-path-law",
+          "role": "frozen-decompositions-and-cycle-quality",
+          "label": "lemma m1-back-path-law",
+          "fullLabel": "lemma m1-back-path-law",
+          "kind": "lemma",
+          "source": "Frozen decompositions and cycle quality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-back-frozen-decomposition",
+          "role": "frozen-decompositions-and-cycle-quality",
+          "label": "lemma m1-back-frozen-decomposition",
+          "fullLabel": "lemma m1-back-frozen-decomposition",
+          "kind": "lemma",
+          "source": "Frozen decompositions and cycle quality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-back-portals",
+          "role": "frozen-decompositions-and-cycle-quality",
+          "label": "lemma m1-back-portals",
+          "fullLabel": "lemma m1-back-portals",
+          "kind": "lemma",
+          "source": "Frozen decompositions and cycle quality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-back-compression",
+          "role": "frozen-decompositions-and-cycle-quality",
+          "label": "lemma m1-back-compression",
+          "fullLabel": "lemma m1-back-compression",
+          "kind": "lemma",
+          "source": "Frozen decompositions and cycle quality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-backend-reduction",
+          "role": "frozen-decompositions-and-cycle-quality",
+          "label": "lemma m1-lem-backend-reduction",
+          "fullLabel": "lemma m1-lem-backend-reduction",
+          "kind": "lemma",
+          "source": "Frozen decompositions and cycle quality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-back-quality-induction",
+          "role": "frozen-decompositions-and-cycle-quality",
+          "label": "corollary m1-back-quality-induction",
+          "fullLabel": "corollary m1-back-quality-induction",
+          "kind": "corollary",
+          "source": "Frozen decompositions and cycle quality",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-update-classes",
+          "role": "maintaining-and-exposing-the-cycle-backend",
+          "label": "lemma m1-update-classes",
+          "fullLabel": "lemma m1-update-classes",
+          "kind": "lemma",
+          "source": "Maintaining and exposing the cycle backend",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-update-anchor-core",
+          "role": "maintaining-and-exposing-the-cycle-backend",
+          "label": "lemma m1-update-anchor-core",
+          "fullLabel": "lemma m1-update-anchor-core",
+          "kind": "lemma",
+          "source": "Maintaining and exposing the cycle backend",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-update-support",
+          "role": "maintaining-and-exposing-the-cycle-backend",
+          "label": "lemma m1-update-support",
+          "fullLabel": "lemma m1-update-support",
+          "kind": "lemma",
+          "source": "Maintaining and exposing the cycle backend",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-update-compressed-edits",
+          "role": "maintaining-and-exposing-the-cycle-backend",
+          "label": "lemma m1-update-compressed-edits",
+          "fullLabel": "lemma m1-update-compressed-edits",
+          "kind": "lemma",
+          "source": "Maintaining and exposing the cycle backend",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-update-flat-lift",
+          "role": "maintaining-and-exposing-the-cycle-backend",
+          "label": "lemma m1-update-flat-lift",
+          "fullLabel": "lemma m1-update-flat-lift",
+          "kind": "lemma",
+          "source": "Maintaining and exposing the cycle backend",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-update-multiplicity",
+          "role": "maintaining-and-exposing-the-cycle-backend",
+          "label": "lemma m1-update-multiplicity",
+          "fullLabel": "lemma m1-update-multiplicity",
+          "kind": "lemma",
+          "source": "Maintaining and exposing the cycle backend",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-update-recourse",
+          "role": "maintaining-and-exposing-the-cycle-backend",
+          "label": "lemma m1-update-recourse",
+          "fullLabel": "lemma m1-update-recourse",
+          "kind": "lemma",
+          "source": "Maintaining and exposing the cycle backend",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-update-recurrences",
+          "role": "maintaining-and-exposing-the-cycle-backend",
+          "label": "lemma m1-update-recurrences",
+          "fullLabel": "lemma m1-update-recurrences",
+          "kind": "lemma",
+          "source": "Maintaining and exposing the cycle backend",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-update-reliability",
+          "role": "maintaining-and-exposing-the-cycle-backend",
+          "label": "lemma m1-update-reliability",
+          "fullLabel": "lemma m1-update-reliability",
+          "kind": "lemma",
+          "source": "Maintaining and exposing the cycle backend",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-uniform-network",
+          "role": "explicit-output-and-one-uniform-program",
+          "label": "lemma m1-uniform-network",
+          "fullLabel": "lemma m1-uniform-network",
+          "kind": "lemma",
+          "source": "Explicit output and one uniform program",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-uniform-cardinality",
+          "role": "explicit-output-and-one-uniform-program",
+          "label": "lemma m1-uniform-cardinality",
+          "fullLabel": "lemma m1-uniform-cardinality",
+          "kind": "lemma",
+          "source": "Explicit output and one uniform program",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-uniform-degree",
+          "role": "explicit-output-and-one-uniform-program",
+          "label": "lemma m1-uniform-degree",
+          "fullLabel": "lemma m1-uniform-degree",
+          "kind": "lemma",
+          "source": "Explicit output and one uniform program",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-uniform-fixed-branch",
+          "role": "explicit-output-and-one-uniform-program",
+          "label": "lemma m1-uniform-fixed-branch",
+          "fullLabel": "lemma m1-uniform-fixed-branch",
+          "kind": "lemma",
+          "source": "Explicit output and one uniform program",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-uniform-physical-ram",
+          "role": "explicit-output-and-one-uniform-program",
+          "label": "lemma m1-uniform-physical-ram",
+          "fullLabel": "lemma m1-uniform-physical-ram",
+          "kind": "lemma",
+          "source": "Explicit output and one uniform program",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-f-factor",
+          "role": "prescribed-degree-factors",
+          "label": "corollary m1-cor-f-factor",
+          "fullLabel": "corollary m1-cor-f-factor",
+          "kind": "corollary",
+          "source": "Prescribed-degree factors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-factor-reduction",
+          "role": "prescribed-degree-factors",
+          "label": "lemma m1-factor-reduction",
+          "fullLabel": "lemma m1-factor-reduction",
+          "kind": "lemma",
+          "source": "Prescribed-degree factors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Almost-Linear-Time Maximum-Cardinality Matching in General Graphs",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Almost-Linear-Time-Maximum-Cardinality-Matching-in-Sparse-General-Graphs-September-24-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

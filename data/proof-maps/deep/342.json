@@ -1,0 +1,290 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "342",
+  "title": "Donaldson's tamed-to-compatible conjecture",
+  "result": {
+    "id": "paper-result",
+    "label": "Donaldson's tamed-to-compatible conjecture",
+    "statement": "Proves Donaldson's tamed-to-compatible conjecture: every smooth almost complex structure on a closed four-manifold that is tamed by a symplectic form admits a compatible symplectic form. The almost complex structure stays fixed; the form's cohomology class may change.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-current-obtained-by-separation",
+      "label": "A current obtained by separation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "quadratic-mass-growth",
+      "label": "Quadratic mass growth",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "regularization-and-angular-control",
+      "label": "Regularization and angular control",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "densities-and-planar-tangent-measures",
+      "label": "Densities and planar tangent measures",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-compatible-cone",
+      "label": "The compatible cone",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Taming implies compatibility on four-manifolds",
+      "title": "Taming implies compatibility on four-manifolds",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-06",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Taming-implies-compatibility-on-four-manifolds-October-6-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Taming implies compatibility on four-manifolds.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-taming-cones",
+          "role": "introduction",
+          "label": "theorem m1-thm-taming-cones",
+          "fullLabel": "theorem m1-thm-taming-cones",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-invariant-cohomology"
+          ]
+        },
+        {
+          "id": "m1-cor-taming-cones",
+          "role": "introduction",
+          "label": "corollary m1-cor-taming-cones",
+          "fullLabel": "corollary m1-cor-taming-cones",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-lift",
+          "role": "a-current-obtained-by-separation",
+          "label": "lemma m1-lem-lift",
+          "fullLabel": "lemma m1-lem-lift",
+          "kind": "lemma",
+          "source": "A current obtained by separation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-separation",
+          "role": "a-current-obtained-by-separation",
+          "label": "proposition m1-prop-separation",
+          "fullLabel": "proposition m1-prop-separation",
+          "kind": "proposition",
+          "source": "A current obtained by separation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-growth",
+          "role": "quadratic-mass-growth",
+          "label": "proposition m1-prop-growth",
+          "fullLabel": "proposition m1-prop-growth",
+          "kind": "proposition",
+          "source": "Quadratic mass growth",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-radial-correction",
+          "role": "quadratic-mass-growth",
+          "label": "lemma m1-lem-radial-correction",
+          "fullLabel": "lemma m1-lem-radial-correction",
+          "kind": "lemma",
+          "source": "Quadratic mass growth",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-zero-pairing",
+          "role": "regularization-and-angular-control",
+          "label": "lemma m1-lem-zero-pairing",
+          "fullLabel": "lemma m1-lem-zero-pairing",
+          "kind": "lemma",
+          "source": "Regularization and angular control",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-kernel",
+          "role": "regularization-and-angular-control",
+          "label": "lemma m1-lem-kernel",
+          "fullLabel": "lemma m1-lem-kernel",
+          "kind": "lemma",
+          "source": "Regularization and angular control",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-positive-pairing",
+          "role": "regularization-and-angular-control",
+          "label": "lemma m1-lem-positive-pairing",
+          "fullLabel": "lemma m1-lem-positive-pairing",
+          "kind": "lemma",
+          "source": "Regularization and angular control",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mixing",
+          "role": "regularization-and-angular-control",
+          "label": "lemma m1-lem-mixing",
+          "fullLabel": "lemma m1-lem-mixing",
+          "kind": "lemma",
+          "source": "Regularization and angular control",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-energy",
+          "role": "regularization-and-angular-control",
+          "label": "proposition m1-prop-energy",
+          "fullLabel": "proposition m1-prop-energy",
+          "kind": "proposition",
+          "source": "Regularization and angular control",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-splitting",
+          "role": "densities-and-planar-tangent-measures",
+          "label": "theorem m1-thm-splitting",
+          "fullLabel": "theorem m1-thm-splitting",
+          "kind": "theorem",
+          "source": "Densities and planar tangent measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [],
+          "mentions": [
+            "m1-lem-density"
+          ]
+        },
+        {
+          "id": "m1-lem-density",
+          "role": "densities-and-planar-tangent-measures",
+          "label": "lemma m1-lem-density",
+          "fullLabel": "lemma m1-lem-density",
+          "kind": "lemma",
+          "source": "Densities and planar tangent measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse",
+          "role": "densities-and-planar-tangent-measures",
+          "label": "lemma m1-lem-transverse",
+          "fullLabel": "lemma m1-lem-transverse",
+          "kind": "lemma",
+          "source": "Densities and planar tangent measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-invariant-cohomology",
+          "role": "the-compatible-cone",
+          "label": "lemma m1-lem-invariant-cohomology",
+          "fullLabel": "lemma m1-lem-invariant-cohomology",
+          "kind": "lemma",
+          "source": "The compatible cone",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-class-separation",
+          "role": "the-compatible-cone",
+          "label": "lemma m1-lem-class-separation",
+          "fullLabel": "lemma m1-lem-class-separation",
+          "kind": "lemma",
+          "source": "The compatible cone",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cohomological-pairing",
+          "role": "the-compatible-cone",
+          "label": "lemma m1-lem-cohomological-pairing",
+          "fullLabel": "lemma m1-lem-cohomological-pairing",
+          "kind": "lemma",
+          "source": "The compatible cone",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-class-estimates",
+          "role": "the-compatible-cone",
+          "label": "proposition m1-prop-class-estimates",
+          "fullLabel": "proposition m1-prop-class-estimates",
+          "kind": "proposition",
+          "source": "The compatible cone",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-general-residual",
+          "role": "the-compatible-cone",
+          "label": "lemma m1-lem-general-residual",
+          "fullLabel": "lemma m1-lem-general-residual",
+          "kind": "lemma",
+          "source": "The compatible cone",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Taming implies compatibility on four-manifolds",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Taming-implies-compatibility-on-four-manifolds-October-6-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

@@ -1,0 +1,773 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "016",
+  "title": "Zilber–Pink in abelian varieties and the Siegel threefold",
+  "result": {
+    "id": "paper-result",
+    "label": "Zilber–Pink in abelian varieties and the Siegel threefold",
+    "statement": "Proves the abelian Zilber–Pink conjecture over Q : every irreducible subvariety has finitely many maximal atypical subvarieties relative to its smallest containing torsion coset. It also proves the full curve case in the Siegel threefold A2 for Hodge-generic curves defined over Q , without boundary or reduction assumptions.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "height-scales-and-an-auxiliary-sequence-theorem",
+      "label": "Height scales and an auxiliary sequence theorem",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "projection-and-tangent-positivity",
+      "label": "Projection and tangent positivity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "when-every-height-scale-diverges",
+      "label": "When every height scale diverges",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "auxiliary-subvarieties-over-fields-of-bounded-degree",
+      "label": "Auxiliary subvarieties over fields of bounded degree",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "arithmetic-positivity-at-the-bounded-scale",
+      "label": "Arithmetic positivity at the bounded scale",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniform-local-index",
+      "label": "A uniform local index",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-product-cut-and-bounded-degree-descent",
+      "label": "The product cut and bounded-degree descent",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-non-density-to-maximal-atypical-finiteness",
+      "label": "From non-density to maximal atypical finiteness",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "heights-periods-and-cm-elliptic-curves",
+      "label": "Heights, periods, and CM elliptic curves",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "canonical-gluing-and-boundary-lengths",
+      "label": "Canonical gluing and boundary lengths",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniform-height-estimate-on-a-curve",
+      "label": "A uniform height estimate on a curve",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-essential-period-on-a-threefold",
+      "label": "An essential period on a threefold",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-quadratic-variation-and-its-isogeny-exceptions",
+      "label": "The quadratic variation and its isogeny exceptions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "interpolation-with-two-arguments",
+      "label": "Interpolation with two arguments",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "arithmetic-coordinates-and-common-local-relations",
+      "label": "Arithmetic coordinates and common local relations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "auxiliary-markings-and-the-height-bound",
+      "label": "Auxiliary markings and the height bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-heights-to-finiteness",
+      "label": "From heights to finiteness",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The abelian Zilber–Pink conjecture",
+      "title": "The abelian Zilber–Pink conjecture",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Abelian-Zilber-Pink-Conjecture-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The abelian Zilber–Pink conjecture.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-nondensity",
+          "role": "introduction",
+          "label": "theorem m1-thm-nondensity",
+          "fullLabel": "theorem m1-thm-nondensity",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-finite-rank-translates",
+          "role": "introduction",
+          "label": "corollary m1-cor-finite-rank-translates",
+          "fullLabel": "corollary m1-cor-finite-rank-translates",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-real-calculus",
+          "role": "height-scales-and-an-auxiliary-sequence-theorem",
+          "label": "lemma m1-lemma-real-calculus",
+          "fullLabel": "lemma m1-lemma-real-calculus",
+          "kind": "lemma",
+          "source": "Height scales and an auxiliary sequence theorem",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-sequence",
+          "role": "height-scales-and-an-auxiliary-sequence-theorem",
+          "label": "theorem m1-thm-sequence",
+          "fullLabel": "theorem m1-thm-sequence",
+          "kind": "theorem",
+          "source": "Height scales and an auxiliary sequence theorem",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-thm-all-high"
+          ]
+        },
+        {
+          "id": "m1-lemma-height-decomposition",
+          "role": "height-scales-and-an-auxiliary-sequence-theorem",
+          "label": "lemma m1-lemma-height-decomposition",
+          "fullLabel": "lemma m1-lemma-height-decomposition",
+          "kind": "lemma",
+          "source": "Height scales and an auxiliary sequence theorem",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-sequence-implies-nondensity",
+          "role": "height-scales-and-an-auxiliary-sequence-theorem",
+          "label": "proposition m1-prop-sequence-implies-nondensity",
+          "fullLabel": "proposition m1-prop-sequence-implies-nondensity",
+          "kind": "proposition",
+          "source": "Height scales and an auxiliary sequence theorem",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-projection",
+          "role": "projection-and-tangent-positivity",
+          "label": "lemma m1-lemma-projection",
+          "fullLabel": "lemma m1-lemma-projection",
+          "kind": "lemma",
+          "source": "Projection and tangent positivity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ax-product",
+          "role": "projection-and-tangent-positivity",
+          "label": "lemma m1-lem-ax-product",
+          "fullLabel": "lemma m1-lem-ax-product",
+          "kind": "lemma",
+          "source": "Projection and tangent positivity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-finite-directions",
+          "role": "projection-and-tangent-positivity",
+          "label": "lemma m1-lem-finite-directions",
+          "fullLabel": "lemma m1-lem-finite-directions",
+          "kind": "lemma",
+          "source": "Projection and tangent positivity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-tangent",
+          "role": "projection-and-tangent-positivity",
+          "label": "proposition m1-prop-tangent",
+          "fullLabel": "proposition m1-prop-tangent",
+          "kind": "proposition",
+          "source": "Projection and tangent positivity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-intersection-lower-bound",
+          "role": "when-every-height-scale-diverges",
+          "label": "lemma m1-lemma-intersection-lower-bound",
+          "fullLabel": "lemma m1-lemma-intersection-lower-bound",
+          "kind": "lemma",
+          "source": "When every height scale diverges",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-dill-form",
+          "role": "when-every-height-scale-diverges",
+          "label": "theorem m1-thm-dill-form",
+          "fullLabel": "theorem m1-thm-dill-form",
+          "kind": "theorem",
+          "source": "When every height scale diverges",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-all-high",
+          "role": "when-every-height-scale-diverges",
+          "label": "theorem m1-thm-all-high",
+          "fullLabel": "theorem m1-thm-all-high",
+          "kind": "theorem",
+          "source": "When every height scale diverges",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-height-kernel",
+          "role": "auxiliary-subvarieties-over-fields-of-bounded-degree",
+          "label": "lemma m1-lemma-height-kernel",
+          "fullLabel": "lemma m1-lemma-height-kernel",
+          "kind": "lemma",
+          "source": "Auxiliary subvarieties over fields of bounded degree",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-bounded-conormal",
+          "role": "auxiliary-subvarieties-over-fields-of-bounded-degree",
+          "label": "lemma m1-lemma-bounded-conormal",
+          "fullLabel": "lemma m1-lemma-bounded-conormal",
+          "kind": "lemma",
+          "source": "Auxiliary subvarieties over fields of bounded degree",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-minimal-products",
+          "role": "auxiliary-subvarieties-over-fields-of-bounded-degree",
+          "label": "proposition m1-prop-minimal-products",
+          "fullLabel": "proposition m1-prop-minimal-products",
+          "kind": "proposition",
+          "source": "Auxiliary subvarieties over fields of bounded degree",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-fixed-low-point",
+          "role": "auxiliary-subvarieties-over-fields-of-bounded-degree",
+          "label": "lemma m1-lemma-fixed-low-point",
+          "fullLabel": "lemma m1-lemma-fixed-low-point",
+          "kind": "lemma",
+          "source": "Auxiliary subvarieties over fields of bounded degree",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-arithmetic-positive",
+          "role": "arithmetic-positivity-at-the-bounded-scale",
+          "label": "proposition m1-prop-arithmetic-positive",
+          "fullLabel": "proposition m1-prop-arithmetic-positive",
+          "kind": "proposition",
+          "source": "Arithmetic positivity at the bounded scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-small-sections",
+          "role": "arithmetic-positivity-at-the-bounded-scale",
+          "label": "lemma m1-lemma-small-sections",
+          "fullLabel": "lemma m1-lemma-small-sections",
+          "kind": "lemma",
+          "source": "Arithmetic positivity at the bounded scale",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-index",
+          "role": "a-uniform-local-index",
+          "label": "proposition m1-prop-index",
+          "fullLabel": "proposition m1-prop-index",
+          "kind": "proposition",
+          "source": "A uniform local index",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lemma-conjugate-product-degree",
+          "role": "the-product-cut-and-bounded-degree-descent",
+          "label": "lemma m1-lemma-conjugate-product-degree",
+          "fullLabel": "lemma m1-lemma-conjugate-product-degree",
+          "kind": "lemma",
+          "source": "The product cut and bounded-degree descent",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-product-cut",
+          "role": "the-product-cut-and-bounded-degree-descent",
+          "label": "proposition m1-prop-product-cut",
+          "fullLabel": "proposition m1-prop-product-cut",
+          "kind": "proposition",
+          "source": "The product cut and bounded-degree descent",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-optimal-finite",
+          "role": "from-non-density-to-maximal-atypical-finiteness",
+          "label": "proposition m1-prop-optimal-finite",
+          "fullLabel": "proposition m1-prop-optimal-finite",
+          "kind": "proposition",
+          "source": "From non-density to maximal atypical finiteness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-maximal-optimal",
+          "role": "from-non-density-to-maximal-atypical-finiteness",
+          "label": "lemma m1-lem-maximal-optimal",
+          "fullLabel": "lemma m1-lem-maximal-optimal",
+          "kind": "lemma",
+          "source": "From non-density to maximal atypical finiteness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "The E×CM component of Zilber–Pink for curves in A2",
+      "title": "The E×CM component of Zilber–Pink for curves in A2",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-E-times-CM-Component-of-Zilber-Pink-for-Curves-in-A2-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The E×CM component of Zilber–Pink for curves in A2.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-orbits",
+          "role": "introduction",
+          "label": "theorem m2-thm-orbits",
+          "fullLabel": "theorem m2-thm-orbits",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-family-height",
+          "role": "heights-periods-and-cm-elliptic-curves",
+          "label": "lemma m2-lem-family-height",
+          "fullLabel": "lemma m2-lem-family-height",
+          "kind": "lemma",
+          "source": "Heights, periods, and CM elliptic curves",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cm",
+          "role": "heights-periods-and-cm-elliptic-curves",
+          "label": "lemma m2-lem-cm",
+          "fullLabel": "lemma m2-lem-cm",
+          "kind": "lemma",
+          "source": "Heights, periods, and CM elliptic curves",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-gluing",
+          "role": "canonical-gluing-and-boundary-lengths",
+          "label": "lemma m2-lem-gluing",
+          "fullLabel": "lemma m2-lem-gluing",
+          "kind": "lemma",
+          "source": "Canonical gluing and boundary lengths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-length",
+          "role": "canonical-gluing-and-boundary-lengths",
+          "label": "lemma m2-lem-length",
+          "fullLabel": "lemma m2-lem-length",
+          "kind": "lemma",
+          "source": "Canonical gluing and boundary lengths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-boundary-comparison",
+          "role": "canonical-gluing-and-boundary-lengths",
+          "label": "lemma m2-lem-boundary-comparison",
+          "fullLabel": "lemma m2-lem-boundary-comparison",
+          "kind": "lemma",
+          "source": "Canonical gluing and boundary lengths",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-height",
+          "role": "a-uniform-height-estimate-on-a-curve",
+          "label": "proposition m2-prop-height",
+          "fullLabel": "proposition m2-prop-height",
+          "kind": "proposition",
+          "source": "A uniform height estimate on a curve",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-arch-boundary",
+          "role": "a-uniform-height-estimate-on-a-curve",
+          "label": "lemma m2-lem-arch-boundary",
+          "fullLabel": "lemma m2-lem-arch-boundary",
+          "kind": "lemma",
+          "source": "A uniform height estimate on a curve",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rho",
+          "role": "a-uniform-height-estimate-on-a-curve",
+          "label": "lemma m2-lem-rho",
+          "fullLabel": "lemma m2-lem-rho",
+          "kind": "lemma",
+          "source": "A uniform height estimate on a curve",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-threefold",
+          "role": "an-essential-period-on-a-threefold",
+          "label": "proposition m2-prop-threefold",
+          "fullLabel": "proposition m2-prop-threefold",
+          "kind": "proposition",
+          "source": "An essential period on a threefold",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "label": "Quaternionic division points on curves in the Siegel threefold",
+      "title": "Quaternionic division points on curves in the Siegel threefold",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#c98b5c",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quaternionic-Division-Points-on-Curves-in-the-Siegel-Threefold-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Quaternionic division points on curves in the Siegel threefold.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m3-thm-main",
+          "role": "introduction",
+          "label": "theorem m3-thm-main",
+          "fullLabel": "theorem m3-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m3-lem-finite-covers"
+          ]
+        },
+        {
+          "id": "m3-lem-finite-covers",
+          "role": "the-quadratic-variation-and-its-isogeny-exceptions",
+          "label": "lemma m3-lem-finite-covers",
+          "fullLabel": "lemma m3-lem-finite-covers",
+          "kind": "lemma",
+          "source": "The quadratic variation and its isogeny exceptions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-qm-plane",
+          "role": "the-quadratic-variation-and-its-isogeny-exceptions",
+          "label": "lemma m3-lem-qm-plane",
+          "fullLabel": "lemma m3-lem-qm-plane",
+          "kind": "lemma",
+          "source": "The quadratic variation and its isogeny exceptions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-monodromy",
+          "role": "the-quadratic-variation-and-its-isogeny-exceptions",
+          "label": "proposition m3-prop-monodromy",
+          "fullLabel": "proposition m3-prop-monodromy",
+          "kind": "proposition",
+          "source": "The quadratic variation and its isogeny exceptions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-finite-correspondences",
+          "role": "the-quadratic-variation-and-its-isogeny-exceptions",
+          "label": "proposition m3-prop-finite-correspondences",
+          "fullLabel": "proposition m3-prop-finite-correspondences",
+          "kind": "proposition",
+          "source": "The quadratic variation and its isogeny exceptions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-thm-interpolation",
+          "role": "interpolation-with-two-arguments",
+          "label": "theorem m3-thm-interpolation",
+          "fullLabel": "theorem m3-thm-interpolation",
+          "kind": "theorem",
+          "source": "Interpolation with two arguments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-zero-estimate",
+          "role": "interpolation-with-two-arguments",
+          "label": "lemma m3-lem-zero-estimate",
+          "fullLabel": "lemma m3-lem-zero-estimate",
+          "kind": "lemma",
+          "source": "Interpolation with two arguments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-graph-fiber",
+          "role": "interpolation-with-two-arguments",
+          "label": "lemma m3-lem-graph-fiber",
+          "fullLabel": "lemma m3-lem-graph-fiber",
+          "kind": "lemma",
+          "source": "Interpolation with two arguments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-layer-interpolation",
+          "role": "interpolation-with-two-arguments",
+          "label": "lemma m3-lem-layer-interpolation",
+          "fullLabel": "lemma m3-lem-layer-interpolation",
+          "kind": "lemma",
+          "source": "Interpolation with two arguments",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-potential-good",
+          "role": "arithmetic-coordinates-and-common-local-relations",
+          "label": "lemma m3-lem-potential-good",
+          "fullLabel": "lemma m3-lem-potential-good",
+          "kind": "lemma",
+          "source": "Arithmetic coordinates and common local relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-small-vectors",
+          "role": "arithmetic-coordinates-and-common-local-relations",
+          "label": "proposition m3-prop-small-vectors",
+          "fullLabel": "proposition m3-prop-small-vectors",
+          "kind": "proposition",
+          "source": "Arithmetic coordinates and common local relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-dr-size",
+          "role": "arithmetic-coordinates-and-common-local-relations",
+          "label": "proposition m3-prop-dr-size",
+          "fullLabel": "proposition m3-prop-dr-size",
+          "kind": "proposition",
+          "source": "Arithmetic coordinates and common local relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-good-comparison",
+          "role": "arithmetic-coordinates-and-common-local-relations",
+          "label": "proposition m3-prop-good-comparison",
+          "fullLabel": "proposition m3-prop-good-comparison",
+          "kind": "proposition",
+          "source": "Arithmetic coordinates and common local relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-proximity",
+          "role": "arithmetic-coordinates-and-common-local-relations",
+          "label": "lemma m3-lem-proximity",
+          "fullLabel": "lemma m3-lem-proximity",
+          "kind": "lemma",
+          "source": "Arithmetic coordinates and common local relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-common-relations",
+          "role": "arithmetic-coordinates-and-common-local-relations",
+          "label": "proposition m3-prop-common-relations",
+          "fullLabel": "proposition m3-prop-common-relations",
+          "kind": "proposition",
+          "source": "Arithmetic coordinates and common local relations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-finite-field-incidence",
+          "role": "auxiliary-markings-and-the-height-bound",
+          "label": "lemma m3-lem-finite-field-incidence",
+          "fullLabel": "lemma m3-lem-finite-field-incidence",
+          "kind": "lemma",
+          "source": "Auxiliary markings and the height bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-marking",
+          "role": "auxiliary-markings-and-the-height-bound",
+          "label": "proposition m3-prop-marking",
+          "fullLabel": "proposition m3-prop-marking",
+          "kind": "proposition",
+          "source": "Auxiliary markings and the height bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-fixed-isogeny-reduction",
+          "role": "auxiliary-markings-and-the-height-bound",
+          "label": "lemma m3-lem-fixed-isogeny-reduction",
+          "fullLabel": "lemma m3-lem-fixed-isogeny-reduction",
+          "kind": "lemma",
+          "source": "Auxiliary markings and the height bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-nonidentity",
+          "role": "auxiliary-markings-and-the-height-bound",
+          "label": "proposition m3-prop-nonidentity",
+          "fullLabel": "proposition m3-prop-nonidentity",
+          "kind": "proposition",
+          "source": "Auxiliary markings and the height bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-thm-height",
+          "role": "auxiliary-markings-and-the-height-bound",
+          "label": "theorem m3-thm-height",
+          "fullLabel": "theorem m3-thm-height",
+          "kind": "theorem",
+          "source": "Auxiliary markings and the height bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-flat-coordinate-bound",
+          "role": "from-heights-to-finiteness",
+          "label": "lemma m3-lem-flat-coordinate-bound",
+          "fullLabel": "lemma m3-lem-flat-coordinate-bound",
+          "kind": "lemma",
+          "source": "From heights to finiteness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-counting-finiteness",
+          "role": "from-heights-to-finiteness",
+          "label": "proposition m3-prop-counting-finiteness",
+          "fullLabel": "proposition m3-prop-counting-finiteness",
+          "kind": "proposition",
+          "source": "From heights to finiteness",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The abelian Zilber–Pink conjecture",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Abelian-Zilber-Pink-Conjecture-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The E×CM component of Zilber–Pink for curves in A2",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-E-times-CM-Component-of-Zilber-Pink-for-Curves-in-A2-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Quaternionic division points on curves in the Siegel threefold",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Quaternionic-Division-Points-on-Curves-in-the-Siegel-Threefold-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

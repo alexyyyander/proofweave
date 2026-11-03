@@ -1,0 +1,323 @@
+{
+  "familyNumber": "162",
+  "familyTitle": "Counterexamples to Ryser’s covering conjecture",
+  "manuscripts": [
+    {
+      "id": "Balanced-Counterexamples-to-Rysers-Conjecture-at-Prime-Orders-September-27-2026",
+      "title": "Balanced counterexamples to Ryser's conjecture at prime orders",
+      "date": "2026-09-27",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Balanced-Counterexamples-to-Rysers-Conjecture-at-Prime-Orders-September-27-2026/paper.pdf"
+    },
+    {
+      "id": "A-Counterexample-to-Rysers-Covering-Conjecture-September-23-2026",
+      "title": "A counterexample to Ryser's covering conjecture",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-Counterexample-to-Rysers-Covering-Conjecture-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "From modified line partitions to a hypergraph",
+    "Deletion lines and concentration of core covers",
+    "Random merged pairs and their candidate graph",
+    "Selecting split lines",
+    "Excluding small covers at affine pencils",
+    "Elementary incidence and concentration estimates",
+    "A uniform incidence bound",
+    "Line covers after random deletions",
+    "Selecting compatible translates",
+    "A configuration with two coordinatizations",
+    "Ambient placement",
+    "The hypergraph and its covering number"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There exists q_0 such that, for every prime q q_0 , there is a finite…",
+      "statement": "There exists q_0 such that, for every prime q q_0 , there is a finite intersecting (q+1) -partite (q+1) -uniform hypergraph H with \\[ |V_1|==|V_ q+1 |=q+1, (H)=q+1. \\] Every vertex belongs to an edge.",
+      "section": "Introduction",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-cor-tree-cover",
+      "kind": "corollary",
+      "label": "For every sufficiently large prime q , there is a finite complete graph with a…",
+      "statement": "For every sufficiently large prime q , there is a finite complete graph with a (q+1) -edge-coloring whose vertices require exactly q+1 monochromatic trees to cover. The same minimum holds for…",
+      "section": "Introduction",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-prop-deterministic-reduction",
+      "kind": "proposition",
+      "label": "Deterministic reduction",
+      "statement": "[Deterministic reduction] Let q4 be a prime power. Suppose a compatible collection of valid tuples in F_q^2 satisfies occupancy, concentration of core covers, and the local condition with parameters…",
+      "section": "From modified line partitions to a hypergraph",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-thm-deletion",
+      "kind": "theorem",
+      "label": "Robust deletion estimates",
+      "statement": "[Robust deletion estimates] Fix k1 and K0 . For each q , let Q_q be a probability law on the same sets as U_ q,k such that \\[ Q_q(D) e^ Kq U_ q,k (D) for every D. \\] Then the following assertions…",
+      "section": "Deletion lines and concentration of core covers",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-lem-profile-counting",
+      "kind": "lemma",
+      "label": "Counting by profile detection",
+      "statement": "[Counting by profile detection] For each q , let A_q be a deterministic class of pairs (D,C) as above. Assume there is a>0 such that every pair in every class has either m=0 or m aq . Suppose every…",
+      "section": "Deletion lines and concentration of core covers",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-lem-prime-stability",
+      "kind": "lemma",
+      "label": "Prime-plane stability for affine line covers",
+      "statement": "[Prime-plane stability for affine line covers] Let >0 and put _=\\ /4,1/100\\ . If q is prime and q\\ 100,4/\\ , then any set of at most q distinct affine lines missing fewer than _ q^2 affine points has…",
+      "section": "Deletion lines and concentration of core covers",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-cor-core-pencil",
+      "kind": "corollary",
+      "label": "Concentration of core covers",
+      "statement": "[Concentration of core covers] Assume the laws of Theorem~ , and let q tend to infinity through primes. For each fixed >0 , with probability tending to one, every set C L D of at most q lines…",
+      "section": "Deletion lines and concentration of core covers",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-prop-candidate-graph",
+      "kind": "proposition",
+      "label": "There are constants c_*>0 and C_*< such that, with probability 1-o(1) , the…",
+      "statement": "There are constants c_*>0 and C_*< such that, with probability 1-o(1) , the following assertions hold simultaneously, with =1/8 and c_0=1/5 : [label=( *)] c_*q |Q_g| q for every direction g . Every…",
+      "section": "Random merged pairs and their candidate graph",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-lem-pattern-moments",
+      "kind": "lemma",
+      "label": "Let Z=_a I_a count labelled patterns in independent colour variables, where I_a…",
+      "statement": "Let Z=_a I_a count labelled patterns in independent colour variables, where I_a is the indicator of pattern a . For each label a , let C_a be its deterministic set of tested colours, of uniformly…",
+      "section": "Random merged pairs and their candidate graph",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-sel-selection",
+      "kind": "proposition",
+      "label": "Selection with bounded cylinder probabilities",
+      "statement": "[Selection with bounded cylinder probabilities] Fix constants c_*,C_*>0 and 0<c_01 , and put =1/8 . For each sufficiently large integer q , let a finite graph have its vertex set partitioned into…",
+      "section": "Selecting split lines",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-sel-tail-cylinder",
+      "kind": "lemma",
+      "label": "Tail conditioning",
+      "statement": "[Tail conditioning] Let a graph be partitioned into slots of sizes L_i , with no within-slot edges. Let L_ =_iL_i and let its maximum degree be . If L_ 3 and /L_ 1/8 , independent uniform choices…",
+      "section": "Selecting split lines",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-sel-deletion-domination",
+      "kind": "corollary",
+      "label": "Domination of the deletion-line law",
+      "statement": "[Domination of the deletion-line law] Let D consist of the selected split lines and the lines M_g^1 in the preceding experiment. Conditional on A , the law of D is dominated pointwise by (O(q)) times…",
+      "section": "Selecting split lines",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-prop-pencil-local",
+      "kind": "proposition",
+      "label": "In the independent offset experiment with the selection procedure above, \\[ P(…",
+      "statement": "In the independent offset experiment with the selection procedure above, \\[ P( A and the local condition fails at some p A)=o(1). \\] Here the local condition, required whenever b(p)3 , is the…",
+      "section": "Excluding small covers at affine pencils",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-lem-pencil-reuse",
+      "kind": "lemma",
+      "label": "For a fixed affine point p , with the reuse count of the selected tuples…",
+      "statement": "For a fixed affine point p , with the reuse count of the selected tuples through p , \\[ P( A,\\ b(p)2,\\ 3)=O(q^ -3 ). \\]",
+      "section": "Excluding small covers at affine pencils",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-lem-pencil-small-reuse",
+      "kind": "lemma",
+      "label": "Fix p A , 3 b B , an equality pattern with =0 or 1 , an eligible direction…",
+      "statement": "Fix p A , 3 b B , an equality pattern with =0 or 1 , an eligible direction assignment, and the bits. Under the aligned law, the probability of an admissible bad cover is at most \\[ b^ O(1) (2B/q)^ 3-…",
+      "section": "Excluding small covers at affine pencils",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-lem-pencil-two-reuses",
+      "kind": "lemma",
+      "label": "Fix p A , 3 b B , an equality pattern with =2 , and the bits. Summed over…",
+      "statement": "Fix p A , 3 b B , an equality pattern with =2 , and the bits. Summed over eligible direction assignments, the probabilities of alignment and an admissible bad cover are at most \\[ (q+1)^ 5b-2 q^ -4b…",
+      "section": "Excluding small covers at affine pencils",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-lem-affine-second-moment",
+      "kind": "lemma",
+      "label": "Affine second moment",
+      "statement": "[Affine second moment] Let q be a prime power, let U_q^2 , and let L be the set of all affine lines. Then _ L |U|&=(q+1)|U|,\\\\ _ L |U|^2&=|U|^2+q|U|,\\\\ _ L (|U|-|U| q )^2 &=q|U|-|U|^2 q q^3 4 . For…",
+      "section": "Elementary incidence and concentration estimates",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-lem-bounded-drift-concentration",
+      "kind": "lemma",
+      "label": "Bounded-drift concentration",
+      "statement": "[Bounded-drift concentration] Let (X_t)_ t=0 ^T be a real process adapted to a filtration ( F_t)_ t=0 ^T , where T1 is an integer. Suppose L>0 and |X_ t+1 -X_t| L almost surely for 0 t<T . Put d_t= .…",
+      "section": "Elementary incidence and concentration estimates",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m1-lem-independent-trial-jumps",
+      "kind": "lemma",
+      "label": "Independent-trial jumps",
+      "statement": "[Independent-trial jumps] Let Y be an integrable real function of independent trials _1,,_T . Suppose changing only trial i changes Y by at most c_i , where c_i0 . The Doob martingale obtained by…",
+      "section": "Elementary incidence and concentration estimates",
+      "manuscript": "Balanced counterexamples to Ryser's conjecture at prime orders"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There exists s_0 such that, for every prime s s_0 with s23 , there is an…",
+      "statement": "There exists s_0 such that, for every prime s s_0 with s23 , there is an integer n_0(s)3 with the following property. For every odd integer n n_0(s) , put q=s^n . There is a finite intersecting (q+1)…",
+      "section": "Introduction",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-cor-tree-cover",
+      "kind": "corollary",
+      "label": "Let s_0 and n_0(s) be as in Theorem~ . For every prime s s_0 with s23 and every…",
+      "statement": "Let s_0 and n_0(s) be as in Theorem~ . For every prime s s_0 with s23 and every odd integer n n_0(s) , put r=s^n+1 . There is a finite simple complete graph with an r -edge-coloring for which the…",
+      "section": "Introduction",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-thm-incidence",
+      "kind": "theorem",
+      "label": "Uniform incidence saving",
+      "statement": "[Uniform incidence saving] There exist absolute constants (0,1/10) and Q with the following property. Suppose that q Q is a prime power and every proper subfield of _q has order at most q^ 1/3 . If P…",
+      "section": "A uniform incidence bound",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-inc-sumset-estimates",
+      "kind": "lemma",
+      "label": "Triangle, covering, and multiple-sum estimates",
+      "statement": "[Triangle, covering, and multiple-sum estimates] Let the sets below be finite subsets of an abelian group. If Z is nonempty, then |X-Y|\\,|Z| |X-Z|\\,|Z-Y|. If Y is nonempty and |X-Y| M|Y| , then X is…",
+      "section": "A uniform incidence bound",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-inc-simultaneous-extraction",
+      "kind": "lemma",
+      "label": "Simultaneous difference and quotient extraction",
+      "statement": "[Simultaneous difference and quotient extraction] Let F be a field, let A,B F^* be finite, and let G A B . Define \\[ D=\\ a-b:(a,b) G\\ , J=\\ a/b:(a,b) G\\ . \\] Suppose that, for real numbers n>0 and V2…",
+      "section": "A uniform incidence bound",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-inc-scalar-coverings",
+      "kind": "lemma",
+      "label": "Uniform scalar coverings",
+      "statement": "[Uniform scalar coverings] Let B be a nonempty finite subset of a field F , let E B , and let K2 . Suppose that |B-B| K|B|, |B-eB| 2K^3|B|(e E). Define C_0=4, C_ m+1 =3C_m+5, so that C_m=13 3^m-5 2 .…",
+      "section": "A uniform incidence bound",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-inc-no-approximate-subfield",
+      "kind": "lemma",
+      "label": "Exclusion of an intermediate approximate subfield",
+      "statement": "[Exclusion of an intermediate approximate subfield] There is no sequence of prime powers q , each satisfying the proper-subfield hypothesis of Theorem~ , together with sets S_q^* and numbers K2 such…",
+      "section": "A uniform incidence bound",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-lem-martingale",
+      "kind": "lemma",
+      "label": "Martingale concentration",
+      "statement": "[Martingale concentration] Let Z_i , 1 i n , be martingale differences for a filtration ( A_i)_ i=0 ^n . Suppose that M,V>0 and deterministic numbers v_i0 satisfy, almost surely, \\[ |Z_i| M, (Z_i^2…",
+      "section": "Line covers after random deletions",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-lem-linecover",
+      "kind": "lemma",
+      "label": "Line covers after random deletions",
+      "statement": "[Line covers after random deletions] Let q through prime powers for which every proper subfield of _q has order at most q^ 1/3 . Fix a positive integer D and constants >0 and 0<<1 . For each q , let…",
+      "section": "Line covers after random deletions",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-thm-selection",
+      "kind": "theorem",
+      "label": "Compatible translates from independent pools",
+      "statement": "[Compatible translates from independent pools] For every positive integer D there is a positive integer K=K(D) with the following property. Let q tend to infinity through prime powers. For each q ,…",
+      "section": "Selecting compatible translates",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-sel-domination",
+      "kind": "lemma",
+      "label": "A domination certificate",
+      "statement": "[A domination certificate] Let a finite simple graph have a vertex partition into nonempty parts A_1,,A_n . If there is no independent set containing one vertex from each part, then there are a…",
+      "section": "Selecting compatible translates",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-lem-gadget",
+      "kind": "lemma",
+      "label": "For every sufficiently large prime \\(s23\\), there is a set \\(Y_s^2\\) with the…",
+      "statement": "For every sufficiently large prime \\(s23\\), there is a set \\(Y_s^2\\) with the following properties. For each \\(d_s^*\\), there is an affine line \\(_d\\) of slope \\(d\\), and \\[ Y=_s^2_ d_s^* _d. \\] For…",
+      "section": "A configuration with two coordinatizations",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-con-deletion-count",
+      "kind": "lemma",
+      "label": "For every candidate and every \\(d S_i\\), exactly \\(s-1\\) lines of \\( B_ i,k \\)…",
+      "statement": "For every candidate and every \\(d S_i\\), exactly \\(s-1\\) lines of \\( B_ i,k \\) have direction \\(d\\). Each of these lines contains at least five points of \\(Y_ i,k \\). Consequently \\(| B_ i,k…",
+      "section": "Ambient placement",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-con-pool-properties",
+      "kind": "lemma",
+      "label": "There are constants \\((0,1)\\) and \\(=/10\\), independent of \\(n\\), with the…",
+      "statement": "There are constants \\((0,1)\\) and \\(=/10\\), independent of \\(n\\), with the following properties with probability tending to one as \\(n\\) tends to infinity through odd integers. Let \\[ X_ pool =_q^2 _…",
+      "section": "Ambient placement",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-con-intersection",
+      "kind": "proposition",
+      "label": "The hypergraph \\(H\\) is intersecting. Furthermore, all the edges in its…",
+      "statement": "The hypergraph \\(H\\) is intersecting. Furthermore, all the edges in its displayed parametrization are distinct.",
+      "section": "The hypergraph and its covering number",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    },
+    {
+      "id": "m2-con-label-action",
+      "kind": "lemma",
+      "label": "Fix a group \\(i\\). A special vertex of group \\(i\\) covers the positions on one…",
+      "statement": "Fix a group \\(i\\). A special vertex of group \\(i\\) covers the positions on one subfield line. A special vertex of another group covers none. An ordinary vertex of direction in \\(S_i\\) covers none. An…",
+      "section": "The hypergraph and its covering number",
+      "manuscript": "A counterexample to Ryser's covering conjecture"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-candidate-graph",
+      "to": "m1-thm-main",
+      "label": "prop:candidate-graph",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Fix the candidate constants $c_*,C_*$ from Proposition~\\ref{prop:candidate-graph}, set $c_0=1/5$, and fix all the selection constants in the order given in \\eqref{sel:constants-one}--\\eqref{sel:constan"
+    }
+  ]
+}

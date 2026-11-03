@@ -1,0 +1,420 @@
+{
+  "familyNumber": "230",
+  "familyTitle": "Exact Hausdorff gauges for SLE",
+  "manuscripts": [
+    {
+      "id": "An-exact-Hausdorff-gauge-for-SLE-September-25-2026",
+      "title": "An exact Hausdorff gauge for SLE",
+      "date": "2026-09-25",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-exact-Hausdorff-gauge-for-SLE-September-25-2026/An-exact-Hausdorff-gauge-for-SLE-September-25-2026.pdf"
+    },
+    {
+      "id": "An-explicit-exact-Hausdorff-gauge-for-SLE-September-26-2026",
+      "title": "An explicit exact Hausdorff gauge for SLE",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-explicit-exact-Hausdorff-gauge-for-SLE-September-26-2026/An-explicit-exact-Hausdorff-gauge-for-SLE-September-26-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Conformal radius and the law centered at one point",
+    "A uniform estimate for several radius hits",
+    "A canonical mass on the trace",
+    "Disk moments and deterministic coefficients",
+    "Moment batches and their full gauge",
+    "Past mass and the arbitrary-cover lower bound",
+    "All-time upper covers and theorem assembly",
+    "Boundary geometry and pointwise slit support",
+    "Finite one-point laws and physical localization",
+    "A uniform tail for spatially integrated stopped densities",
+    "Retained mass and a lower bound for fine sausages",
+    "Uniform passages and dense visits",
+    "Covers charged to a single sausage mesh"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "An exact moment gauge",
+      "statement": "[An exact moment gauge] Fix 0<<8 , and let be chordal _ from 0 to in the upper half-plane , parametrized by half-plane capacity 2t . There is a deterministic Hausdorff gauge h_ , depending only on ,…",
+      "section": "Introduction",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-op-finite-tilt",
+      "kind": "lemma",
+      "label": "Finite stopped change of law",
+      "statement": "[Finite stopped change of law] For every finite s0 , the nonnegative weight M_s(x)= G_ _s(x) (x) G_0(x) _ \\ _s(x)<\\ has expectation one. It defines a law _x^* on the path stopped at _s(x) ,…",
+      "section": "Conformal radius and the law centered at one point",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-op-mixing",
+      "kind": "lemma",
+      "label": "Uniform angle mixing",
+      "statement": "[Uniform angle mixing] Let _a()=c_a^ 4a \\,, c_a^ -1 =_0^^ 4a \\,. There is a deterministic s_a< such that, for all s s_a and every initial angle in (0,) , the transition law of has density between 1/2…",
+      "section": "Conformal radius and the law centered at one point",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-op-potential",
+      "kind": "proposition",
+      "label": "Finite lifetime and tested potential identity",
+      "statement": "[Finite lifetime and tested potential identity] Under the consistent centered laws, T^*(x)=_ s _s(x) is finite almost surely. For every finite deterministic t and bounded raw F_t -measurable random…",
+      "section": "Conformal radius and the law centered at one point",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-mp-estimate",
+      "kind": "proposition",
+      "label": "Multipoint radius estimate",
+      "statement": "[Multipoint radius estimate] Let D=J() as in Section~ , and let x_1,,x_m D be distinct. Suppose \\[ 0<b_i R_D(x_i), b_i |x_i-x_j|(j i). \\] For targets 0<e_i b_i , let E be the event that each x_i…",
+      "section": "A uniform estimate for several radius hits",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-mp-kernel-integral",
+      "kind": "lemma",
+      "label": "Capped distance kernels",
+      "statement": "[Capped distance kernels] Let 0<<1 , b>0 , and let K C be a bounded Borel set. For distinct x_1,,x_m set \\[ b_i=(b,_ j i |x_i-x_j|), F_b(x_1,,x_m)=_ i=1 ^m b_i^ - , \\] where the inner minimum is…",
+      "section": "A uniform estimate for several radius hits",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-mp-level-moments",
+      "kind": "corollary",
+      "label": "Integrated level weights",
+      "statement": "[Integrated level weights] Let f0 be bounded and supported in a compact K D . Then, for every integer m1 , _ l>0 <. Fix also x_0 D and 0<e_0 R_D(x_0) , and let E_0 be the event that x_0 reaches…",
+      "section": "A uniform estimate for several radius hits",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-mass-construction",
+      "kind": "proposition",
+      "label": "Construction and conditional kernel",
+      "statement": "[Construction and conditional kernel] There is an adapted increasing family (_t)_ 0 t of locally finite measures on , starting at zero, with the following properties. Its terminal measure is…",
+      "section": "A canonical mass on the trace",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-mass-first-visit",
+      "kind": "corollary",
+      "label": "First-visit accounting",
+      "statement": "[First-visit accounting] Put v(x)=\\ t0:(t)=x\\ , with value infinity if the set is empty. Almost surely v(x)< for _ -almost every x , and simultaneously for every finite t , _t( x)=_ \\ v(x) t\\ _( x).",
+      "section": "A canonical mass on the trace",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-mass-restart",
+      "kind": "proposition",
+      "label": "Pathwise interior restart",
+      "statement": "[Pathwise interior restart] Fix a stopping time S . On \\ S<\\ put J_S=(g_S-B_S)^ -1 : H_S , and let be the canonical mass functional of the fresh Brownian motion B_ S+t -B_S . Almost surely, as…",
+      "section": "A canonical mass on the trace",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-mass-positive",
+      "kind": "proposition",
+      "label": "Positive mass on every interval",
+      "statement": "[Positive mass on every interval] Almost surely, for every 0 v<t< , \\[ (_t-_v)()>0. \\] The positive mass can always be detected on an interior compact. The same statement holds in every fixed…",
+      "section": "A canonical mass on the trace",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-coef-positive-moments",
+      "kind": "proposition",
+      "label": "Finite, positive disk moments",
+      "statement": "[Finite, positive disk moments] For every integer n1 , the deterministic numbers m_n():=_ mix ^*L_^n, m_n:=_ mix ^*L^n =_ m_n() satisfy 0<m_n<. Moreover L>0 almost surely, and, for each fixed angle,…",
+      "section": "Disk moments and deterministic coefficients",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-coef-recovery",
+      "kind": "lemma",
+      "label": "Recovery at a random level",
+      "statement": "[Recovery at a random level] For every fixed (0,) and finite >0 , \\[ D_h(,;) A_ _ in L^2(_). \\]",
+      "section": "Disk moments and deterministic coefficients",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-coef-explicit",
+      "kind": "proposition",
+      "label": "Explicit coefficients",
+      "statement": "[Explicit coefficients] The moments in are given by m_n() &=_ u _ h _0^ P_(,b) ([D_h(,b;)]_0^u)^n \\, W(b)\\,_a(),\\\\ m_n&=_ m_n(). All limit indices may be restricted to positive integers. Thus these…",
+      "section": "Disk moments and deterministic coefficients",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-gauge-admissible",
+      "kind": "proposition",
+      "label": "Gauge properties and finite exclusions",
+      "statement": "[Gauge properties and finite exclusions] The function \\(h_\\) is a Hausdorff gauge and satisfies h_(Cr) C^2h_(r) (C1,\\ r0). The radii from distinct batches may interleave. Set \\[ H_ ni (r)=b_ ni r_ ni…",
+      "section": "Moment batches and their full gauge",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-gauge-multiplicity",
+      "kind": "lemma",
+      "label": "Batch probability estimates",
+      "statement": "[Batch probability estimates] The non-cleanup multiplicities satisfy, for every \\(n1\\), _ k Z N_ nk \\, ^*_ mix \\ L16A_k\\ 4^n16^ -n 1-2^ -n . For \\(n3\\), they also satisfy _ k Z N_ nk \\, ^*_ mix \\ L_…",
+      "section": "Moment batches and their full gauge",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-hd-bad-cells",
+      "kind": "lemma",
+      "label": "Summable mass of bad cells",
+      "statement": "[Summable mass of bad cells] Fix a compact set \\(E\\). Set \\[ D=16(C_*')^d. \\] For an entry \\((n,i)\\), write \\(r=r_ ni \\), \\(b=b_ ni \\), and use the square grid of side \\(r\\). Call a cell \\(Q\\) bad…",
+      "section": "Past mass and the arbitrary-cover lower bound",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-hd-lower",
+      "kind": "proposition",
+      "label": "The lower Hausdorff bound",
+      "statement": "[The lower Hausdorff bound] Almost surely, \\[ ^h(([s,t]))>0 for every real 0<s<t<. \\]",
+      "section": "Past mass and the arbitrary-cover lower bound",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-hd-visit",
+      "kind": "lemma",
+      "label": "A cell visit forces a conformal-radius crossing",
+      "statement": "[A cell visit forces a conformal-radius crossing] Let \\(Q\\) be a closed square of side \\(r\\), centered at \\(z=x+iy\\), where \\(y>0\\). If \\(y>4r\\) and \\(Q\\), then \\(z\\) reaches conformal radius \\(8r\\)…",
+      "section": "All-time upper covers and theorem assembly",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m1-hd-upper",
+      "kind": "proposition",
+      "label": "The upper Hausdorff bound",
+      "statement": "[The upper Hausdorff bound] For every integer m1 , the random variable ^h( B_m) , where B_m=[-m,m]+i[0,m] , is measurable and satisfies \\,^h( B_m)<. In particular, these whole-trace bounded-box…",
+      "section": "All-time upper covers and theorem assembly",
+      "manuscript": "An exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Let be ordinary chordal SLE_ from 0 to in H , parametrized by half-plane…",
+      "statement": "Let be ordinary chordal SLE_ from 0 to in H , parametrized by half-plane capacity 2t , and set =([0,)) . For each fixed 0<<8 , on one event of probability one, \\[ 0< H^h(([s,t]))< for every real…",
+      "section": "Introduction",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-cor-larger-gauge",
+      "kind": "corollary",
+      "label": "Let g(r)=r^d(1/r) at sufficiently small radii, with any continuous…",
+      "statement": "Let g(r)=r^d(1/r) at sufficiently small radii, with any continuous nondecreasing completion. On the event in Theorem~ , the restriction of H^g to every ([s,t]) , 0<s<t< , is not sigma-finite; in…",
+      "section": "Introduction",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-geom-extension",
+      "kind": "lemma",
+      "label": "Continuous extension for a past domain",
+      "statement": "[Continuous extension for a past domain] Let :[0,T] H be continuous, with (0)=0 , and let D be the unbounded component of H . Suppose D is the surviving simply connected domain of the trace. Its…",
+      "section": "Boundary geometry and pointwise slit support",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-geom-fresh-tip",
+      "kind": "lemma",
+      "label": "A fresh terminal point has one prime end",
+      "statement": "[A fresh terminal point has one prime end] In the preceding setting, suppose a=(T) H D and a[0,T) . Then F has exactly one boundary parameter with image a . For the Loewner uniformization this…",
+      "section": "Boundary geometry and pointwise slit support",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-geom-first-hit-access",
+      "kind": "lemma",
+      "label": "Access at a first disk hit",
+      "statement": "[Access at a first disk hit] Let B(z,r) lie in the initial surviving domain, and write for the future trace. Let be its first time reaching B(z,r) . Suppose < and z belongs to the surviving domain D_…",
+      "section": "Boundary geometry and pointwise slit support",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-geom-smooth-driver",
+      "kind": "lemma",
+      "label": "Smooth slits have continuous drivers",
+      "statement": "[Smooth slits have continuous drivers] Let be a compact regular smooth simple arc, starting at 0 , initially vertical, and otherwise contained in H . Its successive prefixes, parametrized by…",
+      "section": "Boundary geometry and pointwise slit support",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-geom-slit-support",
+      "kind": "lemma",
+      "label": "Pointwise slit support",
+      "statement": "[Pointwise slit support] Let be as in Lemma~ , and let q be its terminal point. Let N be a relative open neighborhood of the whole slit in H , including a relative neighborhood of 0 , and let V be an…",
+      "section": "Boundary geometry and pointwise slit support",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-geom-restart-support",
+      "kind": "corollary",
+      "label": "Restarted support in open sets",
+      "statement": "[Restarted support in open sets] At a finite stopping time for ordinary chordal SLE in H , fix a realized past for which the conditional continuation law P_ is defined. Let D be its surviving domain,…",
+      "section": "Boundary geometry and pointwise slit support",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-ll-finite-tilt",
+      "kind": "lemma",
+      "label": "Finite stopped centered law",
+      "statement": "[Finite stopped centered law] For 0 u< , let _u be the first time the live point has R_t=R_0e^ -u , with value infinity if this level is never reached. Then \\[ E=M_0(z). \\] The normalized weight…",
+      "section": "Finite one-point laws and physical localization",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-ll-inverse-angle",
+      "kind": "lemma",
+      "label": "Uniform inverse-angle moment",
+      "statement": "[Uniform inverse-angle moment] For every u_0>0 there is C_ u_0 < such that \\[ _ (0,) _ s u_0 E^*_ ^ -a_0 _s C_ u_0 . \\] In particular, after one unit of radius time the probability that exceeds a…",
+      "section": "Finite one-point laws and physical localization",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-ll-approach",
+      "kind": "lemma",
+      "label": "Terminal zero and approach estimates",
+      "statement": "[Terminal zero and approach estimates] Let 0<r<R_0 and freeze the density at the first live stop with R=r . Almost surely, on the event that the live radius never reaches r , the density has terminal…",
+      "section": "Finite one-point laws and physical localization",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-ll-finite-clock",
+      "kind": "lemma",
+      "label": "Finite centered lifetime in Loewner time",
+      "statement": "[Finite centered lifetime in Loewner time] Under the consistent centered laws, T^*(z)=_ u _u is finite almost surely.",
+      "section": "Finite one-point laws and physical localization",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-ll-near-real",
+      "kind": "lemma",
+      "label": "Uniform small-target estimate",
+      "statement": "[Uniform small-target estimate] There are C,c>0 such that ordinary chordal SLE in H satisfies \\[ P\\ dist(v,)<\\ C^c, 12|v|2, v H, 0<<1 16 . \\] The same estimate holds after a simultaneous spatial…",
+      "section": "Finite one-point laws and physical localization",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-ll-rectangle",
+      "kind": "lemma",
+      "label": "Rectangle energy estimate",
+      "statement": "[Rectangle energy estimate] Let H>0 , let Q be a rectangle of fixed bounded aspect ratio, and let u W^ 1,2 (Q) C( Q) satisfy 0 u H and u_Q H/2 . Write E=_Q| u|^2 . For any random set X for which…",
+      "section": "Finite one-point laws and physical localization",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-ll-localization",
+      "kind": "proposition",
+      "label": "Uniform conformal localization",
+      "statement": "[Uniform conformal localization] Let F: H C be univalent and admit a continuous extension to H with values in the sphere. Suppose a continuous path in H starts at 0 , reaches modulus 1 , and…",
+      "section": "Finite one-point laws and physical localization",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-ll-swallowing",
+      "kind": "lemma",
+      "label": "Uniform swallowing before a large excursion",
+      "statement": "[Uniform swallowing before a large excursion] Suppose 4<<8 . For ordinary chordal SLE and every z H with |z|=1 , let T_z be its swallowing time. There are C,c>0 such that \\[ P\\ _A T_z\\ CA^ -c , A2,…",
+      "section": "Finite one-point laws and physical localization",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-ll-disk-rule",
+      "kind": "proposition",
+      "label": "The conditional physical-disk rule",
+      "statement": "[The conditional physical-disk rule] Suppose 4<<8 . There exist C,c>0 and L_02 , depending only on , with the following property. Consider ordinary chordal SLE in H , possibly after a finite stopping…",
+      "section": "Finite one-point laws and physical localization",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-mesh-tail",
+      "kind": "proposition",
+      "label": "Integrated mesh tail",
+      "statement": "[Integrated mesh tail] There are constants C,c>0 and 0<_0<_ col , depending only on and the fixed collar, such that, for 0<r_f_0 , P\\ _A W_ r_f (z)\\,dA(z)>C^ -p \\ C(-c^ -2 ). The constants are…",
+      "section": "A uniform tail for spatially integrated stopped densities",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-mesh-layer",
+      "kind": "lemma",
+      "label": "Boundary-layer occupation",
+      "statement": "[Boundary-layer occupation] Let D be a simply connected plane domain with connected unbounded complement, and let K_D be its Dirichlet Green function in the normalization \\[ K_ H (z,w)=|z- w z-w |.…",
+      "section": "A uniform tail for spatially integrated stopped densities",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-win-concentration",
+      "kind": "lemma",
+      "label": "Disjoint-window concentration",
+      "statement": "[Disjoint-window concentration] Let D B(0,1) be Borel, let 0<r R and K>0 with 3R1 , and let be a continuous adapted curve. For each z D , suppose that a test starts at a stopping time _z , with _z=…",
+      "section": "A uniform tail for spatially integrated stopped densities",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-retain-sausage",
+      "kind": "proposition",
+      "label": "Small sausage values are unlikely",
+      "statement": "[Small sausage values are unlikely] For every deterministic J=[s,t] with 0 s<t< , _ a0 _ e0 P\\ X_e(J)<a\\ =0. Equivalently, for every >0 there are a,e_0>0 such that P\\ X_e(J)<a\\ < for all 0<e<e_0 .…",
+      "section": "Retained mass and a lower bound for fine sausages",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-rc-step",
+      "kind": "lemma",
+      "label": "One ribbon step",
+      "statement": "[One ribbon step] There are q,c,v_0>0 , depending only on and the fixed ribbon constants, with the following property. For every stopped past satisfying the preceding ribbon conditions and every…",
+      "section": "Uniform passages and dense visits",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-es-guide-compactness",
+      "kind": "lemma",
+      "label": "Compactness along a guide",
+      "statement": "[Compactness along a guide] Let F_n: H D_n be conformal, with inverse g_n , and let _n:[0,T]D_n be C -Lipschitz guides satisfying \\[ _n(0)=a_n D_n, _n(t) D_n(t>0),\\\\ dist(_n(t), D_n) c(t,1). \\]…",
+      "section": "Uniform passages and dense visits",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-es-good-semicircle",
+      "kind": "lemma",
+      "label": "A small image semicircle",
+      "statement": "[A small image semicircle] Let F be univalent on H , and let a F( H) . Suppose :[0,T] H is continuous, (0)=0 , (t) H for t>0 , and F((t)) a as t0 . Fix r>0 and L>1 , and write A= L . Choose t_0>0 so…",
+      "section": "Uniform passages and dense visits",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-rc-dense",
+      "kind": "proposition",
+      "label": "Dense visit",
+      "statement": "[Dense visit] Fix s_0>0 . There are constants c,C,C_2>0 , C_1>1 , and an integer m_0 with the following property. Let S be a stopping time of ordinary chordal SLE in H , and let T_z be the lifetime…",
+      "section": "Uniform passages and dense visits",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-lem-cover-charge",
+      "kind": "lemma",
+      "label": "Uniform bounded-region charge",
+      "statement": "[Uniform bounded-region charge] For every \\(0<R<\\), there is \\(C_R<\\), depending only on \\(R\\) and \\(\\), such that \\[ _ 0<v1 E^v(B(0,R)) C_R. \\]",
+      "section": "Covers charged to a single sausage mesh",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    },
+    {
+      "id": "m2-prop-dense-cover-upper",
+      "kind": "proposition",
+      "label": "The upper Hausdorff bound",
+      "statement": "[The upper Hausdorff bound] For every \\(0<R<\\), E H^h ( B(0,R)) C_R<. Consequently, on one probability-one event, \\[ H^h(([-m,m]+i[0,m]))< (m=1,2,). \\] On that event every compact capacity-time…",
+      "section": "Covers charged to a single sausage mesh",
+      "manuscript": "An explicit exact Hausdorff gauge for SLE"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-gauge-admissible",
+      "to": "m1-thm-main",
+      "label": "gauge:admissible",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Equation~\\eqref{coef:formula} specifies the coefficients deterministically from \\(\\kappa\\), and Proposition~\\ref{gauge:admissible} shows that Equation~\\eqref{gauge:definition} defines an admissible gauge. Intersect the probability-one events of Propo"
+    }
+  ]
+}

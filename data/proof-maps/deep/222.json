@@ -1,0 +1,957 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "222",
+  "title": "Perceptron free energies and microscopic jamming exponents",
+  "result": {
+    "id": "paper-result",
+    "label": "Perceptron free energies and microscopic jamming exponents",
+    "statement": "Determines finite-temperature variational free energies for Gaussian Ising perceptrons with bounded Borel log-potentials and Gaussian spherical perceptrons with bounded continuous potentials, at every positive pattern density. A spherical extension treats bi-orthogonally invariant disorder with compact limiting singular-value distributions and no outliers. At margin −1, the quadratic-penalty spherical model has a sharp feasibility threshold and limiting gap and force laws, with system size, zero temperature, and critical density taken in that order.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "the-model-and-the-variational-formula",
+      "label": "The model and the variational formula",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "variations-order-and-the-ising-entropy",
+      "label": "Variations, order, and the Ising entropy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "overlap-arrays-and-probability-cascades",
+      "label": "Overlap arrays and probability cascades",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-upper-bound-by-enriched-affine-comparison",
+      "label": "The upper bound by enriched affine comparison",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-perturbed-bulk-and-restoration-of-two-patterns",
+      "label": "The perturbed bulk and restoration of two patterns",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "cavity-increments-and-attainment-of-the-entropy-dual",
+      "label": "Cavity increments and attainment of the entropy dual",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "general-activations-and-random-sign-patterns",
+      "label": "General activations and random-sign patterns",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-problem-and-the-proof-architecture",
+      "label": "The problem and the proof architecture",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "hierarchical-gaussian-functionals-and-spherical-entropy",
+      "label": "Hierarchical Gaussian functionals and spherical entropy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "concavity-and-stability-of-the-row-functional",
+      "label": "Concavity and stability of the row functional",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-gaussian-pressure",
+      "label": "The Gaussian pressure",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "universality-at-fixed-temperature",
+      "label": "Universality at fixed temperature",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "ground-energy-and-the-sharp-satisfiability-threshold",
+      "label": "Ground energy and the sharp satisfiability threshold",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "zero-temperature-and-mechanical-bounds",
+      "label": "Zero temperature and mechanical bounds",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-convex-critical-problem-and-the-limiting-microscopic-laws",
+      "label": "A convex critical problem and the limiting microscopic laws",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The free energy of the Ising random perceptron",
+      "title": "The free energy of the Ising random perceptron",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-free-energy-of-the-Ising-random-perceptron-September-24-2026/The-free-energy-of-the-Ising-random-perceptron-September-24-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The free energy of the Ising random perceptron.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "the-model-and-the-variational-formula",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "The model and the variational formula",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-var-variation",
+          "role": "variations-order-and-the-ising-entropy",
+          "label": "lemma m1-var-variation",
+          "fullLabel": "lemma m1-var-variation",
+          "kind": "lemma",
+          "source": "Variations, order, and the Ising entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-var-continuity-order",
+          "role": "variations-order-and-the-ising-entropy",
+          "label": "proposition m1-var-continuity-order",
+          "fullLabel": "proposition m1-var-continuity-order",
+          "kind": "proposition",
+          "source": "Variations, order, and the Ising entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-var-step-reduction",
+          "role": "variations-order-and-the-ising-entropy",
+          "label": "corollary m1-var-step-reduction",
+          "fullLabel": "corollary m1-var-step-reduction",
+          "kind": "corollary",
+          "source": "Variations, order, and the Ising entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-var-folded-kernel",
+          "role": "variations-order-and-the-ising-entropy",
+          "label": "lemma m1-var-folded-kernel",
+          "fullLabel": "lemma m1-var-folded-kernel",
+          "kind": "lemma",
+          "source": "Variations, order, and the Ising entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-var-concavity",
+          "role": "variations-order-and-the-ising-entropy",
+          "label": "theorem m1-var-concavity",
+          "fullLabel": "theorem m1-var-concavity",
+          "kind": "theorem",
+          "source": "Variations, order, and the Ising entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-arr-ultrametric",
+          "role": "overlap-arrays-and-probability-cascades",
+          "label": "theorem m1-arr-ultrametric",
+          "fullLabel": "theorem m1-arr-ultrametric",
+          "kind": "theorem",
+          "source": "Overlap arrays and probability cascades",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-arr-cascade",
+          "role": "overlap-arrays-and-probability-cascades",
+          "label": "lemma m1-arr-cascade",
+          "fullLabel": "lemma m1-arr-cascade",
+          "kind": "lemma",
+          "source": "Overlap arrays and probability cascades",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-arr-quantization",
+          "role": "overlap-arrays-and-probability-cascades",
+          "label": "lemma m1-arr-quantization",
+          "fullLabel": "lemma m1-arr-quantization",
+          "kind": "lemma",
+          "source": "Overlap arrays and probability cascades",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-arr-law-continuity",
+          "role": "overlap-arrays-and-probability-cascades",
+          "label": "lemma m1-arr-law-continuity",
+          "fullLabel": "lemma m1-arr-law-continuity",
+          "kind": "lemma",
+          "source": "Overlap arrays and probability cascades",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-arr-tilt",
+          "role": "overlap-arrays-and-probability-cascades",
+          "label": "lemma m1-arr-tilt",
+          "fullLabel": "lemma m1-arr-tilt",
+          "kind": "lemma",
+          "source": "Overlap arrays and probability cascades",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-arr-limit",
+          "role": "overlap-arrays-and-probability-cascades",
+          "label": "lemma m1-arr-limit",
+          "fullLabel": "lemma m1-arr-limit",
+          "kind": "lemma",
+          "source": "Overlap arrays and probability cascades",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-arr-fresh-pattern",
+          "role": "overlap-arrays-and-probability-cascades",
+          "label": "lemma m1-arr-fresh-pattern",
+          "fullLabel": "lemma m1-arr-fresh-pattern",
+          "kind": "lemma",
+          "source": "Overlap arrays and probability cascades",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-arr-calculus",
+          "role": "overlap-arrays-and-probability-cascades",
+          "label": "lemma m1-arr-calculus",
+          "fullLabel": "lemma m1-arr-calculus",
+          "kind": "lemma",
+          "source": "Overlap arrays and probability cascades",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-arr-variance",
+          "role": "overlap-arrays-and-probability-cascades",
+          "label": "lemma m1-arr-variance",
+          "fullLabel": "lemma m1-arr-variance",
+          "kind": "lemma",
+          "source": "Overlap arrays and probability cascades",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-upper-bound",
+          "role": "the-upper-bound-by-enriched-affine-comparison",
+          "label": "proposition m1-upper-bound",
+          "fullLabel": "proposition m1-upper-bound",
+          "kind": "proposition",
+          "source": "The upper bound by enriched affine comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-upper-concentration",
+          "role": "the-upper-bound-by-enriched-affine-comparison",
+          "label": "lemma m1-upper-concentration",
+          "fullLabel": "lemma m1-upper-concentration",
+          "kind": "lemma",
+          "source": "The upper bound by enriched affine comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-upper-derivatives",
+          "role": "the-upper-bound-by-enriched-affine-comparison",
+          "label": "lemma m1-upper-derivatives",
+          "fullLabel": "lemma m1-upper-derivatives",
+          "kind": "lemma",
+          "source": "The upper bound by enriched affine comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-upper-coercive",
+          "role": "the-upper-bound-by-enriched-affine-comparison",
+          "label": "lemma m1-upper-coercive",
+          "fullLabel": "lemma m1-upper-coercive",
+          "kind": "lemma",
+          "source": "The upper bound by enriched affine comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-upper-gg",
+          "role": "the-upper-bound-by-enriched-affine-comparison",
+          "label": "lemma m1-upper-gg",
+          "fullLabel": "lemma m1-upper-gg",
+          "kind": "lemma",
+          "source": "The upper bound by enriched affine comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-upper-synchronization",
+          "role": "the-upper-bound-by-enriched-affine-comparison",
+          "label": "lemma m1-upper-synchronization",
+          "fullLabel": "lemma m1-upper-synchronization",
+          "kind": "lemma",
+          "source": "The upper bound by enriched affine comparison",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bulk-good-parameters",
+          "role": "the-perturbed-bulk-and-restoration-of-two-patterns",
+          "label": "lemma m1-bulk-good-parameters",
+          "fullLabel": "lemma m1-bulk-good-parameters",
+          "kind": "lemma",
+          "source": "The perturbed bulk and restoration of two patterns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bulk-restoration",
+          "role": "the-perturbed-bulk-and-restoration-of-two-patterns",
+          "label": "proposition m1-bulk-restoration",
+          "fullLabel": "proposition m1-bulk-restoration",
+          "kind": "proposition",
+          "source": "The perturbed bulk and restoration of two patterns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cav-finite-comparison",
+          "role": "cavity-increments-and-attainment-of-the-entropy-dual",
+          "label": "lemma m1-cav-finite-comparison",
+          "fullLabel": "lemma m1-cav-finite-comparison",
+          "kind": "lemma",
+          "source": "Cavity increments and attainment of the entropy dual",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cav-dual-attainment",
+          "role": "cavity-increments-and-attainment-of-the-entropy-dual",
+          "label": "proposition m1-cav-dual-attainment",
+          "fullLabel": "proposition m1-cav-dual-attainment",
+          "kind": "proposition",
+          "source": "Cavity increments and attainment of the entropy dual",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cav-lower-bound",
+          "role": "cavity-increments-and-attainment-of-the-entropy-dual",
+          "label": "proposition m1-cav-lower-bound",
+          "fullLabel": "proposition m1-cav-lower-bound",
+          "kind": "proposition",
+          "source": "Cavity increments and attainment of the entropy dual",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ext-path-approx",
+          "role": "general-activations-and-random-sign-patterns",
+          "label": "lemma m1-ext-path-approx",
+          "fullLabel": "lemma m1-ext-path-approx",
+          "kind": "lemma",
+          "source": "General activations and random-sign patterns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ext-bounded",
+          "role": "general-activations-and-random-sign-patterns",
+          "label": "proposition m1-ext-bounded",
+          "fullLabel": "proposition m1-ext-bounded",
+          "kind": "proposition",
+          "source": "General activations and random-sign patterns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ext-integrable",
+          "role": "general-activations-and-random-sign-patterns",
+          "label": "theorem m1-ext-integrable",
+          "fullLabel": "theorem m1-ext-integrable",
+          "kind": "theorem",
+          "source": "General activations and random-sign patterns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ext-sign",
+          "role": "general-activations-and-random-sign-patterns",
+          "label": "theorem m1-ext-sign",
+          "fullLabel": "theorem m1-ext-sign",
+          "kind": "theorem",
+          "source": "General activations and random-sign patterns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Microscopic jamming in the negative spherical perceptron",
+      "title": "Microscopic jamming in the negative spherical perceptron",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Microscopic-jamming-in-the-negative-spherical-perceptron-September-24-2026/Microscopic-jamming-in-the-negative-spherical-perceptron-September-24-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Microscopic jamming in the negative spherical perceptron.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "the-problem-and-the-proof-architecture",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "The problem and the proof architecture",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-hier-cascade-tilt",
+          "role": "hierarchical-gaussian-functionals-and-spherical-entropy",
+          "label": "lemma m2-lem-hier-cascade-tilt",
+          "fullLabel": "lemma m2-lem-hier-cascade-tilt",
+          "kind": "lemma",
+          "source": "Hierarchical Gaussian functionals and spherical entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-hier-rank-array",
+          "role": "hierarchical-gaussian-functionals-and-spherical-entropy",
+          "label": "lemma m2-lem-hier-rank-array",
+          "fullLabel": "lemma m2-lem-hier-rank-array",
+          "kind": "lemma",
+          "source": "Hierarchical Gaussian functionals and spherical entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-hier-array-continuity",
+          "role": "hierarchical-gaussian-functionals-and-spherical-entropy",
+          "label": "lemma m2-lem-hier-array-continuity",
+          "fullLabel": "lemma m2-lem-hier-array-continuity",
+          "kind": "lemma",
+          "source": "Hierarchical Gaussian functionals and spherical entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-hier-row-interpolation",
+          "role": "hierarchical-gaussian-functionals-and-spherical-entropy",
+          "label": "lemma m2-lem-hier-row-interpolation",
+          "fullLabel": "lemma m2-lem-hier-row-interpolation",
+          "kind": "lemma",
+          "source": "Hierarchical Gaussian functionals and spherical entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-hier-spherical-limit",
+          "role": "hierarchical-gaussian-functionals-and-spherical-entropy",
+          "label": "proposition m2-prop-hier-spherical-limit",
+          "fullLabel": "proposition m2-prop-hier-spherical-limit",
+          "kind": "proposition",
+          "source": "Hierarchical Gaussian functionals and spherical entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-hier-spin-concavity",
+          "role": "hierarchical-gaussian-functionals-and-spherical-entropy",
+          "label": "proposition m2-prop-hier-spin-concavity",
+          "fullLabel": "proposition m2-prop-hier-spin-concavity",
+          "kind": "proposition",
+          "source": "Hierarchical Gaussian functionals and spherical entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-hier-entropy-conjugacy",
+          "role": "hierarchical-gaussian-functionals-and-spherical-entropy",
+          "label": "proposition m2-prop-hier-entropy-conjugacy",
+          "fullLabel": "proposition m2-prop-hier-entropy-conjugacy",
+          "kind": "proposition",
+          "source": "Hierarchical Gaussian functionals and spherical entropy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-conc-regularity",
+          "role": "concavity-and-stability-of-the-row-functional",
+          "label": "lemma m2-lem-conc-regularity",
+          "fullLabel": "lemma m2-lem-conc-regularity",
+          "kind": "lemma",
+          "source": "Concavity and stability of the row functional",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-conc-hessian",
+          "role": "concavity-and-stability-of-the-row-functional",
+          "label": "lemma m2-lem-conc-hessian",
+          "fullLabel": "lemma m2-lem-conc-hessian",
+          "kind": "lemma",
+          "source": "Concavity and stability of the row functional",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-conc-concavity",
+          "role": "concavity-and-stability-of-the-row-functional",
+          "label": "proposition m2-prop-conc-concavity",
+          "fullLabel": "proposition m2-prop-conc-concavity",
+          "kind": "proposition",
+          "source": "Concavity and stability of the row functional",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-conc-density",
+          "role": "concavity-and-stability-of-the-row-functional",
+          "label": "lemma m2-lem-conc-density",
+          "fullLabel": "lemma m2-lem-conc-density",
+          "kind": "lemma",
+          "source": "Concavity and stability of the row functional",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-conc-stability",
+          "role": "concavity-and-stability-of-the-row-functional",
+          "label": "proposition m2-prop-conc-stability",
+          "fullLabel": "proposition m2-prop-conc-stability",
+          "kind": "proposition",
+          "source": "Concavity and stability of the row functional",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-conc-hinge-stability",
+          "role": "concavity-and-stability-of-the-row-functional",
+          "label": "corollary m2-cor-conc-hinge-stability",
+          "fullLabel": "corollary m2-cor-conc-hinge-stability",
+          "kind": "corollary",
+          "source": "Concavity and stability of the row functional",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-conc-convex-loss",
+          "role": "concavity-and-stability-of-the-row-functional",
+          "label": "corollary m2-cor-conc-convex-loss",
+          "fullLabel": "corollary m2-cor-conc-convex-loss",
+          "kind": "corollary",
+          "source": "Concavity and stability of the row functional",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-press-gg",
+          "role": "the-gaussian-pressure",
+          "label": "lemma m2-lem-press-gg",
+          "fullLabel": "lemma m2-lem-press-gg",
+          "kind": "lemma",
+          "source": "The Gaussian pressure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-press-sync",
+          "role": "the-gaussian-pressure",
+          "label": "lemma m2-lem-press-sync",
+          "fullLabel": "lemma m2-lem-press-sync",
+          "kind": "lemma",
+          "source": "The Gaussian pressure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-press-row-insertion",
+          "role": "the-gaussian-pressure",
+          "label": "lemma m2-lem-press-row-insertion",
+          "fullLabel": "lemma m2-lem-press-row-insertion",
+          "kind": "lemma",
+          "source": "The Gaussian pressure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-press-empirical",
+          "role": "the-gaussian-pressure",
+          "label": "lemma m2-lem-press-empirical",
+          "fullLabel": "lemma m2-lem-press-empirical",
+          "kind": "lemma",
+          "source": "The Gaussian pressure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-press-formula",
+          "role": "the-gaussian-pressure",
+          "label": "proposition m2-prop-press-formula",
+          "fullLabel": "proposition m2-prop-press-formula",
+          "kind": "proposition",
+          "source": "The Gaussian pressure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-press-convex-loss-upper",
+          "role": "the-gaussian-pressure",
+          "label": "corollary m2-cor-press-convex-loss-upper",
+          "fullLabel": "corollary m2-cor-press-convex-loss-upper",
+          "kind": "corollary",
+          "source": "The Gaussian pressure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-univ-pressure",
+          "role": "universality-at-fixed-temperature",
+          "label": "theorem m2-thm-univ-pressure",
+          "fullLabel": "theorem m2-thm-univ-pressure",
+          "kind": "theorem",
+          "source": "Universality at fixed temperature",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-univ-residual-variance",
+          "role": "universality-at-fixed-temperature",
+          "label": "lemma m2-lem-univ-residual-variance",
+          "fullLabel": "lemma m2-lem-univ-residual-variance",
+          "kind": "lemma",
+          "source": "Universality at fixed temperature",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-univ-observables",
+          "role": "universality-at-fixed-temperature",
+          "label": "proposition m2-prop-univ-observables",
+          "fullLabel": "proposition m2-prop-univ-observables",
+          "kind": "proposition",
+          "source": "Universality at fixed temperature",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thresh-pressure-energy",
+          "role": "ground-energy-and-the-sharp-satisfiability-threshold",
+          "label": "lemma m2-thresh-pressure-energy",
+          "fullLabel": "lemma m2-thresh-pressure-energy",
+          "kind": "lemma",
+          "source": "Ground energy and the sharp satisfiability threshold",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thresh-large-density",
+          "role": "ground-energy-and-the-sharp-satisfiability-threshold",
+          "label": "lemma m2-thresh-large-density",
+          "fullLabel": "lemma m2-thresh-large-density",
+          "kind": "lemma",
+          "source": "Ground energy and the sharp satisfiability threshold",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thresh-uniform-geometry",
+          "role": "ground-energy-and-the-sharp-satisfiability-threshold",
+          "label": "lemma m2-thresh-uniform-geometry",
+          "fullLabel": "lemma m2-thresh-uniform-geometry",
+          "kind": "lemma",
+          "source": "Ground energy and the sharp satisfiability threshold",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thresh-slab-direction",
+          "role": "ground-energy-and-the-sharp-satisfiability-threshold",
+          "label": "lemma m2-thresh-slab-direction",
+          "fullLabel": "lemma m2-thresh-slab-direction",
+          "kind": "lemma",
+          "source": "Ground energy and the sharp satisfiability threshold",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thresh-repair",
+          "role": "ground-energy-and-the-sharp-satisfiability-threshold",
+          "label": "lemma m2-thresh-repair",
+          "fullLabel": "lemma m2-thresh-repair",
+          "kind": "lemma",
+          "source": "Ground energy and the sharp satisfiability threshold",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thresh-deletion",
+          "role": "ground-energy-and-the-sharp-satisfiability-threshold",
+          "label": "proposition m2-thresh-deletion",
+          "fullLabel": "proposition m2-thresh-deletion",
+          "kind": "proposition",
+          "source": "Ground energy and the sharp satisfiability threshold",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thresh-sharp",
+          "role": "ground-energy-and-the-sharp-satisfiability-threshold",
+          "label": "theorem m2-thresh-sharp",
+          "fullLabel": "theorem m2-thresh-sharp",
+          "kind": "theorem",
+          "source": "Ground energy and the sharp satisfiability threshold",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thresh-ordered-limits",
+          "role": "ground-energy-and-the-sharp-satisfiability-threshold",
+          "label": "corollary m2-thresh-ordered-limits",
+          "fullLabel": "corollary m2-thresh-ordered-limits",
+          "kind": "corollary",
+          "source": "Ground energy and the sharp satisfiability threshold",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-zero-compactness",
+          "role": "zero-temperature-and-mechanical-bounds",
+          "label": "lemma m2-zero-compactness",
+          "fullLabel": "lemma m2-zero-compactness",
+          "kind": "lemma",
+          "source": "Zero temperature and mechanical bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-zero-variational",
+          "role": "zero-temperature-and-mechanical-bounds",
+          "label": "proposition m2-zero-variational",
+          "fullLabel": "proposition m2-zero-variational",
+          "kind": "proposition",
+          "source": "Zero temperature and mechanical bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-zero-endpoint",
+          "role": "zero-temperature-and-mechanical-bounds",
+          "label": "proposition m2-zero-endpoint",
+          "fullLabel": "proposition m2-zero-endpoint",
+          "kind": "proposition",
+          "source": "Zero temperature and mechanical bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-zero-negative-law",
+          "role": "zero-temperature-and-mechanical-bounds",
+          "label": "proposition m2-zero-negative-law",
+          "fullLabel": "proposition m2-zero-negative-law",
+          "kind": "proposition",
+          "source": "Zero temperature and mechanical bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-zero-stability",
+          "role": "zero-temperature-and-mechanical-bounds",
+          "label": "lemma m2-zero-stability",
+          "fullLabel": "lemma m2-zero-stability",
+          "kind": "lemma",
+          "source": "Zero temperature and mechanical bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-zero-mechanical",
+          "role": "zero-temperature-and-mechanical-bounds",
+          "label": "lemma m2-zero-mechanical",
+          "fullLabel": "lemma m2-zero-mechanical",
+          "kind": "lemma",
+          "source": "Zero temperature and mechanical bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-zero-negative-cutoffs",
+          "role": "zero-temperature-and-mechanical-bounds",
+          "label": "lemma m2-zero-negative-cutoffs",
+          "fullLabel": "lemma m2-zero-negative-cutoffs",
+          "kind": "lemma",
+          "source": "Zero temperature and mechanical bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-zero-spectral",
+          "role": "zero-temperature-and-mechanical-bounds",
+          "label": "lemma m2-zero-spectral",
+          "fullLabel": "lemma m2-zero-spectral",
+          "kind": "lemma",
+          "source": "Zero temperature and mechanical bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-zero-normalized-force-cutoff",
+          "role": "zero-temperature-and-mechanical-bounds",
+          "label": "corollary m2-zero-normalized-force-cutoff",
+          "fullLabel": "corollary m2-zero-normalized-force-cutoff",
+          "kind": "corollary",
+          "source": "Zero temperature and mechanical bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-zero-positive-cutoffs",
+          "role": "zero-temperature-and-mechanical-bounds",
+          "label": "proposition m2-zero-positive-cutoffs",
+          "fullLabel": "proposition m2-zero-positive-cutoffs",
+          "kind": "proposition",
+          "source": "Zero temperature and mechanical bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-zero-threshold-characterization",
+          "role": "zero-temperature-and-mechanical-bounds",
+          "label": "corollary m2-zero-threshold-characterization",
+          "fullLabel": "corollary m2-zero-threshold-characterization",
+          "kind": "corollary",
+          "source": "Zero temperature and mechanical bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-crit-duality",
+          "role": "a-convex-critical-problem-and-the-limiting-microscopic-laws",
+          "label": "proposition m2-crit-duality",
+          "fullLabel": "proposition m2-crit-duality",
+          "kind": "proposition",
+          "source": "A convex critical problem and the limiting microscopic laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-crit-convexity",
+          "role": "a-convex-critical-problem-and-the-limiting-microscopic-laws",
+          "label": "lemma m2-crit-convexity",
+          "fullLabel": "lemma m2-crit-convexity",
+          "kind": "lemma",
+          "source": "A convex critical problem and the limiting microscopic laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-crit-unsat-unique",
+          "role": "a-convex-critical-problem-and-the-limiting-microscopic-laws",
+          "label": "corollary m2-crit-unsat-unique",
+          "fullLabel": "corollary m2-crit-unsat-unique",
+          "kind": "corollary",
+          "source": "A convex critical problem and the limiting microscopic laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-crit-compactness",
+          "role": "a-convex-critical-problem-and-the-limiting-microscopic-laws",
+          "label": "proposition m2-crit-compactness",
+          "fullLabel": "proposition m2-crit-compactness",
+          "kind": "proposition",
+          "source": "A convex critical problem and the limiting microscopic laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-crit-pde",
+          "role": "a-convex-critical-problem-and-the-limiting-microscopic-laws",
+          "label": "lemma m2-crit-pde",
+          "fullLabel": "lemma m2-crit-pde",
+          "kind": "lemma",
+          "source": "A convex critical problem and the limiting microscopic laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-crit-unique-critical",
+          "role": "a-convex-critical-problem-and-the-limiting-microscopic-laws",
+          "label": "proposition m2-crit-unique-critical",
+          "fullLabel": "proposition m2-crit-unique-critical",
+          "kind": "proposition",
+          "source": "A convex critical problem and the limiting microscopic laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-crit-kkt",
+          "role": "a-convex-critical-problem-and-the-limiting-microscopic-laws",
+          "label": "lemma m2-crit-kkt",
+          "fullLabel": "lemma m2-crit-kkt",
+          "kind": "lemma",
+          "source": "A convex critical problem and the limiting microscopic laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The free energy of the Ising random perceptron",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-free-energy-of-the-Ising-random-perceptron-September-24-2026/The-free-energy-of-the-Ising-random-perceptron-September-24-2026.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Microscopic jamming in the negative spherical perceptron",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Microscopic-jamming-in-the-negative-spherical-perceptron-September-24-2026/Microscopic-jamming-in-the-negative-spherical-perceptron-September-24-2026.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The spherical perceptron with bi-orthogonally invariant disorder",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-spherical-perceptron-with-bi-orthogonally-invariant-disorder-September-24-2026/The-spherical-perceptron-with-bi-orthogonally-invariant-disorder-September-24-2026.pdf",
+      "kind": "paper"
+    }
+  ]
+}

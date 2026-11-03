@@ -1,0 +1,218 @@
+{
+  "familyNumber": "362",
+  "familyTitle": "Global smoothness for relativistic Vlasov–Maxwell",
+  "manuscripts": [
+    {
+      "id": "Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026",
+      "title": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The signed momentum estimate and its consequence",
+    "Energy and the retarded force",
+    "Occupation of retarded bins",
+    "Direct bounds for the retarded force",
+    "Signed cancellation along the source trajectories",
+    "Direction changes and improved occupation",
+    "Selecting the signed part of the force",
+    "Local theory and continuation for finite-energy fields"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-global",
+      "kind": "theorem",
+      "label": "Every smooth admissible datum generates a unique global classical solution of .…",
+      "statement": "Every smooth admissible datum generates a unique global classical solution of . For every finite T , this solution satisfies \\[ f C^([0,T]^3_x^3_v), E,B C^([0,T]^3_x;^3), \\] and f has compact…",
+      "section": "Introduction",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-prop-increment",
+      "kind": "proposition",
+      "label": "Signed momentum increments",
+      "statement": "[Signed momentum increments] For each smooth admissible datum and finite T_0 , there are constants M,A1 and P_0 with the following property. On every compact classical solution interval [0,t_*] as…",
+      "section": "The signed momentum estimate and its consequence",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-prop-continuation",
+      "kind": "proposition",
+      "label": "Local theory and continuation",
+      "statement": "[Local theory and continuation] Every smooth admissible datum has a unique maximal classical solution. It is smooth on each compact subinterval of its lifespan. If its maximal time T_ is finite and…",
+      "section": "The signed momentum estimate and its consequence",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-ret-energy",
+      "kind": "lemma",
+      "label": "Transport and cone energy",
+      "statement": "[Transport and cone energy] The characteristic flow preserves phase volume and transports f_0 . In particular 0 f\\|f_0\\|_ . Define \\[ U=|E|^2+|B|^2 2 + qf\\,dv, S=E B+ quf\\,dv, H_0=_ ^3 U(0,x)\\,dx. \\]…",
+      "section": "Energy and the retarded force",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-ret-phase-change",
+      "kind": "lemma",
+      "label": "Retarded phase change",
+      "statement": "[Retarded phase change] Away from the cone tip, the map sending (y,v) at time s=t-|x-y| to its initial label is one-to-one, with Jacobian dz=d\\,dy\\,dv, d=1-n u(v)>0. Its image consists, up to the…",
+      "section": "Energy and the retarded force",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-ret-representation",
+      "kind": "proposition",
+      "label": "Retarded field representation",
+      "statement": "[Retarded field representation] Let E^ fr ,B^ fr be the homogeneous wave solutions with data \\[ (E^ fr ,_tE^ fr )|_ t=0 =(E_0, B_0), (B^ fr ,_tB^ fr )|_ t=0 =(B_0,- E_0). \\] For t>0 , define initial…",
+      "section": "Energy and the retarded force",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-ret-direct-bounds",
+      "kind": "lemma",
+      "label": "Pointwise force bounds",
+      "statement": "[Pointwise force bounds] Let ,>0 satisfy ^2 d and ^2 D , with fixed comparison constants. The transport kernel splits into two terms, according to the normal and tangential parts of n-u , bounded by…",
+      "section": "Energy and the retarded force",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-ret-receiver-time",
+      "kind": "lemma",
+      "label": "Source time along a receiver",
+      "statement": "[Source time along a receiver] Along a retarded source label satisfying t=s+|X(t)-Y(s,z)| away from collisions, dt ds = dD, ds\\,f_0(z)\\,dz=D\\,dt\\,f(t-r,y,v)\\,dy\\,dv. For f_0(z)dz -almost every label…",
+      "section": "Energy and the retarded force",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-occ-crude-lemma",
+      "kind": "lemma",
+      "label": "Crude occupation bounds",
+      "statement": "[Crude occupation bounds] For every bin and every allowed set of receiver times, M& C (I,h)p, \\\\ M& C I ^2 ^2 .",
+      "section": "Occupation of retarded bins",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-occ-cell-lemma",
+      "kind": "lemma",
+      "label": "Occupation on stable cells",
+      "statement": "[Occupation on stable cells] In every actual bin, M Chk_1 p (1,I/,h/).",
+      "section": "Occupation of retarded bins",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-occ-refined-proposition",
+      "kind": "proposition",
+      "label": "Baseline occupation with a joint energy budget",
+      "statement": "[Baseline occupation with a joint energy budget] Suppose h I , excluding only deficit bins with h . Then M Chk_1 p (1+ I E), E= E_ p ,&small sector,\\\\ 1,&remaining sector. Consequently, with R=1+I/ E…",
+      "section": "Occupation of retarded bins",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-dir-direct",
+      "kind": "proposition",
+      "label": "Integrated force bounds",
+      "statement": "[Integrated force bounds] Assume the bootstrap . The bounded data term, T_r , T_ , S_b , and the remaining-sector part of S_g have combined integral at most C. The integral of the full force…",
+      "section": "Direct bounds for the retarded force",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-can-identity",
+      "kind": "lemma",
+      "label": "Signed force identity",
+      "statement": "[Signed force identity] At every non-tip point of a retarded branch, K =-(k_0 rd )' +e r^2D^2 (n q_X^2D -a) +n(a_t k_0) rD^2 . Consequently the two nondifferentiated terms, in dt\\,dy\\,dv measure, are…",
+      "section": "Signed cancellation along the source trajectories",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-can-cutoff-cancellation",
+      "kind": "lemma",
+      "label": "Derivatives of a selected sum",
+      "statement": "[Derivatives of a selected sum] Let S be any fixed set of representative indices, all in the small sector, and put =_ j S _j . Selection may depend on the interval and fixed parameters, but not on…",
+      "section": "Signed cancellation along the source trajectories",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-can-weighted-formula",
+      "kind": "proposition",
+      "label": "Weighted signed formula",
+      "statement": "[Weighted signed formula] Let J=[t_1,t_2] lie in a compact classical time interval. Let 01 be Lipschitz on J , vanish at its endpoints, and be extended by zero outside J . Let be a selected sum as in…",
+      "section": "Signed cancellation along the source trajectories",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-ang-direction",
+      "kind": "lemma",
+      "label": "Direction changes",
+      "statement": "[Direction changes] Assume the signed increment bootstrap on [0,] . Let w be a dyad with w P^ 3/5 , and let J be a closed interval of length at most (w/P)^2 on which a supported characteristic…",
+      "section": "Direction changes and improved occupation",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-ang-improved-hit",
+      "kind": "lemma",
+      "label": "Direction-based occupation at intermediate angles",
+      "statement": "[Direction-based occupation at intermediate angles] Assume the signed increment bootstrap on [0,] . Let a small-sector bin satisfy p,w P^ 7/10 , j^ -49/100 j^ -4/25 (j=p,w). Let the eligible receiver…",
+      "section": "Direction changes and improved occupation",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-sel-weight-sum",
+      "kind": "lemma",
+      "label": "The sum of W over all small-sector indices is bounded by a constant depending…",
+      "statement": "The sum of W over all small-sector indices is bounded by a constant depending only on and the fixed decomposition. The unselected small-sector good-field terms have total integral at most CP I .",
+      "section": "Selecting the signed part of the force",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-sel-exponents",
+      "kind": "lemma",
+      "label": "Receiver coefficient on selected bins",
+      "statement": "[Receiver coefficient on selected bins] For fixed M,A , there is a threshold P_*(M,A) such that every selected index with P P_*(M,A) satisfies the exact representative inequality U w^ -1/2 W.",
+      "section": "Selecting the signed part of the force",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-sel-spatial-sum",
+      "kind": "lemma",
+      "label": "The total spatial-cutoff error is at most C B(I,w) .",
+      "statement": "The total spatial-cutoff error is at most C B(I,w) .",
+      "section": "Selecting the signed part of the force",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-sel-time-weight",
+      "kind": "lemma",
+      "label": "The total time-weight derivative is at most C_ B(I,w) .",
+      "statement": "The total time-weight derivative is at most C_ B(I,w) .",
+      "section": "Selecting the signed part of the force",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-sel-bulk-impulse",
+      "kind": "proposition",
+      "label": "For the weight above and P P_*(M,A) , |_J(t)K(t)\\,dt| C_. The constant C_ is…",
+      "statement": "For the weight above and P P_*(M,A) , |_J(t)K(t)\\,dt| C_. The constant C_ is independent of M,A .",
+      "section": "Selecting the signed part of the force",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-cont-exterior",
+      "kind": "lemma",
+      "label": "Exterior comparison",
+      "statement": "[Exterior comparison] Suppose that a C^1 solution exists on [0,S] , that f_0 is compactly supported as above, and that F(0) H^k(^3) for every integer k . Then the fields belong to C([0,S];L^2) and…",
+      "section": "Local theory and continuation for finite-energy fields",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    },
+    {
+      "id": "m1-cont-vacuum",
+      "kind": "lemma",
+      "label": "Smooth finite-energy vacuum fields",
+      "statement": "[Smooth finite-energy vacuum fields] Let D_E,D_B C_b^(^3) L^2(^3) be divergence-free. There is a global smooth vacuum Maxwell solution on [0,) with these data, continuous into L^2 , whose spatial…",
+      "section": "Local theory and continuation for finite-energy fields",
+      "manuscript": "Global classical solutions of the three-dimensional relativistic Vlasov–Maxwell system"
+    }
+  ],
+  "edges": []
+}

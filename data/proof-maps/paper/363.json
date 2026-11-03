@@ -1,0 +1,684 @@
+{
+  "familyNumber": "363",
+  "familyTitle": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation",
+  "manuscripts": [
+    {
+      "id": "Nonuniqueness-with-local-conservation-for-the-hard-sphere-Boltzmann-equation-October-5-2026",
+      "title": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nonuniqueness-with-local-conservation-for-the-hard-sphere-Boltzmann-equation-October-5-2026/paper.pdf"
+    },
+    {
+      "id": "Nonuniqueness-for-the-periodic-hard-sphere-Boltzmann-equation-September-23-2026",
+      "title": "Nonuniqueness for the periodic hard-sphere Boltzmann equation",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Nonuniqueness-for-the-periodic-hard-sphere-Boltzmann-equation-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Collision kernels and a velocity majorant",
+    "The datum and the finite colored evolutions",
+    "Cold estimates up to the retirement times",
+    "Selection and continuation on the initial time interval",
+    "A uniform global bound for the finite evolutions",
+    "Global limits and local conservation",
+    "The cap dilation and its linear limit",
+    "A cap event produces a nonzero limit",
+    "Branching growth and the dilated horizon",
+    "Separation of two global solutions",
+    "Cold jets and uniform color estimates",
+    "Finite approximations and cap selection",
+    "Fixed-horizon limits and admissibility"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There exist \\(R<\\) and a nonnegative datum \\(F_0\\) with \\[ _vF_0 B_R(0), _…",
+      "statement": "There exist \\(R<\\) and a nonnegative datum \\(F_0\\) with \\[ _vF_0 B_R(0), _ F_0(1+|v|^2+| F_0|) x v<, \\] for which has two global entropy solutions with local conservation in the sense of Definition~…",
+      "section": "Introduction",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-lem-carleman",
+      "kind": "lemma",
+      "label": "Collision geometry",
+      "statement": "[Collision geometry] For the normalization in , the symmetric bilinear gain is P(c,h)(v) =2_ ^3 c(p)\\, p _ ^3 ((v-p)(-v))h()\\,. For fixed p v , the inner delta denotes surface measure on the plane…",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-ker-geometric-slice",
+      "kind": "lemma",
+      "label": "Transverse averaging and axial slices",
+      "statement": "[Transverse averaging and axial slices] Let be a probability mixture of the measures U_d , d>0 , and _0 , and let be any axial probability measure. No bound on its density or its support is required.…",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-lem-sheet-bound",
+      "kind": "lemma",
+      "label": "Uniform sheet gain bound",
+      "statement": "[Uniform sheet gain bound] For every L< there is C_ q,m,L < such that P(c,H)(v) C_ q,m,L H(v) for almost every v, c S_L. More quantitatively, for R1 , K_c(v; R<|p|+|-v|2R) C_ q,m,L R^2e^ -cR^2 ,…",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-lem-kernel-tightness",
+      "kind": "lemma",
+      "label": "Uniform tightness and large-output decay",
+      "statement": "[Uniform tightness and large-output decay] Fix 1 L< . Uniformly for c S_L and outgoing velocities off the axis, the tails in |p|+|-v| are negligible: _ R _ c S_L _v K_c(v;|p|+|-v|>R)=0. Moreover, _ M…",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-ker-parameter-sheets",
+      "kind": "lemma",
+      "label": "Gaussian parameter tails",
+      "statement": "[Gaussian parameter tails] Let a measure in parameters w=( w,w_3)^2 have density j satisfying \\[ 0 j(w) C_0^ -3/2 e^ -|w|^2 . \\] Let its velocity image be given by p=d w, p_3=(w_3), 0 d1 16 , |(a)|…",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-lem-hot-bound",
+      "kind": "lemma",
+      "label": "Quadratic gain bound",
+      "statement": "[Quadratic gain bound] There is a constant C_ q,m such that P(H,H) C_ q,m H almost everywhere. In fact the proof below works for every m>5 .",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-lem-gain-small-mass",
+      "kind": "lemma",
+      "label": "Gain estimate from small mass",
+      "statement": "[Gain estimate from small mass] For each 0 B< and >0 there is a finite constant C_ B, such that every measurable density j with 0 j BH satisfies P(H,j)(v) H(v) (+C_ B, _ ^3 j(p)\\, p) for almost every…",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-con-lattice",
+      "kind": "lemma",
+      "label": "Separation from the axis",
+      "statement": "[Separation from the axis] There is a numerical constant \\(c>0\\) such that | n|c 1+|n| (n\\ 0\\ ).",
+      "section": "The datum and the finite colored evolutions",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-con-datum",
+      "kind": "lemma",
+      "label": "Datum bounds and approximation",
+      "statement": "[Datum bounds and approximation] The density \\(F_0\\) is nonnegative, has bounded velocity support, and satisfies \\[ F_0(1+|v|^2+| F_0|) x v<. \\] Its truncations with \\(j N\\), with or without a seed ,…",
+      "section": "The datum and the finite colored evolutions",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-con-finite-evolution",
+      "kind": "proposition",
+      "label": "Finite evolution and its identities",
+      "statement": "[Finite evolution and its identities] For fixed \\(N,b,T,\\), the colored equations have a unique nonnegative local mild solution with bounded total \\(H\\)-norm. It continues while that norm remains…",
+      "section": "The datum and the finite colored evolutions",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-cold-geometry",
+      "kind": "lemma",
+      "label": "Disjointness before retirement",
+      "statement": "[Disjointness before retirement] For sufficiently small \\(s_0\\), the sets \\( O_i(t)\\) for active labels are pairwise disjoint in the periodic lift. More precisely, \\( O_i(t) O_ i' (t)=\\) for distinct…",
+      "section": "Cold estimates up to the retirement times",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-cold-barrier",
+      "kind": "lemma",
+      "label": "Barrier estimates",
+      "statement": "[Barrier estimates] A fixed sufficiently large \\(C_m\\) gives, for \\(0 t L_s\\), f_i& m_i, m_i 1 L_s (1+78| |^2 d_s^2 )m_i, \\\\ P(m_i,m_i)&=m_i_ m_i C K s (d_s+||)m_i. The differential inequality holds…",
+      "section": "Cold estimates up to the retirement times",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-cold-control",
+      "kind": "proposition",
+      "label": "Control of every active color",
+      "statement": "[Control of every active color] There is a fixed constant \\(C_*\\) such that, with \\[ _s=C_*L_sd_s/s, U_i=f_i+_s m_i, \\] and sufficiently small \\(s_0\\), every finite colored evolution obeys 0…",
+      "section": "Cold estimates up to the retirement times",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-cold-core-amplitude",
+      "kind": "lemma",
+      "label": "Core formula and sheet amplitudes",
+      "statement": "[Core formula and sheet amplitudes] At a fixed \\((t,x)\\), the velocity measure \\(f_i(t,x,p) p\\) is the pushforward of K S( (z_c-tp_3)/s) s+t S((z_c-tp_3)/s) \\,J(w) w, p=d_s w,…",
+      "section": "Cold estimates up to the retirement times",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-cold-nonmain",
+      "kind": "lemma",
+      "label": "Nonmain tails",
+      "statement": "[Nonmain tails] There is a function \\(_0(s_0)0\\) as \\(s_00\\) such that, uniformly at all times of existence, _ i\\ active\\ O_i(t) U_i(t,x,v) _0(s_0)e^ -4|v|^2 . For \\(0<t1\\), and any fixed \\(A,B>0\\),…",
+      "section": "Cold estimates up to the retirement times",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-cold-retirement-size",
+      "kind": "lemma",
+      "label": "Size at retirement and volume of active tubes",
+      "statement": "[Size at retirement and volume of active tubes] For some fixed constants \\(C,C'>0\\), \\|_ i:\\,s_i=s U_i(L_s)\\|_H C s^ -C' . Moreover, uniformly over the active label sets and all times, | O(t)|_ j1 C…",
+      "section": "Cold estimates up to the retirement times",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-early-bath",
+      "kind": "lemma",
+      "label": "Bath barrier",
+      "statement": "[Bath barrier] There are t_1(0,1/32] , '>4 , and constants C,c>0 , independent of , R_ , and s_0 , such that every finite evolution of satisfies, on its interval of existence, 0 u(t,x,v) C e^ -'|v|^2…",
+      "section": "Selection and continuation on the initial time interval",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-early-source-estimates",
+      "kind": "lemma",
+      "label": "Source estimates",
+      "statement": "[Source estimates] For sufficiently small s_0 depending on , every finite evolution satisfies P(c+u,H)C t+s_N H, 0 S C_ A, t^ A-1 H, 0<t t_1, on its interval of existence, for every fixed A>0 . Here…",
+      "section": "Selection and continuation on the initial time interval",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-early-cap-selection",
+      "kind": "proposition",
+      "label": "Cap selection",
+      "statement": "[Cap selection] For fixed >0 , there are s_0,T_0>0 , uniform in N and the collision cutoff, with the following property. For each 0<s_0 s_0 , each 0<T T_0 , and each finite approximation, a seed…",
+      "section": "Selection and continuation on the initial time interval",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-early-path-source",
+      "kind": "lemma",
+      "label": "Small source along free paths",
+      "statement": "[Small source along free paths] Fix 0<t_b<t_1 . There is a function E_ t_b (s_0) tending to zero as s_00 such that, for every finite evolution and every terminal time t in its interval of existence,…",
+      "section": "Selection and continuation on the initial time interval",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-early-continuation",
+      "kind": "proposition",
+      "label": "Uniform early continuation",
+      "statement": "[Uniform early continuation] Fix >0 and (0,1) . There are s_0>0 and T_0(0,t_1) , depending on and and on the fixed jet parameters, such that for every 0<s_0 s_0 , every finite approximation, and…",
+      "section": "Selection and continuation on the initial time interval",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-global-flight-average",
+      "kind": "lemma",
+      "label": "Averaging along free flights",
+      "statement": "[Averaging along free flights] Let A:[0,)(^3/) For a fixed bounded velocity set V and >0 , _V A_s(x- v) v C_ V, a_* (), uniformly in x,s, . If A_* is fixed, the following quantities tend to zero as…",
+      "section": "A uniform global bound for the finite evolutions",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-global-frequency",
+      "kind": "lemma",
+      "label": "A collision frequency independent of the bootstrap size",
+      "statement": "[A collision frequency independent of the bootstrap size] There is a constant >0 , depending only on the fixed Maxwellian and t_1 , with the following property. For each fixed B>B_0+2 , if _E is…",
+      "section": "A uniform global bound for the finite evolutions",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-global-gain",
+      "kind": "lemma",
+      "label": "Uniform nonlinear gain",
+      "statement": "[Uniform nonlinear gain] Let B>B_0+2 be fixed and suppose holds on an interval beginning at t_1 . After taking _E , , and s_0 sufficiently small depending on B , one has on that interval P^b(w,w)…",
+      "section": "A uniform global bound for the finite evolutions",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-prop-global-control",
+      "kind": "proposition",
+      "label": "Uniform global continuation",
+      "statement": "[Uniform global continuation] The construction parameters can be fixed so that every dormant finite evolution and every cap solution with 0<T T_0 continues globally. There are constants B< and >0 ,…",
+      "section": "A uniform global bound for the finite evolutions",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-prop-global-limits",
+      "kind": "proposition",
+      "label": "Fix the construction parameters supplied by Proposition~ , and let b_N . Either…",
+      "statement": "Fix the construction parameters supplied by Proposition~ , and let b_N . Either the dormant family, or a family of cap solutions at one fixed horizon T(0,T_0] , has a subsequence of total densities…",
+      "section": "Global limits and local conservation",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-comp-averaging",
+      "kind": "lemma",
+      "label": "Let f_n,g_n be locally uniformly integrable in L^1 on an open region of time,…",
+      "statement": "Let f_n,g_n be locally uniformly integrable in L^1 on an open region of time, space, and velocity, and suppose that (_t+v_x)f_n=g_n there in distributions. For every smooth compactly supported…",
+      "section": "Global limits and local conservation",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-prop-blowup-limit",
+      "kind": "proposition",
+      "label": "Every sequence has a subsequence for which \\(h_ r_N g\\) in local spacetime…",
+      "statement": "Every sequence has a subsequence for which \\(h_ r_N g\\) in local spacetime \\(L^1\\) on \\((0,U)^3_x^3_v\\), where 0 g(t,x,v)(t+l)H(v), g=2P(B,g)-g_B. Here \\(B\\) is ; its gain and loss are defined by…",
+      "section": "The cap dilation and its linear limit",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-dil-free-core-comparison",
+      "kind": "lemma",
+      "label": "For all sufficiently large \\(N\\), define the velocity measure \\[ A_N(t,x, p)…",
+      "statement": "For all sufficiently large \\(N\\), define the velocity measure \\[ A_N(t,x, p) =r_N_ i:\\,j N f_i(r_Nt,r_Nx,p) p, 0 t1. \\] This definition uses free transport of the initial colors and is meaningful…",
+      "section": "The cap dilation and its linear limit",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-prop-nonzero-limit",
+      "kind": "proposition",
+      "label": "Nonvanishing of every cap limit",
+      "statement": "[Nonvanishing of every cap limit] Consider any sequence of cap solutions with horizons \\(T_n0\\), approximation indices \\(N_n\\), and \\(s_ N_n /T_n0\\). Make the rescaling , and pass to any subsequence…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-nc-core-kernels",
+      "kind": "lemma",
+      "label": "Core kernels on the dilated scale",
+      "statement": "[Core kernels on the dilated scale] There are nonnegative velocity measures \\(A_n(t,x, p)\\) and numbers \\(_n0\\) with the following properties. After discarding finitely many terms, the measures…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-nc-endpoint-tightness",
+      "kind": "lemma",
+      "label": "Endpoint and path truncations",
+      "statement": "[Endpoint and path truncations] Fix \\(a>0\\), and let \\(t_n\\). In a five-fold integral \\(( V_n^5F_n)(t_n,x_n,v_n)\\), assume \\(0 F_n2\\). For every prescribed error, one may restrict all \\(|p_i|+|v_i-v_…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-lem-axis-kernel-estimates",
+      "kind": "lemma",
+      "label": "Kernel estimates near the axis",
+      "statement": "[Kernel estimates near the axis] Fix 1 L< . The following conclusions hold uniformly for c S_L and for outgoing velocities off the axis. [label=( *)] For every fixed M,>0 , &_ 0 _ c S_L _ |v| M\\\\0<|…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-nc-characteristic-matching",
+      "kind": "lemma",
+      "label": "Characteristic matching and small scales",
+      "statement": "[Characteristic matching and small scales] On every compact set with \\(t a>0\\), the following statements hold uniformly. [label=( *)] If \\(a t_2 t_1\\), \\(=t_1-t_2\\), and \\(z_2=z_1- w\\), then |w-u_ ,…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-nc-two-axial-gains",
+      "kind": "lemma",
+      "label": "Vanishing of two axial gains",
+      "statement": "[Vanishing of two axial gains] Fix \\(a>0\\). Let \\(t_n\\), and suppose the endpoint positions and velocities are bounded with \\( v_n0\\). Then \\[ ( V_n^2 1)(t_n,x_n,v_n)0. \\] The conclusion continues to…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-nc-plane-parameters",
+      "kind": "lemma",
+      "label": "Redundant plane parameters",
+      "statement": "[Redundant plane parameters] Let \\(n0\\), \\(e=n/|n|\\), and let \\(\\) be a bounded nonnegative function supported in \\([-1,1]\\) with integral one. For every nonnegative measurable \\(F\\), _ n^ F(k) A(k)…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-nc-uniform-pullback",
+      "kind": "lemma",
+      "label": "Uniform pullback estimate",
+      "statement": "[Uniform pullback estimate] Let \\( O^k\\) be open, \\(k d\\), and suppose \\(_n,: O^d\\) satisfy \\(_n\\) in \\(C^1_ loc \\) and \\(rankD=d\\) almost everywhere. Let \\(K O\\) and \\(B^d\\) be compact. Let \\(a_n\\)…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-lem-five-gain-rank",
+      "kind": "lemma",
+      "label": "Five-gain rank and robust pullback",
+      "statement": "[Five-gain rank and robust pullback] Fix a nonaxial endpoint velocity \\(v_0\\), an endpoint \\((t_0,x_0)\\) with \\(t_0>0\\), five positive scales \\(_i\\), and five signs \\(_i\\). Given positive times…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-nc-five-nonaxial-gains",
+      "kind": "lemma",
+      "label": "Vanishing of five nonaxial gains",
+      "statement": "[Vanishing of five nonaxial gains] Suppose \\(_n0\\), the hit endpoints converge after periodic translation, and their limiting velocity is nonaxial. Suppose also that \\(0 f_n2\\) on \\(a t_n\\) and…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-prop-finite-dilated-horizon",
+      "kind": "proposition",
+      "label": "There are fixed choices \\[ K1, 0<2, 0<14, 0<1 \\] with the following property.…",
+      "statement": "There are fixed choices \\[ K1, 0<2, 0<14, 0<1 \\] with the following property. For every allowed geometric mesh with lower endpoint \\(l\\), the only nonnegative density solving on \\(0<t<\\), with…",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-br-positive-histories",
+      "kind": "lemma",
+      "label": "Let \\(0<a<b<\\). Suppose \\(f0\\) solves \\( f=2P( B,f)- f\\) in the local transport…",
+      "statement": "Let \\(0<a<b<\\). Suppose \\(f0\\) solves \\( f=2P( B,f)- f\\) in the local transport sense, both collision terms are locally integrable, and the chosen rate representatives \\(q_\\) are bounded on compact…",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-br-retention",
+      "kind": "lemma",
+      "label": "For every \\(v E\\), \\(p(v)25/26\\). The reference history sum restricted to…",
+      "statement": "For every \\(v E\\), \\(p(v)25/26\\). The reference history sum restricted to velocities in \\(E\\) is represented by a Markov flight with velocity jump rate \\((v)=2p(v)_0(v)\\), jump law \\(J(v,…",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-br-minorization",
+      "kind": "lemma",
+      "label": "There are \\(r_0>0\\) and \\(_0>0\\) such that P_1(v,A)_0|A B(0,r_0)|(v E) for…",
+      "statement": "There are \\(r_0>0\\) and \\(_0>0\\) such that P_1(v,A)_0|A B(0,r_0)|(v E) for every Borel set \\(A E\\). For each \\(>0\\), there is also \\(_>0\\) such that \\[ P_1(v,B(e_1,)\\ |v'|<D\\ )_(v E). \\]",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-br-mixing",
+      "kind": "lemma",
+      "label": "The reference process has a stationary probability law \\(\\) with \\( v(v)=0\\).…",
+      "statement": "The reference process has a stationary probability law \\(\\) with \\( v(v)=0\\). There are \\(C,c>0\\) such that \\[ _ v E \\|P_t(v,)-\\|_ TV Ce^ -ct , _ v E E_v| A^ -1 _0^A V_s s|^2 C A(A1). \\]",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-br-reference-block",
+      "kind": "lemma",
+      "label": "There is a finite \\(L\\) such that, for all \\[ A I_L:=, v E, \\] reference…",
+      "statement": "There is a finite \\(L\\) such that, for all \\[ A I_L:=, v E, \\] reference branching histories with velocities in \\(E\\), final velocity strictly inside \\(E\\), and displacement \\(Z_A\\) satisfying |Z_A-…",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-br-robust-block",
+      "kind": "lemma",
+      "label": "For these fixed \\(,L\\), there are \\(J_ br \\) and \\(_*(0,1/4)\\) with the…",
+      "statement": "For these fixed \\(,L\\), there are \\(J_ br \\) and \\(_*(0,1/4)\\) with the following property. Suppose a measurable medium obeys, throughout every speed-\\(D\\) excursion from a specified starting point…",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-br-block-growth",
+      "kind": "lemma",
+      "label": "Growth in the limiting medium",
+      "statement": "[Growth in the limiting medium] For the parameters just fixed, let \\(a_ br =L/( K)\\). There is a time \\(t_ br >0\\), independent of the mesh and \\(l\\), such that every density satisfying the equation,…",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-br-accessibility",
+      "kind": "lemma",
+      "label": "For the fixed parameters above, let \\(g0\\) solve on \\(0<t<\\) with \\(0…",
+      "statement": "For the fixed parameters above, let \\(g0\\) solve on \\(0<t<\\) with \\(0 g(t+l)H\\), for any allowed mesh and \\(l\\). Then \\(_ B_t g(t,x,v) x v>0\\) at arbitrarily large finite times.",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m1-sep-dormant-vanishing",
+      "kind": "lemma",
+      "label": "On the periodic lift centered at the origin, \\[ F^ d (Tt,Tx,v) T m_T 0 (T0) \\]…",
+      "statement": "On the periodic lift centered at the origin, \\[ F^ d (Tt,Tx,v) T m_T 0 (T0) \\] in local \\(L^1\\) on \\[ V=(0,1)^3_x \\ v^3: v0\\ . \\]",
+      "section": "Separation of two global solutions",
+      "manuscript": "Nonuniqueness with local conservation for the hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There is a nonnegative density \\(F_0\\) on \\(^3^3\\), with bounded velocity…",
+      "statement": "There is a nonnegative density \\(F_0\\) on \\(^3^3\\), with bounded velocity support and \\[ _ ^3^3 F_0(1+|v|^2+| F_0|) x v<, \\] for which the hard-sphere Boltzmann equation has two distinct global…",
+      "section": "Introduction",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-lem-carleman",
+      "kind": "lemma",
+      "label": "Collision geometry",
+      "statement": "[Collision geometry] For the normalization in , the symmetric bilinear gain is P(c,h)(v) =2_ ^3 c(p)\\, p _ ^3 ((v-p)(-v))h()\\,. For fixed p v , the inner delta denotes surface measure on the plane…",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-ker-geometric-slice",
+      "kind": "lemma",
+      "label": "Transverse averaging and axial slices",
+      "statement": "[Transverse averaging and axial slices] Let be a probability mixture of the measures U_d , d>0 , and _0 , and let be any axial probability measure. No bound on its density or its support is required.…",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-lem-sheet-bound",
+      "kind": "lemma",
+      "label": "Uniform sheet gain bound",
+      "statement": "[Uniform sheet gain bound] For every L< there is C_ q,m,L < such that P(c,H)(v) C_ q,m,L H(v) for almost every v, c S_L. More quantitatively, for R1 , K_c(v; R<|p|+|-v|2R) C_ q,m,L R^2e^ -cR^2 ,…",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-lem-kernel-tightness",
+      "kind": "lemma",
+      "label": "Uniform tightness and axis estimates",
+      "statement": "[Uniform tightness and axis estimates] Fix L< . The following conclusions hold uniformly for c S_L and for outgoing velocities off the axis. [label=( *)] The tails in |p|+|-v| are uniformly…",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-ker-parameter-sheets",
+      "kind": "lemma",
+      "label": "Gaussian parameter tails",
+      "statement": "[Gaussian parameter tails] Let a measure in parameters w=( w,w_3)^2 have density j satisfying \\[ 0 j(w) C_0^ -3/2 e^ -|w|^2 . \\] Let its velocity image be given by p=d w, p_3=(w_3), 0 d1 16 , |(a)|…",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-lem-hot-bound",
+      "kind": "lemma",
+      "label": "Quadratic gain bound",
+      "statement": "[Quadratic gain bound] There is a constant C_ q,m such that P(H,H) C_ q,m H almost everywhere. In fact the proof below works for every m>5 .",
+      "section": "Collision kernels and a velocity majorant",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-jet-geometry",
+      "kind": "lemma",
+      "label": "Disjoint enlargements",
+      "statement": "[Disjoint enlargements] For \\(0 t T\\), the sets \\( O_i(t)\\) are pairwise disjoint. Moreover, \\[ E_j^ \\ s_j<|y|<e^ s_j\\ B(0,s_0). \\] At each point of the periodic lift there is therefore at most one…",
+      "section": "Cold jets and uniform color estimates",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-lem-datum",
+      "kind": "lemma",
+      "label": "Integrability of the datum",
+      "statement": "[Integrability of the datum] The datum satisfies \\[ _ F_0(1+|v|^2+| F_0|)\\, x\\, v< . \\] Its truncations \\(F_0^ (N) \\), retaining \\(j N\\), converge to \\(F_0\\) in mass, energy, and relative entropy. In…",
+      "section": "Cold jets and uniform color estimates",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-jet-barrier",
+      "kind": "lemma",
+      "label": "Barrier identities",
+      "statement": "[Barrier identities] The constant \\(C_m\\) can be chosen so that \\(f_i m_i\\) on \\([0, T]\\), uniformly in the label. Moreover, almost everywhere along every free characteristic, m_i (1+78 |w_i|^2/d_…",
+      "section": "Cold jets and uniform color estimates",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-prop-cold-control",
+      "kind": "proposition",
+      "label": "Uniform cold control",
+      "statement": "[Uniform cold control] There is a constant \\(L\\), depending on the fixed parameters, such that after imposing the additional condition Ld_0 s^91, the following statements hold at every time of…",
+      "section": "Cold jets and uniform color estimates",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-jet-survival",
+      "kind": "corollary",
+      "label": "Survival of a cold core under the cap",
+      "statement": "[Survival of a cold core under the cap] Suppose a finite approximation satisfies \\[ 0 h(t,x,v)(t+s_N)H(v) \\] on an initial interval \\([0,T]\\). All conclusions below concern times \\(t\\). For every…",
+      "section": "Cold jets and uniform color estimates",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-prop-finite-cap",
+      "kind": "proposition",
+      "label": "There is a fixed \\(T_0>0\\) such that the following statements hold. [label=(…",
+      "statement": "There is a fixed \\(T_0>0\\) such that the following statements hold. [label=( *)] With \\(=0\\), the finite approximations exist on \\([0,T_0]\\) and satisfy \\(0 h t^2H\\). There is a fixed finite \\(L_0\\)…",
+      "section": "Finite approximations and cap selection",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-prop-admissible-limits",
+      "kind": "proposition",
+      "label": "Fix \\(T(0,T_0]\\). Either the zero-seed approximations of Proposition~ , or any…",
+      "statement": "Fix \\(T(0,T_0]\\). Either the zero-seed approximations of Proposition~ , or any sequence of its cap shots on \\([0,T]\\), has a subsequence whose total densities \\(F_N=c_N+h_N\\) converge weakly in…",
+      "section": "Fixed-horizon limits and admissibility",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-comp-averaging",
+      "kind": "lemma",
+      "label": "Suppose that \\(f_n\\) and \\(g_n\\) are locally uniformly integrable in \\(L^1\\) on…",
+      "statement": "Suppose that \\(f_n\\) and \\(g_n\\) are locally uniformly integrable in \\(L^1\\) on an open time-space-velocity region, and \\((_t+v_x)f_n=g_n\\) there in distributions. Then for every smooth compactly…",
+      "section": "Fixed-horizon limits and admissibility",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-prop-blowup-limit",
+      "kind": "proposition",
+      "label": "Every sequence has a subsequence for which \\(h_ r_N g\\) in local spacetime…",
+      "statement": "Every sequence has a subsequence for which \\(h_ r_N g\\) in local spacetime \\(L^1\\) on \\((0,U)^3_x^3_v\\), where 0 g(t,x,v)(t+l)H(v), g=2P(B,g)-g_B. Here \\(B\\) is ; its gain and loss are defined by…",
+      "section": "The cap dilation and its linear limit",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-prop-nonzero-limit",
+      "kind": "proposition",
+      "label": "Nonvanishing of every cap limit",
+      "statement": "[Nonvanishing of every cap limit] Consider any sequence of cap shots with horizons \\(T_n0\\), approximation indices \\(N_n\\), and \\(s_ N_n /T_n0\\). Make the rescaling , and pass to any subsequence…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-nc-core-kernels",
+      "kind": "lemma",
+      "label": "Core kernels on the dilated scale",
+      "statement": "[Core kernels on the dilated scale] There are nonnegative velocity measures \\(A_n(t,x, p)\\) and numbers \\(_n0\\) with the following properties. After discarding finitely many terms so that \\(r_n T\\),…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-nc-endpoint-tightness",
+      "kind": "lemma",
+      "label": "Endpoint and path truncations",
+      "statement": "[Endpoint and path truncations] Fix \\(a>0\\), and let \\(t_n\\). In a five-fold integral \\(( V_n^5F_n)(t_n,x_n,v_n)\\), assume \\(0 F_n2\\). For every prescribed error, one may restrict all \\(|p_i|+|v_i-v_…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-nc-characteristic-matching",
+      "kind": "lemma",
+      "label": "Characteristic matching and small scales",
+      "statement": "[Characteristic matching and small scales] On every compact set with \\(t a>0\\), the following statements hold uniformly. [label=( *)] If \\(a t_2 t_1\\), \\(=t_1-t_2\\), and \\(z_2=z_1- w\\), then |w-u_ ,…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-nc-two-axial-gains",
+      "kind": "lemma",
+      "label": "Vanishing of two axial gains",
+      "statement": "[Vanishing of two axial gains] Fix \\(a>0\\). Let \\(t_n\\), and suppose the endpoint positions and velocities are bounded with \\( v_n0\\). Then \\[ ( V_n^2 1)(t_n,x_n,v_n)0. \\] The conclusion continues to…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-nc-plane-parameters",
+      "kind": "lemma",
+      "label": "Redundant plane parameters",
+      "statement": "[Redundant plane parameters] Let \\(n0\\), \\(e=n/|n|\\), and let \\(\\) be a bounded nonnegative function supported in \\([-1,1]\\) with integral one. For every nonnegative measurable \\(F\\), _ n^ F(k) A(k)…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-nc-uniform-pullback",
+      "kind": "lemma",
+      "label": "Uniform pullback estimate",
+      "statement": "[Uniform pullback estimate] Let \\( O^k\\) be open, \\(k d\\), and suppose \\(_n,: O^d\\) satisfy \\(_n\\) in \\(C^1_ loc \\) and \\(rankD=d\\) almost everywhere. Let \\(K O\\) and \\(B^d\\) be compact. Let \\(a_n\\)…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-lem-five-gain-rank",
+      "kind": "lemma",
+      "label": "Five-gain rank and robust pullback",
+      "statement": "[Five-gain rank and robust pullback] Fix a nonaxial endpoint velocity \\(v_0\\), an endpoint \\((t_0,x_0)\\) with \\(t_0>0\\), five positive scales \\(_i\\), and five signs \\(_i\\). Given positive times…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-nc-five-nonaxial-gains",
+      "kind": "lemma",
+      "label": "Vanishing of five nonaxial gains",
+      "statement": "[Vanishing of five nonaxial gains] Suppose \\(_n0\\), the hit endpoints converge after periodic translation, and their limiting velocity is nonaxial. Suppose also that \\(0 f_n2\\) on \\(a t_n\\) and…",
+      "section": "A cap event produces a nonzero limit",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-prop-finite-dilated-horizon",
+      "kind": "proposition",
+      "label": "There are fixed positive choices of \\(,,,K\\), with \\(,,\\) small and \\(K\\)…",
+      "statement": "There are fixed positive choices of \\(,,,K\\), with \\(,,\\) small and \\(K\\) large, for which every limit in Propositions~ and~ has \\(U<\\). These parameters can be fixed before the final choices of…",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-br-positive-histories",
+      "kind": "lemma",
+      "label": "Suppose \\(f0\\) solves \\( f=2P( B,f)- f\\) in the local transport sense. On…",
+      "statement": "Suppose \\(f0\\) solves \\( f=2P( B,f)- f\\) in the local transport sense. On bounded positive-time regions where the coefficients and collision terms are integrable, start with any nonnegative portion…",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-br-retention",
+      "kind": "lemma",
+      "label": "For every \\(v E\\), \\(p(v)25/26\\). The reference history sum restricted to…",
+      "statement": "For every \\(v E\\), \\(p(v)25/26\\). The reference history sum restricted to velocities in \\(E\\) is represented by a Markov flight with velocity jump rate \\((v)=2p(v)_0(v)\\), jump law \\(J(v,…",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-br-minorization",
+      "kind": "lemma",
+      "label": "There are \\(r_0>0\\) and \\(_0>0\\) such that P_1(v,A)_0|A B(0,r_0)|(v E) for…",
+      "statement": "There are \\(r_0>0\\) and \\(_0>0\\) such that P_1(v,A)_0|A B(0,r_0)|(v E) for every Borel set \\(A E\\). For each \\(>0\\), there is also \\(_>0\\) such that \\[ P_1(v,B(e_1,)\\ |v'|<D\\ )_(v E). \\]",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    },
+    {
+      "id": "m2-br-mixing",
+      "kind": "lemma",
+      "label": "The reference process has a stationary probability law \\(\\) with \\( v(v)=0\\).…",
+      "statement": "The reference process has a stationary probability law \\(\\) with \\( v(v)=0\\). There are \\(C,c>0\\) such that \\[ _ v E \\|P_t(v,)-\\|_ TV Ce^ -ct , _ v E E_v| A^ -1 _0^A V_s s|^2 C A(A1). \\]",
+      "section": "Branching growth and the dilated horizon",
+      "manuscript": "Nonuniqueness for the periodic hard-sphere Boltzmann equation"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-con-datum",
+      "to": "m1-thm-main",
+      "label": "con:datum",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Take the datum \\(F_0\\) defined in \\eqref{con:datum-equation}. Lemma~\\ref{con:datum} gives its finite mass, energy, and absolute entropy integral, as well as bounded velocity support. For every \\(0<T\\le T"
+    }
+  ]
+}

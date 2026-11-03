@@ -1,0 +1,1016 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "238",
+  "title": "Optimal logarithmic mixing of the Thorp shuffle",
+  "result": {
+    "id": "paper-result",
+    "label": "Optimal logarithmic mixing of the Thorp shuffle",
+    "statement": "Proves that the Thorp shuffle randomizes N=2^d labeled cards in ( N) physical shuffles, settling its optimal mixing order for power-of-two deck sizes. Convergence is in total variation from the worst initial ordering and concerns the entire permutation, not just individual card positions.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-conditional-flow-with-one-sweep-of-memory",
+      "label": "A conditional flow with one sweep of memory",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "why-the-recent-noise-contracts",
+      "label": "Why the recent noise contracts",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-representation-degrees-needed-for-the-lift",
+      "label": "The representation degrees needed for the lift",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-eight-large-marginals-to-the-whole-group",
+      "label": "From eight large marginals to the whole group",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-chain-and-its-elementary-lower-bound",
+      "label": "The chain and its elementary lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "changing-the-position-frame",
+      "label": "Changing the position frame",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "online-observations-and-ordinary-marginals",
+      "label": "Online observations and ordinary marginals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-large-marginals-to-a-finite-degree-sum",
+      "label": "From large marginals to a finite degree sum",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-elementary-bound-on-representation-degrees",
+      "label": "An elementary bound on representation degrees",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "completion-of-the-mixing-bound",
+      "label": "Completion of the mixing bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "fixed-input-laws-and-independent-shears",
+      "label": "Fixed input laws and independent shears",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "estimates-that-average-the-input-labels",
+      "label": "Estimates that average the input labels",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "symmetry-accumulated-between-two-visits-to-a-coordinate",
+      "label": "Symmetry accumulated between two visits to a coordinate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "fourier-amplification-of-partial-permutation-laws",
+      "label": "Fourier amplification of partial permutation laws",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "history-events-and-conditional-estimates",
+      "label": "History events and conditional estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-averaged-application-of-deferred-columns",
+      "label": "An averaged application of deferred columns",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "random-input-domains-and-equivariant-kernels",
+      "label": "Random input domains and equivariant kernels",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "character-smoothing-from-half-deck-information",
+      "label": "Character smoothing from half-deck information",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exact-half-deck-marginals-and-character-amplification",
+      "label": "Exact half-deck marginals and character amplification",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "what-partial-observations-can-determine",
+      "label": "What partial observations can determine",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "degree-sums-common-trimming-and-normalization",
+      "label": "Degree sums, common trimming, and normalization",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-complete-transfer-from-disjoint-coset-systems",
+      "label": "The complete transfer from disjoint coset systems",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Optimal-order mixing of the Thorp shuffle",
+      "title": "Optimal-order mixing of the Thorp shuffle",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-26",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Optimal-order-mixing-of-the-Thorp-shuffle-September-26-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Optimal-order mixing of the Thorp shuffle.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-mixing",
+          "role": "introduction",
+          "label": "theorem m1-thm-mixing",
+          "fullLabel": "theorem m1-thm-mixing",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-path-cylinder",
+          "role": "a-conditional-flow-with-one-sweep-of-memory",
+          "label": "lemma m1-lem-path-cylinder",
+          "fullLabel": "lemma m1-lem-path-cylinder",
+          "kind": "lemma",
+          "source": "A conditional flow with one sweep of memory",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-energy-memory",
+          "role": "a-conditional-flow-with-one-sweep-of-memory",
+          "label": "lemma m1-lem-energy-memory",
+          "fullLabel": "lemma m1-lem-energy-memory",
+          "kind": "lemma",
+          "source": "A conditional flow with one sweep of memory",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sequential-tv",
+          "role": "why-the-recent-noise-contracts",
+          "label": "lemma m1-lem-sequential-tv",
+          "fullLabel": "lemma m1-lem-sequential-tv",
+          "kind": "lemma",
+          "source": "Why the recent noise contracts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-averaged-marginal",
+          "role": "why-the-recent-noise-contracts",
+          "label": "proposition m1-prop-averaged-marginal",
+          "fullLabel": "proposition m1-prop-averaged-marginal",
+          "kind": "proposition",
+          "source": "Why the recent noise contracts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-reciprocal-degrees",
+          "role": "the-representation-degrees-needed-for-the-lift",
+          "label": "lemma m1-lem-reciprocal-degrees",
+          "fullLabel": "lemma m1-lem-reciprocal-degrees",
+          "kind": "lemma",
+          "source": "The representation degrees needed for the lift",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-orbit-lift",
+          "role": "from-eight-large-marginals-to-the-whole-group",
+          "label": "proposition m1-prop-orbit-lift",
+          "fullLabel": "proposition m1-prop-orbit-lift",
+          "kind": "proposition",
+          "source": "From eight large marginals to the whole group",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Random coordinate frames and partial permutation laws",
+      "title": "Random coordinate frames and partial permutation laws",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-26",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Random-coordinate-frames-and-partial-permutation-laws-September-26-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Random coordinate frames and partial permutation laws.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-prop-marginals"
+          ]
+        },
+        {
+          "id": "m2-lem-lower",
+          "role": "the-chain-and-its-elementary-lower-bound",
+          "label": "lemma m2-lem-lower",
+          "fullLabel": "lemma m2-lem-lower",
+          "kind": "lemma",
+          "source": "The chain and its elementary lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-one-card-lower",
+          "role": "the-chain-and-its-elementary-lower-bound",
+          "label": "lemma m2-lem-one-card-lower",
+          "fullLabel": "lemma m2-lem-one-card-lower",
+          "kind": "lemma",
+          "source": "The chain and its elementary lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-frames",
+          "role": "changing-the-position-frame",
+          "label": "lemma m2-lem-frames",
+          "fullLabel": "lemma m2-lem-frames",
+          "kind": "lemma",
+          "source": "Changing the position frame",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-frames-marginals",
+          "role": "changing-the-position-frame",
+          "label": "corollary m2-cor-frames-marginals",
+          "fullLabel": "corollary m2-cor-frames-marginals",
+          "kind": "corollary",
+          "source": "Changing the position frame",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-marginal-averaging",
+          "role": "online-observations-and-ordinary-marginals",
+          "label": "lemma m2-lem-marginal-averaging",
+          "fullLabel": "lemma m2-lem-marginal-averaging",
+          "kind": "lemma",
+          "source": "Online observations and ordinary marginals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-lem-tuple",
+          "role": "online-observations-and-ordinary-marginals",
+          "label": "lemma m2-shear-lem-tuple",
+          "fullLabel": "lemma m2-shear-lem-tuple",
+          "kind": "lemma",
+          "source": "Online observations and ordinary marginals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-marginals",
+          "role": "online-observations-and-ordinary-marginals",
+          "label": "proposition m2-prop-marginals",
+          "fullLabel": "proposition m2-prop-marginals",
+          "kind": "proposition",
+          "source": "Online observations and ordinary marginals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-trim",
+          "role": "from-large-marginals-to-a-finite-degree-sum",
+          "label": "lemma m2-lem-trim",
+          "fullLabel": "lemma m2-lem-trim",
+          "kind": "lemma",
+          "source": "From large marginals to a finite degree sum",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-lift-orbit-sum",
+          "role": "from-large-marginals-to-a-finite-degree-sum",
+          "label": "proposition m2-prop-lift-orbit-sum",
+          "fullLabel": "proposition m2-prop-lift-orbit-sum",
+          "kind": "proposition",
+          "source": "From large marginals to a finite degree sum",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-degrees",
+          "role": "an-elementary-bound-on-representation-degrees",
+          "label": "lemma m2-lem-degrees",
+          "fullLabel": "lemma m2-lem-degrees",
+          "kind": "lemma",
+          "source": "An elementary bound on representation degrees",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-lift",
+          "role": "an-elementary-bound-on-representation-degrees",
+          "label": "corollary m2-prop-lift",
+          "fullLabel": "corollary m2-prop-lift",
+          "kind": "corollary",
+          "source": "An elementary bound on representation degrees",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-plancherel",
+          "role": "completion-of-the-mixing-bound",
+          "label": "lemma m2-lem-plancherel",
+          "fullLabel": "lemma m2-lem-plancherel",
+          "kind": "lemma",
+          "source": "Completion of the mixing bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-fair-sign",
+          "role": "completion-of-the-mixing-bound",
+          "label": "lemma m2-lem-fair-sign",
+          "fullLabel": "lemma m2-lem-fair-sign",
+          "kind": "lemma",
+          "source": "Completion of the mixing bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-concentration",
+          "role": "fixed-input-laws-and-independent-shears",
+          "label": "lemma m2-lem-concentration",
+          "fullLabel": "lemma m2-lem-concentration",
+          "kind": "lemma",
+          "source": "Fixed input laws and independent shears",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-lem-fixed-balance",
+          "role": "fixed-input-laws-and-independent-shears",
+          "label": "lemma m2-shear-lem-fixed-balance",
+          "fullLabel": "lemma m2-shear-lem-fixed-balance",
+          "kind": "lemma",
+          "source": "Fixed input laws and independent shears",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-prop-fixed-marginal",
+          "role": "fixed-input-laws-and-independent-shears",
+          "label": "proposition m2-shear-prop-fixed-marginal",
+          "fullLabel": "proposition m2-shear-prop-fixed-marginal",
+          "kind": "proposition",
+          "source": "Fixed input laws and independent shears",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-lem-keys",
+          "role": "fixed-input-laws-and-independent-shears",
+          "label": "lemma m2-shear-lem-keys",
+          "fullLabel": "lemma m2-shear-lem-keys",
+          "kind": "lemma",
+          "source": "Fixed input laws and independent shears",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-prop-reservoir",
+          "role": "estimates-that-average-the-input-labels",
+          "label": "proposition m2-shear-prop-reservoir",
+          "fullLabel": "proposition m2-shear-prop-reservoir",
+          "kind": "proposition",
+          "source": "Estimates that average the input labels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lifts-averaged-tuples",
+          "role": "estimates-that-average-the-input-labels",
+          "label": "lemma m2-lifts-averaged-tuples",
+          "fullLabel": "lemma m2-lifts-averaged-tuples",
+          "kind": "lemma",
+          "source": "Estimates that average the input labels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lifts-tuple-constants",
+          "role": "estimates-that-average-the-input-labels",
+          "label": "corollary m2-lifts-tuple-constants",
+          "fullLabel": "corollary m2-lifts-tuple-constants",
+          "kind": "corollary",
+          "source": "Estimates that average the input labels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-prop-random-tuple",
+          "role": "estimates-that-average-the-input-labels",
+          "label": "proposition m2-shear-prop-random-tuple",
+          "fullLabel": "proposition m2-shear-prop-random-tuple",
+          "kind": "proposition",
+          "source": "Estimates that average the input labels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-average-law",
+          "role": "estimates-that-average-the-input-labels",
+          "label": "lemma m2-frames-average-law",
+          "fullLabel": "lemma m2-frames-average-law",
+          "kind": "lemma",
+          "source": "Estimates that average the input labels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-lem-delayed-symmetry",
+          "role": "symmetry-accumulated-between-two-visits-to-a-coordinate",
+          "label": "lemma m2-shear-lem-delayed-symmetry",
+          "fullLabel": "lemma m2-shear-lem-delayed-symmetry",
+          "kind": "lemma",
+          "source": "Symmetry accumulated between two visits to a coordinate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-prop-fourier-inputs",
+          "role": "fourier-amplification-of-partial-permutation-laws",
+          "label": "proposition m2-shear-prop-fourier-inputs",
+          "fullLabel": "proposition m2-shear-prop-fourier-inputs",
+          "kind": "proposition",
+          "source": "Fourier amplification of partial permutation laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-prop-disjoint-transfer",
+          "role": "fourier-amplification-of-partial-permutation-laws",
+          "label": "proposition m2-shear-prop-disjoint-transfer",
+          "fullLabel": "proposition m2-shear-prop-disjoint-transfer",
+          "kind": "proposition",
+          "source": "Fourier amplification of partial permutation laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-subprobability-fourier",
+          "role": "fourier-amplification-of-partial-permutation-laws",
+          "label": "lemma m2-lem-subprobability-fourier",
+          "fullLabel": "lemma m2-lem-subprobability-fourier",
+          "kind": "lemma",
+          "source": "Fourier amplification of partial permutation laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-cor-512",
+          "role": "fourier-amplification-of-partial-permutation-laws",
+          "label": "corollary m2-shear-cor-512",
+          "fullLabel": "corollary m2-shear-cor-512",
+          "kind": "corollary",
+          "source": "Fourier amplification of partial permutation laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-thm-2048",
+          "role": "fourier-amplification-of-partial-permutation-laws",
+          "label": "theorem m2-shear-thm-2048",
+          "fullLabel": "theorem m2-shear-thm-2048",
+          "kind": "theorem",
+          "source": "Fourier amplification of partial permutation laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-average-marginals",
+          "role": "fourier-amplification-of-partial-permutation-laws",
+          "label": "proposition m2-frames-average-marginals",
+          "fullLabel": "proposition m2-frames-average-marginals",
+          "kind": "proposition",
+          "source": "Fourier amplification of partial permutation laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-thm-32-block",
+          "role": "fourier-amplification-of-partial-permutation-laws",
+          "label": "theorem m2-shear-thm-32-block",
+          "fullLabel": "theorem m2-shear-thm-32-block",
+          "kind": "theorem",
+          "source": "Fourier amplification of partial permutation laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-thm-4096",
+          "role": "fourier-amplification-of-partial-permutation-laws",
+          "label": "theorem m2-shear-thm-4096",
+          "fullLabel": "theorem m2-shear-thm-4096",
+          "kind": "theorem",
+          "source": "Fourier amplification of partial permutation laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shear-cor-order",
+          "role": "fourier-amplification-of-partial-permutation-laws",
+          "label": "corollary m2-shear-cor-order",
+          "fullLabel": "corollary m2-shear-cor-order",
+          "kind": "corollary",
+          "source": "Fourier amplification of partial permutation laws",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-matching-invariance",
+          "role": "history-events-and-conditional-estimates",
+          "label": "lemma m2-frames-matching-invariance",
+          "fullLabel": "lemma m2-frames-matching-invariance",
+          "kind": "lemma",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-holes",
+          "role": "history-events-and-conditional-estimates",
+          "label": "lemma m2-frames-holes",
+          "fullLabel": "lemma m2-frames-holes",
+          "kind": "lemma",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-conditional-interface",
+          "role": "history-events-and-conditional-estimates",
+          "label": "corollary m2-frames-conditional-interface",
+          "fullLabel": "corollary m2-frames-conditional-interface",
+          "kind": "corollary",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-cross-energy",
+          "role": "history-events-and-conditional-estimates",
+          "label": "lemma m2-frames-cross-energy",
+          "fullLabel": "lemma m2-frames-cross-energy",
+          "kind": "lemma",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-crossing-balance",
+          "role": "history-events-and-conditional-estimates",
+          "label": "lemma m2-frames-crossing-balance",
+          "fullLabel": "lemma m2-frames-crossing-balance",
+          "kind": "lemma",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-backward-removal",
+          "role": "history-events-and-conditional-estimates",
+          "label": "lemma m2-frames-backward-removal",
+          "fullLabel": "lemma m2-frames-backward-removal",
+          "kind": "lemma",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-pointwise-applications",
+          "role": "history-events-and-conditional-estimates",
+          "label": "proposition m2-frames-pointwise-applications",
+          "fullLabel": "proposition m2-frames-pointwise-applications",
+          "kind": "proposition",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-stopped-marginals",
+          "role": "history-events-and-conditional-estimates",
+          "label": "proposition m2-frames-stopped-marginals",
+          "fullLabel": "proposition m2-frames-stopped-marginals",
+          "kind": "proposition",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-pruning-application",
+          "role": "history-events-and-conditional-estimates",
+          "label": "proposition m2-frames-pruning-application",
+          "fullLabel": "proposition m2-frames-pruning-application",
+          "kind": "proposition",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-reference-rows",
+          "role": "history-events-and-conditional-estimates",
+          "label": "lemma m2-frames-reference-rows",
+          "fullLabel": "lemma m2-frames-reference-rows",
+          "kind": "lemma",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-typical-history",
+          "role": "history-events-and-conditional-estimates",
+          "label": "lemma m2-frames-typical-history",
+          "fullLabel": "lemma m2-frames-typical-history",
+          "kind": "lemma",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-shadow-entropy",
+          "role": "history-events-and-conditional-estimates",
+          "label": "lemma m2-frames-shadow-entropy",
+          "fullLabel": "lemma m2-frames-shadow-entropy",
+          "kind": "lemma",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-entropy-tail",
+          "role": "history-events-and-conditional-estimates",
+          "label": "proposition m2-frames-entropy-tail",
+          "fullLabel": "proposition m2-frames-entropy-tail",
+          "kind": "proposition",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-entropy-application",
+          "role": "history-events-and-conditional-estimates",
+          "label": "proposition m2-frames-entropy-application",
+          "fullLabel": "proposition m2-frames-entropy-application",
+          "kind": "proposition",
+          "source": "History events and conditional estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-aux-theorem",
+          "role": "an-averaged-application-of-deferred-columns",
+          "label": "theorem m2-frames-aux-theorem",
+          "fullLabel": "theorem m2-frames-aux-theorem",
+          "kind": "theorem",
+          "source": "An averaged application of deferred columns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-aux-directions",
+          "role": "an-averaged-application-of-deferred-columns",
+          "label": "lemma m2-frames-aux-directions",
+          "fullLabel": "lemma m2-frames-aux-directions",
+          "kind": "lemma",
+          "source": "An averaged application of deferred columns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-aux-energy",
+          "role": "an-averaged-application-of-deferred-columns",
+          "label": "lemma m2-frames-aux-energy",
+          "fullLabel": "lemma m2-frames-aux-energy",
+          "kind": "lemma",
+          "source": "An averaged application of deferred columns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-aux-marginal",
+          "role": "an-averaged-application-of-deferred-columns",
+          "label": "proposition m2-frames-aux-marginal",
+          "fullLabel": "proposition m2-frames-aux-marginal",
+          "kind": "proposition",
+          "source": "An averaged application of deferred columns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-aux-orbit-lift",
+          "role": "an-averaged-application-of-deferred-columns",
+          "label": "lemma m2-frames-aux-orbit-lift",
+          "fullLabel": "lemma m2-frames-aux-orbit-lift",
+          "kind": "lemma",
+          "source": "An averaged application of deferred columns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lifts-random-four-blocks",
+          "role": "random-input-domains-and-equivariant-kernels",
+          "label": "proposition m2-lifts-random-four-blocks",
+          "fullLabel": "proposition m2-lifts-random-four-blocks",
+          "kind": "proposition",
+          "source": "Random input domains and equivariant kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lifts-sixteen-theorem",
+          "role": "random-input-domains-and-equivariant-kernels",
+          "label": "theorem m2-lifts-sixteen-theorem",
+          "fullLabel": "theorem m2-lifts-sixteen-theorem",
+          "kind": "theorem",
+          "source": "Random input domains and equivariant kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lifts-neumann-theorem",
+          "role": "random-input-domains-and-equivariant-kernels",
+          "label": "proposition m2-lifts-neumann-theorem",
+          "fullLabel": "proposition m2-lifts-neumann-theorem",
+          "kind": "proposition",
+          "source": "Random input domains and equivariant kernels",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-char-main",
+          "role": "character-smoothing-from-half-deck-information",
+          "label": "theorem m2-frames-char-main",
+          "fullLabel": "theorem m2-frames-char-main",
+          "kind": "theorem",
+          "source": "Character smoothing from half-deck information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-char-half-list",
+          "role": "character-smoothing-from-half-deck-information",
+          "label": "lemma m2-frames-char-half-list",
+          "fullLabel": "lemma m2-frames-char-half-list",
+          "kind": "lemma",
+          "source": "Character smoothing from half-deck information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-char-one-pass",
+          "role": "character-smoothing-from-half-deck-information",
+          "label": "lemma m2-frames-char-one-pass",
+          "fullLabel": "lemma m2-frames-char-one-pass",
+          "kind": "lemma",
+          "source": "Character smoothing from half-deck information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-char-sweep-trace",
+          "role": "character-smoothing-from-half-deck-information",
+          "label": "lemma m2-char-sweep-trace",
+          "fullLabel": "lemma m2-char-sweep-trace",
+          "kind": "lemma",
+          "source": "Character smoothing from half-deck information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-char-minimum-degree",
+          "role": "character-smoothing-from-half-deck-information",
+          "label": "lemma m2-frames-char-minimum-degree",
+          "fullLabel": "lemma m2-frames-char-minimum-degree",
+          "kind": "lemma",
+          "source": "Character smoothing from half-deck information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-frames-char-block-norm",
+          "role": "character-smoothing-from-half-deck-information",
+          "label": "proposition m2-frames-char-block-norm",
+          "fullLabel": "proposition m2-frames-char-block-norm",
+          "kind": "proposition",
+          "source": "Character smoothing from half-deck information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-char-main",
+          "role": "exact-half-deck-marginals-and-character-amplification",
+          "label": "theorem m2-char-main",
+          "fullLabel": "theorem m2-char-main",
+          "kind": "theorem",
+          "source": "Exact half-deck marginals and character amplification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-char-repair",
+          "role": "exact-half-deck-marginals-and-character-amplification",
+          "label": "lemma m2-char-repair",
+          "fullLabel": "lemma m2-char-repair",
+          "kind": "lemma",
+          "source": "Exact half-deck marginals and character amplification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "label": "From partial permutation information to Fourier bounds",
+      "title": "From partial permutation information to Fourier bounds",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-26",
+      "pages": 0,
+      "color": "#c98b5c",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/From-partial-permutation-information-to-Fourier-bounds-September-26-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from From partial permutation information to Fourier bounds.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m3-l-main",
+          "role": "what-partial-observations-can-determine",
+          "label": "theorem m3-l-main",
+          "fullLabel": "theorem m3-l-main",
+          "kind": "theorem",
+          "source": "What partial observations can determine",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-l-degree-basic",
+          "role": "degree-sums-common-trimming-and-normalization",
+          "label": "lemma m3-l-degree-basic",
+          "fullLabel": "lemma m3-l-degree-basic",
+          "kind": "lemma",
+          "source": "Degree sums, common trimming, and normalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-l-partition-selection",
+          "role": "degree-sums-common-trimming-and-normalization",
+          "label": "lemma m3-l-partition-selection",
+          "fullLabel": "lemma m3-l-partition-selection",
+          "kind": "lemma",
+          "source": "Degree sums, common trimming, and normalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-l-trim",
+          "role": "degree-sums-common-trimming-and-normalization",
+          "label": "lemma m3-l-trim",
+          "fullLabel": "lemma m3-l-trim",
+          "kind": "lemma",
+          "source": "Degree sums, common trimming, and normalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-l-plancherel",
+          "role": "degree-sums-common-trimming-and-normalization",
+          "label": "lemma m3-l-plancherel",
+          "fullLabel": "lemma m3-l-plancherel",
+          "kind": "lemma",
+          "source": "Degree sums, common trimming, and normalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-l-amplification",
+          "role": "degree-sums-common-trimming-and-normalization",
+          "label": "proposition m3-l-amplification",
+          "fullLabel": "proposition m3-l-amplification",
+          "kind": "proposition",
+          "source": "Degree sums, common trimming, and normalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-l-single-orbit",
+          "role": "the-complete-transfer-from-disjoint-coset-systems",
+          "label": "lemma m3-l-single-orbit",
+          "fullLabel": "lemma m3-l-single-orbit",
+          "kind": "lemma",
+          "source": "The complete transfer from disjoint coset systems",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-l-orbit-span",
+          "role": "the-complete-transfer-from-disjoint-coset-systems",
+          "label": "proposition m3-l-orbit-span",
+          "fullLabel": "proposition m3-l-orbit-span",
+          "kind": "proposition",
+          "source": "The complete transfer from disjoint coset systems",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-l-orbit-completion",
+          "role": "the-complete-transfer-from-disjoint-coset-systems",
+          "label": "corollary m3-l-orbit-completion",
+          "fullLabel": "corollary m3-l-orbit-completion",
+          "kind": "corollary",
+          "source": "The complete transfer from disjoint coset systems",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-l-central-isotypic",
+          "role": "the-complete-transfer-from-disjoint-coset-systems",
+          "label": "lemma m3-l-central-isotypic",
+          "fullLabel": "lemma m3-l-central-isotypic",
+          "kind": "lemma",
+          "source": "The complete transfer from disjoint coset systems",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Optimal-order mixing of the Thorp shuffle",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Optimal-order-mixing-of-the-Thorp-shuffle-September-26-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Random coordinate frames and partial permutation laws",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Random-coordinate-frames-and-partial-permutation-laws-September-26-2026/main.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "From partial permutation information to Fourier bounds",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/From-partial-permutation-information-to-Fourier-bounds-September-26-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

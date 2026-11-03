@@ -1,0 +1,688 @@
+{
+  "familyNumber": "216",
+  "familyTitle": "Critical and near-critical XY scaling and BKT universality",
+  "manuscripts": [
+    {
+      "id": "The-critical-logarithmic-correction-for-the-planar-XY-model-October-5-2026",
+      "title": "The critical logarithmic correction for the planar XY model",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-critical-logarithmic-correction-for-the-planar-XY-model-October-5-2026/paper.pdf"
+    },
+    {
+      "id": "Critical-Center-Magnetization-in-the-Planar-XY-Model-October-5-2026",
+      "title": "Critical Center Magnetization in the Planar XY Model",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Critical-Center-Magnetization-in-the-Planar-XY-Model-October-5-2026/paper.pdf"
+    },
+    {
+      "id": "The-Critical-Spin-Field-of-the-Planar-XY-Model-October-5-2026",
+      "title": "The Critical Spin Field of the Planar XY Model",
+      "date": "2026-10-05",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Critical-Spin-Field-of-the-Planar-XY-Model-October-5-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Height representation and critical inputs",
+    "Fixed-geometry comparison",
+    "A scale-dependent cutoff and entry",
+    "The critical bulk trajectory",
+    "The center observable",
+    "Height conventions and local map inputs",
+    "Observations, affine Gaussian shapes, and isolation",
+    "Analytic entry with one magnetic insertion",
+    "Finite critical histories and physical readouts",
+    "Joining finite histories and determining the critical trajectory",
+    "The magnetic recursion in two squares",
+    "Terminal integration and the normalization constant",
+    "Free heights and finite comparisons",
+    "Magnetic sectors with holes of positive radius",
+    "Flat pins across a long annulus",
+    "Gluing kernels and stability from a fixed core",
+    "Critical spin correlations",
+    "Laws and moments of the critical field"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a constant \\(B_ XY (0,)\\) such that \\[ C_ b_c (r) =B_ XY \\,r^ -1/4 (…",
+      "statement": "There is a constant \\(B_ XY (0,)\\) such that \\[ C_ b_c (r) =B_ XY \\,r^ -1/4 ( r)^ 1/8 (1+o(1)) (r,\\ r). \\]",
+      "section": "Introduction",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-lem-duality",
+      "kind": "lemma",
+      "label": "Spin--height duality",
+      "statement": "[Spin--height duality] In a free spin box, the two-point correlation is \\(Z_G^/Z_G^0\\) on the dual graph with the exterior face fixed at height zero. One may represent that face by separate exterior…",
+      "section": "Height representation and critical inputs",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-prop-comparisons",
+      "kind": "proposition",
+      "label": "Finite affine comparisons",
+      "statement": "[Finite affine comparisons] On every fixed primary graph, the Bessel height law has the following properties. A shifted-to-centered partition ratio is at most one and decreases when the same…",
+      "section": "Height representation and critical inputs",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-prop-height-inputs",
+      "kind": "proposition",
+      "label": "Critical coefficient and mixed limits",
+      "statement": "[Critical coefficient and mixed limits] For the critical parameter in , the Bessel height coefficient of is a=a(b_c)=8. At this parameter the following fixed-geometry statements hold. Let the fixed…",
+      "section": "Height representation and critical inputs",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-geo-comparison",
+      "kind": "proposition",
+      "label": "Comparison with center magnetization",
+      "statement": "[Comparison with center magnetization] For integer sequences \\(n,n'\\) with \\(n'/n d(0,)\\), M_ n' M_n d^ -1/8 . There is a constant \\(c_ shape (0,)\\) such that C_ b_c (r) M_r^2 c_ shape (r,\\ r). Here…",
+      "section": "Fixed-geometry comparison",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-geo-pinned-sector",
+      "kind": "lemma",
+      "label": "Trial energy with a pinned rim",
+      "statement": "[Trial energy with a pinned rim] Let \\(U\\) be a bounded connected polygonal Lipschitz domain in the fixed-geometry class of Proposition~ . Its outer boundary and the boundaries of its two holes are…",
+      "section": "Fixed-geometry comparison",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-prop-local-map",
+      "kind": "proposition",
+      "label": "Local map input",
+      "statement": "[Local map input] Assume every activity has period \\(\\) under common field translations, and its field dependence lies in the sites of its occupied support \\(X\\) together with a fixed microscopic…",
+      "section": "A scale-dependent cutoff and entry",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-ent-center-background",
+      "kind": "lemma",
+      "label": "The centered unit background",
+      "statement": "[The centered unit background] The branches can be chosen bounded, with a consistent additive constant, and for \\(0 r4\\) they satisfy, in lattice units, |^r_n(e)| & C_r(1+(e,0))^ -1-r ,\\\\…",
+      "section": "A scale-dependent cutoff and entry",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-ent-entry-regulator",
+      "kind": "lemma",
+      "label": "Reflected and accumulated regulator bounds",
+      "statement": "[Reflected and accumulated regulator bounds] At these compatible block and observation sides, with strict reserve in the parameters of , the shell composition, localization, and charge estimates in…",
+      "section": "A scale-dependent cutoff and entry",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-ent-cutoff-bounds",
+      "kind": "lemma",
+      "label": "Physical and prescribed-observation bounds",
+      "statement": "[Physical and prescribed-observation bounds] There are \\(c>0\\) and \\(s_1<\\), independent of the finite cell topology, such that for every \\(s s_1\\), every cut topology used below, and its centered…",
+      "section": "A scale-dependent cutoff and entry",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-ent-face-localization",
+      "kind": "lemma",
+      "label": "Face energy and changes at cuts",
+      "statement": "[Face energy and changes at cuts] For the entry family just described, there is a number \\(D_s\\), the same at every full junction, and a symmetric matrix \\(H_G\\) such that Q_G(w)=D_s_ z V_4(G)…",
+      "section": "A scale-dependent cutoff and entry",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-ent-initialization",
+      "kind": "theorem",
+      "label": "Cutoff entry with one compulsory component",
+      "statement": "[Cutoff entry with one compulsory component] Fix the finite list of map norms and reserves just described. There are constants \\(C,c>0\\) such that the following holds for every sufficiently large…",
+      "section": "A scale-dependent cutoff and entry",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-ent-pattern-estimate",
+      "kind": "lemma",
+      "label": "The analytic pattern estimate",
+      "statement": "[The analytic pattern estimate] After the parameter choices in and , and the threshold choice described below, there is \\(s_0<\\) such that for every admissible \\(s s_0\\), |F_|_ m,X, C_(s)\\, C^…",
+      "section": "A scale-dependent cutoff and entry",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-trj-trajectory",
+      "kind": "proposition",
+      "label": "Critical trajectory",
+      "statement": "[Critical trajectory] The entry choices can be made so that, for every fixed \\(0<c<c'<3\\), uniformly for integers \\(c2^k j c'2^k\\) as \\(k\\), t_j^ (k) &=1 2( L)j +O\\!( (2+j) j^2 ),\\\\ z_j^ (k) &=O(j^…",
+      "section": "The critical bulk trajectory",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-trj-parity-interface",
+      "kind": "lemma",
+      "label": "Analytic parity interface",
+      "statement": "[Analytic parity interface] There are a fixed small tube, \\(<1\\), and \\(C<\\), uniform over the entry sides above, on which the exact map satisfies u_+-u= &-H_jZ^2+ O((|u|+Z^2)(Z^2+\\|Q_e\\|)+\\|Q_e\\|^2…",
+      "section": "The critical bulk trajectory",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-trj-coefficient-rate",
+      "kind": "lemma",
+      "label": "Rate for the quadratic coefficients",
+      "statement": "[Rate for the quadratic coefficients] For the fixed nearest-neighbor reference and fixed \\(L\\), there is \\(C<\\) such that, at every sufficiently large absolute index, |H_j-H|+|b_j-b_*| C(1+j)^ -2 .",
+      "section": "The critical bulk trajectory",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-trj-physical-torus",
+      "kind": "lemma",
+      "label": "Torus height diagnostics for the XY input",
+      "statement": "[Torus height diagnostics for the XY input] Along the compatible even tori \\(n\\), _n^ tor e^ w x_n & e^ a g w^2/2 , \\\\ _n^ tor [e^ i h e^ w x_n ] -_n^ tor e^ i h \\,e^ a g w^2/2 &0. The first…",
+      "section": "The critical bulk trajectory",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-trj-vanishing",
+      "kind": "lemma",
+      "label": "Finite-history confinement and vanishing",
+      "statement": "[Finite-history confinement and vanishing] For every sufficiently small prescribed tube, \\(R\\) and the entry threshold can be chosen so that, for all sufficiently large \\(k\\), every plane state…",
+      "section": "The critical bulk trajectory",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-trj-cone",
+      "kind": "lemma",
+      "label": "Odd cone and transverse remainders",
+      "statement": "[Odd cone and transverse remainders] For every fixed \\(0<c<c'<3\\), uniformly on \\(c2^k j c'2^k\\) for large \\(k\\), Y_j=|Z_j|>0, Y_j e^ -o(j) , Y_ j+1 /Y_j=1+o(1),\\\\ \\|Q_ e,j \\| C Y_j^2, \\|Q_ o,j \\|…",
+      "section": "The critical bulk trajectory",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-trj-overlap",
+      "kind": "lemma",
+      "label": "Comparison on an overlap",
+      "statement": "[Comparison on an overlap] Fix \\(0<c<c'<3\\). Uniformly as \\((k_1,k_2)\\), for every common integer \\(j\\) satisfying \\(c2^ k_i j c'2^ k_i \\) for \\(i=1,2\\), put \\((u_i,Y_i)=(u_j^ (k_i) ,|Z_j^ (k_i)…",
+      "section": "The critical bulk trajectory",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-obs-consecutive",
+      "kind": "proposition",
+      "label": "Consecutive square sizes",
+      "statement": "[Consecutive square sizes] Fix \\(0<<1/10\\). For all sufficiently large \\(N\\), put \\(n_0=L^N\\), \\(n_1=L^ N+1 \\), and choose a power \\(m'=L^ j' \\) so that D_N=n_0 m' N^, j'=N-O( N). Use the entry…",
+      "section": "The center observable",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-obs-local-estimates",
+      "kind": "lemma",
+      "label": "Paired local maps",
+      "statement": "[Paired local maps] The local maps can be chosen in both squares with the following properties. Here \\(<1\\) and \\(C\\) depend only on the fixed parameters. Untwisted activities on wall-free supports…",
+      "section": "The center observable",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-ent-terminal-regulator",
+      "kind": "lemma",
+      "label": "Terminal regulator bound",
+      "statement": "[Terminal regulator bound] With strict reserve in the parameters of (\\(1<p_1<p_2\\) and \\(0<h_*<1/p_2\\)), let \\(u\\) be a later block side compatible with the fixed entry observation grid. Let the…",
+      "section": "The center observable",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m1-obs-terminal-family",
+      "kind": "lemma",
+      "label": "Terminal families and translated fields",
+      "statement": "[Terminal families and translated fields] Write \\[ W_u^(X,)=\\ U_u^ reg (X,)\\ . \\] Here \\(U_u^ reg \\) is the sum of gradient energy on \\(D_u(X)\\), the \\(u\\)-weighted boundary trace, and the…",
+      "section": "The center observable",
+      "manuscript": "The critical logarithmic correction for the planar XY model"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Using the height, renormalization, and spin-field inputs from stated in…",
+      "statement": "Using the height, renormalization, and spin-field inputs from stated in Section~ , there is a constant \\(A_ XY (0,)\\) such that a_n=A_ XY \\,n^ -1/8 ( n)^ 1/16 (1+o(1)) (n).",
+      "section": "Introduction",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-inp-duality",
+      "kind": "lemma",
+      "label": "Fixed-boundary duality",
+      "statement": "[Fixed-boundary duality] Work at \\(b=b_c\\). Let \\(G_M\\) be the free graph of the \\(M^2\\) unit square faces in \\([-n,n]^2\\), where \\(M=2n\\). If \\(l\\) has circulation \\(2\\) around the central primal…",
+      "section": "Height conventions and local map inputs",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-inp-comparisons",
+      "kind": "proposition",
+      "label": "Finite comparison inputs",
+      "statement": "[Finite comparison inputs] The comparisons in hold on every fixed primary graph, also with independent Gaussian observation noises. Adding centered precision decreases centered covariance and…",
+      "section": "Height conventions and local map inputs",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-inp-height",
+      "kind": "proposition",
+      "label": "Height and pin inputs",
+      "statement": "[Height and pin inputs] For the mass threshold \\(b_c\\) in Theorem~ , \\(0<b_c<\\), \\(m(b_c)=0\\), and the primary height coefficient of satisfies a(b_c)=8. At a general positive coefficient…",
+      "section": "Height conventions and local map inputs",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-inp-regular-variation",
+      "kind": "lemma",
+      "label": "Center comparison",
+      "statement": "[Center comparison] There is \\(c>0\\) such that \\(a_n cn^ -1/2 \\) for all \\(n1\\). If \\(n_k,n'_k\\) are integer sequences and \\(n'_k/n_k d(0,)\\), then a_ n'_k a_ n_k d^ -1/8 .",
+      "section": "Height conventions and local map inputs",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-inp-regulator",
+      "kind": "proposition",
+      "label": "Regulator input",
+      "statement": "[Regulator input] The regulator in is finite, nonnegative, homogeneous quadratic, and constant invariant. It is monotone under support enlargement and additive on compatible separated supports, and…",
+      "section": "Height conventions and local map inputs",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-inp-partition-map",
+      "kind": "proposition",
+      "label": "Local partition map",
+      "statement": "[Local partition map] In the norms above, shell integration and designated local subtractions give an exact identity Z_u(K;+) =_ b B_ Lu (1+a_b) Z_ Lu (K';), Cov()=_u. The map is complex analytic in…",
+      "section": "Height conventions and local map inputs",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-inp-balanced-map",
+      "kind": "proposition",
+      "label": "Balanced parity map",
+      "statement": "[Balanced parity map] For the critical reference and small, even, translation- and square-covariant plane activities, the preceding coordinates satisfy u_+-u= &-H_jZ^2+ O((|u|+Z^2)(Z^2+B_e)+B_e^2…",
+      "section": "Height conventions and local map inputs",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-prep-cutoff",
+      "kind": "lemma",
+      "label": "Finite-volume cutoff error",
+      "statement": "[Finite-volume cutoff error] On a compatible torus or free square of side M , the absolute change in the partition sum caused by the product of , divided by the centered partition sum without…",
+      "section": "Observations, affine Gaussian shapes, and isolation",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-prep-lifts",
+      "kind": "lemma",
+      "label": "Local lifts and comparison of squares",
+      "statement": "[Local lifts and comparison of squares] Let r be the square minimizer at side M and r_ the plane height just defined. If an axis rectangle and its fixed collar avoid the source, choose an integral…",
+      "section": "Observations, affine Gaussian shapes, and isolation",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-prep-large-field",
+      "kind": "lemma",
+      "label": "Large observations",
+      "statement": "[Large observations] For every preparation graph G and every real observation vector y , Z_G^l(y) Z_G^0(0) \\ -c_ f F(G)\\\\|d_f| 2T d_f^2\\ . Consequently, with a possibly smaller constant c>0…",
+      "section": "Observations, affine Gaussian shapes, and isolation",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-prep-localization",
+      "kind": "lemma",
+      "label": "Affine shape localization",
+      "statement": "[Affine shape localization] On each open preparation graph there are a quadratic form L_G with a fixed-radius stencil in the faces, and a symmetric matrix N_G on those faces, such that…",
+      "section": "Observations, affine Gaussian shapes, and isolation",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-prop-entry",
+      "kind": "proposition",
+      "label": "Mesoscopic analytic entry",
+      "statement": "[Mesoscopic analytic entry] Choose the regulator reserves as in , and fix compatible parameters for the local maps of~ , including the block factor L , the support geometry, the activity weight A ,…",
+      "section": "Analytic entry with one magnetic insertion",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-lem-bulk-parity",
+      "kind": "lemma",
+      "label": "Uniform maps and the absolute coefficient estimates",
+      "statement": "[Uniform maps and the absolute coefficient estimates] The coordinate changes and parity-resolved maps of Proposition~ have a common analytic neighborhood and common bounds for all sufficiently large…",
+      "section": "Finite critical histories and physical readouts",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-lem-bulk-physical-diagnostics",
+      "kind": "lemma",
+      "label": "The two physical limits",
+      "statement": "[The two physical limits] As N with s/N0 , locally uniformly for complex w , e^ wX_N & e^ agw^2/2 , \\\\ (_Ne^ wX_N )-_N\\,e^ agw^2/2 &0. All fixed source derivatives converge as well. For s/N P^ -1 ,…",
+      "section": "Finite critical histories and physical readouts",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-lem-bulk-window-vanishing",
+      "kind": "lemma",
+      "label": "Smallness on the finite horizons",
+      "statement": "[Smallness on the finite horizons] For every sufficiently small prescribed tube radius, the entry parameters can be chosen so that all J -histories, for sufficiently large J , remain in that tube…",
+      "section": "Finite critical histories and physical readouts",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-lem-bulk-odd",
+      "kind": "lemma",
+      "label": "Positive odd coordinate and contracted remainders",
+      "statement": "[Positive odd coordinate and contracted remainders] On every fixed window cJ k8J , 0<c<8 , and for large J , the period convention may be kept unchanged and Z_k^ (J) >0, - Z_k^ (J) =o(J), B_ e,k ^…",
+      "section": "Finite critical histories and physical readouts",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-prop-bulk-readouts",
+      "kind": "proposition",
+      "label": "Common readouts",
+      "statement": "[Common readouts] For every 0<c<8 , uniformly on cJ k8J , U_k&=a 1-u_k^ (J) +O((Z_k^ (J) )^2)+O(e^ -c'J ), \\\\ Y_k&=M_kZ_k^ (J) +O((|u_k^ (J) |+(Z_k^ (J) )^2)Z_k^ (J) ) +O(e^ -c'J ). Here c'>0 may…",
+      "section": "Finite critical histories and physical readouts",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-lem-trajectory-sparse-splice",
+      "kind": "lemma",
+      "label": "A trajectory with geometrically separated jumps",
+      "statement": "[A trajectory with geometrically separated jumps] Let H,b>0 , let j_01 , and let Q be a set of integers larger than j_0 . Suppose that the increasing enumeration (q_r) of Q satisfies \\[ q_ r+1 q_r…",
+      "section": "Joining finite histories and determining the critical trajectory",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-lem-trajectory-overlap",
+      "kind": "lemma",
+      "label": "Comparison at a common scale",
+      "statement": "[Comparison at a common scale] Consider two bulk histories with comparable window parameters J,J' . At an index j belonging to fixed positive-fraction windows of both histories, write (u,Z) and…",
+      "section": "Joining finite histories and determining the critical trajectory",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-prop-bulk-window",
+      "kind": "proposition",
+      "label": "The bulk trajectory throughout an overlap window",
+      "statement": "[The bulk trajectory throughout an overlap window] Fix the block factor L and the other parameters chosen for the bulk maps. For every sufficiently large dyadic J , uniformly in the J -history at…",
+      "section": "Joining finite histories and determining the critical trajectory",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-prop-magnetic",
+      "kind": "proposition",
+      "label": "Common magnetic normalization",
+      "statement": "[Common magnetic normalization] For all sufficiently large j , the exact maps from entry scale i to stop h can be chosen with the following properties. At the stop, in the fixed norm regimes for the…",
+      "section": "The magnetic recursion in two squares",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-lem-terminal-partition",
+      "kind": "lemma",
+      "label": "Terminal partition expansion",
+      "statement": "[Terminal partition expansion] For the backgrounds of Proposition~ , Z_Q^&=1+O_L(D^2/j), \\\\ Z_Q^ &=_X_ *,Q K^_ h,Q (X;) +O_L(D^4/j^2). They are real and positive for all sufficiently large j .…",
+      "section": "Terminal integration and the normalization constant",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-lem-terminal-scalar",
+      "kind": "lemma",
+      "label": "Relative removal of the residual insertion",
+      "statement": "[Relative removal of the residual insertion] There is c>0 such that, for all sufficiently large j , _j>0 and a_ Q/2 =-E_Q 2^2 +_j+_j + Z_Q^l- Z_Q^0+O(e^ -cj ) for both Q=M and Q=LM .",
+      "section": "Terminal integration and the normalization constant",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-lem-terminal-first-order",
+      "kind": "lemma",
+      "label": "First-order terminal comparison",
+      "statement": "[First-order terminal comparison] With the running gradient coordinate t_h of Proposition~ , _j =t_h 2^2 (E_ LM -E_M) +O_L(D^2 j^2 +1 Dj ).",
+      "section": "Terminal integration and the normalization constant",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-lem-terminal-green",
+      "kind": "lemma",
+      "label": "Square Green-function increment",
+      "statement": "[Square Green-function increment] Let G_n be the Green function of the unscaled Laplacian killed on the boundary vertices of the spin square _n . For the connections in the dual squares of sides M=2n…",
+      "section": "Terminal integration and the normalization constant",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m2-prop-ratio",
+      "kind": "proposition",
+      "label": "Summable enlargement ratio",
+      "statement": "[Summable enlargement ratio] For n_j=L^j/2 , there exists >0 such that a_ n_ j+1 - a_ n_j =- L 8 +1 16j +O_L(j^ -1- ).",
+      "section": "Terminal integration and the normalization constant",
+      "manuscript": "Critical Center Magnetization in the Planar XY Model"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "For the fixed-boundary critical XY law , the distributions \\(S_n\\) in converge…",
+      "statement": "For the fixed-boundary critical XY law , the distributions \\(S_n\\) in converge in law along the full sequence \\(n\\) to \\(V_*\\) in \\(H^ -3 _ loc (D)\\). Moreover, for every \\(k1\\), every \\(f_1,,f_k…",
+      "section": "Introduction",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-heights-duality",
+      "kind": "lemma",
+      "label": "Duality for the fixed spin boundary",
+      "statement": "[Duality for the fixed spin boundary] Let \\( G_n\\) have as vertices the centers of the lattice squares in \\([-1,1]^2\\), and join centers of neighboring squares. This is the free dual square grid.…",
+      "section": "Free heights and finite comparisons",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-heights-critical-input",
+      "kind": "theorem",
+      "label": "Critical height coefficient [Section~6",
+      "statement": "[Critical height coefficient ] For the free-box spin mass threshold \\(b_c\\) of Section~ , the Bessel height coefficient satisfies \\(a(b_c)=8\\).",
+      "section": "Free heights and finite comparisons",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-heights-free-input",
+      "kind": "theorem",
+      "label": "Free rectangle limits [Theorem~2.4",
+      "statement": "[Free rectangle limits ] Let \\(U_n\\) be free axis-parallel rectangles at mesh \\(n^ -1 \\), with endpoints converging to those of a nondegenerate rectangle \\(U\\). For any finite collection of smooth…",
+      "section": "Free heights and finite comparisons",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-heights-mixed-input",
+      "kind": "theorem",
+      "label": "Mixed height limits [Theorem~3.1",
+      "statement": "[Mixed height limits ] In any fixed mixed geometry, the centered massless Bessel height law with primary hard pins has Gaussian Laplace and moment limits for each finite collection of bounded…",
+      "section": "Free heights and finite comparisons",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-heights-pin-input",
+      "kind": "theorem",
+      "label": "Separated primary pins [Theorem~3.2",
+      "statement": "[Separated primary pins ] In a fixed mixed geometry, start with no hard pins and add the centered penalty \\(\\|Bh\\|^2/2\\), where \\(B\\) is a fixed finite list of component-local box averages…",
+      "section": "Free heights and finite comparisons",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-heights-finite-comparisons",
+      "kind": "lemma",
+      "label": "Finite comparison rules",
+      "statement": "[Finite comparison rules] Allow nonnegative quadratic observation penalties and compatible linear equality constraints on a finite primary height graph. The following comparisons hold. [label=( *)]…",
+      "section": "Free heights and finite comparisons",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-heights-cut-comparison",
+      "kind": "lemma",
+      "label": "Cut comparison with prescribed data",
+      "statement": "[Cut comparison with prescribed data] Let \\(G^ cut \\) be obtained from \\(G\\) by deleting edges, with the same observation penalties and compatible prescribed data on both graphs. Each retained…",
+      "section": "Free heights and finite comparisons",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-heights-restoration",
+      "kind": "corollary",
+      "label": "Restoration at prescribed data",
+      "statement": "[Restoration at prescribed data] For an edge restoration with prescribed absolute or relative data on \\(p\\), define \\[ T^s(u)= Z_ restored ^s(u) Z_ cut ^s(u) , d=T^0(0_p). \\] Use quotient constants…",
+      "section": "Free heights and finite comparisons",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-sectors-positive-radius",
+      "kind": "theorem",
+      "label": "Sector cost at fixed geometry",
+      "statement": "[Sector cost at fixed geometry] For the domain and periods just specified, at \\(b=b_c\\) and \\(a=8\\), _ n F_ U,n ^s =\\ - M(U)/(2a)\\ , M(U)=_ g H^1(U) _U|dv_0+dg|^2 . The limit holds along every…",
+      "section": "Magnetic sectors with holes of positive radius",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-sectors-localization",
+      "kind": "lemma",
+      "label": "Localization under cell observations",
+      "statement": "[Localization under cell observations] For every fixed dyadic mixed geometry and fixed dyadic pin regions \\(H,p\\) as above, _ d0 _ n D_ n,d (H,p)=0 . Here \\(d\\) runs through dyadic values aligned…",
+      "section": "Magnetic sectors with holes of positive radius",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-sectors-single-lift",
+      "kind": "lemma",
+      "label": "A single-valued lift",
+      "statement": "[A single-valued lift] Let \\(A\\) be a component of a fixed dyadic mixed geometry, with free boundary, and suppose it admits a single-valued smooth lift \\(v_A\\) of \\(v\\). For its confined ratio, the…",
+      "section": "Magnetic sectors with holes of positive radius",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-sectors-weighted",
+      "kind": "proposition",
+      "label": "Confined sector limit",
+      "statement": "[Confined sector limit] For the observations and smooth multivalued \\(v\\) just defined, _ d0 _ n |R_ n,d ^s(v)- \\ -1 2a _U|dv|^2\\ |=0. The observation partitions may be required to align with any…",
+      "section": "Magnetic sectors with holes of positive radius",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-annuli-flat-interaction",
+      "kind": "proposition",
+      "label": "Separated flat pins",
+      "statement": "[Separated flat pins] Fix \\(P\\) as above. For either choice of \\(H\\), the interaction \\( D(H,p)\\) is nonnegative and _ mesh0 D(H,p) can be made arbitrarily small by taking \\( \\) large. The mesh limit…",
+      "section": "Flat pins across a long annulus",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-kernels-bounds",
+      "kind": "lemma",
+      "label": "Upper bound and centered average",
+      "statement": "[Upper bound and centered average] For each of the kernels just defined, every sector and every compatible guard datum satisfy 0<T_i^s/d_i1. For an interface between two annuli, choose the end region…",
+      "section": "Gluing kernels and stability from a fixed core",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-kernels-multiplication",
+      "kind": "lemma",
+      "label": "Exact multiplication",
+      "statement": "[Exact multiplication] Let a core be surrounded by \\(N\\) annular blocks, with no other adjacencies between the blocks. Their restored partition function is Z_ full ^s = Z_ core ^s_ i=1 ^N Z_i^s…",
+      "section": "Gluing kernels and stability from a fixed core",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-kernels-average-loss",
+      "kind": "proposition",
+      "label": "Average loss",
+      "statement": "[Average loss] For a regular interface, (T_i^s/d_i)_ dm_^s = ((T_i^0/d_i)_ dm_^0) F_ restored ^s F_ cut ^s . Given any \\(>0\\), first choose \\(\\) sufficiently small and fix a polygon \\(P\\) satisfying…",
+      "section": "Gluing kernels and stability from a fixed core",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-kernels-stability",
+      "kind": "lemma",
+      "label": "Stability from a positive initial weight",
+      "statement": "[Stability from a positive initial weight] Let \\((X_i,m_i)\\), \\(i1\\), be probability spaces, and let \\(t_i:X_i X_ i+1 (0,1]\\) be measurable kernels with \\[ (1-t_i)\\,d(m_i m_ i+1 ), 0<<1/64. \\] Fix a…",
+      "section": "Gluing kernels and stability from a fixed core",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-kernels-last-guard",
+      "kind": "corollary",
+      "label": "The last guard law",
+      "statement": "[The last guard law] For these fixed choices, the last-guard law in a nest of \\(N\\) annuli has density at most \\(2\\) relative to \\(m_N^s\\) for all sufficiently large \\(N\\), in the centered sector and…",
+      "section": "Gluing kernels and stability from a fixed core",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-correlations-exterior-energy",
+      "kind": "lemma",
+      "label": "Exterior energy",
+      "statement": "[Exterior energy] Remove the closed disks of radius \\(\\) about the distinct points \\(z_1,,z_k\\) from \\(D\\), where \\(>0\\) is small enough that these disks are disjoint and contained in \\(D\\). For…",
+      "section": "Critical spin correlations",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-correlations-exterior-lattice",
+      "kind": "lemma",
+      "label": "Moving lattice holes",
+      "statement": "[Moving lattice holes] Suppose that \\(_n>0\\), where \\(\\) is sufficiently small. Around \\(x_ i,n \\), cut out the interiors in the array division with hole shape \\(_nP\\), using the rounding conventions…",
+      "section": "Critical spin correlations",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-correlations-attachment",
+      "kind": "lemma",
+      "label": "Exterior attachment",
+      "statement": "[Exterior attachment] For every sufficiently small \\(>0\\), the parameters may be chosen so that Equation~ holds throughout the regular annuli and _n (1- T_ ext ^s d_ ext ) _ i=1 ^k dm_ N,i ^s . This…",
+      "section": "Critical spin correlations",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-correlations-separated",
+      "kind": "proposition",
+      "label": "Center-normalized correlations",
+      "statement": "[Center-normalized correlations] For the separated moving marks fixed at the beginning of this section, _n( _n^0(i_i_i_ x_ i,n ) a_n^k ) = -H_D( z, )-kR_D(0,0) 2K_* .",
+      "section": "Critical spin correlations",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-correlations-green-diagonal",
+      "kind": "lemma",
+      "label": "Green diagonal differences",
+      "statement": "[Green diagonal differences] If \\(x_n D_n^\\) and \\(x_n z D\\), then G_n(x_n,x_n)-G_n(0,0) R_D(z,z)-R_D(0,0). These differences are bounded uniformly when \\(x_n\\) ranges over a fixed compact subset of…",
+      "section": "Critical spin correlations",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-correlations-normalized",
+      "kind": "corollary",
+      "label": "Normalized separated correlations",
+      "statement": "[Normalized separated correlations] For every fixed separated moving configuration as above, _n_n^0_ i=1 ^kW_n^ _i (x_ i,n ) =\\ -1 K_* _ i<j _i_jG_D(z_i,z_j)\\ . The convergence to the same kernel…",
+      "section": "Critical spin correlations",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-correlations-nest-bounds",
+      "kind": "lemma",
+      "label": "Nest lower bounds",
+      "statement": "[Nest lower bounds] There are constants \\(c,c'>0\\), independent of \\(n,N,j\\), such that, for all sufficiently large \\(n\\), a_n c\\,F_ nest (R_ N(n) ), and, for every \\(N j0\\), F_ nest (R_N) c'^…",
+      "section": "Critical spin correlations",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-correlations-diagonal",
+      "kind": "proposition",
+      "label": "Two-point collision bound",
+      "statement": "[Two-point collision bound] For every compact \\(E D\\), there is \\(C_E<\\) such that, for all \\(n1\\), all \\(x,y E D_n^\\), including \\(x=y\\), and all \\(,\\ -1,1\\ \\), 0_n^0 C_E(|x-y|+1/n)^ -1 .…",
+      "section": "Critical spin correlations",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-fields-lee-yang",
+      "kind": "lemma",
+      "label": "Lee--Yang absolute moment bound",
+      "statement": "[Lee--Yang absolute moment bound] Consider a finite ferromagnetic XY model with nonnegative edge couplings and all boundary angles fixed to zero. For deterministic weights _x0 , set \\[ W=_x_x e^ i_x…",
+      "section": "Laws and moments of the critical field",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    },
+    {
+      "id": "m3-fields-circle-chaos",
+      "kind": "lemma",
+      "label": "Circle Wick field and its mixed moments",
+      "statement": "[Circle Wick field and its mixed moments] Let K>1/(4) and let _D be the zero-Dirichlet Gaussian free field with covariance G_D=(-_D)^ -1 . Where the circle of radius about x lies in D , define \\[…",
+      "section": "Laws and moments of the critical field",
+      "manuscript": "The Critical Spin Field of the Planar XY Model"
+    }
+  ],
+  "edges": []
+}

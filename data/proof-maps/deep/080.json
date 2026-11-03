@@ -1,0 +1,941 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "080",
+  "title": "The exact Sobolev endpoint for Schrödinger convergence",
+  "result": {
+    "id": "paper-result",
+    "label": "The exact Sobolev endpoint for Schrödinger convergence",
+    "statement": "Proves almost-everywhere convergence e^ it f f as t 0 for every f H^ n/(2(n+1)) ( R^n) and every dimension n ≥ 2. This attains the sharp Sobolev equality case of Carleson's Schrödinger convergence problem, including the planar endpoint H 1/3 .",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "packets-localization-and-fractal-estimates",
+      "label": "Packets, localization, and fractal estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-power-saving-for-transverse-inputs",
+      "label": "A power saving for transverse inputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-sparse-estimate-for-packet-arrays",
+      "label": "A sparse estimate for packet arrays",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-bilinear-frame-estimate-without-a-scale-loss",
+      "label": "A bilinear frame estimate without a scale loss",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "flat-frequency-arrays",
+      "label": "Flat frequency arrays",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "rich-tubes-lie-in-a-short-list-of-plates",
+      "label": "Rich tubes lie in a short list of plates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-dyadic-distribution-estimate",
+      "label": "The dyadic distribution estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "endpoint-square-summation-and-the-order-of-limits",
+      "label": "Endpoint square summation and the order of limits",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "packet-estimates-and-a-near-cauchy-bound",
+      "label": "Packet estimates and a near-Cauchy bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-transverse-frame-estimate",
+      "label": "The transverse frame estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "fractal-norms-compact-arrays-and-norm-transport",
+      "label": "Fractal norms, compact arrays, and norm transport",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Endpoint convergence for the planar Schrodinger equation",
+      "title": "Endpoint convergence for the planar Schrodinger equation",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Endpoint-convergence-for-the-planar-Schrodinger-equation-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Endpoint convergence for the planar Schrodinger equation.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-thm-maximal"
+          ]
+        },
+        {
+          "id": "m1-lem-packets",
+          "role": "packets-localization-and-fractal-estimates",
+          "label": "lemma m1-lem-packets",
+          "fullLabel": "lemma m1-lem-packets",
+          "kind": "lemma",
+          "source": "Packets, localization, and fractal estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fractal",
+          "role": "packets-localization-and-fractal-estimates",
+          "label": "lemma m1-lem-fractal",
+          "fullLabel": "lemma m1-lem-fractal",
+          "kind": "lemma",
+          "source": "Packets, localization, and fractal estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-prelim-weighted",
+          "role": "packets-localization-and-fractal-estimates",
+          "label": "lemma m1-lem-prelim-weighted",
+          "fullLabel": "lemma m1-lem-prelim-weighted",
+          "kind": "lemma",
+          "source": "Packets, localization, and fractal estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-cap",
+          "role": "packets-localization-and-fractal-estimates",
+          "label": "lemma m1-lem-cap",
+          "fullLabel": "lemma m1-lem-cap",
+          "kind": "lemma",
+          "source": "Packets, localization, and fractal estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-transverse",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "proposition m1-prop-transverse",
+          "fullLabel": "proposition m1-prop-transverse",
+          "kind": "proposition",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-transverse-tubes"
+          ]
+        },
+        {
+          "id": "m1-lem-transverse-product",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-product",
+          "fullLabel": "lemma m1-lem-transverse-product",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-tubes",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-tubes",
+          "fullLabel": "lemma m1-lem-transverse-tubes",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-information",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-information",
+          "fullLabel": "lemma m1-lem-transverse-information",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-profiles",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-profiles",
+          "fullLabel": "lemma m1-lem-transverse-profiles",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-costs",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-costs",
+          "fullLabel": "lemma m1-lem-transverse-costs",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-additivity",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-additivity",
+          "fullLabel": "lemma m1-lem-transverse-additivity",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-common-profile",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-common-profile",
+          "fullLabel": "lemma m1-lem-transverse-common-profile",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-projection",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-projection",
+          "fullLabel": "lemma m1-lem-transverse-projection",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-angular-information",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-angular-information",
+          "fullLabel": "lemma m1-lem-transverse-angular-information",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-block-test",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-block-test",
+          "fullLabel": "lemma m1-lem-transverse-block-test",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-angular-choice",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-angular-choice",
+          "fullLabel": "lemma m1-lem-transverse-angular-choice",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-binary",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-binary",
+          "fullLabel": "lemma m1-lem-transverse-binary",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-hills",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-hills",
+          "fullLabel": "lemma m1-lem-transverse-hills",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-finite-jumps",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-finite-jumps",
+          "fullLabel": "lemma m1-lem-transverse-finite-jumps",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transverse-no-jump",
+          "role": "a-power-saving-for-transverse-inputs",
+          "label": "lemma m1-lem-transverse-no-jump",
+          "fullLabel": "lemma m1-lem-transverse-no-jump",
+          "kind": "lemma",
+          "source": "A power saving for transverse inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-sparse",
+          "role": "a-sparse-estimate-for-packet-arrays",
+          "label": "proposition m1-prop-sparse",
+          "fullLabel": "proposition m1-prop-sparse",
+          "kind": "proposition",
+          "source": "A sparse estimate for packet arrays",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sparse-layers",
+          "role": "a-sparse-estimate-for-packet-arrays",
+          "label": "lemma m1-lem-sparse-layers",
+          "fullLabel": "lemma m1-lem-sparse-layers",
+          "kind": "lemma",
+          "source": "A sparse estimate for packet arrays",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sparse-broad",
+          "role": "a-sparse-estimate-for-packet-arrays",
+          "label": "lemma m1-lem-sparse-broad",
+          "fullLabel": "lemma m1-lem-sparse-broad",
+          "kind": "lemma",
+          "source": "A sparse estimate for packet arrays",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-frame",
+          "role": "a-bilinear-frame-estimate-without-a-scale-loss",
+          "label": "theorem m1-thm-frame",
+          "fullLabel": "theorem m1-thm-frame",
+          "kind": "theorem",
+          "source": "A bilinear frame estimate without a scale loss",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-frame-initial",
+          "role": "a-bilinear-frame-estimate-without-a-scale-loss",
+          "label": "lemma m1-lem-frame-initial",
+          "fullLabel": "lemma m1-lem-frame-initial",
+          "kind": "lemma",
+          "source": "A bilinear frame estimate without a scale loss",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-frame-masks",
+          "role": "a-bilinear-frame-estimate-without-a-scale-loss",
+          "label": "lemma m1-lem-frame-masks",
+          "fullLabel": "lemma m1-lem-frame-masks",
+          "kind": "lemma",
+          "source": "A bilinear frame estimate without a scale loss",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-frame-flux",
+          "role": "a-bilinear-frame-estimate-without-a-scale-loss",
+          "label": "lemma m1-lem-frame-flux",
+          "fullLabel": "lemma m1-lem-frame-flux",
+          "kind": "lemma",
+          "source": "A bilinear frame estimate without a scale loss",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-frame-quartic",
+          "role": "a-bilinear-frame-estimate-without-a-scale-loss",
+          "label": "lemma m1-lem-frame-quartic",
+          "fullLabel": "lemma m1-lem-frame-quartic",
+          "kind": "lemma",
+          "source": "A bilinear frame estimate without a scale loss",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-frame-maximal",
+          "role": "a-bilinear-frame-estimate-without-a-scale-loss",
+          "label": "lemma m1-lem-frame-maximal",
+          "fullLabel": "lemma m1-lem-frame-maximal",
+          "kind": "lemma",
+          "source": "A bilinear frame estimate without a scale loss",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-frame-local-bilinear",
+          "role": "a-bilinear-frame-estimate-without-a-scale-loss",
+          "label": "lemma m1-lem-frame-local-bilinear",
+          "fullLabel": "lemma m1-lem-frame-local-bilinear",
+          "kind": "lemma",
+          "source": "A bilinear frame estimate without a scale loss",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-oned",
+          "role": "flat-frequency-arrays",
+          "label": "proposition m1-prop-oned",
+          "fullLabel": "proposition m1-prop-oned",
+          "kind": "proposition",
+          "source": "Flat frequency arrays",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-strip",
+          "role": "flat-frequency-arrays",
+          "label": "proposition m1-prop-strip",
+          "fullLabel": "proposition m1-prop-strip",
+          "kind": "proposition",
+          "source": "Flat frequency arrays",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-rich",
+          "role": "rich-tubes-lie-in-a-short-list-of-plates",
+          "label": "proposition m1-prop-rich",
+          "fullLabel": "proposition m1-prop-rich",
+          "kind": "proposition",
+          "source": "Rich tubes lie in a short list of plates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-geometry-energy",
+          "role": "rich-tubes-lie-in-a-short-list-of-plates",
+          "label": "lemma m1-lem-geometry-energy",
+          "fullLabel": "lemma m1-lem-geometry-energy",
+          "kind": "lemma",
+          "source": "Rich tubes lie in a short list of plates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-distribution",
+          "role": "the-dyadic-distribution-estimate",
+          "label": "theorem m1-thm-distribution",
+          "fullLabel": "theorem m1-thm-distribution",
+          "kind": "theorem",
+          "source": "The dyadic distribution estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-dyadic-cap-gain",
+          "role": "the-dyadic-distribution-estimate",
+          "label": "lemma m1-lem-dyadic-cap-gain",
+          "fullLabel": "lemma m1-lem-dyadic-cap-gain",
+          "kind": "lemma",
+          "source": "The dyadic distribution estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-dyadic-prefix",
+          "role": "the-dyadic-distribution-estimate",
+          "label": "lemma m1-lem-dyadic-prefix",
+          "fullLabel": "lemma m1-lem-dyadic-prefix",
+          "kind": "lemma",
+          "source": "The dyadic distribution estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-dyadic-flow",
+          "role": "the-dyadic-distribution-estimate",
+          "label": "lemma m1-lem-dyadic-flow",
+          "fullLabel": "lemma m1-lem-dyadic-flow",
+          "kind": "lemma",
+          "source": "The dyadic distribution estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-dyadic-flattening",
+          "role": "the-dyadic-distribution-estimate",
+          "label": "lemma m1-lem-dyadic-flattening",
+          "fullLabel": "lemma m1-lem-dyadic-flattening",
+          "kind": "lemma",
+          "source": "The dyadic distribution estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-dyadic-tuple",
+          "role": "the-dyadic-distribution-estimate",
+          "label": "lemma m1-lem-dyadic-tuple",
+          "fullLabel": "lemma m1-lem-dyadic-tuple",
+          "kind": "lemma",
+          "source": "The dyadic distribution estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-shortmax",
+          "role": "endpoint-square-summation-and-the-order-of-limits",
+          "label": "proposition m1-prop-shortmax",
+          "fullLabel": "proposition m1-prop-shortmax",
+          "kind": "proposition",
+          "source": "Endpoint square summation and the order of limits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-endpoint-time-separation",
+          "role": "endpoint-square-summation-and-the-order-of-limits",
+          "label": "lemma m1-lem-endpoint-time-separation",
+          "fullLabel": "lemma m1-lem-endpoint-time-separation",
+          "kind": "lemma",
+          "source": "Endpoint square summation and the order of limits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-endpoint-localized-dual",
+          "role": "endpoint-square-summation-and-the-order-of-limits",
+          "label": "lemma m1-lem-endpoint-localized-dual",
+          "fullLabel": "lemma m1-lem-endpoint-localized-dual",
+          "kind": "lemma",
+          "source": "Endpoint square summation and the order of limits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-endpoint-square-sum",
+          "role": "endpoint-square-summation-and-the-order-of-limits",
+          "label": "lemma m1-lem-endpoint-square-sum",
+          "fullLabel": "lemma m1-lem-endpoint-square-sum",
+          "kind": "lemma",
+          "source": "Endpoint square summation and the order of limits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-maximal",
+          "role": "endpoint-square-summation-and-the-order-of-limits",
+          "label": "theorem m1-thm-maximal",
+          "fullLabel": "theorem m1-thm-maximal",
+          "kind": "theorem",
+          "source": "Endpoint square summation and the order of limits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-endpoint-heat-envelope",
+          "role": "endpoint-square-summation-and-the-order-of-limits",
+          "label": "lemma m1-lem-endpoint-heat-envelope",
+          "fullLabel": "lemma m1-lem-endpoint-heat-envelope",
+          "kind": "lemma",
+          "source": "Endpoint square summation and the order of limits",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions",
+      "title": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Endpoint-pointwise-convergence-for-the-Schrodinger-equation-in-higher-dimensions-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Endpoint pointwise convergence for the Schrodinger equation in higher dimensions.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-m-main",
+          "role": "introduction",
+          "label": "theorem m2-m-main",
+          "fullLabel": "theorem m2-m-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-p-kakeya",
+          "role": "packet-estimates-and-a-near-cauchy-bound",
+          "label": "proposition m2-p-kakeya",
+          "fullLabel": "proposition m2-p-kakeya",
+          "kind": "proposition",
+          "source": "Packet estimates and a near-Cauchy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-p-projection",
+          "role": "packet-estimates-and-a-near-cauchy-bound",
+          "label": "proposition m2-p-projection",
+          "fullLabel": "proposition m2-p-projection",
+          "kind": "proposition",
+          "source": "Packet estimates and a near-Cauchy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-p-reproduction",
+          "role": "packet-estimates-and-a-near-cauchy-bound",
+          "label": "lemma m2-p-reproduction",
+          "fullLabel": "lemma m2-p-reproduction",
+          "kind": "lemma",
+          "source": "Packet estimates and a near-Cauchy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-p-buffered-refined",
+          "role": "packet-estimates-and-a-near-cauchy-bound",
+          "label": "lemma m2-p-buffered-refined",
+          "fullLabel": "lemma m2-p-buffered-refined",
+          "kind": "lemma",
+          "source": "Packet estimates and a near-Cauchy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-p-weighted",
+          "role": "packet-estimates-and-a-near-cauchy-bound",
+          "label": "proposition m2-p-weighted",
+          "fullLabel": "proposition m2-p-weighted",
+          "kind": "proposition",
+          "source": "Packet estimates and a near-Cauchy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-p-local-linear",
+          "role": "packet-estimates-and-a-near-cauchy-bound",
+          "label": "proposition m2-p-local-linear",
+          "fullLabel": "proposition m2-p-local-linear",
+          "kind": "proposition",
+          "source": "Packet estimates and a near-Cauchy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-p-local-multilinear",
+          "role": "packet-estimates-and-a-near-cauchy-bound",
+          "label": "proposition m2-p-local-multilinear",
+          "fullLabel": "proposition m2-p-local-multilinear",
+          "kind": "proposition",
+          "source": "Packet estimates and a near-Cauchy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-p-convolution",
+          "role": "packet-estimates-and-a-near-cauchy-bound",
+          "label": "lemma m2-p-convolution",
+          "fullLabel": "lemma m2-p-convolution",
+          "kind": "lemma",
+          "source": "Packet estimates and a near-Cauchy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-p-hierarchy",
+          "role": "packet-estimates-and-a-near-cauchy-bound",
+          "label": "proposition m2-p-hierarchy",
+          "fullLabel": "proposition m2-p-hierarchy",
+          "kind": "proposition",
+          "source": "Packet estimates and a near-Cauchy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-p-near-cauchy",
+          "role": "packet-estimates-and-a-near-cauchy-bound",
+          "label": "theorem m2-p-near-cauchy",
+          "fullLabel": "theorem m2-p-near-cauchy",
+          "kind": "theorem",
+          "source": "Packet estimates and a near-Cauchy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-p-polynomial-start",
+          "role": "packet-estimates-and-a-near-cauchy-bound",
+          "label": "lemma m2-p-polynomial-start",
+          "fullLabel": "lemma m2-p-polynomial-start",
+          "kind": "lemma",
+          "source": "Packet estimates and a near-Cauchy bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-frame",
+          "role": "the-transverse-frame-estimate",
+          "label": "theorem m2-f-frame",
+          "fullLabel": "theorem m2-f-frame",
+          "kind": "theorem",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-exact",
+          "role": "the-transverse-frame-estimate",
+          "label": "lemma m2-f-exact",
+          "fullLabel": "lemma m2-f-exact",
+          "kind": "lemma",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-smoothing",
+          "role": "the-transverse-frame-estimate",
+          "label": "lemma m2-f-smoothing",
+          "fullLabel": "lemma m2-f-smoothing",
+          "kind": "lemma",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-selection",
+          "role": "the-transverse-frame-estimate",
+          "label": "lemma m2-f-selection",
+          "fullLabel": "lemma m2-f-selection",
+          "kind": "lemma",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-profiles",
+          "role": "the-transverse-frame-estimate",
+          "label": "lemma m2-f-profiles",
+          "fullLabel": "lemma m2-f-profiles",
+          "kind": "lemma",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-paths",
+          "role": "the-transverse-frame-estimate",
+          "label": "lemma m2-f-paths",
+          "fullLabel": "lemma m2-f-paths",
+          "kind": "lemma",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-conditioning",
+          "role": "the-transverse-frame-estimate",
+          "label": "lemma m2-f-conditioning",
+          "fullLabel": "lemma m2-f-conditioning",
+          "kind": "lemma",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-angular",
+          "role": "the-transverse-frame-estimate",
+          "label": "lemma m2-f-angular",
+          "fullLabel": "lemma m2-f-angular",
+          "kind": "lemma",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-inflation",
+          "role": "the-transverse-frame-estimate",
+          "label": "lemma m2-f-inflation",
+          "fullLabel": "lemma m2-f-inflation",
+          "kind": "lemma",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-binary",
+          "role": "the-transverse-frame-estimate",
+          "label": "proposition m2-f-binary",
+          "fullLabel": "proposition m2-f-binary",
+          "kind": "proposition",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-midpoint",
+          "role": "the-transverse-frame-estimate",
+          "label": "lemma m2-f-midpoint",
+          "fullLabel": "lemma m2-f-midpoint",
+          "kind": "lemma",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-cross-field-inflation",
+          "role": "the-transverse-frame-estimate",
+          "label": "lemma m2-f-cross-field-inflation",
+          "fullLabel": "lemma m2-f-cross-field-inflation",
+          "kind": "lemma",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-f-left-limit",
+          "role": "the-transverse-frame-estimate",
+          "label": "lemma m2-f-left-limit",
+          "fullLabel": "lemma m2-f-left-limit",
+          "kind": "lemma",
+          "source": "The transverse frame estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-d-dz-input",
+          "role": "fractal-norms-compact-arrays-and-norm-transport",
+          "label": "theorem m2-d-dz-input",
+          "fullLabel": "theorem m2-d-dz-input",
+          "kind": "theorem",
+          "source": "Fractal norms, compact arrays, and norm transport",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-d-fractal",
+          "role": "fractal-norms-compact-arrays-and-norm-transport",
+          "label": "proposition m2-d-fractal",
+          "fullLabel": "proposition m2-d-fractal",
+          "kind": "proposition",
+          "source": "Fractal norms, compact arrays, and norm transport",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-d-layers",
+          "role": "fractal-norms-compact-arrays-and-norm-transport",
+          "label": "lemma m2-d-layers",
+          "fullLabel": "lemma m2-d-layers",
+          "kind": "lemma",
+          "source": "Fractal norms, compact arrays, and norm transport",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-d-packet-expansion",
+          "role": "fractal-norms-compact-arrays-and-norm-transport",
+          "label": "lemma m2-d-packet-expansion",
+          "fullLabel": "lemma m2-d-packet-expansion",
+          "kind": "lemma",
+          "source": "Fractal norms, compact arrays, and norm transport",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-d-power-loss",
+          "role": "fractal-norms-compact-arrays-and-norm-transport",
+          "label": "corollary m2-d-power-loss",
+          "fullLabel": "corollary m2-d-power-loss",
+          "kind": "corollary",
+          "source": "Fractal norms, compact arrays, and norm transport",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-d-strip-decoupling",
+          "role": "fractal-norms-compact-arrays-and-norm-transport",
+          "label": "lemma m2-d-strip-decoupling",
+          "fullLabel": "lemma m2-d-strip-decoupling",
+          "kind": "lemma",
+          "source": "Fractal norms, compact arrays, and norm transport",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-d-transport",
+          "role": "fractal-norms-compact-arrays-and-norm-transport",
+          "label": "lemma m2-d-transport",
+          "fullLabel": "lemma m2-d-transport",
+          "kind": "lemma",
+          "source": "Fractal norms, compact arrays, and norm transport",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-d-strip",
+          "role": "fractal-norms-compact-arrays-and-norm-transport",
+          "label": "proposition m2-d-strip",
+          "fullLabel": "proposition m2-d-strip",
+          "kind": "proposition",
+          "source": "Fractal norms, compact arrays, and norm transport",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Endpoint convergence for the planar Schrodinger equation",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Endpoint-convergence-for-the-planar-Schrodinger-equation-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Endpoint pointwise convergence for the Schrodinger equation in higher dimensions",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Endpoint-pointwise-convergence-for-the-Schrodinger-equation-in-higher-dimensions-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

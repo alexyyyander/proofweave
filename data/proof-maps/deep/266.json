@@ -1,0 +1,856 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "266",
+  "title": "Exactly three mutually unbiased bases in dimension six",
+  "result": {
+    "id": "paper-result",
+    "label": "Exactly three mutually unbiased bases in dimension six",
+    "statement": "Proves N(6)=3, resolving Zauner's dimension-six mutually unbiased bases conjecture: three such bases exist in ℂ 6 , but four cannot. The exclusion is a complete certified computation under the stated binary64 arithmetic and compiler conditions. An independent companion proves the Matolcsi–Ruzsa–Weiner Fourier-vanishing conjecture for order-six complex Hadamard matrices outside Tao's cubic equivalence class.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "equivalences-and-an-exhaustive-seed-cover",
+      "label": "Equivalences and an exhaustive seed cover",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "completion-over-a-fixed-seed-ball",
+      "label": "Completion over a fixed seed ball",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "certified-phase-balls-and-their-atlas",
+      "label": "Certified phase balls and their atlas",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "refining-the-phase-ball-cover",
+      "label": "Refining the phase-ball cover",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "excluding-two-further-bases-in-a-phase-ball",
+      "label": "Excluding two further bases in a phase ball",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-execution-and-the-recorded-certificate",
+      "label": "Finite execution and the recorded certificate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "certified-arithmetic",
+      "label": "Certified arithmetic",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "injective-moments-and-a-dichotomy-for-one-hadamard-matrix",
+      "label": "Injective moments and a dichotomy for one Hadamard matrix",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-cubic-alternative",
+      "label": "The cubic alternative",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "complete-families-and-the-cubic-obstruction",
+      "label": "Complete families and the cubic obstruction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "mixed-moments-and-the-remaining-case",
+      "label": "Mixed moments and the remaining case",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exact-verification-of-the-two-certificates",
+      "label": "Exact verification of the two certificates",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The maximum number of mutually unbiased bases in dimension six",
+      "title": "The maximum number of mutually unbiased bases in dimension six",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The maximum number of mutually unbiased bases in dimension six.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-three-mub-six",
+          "role": "introduction",
+          "label": "lemma m1-lem-three-mub-six",
+          "fullLabel": "lemma m1-lem-three-mub-six",
+          "kind": "lemma",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-adjoint-cartan",
+          "role": "introduction",
+          "label": "corollary m1-cor-adjoint-cartan",
+          "fullLabel": "corollary m1-cor-adjoint-cartan",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-seed-equivalences",
+          "role": "equivalences-and-an-exhaustive-seed-cover",
+          "label": "lemma m1-seed-equivalences",
+          "fullLabel": "lemma m1-seed-equivalences",
+          "kind": "lemma",
+          "source": "Equivalences and an exhaustive seed cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-seed-horizontal",
+          "role": "equivalences-and-an-exhaustive-seed-cover",
+          "label": "lemma m1-seed-horizontal",
+          "fullLabel": "lemma m1-seed-horizontal",
+          "kind": "lemma",
+          "source": "Equivalences and an exhaustive seed cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-seed-arrangement",
+          "role": "equivalences-and-an-exhaustive-seed-cover",
+          "label": "lemma m1-seed-arrangement",
+          "fullLabel": "lemma m1-seed-arrangement",
+          "kind": "lemma",
+          "source": "Equivalences and an exhaustive seed cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-seed-gap-stability",
+          "role": "equivalences-and-an-exhaustive-seed-cover",
+          "label": "lemma m1-seed-gap-stability",
+          "fullLabel": "lemma m1-seed-gap-stability",
+          "kind": "lemma",
+          "source": "Equivalences and an exhaustive seed cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-seed-gap-filters",
+          "role": "equivalences-and-an-exhaustive-seed-cover",
+          "label": "lemma m1-seed-gap-filters",
+          "fullLabel": "lemma m1-seed-gap-filters",
+          "kind": "lemma",
+          "source": "Equivalences and an exhaustive seed cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-seed-sum-test",
+          "role": "equivalences-and-an-exhaustive-seed-cover",
+          "label": "lemma m1-seed-sum-test",
+          "fullLabel": "lemma m1-seed-sum-test",
+          "kind": "lemma",
+          "source": "Equivalences and an exhaustive seed cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-seed-shared-interval",
+          "role": "equivalences-and-an-exhaustive-seed-cover",
+          "label": "lemma m1-seed-shared-interval",
+          "fullLabel": "lemma m1-seed-shared-interval",
+          "kind": "lemma",
+          "source": "Equivalences and an exhaustive seed cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-seed-dual-support",
+          "role": "equivalences-and-an-exhaustive-seed-cover",
+          "label": "lemma m1-seed-dual-support",
+          "fullLabel": "lemma m1-seed-dual-support",
+          "kind": "lemma",
+          "source": "Equivalences and an exhaustive seed cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-seed-cover",
+          "role": "equivalences-and-an-exhaustive-seed-cover",
+          "label": "proposition m1-seed-cover",
+          "fullLabel": "proposition m1-seed-cover",
+          "kind": "proposition",
+          "source": "Equivalences and an exhaustive seed cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-completion-frames",
+          "role": "completion-over-a-fixed-seed-ball",
+          "label": "lemma m1-completion-frames",
+          "fullLabel": "lemma m1-completion-frames",
+          "kind": "lemma",
+          "source": "Completion over a fixed seed ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-completion-polar",
+          "role": "completion-over-a-fixed-seed-ball",
+          "label": "lemma m1-completion-polar",
+          "fullLabel": "lemma m1-completion-polar",
+          "kind": "lemma",
+          "source": "Completion over a fixed seed ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-completion-unitary-cover",
+          "role": "completion-over-a-fixed-seed-ball",
+          "label": "lemma m1-completion-unitary-cover",
+          "fullLabel": "lemma m1-completion-unitary-cover",
+          "kind": "lemma",
+          "source": "Completion over a fixed seed ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-completion-unitary-taylor",
+          "role": "completion-over-a-fixed-seed-ball",
+          "label": "lemma m1-completion-unitary-taylor",
+          "fullLabel": "lemma m1-completion-unitary-taylor",
+          "kind": "lemma",
+          "source": "Completion over a fixed seed ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-completion-comparison-pieces",
+          "role": "completion-over-a-fixed-seed-ball",
+          "label": "lemma m1-completion-comparison-pieces",
+          "fullLabel": "lemma m1-completion-comparison-pieces",
+          "kind": "lemma",
+          "source": "Completion over a fixed seed ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-completion-l-bound",
+          "role": "completion-over-a-fixed-seed-ball",
+          "label": "lemma m1-completion-l-bound",
+          "fullLabel": "lemma m1-completion-l-bound",
+          "kind": "lemma",
+          "source": "Completion over a fixed seed ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-completion-linear-remainder",
+          "role": "completion-over-a-fixed-seed-ball",
+          "label": "lemma m1-completion-linear-remainder",
+          "fullLabel": "lemma m1-completion-linear-remainder",
+          "kind": "lemma",
+          "source": "Completion over a fixed seed ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-completion-norm-exclusion",
+          "role": "completion-over-a-fixed-seed-ball",
+          "label": "lemma m1-completion-norm-exclusion",
+          "fullLabel": "lemma m1-completion-norm-exclusion",
+          "kind": "lemma",
+          "source": "Completion over a fixed seed ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-completion-directional-exclusion",
+          "role": "completion-over-a-fixed-seed-ball",
+          "label": "lemma m1-completion-directional-exclusion",
+          "fullLabel": "lemma m1-completion-directional-exclusion",
+          "kind": "lemma",
+          "source": "Completion over a fixed seed ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-completion-dual-certificates",
+          "role": "completion-over-a-fixed-seed-ball",
+          "label": "corollary m1-completion-dual-certificates",
+          "fullLabel": "corollary m1-completion-dual-certificates",
+          "kind": "corollary",
+          "source": "Completion over a fixed seed ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-completion-recursion",
+          "role": "completion-over-a-fixed-seed-ball",
+          "label": "proposition m1-completion-recursion",
+          "fullLabel": "proposition m1-completion-recursion",
+          "kind": "proposition",
+          "source": "Completion over a fixed seed ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-remainder",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "lemma m1-phase-remainder",
+          "fullLabel": "lemma m1-phase-remainder",
+          "kind": "lemma",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-remainder-constants",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "lemma m1-phase-remainder-constants",
+          "fullLabel": "lemma m1-phase-remainder-constants",
+          "kind": "lemma",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-root-bounds",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "proposition m1-phase-root-bounds",
+          "fullLabel": "proposition m1-phase-root-bounds",
+          "kind": "proposition",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-stored-root-certificate",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "proposition m1-phase-stored-root-certificate",
+          "fullLabel": "proposition m1-phase-stored-root-certificate",
+          "kind": "proposition",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-transport",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "lemma m1-phase-transport",
+          "fullLabel": "lemma m1-phase-transport",
+          "kind": "lemma",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-arc-bounds",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "lemma m1-phase-arc-bounds",
+          "fullLabel": "lemma m1-phase-arc-bounds",
+          "kind": "lemma",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-center-correction",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "lemma m1-phase-center-correction",
+          "fullLabel": "lemma m1-phase-center-correction",
+          "kind": "lemma",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-direct-bound",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "lemma m1-phase-direct-bound",
+          "fullLabel": "lemma m1-phase-direct-bound",
+          "kind": "lemma",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-ellipsoid-containment",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "lemma m1-phase-ellipsoid-containment",
+          "fullLabel": "lemma m1-phase-ellipsoid-containment",
+          "kind": "lemma",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-ellipsoid-norm",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "lemma m1-phase-ellipsoid-norm",
+          "fullLabel": "lemma m1-phase-ellipsoid-norm",
+          "kind": "lemma",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-bootstrap",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "proposition m1-phase-bootstrap",
+          "fullLabel": "proposition m1-phase-bootstrap",
+          "kind": "proposition",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-atlas-merge",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "lemma m1-phase-atlas-merge",
+          "fullLabel": "lemma m1-phase-atlas-merge",
+          "kind": "lemma",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-phase-a-cover",
+          "role": "certified-phase-balls-and-their-atlas",
+          "label": "proposition m1-phase-a-cover",
+          "fullLabel": "proposition m1-phase-a-cover",
+          "kind": "proposition",
+          "source": "Certified phase balls and their atlas",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-refine-approximate-projection",
+          "role": "refining-the-phase-ball-cover",
+          "label": "lemma m1-refine-approximate-projection",
+          "fullLabel": "lemma m1-refine-approximate-projection",
+          "kind": "lemma",
+          "source": "Refining the phase-ball cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-refine-relation-estimates",
+          "role": "refining-the-phase-ball-cover",
+          "label": "proposition m1-refine-relation-estimates",
+          "fullLabel": "proposition m1-refine-relation-estimates",
+          "kind": "proposition",
+          "source": "Refining the phase-ball cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-refine-iteration-certificate",
+          "role": "refining-the-phase-ball-cover",
+          "label": "lemma m1-refine-iteration-certificate",
+          "fullLabel": "lemma m1-refine-iteration-certificate",
+          "kind": "lemma",
+          "source": "Refining the phase-ball cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-refine-rho-certificate",
+          "role": "refining-the-phase-ball-cover",
+          "label": "lemma m1-refine-rho-certificate",
+          "fullLabel": "lemma m1-refine-rho-certificate",
+          "kind": "lemma",
+          "source": "Refining the phase-ball cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-refine-farthest-corner",
+          "role": "refining-the-phase-ball-cover",
+          "label": "lemma m1-refine-farthest-corner",
+          "fullLabel": "lemma m1-refine-farthest-corner",
+          "kind": "lemma",
+          "source": "Refining the phase-ball cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-refine-atlas-assignment",
+          "role": "refining-the-phase-ball-cover",
+          "label": "lemma m1-refine-atlas-assignment",
+          "fullLabel": "lemma m1-refine-atlas-assignment",
+          "kind": "lemma",
+          "source": "Refining the phase-ball cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-refine-cover-preservation",
+          "role": "refining-the-phase-ball-cover",
+          "label": "proposition m1-refine-cover-preservation",
+          "fullLabel": "proposition m1-refine-cover-preservation",
+          "kind": "proposition",
+          "source": "Refining the phase-ball cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-refine-batch-cover",
+          "role": "refining-the-phase-ball-cover",
+          "label": "corollary m1-refine-batch-cover",
+          "fullLabel": "corollary m1-refine-batch-cover",
+          "kind": "corollary",
+          "source": "Refining the phase-ball cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exclude-bin-geometry",
+          "role": "excluding-two-further-bases-in-a-phase-ball",
+          "label": "lemma m1-exclude-bin-geometry",
+          "fullLabel": "lemma m1-exclude-bin-geometry",
+          "kind": "lemma",
+          "source": "Excluding two further bases in a phase ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exclude-direct-single",
+          "role": "excluding-two-further-bases-in-a-phase-ball",
+          "label": "lemma m1-exclude-direct-single",
+          "fullLabel": "lemma m1-exclude-direct-single",
+          "kind": "lemma",
+          "source": "Excluding two further bases in a phase ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exclude-weighted-single",
+          "role": "excluding-two-further-bases-in-a-phase-ball",
+          "label": "lemma m1-exclude-weighted-single",
+          "fullLabel": "lemma m1-exclude-weighted-single",
+          "kind": "lemma",
+          "source": "Excluding two further bases in a phase ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exclude-cluster-cover",
+          "role": "excluding-two-further-bases-in-a-phase-ball",
+          "label": "lemma m1-exclude-cluster-cover",
+          "fullLabel": "lemma m1-exclude-cluster-cover",
+          "kind": "lemma",
+          "source": "Excluding two further bases in a phase ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exclude-distinct-labels",
+          "role": "excluding-two-further-bases-in-a-phase-ball",
+          "label": "lemma m1-exclude-distinct-labels",
+          "fullLabel": "lemma m1-exclude-distinct-labels",
+          "kind": "lemma",
+          "source": "Excluding two further bases in a phase ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exclude-edge-taylor",
+          "role": "excluding-two-further-bases-in-a-phase-ball",
+          "label": "lemma m1-exclude-edge-taylor",
+          "fullLabel": "lemma m1-exclude-edge-taylor",
+          "kind": "lemma",
+          "source": "Excluding two further bases in a phase ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exclude-joint-support",
+          "role": "excluding-two-further-bases-in-a-phase-ball",
+          "label": "lemma m1-exclude-joint-support",
+          "fullLabel": "lemma m1-exclude-joint-support",
+          "kind": "lemma",
+          "source": "Excluding two further bases in a phase ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exclude-graph-search",
+          "role": "excluding-two-further-bases-in-a-phase-ball",
+          "label": "lemma m1-exclude-graph-search",
+          "fullLabel": "lemma m1-exclude-graph-search",
+          "kind": "lemma",
+          "source": "Excluding two further bases in a phase ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exclude-local-certificate",
+          "role": "excluding-two-further-bases-in-a-phase-ball",
+          "label": "proposition m1-exclude-local-certificate",
+          "fullLabel": "proposition m1-exclude-local-certificate",
+          "kind": "proposition",
+          "source": "Excluding two further bases in a phase ball",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-execute-finite-theorem",
+          "role": "finite-execution-and-the-recorded-certificate",
+          "label": "theorem m1-execute-finite-theorem",
+          "fullLabel": "theorem m1-execute-finite-theorem",
+          "kind": "theorem",
+          "source": "Finite execution and the recorded certificate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-round-accumulation",
+          "role": "certified-arithmetic",
+          "label": "lemma m1-round-accumulation",
+          "fullLabel": "lemma m1-round-accumulation",
+          "kind": "lemma",
+          "source": "Certified arithmetic",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-round-expair",
+          "role": "certified-arithmetic",
+          "label": "lemma m1-round-expair",
+          "fullLabel": "lemma m1-round-expair",
+          "kind": "lemma",
+          "source": "Certified arithmetic",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-round-spectral",
+          "role": "certified-arithmetic",
+          "label": "lemma m1-round-spectral",
+          "fullLabel": "lemma m1-round-spectral",
+          "kind": "lemma",
+          "source": "Certified arithmetic",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Exact Fourier certificates for complex Hadamard matrices of order six",
+      "title": "Exact Fourier certificates for complex Hadamard matrices of order six",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Exact Fourier certificates for complex Hadamard matrices of order six.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-fourier",
+          "role": "introduction",
+          "label": "theorem m2-thm-fourier",
+          "fullLabel": "theorem m2-thm-fourier",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-cor-dichotomy"
+          ]
+        },
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-cor-dichotomy"
+          ]
+        },
+        {
+          "id": "m2-cor-dichotomy",
+          "role": "injective-moments-and-a-dichotomy-for-one-hadamard-matrix",
+          "label": "corollary m2-cor-dichotomy",
+          "fullLabel": "corollary m2-cor-dichotomy",
+          "kind": "corollary",
+          "source": "Injective moments and a dichotomy for one Hadamard matrix",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-contraction",
+          "role": "injective-moments-and-a-dichotomy-for-one-hadamard-matrix",
+          "label": "lemma m2-lem-contraction",
+          "fullLabel": "lemma m2-lem-contraction",
+          "kind": "lemma",
+          "source": "Injective moments and a dichotomy for one Hadamard matrix",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-partitions",
+          "role": "injective-moments-and-a-dichotomy-for-one-hadamard-matrix",
+          "label": "lemma m2-lem-partitions",
+          "fullLabel": "lemma m2-lem-partitions",
+          "kind": "lemma",
+          "source": "Injective moments and a dichotomy for one Hadamard matrix",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-pair-certificate",
+          "role": "injective-moments-and-a-dichotomy-for-one-hadamard-matrix",
+          "label": "proposition m2-prop-pair-certificate",
+          "fullLabel": "proposition m2-prop-pair-certificate",
+          "kind": "proposition",
+          "source": "Injective moments and a dichotomy for one Hadamard matrix",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-cubic-classification",
+          "role": "the-cubic-alternative",
+          "label": "proposition m2-prop-cubic-classification",
+          "fullLabel": "proposition m2-prop-cubic-classification",
+          "kind": "proposition",
+          "source": "The cubic alternative",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-basic",
+          "role": "complete-families-and-the-cubic-obstruction",
+          "label": "lemma m2-lem-basic",
+          "fullLabel": "lemma m2-lem-basic",
+          "kind": "lemma",
+          "source": "Complete families and the cubic obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-cubic-exclusion",
+          "role": "complete-families-and-the-cubic-obstruction",
+          "label": "proposition m2-prop-cubic-exclusion",
+          "fullLabel": "proposition m2-prop-cubic-exclusion",
+          "kind": "proposition",
+          "source": "Complete families and the cubic obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cubic-symmetry",
+          "role": "complete-families-and-the-cubic-obstruction",
+          "label": "lemma m2-lem-cubic-symmetry",
+          "fullLabel": "lemma m2-lem-cubic-symmetry",
+          "kind": "lemma",
+          "source": "Complete families and the cubic obstruction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-gram",
+          "role": "mixed-moments-and-the-remaining-case",
+          "label": "lemma m2-lem-gram",
+          "fullLabel": "lemma m2-lem-gram",
+          "kind": "lemma",
+          "source": "Mixed moments and the remaining case",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-mixed-reductions",
+          "role": "mixed-moments-and-the-remaining-case",
+          "label": "lemma m2-lem-mixed-reductions",
+          "fullLabel": "lemma m2-lem-mixed-reductions",
+          "kind": "lemma",
+          "source": "Mixed moments and the remaining case",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-mixed-certificate",
+          "role": "mixed-moments-and-the-remaining-case",
+          "label": "proposition m2-prop-mixed-certificate",
+          "fullLabel": "proposition m2-prop-mixed-certificate",
+          "kind": "proposition",
+          "source": "Mixed moments and the remaining case",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-exact-elimination",
+          "role": "exact-verification-of-the-two-certificates",
+          "label": "lemma m2-lem-exact-elimination",
+          "fullLabel": "lemma m2-lem-exact-elimination",
+          "kind": "lemma",
+          "source": "Exact verification of the two certificates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The maximum number of mutually unbiased bases in dimension six",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Exact Fourier certificates for complex Hadamard matrices of order six",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026.pdf",
+      "kind": "paper"
+    }
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "025",
+  "title": "Short Egyptian fractions",
+  "result": {
+    "id": "paper-result",
+    "label": "Short Egyptian fractions",
+    "statement": "Every rational a/b with 1 a b is a sum of O( b) distinct positive unit fractions. The worst-case minimum number of terms has the same order, resolving Erdős’s conjecture on short Egyptian fractions.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-a-dense-set-to-every-numerator",
+      "label": "From a dense set to every numerator",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniform-divisor-moment",
+      "label": "A uniform divisor moment",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "divisors-with-small-residues",
+      "label": "Divisors with small residues",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "counting-representations-of-one",
+      "label": "Counting representations of one",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "preserving-a-prescribed-denominator",
+      "label": "Preserving a prescribed denominator",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-quantitative-prescribed-denominator-bound",
+      "label": "A quantitative prescribed-denominator bound",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Short Egyptian fractions",
+      "title": "Short Egyptian fractions",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Short-Egyptian-fractions-September-25-2026/Short-Egyptian-fractions-September-25-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Short Egyptian fractions.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-counting",
+          "role": "introduction",
+          "label": "corollary m1-cor-counting",
+          "fullLabel": "corollary m1-cor-counting",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-prescribed",
+          "role": "introduction",
+          "label": "corollary m1-cor-prescribed",
+          "fullLabel": "corollary m1-cor-prescribed",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-density",
+          "role": "from-a-dense-set-to-every-numerator",
+          "label": "proposition m1-prop-density",
+          "fullLabel": "proposition m1-prop-density",
+          "kind": "proposition",
+          "source": "From a dense set to every numerator",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-residues"
+          ]
+        },
+        {
+          "id": "m1-lem-distinct",
+          "role": "from-a-dense-set-to-every-numerator",
+          "label": "lemma m1-lem-distinct",
+          "fullLabel": "lemma m1-lem-distinct",
+          "kind": "lemma",
+          "source": "From a dense set to every numerator",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-greedy",
+          "role": "from-a-dense-set-to-every-numerator",
+          "label": "lemma m1-lem-greedy",
+          "fullLabel": "lemma m1-lem-greedy",
+          "kind": "lemma",
+          "source": "From a dense set to every numerator",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-divisor",
+          "role": "a-uniform-divisor-moment",
+          "label": "lemma m1-lem-divisor",
+          "fullLabel": "lemma m1-lem-divisor",
+          "kind": "lemma",
+          "source": "A uniform divisor moment",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-residues",
+          "role": "divisors-with-small-residues",
+          "label": "lemma m1-lem-residues",
+          "fullLabel": "lemma m1-lem-residues",
+          "kind": "lemma",
+          "source": "Divisors with small residues",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-discrepancy",
+          "role": "divisors-with-small-residues",
+          "label": "lemma m1-lem-discrepancy",
+          "fullLabel": "lemma m1-lem-discrepancy",
+          "kind": "lemma",
+          "source": "Divisors with small residues",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-reciprocal-phase",
+          "role": "divisors-with-small-residues",
+          "label": "lemma m1-lem-reciprocal-phase",
+          "fullLabel": "lemma m1-lem-reciprocal-phase",
+          "kind": "lemma",
+          "source": "Divisors with small residues",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-deterministic",
+          "role": "divisors-with-small-residues",
+          "label": "lemma m1-lem-deterministic",
+          "fullLabel": "lemma m1-lem-deterministic",
+          "kind": "lemma",
+          "source": "Divisors with small residues",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-marked-cleanup",
+          "role": "counting-representations-of-one",
+          "label": "lemma m1-lem-marked-cleanup",
+          "fullLabel": "lemma m1-lem-marked-cleanup",
+          "kind": "lemma",
+          "source": "Counting representations of one",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-marked-greedy-prefix",
+          "role": "preserving-a-prescribed-denominator",
+          "label": "lemma m1-lem-marked-greedy-prefix",
+          "fullLabel": "lemma m1-lem-marked-greedy-prefix",
+          "kind": "lemma",
+          "source": "Preserving a prescribed denominator",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-exact-marker-padding",
+          "role": "preserving-a-prescribed-denominator",
+          "label": "lemma m1-lem-exact-marker-padding",
+          "fullLabel": "lemma m1-lem-exact-marker-padding",
+          "kind": "lemma",
+          "source": "Preserving a prescribed denominator",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-marked-length",
+          "role": "a-quantitative-prescribed-denominator-bound",
+          "label": "proposition m1-prop-marked-length",
+          "fullLabel": "proposition m1-prop-marked-length",
+          "kind": "proposition",
+          "source": "A quantitative prescribed-denominator bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-rational-divisor-supply"
+          ]
+        },
+        {
+          "id": "m1-lem-rational-divisor-supply",
+          "role": "a-quantitative-prescribed-denominator-bound",
+          "label": "lemma m1-lem-rational-divisor-supply",
+          "fullLabel": "lemma m1-lem-rational-divisor-supply",
+          "kind": "lemma",
+          "source": "A quantitative prescribed-denominator bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-marked-divisor-density",
+          "role": "a-quantitative-prescribed-denominator-bound",
+          "label": "lemma m1-lem-marked-divisor-density",
+          "fullLabel": "lemma m1-lem-marked-divisor-density",
+          "kind": "lemma",
+          "source": "A quantitative prescribed-denominator bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-marked-grouping",
+          "role": "a-quantitative-prescribed-denominator-bound",
+          "label": "lemma m1-lem-marked-grouping",
+          "fullLabel": "lemma m1-lem-marked-grouping",
+          "kind": "lemma",
+          "source": "A quantitative prescribed-denominator bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Short Egyptian fractions",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Short-Egyptian-fractions-September-25-2026/Short-Egyptian-fractions-September-25-2026.pdf",
+      "kind": "paper"
+    }
+  ]
+}

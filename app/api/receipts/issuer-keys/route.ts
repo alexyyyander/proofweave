@@ -12,7 +12,9 @@ export async function GET() {
     const issuerKeys = await getContributionReceiptReader().listIssuerKeys();
     return Response.json(
       { issuerKeys },
-      { headers: { "cache-control": "public, max-age=120, s-maxage=300" } },
+      // Readers run a revocation check against this response, so it must be
+      // fresh at the moment it is asked for rather than cached for minutes.
+      { headers: { "cache-control": "no-store" } },
     );
   } catch (error) {
     const status = error instanceof MissingDatabaseBindingError ? 503 : 500;

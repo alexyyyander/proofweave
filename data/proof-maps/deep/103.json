@@ -1,0 +1,793 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "103",
+  "title": "Exact derandomization of logarithmic space: ` L=RL=BPL`",
+  "result": {
+    "id": "paper-result",
+    "label": "Exact derandomization of logarithmic space: ` L=RL=BPL`",
+    "statement": "Proves L= RL = BPL , resolving derandomization for bounded-error logarithmic-space computation. An effective compiler converts each randomized polynomial-time logarithmic-space machine deciding a language with one-sided or two-sided error into a deterministic logarithmic-space decider with explicit polynomial running-time bounds.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-transition-model-and-resource-parameters",
+      "label": "The transition model and resource parameters",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "rank-channels-for-retained-vertex-sets",
+      "label": "Rank channels for retained vertex sets",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-exact-correction-and-copy-hierarchy",
+      "label": "The exact correction and copy hierarchy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "stochastic-atoms-and-their-interfaces",
+      "label": "Stochastic atoms and their interfaces",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "conditional-averaging-in-the-shared-environment",
+      "label": "Conditional averaging in the shared environment",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "additive-estimation-and-conditional-prefix-bounds",
+      "label": "Additive estimation and conditional prefix bounds",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compression-of-additive-row-estimates",
+      "label": "Compression of additive row estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "adaptive-fingerprints-within-budget-blocks",
+      "label": "Adaptive fingerprints within budget blocks",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-numerical-queries-with-bounded-suspended-storage",
+      "label": "Finite numerical queries with bounded suspended storage",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "uniform-controller-implementation",
+      "label": "Uniform controller implementation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "derandomization-and-quantitative-consequences",
+      "label": "Derandomization and quantitative consequences",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-effective-compiler",
+      "label": "The effective compiler",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Exact derandomization of logarithmic space: L = RL = BPL",
+      "title": "Exact derandomization of logarithmic space: L = RL = BPL",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Derandomization-of-Logarithmic-Space-L-equals-RL-equals-BPL-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Exact derandomization of logarithmic space: L = RL = BPL.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-probability",
+          "role": "introduction",
+          "label": "theorem m1-thm-probability",
+          "fullLabel": "theorem m1-thm-probability",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-model-reduction",
+          "role": "the-transition-model-and-resource-parameters",
+          "label": "lemma m1-lem-model-reduction",
+          "fullLabel": "lemma m1-lem-model-reduction",
+          "kind": "lemma",
+          "source": "The transition model and resource parameters",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-env-ranks",
+          "role": "rank-channels-for-retained-vertex-sets",
+          "label": "lemma m1-lem-env-ranks",
+          "fullLabel": "lemma m1-lem-env-ranks",
+          "kind": "lemma",
+          "source": "Rank channels for retained vertex sets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-hier-fixed-point",
+          "role": "the-exact-correction-and-copy-hierarchy",
+          "label": "lemma m1-lem-hier-fixed-point",
+          "fullLabel": "lemma m1-lem-hier-fixed-point",
+          "kind": "lemma",
+          "source": "The exact correction and copy hierarchy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-hier-pilot-bounds",
+          "role": "the-exact-correction-and-copy-hierarchy",
+          "label": "lemma m1-lem-hier-pilot-bounds",
+          "fullLabel": "lemma m1-lem-hier-pilot-bounds",
+          "kind": "lemma",
+          "source": "The exact correction and copy hierarchy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-hier-column-test",
+          "role": "the-exact-correction-and-copy-hierarchy",
+          "label": "lemma m1-lem-hier-column-test",
+          "fullLabel": "lemma m1-lem-hier-column-test",
+          "kind": "lemma",
+          "source": "The exact correction and copy hierarchy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-hier-residual",
+          "role": "the-exact-correction-and-copy-hierarchy",
+          "label": "lemma m1-lem-hier-residual",
+          "fullLabel": "lemma m1-lem-hier-residual",
+          "kind": "lemma",
+          "source": "The exact correction and copy hierarchy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-hier-copy-step",
+          "role": "the-exact-correction-and-copy-hierarchy",
+          "label": "proposition m1-prop-hier-copy-step",
+          "fullLabel": "proposition m1-prop-hier-copy-step",
+          "kind": "proposition",
+          "source": "The exact correction and copy hierarchy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-hier-reward-target",
+          "role": "the-exact-correction-and-copy-hierarchy",
+          "label": "proposition m1-prop-hier-reward-target",
+          "fullLabel": "proposition m1-prop-hier-reward-target",
+          "kind": "proposition",
+          "source": "The exact correction and copy hierarchy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-atom-dense",
+          "role": "stochastic-atoms-and-their-interfaces",
+          "label": "lemma m1-lem-atom-dense",
+          "fullLabel": "lemma m1-lem-atom-dense",
+          "kind": "lemma",
+          "source": "Stochastic atoms and their interfaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-hier-bin-products",
+          "role": "stochastic-atoms-and-their-interfaces",
+          "label": "lemma m1-lem-hier-bin-products",
+          "fullLabel": "lemma m1-lem-hier-bin-products",
+          "kind": "lemma",
+          "source": "Stochastic atoms and their interfaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-atom-correction",
+          "role": "stochastic-atoms-and-their-interfaces",
+          "label": "lemma m1-lem-atom-correction",
+          "fullLabel": "lemma m1-lem-atom-correction",
+          "kind": "lemma",
+          "source": "Stochastic atoms and their interfaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-atom-margins",
+          "role": "stochastic-atoms-and-their-interfaces",
+          "label": "lemma m1-lem-atom-margins",
+          "fullLabel": "lemma m1-lem-atom-margins",
+          "kind": "lemma",
+          "source": "Stochastic atoms and their interfaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-atom-ports",
+          "role": "stochastic-atoms-and-their-interfaces",
+          "label": "lemma m1-lem-atom-ports",
+          "fullLabel": "lemma m1-lem-atom-ports",
+          "kind": "lemma",
+          "source": "Stochastic atoms and their interfaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-atom-assembly",
+          "role": "stochastic-atoms-and-their-interfaces",
+          "label": "lemma m1-lem-atom-assembly",
+          "fullLabel": "lemma m1-lem-atom-assembly",
+          "kind": "lemma",
+          "source": "Stochastic atoms and their interfaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-env-affine",
+          "role": "conditional-averaging-in-the-shared-environment",
+          "label": "lemma m1-lem-env-affine",
+          "fullLabel": "lemma m1-lem-env-affine",
+          "kind": "lemma",
+          "source": "Conditional averaging in the shared environment",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-env-gap",
+          "role": "conditional-averaging-in-the-shared-environment",
+          "label": "lemma m1-lem-env-gap",
+          "fullLabel": "lemma m1-lem-env-gap",
+          "kind": "lemma",
+          "source": "Conditional averaging in the shared environment",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-env-variants",
+          "role": "conditional-averaging-in-the-shared-environment",
+          "label": "lemma m1-lem-env-variants",
+          "fullLabel": "lemma m1-lem-env-variants",
+          "kind": "lemma",
+          "source": "Conditional averaging in the shared environment",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-est-true-means",
+          "role": "additive-estimation-and-conditional-prefix-bounds",
+          "label": "lemma m1-lem-est-true-means",
+          "fullLabel": "lemma m1-lem-est-true-means",
+          "kind": "lemma",
+          "source": "Additive estimation and conditional prefix bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-est-loss",
+          "role": "additive-estimation-and-conditional-prefix-bounds",
+          "label": "lemma m1-lem-est-loss",
+          "fullLabel": "lemma m1-lem-est-loss",
+          "kind": "lemma",
+          "source": "Additive estimation and conditional prefix bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-est-mean-comparison",
+          "role": "additive-estimation-and-conditional-prefix-bounds",
+          "label": "lemma m1-lem-est-mean-comparison",
+          "fullLabel": "lemma m1-lem-est-mean-comparison",
+          "kind": "lemma",
+          "source": "Additive estimation and conditional prefix bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-est-omission",
+          "role": "additive-estimation-and-conditional-prefix-bounds",
+          "label": "lemma m1-lem-est-omission",
+          "fullLabel": "lemma m1-lem-est-omission",
+          "kind": "lemma",
+          "source": "Additive estimation and conditional prefix bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-est-paths",
+          "role": "additive-estimation-and-conditional-prefix-bounds",
+          "label": "lemma m1-lem-est-paths",
+          "fullLabel": "lemma m1-lem-est-paths",
+          "kind": "lemma",
+          "source": "Additive estimation and conditional prefix bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-est-mean-prefix",
+          "role": "additive-estimation-and-conditional-prefix-bounds",
+          "label": "lemma m1-lem-est-mean-prefix",
+          "fullLabel": "lemma m1-lem-est-mean-prefix",
+          "kind": "lemma",
+          "source": "Additive estimation and conditional prefix bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-est-raw-difference",
+          "role": "additive-estimation-and-conditional-prefix-bounds",
+          "label": "lemma m1-lem-est-raw-difference",
+          "fullLabel": "lemma m1-lem-est-raw-difference",
+          "kind": "lemma",
+          "source": "Additive estimation and conditional prefix bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-est-prefix",
+          "role": "additive-estimation-and-conditional-prefix-bounds",
+          "label": "lemma m1-lem-est-prefix",
+          "fullLabel": "lemma m1-lem-est-prefix",
+          "kind": "lemma",
+          "source": "Additive estimation and conditional prefix bounds",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-buf-update",
+          "role": "compression-of-additive-row-estimates",
+          "label": "lemma m1-lem-buf-update",
+          "fullLabel": "lemma m1-lem-buf-update",
+          "kind": "lemma",
+          "source": "Compression of additive row estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-buf-reference",
+          "role": "compression-of-additive-row-estimates",
+          "label": "lemma m1-lem-buf-reference",
+          "fullLabel": "lemma m1-lem-buf-reference",
+          "kind": "lemma",
+          "source": "Compression of additive row estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-buf-relative-stability",
+          "role": "compression-of-additive-row-estimates",
+          "label": "lemma m1-lem-buf-relative-stability",
+          "fullLabel": "lemma m1-lem-buf-relative-stability",
+          "kind": "lemma",
+          "source": "Compression of additive row estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-buf-rarity",
+          "role": "compression-of-additive-row-estimates",
+          "label": "lemma m1-lem-buf-rarity",
+          "fullLabel": "lemma m1-lem-buf-rarity",
+          "kind": "lemma",
+          "source": "Compression of additive row estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-buf-error",
+          "role": "compression-of-additive-row-estimates",
+          "label": "proposition m1-prop-buf-error",
+          "fullLabel": "proposition m1-prop-buf-error",
+          "kind": "proposition",
+          "source": "Compression of additive row estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-buf-clamping",
+          "role": "compression-of-additive-row-estimates",
+          "label": "lemma m1-lem-buf-clamping",
+          "fullLabel": "lemma m1-lem-buf-clamping",
+          "kind": "lemma",
+          "source": "Compression of additive row estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-est-clean",
+          "role": "compression-of-additive-row-estimates",
+          "label": "proposition m1-prop-est-clean",
+          "fullLabel": "proposition m1-prop-est-clean",
+          "kind": "proposition",
+          "source": "Compression of additive row estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fp-hash",
+          "role": "adaptive-fingerprints-within-budget-blocks",
+          "label": "lemma m1-lem-fp-hash",
+          "fullLabel": "lemma m1-lem-fp-hash",
+          "kind": "lemma",
+          "source": "Adaptive fingerprints within budget blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fp-clean",
+          "role": "adaptive-fingerprints-within-budget-blocks",
+          "label": "lemma m1-lem-fp-clean",
+          "fullLabel": "lemma m1-lem-fp-clean",
+          "kind": "lemma",
+          "source": "Adaptive fingerprints within budget blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fp-envelope",
+          "role": "adaptive-fingerprints-within-budget-blocks",
+          "label": "lemma m1-lem-fp-envelope",
+          "fullLabel": "lemma m1-lem-fp-envelope",
+          "kind": "lemma",
+          "source": "Adaptive fingerprints within budget blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fp-escape",
+          "role": "adaptive-fingerprints-within-budget-blocks",
+          "label": "lemma m1-lem-fp-escape",
+          "fullLabel": "lemma m1-lem-fp-escape",
+          "kind": "lemma",
+          "source": "Adaptive fingerprints within budget blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fp-buckets",
+          "role": "adaptive-fingerprints-within-budget-blocks",
+          "label": "lemma m1-lem-fp-buckets",
+          "fullLabel": "lemma m1-lem-fp-buckets",
+          "kind": "lemma",
+          "source": "Adaptive fingerprints within budget blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fp-direct",
+          "role": "adaptive-fingerprints-within-budget-blocks",
+          "label": "lemma m1-lem-fp-direct",
+          "fullLabel": "lemma m1-lem-fp-direct",
+          "kind": "lemma",
+          "source": "Adaptive fingerprints within budget blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-fp-coupling",
+          "role": "adaptive-fingerprints-within-budget-blocks",
+          "label": "proposition m1-prop-fp-coupling",
+          "fullLabel": "proposition m1-prop-fp-coupling",
+          "kind": "proposition",
+          "source": "Adaptive fingerprints within budget blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-fp-estimators",
+          "role": "adaptive-fingerprints-within-budget-blocks",
+          "label": "theorem m1-thm-fp-estimators",
+          "fullLabel": "theorem m1-thm-fp-estimators",
+          "kind": "theorem",
+          "source": "Adaptive fingerprints within budget blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fp-catalytic",
+          "role": "adaptive-fingerprints-within-budget-blocks",
+          "label": "lemma m1-lem-fp-catalytic",
+          "fullLabel": "lemma m1-lem-fp-catalytic",
+          "kind": "lemma",
+          "source": "Adaptive fingerprints within budget blocks",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-residue-stream",
+          "role": "finite-numerical-queries-with-bounded-suspended-storage",
+          "label": "lemma m1-lem-arith-residue-stream",
+          "fullLabel": "lemma m1-lem-arith-residue-stream",
+          "kind": "lemma",
+          "source": "Finite numerical queries with bounded suspended storage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-gate-evaluation",
+          "role": "finite-numerical-queries-with-bounded-suspended-storage",
+          "label": "lemma m1-lem-arith-gate-evaluation",
+          "fullLabel": "lemma m1-lem-arith-gate-evaluation",
+          "kind": "lemma",
+          "source": "Finite numerical queries with bounded suspended storage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-elementary",
+          "role": "finite-numerical-queries-with-bounded-suspended-storage",
+          "label": "lemma m1-lem-arith-elementary",
+          "fullLabel": "lemma m1-lem-arith-elementary",
+          "kind": "lemma",
+          "source": "Finite numerical queries with bounded suspended storage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-multiplication",
+          "role": "finite-numerical-queries-with-bounded-suspended-storage",
+          "label": "lemma m1-lem-arith-multiplication",
+          "fullLabel": "lemma m1-lem-arith-multiplication",
+          "kind": "lemma",
+          "source": "Finite numerical queries with bounded suspended storage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-reciprocal",
+          "role": "finite-numerical-queries-with-bounded-suspended-storage",
+          "label": "lemma m1-lem-arith-reciprocal",
+          "fullLabel": "lemma m1-lem-arith-reciprocal",
+          "kind": "lemma",
+          "source": "Finite numerical queries with bounded suspended storage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-rank",
+          "role": "finite-numerical-queries-with-bounded-suspended-storage",
+          "label": "lemma m1-lem-arith-rank",
+          "fullLabel": "lemma m1-lem-arith-rank",
+          "kind": "lemma",
+          "source": "Finite numerical queries with bounded suspended storage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-sums-scales",
+          "role": "finite-numerical-queries-with-bounded-suspended-storage",
+          "label": "lemma m1-lem-arith-sums-scales",
+          "fullLabel": "lemma m1-lem-arith-sums-scales",
+          "kind": "lemma",
+          "source": "Finite numerical queries with bounded suspended storage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-arith-buffered-test",
+          "role": "finite-numerical-queries-with-bounded-suspended-storage",
+          "label": "lemma m1-lem-arith-buffered-test",
+          "fullLabel": "lemma m1-lem-arith-buffered-test",
+          "kind": "lemma",
+          "source": "Finite numerical queries with bounded suspended storage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-arith-interface",
+          "role": "finite-numerical-queries-with-bounded-suspended-storage",
+          "label": "theorem m1-thm-arith-interface",
+          "fullLabel": "theorem m1-thm-arith-interface",
+          "kind": "theorem",
+          "source": "Finite numerical queries with bounded suspended storage",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-ctrl-realization",
+          "role": "uniform-controller-implementation",
+          "label": "theorem m1-thm-ctrl-realization",
+          "fullLabel": "theorem m1-thm-ctrl-realization",
+          "kind": "theorem",
+          "source": "Uniform controller implementation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-ctrl-recipes"
+          ]
+        },
+        {
+          "id": "m1-lem-ctrl-local-graph",
+          "role": "uniform-controller-implementation",
+          "label": "lemma m1-lem-ctrl-local-graph",
+          "fullLabel": "lemma m1-lem-ctrl-local-graph",
+          "kind": "lemma",
+          "source": "Uniform controller implementation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ctrl-tour",
+          "role": "uniform-controller-implementation",
+          "label": "lemma m1-lem-ctrl-tour",
+          "fullLabel": "lemma m1-lem-ctrl-tour",
+          "kind": "lemma",
+          "source": "Uniform controller implementation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ctrl-cap",
+          "role": "uniform-controller-implementation",
+          "label": "lemma m1-lem-ctrl-cap",
+          "fullLabel": "lemma m1-lem-ctrl-cap",
+          "kind": "lemma",
+          "source": "Uniform controller implementation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ctrl-score-rank",
+          "role": "uniform-controller-implementation",
+          "label": "lemma m1-lem-ctrl-score-rank",
+          "fullLabel": "lemma m1-lem-ctrl-score-rank",
+          "kind": "lemma",
+          "source": "Uniform controller implementation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ctrl-paths",
+          "role": "uniform-controller-implementation",
+          "label": "lemma m1-lem-ctrl-paths",
+          "fullLabel": "lemma m1-lem-ctrl-paths",
+          "kind": "lemma",
+          "source": "Uniform controller implementation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ctrl-equality",
+          "role": "uniform-controller-implementation",
+          "label": "lemma m1-lem-ctrl-equality",
+          "fullLabel": "lemma m1-lem-ctrl-equality",
+          "kind": "lemma",
+          "source": "Uniform controller implementation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ctrl-recipes",
+          "role": "uniform-controller-implementation",
+          "label": "lemma m1-lem-ctrl-recipes",
+          "fullLabel": "lemma m1-lem-ctrl-recipes",
+          "kind": "lemma",
+          "source": "Uniform controller implementation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ctrl-replay",
+          "role": "uniform-controller-implementation",
+          "label": "lemma m1-lem-ctrl-replay",
+          "fullLabel": "lemma m1-lem-ctrl-replay",
+          "kind": "lemma",
+          "source": "Uniform controller implementation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-fixed-precision",
+          "role": "derandomization-and-quantitative-consequences",
+          "label": "theorem m1-thm-fixed-precision",
+          "fullLabel": "theorem m1-thm-fixed-precision",
+          "kind": "theorem",
+          "source": "Derandomization and quantitative consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-final-majority",
+          "role": "derandomization-and-quantitative-consequences",
+          "label": "lemma m1-lem-final-majority",
+          "fullLabel": "lemma m1-lem-final-majority",
+          "kind": "lemma",
+          "source": "Derandomization and quantitative consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-promise-bpl",
+          "role": "derandomization-and-quantitative-consequences",
+          "label": "corollary m1-cor-promise-bpl",
+          "fullLabel": "corollary m1-cor-promise-bpl",
+          "kind": "corollary",
+          "source": "Derandomization and quantitative consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-certified-search",
+          "role": "derandomization-and-quantitative-consequences",
+          "label": "corollary m1-cor-certified-search",
+          "fullLabel": "corollary m1-cor-certified-search",
+          "kind": "corollary",
+          "source": "Derandomization and quantitative consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-effective-simulation",
+          "role": "the-effective-compiler",
+          "label": "theorem m1-thm-effective-simulation",
+          "fullLabel": "theorem m1-thm-effective-simulation",
+          "kind": "theorem",
+          "source": "The effective compiler",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-compiler-interpreter",
+          "role": "the-effective-compiler",
+          "label": "lemma m1-lem-compiler-interpreter",
+          "fullLabel": "lemma m1-lem-compiler-interpreter",
+          "kind": "lemma",
+          "source": "The effective compiler",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Exact derandomization of logarithmic space: L = RL = BPL",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Exact-Derandomization-of-Logarithmic-Space-L-equals-RL-equals-BPL-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

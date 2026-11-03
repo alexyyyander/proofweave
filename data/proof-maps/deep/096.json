@@ -1,0 +1,220 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "096",
+  "title": "The Gaussian propeller conjecture in every dimension",
+  "result": {
+    "id": "paper-result",
+    "label": "The Gaussian propeller conjecture in every dimension",
+    "statement": "Proves that the sum of squared Gaussian first moments of any finite measurable partition is at most 9/(8 ). In dimension at least two, three planar sectors of angle 2 /3, extended orthogonally, attain the bound. Combined with the separate Unique Games theorem, this proves NP-hardness of improving the loss factor (8 /9)(1-1/k) for identity-target kernel clustering with fixed k ≥ 3 on rational centered positive semidefinite inputs.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "extremal-partitions-and-their-centroids",
+      "label": "Extremal partitions and their centroids",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "probability-bounds-for-the-cells",
+      "label": "Probability bounds for the cells",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "competition-with-two-other-cells",
+      "label": "Competition with two other cells",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-kernel-clustering-application",
+      "label": "A kernel-clustering application",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The Gaussian propeller bound in every dimension",
+      "title": "The Gaussian propeller bound in every dimension",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Gaussian-Propeller-Bound-in-Every-Dimension-September-24-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The Gaussian propeller bound in every dimension.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-gaussian-maxima",
+          "role": "introduction",
+          "label": "corollary m1-cor-gaussian-maxima",
+          "fullLabel": "corollary m1-cor-gaussian-maxima",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ext-duality",
+          "role": "extremal-partitions-and-their-centroids",
+          "label": "lemma m1-ext-duality",
+          "fullLabel": "lemma m1-ext-duality",
+          "kind": "lemma",
+          "source": "Extremal partitions and their centroids",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ext-structure",
+          "role": "extremal-partitions-and-their-centroids",
+          "label": "lemma m1-ext-structure",
+          "fullLabel": "lemma m1-ext-structure",
+          "kind": "lemma",
+          "source": "Extremal partitions and their centroids",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sc-bounds",
+          "role": "probability-bounds-for-the-cells",
+          "label": "lemma m1-sc-bounds",
+          "fullLabel": "lemma m1-sc-bounds",
+          "kind": "lemma",
+          "source": "Probability bounds for the cells",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-sc-truncated-variance",
+          "role": "probability-bounds-for-the-cells",
+          "label": "lemma m1-sc-truncated-variance",
+          "fullLabel": "lemma m1-sc-truncated-variance",
+          "kind": "lemma",
+          "source": "Probability bounds for the cells",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geo-pair",
+          "role": "competition-with-two-other-cells",
+          "label": "lemma m1-geo-pair",
+          "fullLabel": "lemma m1-geo-pair",
+          "kind": "lemma",
+          "source": "Competition with two other cells",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geo-constraints",
+          "role": "competition-with-two-other-cells",
+          "label": "corollary m1-geo-constraints",
+          "fullLabel": "corollary m1-geo-constraints",
+          "kind": "corollary",
+          "source": "Competition with two other cells",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-kc-main",
+          "role": "a-kernel-clustering-application",
+          "label": "theorem m1-kc-main",
+          "fullLabel": "theorem m1-kc-main",
+          "kind": "theorem",
+          "source": "A kernel-clustering application",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-kc-kn-input",
+          "role": "a-kernel-clustering-application",
+          "label": "theorem m1-kc-kn-input",
+          "fullLabel": "theorem m1-kc-kn-input",
+          "kind": "theorem",
+          "source": "A kernel-clustering application",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-kc-ug-input",
+          "role": "a-kernel-clustering-application",
+          "label": "theorem m1-kc-ug-input",
+          "fullLabel": "theorem m1-kc-ug-input",
+          "kind": "theorem",
+          "source": "A kernel-clustering application",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-kc-matrix",
+          "role": "a-kernel-clustering-application",
+          "label": "lemma m1-kc-matrix",
+          "fullLabel": "lemma m1-kc-matrix",
+          "kind": "lemma",
+          "source": "A kernel-clustering application",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-kc-completeness",
+          "role": "a-kernel-clustering-application",
+          "label": "lemma m1-kc-completeness",
+          "fullLabel": "lemma m1-kc-completeness",
+          "kind": "lemma",
+          "source": "A kernel-clustering application",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-kc-soundness",
+          "role": "a-kernel-clustering-application",
+          "label": "lemma m1-kc-soundness",
+          "fullLabel": "lemma m1-kc-soundness",
+          "kind": "lemma",
+          "source": "A kernel-clustering application",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The Gaussian propeller bound in every dimension",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Gaussian-Propeller-Bound-in-Every-Dimension-September-24-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

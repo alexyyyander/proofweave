@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useI18n } from "@/app/i18n/client";
 import type { ArgumentMapRole } from "@/app/lib/proof-evolution";
 
 export type ArgumentNetworkNode = {
@@ -16,7 +17,7 @@ export type ArgumentNetworkNode = {
 export type ArgumentNetworkEdge = {
   source: string;
   target: string;
-  type: "strategy" | "depends" | "final" | "cross";
+  type: "strategy" | "depends" | "object" | "mentions" | "final" | "cross";
   label?: string;
 };
 
@@ -86,6 +87,8 @@ function initialLayout(nodes: ArgumentNetworkNode[], roles: ArgumentMapRole[]) {
 function edgeStyle(edge: ArgumentNetworkEdge) {
   if (edge.type === "strategy") return { rest: 118, strength: 0.2 };
   if (edge.type === "depends") return { rest: 76, strength: 0.38 };
+  if (edge.type === "object") return { rest: 92, strength: 0.22 };
+  if (edge.type === "mentions") return { rest: 104, strength: 0.12 };
   if (edge.type === "final") return { rest: 120, strength: 0.55 };
   return { rest: 165, strength: 0.13 };
 }
@@ -98,6 +101,7 @@ export function ArgumentNetworkGraph({ nodes, edges, graphKey, roles, selectedNo
   selectedNodeId: string | null;
   onSelectNode: (id: string) => void;
 }) {
+  const { t } = useI18n();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const nodesRef = useRef<PositionedNode[]>([]);
@@ -180,8 +184,8 @@ export function ArgumentNetworkGraph({ nodes, edges, graphKey, roles, selectedNo
         const incident = !active || edge.source === active || edge.target === active;
         ctx.globalAlpha = incident ? (edge.type === "strategy" ? 0.38 : edge.type === "cross" ? 0.42 : 0.78) : 0.08;
         ctx.lineWidth = edge.type === "final" ? 1.8 : edge.type === "cross" ? 1 : 0.9;
-        ctx.strokeStyle = edge.type === "final" ? "#e8b35a" : edge.type === "cross" ? "#b7a6d9" : edge.type === "depends" ? "#7f93d8" : "#64748b";
-        ctx.setLineDash(edge.type === "cross" ? [4, 5] : edge.type === "strategy" ? [2, 5] : []);
+        ctx.strokeStyle = edge.type === "final" ? "#e8b35a" : edge.type === "cross" ? "#b7a6d9" : edge.type === "object" ? "#6f8fae" : edge.type === "mentions" ? "#9aa4b5" : edge.type === "depends" ? "#7f93d8" : "#64748b";
+        ctx.setLineDash(edge.type === "cross" ? [4, 5] : edge.type === "strategy" ? [2, 5] : edge.type === "object" ? [3, 5] : edge.type === "mentions" ? [1, 5] : []);
         ctx.beginPath();
         ctx.moveTo(source.x, source.y);
         ctx.lineTo(target.x, target.y);
@@ -455,27 +459,29 @@ export function ArgumentNetworkGraph({ nodes, edges, graphKey, roles, selectedNo
 
   return <div className="argument-network">
     <div className="proof-network-toolbar">
-      <span className="lean-structure-eyebrow">Argument network · drag nodes, scroll to zoom, click for detail</span>
+      <span className="lean-structure-eyebrow">{t("proofMaps.argumentGraph.eyebrow")}</span>
       <div className="proof-network-actions">
-        <button type="button" onClick={() => controlRef.current?.zoomIn()}>Zoom +</button>
-        <button type="button" onClick={() => controlRef.current?.zoomOut()}>Zoom −</button>
-        <button type="button" onClick={() => controlRef.current?.reheat()}>Reheat</button>
-        <button type="button" onClick={() => controlRef.current?.reset()}>Reset view</button>
+        <button type="button" onClick={() => controlRef.current?.zoomIn()}>{t("proofMaps.common.zoomIn")}</button>
+        <button type="button" onClick={() => controlRef.current?.zoomOut()}>{t("proofMaps.common.zoomOut")}</button>
+        <button type="button" onClick={() => controlRef.current?.reheat()}>{t("proofMaps.common.reheat")}</button>
+        <button type="button" onClick={() => controlRef.current?.reset()}>{t("proofMaps.common.resetView")}</button>
       </div>
-      <span className="proof-network-mobile-note">On small screens, use Matrix or zoom out for the full structure.</span>
+      <span className="proof-network-mobile-note">{t("proofMaps.argumentGraph.mobileNote")}</span>
     </div>
     <div className="proof-network-stage" ref={containerRef}>
-      <canvas ref={canvasRef} aria-label="Interactive argument network; the matrix view and detail drawer are the accessible full view." />
-      <div className="proof-network-hint">Dark nodes are argument steps · gold nodes are results · dashed edges are cross-strategy relations</div>
+      <canvas ref={canvasRef} aria-label={t("proofMaps.argumentGraph.canvasAria")} />
+      <div className="proof-network-hint">{t("proofMaps.argumentGraph.hint")}</div>
     </div>
-    <div className="proof-network-legend" aria-label="Argument network legend">
-      <span><i className="is-strategy" />Strategy hub</span>
-      <span><i style={{ background: "#8aa0ff" }} />Argument step</span>
-      <span><i style={{ background: "#f2d27a" }} />Shared result</span>
-      <span><i className="is-network-edge is-depends" />Dependency</span>
-      <span><i className="is-network-edge is-final" />Proves / implies</span>
-      <span><i className="is-network-edge is-cross" />Cross-strategy</span>
+    <div className="proof-network-legend" aria-label={t("proofMaps.argumentGraph.legendAria")}>
+      <span><i className="is-strategy" />{t("proofMaps.argumentGraph.legendStrategy")}</span>
+      <span><i style={{ background: "#8aa0ff" }} />{t("proofMaps.argumentGraph.legendStep")}</span>
+      <span><i style={{ background: "#f2d27a" }} />{t("proofMaps.argumentGraph.legendResult")}</span>
+      <span><i className="is-network-edge is-depends" />{t("proofMaps.argumentGraph.legendDependency")}</span>
+      <span><i className="is-network-edge is-object" />{t("proofMaps.argumentGraph.legendObject")}</span>
+      <span><i className="is-network-edge is-mentions" />{t("proofMaps.argumentGraph.legendMentions")}</span>
+      <span><i className="is-network-edge is-final" />{t("proofMaps.argumentGraph.legendFinal")}</span>
+      <span><i className="is-network-edge is-cross" />{t("proofMaps.argumentGraph.legendCross")}</span>
     </div>
-    {selectedNodeId && <span className="argument-network-selected">Selected node: {nodes.find((node) => node.id === selectedNodeId)?.label ?? selectedNodeId}</span>}
+    {selectedNodeId && <span className="argument-network-selected">{t("proofMaps.argumentGraph.selectedNode", { label: nodes.find((node) => node.id === selectedNodeId)?.label ?? selectedNodeId })}</span>}
   </div>;
 }

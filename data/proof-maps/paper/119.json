@@ -1,0 +1,372 @@
+{
+  "familyNumber": "119",
+  "familyTitle": "The Courtade–Kumar and Hellinger conjectures",
+  "manuscripts": [
+    {
+      "id": "Sharp-binary-information-contraction-on-the-discrete-cube-September-24-2026",
+      "title": "Sharp binary-information contraction on the discrete cube",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Sharp-binary-information-contraction-on-the-discrete-cube-September-24-2026/main.pdf"
+    },
+    {
+      "id": "Hellinger-contraction-with-arbitrary-Boolean-output-bias-September-24-2026",
+      "title": "Hellinger contraction with arbitrary Boolean output bias",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Hellinger-contraction-with-arbitrary-Boolean-output-bias-September-24-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "The contraction theorem and its mechanism",
+    "The scalar rate and its curvature",
+    "A joining cost with one entropy budget",
+    "The deterministic capacity comparison",
+    "A reserve that survives adding either common output",
+    "Paying the information increment by thinning",
+    "From the linear reserve to the sharp rate",
+    "Introduction",
+    "Dimension induction",
+    "A continuation criterion",
+    "The central band",
+    "Intermediate biases",
+    "Large biases",
+    "Completion of the proof"
+  ],
+  "nodes": [
+    {
+      "id": "m1-main-soft",
+      "kind": "theorem",
+      "label": "Sharp soft-channel contraction",
+      "statement": "[Sharp soft-channel contraction] For every finite n0 , every u:_n , and -11 , I(T_ u) \\!(||\\,^ -1 (I(u))). The inverse is the nonnegative increasing branch on [0,L] . For n1 , every soft coordinate…",
+      "section": "The contraction theorem and its mechanism",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-main-ck",
+      "kind": "corollary",
+      "label": "The Boolean bound with output bias",
+      "statement": "[The Boolean bound with output bias] For every finite n0 , , and f:_n\\ -1,1\\ , put m= f and r_m=^ -1 (H(m)) . Then I(f(X);Y)(||r_m)(||). For n1 , signed coordinate functions attain the bound at m=0 .…",
+      "section": "The contraction theorem and its mechanism",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-upgrade-production",
+      "kind": "theorem",
+      "label": "Sharp soft production",
+      "statement": "[Sharp soft production] For every finite n0 and every g:\\ -1,1\\ ^n(-1,1) , with m= g , D(g) B_m(I(g)) =\\ B_m(I(g)),F(I(g))\\ F(I(g)).",
+      "section": "The contraction theorem and its mechanism",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-scalar-entropy-bounds",
+      "kind": "lemma",
+      "label": "Elementary entropy bounds",
+      "statement": "[Elementary entropy bounds] For |r|1 , r^2 2 (r) Lr^2, H(r) L(1-r^2). The quotient (r)/r^2 is strictly increasing for 0<r<1 . Moreover, 23<L<25 36 <7 10 , 12<M:=4L^2 3 <23.",
+      "section": "The scalar rate and its curvature",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-scalar-profile-convexity",
+      "kind": "lemma",
+      "label": "Convexity of the rate and surplus",
+      "statement": "[Convexity of the rate and surplus] The function F is smooth on [0,L) , with right derivatives at zero, and F(0)=0, F'(0)=2, F''(0)=43, F''(I)43, F'''(I)0. The zero-extended surplus S is nonnegative,…",
+      "section": "The scalar rate and its curvature",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-scalar-curvature-growth",
+      "kind": "lemma",
+      "label": "Growth of the curvature",
+      "statement": "[Growth of the curvature] The function I e^ -2I F''(I) is strictly increasing on [0,L) . For I>0 it satisfies \\[ F'''(I) F''(I) >2. \\]",
+      "section": "The scalar rate and its curvature",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-scalar-scaled-curvature",
+      "kind": "lemma",
+      "label": "Scaled entropy curvature",
+      "statement": "[Scaled entropy curvature] For 0<h L , put P(h)=h^2F''(L-h). Then 12 P(h) M=4L^2 3 , P(L)=M.",
+      "section": "The scalar rate and its curvature",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-canonical-priced",
+      "kind": "lemma",
+      "label": "The priced core",
+      "statement": "[The priced core] For every p0 , the minimum of \\[ \\ c(A,B)+p[H(A)+H(B)]\\ , A=a, B=b, \\] has a unique optimizer. It is one ordered interior pair (x,y) and possible equal corners, as in . Its core is…",
+      "section": "A joining cost with one entropy budget",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-canonical-coverage",
+      "kind": "proposition",
+      "label": "Exact entropy coverage",
+      "statement": "[Exact entropy coverage] For every 0<e e_ , a law of the form attains and has average entropy exactly e .",
+      "section": "A joining cost with one entropy budget",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-capacity-onebit",
+      "kind": "lemma",
+      "label": "A variance-refined one-bit inequality",
+      "statement": "[A variance-refined one-bit inequality] Let g(X)=m+ X , where X is a uniform sign and |m|+||<1 . Write =1-m^2 and \\[ J= (m+ )+ (m- )2-(m), D=2\\ V(m+)-V(m-)\\ . \\] Then J< L and D F(J/).",
+      "section": "The deterministic capacity comparison",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-reserve-geometry",
+      "kind": "lemma",
+      "label": "For -1<m<1 and 0<1-|m| , put \\[ A=1-m, =121 1-^2/(1+m)^2 . \\] Then A^23.",
+      "statement": "For -1<m<1 and 0<1-|m| , put \\[ A=1-m, =121 1-^2/(1+m)^2 . \\] Then A^23.",
+      "section": "A reserve that survives adding either common output",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-reserve-corner",
+      "kind": "lemma",
+      "label": "Adding either common output",
+      "statement": "[Adding either common output] For every physical state (m,,e) and 0<1 , W(1-+ m,, e) W(m,,e). The same inequality holds with parent mean -1++ m , corresponding to the negative common output. There is…",
+      "section": "A reserve that survives adding either common output",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-reserve-joining",
+      "kind": "theorem",
+      "label": "Local joining for the linear reserve",
+      "statement": "[Local joining for the linear reserve] Let (A,B) have any joint law on [-1,1]^2 with e_a= H(A)>0 and e_b= H(B)>0 . Put \\[ a= A, b= B, m=a+b 2 , e=e_a+e_b 2 , \\] and I=H(m)-e , I_a=H(a)-e_a ,…",
+      "section": "A reserve that survives adding either common output",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-thinning-payment",
+      "kind": "theorem",
+      "label": "Common-output payment",
+      "statement": "[Common-output payment] For the core and mass in , F(+J)-F() F(J_c).",
+      "section": "Paying the information increment by thinning",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-thinning-interval",
+      "kind": "lemma",
+      "label": "An interval estimate with a logarithmic cutoff",
+      "statement": "[An interval estimate with a logarithmic cutoff] Let 0 x<1 , and put \\[ p=1+x, =1-x, = p , = (1+x)L. \\] Suppose \\[ 0 z<, -pz u1-z. \\] For >0 , define k_(v)=(v-)_+/v^2 for v>0 and k_(0)=0 . For =0 ,…",
+      "section": "Paying the information increment by thinning",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-thinning-window",
+      "kind": "lemma",
+      "label": "The entropy interval on a thinning path",
+      "statement": "[The entropy interval on a thinning path] Every state on satisfies _q^s(h-b)_+ h^2 \\,dh3.",
+      "section": "Paying the information increment by thinning",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-thinning-high-value",
+      "kind": "theorem",
+      "label": "The canonical high-entropy value comparison",
+      "statement": "[The canonical high-entropy value comparison] Let x0 , d>0 , and x+d<1 . Define \\[ h(x,d)=H(x+d)+H(x-d)2, e_0(x,d)=(1-x)H\\!( d 1-x ). \\] For every e_0(x,d) e h(x,d) , K(x,d,e)…",
+      "section": "Paying the information increment by thinning",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-upgrade-high-information",
+      "kind": "lemma",
+      "label": "The high-information reserve",
+      "statement": "[The high-information reserve] For |m|<1 and L/2 I<H(m) , B_m(I) F(I). The inequality is strict if m0 . Consequently a state with F(I)> B_m(I) must have I<L/2 .",
+      "section": "From the linear reserve to the sharp rate",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-wall-monotonicity",
+      "kind": "lemma",
+      "label": "The demand below half information",
+      "statement": "[The demand below half information] Let m,d>0 , m+d<1 , and \\[ 0<e h(m,d):=H(m+d)+H(m-d)2. \\] Put I=H(m)-e , j= h(m,d)-e , and J=I-j . If I L/2 , then at fixed d,e , _m\\ F(I)-F(j)\\ >0. At j=0 , the…",
+      "section": "From the linear reserve to the sharp rate",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m1-upgrade-joining",
+      "kind": "theorem",
+      "label": "Joining the strengthened profile",
+      "statement": "[Joining the strengthened profile] Let (A,B) have a joint law on [-1,1]^2 with e_a= H(A)>0 and e_b= H(B)>0 . Put \\[ a= A, b= B, m=a+b 2 , e=e_a+e_b 2 , I=H(m)-e, \\] and I_a=H(a)-e_a , I_b=H(b)-e_b .…",
+      "section": "From the linear reserve to the sharp rate",
+      "manuscript": "Sharp binary-information contraction on the discrete cube"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Hellinger conjecture",
+      "statement": "[Hellinger conjecture] For every \\(n1\\), every Boolean function \\(f:\\ -1,1\\ ^n\\ -1,1\\ \\), and every \\(\\), writing \\(m= f\\), one has H(m)- H(T_ f)1-H(). Both expectations are with respect to the…",
+      "section": "Introduction",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-thm-induction",
+      "kind": "theorem",
+      "label": "Let f:\\ -1,1\\ ^n\\ -1,1\\ , let m= f , and let 0<<1 . If s=1- ^2 .84 , then \\[…",
+      "statement": "Let f:\\ -1,1\\ ^n\\ -1,1\\ , let m= f , and let 0<<1 . If s=1- ^2 .84 , then \\[ H(T_ f) H(m)-1+s. \\]",
+      "section": "Dimension induction",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-ind-lem-compression",
+      "kind": "lemma",
+      "label": "Compression",
+      "statement": "[Compression] For every Boolean function f there is an increasing Boolean function f with the same mean such that \\[ H(T_ f) H(T_ f). \\]",
+      "section": "Dimension induction",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-ind-lem-coordinate",
+      "kind": "lemma",
+      "label": "Choice of a coordinate",
+      "statement": "[Choice of a coordinate] If an increasing Boolean function of mean m has at least four active coordinates, one of them has first-level coefficient \\[ 0<x= b(m). \\] The two sections in this coordinate…",
+      "section": "Dimension induction",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-lem-scalar",
+      "kind": "lemma",
+      "label": "Scalar inequalities",
+      "statement": "[Scalar inequalities] For every 0<s .84 , choose the parameters and the polynomial B as above. Then B0 on [-1,1] , B(0)=1 , B(1)=0 , and the following four assertions hold. For 0 p_0 p_11 , write…",
+      "section": "Dimension induction",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-ind-prop-asymmetric",
+      "kind": "proposition",
+      "label": "For the fixed s , parameters, and profile above, every increasing Boolean…",
+      "statement": "For the fixed s , parameters, and profile above, every increasing Boolean function satisfies G((1+T_ f)/2) sB( f).",
+      "section": "Dimension induction",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-lem-crossing",
+      "kind": "lemma",
+      "label": "Crossing criterion",
+      "statement": "[Crossing criterion] Suppose Equation~ is known for \\(s .84\\). If it fails for some \\(s>.84\\), then for the same function there is a parameter \\(.84 s<1\\) for which b=h-1+s, E(d) K. It is enough to…",
+      "section": "A continuation criterion",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-lem-basic-energy",
+      "kind": "lemma",
+      "label": "Basic energy comparison",
+      "statement": "[Basic energy comparison] With the preceding notation, E(d)_i(D_i g)^2(g).",
+      "section": "A continuation criterion",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-lem-fourier-bounds",
+      "kind": "lemma",
+      "label": "Boolean spectral bounds",
+      "statement": "[Boolean spectral bounds] Set \\[ p=1-m 2 , w=\\ 2p,\\;4 32\\,p^ 3/2 \\ . \\] Then W_1(f)& w, \\\\ (d)& r[(1-r)w+rh^2]. If \\(d_ o (x)=(d(x)-d(-x))/2\\) is the odd part of \\(d\\), then d_ o ^2…",
+      "section": "A continuation criterion",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-prop-central",
+      "kind": "proposition",
+      "label": "Let f be a nonconstant Boolean function, let 0<<1 , and suppose that s .84 and…",
+      "statement": "Let f be a nonconstant Boolean function, let 0<<1 , and suppose that s .84 and 0 m r^2/2 . If b=h-1+s, E(d) K= rs, then f is a signed coordinate.",
+      "section": "The central band",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-cen-edge",
+      "kind": "lemma",
+      "label": "Calibrated edge comparison",
+      "statement": "[Calibrated edge comparison] For every coordinate edge, D_i d\\,D_i\\!( d H(d) ) (D_i g)^2+((D_i g)^2). The functions j and are nonnegative, increasing, and convex. Furthermore, '(v)/v is increasing…",
+      "section": "The central band",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-cen-constants",
+      "kind": "lemma",
+      "label": "Calibration bounds",
+      "statement": "[Calibration bounds] At a crossing in the central band, (M)M<.0063, p_*<.019, p_*M<.0532, M<.008.",
+      "section": "The central band",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-cen-k-bounds",
+      "kind": "lemma",
+      "label": "Bounds for the comparison function",
+      "statement": "[Bounds for the comparison function] For 0 t1 , 2-t+12(1-t)^2 k(t)2-t+34(1-t)^2, 1-k'(t)\\ 2,1+32(1-t)\\ . At t=1 , the derivative is understood as its left limit.",
+      "section": "The central band",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-cen-pointwise",
+      "kind": "lemma",
+      "label": "Pointwise remainder bound",
+      "statement": "[Pointwise remainder bound] Under the central-band crossing hypotheses of Proposition~ , for every 0 u1 , D(u)-2 m|R|+.88m^2 C_0(g^2-M)^2+.20(u^2-y^2)^2. The inequality is strict whenever u y .",
+      "section": "The central band",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-cen-strict-variance",
+      "kind": "lemma",
+      "label": "Strict variance gain",
+      "statement": "[Strict variance gain] Inequality holds. If m>0 , the stronger bound g-M>C_0V_0-1+p_*+.016m^2 holds. If m=0 , is strict unless g^2=M at every point of the cube.",
+      "section": "The central band",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-prop-intermediate",
+      "kind": "proposition",
+      "label": "Exclusion of an intermediate-bias crossing",
+      "statement": "[Exclusion of an intermediate-bias crossing] Let \\(f\\) be a nonconstant Boolean function and suppose \\[ r^2 2 m37 50 , 21 25 s<1. \\] If \\(b=h-1+s\\), then \\( E(d)>r/s\\). Consequently a crossing as in…",
+      "section": "Intermediate biases",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-mid-pointwise",
+      "kind": "lemma",
+      "label": "For every \\(-1<d<1\\), with \\(V,\\) defined by and , one has ll (12-2m^2)V^2,&0…",
+      "statement": "For every \\(-1<d<1\\), with \\(V,\\) defined by and , one has ll (12-2m^2)V^2,&0 m15,\\\\[2pt] -1 100 V,&15 m23,\\\\[2pt] -1 50 V,&23 m37 50 .",
+      "section": "Intermediate biases",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-prop-large-bias",
+      "kind": "proposition",
+      "label": "If f:\\ -1,1\\ ^n\\ -1,1\\ has 0.74 m<1 and 0.84 s1 , then \\[ h-b1-s. \\]",
+      "statement": "If f:\\ -1,1\\ ^n\\ -1,1\\ has 0.74 m<1 and 0.84 s1 , then \\[ h-b1-s. \\]",
+      "section": "Large biases",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-lb-log-sobolev",
+      "kind": "lemma",
+      "label": "Cube logarithmic Sobolev inequality",
+      "statement": "[Cube logarithmic Sobolev inequality] For every positive function a on the uniform cube, Ent(a^2)2 a Na.",
+      "section": "Large biases",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-lb-norm-bounds",
+      "kind": "lemma",
+      "label": "Forward and reverse cube norm bounds",
+      "statement": "[Forward and reverse cube norm bounds] Let u_00 be a real function on the cube, 0 , and r=e^ -2 . For every q>0 , q1 , put p_q=1+r(q-1) . Then (T_ e^ - u_0)^q ( u_0^ p_q )^ q/p_q ,&q>1,\\\\[2pt] ( u_0^…",
+      "section": "Large biases",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    },
+    {
+      "id": "m2-cor-ck",
+      "kind": "corollary",
+      "label": "Courtade--Kumar bound",
+      "statement": "[Courtade--Kumar bound] Let X be uniform on \\ -1,1\\ ^n , let f be Boolean, and let Y_i=X_iZ_i , where the Z_i are independent of X and each other, with (Z_i=-1)= . Then \\[ I(f(X);Y)1-h_2(). \\] Signed…",
+      "section": "Completion of the proof",
+      "manuscript": "Hellinger contraction with arbitrary Boolean output bias"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m2-ind-lem-compression",
+      "to": "m2-thm-induction",
+      "label": "ind:lem:compression",
+      "context": "[Proof of Theorem~\\ref{thm:induction}] By Lemma~\\ref{ind:lem:compression}, it suffices to consider increasing $f$. Its dual $f^*(x)=-f(-x)$ is also increasing and has mean $-m$. Noise commutes"
+    }
+  ]
+}

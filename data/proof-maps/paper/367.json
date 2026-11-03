@@ -1,0 +1,240 @@
+{
+  "familyNumber": "367",
+  "familyTitle": "The critical dimension for the one-phase Bernoulli problem",
+  "manuscripts": [
+    {
+      "id": "The-critical-dimension-for-one-phase-Bernoulli-minimizers-September-24-2026",
+      "title": "The critical dimension for one-phase Bernoulli minimizers",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-critical-dimension-for-one-phase-Bernoulli-minimizers-September-24-2026/The-critical-dimension-for-one-phase-Bernoulli-minimizers-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Reduction to a smooth link and its suspension",
+    "Spherical geometry and the stability inequality",
+    "A universal algebraic certificate",
+    "From the algebraic certificate to a geometric flux",
+    "Exact verification of the algebraic certificate",
+    "Hessian zeros, suspension tips, and the contradiction"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Every nonzero one-homogeneous global minimizer of in \\(^d\\), \\(1 d6\\), is flat.…",
+      "statement": "Every nonzero one-homogeneous global minimizer of in \\(^d\\), \\(1 d6\\), is flat. There is a nonflat one-homogeneous global minimizer in \\(^7\\). Consequently, \\[ d_*=7. \\]",
+      "section": "Introduction",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-cor-singular-set",
+      "kind": "corollary",
+      "label": "Sharp singular-set bound",
+      "statement": "[Sharp singular-set bound] Let n2 , let D^n be open, and let u H^1_ loc (D) be a nonnegative local minimizer of the one-phase Bernoulli energy in D . Its interior free boundary is smooth outside…",
+      "section": "Introduction",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-red-regularity",
+      "kind": "proposition",
+      "label": "Regularity and blowups of minimizers",
+      "statement": "[Regularity and blowups of minimizers] Let d2 and let u0 be a local minimizer of the one-phase energy with volume coefficient 1 in an open set D^d . (enumi) There is a locally Lipschitz…",
+      "section": "Reduction to a smooth link and its suspension",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-red-translation",
+      "kind": "lemma",
+      "label": "Translation invariance of an off-origin blowup",
+      "statement": "[Translation invariance of an off-origin blowup] Let u be a one-homogeneous global minimizer, let 0 x_0\\ u>0\\ , and let U be any limit in . Then \\[ U(y+t x_0)=U(y)(y^d,\\ t). \\]",
+      "section": "Reduction to a smooth link and its suspension",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-red-factor-minimality",
+      "kind": "lemma",
+      "label": "Minimality of a translation-invariant factor",
+      "statement": "[Minimality of a translation-invariant factor] Suppose U(y,s)=v(y) is a global minimizer in ^k , where v0 belongs to H^1_ loc (^k) . Then v is a global minimizer in ^k .",
+      "section": "Reduction to a smooth link and its suspension",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-red-original-link",
+      "kind": "proposition",
+      "label": "Smooth original link",
+      "statement": "[Smooth original link] Every point of \\ u>0\\ \\ 0\\ is regular. Put m_o=d-1 and g_o=u|_ S^ m_o . The set \\ g_o>0\\ is nonempty and proper, has finitely many connected components, and their closures are…",
+      "section": "Reduction to a smooth link and its suspension",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-red-nonflat-component",
+      "kind": "lemma",
+      "label": "Selection of a nonflat component",
+      "statement": "[Selection of a nonflat component] There is a component _o in Proposition~ such that T_o:=^2_ S^ m_o g_o+g_o0 on _o. Here denotes the spherical metric, viewed as a symmetric two-tensor.",
+      "section": "Reduction to a smooth link and its suspension",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-red-suspension",
+      "kind": "proposition",
+      "label": "Suspension preserves global minimality",
+      "statement": "[Suspension preserves global minimality] If u0 is a global minimizer in ^k , then u(x,s)=u(x) is a global minimizer in ^ k+1 . If u is the cone in with d=5 , the singular free-boundary set of u is…",
+      "section": "Reduction to a smooth link and its suspension",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-geo-interior-identities",
+      "kind": "proposition",
+      "label": "Interior identities",
+      "statement": "[Interior identities] The tensor T is symmetric and trace-free, and B is fully symmetric and trace-free in every pair of slots. In particular T=0 . The following identities hold: _lB_ ijk -_iB_ ljk…",
+      "section": "Spherical geometry and the stability inequality",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-geo-gradient-bound",
+      "kind": "lemma",
+      "label": "Strict gradient bound on the original component",
+      "statement": "[Strict gradient bound on the original component] On _o one has s_o^2<1 . At every boundary point, put H_o=-T_o(N_o,N_o). Then H_o>0, T_op_o=-H_op_o, w_o>0 on _o. Consequently w_o has a positive…",
+      "section": "Spherical geometry and the stability inequality",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-geo-boundary-jets",
+      "kind": "proposition",
+      "label": "Boundary jets",
+      "statement": "[Boundary jets] Suppose g=0 , p=N , and T(N,N)=-H<0 on a smooth boundary portion, where N is inward. Let Greek indices be tangent to this boundary and put \\[ h_ =_ N,e_. \\] Then T_ N =0 , T_ = h_ ,…",
+      "section": "Spherical geometry and the stability inequality",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-geo-suspension-data",
+      "kind": "proposition",
+      "label": "Suspended data",
+      "statement": "[Suspended data] If m_o=4 , write = t , c= t and parameterize the regular part of the suspended component by \\[ (t,y) ( y,c), 0<t<, y_o. \\] Its metric is dt^2+^2 ds_ S^4 ^2 , and g= g_o . With E_0=_t…",
+      "section": "Spherical geometry and the stability inequality",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-geo-euclidean-stability",
+      "kind": "proposition",
+      "label": "Euclidean stability on a component",
+      "statement": "[Euclidean stability on a component] Let D be the selected positivity component of a global minimizing cone in ^ m+1 . Let be any real smooth function up to the regular boundary of D , with compact…",
+      "section": "Spherical geometry and the stability inequality",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-geo-spherical-stability",
+      "kind": "corollary",
+      "label": "Spherical stability",
+      "statement": "[Spherical stability] For every real function v smooth up to the regular boundary of the working component S^5 , with compact support in its closure away from the tips if present, _ H v^2\\,d _(|…",
+      "section": "Spherical geometry and the stability inequality",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-cert-universal",
+      "kind": "proposition",
+      "label": "Universal inequalities",
+      "statement": "[Universal inequalities] There are rational tensor polynomials f,U_ jk ,K_ lijk ,M_l,P_l in A,p,g, , with the following properties. They are equivariant under orthogonal changes of coordinates, with…",
+      "section": "A universal algebraic certificate",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-flux-normalized-differentiation",
+      "kind": "lemma",
+      "label": "At the data , the derivation D_l of , evaluated at z=1 , equals covariant…",
+      "statement": "At the data , the derivation D_l of , evaluated at z=1 , equals covariant differentiation on every coefficient polynomial in A,p,g, . In particular, _lw=wq_l, _lA_ ij =X_ lij -q_lA_ ij , _lp_i=wA_ li…",
+      "section": "From the algebraic certificate to a geometric flux",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-flux-interior-comparison",
+      "kind": "proposition",
+      "label": "The scalar h and vector field Z satisfy Z 4h^2+| h|^2+_*w^ 2a on _+.",
+      "statement": "The scalar h and vector field Z satisfy Z 4h^2+| h|^2+_*w^ 2a on _+.",
+      "section": "From the algebraic certificate to a geometric flux",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-flux-boundary-parity",
+      "kind": "lemma",
+      "label": "At such a point, p_lG_ lijk B_ ijk w^2 =p_lG_ lijk V_ ijk =U_ jk (S_0+p p)_ jk…",
+      "statement": "At such a point, p_lG_ lijk B_ ijk w^2 =p_lG_ lijk V_ ijk =U_ jk (S_0+p p)_ jk +C_ lijk p_lV_ ijk .",
+      "section": "From the algebraic certificate to a geometric flux",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-flux-boundary-comparison",
+      "kind": "proposition",
+      "label": "On the regular side boundary, N Z+Hh^2=w^ 2a+1 S _*w^ 2a+1 >0, _* =6984137359…",
+      "statement": "On the regular side boundary, N Z+Hh^2=w^ 2a+1 S _*w^ 2a+1 >0, _* =6984137359 31250000000 , where S is the boundary polynomial in . In particular N Z+Hh^20 .",
+      "section": "From the algebraic certificate to a geometric flux",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-flux-field-bounds",
+      "kind": "lemma",
+      "label": "There is a finite constant C , depending only on the coefficient polynomials,…",
+      "statement": "There is a finite constant C , depending only on the coefficient polynomials, the dimension, a , and _* , such that on _+ |h| Cw^a, | h| Cw^a(1+w+|X|), |Z| Cw^ 2a (1+w+|X|). The constant is…",
+      "section": "From the algebraic certificate to a geometric flux",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-cert-positive-projections",
+      "kind": "lemma",
+      "label": "All these operators are self-adjoint and positive semidefinite on their entire…",
+      "statement": "All these operators are self-adjoint and positive semidefinite on their entire tensor spaces. In particular, 0 whenever 0 .",
+      "section": "Exact verification of the algebraic certificate",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-cert-closure",
+      "kind": "lemma",
+      "label": "Closure of the graph calculation",
+      "statement": "[Closure of the graph calculation] The preceding rules evaluate all terms of I and by a finite sum of scalar graphs. In every intermediate graph a free slot has exactly one incidence, each cubic…",
+      "section": "Exact verification of the algebraic certificate",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-cert-tensor-bounds",
+      "kind": "lemma",
+      "label": "For the constrained matrix A and symmetric trace-free tensor X , \\|A\\|_ op…",
+      "statement": "For the constrained matrix A and symmetric trace-free tensor X , \\|A\\|_ op ^2&,& |A^k|^2&^ k-1 (k1), \\\\ | A^k|^2&^ k-2 (k2),& | A^3|^2&9 20 , \\\\ |X:A|^2&57|X|^2,& (X:A)_i&=X_ ijk A_ jk . If h,b>0 and…",
+      "section": "Exact verification of the algebraic certificate",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-cert-graph-bound",
+      "kind": "lemma",
+      "label": "Complete graph bound",
+      "statement": "[Complete graph bound] Every scalar graph retained by Lemma~ satisfies | M(t)| L_t y_i y_j on g^2+|p|^21 .",
+      "section": "Exact verification of the algebraic certificate",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-cut-weighted-bochner",
+      "kind": "lemma",
+      "label": "Weighted Bochner estimate",
+      "statement": "[Weighted Bochner estimate] The set Z_o is a compact subset of _o , and _ _ o,+ w_o^ 2a-2 |B_o|^2\\,dV_o<. Consequently the function D_o(y)= w_o(y)^ 2a (1+|B_o(y)|/w_o(y))^2, &y_ o,+ ,\\\\ 0,&y Z_o,…",
+      "section": "Hessian zeros, suspension tips, and the contradiction",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-cut-integrated-comparison",
+      "kind": "lemma",
+      "label": "Integrated comparison",
+      "statement": "[Integrated comparison] For each fixed j3 , _*__j^2w^ 2a \\,dV _( h^2|_j|^2 +2_jh h,_j -2_j Z,_j)\\,dV.",
+      "section": "Hessian zeros, suspension tips, and the contradiction",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    },
+    {
+      "id": "m1-cut-exclusion",
+      "kind": "theorem",
+      "label": "The first dimension admitting a nonflat one-homogeneous global minimizer cannot…",
+      "statement": "The first dimension admitting a nonflat one-homogeneous global minimizer cannot be 5 or 6 .",
+      "section": "Hessian zeros, suspension tips, and the contradiction",
+      "manuscript": "The critical dimension for one-phase Bernoulli minimizers"
+    }
+  ],
+  "edges": []
+}

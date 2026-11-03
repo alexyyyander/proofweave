@@ -1,0 +1,778 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "090",
+  "title": "Triangular-lattice optimality, long-range Riesz and Coulomb energies, and spherical logarithmic energy",
+  "result": {
+    "id": "paper-result",
+    "label": "Triangular-lattice optimality, long-range Riesz and Coulomb energies, and spherical logarithmic energy",
+    "statement": "Proves that the triangular lattice minimizes the lower limit of energy per particle for every nonnegative completely monotone potential of squared distance among locally finite planar configurations of centered-disk density one. It also minimizes unit-background renormalized Riesz energies for 0 s 2 and Coulomb energy, resolving Sandier–Serfaty and the two-dimensional Brauchart–Hardin–Saff conjecture on the linear term of optimal spherical logarithmic energy.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "energy-from-gaussian-minorants",
+      "label": "Energy from Gaussian minorants",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-finite-atomic-certificate",
+      "label": "A finite atomic certificate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-full-infinite-correction",
+      "label": "The full infinite correction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "signs-between-the-interpolation-nodes",
+      "label": "Signs between the interpolation nodes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "cardinal-interpolation-and-fourier-transformation",
+      "label": "Cardinal interpolation and Fourier transformation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "positive-quadrature-and-finite-data",
+      "label": "Positive quadrature and finite data",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exact-interpolation-in-the-summable-coefficient-space",
+      "label": "Exact interpolation in the summable coefficient space",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "signs-on-every-radius-and-parameter",
+      "label": "Signs on every radius and parameter",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-gaussian-pairs-to-energy-comparisons",
+      "label": "From Gaussian pairs to energy comparisons",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "shifted-moments-and-positive-mixtures",
+      "label": "Shifted moments and positive mixtures",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "renormalized-and-jellium-energies",
+      "label": "Renormalized and jellium energies",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "scalar-bounds-for-the-gaussian-construction",
+      "label": "Scalar bounds for the Gaussian construction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "periodic-approximation-for-the-field-energy",
+      "label": "Periodic approximation for the field energy",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-alternative-rational-verification-procedure",
+      "label": "An alternative rational verification procedure",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "gaussian-cardinal-functions",
+      "label": "Gaussian cardinal functions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "solving-the-interpolation-equations",
+      "label": "Solving the interpolation equations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "global-signs",
+      "label": "Global signs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "poisson-normalization",
+      "label": "Poisson normalization",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-certificates",
+      "label": "Finite certificates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "alternative-certification-methods",
+      "label": "Alternative certification methods",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "An atomic certificate for triangular-lattice universal optimality",
+      "title": "An atomic certificate for triangular-lattice universal optimality",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-26",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-atomic-certificate-for-triangular-lattice-universal-optimality-September-26-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from An atomic certificate for triangular-lattice universal optimality.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-universal",
+          "role": "introduction",
+          "label": "theorem m1-thm-universal",
+          "fullLabel": "theorem m1-thm-universal",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-gaussian",
+          "role": "introduction",
+          "label": "theorem m1-thm-gaussian",
+          "fullLabel": "theorem m1-thm-gaussian",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-energy-reciprocal",
+          "role": "energy-from-gaussian-minorants",
+          "label": "lemma m1-energy-reciprocal",
+          "fullLabel": "lemma m1-energy-reciprocal",
+          "kind": "lemma",
+          "source": "Energy from Gaussian minorants",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-energy-low-frequency",
+          "role": "energy-from-gaussian-minorants",
+          "label": "lemma m1-energy-low-frequency",
+          "fullLabel": "lemma m1-energy-low-frequency",
+          "kind": "lemma",
+          "source": "Energy from Gaussian minorants",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-energy-lp",
+          "role": "energy-from-gaussian-minorants",
+          "label": "proposition m1-energy-lp",
+          "fullLabel": "proposition m1-energy-lp",
+          "kind": "proposition",
+          "source": "Energy from Gaussian minorants",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-energy-laplace",
+          "role": "energy-from-gaussian-minorants",
+          "label": "lemma m1-energy-laplace",
+          "fullLabel": "lemma m1-energy-laplace",
+          "kind": "lemma",
+          "source": "Energy from Gaussian minorants",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-finite-certificate",
+          "role": "a-finite-atomic-certificate",
+          "label": "lemma m1-lem-finite-certificate",
+          "fullLabel": "lemma m1-lem-finite-certificate",
+          "kind": "lemma",
+          "source": "A finite atomic certificate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-exact-interpolation",
+          "role": "the-full-infinite-correction",
+          "label": "proposition m1-prop-exact-interpolation",
+          "fullLabel": "proposition m1-prop-exact-interpolation",
+          "kind": "proposition",
+          "source": "The full infinite correction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-curvature-envelopes",
+          "role": "signs-between-the-interpolation-nodes",
+          "label": "lemma m1-lem-curvature-envelopes",
+          "fullLabel": "lemma m1-lem-curvature-envelopes",
+          "kind": "lemma",
+          "source": "Signs between the interpolation nodes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-deleted-jets",
+          "role": "signs-between-the-interpolation-nodes",
+          "label": "lemma m1-lem-deleted-jets",
+          "fullLabel": "lemma m1-lem-deleted-jets",
+          "kind": "lemma",
+          "source": "Signs between the interpolation nodes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-gaussian-divided-difference",
+          "role": "signs-between-the-interpolation-nodes",
+          "label": "lemma m1-lem-gaussian-divided-difference",
+          "fullLabel": "lemma m1-lem-gaussian-divided-difference",
+          "kind": "lemma",
+          "source": "Signs between the interpolation nodes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-global-signs",
+          "role": "signs-between-the-interpolation-nodes",
+          "label": "proposition m1-prop-global-signs",
+          "fullLabel": "proposition m1-prop-global-signs",
+          "kind": "proposition",
+          "source": "Signs between the interpolation nodes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-sine-barrier",
+          "role": "signs-between-the-interpolation-nodes",
+          "label": "lemma m1-lem-sine-barrier",
+          "fullLabel": "lemma m1-lem-sine-barrier",
+          "kind": "lemma",
+          "source": "Signs between the interpolation nodes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Universal optimality of the triangular lattice",
+      "title": "Universal optimality of the triangular lattice",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universal-optimality-of-the-triangular-lattice-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Universal optimality of the triangular lattice.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-universal",
+          "role": "introduction",
+          "label": "theorem m2-thm-universal",
+          "fullLabel": "theorem m2-thm-universal",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-normalized-pair",
+          "role": "cardinal-interpolation-and-fourier-transformation",
+          "label": "theorem m2-thm-normalized-pair",
+          "fullLabel": "theorem m2-thm-normalized-pair",
+          "kind": "theorem",
+          "source": "Cardinal interpolation and Fourier transformation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-prop-exact-interpolation"
+          ]
+        },
+        {
+          "id": "m2-lem-cardinal-measure",
+          "role": "cardinal-interpolation-and-fourier-transformation",
+          "label": "lemma m2-lem-cardinal-measure",
+          "fullLabel": "lemma m2-lem-cardinal-measure",
+          "kind": "lemma",
+          "source": "Cardinal interpolation and Fourier transformation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-fourier-pair",
+          "role": "cardinal-interpolation-and-fourier-transformation",
+          "label": "lemma m2-lem-fourier-pair",
+          "fullLabel": "lemma m2-lem-fourier-pair",
+          "kind": "lemma",
+          "source": "Cardinal interpolation and Fourier transformation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-kernel-bounds",
+          "role": "cardinal-interpolation-and-fourier-transformation",
+          "label": "lemma m2-lem-kernel-bounds",
+          "fullLabel": "lemma m2-lem-kernel-bounds",
+          "kind": "lemma",
+          "source": "Cardinal interpolation and Fourier transformation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-quadrature-error",
+          "role": "positive-quadrature-and-finite-data",
+          "label": "lemma m2-lem-quadrature-error",
+          "fullLabel": "lemma m2-lem-quadrature-error",
+          "kind": "lemma",
+          "source": "Positive quadrature and finite data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-parameter-box",
+          "role": "positive-quadrature-and-finite-data",
+          "label": "lemma m2-lem-parameter-box",
+          "fullLabel": "lemma m2-lem-parameter-box",
+          "kind": "lemma",
+          "source": "Positive quadrature and finite data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-finite-certificate",
+          "role": "positive-quadrature-and-finite-data",
+          "label": "proposition m2-prop-finite-certificate",
+          "fullLabel": "proposition m2-prop-finite-certificate",
+          "kind": "proposition",
+          "source": "Positive quadrature and finite data",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-exact-interpolation",
+          "role": "exact-interpolation-in-the-summable-coefficient-space",
+          "label": "proposition m2-prop-exact-interpolation",
+          "fullLabel": "proposition m2-prop-exact-interpolation",
+          "kind": "proposition",
+          "source": "Exact interpolation in the summable coefficient space",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-exponential-support",
+          "role": "signs-on-every-radius-and-parameter",
+          "label": "lemma m2-lem-exponential-support",
+          "fullLabel": "lemma m2-lem-exponential-support",
+          "kind": "lemma",
+          "source": "Signs on every radius and parameter",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-half-gap-signs",
+          "role": "signs-on-every-radius-and-parameter",
+          "label": "lemma m2-lem-half-gap-signs",
+          "fullLabel": "lemma m2-lem-half-gap-signs",
+          "kind": "lemma",
+          "source": "Signs on every radius and parameter",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sine-product-barrier",
+          "role": "signs-on-every-radius-and-parameter",
+          "label": "lemma m2-lem-sine-product-barrier",
+          "fullLabel": "lemma m2-lem-sine-product-barrier",
+          "kind": "lemma",
+          "source": "Signs on every radius and parameter",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-tail-signs",
+          "role": "signs-on-every-radius-and-parameter",
+          "label": "lemma m2-lem-tail-signs",
+          "fullLabel": "lemma m2-lem-tail-signs",
+          "kind": "lemma",
+          "source": "Signs on every radius and parameter",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-density-lp",
+          "role": "from-gaussian-pairs-to-energy-comparisons",
+          "label": "proposition m2-prop-density-lp",
+          "fullLabel": "proposition m2-prop-density-lp",
+          "kind": "proposition",
+          "source": "From Gaussian pairs to energy comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-gaussian-duality",
+          "role": "from-gaussian-pairs-to-energy-comparisons",
+          "label": "lemma m2-lem-gaussian-duality",
+          "fullLabel": "lemma m2-lem-gaussian-duality",
+          "kind": "lemma",
+          "source": "From Gaussian pairs to energy comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-positive-mixture",
+          "role": "shifted-moments-and-positive-mixtures",
+          "label": "lemma m2-lem-positive-mixture",
+          "fullLabel": "lemma m2-lem-positive-mixture",
+          "kind": "lemma",
+          "source": "Shifted moments and positive mixtures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-energy-reduction",
+          "role": "shifted-moments-and-positive-mixtures",
+          "label": "proposition m2-prop-energy-reduction",
+          "fullLabel": "proposition m2-prop-energy-reduction",
+          "kind": "proposition",
+          "source": "Shifted moments and positive mixtures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-riesz-jellium",
+          "role": "renormalized-and-jellium-energies",
+          "label": "corollary m2-cor-riesz-jellium",
+          "fullLabel": "corollary m2-cor-riesz-jellium",
+          "kind": "corollary",
+          "source": "Renormalized and jellium energies",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-periodic-heat-comparison",
+          "role": "renormalized-and-jellium-energies",
+          "label": "lemma m2-lem-periodic-heat-comparison",
+          "fullLabel": "lemma m2-lem-periodic-heat-comparison",
+          "kind": "lemma",
+          "source": "Renormalized and jellium energies",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rational-pi-b",
+          "role": "scalar-bounds-for-the-gaussian-construction",
+          "label": "lemma m2-lem-rational-pi-b",
+          "fullLabel": "lemma m2-lem-rational-pi-b",
+          "kind": "lemma",
+          "source": "Scalar bounds for the Gaussian construction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-normalized-cubic-approximation",
+          "role": "periodic-approximation-for-the-field-energy",
+          "label": "proposition m2-prop-normalized-cubic-approximation",
+          "fullLabel": "proposition m2-prop-normalized-cubic-approximation",
+          "kind": "proposition",
+          "source": "Periodic approximation for the field energy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-lem-field-cutoff-control"
+          ]
+        },
+        {
+          "id": "m2-lem-field-cutoff-control",
+          "role": "periodic-approximation-for-the-field-energy",
+          "label": "lemma m2-lem-field-cutoff-control",
+          "fullLabel": "lemma m2-lem-field-cutoff-control",
+          "kind": "lemma",
+          "source": "Periodic approximation for the field energy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-stationary-field-minimizers",
+          "role": "periodic-approximation-for-the-field-energy",
+          "label": "lemma m2-lem-stationary-field-minimizers",
+          "fullLabel": "lemma m2-lem-stationary-field-minimizers",
+          "kind": "lemma",
+          "source": "Periodic approximation for the field energy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-field-screening",
+          "role": "periodic-approximation-for-the-field-energy",
+          "label": "lemma m2-lem-field-screening",
+          "fullLabel": "lemma m2-lem-field-screening",
+          "kind": "lemma",
+          "source": "Periodic approximation for the field energy",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rational-roundoff",
+          "role": "an-alternative-rational-verification-procedure",
+          "label": "lemma m2-lem-rational-roundoff",
+          "fullLabel": "lemma m2-lem-rational-roundoff",
+          "kind": "lemma",
+          "source": "An alternative rational verification procedure",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "label": "A sharp Fourier certificate for planar circle packing",
+      "title": "A sharp Fourier certificate for planar circle packing",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#c98b5c",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-sharp-Fourier-certificate-for-planar-circle-packing-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A sharp Fourier certificate for planar circle packing.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m3-intro-main",
+          "role": "introduction",
+          "label": "theorem m3-intro-main",
+          "fullLabel": "theorem m3-intro-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-fourier-measure-lemma",
+          "role": "gaussian-cardinal-functions",
+          "label": "lemma m3-fourier-measure-lemma",
+          "fullLabel": "lemma m3-fourier-measure-lemma",
+          "kind": "lemma",
+          "source": "Gaussian cardinal functions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-fourier-transform",
+          "role": "gaussian-cardinal-functions",
+          "label": "proposition m3-fourier-transform",
+          "fullLabel": "proposition m3-fourier-transform",
+          "kind": "proposition",
+          "source": "Gaussian cardinal functions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-fourier-equivalence",
+          "role": "gaussian-cardinal-functions",
+          "label": "lemma m3-fourier-equivalence",
+          "fullLabel": "lemma m3-fourier-equivalence",
+          "kind": "lemma",
+          "source": "Gaussian cardinal functions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-interpolation-finite",
+          "role": "solving-the-interpolation-equations",
+          "label": "lemma m3-interpolation-finite",
+          "fullLabel": "lemma m3-interpolation-finite",
+          "kind": "lemma",
+          "source": "Solving the interpolation equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-interpolation-inverse",
+          "role": "solving-the-interpolation-equations",
+          "label": "lemma m3-interpolation-inverse",
+          "fullLabel": "lemma m3-interpolation-inverse",
+          "kind": "lemma",
+          "source": "Solving the interpolation equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-interpolation-solution",
+          "role": "solving-the-interpolation-equations",
+          "label": "proposition m3-interpolation-solution",
+          "fullLabel": "proposition m3-interpolation-solution",
+          "kind": "proposition",
+          "source": "Solving the interpolation equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-signs-bernstein",
+          "role": "global-signs",
+          "label": "lemma m3-signs-bernstein",
+          "fullLabel": "lemma m3-signs-bernstein",
+          "kind": "lemma",
+          "source": "Global signs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-signs-p-lower-bound",
+          "role": "global-signs",
+          "label": "lemma m3-signs-p-lower-bound",
+          "fullLabel": "lemma m3-signs-p-lower-bound",
+          "kind": "lemma",
+          "source": "Global signs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-signs-global",
+          "role": "global-signs",
+          "label": "proposition m3-signs-global",
+          "fullLabel": "proposition m3-signs-global",
+          "kind": "proposition",
+          "source": "Global signs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-normalization-origin-lemma",
+          "role": "poisson-normalization",
+          "label": "lemma m3-normalization-origin-lemma",
+          "fullLabel": "lemma m3-normalization-origin-lemma",
+          "kind": "lemma",
+          "source": "Poisson normalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-normalization-periodic-uniqueness",
+          "role": "poisson-normalization",
+          "label": "corollary m3-normalization-periodic-uniqueness",
+          "fullLabel": "corollary m3-normalization-periodic-uniqueness",
+          "kind": "corollary",
+          "source": "Poisson normalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-normalization-second-poisson",
+          "role": "poisson-normalization",
+          "label": "proposition m3-normalization-second-poisson",
+          "fullLabel": "proposition m3-normalization-second-poisson",
+          "kind": "proposition",
+          "source": "Poisson normalization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-cert-moment-error",
+          "role": "finite-certificates",
+          "label": "lemma m3-cert-moment-error",
+          "fullLabel": "lemma m3-cert-moment-error",
+          "kind": "lemma",
+          "source": "Finite certificates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-cert-rounded-exponential",
+          "role": "alternative-certification-methods",
+          "label": "lemma m3-cert-rounded-exponential",
+          "fullLabel": "lemma m3-cert-rounded-exponential",
+          "kind": "lemma",
+          "source": "Alternative certification methods",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-cert-rational-moment-error",
+          "role": "alternative-certification-methods",
+          "label": "lemma m3-cert-rational-moment-error",
+          "fullLabel": "lemma m3-cert-rational-moment-error",
+          "kind": "lemma",
+          "source": "Alternative certification methods",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ind-taylor-average",
+          "role": "alternative-certification-methods",
+          "label": "lemma m3-ind-taylor-average",
+          "fullLabel": "lemma m3-ind-taylor-average",
+          "kind": "lemma",
+          "source": "Alternative certification methods",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ind-taylor-budgets",
+          "role": "alternative-certification-methods",
+          "label": "proposition m3-ind-taylor-budgets",
+          "fullLabel": "proposition m3-ind-taylor-budgets",
+          "kind": "proposition",
+          "source": "Alternative certification methods",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-ind-node-taylor-proposition",
+          "role": "alternative-certification-methods",
+          "label": "proposition m3-ind-node-taylor-proposition",
+          "fullLabel": "proposition m3-ind-node-taylor-proposition",
+          "kind": "proposition",
+          "source": "Alternative certification methods",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "An atomic certificate for triangular-lattice universal optimality",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/An-atomic-certificate-for-triangular-lattice-universal-optimality-September-26-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Universal optimality of the triangular lattice",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universal-optimality-of-the-triangular-lattice-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "A sharp Fourier certificate for planar circle packing",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-sharp-Fourier-certificate-for-planar-circle-packing-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

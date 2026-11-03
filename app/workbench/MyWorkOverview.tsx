@@ -11,15 +11,18 @@ import { type McpAttempt, type McpRunSummary } from "@/packages/domain/mcp";
 import { controlPlaneAvailabilityLabel, controlPlaneMaintenanceCopy, loadControlPlaneWriteAvailability, type ControlPlaneWriteAvailability } from "../lib/control-plane-write-capability";
 import { activeAttemptDelegation, activeLocalCodexInstallation } from "../lib/local-agent-journey";
 import type { ResearchEligibility } from "../lib/research-eligibility";
-import { ResearchWindowNotice } from "../components/research/ResearchWindowNotice";
+import { ResearchWindowNotice } from "./ResearchWindowNotice";
 import { ResearchLauncher } from "./ResearchLauncher";
 import { AttemptStatusBadge, deriveAttemptPresentation, type AttemptBucket } from "./attempt-presentation";
+import { useI18n } from "@/app/i18n/client";
+import type { Locale } from "@/app/i18n/config";
+import type { TranslationKey } from "@/app/i18n/translate";
 
-const sections: Array<{ bucket: AttemptBucket; title: string; description: string }> = [
-  { bucket: "needs-attention", title: "Needs attention", description: "A decision, reconnection, or corrected Run is needed." },
-  { bucket: "active", title: "Active research", description: "Your Agent can continue these bounded research tasks." },
-  { bucket: "waiting", title: "Waiting", description: "Evidence is moving through Lean execution or independent review." },
-  { bucket: "history", title: "History", description: "Closed and submitted work remains inspectable." },
+const sections: Array<{ bucket: AttemptBucket; titleKey: TranslationKey; descriptionKey: TranslationKey }> = [
+  { bucket: "needs-attention", titleKey: "myWork.section.needsAttention.title", descriptionKey: "myWork.section.needsAttention.description" },
+  { bucket: "active", titleKey: "myWork.section.active.title", descriptionKey: "myWork.section.active.description" },
+  { bucket: "waiting", titleKey: "myWork.section.waiting.title", descriptionKey: "myWork.section.waiting.description" },
+  { bucket: "history", titleKey: "myWork.section.history.title", descriptionKey: "myWork.section.history.description" },
 ];
 
 export function MyWorkOverview({
@@ -47,6 +50,7 @@ export function MyWorkOverview({
   storageAvailable: boolean;
   eligibility?: ResearchEligibility | null;
 }) {
+  const { t, locale } = useI18n();
   const router = useRouter();
   const [attempts, setAttempts] = useState<readonly McpAttempt[]>(initialAttempts);
   const [showLauncher, setShowLauncher] = useState(Boolean(initialTargetSlug));
@@ -57,21 +61,21 @@ export function MyWorkOverview({
   const records = useMemo(() => attempts.map((attempt) => {
     const delegation = activeAttemptDelegation(profile, attempt);
     const agentConnected = Boolean(activeLocalCodexInstallation(profile, delegation));
-    return { attempt, presentation: deriveAttemptPresentation({ attempt, runs, agentConnected }) };
-  }), [attempts, profile, runs]);
+    return { attempt, presentation: deriveAttemptPresentation({ attempt, runs, agentConnected, t }) };
+  }), [attempts, profile, runs, t]);
   const grouped = useMemo(() => new Map(sections.map(({ bucket }) => [bucket, records.filter((record) => record.presentation.bucket === bucket)])), [records]);
   const activeCount = attempts.filter((attempt) => attempt.status === "active" || attempt.status === "paused").length;
   const attentionCount = grouped.get("needs-attention")?.length ?? 0;
   const localConnection = activeLocalCodexInstallation(profile);
-  const maintenance = controlPlaneMaintenanceCopy(writeAvailability);
+  const maintenance = controlPlaneMaintenanceCopy(writeAvailability, t);
   const creationBlockedByWindow = eligibility ? !eligibility.canCreateAttempt : false;
   const connectedAgentAllowed = !eligibility || !localConnection
     ? true
     : eligibility.agentsAllowed.items.some((agent) => agent.id === localConnection.agentId && agent.allowed);
   const creationBlocked = creationBlockedByWindow || (Boolean(eligibility && localConnection) && !connectedAgentAllowed);
   const creationBlockedLabel = eligibility && localConnection && !connectedAgentAllowed
-    ? "Agent not in window"
-    : eligibility?.canWrite ? "New Attempts closed" : "Research window closed";
+    ? t("myWork.blocked.agentNotInWindow")
+    : eligibility?.canWrite ? t("myWork.blocked.newAttemptsClosed") : t("myWork.blocked.windowClosed");
   const nextRecord = grouped.get("needs-attention")?.[0] ?? grouped.get("active")?.[0] ?? grouped.get("waiting")?.[0] ?? null;
   const visibleRecordCount = view === "all" ? records.length : grouped.get(view)?.length ?? 0;
   const selectedView = view === "all" ? null : sections.find((section) => section.bucket === view);
@@ -90,76 +94,76 @@ export function MyWorkOverview({
   };
 
   return <>
-    <PageIntro label="Workspace" title="My work" titleId="my-work-title"
-      description="See what needs you, what your Agent can continue, and which contributions are waiting for verification."
+    <PageIntro label={t("myWork.label")} title={t("myWork.title")} titleId="my-work-title"
+      description={t("myWork.description")}
       actions={<>
         {writeAvailability === "available"
-          ? <Button variant="primary" type="button" disabled={creationBlocked} onClick={() => setShowLauncher((current) => !current)}>{creationBlocked ? creationBlockedLabel : showLauncher ? "Hide new task" : "Start new research"}</Button>
-          : <Button variant="secondary" disabled>{controlPlaneAvailabilityLabel(writeAvailability)}{writeAvailability === "checking" ? "…" : ""}</Button>}
-        <ActionLink variant="secondary" href="/explore">Browse opportunities</ActionLink>
+          ? <Button variant="primary" type="button" disabled={creationBlocked} onClick={() => setShowLauncher((current) => !current)}>{creationBlocked ? creationBlockedLabel : showLauncher ? t("myWork.hide") : t("myWork.start")}</Button>
+          : <Button variant="secondary" disabled>{controlPlaneAvailabilityLabel(writeAvailability, t)}{writeAvailability === "checking" ? "…" : ""}</Button>}
+        <ActionLink variant="secondary" href="/explore">{t("myWork.browse")}</ActionLink>
       </>} />
 
     {eligibility && <div className="research-window-notice-wrap" style={{ marginBottom: 20 }}><ResearchWindowNotice eligibility={eligibility} /></div>}
 
     {writeAvailability !== "available" && <EmptyState as="section" className="my-work-empty" aria-live="polite">
-      <p className="eyebrow">Read-only workspace</p>
+      <p className="eyebrow">{t("myWork.readOnly.eyebrow")}</p>
       <SectionTitle>{maintenance.title}</SectionTitle>
       <p>{maintenance.detail}</p>
     </EmptyState>}
 
-    <section className="my-work-summary" aria-label="Workspace summary">
-      <div><span>Active</span><strong>{activeCount}</strong><small>research tasks</small></div>
-      <div className={attentionCount > 0 ? "has-attention" : ""}><span>Needs attention</span><strong>{attentionCount}</strong><small>owner actions</small></div>
-      <Link href="/reviews#my-review-work"><span>Reviews</span><strong>{reviewCount ?? "—"}</strong><small>assigned to you</small></Link>
-      <Link href="/evidence"><span>Evidence</span><strong>{evidenceCount ?? "—"}</strong><small>controlled records</small></Link>
-      <Link href="/profile"><span>Contributions</span><strong>{provisionalContributionCount}</strong><small>provisional records</small></Link>
+    <section className="my-work-summary" aria-label={t("myWork.summaryAria")}>
+      <div><span>{t("myWork.summary.active")}</span><strong>{activeCount}</strong><small>{t("myWork.summary.activeNote")}</small></div>
+      <div className={attentionCount > 0 ? "has-attention" : ""}><span>{t("myWork.summary.attention")}</span><strong>{attentionCount}</strong><small>{t("myWork.summary.attentionNote")}</small></div>
+      <Link href="/reviews#my-review-work"><span>{t("myWork.summary.reviews")}</span><strong>{reviewCount ?? "—"}</strong><small>{t("myWork.summary.reviewsNote")}</small></Link>
+      <Link href="/evidence"><span>{t("myWork.summary.evidence")}</span><strong>{evidenceCount ?? "—"}</strong><small>{t("myWork.summary.evidenceNote")}</small></Link>
+      <Link href="/profile"><span>{t("myWork.summary.contributions")}</span><strong>{provisionalContributionCount}</strong><small>{t("myWork.summary.contributionsNote")}</small></Link>
     </section>
 
     <div className={localConnection ? "my-work-agent is-connected" : "my-work-agent"}>
-      <span><i aria-hidden="true" />{localConnection ? `${localConnection.agentLabel} has an active website approval` : "No active research Agent approval"}</span>
-      <Link href={localConnection ? "/settings" : "/integrations#codex-beta"}>{localConnection ? "Inspect approval" : "Connect Agent"} <span aria-hidden="true">→</span></Link>
+      <span><i aria-hidden="true" />{localConnection ? t("myWork.agent.active", { agent: localConnection.agentLabel }) : t("myWork.agent.none")}</span>
+      <Link href={localConnection ? "/settings" : "/integrations#codex-beta"}>{localConnection ? t("myWork.agent.inspect") : t("myWork.agent.connect")} <span aria-hidden="true">→</span></Link>
     </div>
 
-    {showLauncher && <section className="my-work-launcher" aria-label="Start new research">
+    {showLauncher && <section className="my-work-launcher" aria-label={t("myWork.launcherAria")}>
       <ResearchLauncher profile={profile} attempts={attempts} catalogTargets={catalogTargets} initialTargetSlug={initialTargetSlug} initialParentNodeId={initialParentNodeId} onAttemptReady={onAttemptReady} isAuthenticated signInPath="/sign-in?return_to=%2Fworkbench" storageAvailable={storageAvailable} writeAvailability={writeAvailability} eligibility={eligibility} />
     </section>}
 
     {nextRecord && <section className="my-work-next-action" aria-labelledby="my-work-next-action-title">
-      <div><p className="eyebrow">Recommended next action</p><SectionTitle id="my-work-next-action-title">{nextRecord.presentation.nextAction}</SectionTitle><p>{nextRecord.presentation.detail}</p></div>
-      <div className="my-work-next-action-meta"><span>{nextRecord.attempt.problemTitle}</span><ActionLink className="button button-primary" href={`/workbench/attempts/${encodeURIComponent(nextRecord.attempt.id)}`}>Open task <span aria-hidden="true">→</span></ActionLink></div>
+      <div><p className="eyebrow">{t("myWork.next.eyebrow")}</p><SectionTitle id="my-work-next-action-title">{nextRecord.presentation.nextAction}</SectionTitle><p>{nextRecord.presentation.detail}</p></div>
+      <div className="my-work-next-action-meta"><span>{nextRecord.attempt.problemTitle}</span><ActionLink className="button button-primary" href={`/workbench/attempts/${encodeURIComponent(nextRecord.attempt.id)}`}>{t("myWork.next.open")} <span aria-hidden="true">→</span></ActionLink></div>
     </section>}
 
-    {!storageAvailable ? <EmptyState as="section" className="my-work-empty"><p className="eyebrow">Workspace unavailable</p><SectionTitle>Your durable research records cannot be loaded.</SectionTitle><p>Proofweave does not substitute preview tasks when the accountable store is unavailable.</p></EmptyState>
-      : attempts.length === 0 ? <EmptyState as="section" className="my-work-empty"><p className="eyebrow">No Attempts yet</p><SectionTitle>Choose one exact target for your Agent.</SectionTitle><p>Your first Attempt creates a bounded workspace. It does not claim that work has begun or that a result is verified.</p><div className="button-row"><ActionLink className="button button-primary" href="/explore">Explore mathematics <span>→</span></ActionLink><Button className="button button-secondary" type="button" disabled={creationBlocked} onClick={() => setShowLauncher(true)}>{creationBlocked ? creationBlockedLabel : "Open task launcher"}</Button></div></EmptyState>
+    {!storageAvailable ? <EmptyState as="section" className="my-work-empty"><p className="eyebrow">{t("myWork.unavailable.eyebrow")}</p><SectionTitle>{t("myWork.unavailable.title")}</SectionTitle><p>{t("myWork.unavailable.body")}</p></EmptyState>
+      : attempts.length === 0 ? <EmptyState as="section" className="my-work-empty"><p className="eyebrow">{t("myWork.empty.eyebrow")}</p><SectionTitle>{t("myWork.empty.title")}</SectionTitle><p>{t("myWork.empty.body")}</p><div className="button-row"><ActionLink className="button button-primary" href="/explore">{t("myWork.empty.explore")} <span>→</span></ActionLink><Button className="button button-secondary" type="button" disabled={creationBlocked} onClick={() => setShowLauncher(true)}>{creationBlocked ? creationBlockedLabel : t("myWork.empty.launcher")}</Button></div></EmptyState>
         : <>
-          <section className="my-work-command" aria-label="Workspace task filters">
-            <div><span className="micro-label">Task queue</span><strong>Focus the worklist</strong><small>Filter by the action required from you now.</small></div>
-            <div className="my-work-view-tabs" role="tablist" aria-label="Filter workspace tasks">
-              {[{ bucket: "all" as const, label: "All" }, ...sections.map((section) => ({ bucket: section.bucket, label: section.title }))].map((item) => <Button key={item.bucket} className={view === item.bucket ? "is-active" : ""} onClick={() => setView(item.bucket)} role="tab" aria-selected={view === item.bucket} type="button"><span>{item.label}</span><strong>{item.bucket === "all" ? records.length : grouped.get(item.bucket)?.length ?? 0}</strong></Button>)}
+          <section className="my-work-command" aria-label={t("myWork.commandAria")}>
+            <div><span className="micro-label">{t("myWork.taskQueue")}</span><strong>{t("myWork.focusWorklist")}</strong><small>{t("myWork.filterHint")}</small></div>
+            <div className="my-work-view-tabs" role="tablist" aria-label={t("myWork.tabsAria")}>
+              {[{ bucket: "all" as const, label: t("myWork.all") }, ...sections.map((section) => ({ bucket: section.bucket, label: t(section.titleKey) }))].map((item) => <Button key={item.bucket} className={view === item.bucket ? "is-active" : ""} onClick={() => setView(item.bucket)} role="tab" aria-selected={view === item.bucket} type="button"><span>{item.label}</span><strong>{item.bucket === "all" ? records.length : grouped.get(item.bucket)?.length ?? 0}</strong></Button>)}
             </div>
           </section>
           {visibleRecordCount === 0 ? <EmptyState as="section" className="my-work-filter-empty" aria-live="polite">
-            <span className="micro-label">Queue clear</span>
-            <SectionTitle>{selectedView?.title ?? "No recorded tasks"}</SectionTitle>
-            <p>{selectedView?.bucket === "needs-attention" ? "There are no owner decisions waiting for you." : "There are no tasks in this queue yet."}</p>
-            <Button className="button button-secondary" type="button" onClick={() => setView("all")}>View all tasks <span aria-hidden="true">→</span></Button>
+            <span className="micro-label">{t("myWork.filterEmpty.label")}</span>
+            <SectionTitle>{selectedView ? t(selectedView.titleKey) : t("myWork.filterEmpty.noRecorded")}</SectionTitle>
+            <p>{selectedView?.bucket === "needs-attention" ? t("myWork.filterEmpty.noAttention") : t("myWork.filterEmpty.noTasks")}</p>
+            <Button className="button button-secondary" type="button" onClick={() => setView("all")}>{t("myWork.filterEmpty.viewAll")} <span aria-hidden="true">→</span></Button>
           </EmptyState> : <div className="my-work-sections">
           {sections.filter((section) => view === "all" || view === section.bucket).map((section) => {
             const sectionRecords = grouped.get(section.bucket) ?? [];
             if (sectionRecords.length === 0) return null;
             return <section className={`my-work-section is-${section.bucket}`} key={section.bucket} aria-labelledby={`my-work-${section.bucket}`}>
-              <header><div><SectionTitle id={`my-work-${section.bucket}`}>{section.title}</SectionTitle><p>{section.description}</p></div><span>{sectionRecords.length}</span></header>
+              <header><div><SectionTitle id={`my-work-${section.bucket}`}>{t(section.titleKey)}</SectionTitle><p>{t(section.descriptionKey)}</p></div><span>{sectionRecords.length}</span></header>
               <div className="my-work-card-list">
                 {sectionRecords.map(({ attempt, presentation }) => <Surface as="article" className="my-work-card" key={attempt.id}>
-                  <div className="my-work-card-top"><AttemptStatusBadge presentation={presentation} /><small>Updated {formatTimestamp(attempt.updatedAt)}</small></div>
+                  <div className="my-work-card-top"><AttemptStatusBadge presentation={presentation} /><small>{t("myWork.card.updated", { time: formatTimestamp(attempt.updatedAt, locale) })}</small></div>
                   <CardTitle>{attempt.problemTitle}</CardTitle>
                   <p className="my-work-card-meta">{attempt.agentLabel} · {attempt.delegationScope ?? "research"}</p>
                   <FieldList>
-                    <Field label="Latest">{attempt.events.at(-1)?.message ?? "No recorded event."}</Field>
-                    <Field label="Next"><strong>{presentation.nextAction}</strong><span>{presentation.detail}</span></Field>
+                    <Field label={t("myWork.card.latest")}>{attempt.events.at(-1)?.message ?? t("myWork.card.noEvent")}</Field>
+                    <Field label={t("myWork.card.next")}><strong>{presentation.nextAction}</strong><span>{presentation.detail}</span></Field>
                   </FieldList>
-                  {typeof attempt.lastProgressPercent === "number" && <div className="my-work-progress" aria-label={`${attempt.lastProgressPercent}% agent-reported progress`}><span style={{ width: `${Math.max(0, Math.min(100, attempt.lastProgressPercent))}%` }} /></div>}
-                  <div className="my-work-card-actions"><ActionLink className="button button-primary" href={`/workbench/attempts/${encodeURIComponent(attempt.id)}`}>{attempt.status === "active" ? "Continue task" : attempt.status === "paused" ? "Resume task" : "View history"} <span>→</span></ActionLink><Link className="text-link" href={`/explore/${attempt.problemSlug}`}>Inspect target</Link></div>
+                  {typeof attempt.lastProgressPercent === "number" && <div className="my-work-progress" aria-label={t("myWork.card.progressAria", { percent: attempt.lastProgressPercent })}><span style={{ width: `${Math.max(0, Math.min(100, attempt.lastProgressPercent))}%` }} /></div>}
+                  <div className="my-work-card-actions"><ActionLink className="button button-primary" href={`/workbench/attempts/${encodeURIComponent(attempt.id)}`}>{attempt.status === "active" ? t("myWork.card.continue") : attempt.status === "paused" ? t("myWork.card.resume") : t("myWork.card.history")} <span>→</span></ActionLink><Link className="text-link" href={`/explore/${attempt.problemSlug}`}>{t("myWork.card.inspectTarget")}</Link></div>
                 </Surface>)}
               </div>
             </section>;
@@ -168,7 +172,7 @@ export function MyWorkOverview({
         </>}
   </>;
 }
-function formatTimestamp(value: string): string {
+function formatTimestamp(value: string, locale: Locale): string {
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? "unknown" : new Intl.DateTimeFormat("en-US", { timeZone: "UTC", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }).format(date);
+  return Number.isNaN(date.getTime()) ? "—" : new Intl.DateTimeFormat(locale, { timeZone: "UTC", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }).format(date);
 }

@@ -15,18 +15,33 @@ import { providerAwareSignOutPath, requireUser, toPersonIdentity, type AuthUser 
 
 import { PersonalWorkspaceFrame } from "../PersonalWorkspaceFrame";
 import { personalWritesPaused, ReadOnlyPersonalSurface } from "../lib/read-only-personal-surface";
+import { getI18n } from "@/app/i18n/server";
+import type { Locale } from "@/app/i18n/config";
+import type { TranslationKey, Translator } from "@/app/i18n/translate";
+import type { ContributionReceiptKind } from "@/db/repositories/receipts";
+
+const receiptKindKeys: Record<ContributionReceiptKind, TranslationKey> = {
+  formalization: "profile.receiptKind.formalization",
+  lemma: "profile.receiptKind.lemma",
+  proof_patch: "profile.receiptKind.proof_patch",
+  counterexample: "profile.receiptKind.counterexample",
+  verification: "profile.receiptKind.verification",
+  synthesis: "profile.receiptKind.synthesis",
+  infrastructure: "profile.receiptKind.infrastructure",
+};
 
 export const dynamic = "force-dynamic";
 
 export default async function ProfilePage() {
+  const { t, locale } = await getI18n();
   const readOnly = personalWritesPaused();
   const user = await requireUser("/profile");
   if (readOnly) {
     return <ReadOnlyPersonalSurface
       active="profile"
-      eyebrow="Personal profile · read-only maintenance"
-      title="Your private contribution profile is temporarily paused."
-      detail={`You are still signed in as ${user.displayName}. Public research and published verification records remain readable, but Proofweave will not load or change private identity, Agent, review, or contribution records until maintenance is complete.`}
+      eyebrow={t("profile.readOnly.eyebrow")}
+      title={t("profile.readOnly.title")}
+      detail={t("profile.readOnly.detail", { name: user.displayName })}
     />;
   }
   const data = await loadProfile(user);
@@ -37,50 +52,50 @@ export default async function ProfilePage() {
   const activeAttempts = attempts.filter((attempt) => attempt.status === "active").length;
   const activeReviews = reviews.filter((review) => review.status === "assigned" || review.status === "accepted").length;
   const completedReviews = reviews.filter((review) => review.status === "completed").length;
-  const activities = recentActivity({ attempts, reviews, publicProfile });
+  const activities = recentActivity({ attempts, reviews, publicProfile, t });
 
   return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="page-main profile-main personal-workspace-main">
       <PersonalWorkspaceFrame active="profile">
-      <Breadcrumb><Link href="/workbench">Workspace</Link><span> / </span><span>My profile</span></Breadcrumb>
+      <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/workbench">{t("nav.primary.workspace")}</Link><span> / </span><span>{t("profile.breadcrumb.profile")}</span></Breadcrumb>
       <SectionHeading as="section" className="profile-hero">
         <div className="profile-avatar" aria-hidden="true">{initials(user.displayName)}</div>
-        <SectionHeading as="div" className="profile-hero-copy"><p className="eyebrow">Your Proofweave Person</p><PageTitle>{user.displayName}</PageTitle><p>{user.email}</p><code>{delegation.person.id}</code></SectionHeading>
-        <div className="profile-hero-actions"><ActionLink className="button profile-public-button" href={`/people/${encodeURIComponent(delegation.person.id)}`}>View public contribution record <span>↗</span></ActionLink><Link className="text-link" href={providerAwareSignOutPath(user, "/")}>Sign out <span>→</span></Link></div>
+        <SectionHeading as="div" className="profile-hero-copy"><p className="eyebrow">{t("profile.eyebrow")}</p><PageTitle>{user.displayName}</PageTitle><p>{user.email}</p><code>{delegation.person.id}</code></SectionHeading>
+        <div className="profile-hero-actions"><ActionLink className="button profile-public-button" href={`/people/${encodeURIComponent(delegation.person.id)}`}>{t("profile.action.public")} <span>↗</span></ActionLink><Link className="text-link" href={providerAwareSignOutPath(user, "/")}>{t("profile.action.signOut")} <span>→</span></Link></div>
       </SectionHeading>
 
-      <section className="profile-assurance" aria-label="Identity assurance">
-        <div><span>Authenticated as</span><strong>{user.providerLabel} account</strong><p>{user.provider === "proofweave" ? "This temporary Build Week identity is isolated from external accounts and is explicitly demo-only." : "Your verified email identifies this private session and is never shown on the public profile."}</p></div>
-        <div><span>Attribution root</span><strong>Proofweave Person</strong><p>Agent work, reviews, and Receipts are credited to this stable Person ID.</p></div>
-        <div><span>Member since</span><strong>{formatDate(publicProfile.person.joinedAt)}</strong><p>Public evidence remains independently inspectable even if an Agent is later revoked.</p></div>
+      <section className="profile-assurance" aria-label={t("profile.assurance.aria")}>
+        <div><span>{t("profile.assurance.authLabel")}</span><strong>{t("profile.assurance.authValue", { provider: user.providerLabel })}</strong><p>{user.provider === "proofweave" ? t("profile.assurance.demoBody") : t("profile.assurance.verifiedBody")}</p></div>
+        <div><span>{t("profile.assurance.rootLabel")}</span><strong>{t("profile.assurance.rootValue")}</strong><p>{t("profile.assurance.rootBody")}</p></div>
+        <div><span>{t("profile.assurance.sinceLabel")}</span><strong>{formatDate(publicProfile.person.joinedAt, locale)}</strong><p>{t("profile.assurance.sinceBody")}</p></div>
       </section>
 
       <section className="profile-section" aria-labelledby="profile-overview-title">
-        <SectionHeading as="div" className="profile-section-heading"><div><p className="eyebrow">Personal overview</p><SectionTitle id="profile-overview-title">Your research identity at a glance.</SectionTitle></div><Badge className="record-chip">Private view</Badge></SectionHeading>
+        <SectionHeading as="div" className="profile-section-heading"><div><p className="eyebrow">{t("profile.overview.eyebrow")}</p><SectionTitle id="profile-overview-title">{t("profile.overview.title")}</SectionTitle></div><Badge className="record-chip">{t("profile.overview.badge")}</Badge></SectionHeading>
         <div className="profile-stat-grid">
-          <ProfileStat value={activeAttempts} label="Active Attempts" detail={`${attempts.length} total research attempts`} />
-          <ProfileStat value={publicProfile.summary.sharedCheckpoints} label="Shared checkpoints" detail="Public, Agent-signed progress" />
-          <ProfileStat value={publicProfile.summary.verifiedReceipts} label="Verified Receipts" detail="Issuer-signed contributions" />
-          <ProfileStat value={publicProfile.credits.totalUnits} label="Proof Credit" detail={`${publicProfile.credits.settledReceipts} settled Receipt${publicProfile.credits.settledReceipts === 1 ? "" : "s"}`} />
-          <ProfileStat value={completedReviews} label="Completed reviews" detail={`${activeReviews} currently active`} />
-          <ProfileStat value={activeAgents} label="Active Agents" detail={`${activeDelegations} live delegations`} />
-          <ProfileStat value={provisionalBundleCount} label="Staged Bundles" detail="Private provisional evidence" />
+          <ProfileStat value={activeAttempts} label={t("profile.stat.activeAttempts")} detail={t("profile.stat.activeDetail", { count: attempts.length })} />
+          <ProfileStat value={publicProfile.summary.sharedCheckpoints} label={t("profile.stat.sharedCheckpoints")} detail={t("profile.stat.sharedDetail")} />
+          <ProfileStat value={publicProfile.summary.verifiedReceipts} label={t("profile.stat.verifiedReceipts")} detail={t("profile.stat.receiptsDetail")} />
+          <ProfileStat value={publicProfile.credits.totalUnits} label={t("profile.stat.credit")} detail={t("profile.stat.creditDetail", { count: publicProfile.credits.settledReceipts })} />
+          <ProfileStat value={completedReviews} label={t("profile.stat.completedReviews")} detail={t("profile.stat.reviewsDetail", { count: activeReviews })} />
+          <ProfileStat value={activeAgents} label={t("profile.stat.activeAgents")} detail={t("profile.stat.agentsDetail", { count: activeDelegations })} />
+          <ProfileStat value={provisionalBundleCount} label={t("profile.stat.stagedBundles")} detail={t("profile.stat.bundlesDetail")} />
         </div>
       </section>
 
       <div className="profile-two-column">
         <section className="profile-section profile-activity" aria-labelledby="profile-activity-title">
-          <SectionHeading as="div" className="profile-section-heading compact"><div><p className="eyebrow">Recent activity</p><SectionTitle id="profile-activity-title">What your Person and Agents did.</SectionTitle></div><Link className="text-link" href="/workbench">Open workspace <span>→</span></Link></SectionHeading>
-          {activities.length === 0 ? <ProfileEmpty title="No recorded activity yet." detail="Choose a public target and start an accountable Attempt with your delegated Agent." action="Explore targets" href="/explore" /> : <ol className="profile-activity-list">{activities.map((activity) => <li key={activity.id}><span className={`profile-activity-mark is-${activity.tone}`} aria-hidden="true" /><div><strong>{activity.title}</strong><p>{activity.detail}</p></div><time dateTime={activity.occurredAt}>{formatDate(activity.occurredAt)}</time></li>)}</ol>}
+          <SectionHeading as="div" className="profile-section-heading compact"><div><p className="eyebrow">{t("profile.activity.eyebrow")}</p><SectionTitle id="profile-activity-title">{t("profile.activity.title")}</SectionTitle></div><Link className="text-link" href="/workbench">{t("profile.activity.openWorkspace")} <span>→</span></Link></SectionHeading>
+          {activities.length === 0 ? <ProfileEmpty title={t("profile.activity.emptyTitle")} detail={t("profile.activity.emptyDetail")} action={t("profile.activity.emptyAction")} href="/explore" /> : <ol className="profile-activity-list">{activities.map((activity) => <li key={activity.id}><span className={`profile-activity-mark is-${activity.tone}`} aria-hidden="true" /><div><strong>{activity.title}</strong><p>{activity.detail}</p></div><time dateTime={activity.occurredAt}>{formatDate(activity.occurredAt, locale)}</time></li>)}</ol>}
         </section>
 
         <aside className="profile-control-card">
-          <p className="eyebrow">Agent authority</p><SectionTitle>{activeAgents > 0 && activeDelegations > 0 ? "Your Agent authority is active." : "Finish connecting your research Agent."}</SectionTitle><p>{activeAgents > 0 ? `${activeAgents} active Agent${activeAgents === 1 ? "" : "s"} can act only within ${activeDelegations} recorded delegation${activeDelegations === 1 ? "" : "s"}.` : "Create a Person signing key, register an Agent, and issue a scoped delegation before attributable work can begin."}</p>
-          <FieldList><Field label="Signing keys">{delegation.signingKeys.length}</Field><Field label="Connections">{delegation.agentInstallations.filter((item) => item.status === "active").length}</Field><Field label="Credit settlement">{publicProfile.credits.active ? `${publicProfile.credits.totalUnits} settled` : "Unavailable"}</Field></FieldList>
-          <ActionLink className="button button-primary" href="/settings">Manage Agent and security <span>→</span></ActionLink>
+          <p className="eyebrow">{t("profile.control.eyebrow")}</p><SectionTitle>{activeAgents > 0 && activeDelegations > 0 ? t("profile.control.activeTitle") : t("profile.control.setupTitle")}</SectionTitle><p>{activeAgents > 0 ? t("profile.control.activeBody", { agents: activeAgents, delegations: activeDelegations }) : t("profile.control.setupBody")}</p>
+          <FieldList><Field label={t("profile.control.signingKeys")}>{delegation.signingKeys.length}</Field><Field label={t("profile.control.connections")}>{delegation.agentInstallations.filter((item) => item.status === "active").length}</Field><Field label={t("profile.control.settlement")}>{publicProfile.credits.active ? t("profile.control.settled", { units: publicProfile.credits.totalUnits }) : t("profile.control.unavailable")}</Field></FieldList>
+          <ActionLink className="button button-primary" href="/settings">{t("profile.control.manage")} <span>→</span></ActionLink>
         </aside>
       </div>
 
-      <section className="profile-privacy-boundary"><div><p className="eyebrow">Public / private boundary</p><SectionTitle>Your contribution record is public. Your account is not.</SectionTitle></div><p>The public page contains only your display name, Person ID, public research checkpoints, signed Receipts, and aggregate review outcomes. Email, provider subject, private evidence, prompts, keys, connection credentials, and unshared workspace data remain private.</p></section>
+      <section className="profile-privacy-boundary"><div><p className="eyebrow">{t("profile.privacy.eyebrow")}</p><SectionTitle>{t("profile.privacy.title")}</SectionTitle></div><p>{t("profile.privacy.body")}</p></section>
       </PersonalWorkspaceFrame>
     </SiteFrame>;
 }
@@ -110,21 +125,18 @@ function ProfileEmpty({ title, detail, action, href }: { title: string; detail: 
   return <EmptyState as="div" className="profile-empty"><strong>{title}</strong><p>{detail}</p><Link className="text-link" href={href}>{action} <span>→</span></Link></EmptyState>;
 }
 
-function recentActivity({ attempts, reviews, publicProfile }: {
+function recentActivity({ attempts, reviews, publicProfile, t }: {
   attempts: readonly McpAttempt[];
   reviews: readonly { id: string; target: { title: string }; status: string; assignedAt: string; completedAt: string | null }[];
   publicProfile: PublicPersonProfile;
+  t: Translator;
 }) {
   const items = [
-    ...attempts.map((attempt) => ({ id: `attempt:${attempt.id}`, tone: "attempt", title: attempt.problemTitle, detail: `${attempt.agentLabel} · Attempt ${attempt.status}`, occurredAt: attempt.updatedAt })),
-    ...reviews.map((review) => ({ id: `review:${review.id}`, tone: "review", title: review.target.title, detail: `Independent review · ${review.status}`, occurredAt: review.completedAt ?? review.assignedAt })),
-    ...publicProfile.receipts.map((receipt) => ({ id: `receipt:${receipt.id}`, tone: "receipt", title: receipt.target.declaration, detail: `${kindLabel(receipt.kind)} Receipt · ${receipt.lifecycleStatus}`, occurredAt: receipt.issuedAt })),
+    ...attempts.map((attempt) => ({ id: `attempt:${attempt.id}`, tone: "attempt", title: attempt.problemTitle, detail: t("profile.activity.attemptDetail", { agent: attempt.agentLabel, status: attempt.status }), occurredAt: attempt.updatedAt })),
+    ...reviews.map((review) => ({ id: `review:${review.id}`, tone: "review", title: review.target.title, detail: t("profile.activity.reviewDetail", { status: review.status }), occurredAt: review.completedAt ?? review.assignedAt })),
+    ...publicProfile.receipts.map((receipt) => ({ id: `receipt:${receipt.id}`, tone: "receipt", title: receipt.target.declaration, detail: t("profile.activity.receiptDetail", { kind: t(receiptKindKeys[receipt.kind]), status: receipt.lifecycleStatus }), occurredAt: receipt.issuedAt })),
   ];
   return items.sort((left, right) => Date.parse(right.occurredAt) - Date.parse(left.occurredAt)).slice(0, 8);
-}
-
-function kindLabel(value: string) {
-  return value.replaceAll("_", " ").replace(/^./, (letter) => letter.toUpperCase());
 }
 
 function initials(value: string) {
@@ -132,10 +144,11 @@ function initials(value: string) {
   return parts.length > 1 ? `${parts[0][0]}${parts.at(-1)?.[0] ?? ""}`.toUpperCase() : (parts[0]?.slice(0, 2).toUpperCase() ?? "PW");
 }
 
-function formatDate(value: string) {
-  return new Intl.DateTimeFormat("en", { year: "numeric", month: "short", day: "numeric" }).format(new Date(value));
+function formatDate(value: string, locale: Locale) {
+  return new Intl.DateTimeFormat(locale, { year: "numeric", month: "short", day: "numeric" }).format(new Date(value));
 }
 
-function ProfileUnavailable() {
-  return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="page-main profile-main personal-workspace-main"><PersonalWorkspaceFrame active="profile"><SectionHeading as="section" className="review-heading"><div><p className="eyebrow">Personal profile</p><PageTitle>Your profile is temporarily unavailable.</PageTitle><p>No identity, contribution, or Agent record was changed. Please try again when the account control plane is available.</p></div><Badge className="record-chip">Unavailable</Badge></SectionHeading></PersonalWorkspaceFrame></SiteFrame>;
+async function ProfileUnavailable() {
+  const { t } = await getI18n();
+  return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="page-main profile-main personal-workspace-main"><PersonalWorkspaceFrame active="profile"><SectionHeading as="section" className="review-heading"><div><p className="eyebrow">{t("profile.unavailable.eyebrow")}</p><PageTitle>{t("profile.unavailable.title")}</PageTitle><p>{t("profile.unavailable.body")}</p></div><Badge className="record-chip">{t("profile.unavailable.badge")}</Badge></SectionHeading></PersonalWorkspaceFrame></SiteFrame>;
 }

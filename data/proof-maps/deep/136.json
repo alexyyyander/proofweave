@@ -1,0 +1,912 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "136",
+  "title": "A quasilinear PCP theorem for PPAD",
+  "result": {
+    "id": "paper-result",
+    "label": "A quasilinear PCP theorem for PPAD",
+    "statement": "Resolves the quasilinear PCP-for-PPAD conjecture. An End-of-Line instance of length N reduces to numerical circuit constraints of total length N( N)^ O(1) such that any polynomially encoded rational assignment satisfying all but a fixed fraction to fixed accuracy yields an endpoint solution. Such assignments always exist, giving robust local verification with only quasilinear size overhead.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction-and-the-exact-search-relation",
+      "label": "Introduction and the exact search relation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-sparse-macrograph-for-end-of-line",
+      "label": "A sparse macrograph for End-of-Line",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "outer-index-groups-and-systematic-square-codes",
+      "label": "Outer index groups and systematic square codes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "certified-programs-and-persistent-tape-equations",
+      "label": "Certified programs and persistent tape equations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-locally-evolving-outer-representation",
+      "label": "A locally evolving outer representation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "binary-composition-and-the-robust-outer-circuit",
+      "label": "Binary composition and the robust outer circuit",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-inner-path-and-its-algebraic-representation",
+      "label": "The inner path and its algebraic representation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "binary-testing-and-average-correction-at-a-fixed-radius",
+      "label": "Binary testing and average correction at a fixed radius",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-fixed-port-and-its-robust-decision-gadget",
+      "label": "The fixed port and its robust decision gadget",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "encoded-paths-and-finite-local-displacement-procedures",
+      "label": "Encoded paths and finite local displacement procedures",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "consequences-for-games-and-markets",
+      "label": "Consequences for games and markets",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The PCP-for-PPAD conjecture: a quasilinear reduction",
+      "title": "The PCP-for-PPAD conjecture: a quasilinear reduction",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-PCP-for-PPAD-conjecture-a-quasilinear-reduction-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The PCP-for-PPAD conjecture: a quasilinear reduction.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction-and-the-exact-search-relation",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction and the exact search relation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-thm-port-gadget"
+          ]
+        },
+        {
+          "id": "m1-macro-prefix-uniqueness",
+          "role": "a-sparse-macrograph-for-end-of-line",
+          "label": "lemma m1-macro-prefix-uniqueness",
+          "fullLabel": "lemma m1-macro-prefix-uniqueness",
+          "kind": "lemma",
+          "source": "A sparse macrograph for End-of-Line",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-macro-boundaries",
+          "role": "a-sparse-macrograph-for-end-of-line",
+          "label": "lemma m1-macro-boundaries",
+          "fullLabel": "lemma m1-macro-boundaries",
+          "kind": "lemma",
+          "source": "A sparse macrograph for End-of-Line",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-macro-local-edges",
+          "role": "a-sparse-macrograph-for-end-of-line",
+          "label": "lemma m1-macro-local-edges",
+          "fullLabel": "lemma m1-macro-local-edges",
+          "kind": "lemma",
+          "source": "A sparse macrograph for End-of-Line",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-macrograph",
+          "role": "a-sparse-macrograph-for-end-of-line",
+          "label": "lemma m1-lem-macrograph",
+          "fullLabel": "lemma m1-lem-macrograph",
+          "kind": "lemma",
+          "source": "A sparse macrograph for End-of-Line",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-oc-expansion",
+          "role": "outer-index-groups-and-systematic-square-codes",
+          "label": "lemma m1-oc-expansion",
+          "fullLabel": "lemma m1-oc-expansion",
+          "kind": "lemma",
+          "source": "Outer index groups and systematic square codes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-oc-local-agreement",
+          "role": "outer-index-groups-and-systematic-square-codes",
+          "label": "lemma m1-oc-local-agreement",
+          "fullLabel": "lemma m1-oc-local-agreement",
+          "kind": "lemma",
+          "source": "Outer index groups and systematic square codes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-oc-systematic",
+          "role": "outer-index-groups-and-systematic-square-codes",
+          "label": "lemma m1-oc-systematic",
+          "fullLabel": "lemma m1-oc-systematic",
+          "kind": "lemma",
+          "source": "Outer index groups and systematic square codes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-oc-full-proximity",
+          "role": "outer-index-groups-and-systematic-square-codes",
+          "label": "lemma m1-oc-full-proximity",
+          "fullLabel": "lemma m1-oc-full-proximity",
+          "kind": "lemma",
+          "source": "Outer index groups and systematic square codes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-oc-one-axis",
+          "role": "outer-index-groups-and-systematic-square-codes",
+          "label": "lemma m1-oc-one-axis",
+          "fullLabel": "lemma m1-oc-one-axis",
+          "kind": "lemma",
+          "source": "Outer index groups and systematic square codes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-oc-near-code",
+          "role": "outer-index-groups-and-systematic-square-codes",
+          "label": "lemma m1-oc-near-code",
+          "fullLabel": "lemma m1-oc-near-code",
+          "kind": "lemma",
+          "source": "Outer index groups and systematic square codes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-outer-codes",
+          "role": "outer-index-groups-and-systematic-square-codes",
+          "label": "theorem m1-thm-outer-codes",
+          "fullLabel": "theorem m1-thm-outer-codes",
+          "kind": "theorem",
+          "source": "Outer index groups and systematic square codes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-outer-uncertainty",
+          "role": "outer-index-groups-and-systematic-square-codes",
+          "label": "lemma m1-lem-outer-uncertainty",
+          "fullLabel": "lemma m1-lem-outer-uncertainty",
+          "kind": "lemma",
+          "source": "Outer index groups and systematic square codes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-op-scalar-programs",
+          "role": "certified-programs-and-persistent-tape-equations",
+          "label": "lemma m1-op-scalar-programs",
+          "fullLabel": "lemma m1-op-scalar-programs",
+          "kind": "lemma",
+          "source": "Certified programs and persistent tape equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-op-scratch-restoration",
+          "role": "certified-programs-and-persistent-tape-equations",
+          "label": "lemma m1-op-scratch-restoration",
+          "fullLabel": "lemma m1-op-scratch-restoration",
+          "kind": "lemma",
+          "source": "Certified programs and persistent tape equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-outer-fill",
+          "role": "certified-programs-and-persistent-tape-equations",
+          "label": "lemma m1-lem-outer-fill",
+          "fullLabel": "lemma m1-lem-outer-fill",
+          "kind": "lemma",
+          "source": "Certified programs and persistent tape equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-outer-wiring",
+          "role": "certified-programs-and-persistent-tape-equations",
+          "label": "lemma m1-lem-outer-wiring",
+          "fullLabel": "lemma m1-lem-outer-wiring",
+          "kind": "lemma",
+          "source": "Certified programs and persistent tape equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-oe-derivative-closure",
+          "role": "a-locally-evolving-outer-representation",
+          "label": "lemma m1-oe-derivative-closure",
+          "fullLabel": "lemma m1-oe-derivative-closure",
+          "kind": "lemma",
+          "source": "A locally evolving outer representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-oe-preparation",
+          "role": "a-locally-evolving-outer-representation",
+          "label": "lemma m1-oe-preparation",
+          "fullLabel": "lemma m1-oe-preparation",
+          "kind": "lemma",
+          "source": "A locally evolving outer representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-oe-valid-testing",
+          "role": "a-locally-evolving-outer-representation",
+          "label": "lemma m1-oe-valid-testing",
+          "fullLabel": "lemma m1-oe-valid-testing",
+          "kind": "lemma",
+          "source": "A locally evolving outer representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-outer-representation",
+          "role": "a-locally-evolving-outer-representation",
+          "label": "theorem m1-thm-outer-representation",
+          "fullLabel": "theorem m1-thm-outer-representation",
+          "kind": "theorem",
+          "source": "A locally evolving outer representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-port-gadget",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "theorem m1-thm-port-gadget",
+          "fullLabel": "theorem m1-thm-port-gadget",
+          "kind": "theorem",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-out-flags",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "lemma m1-out-flags",
+          "fullLabel": "lemma m1-out-flags",
+          "kind": "lemma",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-out-validation",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "lemma m1-out-validation",
+          "fullLabel": "lemma m1-out-validation",
+          "kind": "lemma",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-out-average-correction",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "lemma m1-out-average-correction",
+          "fullLabel": "lemma m1-out-average-correction",
+          "kind": "lemma",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-out-walk",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "lemma m1-out-walk",
+          "fullLabel": "lemma m1-out-walk",
+          "kind": "lemma",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-out-tapes",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "lemma m1-out-tapes",
+          "fullLabel": "lemma m1-out-tapes",
+          "kind": "lemma",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-out-routing",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "lemma m1-out-routing",
+          "fullLabel": "lemma m1-out-routing",
+          "kind": "lemma",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-out-direct-cone",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "lemma m1-out-direct-cone",
+          "fullLabel": "lemma m1-out-direct-cone",
+          "kind": "lemma",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-out-charges",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "lemma m1-out-charges",
+          "fullLabel": "lemma m1-out-charges",
+          "kind": "lemma",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-out-coarse-sync",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "lemma m1-out-coarse-sync",
+          "fullLabel": "lemma m1-out-coarse-sync",
+          "kind": "lemma",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-out-fine-residual",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "lemma m1-out-fine-residual",
+          "fullLabel": "lemma m1-out-fine-residual",
+          "kind": "lemma",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-out-clip-mean",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "lemma m1-out-clip-mean",
+          "fullLabel": "lemma m1-out-clip-mean",
+          "kind": "lemma",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-out-totality",
+          "role": "binary-composition-and-the-robust-outer-circuit",
+          "label": "lemma m1-out-totality",
+          "fullLabel": "lemma m1-out-totality",
+          "kind": "lemma",
+          "source": "Binary composition and the robust outer circuit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-validity",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-validity",
+          "fullLabel": "lemma m1-ia-validity",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-path-endpoints",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-path-endpoints",
+          "fullLabel": "lemma m1-ia-path-endpoints",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-cyclic-lift",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-cyclic-lift",
+          "fullLabel": "lemma m1-ia-cyclic-lift",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-linear-tool",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-linear-tool",
+          "fullLabel": "lemma m1-ia-linear-tool",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-clock-formula",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-clock-formula",
+          "fullLabel": "lemma m1-ia-clock-formula",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-derivative-closure",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-derivative-closure",
+          "fullLabel": "lemma m1-ia-derivative-closure",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-port-ancestry",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-port-ancestry",
+          "fullLabel": "lemma m1-ia-port-ancestry",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-placements",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-placements",
+          "fullLabel": "lemma m1-ia-placements",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-projection",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-projection",
+          "fullLabel": "lemma m1-ia-projection",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-stacks",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-stacks",
+          "fullLabel": "lemma m1-ia-stacks",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-exact-validator",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-exact-validator",
+          "fullLabel": "lemma m1-ia-exact-validator",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-evolution",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-evolution",
+          "fullLabel": "lemma m1-ia-evolution",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ia-source-data",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-ia-source-data",
+          "fullLabel": "lemma m1-ia-source-data",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-inner-algebra-interface",
+          "role": "the-inner-path-and-its-algebraic-representation",
+          "label": "lemma m1-lem-inner-algebra-interface",
+          "fullLabel": "lemma m1-lem-inner-algebra-interface",
+          "kind": "lemma",
+          "source": "The inner path and its algebraic representation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-affine-expansion",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "lemma m1-ib-affine-expansion",
+          "fullLabel": "lemma m1-ib-affine-expansion",
+          "kind": "lemma",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-row-extension",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "lemma m1-ib-row-extension",
+          "fullLabel": "lemma m1-ib-row-extension",
+          "kind": "lemma",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-vector-ld",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "lemma m1-ib-vector-ld",
+          "fullLabel": "lemma m1-ib-vector-ld",
+          "kind": "lemma",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-axis-replacement",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "lemma m1-ib-axis-replacement",
+          "fullLabel": "lemma m1-ib-axis-replacement",
+          "kind": "lemma",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-tester",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "proposition m1-ib-tester",
+          "fullLabel": "proposition m1-ib-tester",
+          "kind": "proposition",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-one-axis-support",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "lemma m1-ib-one-axis-support",
+          "fullLabel": "lemma m1-ib-one-axis-support",
+          "kind": "lemma",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-two-axis-support",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "lemma m1-ib-two-axis-support",
+          "fullLabel": "lemma m1-ib-two-axis-support",
+          "kind": "lemma",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-inner-table-prediction",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "lemma m1-ib-inner-table-prediction",
+          "fullLabel": "lemma m1-ib-inner-table-prediction",
+          "kind": "lemma",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-bit-simulation",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "lemma m1-ib-bit-simulation",
+          "fullLabel": "lemma m1-ib-bit-simulation",
+          "kind": "lemma",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-average-correction",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "proposition m1-ib-average-correction",
+          "fullLabel": "proposition m1-ib-average-correction",
+          "kind": "proposition",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-all-branch-density",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "lemma m1-ib-all-branch-density",
+          "fullLabel": "lemma m1-ib-all-branch-density",
+          "kind": "lemma",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-neighbors",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "proposition m1-ib-neighbors",
+          "fullLabel": "proposition m1-ib-neighbors",
+          "kind": "proposition",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ib-global-recovery",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "proposition m1-ib-global-recovery",
+          "fullLabel": "proposition m1-ib-global-recovery",
+          "kind": "proposition",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-inner-binary-interface",
+          "role": "binary-testing-and-average-correction-at-a-fixed-radius",
+          "label": "lemma m1-lem-inner-binary-interface",
+          "fullLabel": "lemma m1-lem-inner-binary-interface",
+          "kind": "lemma",
+          "source": "Binary testing and average correction at a fixed radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-dummy-port",
+          "role": "the-fixed-port-and-its-robust-decision-gadget",
+          "label": "proposition m1-prop-dummy-port",
+          "fullLabel": "proposition m1-prop-dummy-port",
+          "kind": "proposition",
+          "source": "The fixed port and its robust decision gadget",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ig-virtual-source",
+          "role": "the-fixed-port-and-its-robust-decision-gadget",
+          "label": "lemma m1-ig-virtual-source",
+          "fullLabel": "lemma m1-ig-virtual-source",
+          "kind": "lemma",
+          "source": "The fixed port and its robust decision gadget",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ig-validation",
+          "role": "the-fixed-port-and-its-robust-decision-gadget",
+          "label": "lemma m1-ig-validation",
+          "fullLabel": "lemma m1-ig-validation",
+          "kind": "lemma",
+          "source": "The fixed port and its robust decision gadget",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-geometry",
+          "role": "encoded-paths-and-finite-local-displacement-procedures",
+          "label": "theorem m1-thm-geometry",
+          "fullLabel": "theorem m1-thm-geometry",
+          "kind": "theorem",
+          "source": "Encoded paths and finite local displacement procedures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geo-separation",
+          "role": "encoded-paths-and-finite-local-displacement-procedures",
+          "label": "lemma m1-geo-separation",
+          "fullLabel": "lemma m1-geo-separation",
+          "kind": "lemma",
+          "source": "Encoded paths and finite local displacement procedures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geo-projection",
+          "role": "encoded-paths-and-finite-local-displacement-procedures",
+          "label": "lemma m1-geo-projection",
+          "fullLabel": "lemma m1-geo-projection",
+          "kind": "lemma",
+          "source": "Encoded paths and finite local displacement procedures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geo-interface",
+          "role": "encoded-paths-and-finite-local-displacement-procedures",
+          "label": "lemma m1-geo-interface",
+          "fullLabel": "lemma m1-geo-interface",
+          "kind": "lemma",
+          "source": "Encoded paths and finite local displacement procedures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-geometric-procedures",
+          "role": "encoded-paths-and-finite-local-displacement-procedures",
+          "label": "lemma m1-lem-geometric-procedures",
+          "fullLabel": "lemma m1-lem-geometric-procedures",
+          "kind": "lemma",
+          "source": "Encoded paths and finite local displacement procedures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geo-coverage",
+          "role": "encoded-paths-and-finite-local-displacement-procedures",
+          "label": "lemma m1-geo-coverage",
+          "fullLabel": "lemma m1-geo-coverage",
+          "kind": "lemma",
+          "source": "Encoded paths and finite local displacement procedures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geo-stability",
+          "role": "encoded-paths-and-finite-local-displacement-procedures",
+          "label": "lemma m1-geo-stability",
+          "fullLabel": "lemma m1-geo-stability",
+          "kind": "lemma",
+          "source": "Encoded paths and finite local displacement procedures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-application-circuits",
+          "role": "consequences-for-games-and-markets",
+          "label": "lemma m1-lem-application-circuits",
+          "fullLabel": "lemma m1-lem-application-circuits",
+          "kind": "lemma",
+          "source": "Consequences for games and markets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-weak-nash",
+          "role": "consequences-for-games-and-markets",
+          "label": "corollary m1-cor-weak-nash",
+          "fullLabel": "corollary m1-cor-weak-nash",
+          "kind": "corollary",
+          "source": "Consequences for games and markets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-relative-nash",
+          "role": "consequences-for-games-and-markets",
+          "label": "corollary m1-cor-relative-nash",
+          "fullLabel": "corollary m1-cor-relative-nash",
+          "kind": "corollary",
+          "source": "Consequences for games and markets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-course-allocation",
+          "role": "consequences-for-games-and-markets",
+          "label": "corollary m1-cor-course-allocation",
+          "fullLabel": "corollary m1-cor-course-allocation",
+          "kind": "corollary",
+          "source": "Consequences for games and markets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-application-pure-circuit",
+          "role": "consequences-for-games-and-markets",
+          "label": "lemma m1-lem-application-pure-circuit",
+          "fullLabel": "lemma m1-lem-application-pure-circuit",
+          "kind": "lemma",
+          "source": "Consequences for games and markets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-market-hardness",
+          "role": "consequences-for-games-and-markets",
+          "label": "corollary m1-cor-market-hardness",
+          "fullLabel": "corollary m1-cor-market-hardness",
+          "kind": "corollary",
+          "source": "Consequences for games and markets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-stationary-game-hardness",
+          "role": "consequences-for-games-and-markets",
+          "label": "corollary m1-cor-stationary-game-hardness",
+          "fullLabel": "corollary m1-cor-stationary-game-hardness",
+          "kind": "corollary",
+          "source": "Consequences for games and markets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-triangle-stationary-hardness",
+          "role": "consequences-for-games-and-markets",
+          "label": "corollary m1-cor-triangle-stationary-hardness",
+          "fullLabel": "corollary m1-cor-triangle-stationary-hardness",
+          "kind": "corollary",
+          "source": "Consequences for games and markets",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The PCP-for-PPAD conjecture: a quasilinear reduction",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-PCP-for-PPAD-conjecture-a-quasilinear-reduction-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

@@ -1,0 +1,498 @@
+{
+  "familyNumber": "166",
+  "familyTitle": "The higher-dimensional Erdős distinct-distances conjecture",
+  "manuscripts": [
+    {
+      "id": "The-higher-dimensional-Erdos-distinct-distances-conjecture-September-23-2026",
+      "title": "The higher-dimensional Erdős distinct-distances conjecture",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-higher-dimensional-Erdos-distinct-distances-conjecture-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The reduction to sparse cones and concentration",
+    "Polynomial interpolation, regularity, and multiplicity",
+    "Secants and terminal curves",
+    "Polynomial scale profiles",
+    "The sparse-cones assertion",
+    "Very rich rigid motions in three dimensions",
+    "Uniform concentration of evaluation flats",
+    "Real incidence estimates"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every integer \\(d3\\), there is a constant \\(c_d>0\\) such that every finite…",
+      "statement": "For every integer \\(d3\\), there is a constant \\(c_d>0\\) such that every finite set \\(P R^d\\) of \\(n2\\) distinct points satisfies \\[ |(P)| c_d n^ 2/d . \\]",
+      "section": "Introduction",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-red-flat-caps",
+      "kind": "lemma",
+      "label": "Occupancy of proper flats",
+      "statement": "[Occupancy of proper flats] In the regime~ , a real affine \\(u\\)-flat contains at most \\[ 1,&u=0,\\\\ 2M,&u=1,\\\\ C M(2M),&u=2,\\\\ C_u M^ u/2 ,&3 u<d \\] points of \\(P\\). A circle contains at most \\(2M\\)…",
+      "section": "The reduction to sparse cones and concentration",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-red-directions",
+      "kind": "proposition",
+      "label": "After passing to a subsequence, there is an undirected graph \\( G\\) on \\(P\\)…",
+      "statement": "After passing to a subsequence, there is an undirected graph \\( G\\) on \\(P\\) with at least \\(cN^2\\) edges such that, for every vertex \\(p\\) and every irreducible projective variety \\(Y P^ d-1 \\) of…",
+      "section": "The reduction to sparse cones and concentration",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-red-independent-stars",
+      "kind": "proposition",
+      "label": "Independent evaluations in every star",
+      "statement": "[Independent evaluations in every star] A further symmetric selection retains at least \\(c'N^2\\) pairs and has the following property: the direction-evaluation vectors of the partners in each star…",
+      "section": "The reduction to sparse cones and concentration",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-red-global-concentration",
+      "kind": "lemma",
+      "label": "Global concentration",
+      "statement": "[Global concentration] For the retained pair flats, an irreducible variety \\(V\\) of dimension \\(s_0+h\\) in skew-form space contains at most \\[ C(V)A^h \\] of the flats, for \\(0 h d\\), where the…",
+      "section": "The reduction to sparse cones and concentration",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-red-local-concentration",
+      "kind": "lemma",
+      "label": "Local concentration",
+      "statement": "[Local concentration] Every nonzero polynomial of degree at most \\(A\\) on \\(F_ p,q \\) contains in its zero set at most \\(C A^ d-1 \\) of the neighbor flats in~ .",
+      "section": "The reduction to sparse cones and concentration",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-red-main-contradiction",
+      "kind": "proposition",
+      "label": "The graph \\( H\\) cannot satisfy both bounds in Lemmas~ and .",
+      "statement": "The graph \\( H\\) cannot satisfy both bounds in Lemmas~ and .",
+      "section": "The reduction to sparse cones and concentration",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-separators",
+      "kind": "lemma",
+      "label": "Physical separators and sample bounds",
+      "statement": "[Physical separators and sample bounds] Let P^n be finite and let M=1+|(P)| . Each p P has a polynomial s_p of degree at most 2(M-1) such that \\[ s_p(p)=1, s_p(q)=0(q P\\ p\\ ). \\] If V^n is a pure u…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-socle",
+      "kind": "lemma",
+      "label": "A determinant in a local parameter quotient",
+      "statement": "[A determinant in a local parameter quotient] Let F be an algebraically closed field, let R=F[Z_1,,Z_c]_ (Z_1,,Z_c) , and suppose f_1,,f_c R generate an ideal of finite colength. If \\[ (f_1,,f_c)^ t…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-interpolation",
+      "kind": "lemma",
+      "label": "Isolated-point interpolation, including first derivatives",
+      "statement": "[Isolated-point interpolation, including first derivatives] Let F be algebraically closed, and let S F^c be any selection of distinct isolated points of the common zero set of polynomials of degree…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-union-interpolation",
+      "kind": "lemma",
+      "label": "A finite union of isolated-point lists",
+      "statement": "[A finite union of isolated-point lists] Suppose S is the union of finitely many lists S_ F^c , where S_ consists of isolated points of a system of degree at most L_1 . Put L_*=_ L_ . Values and…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-hilbert",
+      "kind": "lemma",
+      "label": "Upper and lower component ranks",
+      "statement": "[Upper and lower component ranks] Let V^n be a finite union of distinct irreducible varieties of pure dimension k and total degree a . For every D0 , H_V(D) aD+k k . Suppose in addition that every…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-envelope",
+      "kind": "corollary",
+      "label": "Mixed-dimensional envelopes",
+      "statement": "[Mixed-dimensional envelopes] Let Z be a locus of equations of degree at most L1 , and let a_k be the total degree of any chosen subfamily of its k -dimensional irreducible components. For their…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-regularity",
+      "kind": "lemma",
+      "label": "Regularity for a whole component family",
+      "statement": "[Regularity for a whole component family] Let V be a pure k -dimensional family of total degree a as in the lower-bound part of Lemma~ , with equation bound L . The union-of-systems version is…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-pooling",
+      "kind": "lemma",
+      "label": "Pooling different proper cuts",
+      "statement": "[Pooling different proper cuts] Let V=_iV_i be a pure k -dimensional family of total degree a satisfying the lower-bound hypotheses of Lemma~ , with bound L . On each V_i let h_i be a polynomial of…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-compression",
+      "kind": "lemma",
+      "label": "Multiplicity compression",
+      "statement": "[Multiplicity compression] Let S^n be finite and let x_*^n . Suppose a polynomial f of degree at most E has order at least r1 at every point of S , and f(x_*)0 . There is a polynomial g such that \\[…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-matrix-multiplicity",
+      "kind": "lemma",
+      "label": "Rank loss gives ambient multiplicity",
+      "statement": "[Rank loss gives ambient multiplicity] Let A(x) be a matrix of polynomials on ^n , and let F(x) be a q -row, q -column minor. If A(p) q-h , then _pF h . In particular, if F is nonzero at a test…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-projection",
+      "kind": "lemma",
+      "label": "Projection degree and multiplicity",
+      "statement": "[Projection degree and multiplicity] Let X^n_ be irreducible of dimension k1 and degree a . [label=()] If projection from a point p has image Y of dimension k and generic degree t , then t Y=a-_pX.…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-high-multiplicity",
+      "kind": "corollary",
+      "label": "A bounded-degree test for high multiplicity",
+      "statement": "[A bounded-degree test for high multiplicity] Let X^n be irreducible of degree a , and let S X be finite with _pX>a/2 for every p S . For any specified x_* X , there is a polynomial of degree at most…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-tangent-projection",
+      "kind": "corollary",
+      "label": "A tangent hyperplane controls the projection loss",
+      "statement": "[A tangent hyperplane controls the projection loss] Let an irreducible affine curve C lie in a variety X smooth at p C . Suppose C has a point z for which the direction z-p is not in T_pX . Then \\[…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-poly-polar",
+      "kind": "lemma",
+      "label": "The plane-curve polar bound",
+      "statement": "[The plane-curve polar bound] Let C^2_ be a reduced plane curve of degree a . If m_q=_qC , then _ q:\\,m_q2 m_q(m_q-1) a(a-1), _ q:\\,m_q2 m_q^22a(a-1). The sums include points on any chosen line at…",
+      "section": "Polynomial interpolation, regularity, and multiplicity",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-geo-secants",
+      "kind": "lemma",
+      "label": "Secants and a particular-pair version",
+      "statement": "[Secants and a particular-pair version] Let X,Y A^d be irreducible varieties of dimensions k,l1 . Suppose that for a general pair (x,y) X Y the connecting direction is in neither T_xX nor T_yY . Let…",
+      "section": "Secants and terminal curves",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-geo-generic-depth",
+      "kind": "lemma",
+      "label": "Generic projection depth",
+      "statement": "[Generic projection depth] Let X, Y be finite families of distinct irreducible carriers of dimensions k l1 , where k<d and l<d-1 . Fix assigned sets \\[ S_X P X(X X), T_Y P Y(Y Y), \\] pairwise…",
+      "section": "Secants and terminal curves",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-geo-terminal",
+      "kind": "proposition",
+      "label": "Terminal-curve deletion",
+      "statement": "[Terminal-curve deletion] Assign sample points to finitely many irreducible physical curves Y_i , each containing its assigned points. Pool repetitions of a curve, and require every line member to be…",
+      "section": "Secants and terminal curves",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-prof-partition",
+      "kind": "proposition",
+      "label": "Multiscale partition",
+      "statement": "[Multiscale partition] There are s_* and partitions of all but o(N) sample points into a core and non-core pieces with the following properties. The core is simultaneously isolated by equations of a…",
+      "section": "Polynomial scale profiles",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-prof-budget",
+      "kind": "proposition",
+      "label": "Budgets and balanced profiles",
+      "statement": "[Budgets and balanced profiles] For every non-core profile, _ i=1 ^d b_i=0, b_1<0<b_d, b_1+b_2<0. On a plateau after j cuts, its carrier family has degree at most e_j(o(s)) . Every subcollection of…",
+      "section": "Polynomial scale profiles",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-prof-regularity",
+      "kind": "proposition",
+      "label": "Regularity and individual cuts",
+      "statement": "[Regularity and individual cuts] Inside an open plateau, individual proper cuts of degree O(T_s(b)) on the different carriers collectively capture only o(n) points. At a slightly later interior…",
+      "section": "Polynomial scale profiles",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-prof-product-testing",
+      "kind": "lemma",
+      "label": "Product testing",
+      "statement": "[Product testing] Take two pieces, or the pooled pieces described above, in a common window with the same limiting profile. On a fixed plateau, fix in each set an assignment of every point to one…",
+      "section": "Polynomial scale profiles",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-prof-pair-selection",
+      "kind": "proposition",
+      "label": "Selection of profile pairs",
+      "statement": "[Selection of profile pairs] For every p P , let C_p be a finite family of irreducible projective curves in ^ d-1 , each spanning a projective subspace of dimension at most two, with total degree at…",
+      "section": "Polynomial scale profiles",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-sc-theorem",
+      "kind": "theorem",
+      "label": "Sparse cones",
+      "statement": "[Sparse cones] Along a sequence with M=o(A) , there cannot be families C_p , one for each p P , of irreducible projective curves, each spanning projective dimension at most two, such that \\[ C_p E=…",
+      "section": "The sparse-cones assertion",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-sc-retained-products",
+      "kind": "lemma",
+      "label": "Retained products and their image degree",
+      "statement": "[Retained products and their image degree] Fix a common positive-dimensional plateau after j cuts, of dimension k=d-j<d-1 , and choose an interior time on that plateau. Write n_x,n_y for the original…",
+      "section": "The sparse-cones assertion",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-sc-common-rank",
+      "kind": "lemma",
+      "label": "Common-window label rank",
+      "statement": "[Common-window label rank] Let \\ (p,q) S_x S_y:p q\\ be any dense graph on the selected pieces or pool; its pairs need not be covered by the C_p . For its labels, at an interior testing time before…",
+      "section": "The sparse-cones assertion",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-sc-outer-regularity",
+      "kind": "lemma",
+      "label": "Regular product images at the endpoint",
+      "statement": "[Regular product images at the endpoint] For the fixed R and U above, there is a subfamily R_ sm R whose omitted assigned product mass is o(n^2) , and one system of label equations of degree at most…",
+      "section": "The sparse-cones assertion",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-sc-separated-rank",
+      "kind": "lemma",
+      "label": "Strict rank margin on target plateaux",
+      "statement": "[Strict rank margin on target plateaux] At typical centers, ranks of directions to arbitrary dense remaining target subsets satisfy H(T_s(b)) (b)T_s(b)A(c s) with a fixed c>0 through all plateaux up…",
+      "section": "The sparse-cones assertion",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-mot-rich",
+      "kind": "theorem",
+      "label": "Very rich motions",
+      "statement": "[Very rich motions] There are absolute constants \\(C_ rich ,K_ rich >0\\) with the following property. Let \\(P R^3\\) consist of \\(N2\\) distinct points, and set \\[ A=N^ 2/3 , M=1+|(P)|. \\] If \\(M A\\),…",
+      "section": "Very rich rigid motions in three dimensions",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-mot-beck",
+      "kind": "lemma",
+      "label": "Many lines and many anchors",
+      "statement": "[Many lines and many anchors] There are absolute constants \\(_0,_0>0\\) such that the following holds. If a finite set of \\(n\\) distinct real points has at most \\(_0 n\\) points on any line, then it…",
+      "section": "Very rich rigid motions in three dimensions",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-mot-effective-planes",
+      "kind": "lemma",
+      "label": "Planes of large effective size",
+      "statement": "[Planes of large effective size] There are absolute constants \\(C_2,K_2>0\\) such that, for a cloud \\(X R^3\\) with \\(|X| m\\), \\(m1\\), and \\(H C_2m^ 2/3 \\), \\[ \\#\\ :e_X() H\\ K_2m^2 H^2 . \\]",
+      "section": "Very rich rigid motions in three dimensions",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-mot-local",
+      "kind": "lemma",
+      "label": "Local motion bound",
+      "statement": "[Local motion bound] There are absolute constants \\(C_ loc ,K_ loc >0\\) such that, if \\(m1\\), \\(|X|,|Y| m\\), and \\( C_ loc m^ 2/3 \\), the number of non-line-type motions satisfying \\( k_g(X,Y)<2\\) is…",
+      "section": "Very rich rigid motions in three dimensions",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-mot-partition",
+      "kind": "lemma",
+      "label": "Subdivision into cubes and cubes with one hole",
+      "statement": "[Subdivision into cubes and cubes with one hole] Let \\(N1\\) and \\(1 r N\\), with \\(r\\) allowed to be real. For every cloud \\(X R^3\\) of size at most \\(N\\), there is a half-open cube containing \\(X\\)…",
+      "section": "Very rich rigid motions in three dimensions",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-mot-line-images",
+      "kind": "lemma",
+      "label": "Two prescribed line images",
+      "statement": "[Two prescribed line images] Let \\((L_1,L_2)\\) and \\((L'_1,L'_2)\\) be ordered pairs of distinct affine lines in \\( R^3\\). If the source lines are nonparallel, at most eight rigid motions map \\(L_i\\)…",
+      "section": "Very rich rigid motions in three dimensions",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-mot-parallel-pairs",
+      "kind": "lemma",
+      "label": "Parallel pairs at a fixed separation",
+      "statement": "[Parallel pairs at a fixed separation] Let \\( L\\) be a finite family of at most \\(L\\) distinct lines in \\( R^3\\). For each \\(>0\\), the number of ordered parallel pairs in \\( L\\) at separation \\(\\) is…",
+      "section": "Very rich rigid motions in three dimensions",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-conc-theorem",
+      "kind": "theorem",
+      "label": "Uniform concentration",
+      "statement": "[Uniform concentration] Fix C_01 . Let A1 and let P be a finite set of distinct parameters [v:y] Q , all with v0 . Assume: For every P there is a homogeneous polynomial of positive degree at most…",
+      "section": "Uniform concentration of evaluation flats",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-conc-separators",
+      "kind": "lemma",
+      "label": "Counting by separators",
+      "statement": "[Counting by separators] Under the separator assumption of Theorem~ , an irreducible projective variety Y P(E E^*) of dimension a contains at most \\[ C_ e,C_0 (Y)A^a \\] sample parameters. The variety…",
+      "section": "Uniform concentration of evaluation flats",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-conc-regularity",
+      "kind": "lemma",
+      "label": "Regular equations of controlled degree",
+      "statement": "[Regular equations of controlled degree] Suppose that an irreducible V A^n_ C has codimension c>0 and is a component of Z(f_1,,f_c) , where \\[ f_i D, _i f_i C_n V, D1, \\] with the dimensional…",
+      "section": "Uniform concentration of evaluation flats",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-conc-rulings",
+      "kind": "lemma",
+      "label": "Controlled ruling incidences",
+      "statement": "[Controlled ruling incidences] Let V S be irreducible of dimension k=s_0+h , with 1 h<r . Suppose that V has c=n-k approximate equations as in Lemma~ , of maximum degree at most D . There is a…",
+      "section": "Uniform concentration of evaluation flats",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-conc-degree",
+      "kind": "proposition",
+      "label": "Let \\(V S\\) be irreducible of dimension \\(k=s_0+h\\), where \\(1 h<r\\), and let…",
+      "statement": "Let \\(V S\\) be irreducible of dimension \\(k=s_0+h\\), where \\(1 h<r\\), and let \\(\\) be a ruling incidence provided by Lemma~ . Write \\(j\\ 0,1\\ \\) for the dimension of its fibers over the working open…",
+      "section": "Uniform concentration of evaluation flats",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-crossing",
+      "kind": "lemma",
+      "label": "Crossings",
+      "statement": "[Crossings] Suppose a simple graph with v1 vertices and e4v edges is drawn in the plane, no edge goes through a vertex other than its endpoints, and two edges with a common endpoint have no other…",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-st",
+      "kind": "theorem",
+      "label": "Szemer\\'edi--Trotter",
+      "statement": "[Szemer\\'edi--Trotter] For finite sets Q of n points and L of L distinct real lines in the plane, \\[ I(Q, L) C(n^ 2/3 L^ 2/3 +n+L). \\] Consequently the number of points incident to at least k2 lines…",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-partition",
+      "kind": "lemma",
+      "label": "Polynomial bisection",
+      "statement": "[Polynomial bisection] Given a finite set S R^3 and an integer r1 , there is a nonzero real polynomial f of degree at most C r such that R^3 Z(f) is partitioned into at most C r^3 open sets, each…",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-flat",
+      "kind": "lemma",
+      "label": "Critical and flat lines",
+      "statement": "[Critical and flat lines] For a square-free polynomial f of degree D : A point lying on three distinct lines contained in Z(f) is critical or flat. There are at most D(D-1) critical lines. A line…",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-rich-lines",
+      "kind": "theorem",
+      "label": "Guth--Katz, higher richness",
+      "statement": "[Guth--Katz, higher richness] Let L be L distinct lines in R^3 , with at most B_0 in any affine plane. For every integer k3 , the number R_k of points lying on at least k lines satisfies \\[ R_k C( L^…",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-planar-motions",
+      "kind": "corollary",
+      "label": "Planar motions with many matches",
+      "statement": "[Planar motions with many matches] Let U,V R^2 have respective cardinalities u,v . For 3 k(u,v) , at most C(uv)^ 3/2 /k^2 Euclidean isometries g have |g(U) V| k .",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-flecnode",
+      "kind": "lemma",
+      "label": "A polynomial detecting ruledness",
+      "statement": "[A polynomial detecting ruledness] An irreducible surface of degree d in C^3 which is not geometrically ruled contains at most 17d^2 affine lines.",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-ruled-structure",
+      "kind": "lemma",
+      "label": "Ruled-surface structure",
+      "statement": "[Ruled-surface structure] Let S be an irreducible ruled projective surface over C which is neither a plane nor a smooth quadric. Its lines have a unique one-dimensional irreducible family , called…",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-ruled-count",
+      "kind": "lemma",
+      "label": "Counting on ruled surfaces",
+      "statement": "[Counting on ruled surfaces] Let a union of real absolutely irreducible geometrically ruled surfaces have total degree d1 , and let L consist of M1 distinct real affine lines contained in that union.…",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-two-rich",
+      "kind": "theorem",
+      "label": "Two-rich points",
+      "statement": "[Two-rich points] For m distinct real affine lines, with at most s1 in any plane or regulus, the number P_2 of points lying on at least two lines satisfies \\[ P_2 K(m^ 3/2 +ms) \\] for an absolute…",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-cayley-caps",
+      "kind": "lemma",
+      "label": "Concentration of planar Cayley lines",
+      "statement": "[Concentration of planar Cayley lines] For two finite planar sets U,V of sizes u,v , the uv lines have at most (u,v) members in a plane and at most 6u+2v members in a regulus.",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-planar-distances",
+      "kind": "theorem",
+      "label": "Planar distinct distances",
+      "statement": "[Planar distinct distances] Every finite set Q R^2 of n2 points determines at least c n/(2n) distinct positive distances.",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    },
+    {
+      "id": "m1-ci-planar-occupancy",
+      "kind": "corollary",
+      "label": "Planar occupancy",
+      "statement": "[Planar occupancy] If a finite set in Euclidean space determines at most M1 positive distances, then any affine two-plane contains at most CM(2M) of its points. In particular, along a sequence with B…",
+      "section": "Real incidence estimates",
+      "manuscript": "The higher-dimensional Erdős distinct-distances conjecture"
+    }
+  ],
+  "edges": []
+}

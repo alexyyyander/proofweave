@@ -1,0 +1,569 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "052",
+  "title": "Tangent splittings and product decompositions",
+  "result": {
+    "id": "paper-result",
+    "label": "Tangent splittings and product decompositions",
+    "statement": "A splitting of the tangent bundle of a compact Kähler manifold into two integrable holomorphic subbundles induces a compatible product decomposition of its universal cover, proving the two-summand form of Beauville's splitting conjecture. On smooth rationally connected projective manifolds, both summands are automatically integrable, establishing Höring's conjecture and the corresponding product decomposition.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "product-charts-and-boxes",
+      "label": "Product charts and boxes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "hartogs-extension-for-boxes",
+      "label": "Hartogs extension for boxes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "extension-across-a-mixed-boundary",
+      "label": "Extension across a mixed boundary",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "boxes-with-prescribed-axes",
+      "label": "Boxes with prescribed axes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "path-rectangles-and-the-universal-cover",
+      "label": "Path rectangles and the universal cover",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "nef-and-big-canonical-bundle-parallelism-and-integrability",
+      "label": "Nef and big canonical bundle: parallelism and integrability",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-canonical-distance-and-its-fibres",
+      "label": "The canonical distance and its fibres",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "rational-boxes-and-ambient-crossing-germs",
+      "label": "Rational boxes and ambient crossing germs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "crossing-near-a-rationally-chain-connected-set",
+      "label": "Crossing near a rationally chain connected set",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "nonexpansion-and-finite-grids",
+      "label": "Nonexpansion and finite grids",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "tangent-boxes",
+      "label": "Tangent boxes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "bundles-on-a-tangent-box",
+      "label": "Bundles on a tangent box",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "vanishing-of-the-bracket-tensors",
+      "label": "Vanishing of the bracket tensors",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "consequences-for-the-rationally-connected-quotient",
+      "label": "Consequences for the rationally connected quotient",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "elementary-elimination-of-surface-base-points",
+      "label": "Elementary elimination of surface base points",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Universal-cover splitting for compact Kähler manifolds",
+      "title": "Universal-cover splitting for compact Kähler manifolds",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universal-cover-splitting-for-compact-Kahler-manifolds-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Universal-cover splitting for compact Kähler manifolds.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-rectangles"
+          ]
+        },
+        {
+          "id": "m1-cor-non-uniruled",
+          "role": "introduction",
+          "label": "corollary m1-cor-non-uniruled",
+          "fullLabel": "corollary m1-cor-non-uniruled",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-nef-big",
+          "role": "introduction",
+          "label": "corollary m1-thm-nef-big",
+          "fullLabel": "corollary m1-thm-nef-big",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-product-charts",
+          "role": "product-charts-and-boxes",
+          "label": "lemma m1-lem-product-charts",
+          "fullLabel": "lemma m1-lem-product-charts",
+          "kind": "lemma",
+          "source": "Product charts and boxes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-hartogs",
+          "role": "hartogs-extension-for-boxes",
+          "label": "proposition m1-prop-hartogs",
+          "fullLabel": "proposition m1-prop-hartogs",
+          "kind": "proposition",
+          "source": "Hartogs extension for boxes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-small-area",
+          "role": "extension-across-a-mixed-boundary",
+          "label": "lemma m1-lem-small-area",
+          "fullLabel": "lemma m1-lem-small-area",
+          "kind": "lemma",
+          "source": "Extension across a mixed boundary",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-mixed",
+          "role": "extension-across-a-mixed-boundary",
+          "label": "proposition m1-prop-mixed",
+          "fullLabel": "proposition m1-prop-mixed",
+          "kind": "proposition",
+          "source": "Extension across a mixed boundary",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-disk-axes",
+          "role": "boxes-with-prescribed-axes",
+          "label": "proposition m1-prop-disk-axes",
+          "fullLabel": "proposition m1-prop-disk-axes",
+          "kind": "proposition",
+          "source": "Boxes with prescribed axes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-box-unique",
+          "role": "boxes-with-prescribed-axes",
+          "label": "lemma m1-lem-box-unique",
+          "fullLabel": "lemma m1-lem-box-unique",
+          "kind": "lemma",
+          "source": "Boxes with prescribed axes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-polydisk-axes",
+          "role": "boxes-with-prescribed-axes",
+          "label": "proposition m1-prop-polydisk-axes",
+          "fullLabel": "proposition m1-prop-polydisk-axes",
+          "kind": "proposition",
+          "source": "Boxes with prescribed axes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-rectangles",
+          "role": "path-rectangles-and-the-universal-cover",
+          "label": "proposition m1-prop-rectangles",
+          "fullLabel": "proposition m1-prop-rectangles",
+          "kind": "proposition",
+          "source": "Path rectangles and the universal cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-leaves",
+          "role": "path-rectangles-and-the-universal-cover",
+          "label": "lemma m1-lem-leaves",
+          "fullLabel": "lemma m1-lem-leaves",
+          "kind": "lemma",
+          "source": "Path rectangles and the universal cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-germ-transport",
+          "role": "path-rectangles-and-the-universal-cover",
+          "label": "proposition m1-prop-germ-transport",
+          "fullLabel": "proposition m1-prop-germ-transport",
+          "kind": "proposition",
+          "source": "Path rectangles and the universal cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-canon-contraction",
+          "role": "nef-and-big-canonical-bundle-parallelism-and-integrability",
+          "label": "proposition m1-canon-contraction",
+          "fullLabel": "proposition m1-canon-contraction",
+          "kind": "proposition",
+          "source": "Nef and big canonical bundle: parallelism and integrability",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-canon-metric-input",
+          "role": "nef-and-big-canonical-bundle-parallelism-and-integrability",
+          "label": "lemma m1-canon-metric-input",
+          "fullLabel": "lemma m1-canon-metric-input",
+          "kind": "lemma",
+          "source": "Nef and big canonical bundle: parallelism and integrability",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-canon-parallel",
+          "role": "nef-and-big-canonical-bundle-parallelism-and-integrability",
+          "label": "proposition m1-canon-parallel",
+          "fullLabel": "proposition m1-canon-parallel",
+          "kind": "proposition",
+          "source": "Nef and big canonical bundle: parallelism and integrability",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-canon-pseudodistance",
+          "role": "the-canonical-distance-and-its-fibres",
+          "label": "proposition m1-canon-pseudodistance",
+          "fullLabel": "proposition m1-canon-pseudodistance",
+          "kind": "proposition",
+          "source": "The canonical distance and its fibres",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-canon-fibers",
+          "role": "the-canonical-distance-and-its-fibres",
+          "label": "lemma m1-canon-fibers",
+          "fullLabel": "lemma m1-canon-fibers",
+          "kind": "lemma",
+          "source": "The canonical distance and its fibres",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rat-germs",
+          "role": "rational-boxes-and-ambient-crossing-germs",
+          "label": "lemma m1-rat-germs",
+          "fullLabel": "lemma m1-rat-germs",
+          "kind": "lemma",
+          "source": "Rational boxes and ambient crossing germs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rat-extension",
+          "role": "rational-boxes-and-ambient-crossing-germs",
+          "label": "lemma m1-rat-extension",
+          "fullLabel": "lemma m1-rat-extension",
+          "kind": "lemma",
+          "source": "Rational boxes and ambient crossing germs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-rat-boxes",
+          "role": "rational-boxes-and-ambient-crossing-germs",
+          "label": "proposition m1-rat-boxes",
+          "fullLabel": "proposition m1-rat-boxes",
+          "kind": "proposition",
+          "source": "Rational boxes and ambient crossing germs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-crossing",
+          "role": "crossing-near-a-rationally-chain-connected-set",
+          "label": "theorem m1-thm-crossing",
+          "fullLabel": "theorem m1-thm-crossing",
+          "kind": "theorem",
+          "source": "Crossing near a rationally chain connected set",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cross-tree-path",
+          "role": "crossing-near-a-rationally-chain-connected-set",
+          "label": "lemma m1-cross-tree-path",
+          "fullLabel": "lemma m1-cross-tree-path",
+          "kind": "lemma",
+          "source": "Crossing near a rationally chain connected set",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cross-stability",
+          "role": "crossing-near-a-rationally-chain-connected-set",
+          "label": "lemma m1-cross-stability",
+          "fullLabel": "lemma m1-cross-stability",
+          "kind": "lemma",
+          "source": "Crossing near a rationally chain connected set",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cross-parameter-space",
+          "role": "crossing-near-a-rationally-chain-connected-set",
+          "label": "lemma m1-cross-parameter-space",
+          "fullLabel": "lemma m1-cross-parameter-space",
+          "kind": "lemma",
+          "source": "Crossing near a rationally chain connected set",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cross-nearby-routes",
+          "role": "crossing-near-a-rationally-chain-connected-set",
+          "label": "lemma m1-cross-nearby-routes",
+          "fullLabel": "lemma m1-cross-nearby-routes",
+          "kind": "lemma",
+          "source": "Crossing near a rationally chain connected set",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cross-semialgebraic-lift",
+          "role": "crossing-near-a-rationally-chain-connected-set",
+          "label": "lemma m1-cross-semialgebraic-lift",
+          "fullLabel": "lemma m1-cross-semialgebraic-lift",
+          "kind": "lemma",
+          "source": "Crossing near a rationally chain connected set",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cross-all-paths",
+          "role": "crossing-near-a-rationally-chain-connected-set",
+          "label": "lemma m1-cross-all-paths",
+          "fullLabel": "lemma m1-cross-all-paths",
+          "kind": "lemma",
+          "source": "Crossing near a rationally chain connected set",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-global-nonexpansion",
+          "role": "nonexpansion-and-finite-grids",
+          "label": "lemma m1-global-nonexpansion",
+          "fullLabel": "lemma m1-global-nonexpansion",
+          "kind": "lemma",
+          "source": "Nonexpansion and finite grids",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-global-boxes",
+          "role": "nonexpansion-and-finite-grids",
+          "label": "lemma m1-global-boxes",
+          "fullLabel": "lemma m1-global-boxes",
+          "kind": "lemma",
+          "source": "Nonexpansion and finite grids",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-global-product",
+          "role": "nonexpansion-and-finite-grids",
+          "label": "proposition m1-global-product",
+          "fullLabel": "proposition m1-global-product",
+          "kind": "proposition",
+          "source": "Nonexpansion and finite grids",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Integrability of split tangent bundles on rationally connected manifolds",
+      "title": "Integrability of split tangent bundles on rationally connected manifolds",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Integrability-of-split-tangent-bundles-on-rationally-connected-manifolds-September-23-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Integrability of split tangent bundles on rationally connected manifolds.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-theorem-1",
+          "role": "introduction",
+          "label": "theorem m2-theorem-1",
+          "fullLabel": "theorem m2-theorem-1",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-corollary-2",
+          "role": "introduction",
+          "label": "corollary m2-corollary-2",
+          "fullLabel": "corollary m2-corollary-2",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-eq-box",
+          "role": "tangent-boxes",
+          "label": "proposition m2-eq-box",
+          "fullLabel": "proposition m2-eq-box",
+          "kind": "proposition",
+          "source": "Tangent boxes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lemma-4",
+          "role": "tangent-boxes",
+          "label": "lemma m2-lemma-4",
+          "fullLabel": "lemma m2-lemma-4",
+          "kind": "lemma",
+          "source": "Tangent boxes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lemma-5",
+          "role": "tangent-boxes",
+          "label": "lemma m2-lemma-5",
+          "fullLabel": "lemma m2-lemma-5",
+          "kind": "lemma",
+          "source": "Tangent boxes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lemma-6",
+          "role": "tangent-boxes",
+          "label": "lemma m2-lemma-6",
+          "fullLabel": "lemma m2-lemma-6",
+          "kind": "lemma",
+          "source": "Tangent boxes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-eq-transport",
+          "role": "bundles-on-a-tangent-box",
+          "label": "proposition m2-eq-transport",
+          "fullLabel": "proposition m2-eq-transport",
+          "kind": "proposition",
+          "source": "Bundles on a tangent box",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lemma-8",
+          "role": "vanishing-of-the-bracket-tensors",
+          "label": "lemma m2-lemma-8",
+          "fullLabel": "lemma m2-lemma-8",
+          "kind": "lemma",
+          "source": "Vanishing of the bracket tensors",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-corollary-9",
+          "role": "consequences-for-the-rationally-connected-quotient",
+          "label": "corollary m2-corollary-9",
+          "fullLabel": "corollary m2-corollary-9",
+          "kind": "corollary",
+          "source": "Consequences for the rationally connected quotient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lemma-10",
+          "role": "elementary-elimination-of-surface-base-points",
+          "label": "lemma m2-lemma-10",
+          "fullLabel": "lemma m2-lemma-10",
+          "kind": "lemma",
+          "source": "Elementary elimination of surface base points",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Universal-cover splitting for compact Kähler manifolds",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Universal-cover-splitting-for-compact-Kahler-manifolds-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Integrability of split tangent bundles on rationally connected manifolds",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Integrability-of-split-tangent-bundles-on-rationally-connected-manifolds-September-23-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

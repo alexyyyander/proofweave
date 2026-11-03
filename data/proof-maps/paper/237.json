@@ -1,0 +1,700 @@
+{
+  "familyNumber": "237",
+  "familyTitle": "The three-quarter exponent for honeycomb self-avoiding walk",
+  "manuscripts": [
+    {
+      "id": "Radial-transfer-estimates-and-polygon-length-laws-for-honeycomb-walks-September-26-2026",
+      "title": "Radial transfer estimates and polygon length laws for honeycomb walks",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Radial-transfer-estimates-and-polygon-length-laws-for-honeycomb-walks-September-26-2026/main.pdf"
+    },
+    {
+      "id": "Critical-honeycomb-chords-with-prescribed-boundary-endpoints-September-26-2026",
+      "title": "Critical honeycomb chords with prescribed boundary endpoints",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Critical-honeycomb-chords-with-prescribed-boundary-endpoints-September-26-2026/main.pdf"
+    },
+    {
+      "id": "Cylinder-loop-weights-and-planar-nesting-September-26-2026",
+      "title": "Cylinder loop weights and planar nesting",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Cylinder-loop-weights-and-planar-nesting-September-26-2026/main.pdf"
+    }
+  ],
+  "sections": [
+    "Polygon size and the role of a marked edge",
+    "Two pressures on the cylinder",
+    "One-mark plateau estimate by Hilbert--Schmidt links",
+    "Tails and mean length consequences",
+    "Two prescribed edges and the polygon second moment",
+    "Length cutoffs and open paths",
+    "Introduction",
+    "Finite estimates and the irreducible law",
+    "A prescribed source and a terminal interval",
+    "Two prescribed ports on one line",
+    "Regularity of the strip partition function",
+    "Exact height and displacement atoms",
+    "Prescribed ports on parallel sides",
+    "Prescribed ports on nonparallel cuts",
+    "Mean length of a prescribed half-plane arch",
+    "Endpoint means from polynomial vacuum estimates",
+    "Cylinder partition functions and contour sectors",
+    "Centering, coercivity, and the fluctuation spectrum",
+    "Reference fluctuations and compensated quadratic integration",
+    "The electric contour integral",
+    "Continuing the imbalance sum",
+    "The cylinder exponent",
+    "A uniform bound for the number of separating polygons",
+    "Winding pressure and essential polygons"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-polygon-tails",
+      "kind": "theorem",
+      "label": "Diameter tails and the second length moment",
+      "statement": "[Diameter tails and the second length moment] For the polygon classes and weights just defined, put \\[ A(r)=_ D() r w(), P(r)=_ D() r L()w(), M_2(r)=_ D() r L()^2w(). \\] Then, as r , A(r)=r^ -2+o(1)…",
+      "section": "Polygon size and the role of a marked edge",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-cor-length-cutoffs",
+      "kind": "corollary",
+      "label": "Length cutoffs",
+      "statement": "[Length cutoffs] The length tails satisfy \\[ _ L() n w()=n^ -3/2+o(1) , _ L() n L()w()=n^ -1/2+o(1) . \\] Under either normalized weight w() or L()w() , conditioned on L() n , one has D()=n^ 3/4+o(1)…",
+      "section": "Polygon size and the role of a marked edge",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-prop-polynomial-vacua",
+      "kind": "proposition",
+      "label": "The two polynomial vacua",
+      "statement": "[The two polynomial vacua] For each of the choices \\((p,)=(1,-i),(2,i)\\), there is a unique polynomial family \\(V_N\\), \\(N0\\), satisfying the degree, exchange, rotation, deletion, and pair…",
+      "section": "Polygon size and the role of a marked edge",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-a-finite-polygons",
+      "kind": "proposition",
+      "label": "Finite polygon identity",
+      "statement": "[Finite polygon identity] For the honeycomb cylinder of horizontal period Nh , the winding mass and the continued color sums satisfy E_N_N=c_*^v_ N-1 , c_*=2-2. Moreover, the sum of the masses of all…",
+      "section": "Polygon size and the role of a marked edge",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-prop-thin-cylinder-span",
+      "kind": "proposition",
+      "label": "Thin cylinders suppress large transverse spans",
+      "statement": "[Thin cylinders suppress large transverse spans] Let H() be the span of cell row indices on the cylinder of period Nh . For every >0 , fixed p0 and K>0 , for both winding and contractible polygons, _…",
+      "section": "Two pressures on the cylinder",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-prop-one-mark-ratio",
+      "kind": "proposition",
+      "label": "The homogeneous one-mark ratio",
+      "statement": "[The homogeneous one-mark ratio] For the continued homogeneous color sums of Proposition~ , \\[ |^v_ N-1 /_N|=N^ -2/3+o(1) . \\]",
+      "section": "One-mark plateau estimate by Hilbert--Schmidt links",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-cor-polygon-means",
+      "kind": "corollary",
+      "label": "Mean polygon lengths",
+      "statement": "[Mean polygon lengths] The conditional mean length in the unrooted critical polygon ensemble on diameter R is R^ 4/3+o(1) . The same is true on R<R^ 1+ for every fixed >0 . The mean length of a…",
+      "section": "Tails and mean length consequences",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-cor-boundary-neighbor-mean",
+      "kind": "corollary",
+      "label": "A half-plane mean with fixed nearby endpoints",
+      "statement": "[A half-plane mean with fixed nearby endpoints] Take the upper half-plane above the row cut through the midpoints of the vertical bonds below the P_ i,0 . Consider all SAWs there from P_ 0,0 to P_…",
+      "section": "Tails and mean length consequences",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-prop-strip-radius",
+      "kind": "proposition",
+      "label": "Confinement and the convergence radius",
+      "statement": "[Confinement and the convergence radius] Let x_ strip (W) be the length-series convergence radius of SAWs from P_ 0,0 in the infinite vertical strip |x| W . Then \\[ 0 x_ strip (W)-x_* W^ -4/3+o(1) ,…",
+      "section": "Tails and mean length consequences",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-c4-finite-phase-reduction",
+      "kind": "lemma",
+      "label": "Finite phase reduction",
+      "statement": "[Finite phase reduction] With the forms and charges just defined, let the columns of \\( E=(I+ n,\\ h_1,h_2,Ah_1,Ah_2,(C-I)v)\\) consist of the images of a lattice basis under \\(I+ n\\), followed by the…",
+      "section": "Tails and mean length consequences",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-c4-partial-automorphism",
+      "kind": "lemma",
+      "label": "The adjoint action of \\(U\\) on \\(so(8, C)\\) fixes a regular semisimple element…",
+      "statement": "The adjoint action of \\(U\\) on \\(so(8, C)\\) fixes a regular semisimple element \\(x\\) whose eigenvalues in the eight-dimensional vector representation are purely imaginary. Moreover, \\[ trAd(U)=1,…",
+      "section": "Tails and mean length consequences",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-c4-thm-two-mark",
+      "kind": "theorem",
+      "label": "Uniform two-mark bound",
+      "statement": "[Uniform two-mark bound] Fix \\(C_01\\). Consider a sequence of the even site arrays defining \\( H\\) in , with the two allowed shifts of Section~ . Both marked sites have the same shift. Suppose that…",
+      "section": "Tails and mean length consequences",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-prop-two-mark-positive",
+      "kind": "proposition",
+      "label": "Physical meaning of the two-mark scalar",
+      "statement": "[Physical meaning of the two-mark scalar] For this finite-width cylinder, H= _ cylinder polygons using both marked edges x_*^ || . The sum includes both contractible and winding polygons, with each…",
+      "section": "Two prescribed edges and the polygon second moment",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-c4-prop-polygon-second-moment",
+      "kind": "proposition",
+      "label": "Polygon second length moment",
+      "statement": "[Polygon second length moment] For unoriented simple polygons of the unit-edge honeycomb lattice, counted modulo translations by \\( Z h+ Z v\\), _ diam r ||^2 w() r^ 2/3+o(1) . as \\(r\\), with…",
+      "section": "Two prescribed edges and the polygon second moment",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-a-flat-boundary",
+      "kind": "theorem",
+      "label": "Flat boundary arches",
+      "statement": "[Flat boundary arches] There are absolute constants c,C>0 such that, for every integer n1 , _ n1 h_n=h_*:=1 2(3/8) , c n^ -5/4 h_n C n^ -5/4 , h_n[diam Cn] c n^ -5/4 . The total mass from a fixed…",
+      "section": "Length cutoffs and open paths",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m1-a-bridge-spatial",
+      "kind": "theorem",
+      "label": "Spatial bridge estimates",
+      "statement": "[Spatial bridge estimates] For all h1 and every allowed horizontal displacement x , c h^ -1/4 B_h C h^ -1/4 , B_h(x) C h^ -5/4 , B_h[diam>Mh] C(Mh)^ -1/4 (M1). Let g:[0,1] R be a continuous piecewise…",
+      "section": "Length cutoffs and open paths",
+      "manuscript": "Radial transfer estimates and polygon length laws for honeycomb walks"
+    },
+    {
+      "id": "m2-c-main",
+      "kind": "theorem",
+      "label": "Prescribed boundary endpoints",
+      "statement": "[Prescribed boundary endpoints] Let D_R be convex pure lattice hexagons which, after scaling by R , converge to a regular hexagon. Let a_R,b_R be boundary ports whose scaled limits are distinct…",
+      "section": "Introduction",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-finite",
+      "kind": "proposition",
+      "label": "Finite boundary and length inputs",
+      "statement": "[Finite boundary and length inputs] The following estimates hold in the port convention above. For every integer h0 , B_h(1+h)^ -1/4 . For all sufficiently large integers h , the length-weighted…",
+      "section": "Finite estimates and the irreducible law",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-renewal",
+      "kind": "proposition",
+      "label": "Renewal inputs",
+      "statement": "[Renewal inputs] The mass p is a probability. Successive complete pieces have independent law p , and, for s>0 , \\[ _ h0 B_he^ -sh = (1- E_p e^ -sH )^ -1 s^ -3/4 (s0). \\] Moreover, \\[ p(H>x)+p(D>x)…",
+      "section": "Finite estimates and the irreducible law",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-connectors",
+      "kind": "proposition",
+      "label": "Interior connectors",
+      "statement": "[Interior connectors] For two macroscopically separated side-interior ports in the hexagons of Theorem~ , the critical mass of connecting paths inside the hexagon is at least cR^ -5/4 . The same…",
+      "section": "A prescribed source and a terminal interval",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-window-law",
+      "kind": "theorem",
+      "label": "A source and a macroscopic terminal interval",
+      "statement": "[A source and a macroscopic terminal interval] In the hexagons of Theorem~ , fix a source port tending after scaling to a side-interior point. Let the terminal ports form a macroscopic interval…",
+      "section": "A prescribed source and a terminal interval",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-fixed-height-window",
+      "kind": "lemma",
+      "label": "Fixed-height bridge length",
+      "statement": "[Fixed-height bridge length] Under critical weights on strict bridges of integral height h , with one initial port fixed and the terminal port summed, for every >0 , \\[ \\ h^ 4/3- L h^ 4/3+ \\ 1. \\]…",
+      "section": "A prescribed source and a terminal interval",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-positive-projection",
+      "kind": "lemma",
+      "label": "Positive projections at two supports",
+      "statement": "[Positive projections at two supports] Let n,m be pure unit normals with m-n . There are constants b,B,A,c_0>0 such that, for every fixed >0 and all sufficiently large integral h , the mass of strict…",
+      "section": "A prescribed source and a terminal interval",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-mixed-displacement",
+      "kind": "lemma",
+      "label": "Mixed displacement estimate",
+      "statement": "[Mixed displacement estimate] For every fixed C_0< there is C< such that, for s1 , _ |z| C_0s D_n(z)(1+|m z|)^ -1/4 Cs^ 1/2 . If Y is the m -projection of one n -directed irreducible displacement,…",
+      "section": "A prescribed source and a terminal interval",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-attachment-proposition",
+      "kind": "proposition",
+      "label": "Attachment moments",
+      "statement": "[Attachment moments] Let E be an event of input chords from a to the stated terminal interval, of critical mass E . The fixed-source attachment construction just described has a translation count N_s…",
+      "section": "A prescribed source and a terminal interval",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-same-side-law",
+      "kind": "theorem",
+      "label": "Same-side probability law",
+      "statement": "[Same-side probability law] Under the critical half-plane law w()/K_l , for every >0 , \\[ P\\ l^ 4/3- L() l^ 4/3+ \\ 1. \\] The same conclusion holds in the hexagons of Theorem~ when both scaled…",
+      "section": "Two prescribed ports on one line",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-pair-block-estimates",
+      "kind": "lemma",
+      "label": "Common-block estimates",
+      "statement": "[Common-block estimates] The pair-block mass r is a probability. For x1 , \\[ r(T>x)+r(D_*>x) Cx^ -1/2 . \\] If Y^ (m) is the sum of the lateral differences of m independent pair blocks, then \\[ _j(Y^…",
+      "section": "Two prescribed ports on one line",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-arch-kernel-regularity",
+      "kind": "lemma",
+      "label": "Sublinear changes of the gap",
+      "statement": "[Sublinear changes of the gap] For positive integers l,l' with l and l'/l1 , \\[ K_ l' /K_l1. \\]",
+      "section": "Two prescribed ports on one line",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-strip-smoothness",
+      "kind": "proposition",
+      "label": "Let B_N be the critical mass of strict bridges from one fixed port to all ports…",
+      "statement": "Let B_N be the critical mass of strict bridges from one fixed port to all ports on the opposite pure cut at integral height N . With f_N=f_ N+1 -f_N , for every fixed integer 0 and every >0 there is…",
+      "section": "Regularity of the strip partition function",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-model-kernel",
+      "kind": "lemma",
+      "label": "On every compact subset of the closed bidisk on which |1-v^2 u^2|>0 , the…",
+      "statement": "On every compact subset of the closed bidisk on which |1-v^2 u^2|>0 , the kernel has continuous boundary values and \\[ |^ K_N^0(v,u)| C_ N^ 1- , K_N^0(v,u)N O(v)O(u) 1-v^2 u^2 . \\] Here O is even,…",
+      "section": "Regularity of the strip partition function",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-height-atom",
+      "kind": "proposition",
+      "label": "For every >0 there is C_< such that \\[ p(H=n) C_ n^ -7/4+ (n1). \\]",
+      "statement": "For every >0 there is C_< such that \\[ p(H=n) C_ n^ -7/4+ (n1). \\]",
+      "section": "Exact height and displacement atoms",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-planar-atoms",
+      "kind": "proposition",
+      "label": "There is C< such that, for every integer k1 , _w(S_k=w) Ck^ -8/3 , _ m Z _…",
+      "statement": "There is C< such that, for every integer k1 , _w(S_k=w) Ck^ -8/3 , _ m Z _ H(w)=m (S_k=w) Ck^ -4/3 .",
+      "section": "Exact height and displacement atoms",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-parallel",
+      "kind": "theorem",
+      "label": "Fix a bound on the ratio of transverse displacement to height. For compatible…",
+      "statement": "Fix a bound on the ratio of transverse displacement to height. For compatible prescribed ports on two parallel pure cuts at integral height h , normalize the critical bridge weights by their total…",
+      "section": "Prescribed ports on parallel sides",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-tilted-law",
+      "kind": "theorem",
+      "label": "Tilted prescribed endpoints",
+      "statement": "[Tilted prescribed endpoints] In a pure wedge of angle /3 or 2/3 , take one prescribed port on each boundary ray. Suppose they have order- R clearance to the opposite cut and distance O(R) from the…",
+      "section": "Prescribed ports on nonparallel cuts",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-arch-mean",
+      "kind": "theorem",
+      "label": "Every-gap half-plane mean length",
+      "statement": "[Every-gap half-plane mean length] For two half-plane boundary ports separated by each integer g , the probability law ^ L() /K_g satisfies \\[ L()=g^ 4/3+o(1) in probability, E L()=g^ 4/3+o(1) . \\]",
+      "section": "Mean length of a prescribed half-plane arch",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-calibrated-inputs",
+      "kind": "proposition",
+      "label": "Calibrated renewal inputs",
+      "statement": "[Calibrated renewal inputs] For the port-rooted irreducible law, write Y,Z,L,D for integral height, lateral displacement, length and diameter. Then 2Z is integral, (D>r) Cr^ -3/4 , 1- E e^ -tY t^ 3/4…",
+      "section": "Mean length of a prescribed half-plane arch",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-truncated-reward",
+      "kind": "lemma",
+      "label": "Truncated length reward",
+      "statement": "[Truncated length reward] For the strict irreducible law, as H , \\[ E[L; Y 2H] H^ d_*-a+o(1) . \\]",
+      "section": "Mean length of a prescribed half-plane arch",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-bottom-survival",
+      "kind": "lemma",
+      "label": "Weak order from separated ports",
+      "statement": "[Weak order from separated ports] Start two independent upward irreducible sequences at bottom ports a distance g1 apart, assigning left and right roles by their starts. Let _g(S) be the probability…",
+      "section": "Mean length of a prescribed half-plane arch",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-confined-arch-mean",
+      "kind": "corollary",
+      "label": "Confined macroscopic-gap arches",
+      "statement": "[Confined macroscopic-gap arches] Fix a half-plane boundary source and choose a sufficiently large fixed C . Give each arch with terminal gap in [h,2h] on one chosen side and diameter at most Ch its…",
+      "section": "Mean length of a prescribed half-plane arch",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-density-one",
+      "kind": "theorem",
+      "label": "One set of density-one heights",
+      "statement": "[One set of density-one heights] There is one set G N with |G|/N1 such that, for every fixed ,>0 , all sufficiently large h G satisfy \\[ h^ 4/3- b_h^ (L) (e) b_h(e) h^ 4/3+ (e Z+h/2,\\ |e| h^ 1- ). \\]",
+      "section": "Endpoint means from polynomial vacuum estimates",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-mixture",
+      "kind": "theorem",
+      "label": "All-even aligned height mixture",
+      "statement": "[All-even aligned height mixture] Give each pair (h,) , h E_H and B_h(0) , probability ^ L() /Z_H . As H through all real scales, \\[ Z_H=H^ -1/4+o(1) , M_H=H^ 13/12+o(1) , E_H L=M_H/Z_H=H^ 4/3+o(1) .…",
+      "section": "Endpoint means from polynomial vacuum estimates",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m2-c-pv-rewards",
+      "kind": "proposition",
+      "label": "Polynomial-vacuum rewards",
+      "statement": "[Polynomial-vacuum rewards] Write J for the height of one piece under i , and L for its length. Set =1/4 , =3/4 , and d_*=4/3 . Then \\[ b=_ k0 i^ *k , b^ (L) =b*i^ (L) *b, \\] \\[ i(J>r)=r^ -+o(1) ,…",
+      "section": "Endpoint means from polynomial vacuum estimates",
+      "manuscript": "Critical honeycomb chords with prescribed boundary endpoints"
+    },
+    {
+      "id": "m3-thm-04-cylinder-exponent",
+      "kind": "theorem",
+      "label": "Cylinder fugacity exponent",
+      "statement": "[Cylinder fugacity exponent] For every fixed >0 , along even N , \\[ Z_N()=N^ ()+o(1) , ()= 16-2 3^2 ((/2))^2,&0<2,\\\\[4pt] 16+2 3^2 (arcosh(/2))^2,&2. \\]",
+      "section": "Introduction",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-prop-02-critical",
+      "kind": "proposition",
+      "label": "Critical weight",
+      "statement": "[Critical weight] If c_n is the number of n -edge self-avoiding walks from a specified honeycomb vertex and =_ n c_n^ 1/n , then =^ -1 . Moreover, c_n^n=(o(n)) as an upper bound.",
+      "section": "Cylinder partition functions and contour sectors",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-prop-e-open-input",
+      "kind": "proposition",
+      "label": "Open-strip polynomial input",
+      "statement": "[Open-strip polynomial input] Put D(a,b)=a^2+b^2+2dab-d^2 and define \\[ p_N(a_1,,a_N)= _ i<j D(a_i,a_j) a_i-a_j Pf. \\] In odd size the matrix is augmented by a column of ones and its negative…",
+      "section": "Cylinder partition functions and contour sectors",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-02-vacuum-polynomial",
+      "kind": "lemma",
+      "label": "Homogeneous vacuum polynomial",
+      "statement": "[Homogeneous vacuum polynomial] There is a homogeneous vector V_N of total degree K_N^* whose empty component is the symmetric polynomial h_N(x_1,,x_N)= _ i<j D_0(x_i,x_j) x_i-x_j Pf. For odd N ,…",
+      "section": "Cylinder partition functions and contour sectors",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-02-algebraic-stationarity",
+      "kind": "lemma",
+      "label": "Algebraic stationarity",
+      "statement": "[Algebraic stationarity] Let T(z) pass an auxiliary slot, vacant or occupied, through rows 1,,N with boxes R(z-u_i) and close the auxiliary output to its input on the annulus. With every closed loop…",
+      "section": "Cylinder partition functions and contour sectors",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-02-periodic-slab",
+      "kind": "lemma",
+      "label": "Decay across a periodic slab",
+      "statement": "[Decay across a periodic slab] For every such fixed cylinder there are constants C_N< and 0<r_N<1 such that b_M(i,j) C_Nr_N^M for all endpoint types and every M1 .",
+      "section": "Cylinder partition functions and contour sectors",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-prop-02-cylinder-vacuum",
+      "kind": "proposition",
+      "label": "Physical cylinder vacuum",
+      "statement": "[Physical cylinder vacuum] At physical row parameters u_i\\ ,2\\ , the column T(3) restricted to vectors with zero empty component has spectral radius less than one. Its unique stationary state with…",
+      "section": "Cylinder partition functions and contour sectors",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-02-characterization",
+      "kind": "lemma",
+      "label": "Characterization of the contraction",
+      "statement": "[Characterization of the contraction] The rational functions Z_ X,Y () are uniquely determined by the following properties, with fixed. H_ X,Y =h_N(X,Y)^2Z_ X,Y is polynomial of degree at most 2N-2…",
+      "section": "Cylinder partition functions and contour sectors",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-thm-02-finite-formula",
+      "kind": "theorem",
+      "label": "Finite cylinder formula",
+      "statement": "[Finite cylinder formula] For =q^ -3 +q^3^ -1 and 0 , h_N^2Z_ X,Y () =_ l_i\\ -1,0,1\\ \\\\ _ i X l_i=_ i Y l_i=M ^M(-2c)^ _i l_i^2 _ i<j Q^ e(i,j) _ l_il_j (x_i/x_j). The sum includes all allowed…",
+      "section": "Cylinder partition functions and contour sectors",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-thm-02-contour-sectors",
+      "kind": "theorem",
+      "label": "Contour-sector representation",
+      "statement": "[Contour-sector representation] For the prescribed site rays, every 0<<1 , and every C , put =2 . Then h_N^2Z_ X,Y (2) =(2d)^N_ M=-(s,b) ^ (s,b) (-1)^ sb+M e^ i M [p_+^ s-M p_-^ b+M ]I. The…",
+      "section": "Cylinder partition functions and contour sectors",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-02-sector-signs",
+      "kind": "lemma",
+      "label": "Signs at the confluent rays",
+      "statement": "[Signs at the confluent rays] At =1 with confluent real site offsets, extract constant signs from the site factors and from each full pair of integration variables, multiplying double constituents…",
+      "section": "Cylinder partition functions and contour sectors",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-thm-02-denominator",
+      "kind": "theorem",
+      "label": "Balanced denominator asymptotic",
+      "statement": "[Balanced denominator asymptotic] For N=2m2 , with exactly m sites at each of 0,-i , the normalization h_N is nonzero. As N through these even sizes, | h_N^2 (/2)^N_ i<j H_*(a_i-a_j)^2 | =5 24 N+o(…",
+      "section": "Cylinder partition functions and contour sectors",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-03-centering",
+      "kind": "lemma",
+      "label": "Exact centering",
+      "statement": "[Exact centering] The particle--site kernel satisfies \\(V=H_ n *\\). Combining the site--site factors with \\(((,H)/2)\\) gives \\[ C_*^N_ i<j H_*(a_i-a_j)^2, C_*=H_*(0) B_s(0) =(1+d) 4d(/2) , \\] with…",
+      "section": "Centering, coercivity, and the fluctuation spectrum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-03-coercivity",
+      "kind": "lemma",
+      "label": "Coercivity of the real interaction",
+      "statement": "[Coercivity of the real interaction] Suppose that the components of \\(x\\) are initially smooth rapidly decreasing real densities and that \\( d_x=0\\). The tail \\(-w_Iw_J|u|\\) contributes exactly…",
+      "section": "Centering, coercivity, and the fluctuation spectrum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-03-compensated-sector",
+      "kind": "lemma",
+      "label": "Compensated sector representation",
+      "statement": "[Compensated sector representation] Fix an explicit configuration \\(\\) with generic distinct real coordinates and a physical integer imbalance \\(M\\) for which \\(m'_0\\). After division of the…",
+      "section": "Centering, coercivity, and the fluctuation spectrum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-03-smoothing",
+      "kind": "lemma",
+      "label": "Uniform smoothing inequality",
+      "statement": "[Uniform smoothing inequality] For the trial energy defined above, set \\[ x=Re-+, z=Im \\] with all species included for \\(x\\), only near entries nonzero for \\(z\\). These are weighted-total neutral.…",
+      "section": "Centering, coercivity, and the fluctuation spectrum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-cor-03-counts",
+      "kind": "corollary",
+      "label": "Control of explicit particles",
+      "statement": "[Control of explicit particles] Constants may depend on the fixed smoothing parameter \\(h\\). One has |ReM|^2+n_e^2 C_h L(B(x)+1), _e:=_ v (|v|-L)_+ C(B(x)+1).",
+      "section": "Centering, coercivity, and the fluctuation spectrum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-prop-03-trial-bounds",
+      "kind": "proposition",
+      "label": "Trial bounds with tilt",
+      "statement": "[Trial bounds with tilt] Fix \\(a_0<\\) and \\(b_0<\\), and let \\(=a+ib_1\\) satisfy \\(|a| a_0\\), \\(|b_1| b_0\\). The following bounds hold uniformly for admissible real parts of \\(\\), with the imaginary…",
+      "section": "Centering, coercivity, and the fluctuation spectrum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-03-kernel-regularity",
+      "kind": "lemma",
+      "label": "Regularity of the compensated kernel",
+      "statement": "[Regularity of the compensated kernel] The kernel \\(K\\) is smooth, extending evenly by reflection in each endpoint variable. \\(K\\) and all derivatives of total order \\(l\\) satisfy bounds \\(C^ l+1…",
+      "section": "Centering, coercivity, and the fluctuation spectrum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-03-source-regularity",
+      "kind": "lemma",
+      "label": "Regularity of the compensated source",
+      "statement": "[Regularity of the compensated source] Suppose \\(|M|,n_e,_e\\) have fixed polynomial bounds in \\(L\\). In the \\(s\\)-coordinate, the linear source \\[ b=H_ nn (m'p_L-)+ H_ ne \\] in \\(_M\\) is smooth and…",
+      "section": "Centering, coercivity, and the fluctuation spectrum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-03-spectral",
+      "kind": "lemma",
+      "label": "Trace bound and small eigenvalues",
+      "statement": "[Trace bound and small eigenvalues] On the complexification of \\( X\\), let \\[ T=I+j^* K j, A_T=12(T+T^*). \\] There are constants independent of \\(L\\) such that \\(\\|T-I\\|_1 CL\\), \\(\\|T\\| C\\), and A_T…",
+      "section": "Centering, coercivity, and the fluctuation spectrum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-thm-03-determinant",
+      "kind": "theorem",
+      "label": "Relative determinant asymptotics",
+      "statement": "[Relative determinant asymptotics] The Fredholm determinant satisfies -12| T|=(7/8)L+o(L).",
+      "section": "Centering, coercivity, and the fluctuation spectrum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-03-core",
+      "kind": "lemma",
+      "label": "Smooth core approximation",
+      "statement": "[Smooth core approximation] For every sufficiently small fixed \\(>0\\) and all sufficiently large \\(L\\), there are \\(_*>0\\), independent of \\(L\\), and a real orthogonal projection \\(P\\) in \\( X\\), of…",
+      "section": "Centering, coercivity, and the fluctuation spectrum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-03-schur",
+      "kind": "lemma",
+      "label": "Determinants and Schur complements",
+      "statement": "[Determinants and Schur complements] Let \\(S=ranP\\), \\(R=S^\\), and \\[ T_e=T_ RR -T_ RS T_ SS ^ -1 T_ SR . \\] The Hermitian part \\(ReT_e=(T_e+T_e^*)/2\\) has the gap and small-eigenvalue count in .…",
+      "section": "Centering, coercivity, and the fluctuation spectrum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-03-circle",
+      "kind": "lemma",
+      "label": "Circle comparison",
+      "statement": "[Circle comparison] For a real smooth test \\(f(t)=f_0+2_ k1 f_k kt\\), with smooth even reflection, put \\(w_=2(1 t)\\). Then J_n(w_+ e^f)J_n(w_- e^f)e^ -2n f_0 _ k1 k |f_k|^2 .",
+      "section": "Reference fluctuations and compensated quadratic integration",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-e-reference-source",
+      "kind": "theorem",
+      "label": "Normalized reference source bound",
+      "statement": "[Normalized reference source bound] For two independent normalized reference ensembles with dimensions 0_ C_0e^ L , L1 , and every real smooth reflected test f_ , one has E_0 e^ (Q) _ J_ _ (w_0)^ -1…",
+      "section": "Reference fluctuations and compensated quadratic integration",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-thm-03-uniform-source",
+      "kind": "theorem",
+      "label": "Uniform source inequality",
+      "statement": "[Uniform source inequality] If \\(_ m\\), \\( G=\\ \\|Q\\|_ -2,A L^D\\ \\) for fixed \\(D\\), and the tests arise from real smooth even-reflected \\(f_(s)\\) with polynomial derivative bounds in the…",
+      "section": "Reference fluctuations and compensated quadratic integration",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-04-quadratic",
+      "kind": "lemma",
+      "label": "Integration of a compensated quadratic cost",
+      "statement": "[Integration of a compensated quadratic cost] Let \\(F\\) be a bounded real symmetric operator on \\( X\\), with \\(F gI\\), \\(g>0\\), and let \\(F-I\\) be trace class. Let \\(l X\\) be real. Suppose that there…",
+      "section": "Reference fluctuations and compensated quadratic integration",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-prop-04-integer-bounds",
+      "kind": "proposition",
+      "label": "Bounds at integer reference dimensions",
+      "statement": "[Bounds at integer reference dimensions] Fix \\( |Re| a_0<\\) and \\( |Im| b_0<\\), with the parameter conventions of Proposition~ . For nonnegative integer dimensions \\(_\\), put \\[ L_ ,j (M) =|e^ i(+…",
+      "section": "The electric contour integral",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-04-contour",
+      "kind": "lemma",
+      "label": "Particle contour deformation",
+      "statement": "[Particle contour deformation] Under the hypotheses of part 3 of Proposition~ , choose the core projection \\(P\\) of , with \\(S=P X\\), \\(R=S^\\), and Schur complement \\(T_e\\). For every prescribed…",
+      "section": "The electric contour integral",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-prop-04-interpolation",
+      "kind": "proposition",
+      "label": "Interpolation of the reference dimension",
+      "statement": "[Interpolation of the reference dimension] Fix polynomial bounds on \\(n_e,_e,|M|\\). For every fixed \\(b>0\\) there is a jointly holomorphic function \\( F(,M)\\), with \\(=(_+,_-) C^2\\), on a…",
+      "section": "Continuing the imbalance sum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-04-hermite",
+      "kind": "lemma",
+      "label": "Weighted polynomial approximation",
+      "statement": "[Weighted polynomial approximation] For the preceding Gaussian exponential, choose \\(a=1-/2\\). Given any fixed precision exponent, there is a polynomial \\(P(Y)\\) of polynomial total degree \\(K_1\\)…",
+      "section": "Continuing the imbalance sum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-04-grid",
+      "kind": "lemma",
+      "label": "Transfer from the integer grid",
+      "statement": "[Transfer from the integer grid] Suppose \\(M\\) is in the fixed polynomial box and \\(|F_(M)| B\\) at all integer grid points of \\(|_-m| m\\), with \\(B e^ -L^ b' \\), \\(b'<b\\). If \\(^*-m\\) has polynomial…",
+      "section": "Continuing the imbalance sum",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-prop-04-sector-sum",
+      "kind": "proposition",
+      "label": "Summed contour bound",
+      "statement": "[Summed contour bound] Locally uniformly in the strip \\(|Re|<\\), |G_N()| 3 L/8-2L\\,Re(^2)/(4)+o(L)",
+      "section": "The cylinder exponent",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-e-all-fugacity-bound",
+      "kind": "theorem",
+      "label": "Uniform fugacity bound",
+      "statement": "[Uniform fugacity bound] There are constants \\(C<\\) and \\(N_0\\) such that, for every even \\(N N_0\\) and every real \\(v0\\), Z_N(2 v) \\!(C N\\,(1+v^2)). The constants are independent of \\(v\\).",
+      "section": "A uniform bound for the number of separating polygons",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-e-all-count-tail",
+      "kind": "corollary",
+      "label": "Tail in the polygon count",
+      "statement": "[Tail in the polygon count] There are constants \\(c,C>0\\) such that for every sufficiently large even \\(N\\) and every integer \\(a0\\), w_N(a) \\!(C N-ca^2 N ).",
+      "section": "A uniform bound for the number of separating polygons",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-05-winding-data",
+      "kind": "lemma",
+      "label": "Annular pinch and analytic data",
+      "statement": "[Annular pinch and analytic data] The function \\((;z)\\) is rational in \\(e^ 2iz \\), with denominator dividing \\(_i D(z-b_i)\\), where \\( D\\) is the local denominator in , and tends to \\(1+\\) at both…",
+      "section": "Winding pressure and essential polygons",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    },
+    {
+      "id": "m3-lem-05-hardy-interpolation",
+      "kind": "lemma",
+      "label": "Coercive jet interpolation",
+      "statement": "[Coercive jet interpolation] For every fixed \\(0<a<1\\), the operators \\(D_a\\) are bounded and satisfy ReD_a(k) c_a>0 (k R), \\|(P_ND_a|_ P_NH )^ -1 \\| c_a^ -1 . Moreover, writing \\(\\|\\|_ ,p \\) for the…",
+      "section": "Winding pressure and essential polygons",
+      "manuscript": "Cylinder loop weights and planar nesting"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-thm-polygon-tails",
+      "to": "m1-cor-length-cutoffs",
+      "label": "thm:polygon-tails",
+      "context": "[Proof of Corollary~\\ref{cor:length-cutoffs}] Use the functions $A$, $P$ and $M_2$ of Theorem~\\ref{thm:polygon-tails}, whose bounds have now been proved. All sums below use the same positive polygon weights, and all exponent estimates ho"
+    }
+  ]
+}

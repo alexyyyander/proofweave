@@ -1,0 +1,992 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "140",
+  "title": "Memory–sample lower bounds for noiseless Gaussian regression",
+  "result": {
+    "id": "paper-result",
+    "label": "Memory–sample lower bounds for noiseless Gaussian regression",
+    "statement": "For fixed A > 0, a one-pass learner with Ad^2 persistent bits needs (d (1/ )) noiseless Gaussian samples to recover a unit vector to angular error 0 1/10 with probability 2/3, uniformly in accuracy for large d . Computation and randomized updates are unrestricted, but output uses only the terminal state, stopping index and fresh randomness.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "exact-observations-and-finite-memory",
+      "label": "Exact observations and finite memory",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "local-mass-of-terminal-success",
+      "label": "Local mass of terminal success",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exact-gaussian-projection",
+      "label": "Exact Gaussian projection",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "one-block-of-arbitrary-computation",
+      "label": "One block of arbitrary computation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-one-block-to-a-finite-stream",
+      "label": "From one block to a finite stream",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "constant-accuracy-and-the-main-lower-bound",
+      "label": "Constant accuracy and the main lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "selection-on-a-common-data-domain",
+      "label": "Selection on a common data domain",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-paired-coordinate-cube-application",
+      "label": "A paired-coordinate cube application",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "other-exact-label-interfaces",
+      "label": "Other exact-label interfaces",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "coefficient-recurrences-and-support-alternatives",
+      "label": "Coefficient recurrences and support alternatives",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-sharper-full-data-residual-bound",
+      "label": "A sharper full-data residual bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-states-and-the-information-required-at-the-endpoint",
+      "label": "Finite states and the information required at the endpoint",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "posterior-replicas-and-exact-equal-label-measures",
+      "label": "Posterior replicas and exact equal-label measures",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-gaussian-test-that-cancels-the-affine-volume",
+      "label": "A Gaussian test that cancels the affine volume",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "shared-data-and-distance-bin-comparisons",
+      "label": "Shared data and distance-bin comparisons",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "current-state-recurrences-and-the-streaming-bound",
+      "label": "Current-state recurrences and the streaming bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "haar-projections-and-posterior-replica-information",
+      "label": "Haar projections and posterior replica information",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "synthetic-gaussian-projections",
+      "label": "Synthetic Gaussian projections",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "stiefel-incidence-and-conditional-block-information",
+      "label": "Stiefel incidence and conditional block information",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Memory and precision in noiseless Gaussian regression",
+      "title": "Memory and precision in noiseless Gaussian regression",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-27",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Memory-and-precision-in-noiseless-Gaussian-regression-September-27-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Memory and precision in noiseless Gaussian regression.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-h-main",
+          "role": "exact-observations-and-finite-memory",
+          "label": "theorem m1-h-main",
+          "fullLabel": "theorem m1-h-main",
+          "kind": "theorem",
+          "source": "Exact observations and finite memory",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [],
+          "objectUses": [
+            "m1-h-stream-success"
+          ]
+        },
+        {
+          "id": "m1-h-subquadratic",
+          "role": "exact-observations-and-finite-memory",
+          "label": "corollary m1-h-subquadratic",
+          "fullLabel": "corollary m1-h-subquadratic",
+          "kind": "corollary",
+          "source": "Exact observations and finite memory",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-worst-signal",
+          "role": "exact-observations-and-finite-memory",
+          "label": "corollary m1-h-worst-signal",
+          "fullLabel": "corollary m1-h-worst-signal",
+          "kind": "corollary",
+          "source": "Exact observations and finite memory",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-local-caps",
+          "role": "local-mass-of-terminal-success",
+          "label": "lemma m1-h-local-caps",
+          "fullLabel": "lemma m1-h-local-caps",
+          "kind": "lemma",
+          "source": "Local mass of terminal success",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-dv-finite-density",
+          "role": "exact-gaussian-projection",
+          "label": "theorem m1-h-dv-finite-density",
+          "fullLabel": "theorem m1-h-dv-finite-density",
+          "kind": "theorem",
+          "source": "Exact Gaussian projection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-dv-ambient-gram",
+          "role": "exact-gaussian-projection",
+          "label": "proposition m1-h-dv-ambient-gram",
+          "fullLabel": "proposition m1-h-dv-ambient-gram",
+          "kind": "proposition",
+          "source": "Exact Gaussian projection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-proj-gaussian",
+          "role": "exact-gaussian-projection",
+          "label": "lemma m1-h-proj-gaussian",
+          "fullLabel": "lemma m1-h-proj-gaussian",
+          "kind": "lemma",
+          "source": "Exact Gaussian projection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-dv-gaussian-moment",
+          "role": "exact-gaussian-projection",
+          "label": "lemma m1-h-dv-gaussian-moment",
+          "fullLabel": "lemma m1-h-dv-gaussian-moment",
+          "kind": "lemma",
+          "source": "Exact Gaussian projection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-proj-density-by-tests",
+          "role": "exact-gaussian-projection",
+          "label": "lemma m1-h-proj-density-by-tests",
+          "fullLabel": "lemma m1-h-proj-density-by-tests",
+          "kind": "lemma",
+          "source": "Exact Gaussian projection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-proj-normalized",
+          "role": "exact-gaussian-projection",
+          "label": "corollary m1-h-proj-normalized",
+          "fullLabel": "corollary m1-h-proj-normalized",
+          "kind": "corollary",
+          "source": "Exact Gaussian projection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-ev-ellipsoid",
+          "role": "exact-gaussian-projection",
+          "label": "lemma m1-h-ev-ellipsoid",
+          "fullLabel": "lemma m1-h-ev-ellipsoid",
+          "kind": "lemma",
+          "source": "Exact Gaussian projection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-block-bound",
+          "role": "one-block-of-arbitrary-computation",
+          "label": "lemma m1-h-block-bound",
+          "fullLabel": "lemma m1-h-block-bound",
+          "kind": "lemma",
+          "source": "One block of arbitrary computation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-stream-categories",
+          "role": "from-one-block-to-a-finite-stream",
+          "label": "lemma m1-h-stream-categories",
+          "fullLabel": "lemma m1-h-stream-categories",
+          "kind": "lemma",
+          "source": "From one block to a finite stream",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-stream-borel",
+          "role": "from-one-block-to-a-finite-stream",
+          "label": "lemma m1-h-stream-borel",
+          "fullLabel": "lemma m1-h-stream-borel",
+          "kind": "lemma",
+          "source": "From one block to a finite stream",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-stream-success",
+          "role": "from-one-block-to-a-finite-stream",
+          "label": "proposition m1-h-stream-success",
+          "fullLabel": "proposition m1-h-stream-success",
+          "kind": "proposition",
+          "source": "From one block to a finite stream",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-ev-reflection",
+          "role": "constant-accuracy-and-the-main-lower-bound",
+          "label": "lemma m1-h-ev-reflection",
+          "fullLabel": "lemma m1-h-ev-reflection",
+          "kind": "lemma",
+          "source": "Constant accuracy and the main lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-alt-selection",
+          "role": "selection-on-a-common-data-domain",
+          "label": "lemma m1-h-alt-selection",
+          "fullLabel": "lemma m1-h-alt-selection",
+          "kind": "lemma",
+          "source": "Selection on a common data domain",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-cube-density",
+          "role": "a-paired-coordinate-cube-application",
+          "label": "lemma m1-h-cube-density",
+          "fullLabel": "lemma m1-h-cube-density",
+          "kind": "lemma",
+          "source": "A paired-coordinate cube application",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-cube-block",
+          "role": "a-paired-coordinate-cube-application",
+          "label": "corollary m1-h-cube-block",
+          "fullLabel": "corollary m1-h-cube-block",
+          "kind": "corollary",
+          "source": "A paired-coordinate cube application",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-cube-success",
+          "role": "a-paired-coordinate-cube-application",
+          "label": "proposition m1-h-cube-success",
+          "fullLabel": "proposition m1-h-cube-success",
+          "kind": "proposition",
+          "source": "A paired-coordinate cube application",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-cube-inverse",
+          "role": "a-paired-coordinate-cube-application",
+          "label": "lemma m1-h-cube-inverse",
+          "fullLabel": "lemma m1-h-cube-inverse",
+          "kind": "lemma",
+          "source": "A paired-coordinate cube application",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-dv-measurable-test",
+          "role": "other-exact-label-interfaces",
+          "label": "proposition m1-h-dv-measurable-test",
+          "fullLabel": "proposition m1-h-dv-measurable-test",
+          "kind": "proposition",
+          "source": "Other exact-label interfaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-dv-gaussian-ac",
+          "role": "other-exact-label-interfaces",
+          "label": "lemma m1-h-dv-gaussian-ac",
+          "fullLabel": "lemma m1-h-dv-gaussian-ac",
+          "kind": "lemma",
+          "source": "Other exact-label interfaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-dv-joint-density",
+          "role": "other-exact-label-interfaces",
+          "label": "lemma m1-h-dv-joint-density",
+          "fullLabel": "lemma m1-h-dv-joint-density",
+          "kind": "lemma",
+          "source": "Other exact-label interfaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-dv-joint-l1",
+          "role": "other-exact-label-interfaces",
+          "label": "proposition m1-h-dv-joint-l1",
+          "fullLabel": "proposition m1-h-dv-joint-l1",
+          "kind": "proposition",
+          "source": "Other exact-label interfaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-dv-pointwise-density",
+          "role": "other-exact-label-interfaces",
+          "label": "proposition m1-h-dv-pointwise-density",
+          "fullLabel": "proposition m1-h-dv-pointwise-density",
+          "kind": "proposition",
+          "source": "Other exact-label interfaces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-dv-parameters",
+          "role": "coefficient-recurrences-and-support-alternatives",
+          "label": "corollary m1-h-dv-parameters",
+          "fullLabel": "corollary m1-h-dv-parameters",
+          "kind": "corollary",
+          "source": "Coefficient recurrences and support alternatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-ev-density",
+          "role": "coefficient-recurrences-and-support-alternatives",
+          "label": "lemma m1-h-ev-density",
+          "fullLabel": "lemma m1-h-ev-density",
+          "kind": "lemma",
+          "source": "Coefficient recurrences and support alternatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-proj-volume",
+          "role": "coefficient-recurrences-and-support-alternatives",
+          "label": "lemma m1-h-proj-volume",
+          "fullLabel": "lemma m1-h-proj-volume",
+          "kind": "lemma",
+          "source": "Coefficient recurrences and support alternatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-dv-hemisphere-cap",
+          "role": "coefficient-recurrences-and-support-alternatives",
+          "label": "lemma m1-h-dv-hemisphere-cap",
+          "fullLabel": "lemma m1-h-dv-hemisphere-cap",
+          "kind": "lemma",
+          "source": "Coefficient recurrences and support alternatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-ev-polar-cap",
+          "role": "coefficient-recurrences-and-support-alternatives",
+          "label": "lemma m1-h-ev-polar-cap",
+          "fullLabel": "lemma m1-h-ev-polar-cap",
+          "kind": "lemma",
+          "source": "Coefficient recurrences and support alternatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-ev-coefficient-step",
+          "role": "coefficient-recurrences-and-support-alternatives",
+          "label": "proposition m1-h-ev-coefficient-step",
+          "fullLabel": "proposition m1-h-ev-coefficient-step",
+          "kind": "proposition",
+          "source": "Coefficient recurrences and support alternatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-ev-coefficient-success",
+          "role": "coefficient-recurrences-and-support-alternatives",
+          "label": "proposition m1-h-ev-coefficient-success",
+          "fullLabel": "proposition m1-h-ev-coefficient-success",
+          "kind": "proposition",
+          "source": "Coefficient recurrences and support alternatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-ev-success",
+          "role": "coefficient-recurrences-and-support-alternatives",
+          "label": "corollary m1-h-ev-success",
+          "fullLabel": "corollary m1-h-ev-success",
+          "kind": "corollary",
+          "source": "Coefficient recurrences and support alternatives",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-h-end-linear",
+          "role": "a-sharper-full-data-residual-bound",
+          "label": "lemma m1-h-end-linear",
+          "fullLabel": "lemma m1-h-end-linear",
+          "kind": "lemma",
+          "source": "A sharper full-data residual bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Posterior replicas and conditional information in Gaussian regression",
+      "title": "Posterior replicas and conditional information in Gaussian regression",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-27",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Posterior-replicas-and-conditional-information-in-Gaussian-regression-September-27-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Posterior replicas and conditional information in Gaussian regression.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-gaussian-block",
+          "role": "introduction",
+          "label": "theorem m2-thm-gaussian-block",
+          "fullLabel": "theorem m2-thm-gaussian-block",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-streaming",
+          "role": "introduction",
+          "label": "theorem m2-thm-streaming",
+          "fullLabel": "theorem m2-thm-streaming",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-prop-gaussian-streaming"
+          ]
+        },
+        {
+          "id": "m2-lem-spherical-ball",
+          "role": "finite-states-and-the-information-required-at-the-endpoint",
+          "label": "lemma m2-lem-spherical-ball",
+          "fullLabel": "lemma m2-lem-spherical-ball",
+          "kind": "lemma",
+          "source": "Finite states and the information required at the endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-residual-sphere",
+          "role": "finite-states-and-the-information-required-at-the-endpoint",
+          "label": "lemma m2-lem-residual-sphere",
+          "fullLabel": "lemma m2-lem-residual-sphere",
+          "kind": "lemma",
+          "source": "Finite states and the information required at the endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-residual-information",
+          "role": "finite-states-and-the-information-required-at-the-endpoint",
+          "label": "lemma m2-lem-residual-information",
+          "fullLabel": "lemma m2-lem-residual-information",
+          "kind": "lemma",
+          "source": "Finite states and the information required at the endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-replica-endpoints",
+          "role": "finite-states-and-the-information-required-at-the-endpoint",
+          "label": "corollary m2-cor-replica-endpoints",
+          "fullLabel": "corollary m2-cor-replica-endpoints",
+          "kind": "corollary",
+          "source": "Finite states and the information required at the endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-borel-rules",
+          "role": "finite-states-and-the-information-required-at-the-endpoint",
+          "label": "lemma m2-lem-borel-rules",
+          "fullLabel": "lemma m2-lem-borel-rules",
+          "kind": "lemma",
+          "source": "Finite states and the information required at the endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-padding",
+          "role": "finite-states-and-the-information-required-at-the-endpoint",
+          "label": "lemma m2-lem-padding",
+          "fullLabel": "lemma m2-lem-padding",
+          "kind": "lemma",
+          "source": "Finite states and the information required at the endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-conditional-priors",
+          "role": "finite-states-and-the-information-required-at-the-endpoint",
+          "label": "lemma m2-lem-conditional-priors",
+          "fullLabel": "lemma m2-lem-conditional-priors",
+          "kind": "lemma",
+          "source": "Finite states and the information required at the endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-early-clock",
+          "role": "finite-states-and-the-information-required-at-the-endpoint",
+          "label": "lemma m2-lem-early-clock",
+          "fullLabel": "lemma m2-lem-early-clock",
+          "kind": "lemma",
+          "source": "Finite states and the information required at the endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-raw-sample-bound",
+          "role": "finite-states-and-the-information-required-at-the-endpoint",
+          "label": "lemma m2-lem-raw-sample-bound",
+          "fullLabel": "lemma m2-lem-raw-sample-bound",
+          "kind": "lemma",
+          "source": "Finite states and the information required at the endpoint",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-replica-information",
+          "role": "posterior-replicas-and-exact-equal-label-measures",
+          "label": "lemma m2-lem-replica-information",
+          "fullLabel": "lemma m2-lem-replica-information",
+          "kind": "lemma",
+          "source": "Posterior replicas and exact equal-label measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-projection-fibers",
+          "role": "posterior-replicas-and-exact-equal-label-measures",
+          "label": "lemma m2-lem-projection-fibers",
+          "fullLabel": "lemma m2-lem-projection-fibers",
+          "kind": "lemma",
+          "source": "Posterior replicas and exact equal-label measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-equal-label-measure",
+          "role": "posterior-replicas-and-exact-equal-label-measures",
+          "label": "theorem m2-thm-equal-label-measure",
+          "fullLabel": "theorem m2-thm-equal-label-measure",
+          "kind": "theorem",
+          "source": "Posterior replicas and exact equal-label measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-replica-likelihood",
+          "role": "posterior-replicas-and-exact-equal-label-measures",
+          "label": "corollary m2-cor-replica-likelihood",
+          "fullLabel": "corollary m2-cor-replica-likelihood",
+          "kind": "corollary",
+          "source": "Posterior replicas and exact equal-label measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-replica-logs",
+          "role": "posterior-replicas-and-exact-equal-label-measures",
+          "label": "lemma m2-lem-replica-logs",
+          "fullLabel": "lemma m2-lem-replica-logs",
+          "kind": "lemma",
+          "source": "Posterior replicas and exact equal-label measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-gaussian-test",
+          "role": "a-gaussian-test-that-cancels-the-affine-volume",
+          "label": "lemma m2-lem-gaussian-test",
+          "fullLabel": "lemma m2-lem-gaussian-test",
+          "kind": "lemma",
+          "source": "A Gaussian test that cancels the affine volume",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-gaussian-density",
+          "role": "a-gaussian-test-that-cancels-the-affine-volume",
+          "label": "lemma m2-lem-gaussian-density",
+          "fullLabel": "lemma m2-lem-gaussian-density",
+          "kind": "lemma",
+          "source": "A Gaussian test that cancels the affine volume",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-distance-block",
+          "role": "shared-data-and-distance-bin-comparisons",
+          "label": "theorem m2-thm-distance-block",
+          "fullLabel": "theorem m2-thm-distance-block",
+          "kind": "theorem",
+          "source": "Shared data and distance-bin comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-distance-heights",
+          "role": "shared-data-and-distance-bin-comparisons",
+          "label": "lemma m2-lem-distance-heights",
+          "fullLabel": "lemma m2-lem-distance-heights",
+          "kind": "lemma",
+          "source": "Shared data and distance-bin comparisons",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-gaussian-streaming",
+          "role": "current-state-recurrences-and-the-streaming-bound",
+          "label": "proposition m2-prop-gaussian-streaming",
+          "fullLabel": "proposition m2-prop-gaussian-streaming",
+          "kind": "proposition",
+          "source": "Current-state recurrences and the streaming bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-distance-streaming",
+          "role": "current-state-recurrences-and-the-streaming-bound",
+          "label": "proposition m2-prop-distance-streaming",
+          "fullLabel": "proposition m2-prop-distance-streaming",
+          "kind": "proposition",
+          "source": "Current-state recurrences and the streaming bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-haar-coarea",
+          "role": "haar-projections-and-posterior-replica-information",
+          "label": "lemma m2-haar-coarea",
+          "fullLabel": "lemma m2-haar-coarea",
+          "kind": "lemma",
+          "source": "Haar projections and posterior replica information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-haar-upper-correlation",
+          "role": "haar-projections-and-posterior-replica-information",
+          "label": "lemma m2-haar-upper-correlation",
+          "fullLabel": "lemma m2-haar-upper-correlation",
+          "kind": "lemma",
+          "source": "Haar projections and posterior replica information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-haar-maximal",
+          "role": "haar-projections-and-posterior-replica-information",
+          "label": "lemma m2-haar-maximal",
+          "fullLabel": "lemma m2-haar-maximal",
+          "kind": "lemma",
+          "source": "Haar projections and posterior replica information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-haar-lower-correlation",
+          "role": "haar-projections-and-posterior-replica-information",
+          "label": "lemma m2-haar-lower-correlation",
+          "fullLabel": "lemma m2-haar-lower-correlation",
+          "kind": "lemma",
+          "source": "Haar projections and posterior replica information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-haar-block",
+          "role": "haar-projections-and-posterior-replica-information",
+          "label": "proposition m2-haar-block",
+          "fullLabel": "proposition m2-haar-block",
+          "kind": "proposition",
+          "source": "Haar projections and posterior replica information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-haar-terminal",
+          "role": "haar-projections-and-posterior-replica-information",
+          "label": "lemma m2-haar-terminal",
+          "fullLabel": "lemma m2-haar-terminal",
+          "kind": "lemma",
+          "source": "Haar projections and posterior replica information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-haar-streaming",
+          "role": "haar-projections-and-posterior-replica-information",
+          "label": "proposition m2-haar-streaming",
+          "fullLabel": "proposition m2-haar-streaming",
+          "kind": "proposition",
+          "source": "Haar projections and posterior replica information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-syn-block",
+          "role": "synthetic-gaussian-projections",
+          "label": "proposition m2-syn-block",
+          "fullLabel": "proposition m2-syn-block",
+          "kind": "proposition",
+          "source": "Synthetic Gaussian projections",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-syn-synthetic",
+          "role": "synthetic-gaussian-projections",
+          "label": "lemma m2-syn-synthetic",
+          "fullLabel": "lemma m2-syn-synthetic",
+          "kind": "lemma",
+          "source": "Synthetic Gaussian projections",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-syn-logs",
+          "role": "synthetic-gaussian-projections",
+          "label": "lemma m2-syn-logs",
+          "fullLabel": "lemma m2-syn-logs",
+          "kind": "lemma",
+          "source": "Synthetic Gaussian projections",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-syn-streaming",
+          "role": "synthetic-gaussian-projections",
+          "label": "proposition m2-syn-streaming",
+          "fullLabel": "proposition m2-syn-streaming",
+          "kind": "proposition",
+          "source": "Synthetic Gaussian projections",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-block",
+          "role": "stiefel-incidence-and-conditional-block-information",
+          "label": "proposition m2-inc-block",
+          "fullLabel": "proposition m2-inc-block",
+          "kind": "proposition",
+          "source": "Stiefel incidence and conditional block information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [],
+          "objectUses": [
+            "m2-inc-densities"
+          ]
+        },
+        {
+          "id": "m2-inc-product",
+          "role": "stiefel-incidence-and-conditional-block-information",
+          "label": "lemma m2-inc-product",
+          "fullLabel": "lemma m2-inc-product",
+          "kind": "lemma",
+          "source": "Stiefel incidence and conditional block information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-projection",
+          "role": "stiefel-incidence-and-conditional-block-information",
+          "label": "lemma m2-inc-projection",
+          "fullLabel": "lemma m2-inc-projection",
+          "kind": "lemma",
+          "source": "Stiefel incidence and conditional block information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-swap",
+          "role": "stiefel-incidence-and-conditional-block-information",
+          "label": "lemma m2-inc-swap",
+          "fullLabel": "lemma m2-inc-swap",
+          "kind": "lemma",
+          "source": "Stiefel incidence and conditional block information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-densities",
+          "role": "stiefel-incidence-and-conditional-block-information",
+          "label": "lemma m2-inc-densities",
+          "fullLabel": "lemma m2-inc-densities",
+          "kind": "lemma",
+          "source": "Stiefel incidence and conditional block information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-stiefel",
+          "role": "stiefel-incidence-and-conditional-block-information",
+          "label": "lemma m2-inc-stiefel",
+          "fullLabel": "lemma m2-inc-stiefel",
+          "kind": "lemma",
+          "source": "Stiefel incidence and conditional block information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-kernel",
+          "role": "stiefel-incidence-and-conditional-block-information",
+          "label": "lemma m2-inc-kernel",
+          "fullLabel": "lemma m2-inc-kernel",
+          "kind": "lemma",
+          "source": "Stiefel incidence and conditional block information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-maximal",
+          "role": "stiefel-incidence-and-conditional-block-information",
+          "label": "lemma m2-inc-maximal",
+          "fullLabel": "lemma m2-inc-maximal",
+          "kind": "lemma",
+          "source": "Stiefel incidence and conditional block information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-precision",
+          "role": "stiefel-incidence-and-conditional-block-information",
+          "label": "theorem m2-inc-precision",
+          "fullLabel": "theorem m2-inc-precision",
+          "kind": "theorem",
+          "source": "Stiefel incidence and conditional block information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m2-inc-history"
+          ]
+        },
+        {
+          "id": "m2-inc-short",
+          "role": "stiefel-incidence-and-conditional-block-information",
+          "label": "lemma m2-inc-short",
+          "fullLabel": "lemma m2-inc-short",
+          "kind": "lemma",
+          "source": "Stiefel incidence and conditional block information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-history",
+          "role": "stiefel-incidence-and-conditional-block-information",
+          "label": "lemma m2-inc-history",
+          "fullLabel": "lemma m2-inc-history",
+          "kind": "lemma",
+          "source": "Stiefel incidence and conditional block information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inc-fiber-precision",
+          "role": "stiefel-incidence-and-conditional-block-information",
+          "label": "lemma m2-inc-fiber-precision",
+          "fullLabel": "lemma m2-inc-fiber-precision",
+          "kind": "lemma",
+          "source": "Stiefel incidence and conditional block information",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Memory and precision in noiseless Gaussian regression",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Memory-and-precision-in-noiseless-Gaussian-regression-September-27-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Posterior replicas and conditional information in Gaussian regression",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Posterior-replicas-and-conditional-information-in-Gaussian-regression-September-27-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Localization costs and information growth for exact Gaussian observations",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Localization-costs-and-information-growth-for-exact-Gaussian-observations-September-27-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

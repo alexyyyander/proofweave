@@ -1,0 +1,405 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "142",
+  "title": "Deterministic polynomial factorization over prime fields",
+  "result": {
+    "id": "paper-result",
+    "label": "Deterministic polynomial factorization over prime fields",
+    "statement": "Gives a uniform deterministic algorithm that completely factors every nonzero dense degree- n polynomial over a prime field 𝔽 p , including multiplicities, in bit complexity polynomial in (n+1) p. The prime is supplied in binary. No randomness, integer-factorization or primitive-root oracle, or GRH assumption is required.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-field-computations-without-known-roots",
+      "label": "Finite-field computations without known roots",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "auxiliary-primes-and-primary-generators",
+      "label": "Auxiliary primes and primary generators",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "divisions-on-a-cyclic-cover",
+      "label": "Divisions on a cyclic cover",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "divisor-arithmetic-without-factoring-supports",
+      "label": "Divisor arithmetic without factoring supports",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "solving-the-promised-norm-equations",
+      "label": "Solving the promised norm equations",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "splitting-an-odd-number-of-roots",
+      "label": "Splitting an odd number of roots",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-a-splitting-procedure-to-complete-factorization",
+      "label": "From a splitting procedure to complete factorization",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "uniform-bit-complexity",
+      "label": "Uniform bit complexity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "small-auxiliary-primes-from-a-uniform-zero-free-strip",
+      "label": "Small auxiliary primes from a uniform zero-free strip",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Deterministic Polynomial Factorization over Prime Fields",
+      "title": "Deterministic Polynomial Factorization over Prime Fields",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-04",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/Deterministic-Polynomial-Factorization-over-Prime-Fields.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Deterministic Polynomial Factorization over Prime Fields.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-factorization",
+          "role": "introduction",
+          "label": "theorem m1-thm-factorization",
+          "fullLabel": "theorem m1-thm-factorization",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-reduction",
+          "role": "introduction",
+          "label": "theorem m1-thm-reduction",
+          "fullLabel": "theorem m1-thm-reduction",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ff-simultaneous",
+          "role": "finite-field-computations-without-known-roots",
+          "label": "lemma m1-ff-simultaneous",
+          "fullLabel": "lemma m1-ff-simultaneous",
+          "kind": "lemma",
+          "source": "Finite-field computations without known roots",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ff-unitroot",
+          "role": "finite-field-computations-without-known-roots",
+          "label": "lemma m1-ff-unitroot",
+          "fullLabel": "lemma m1-ff-unitroot",
+          "kind": "lemma",
+          "source": "Finite-field computations without known roots",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-ff-even-split",
+          "role": "finite-field-computations-without-known-roots",
+          "label": "proposition m1-ff-even-split",
+          "fullLabel": "proposition m1-ff-even-split",
+          "kind": "proposition",
+          "source": "Finite-field computations without known roots",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-table-degreeq",
+          "role": "auxiliary-primes-and-primary-generators",
+          "label": "lemma m1-table-degreeq",
+          "fullLabel": "lemma m1-table-degreeq",
+          "kind": "lemma",
+          "source": "Auxiliary primes and primary generators",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-table-construction",
+          "role": "auxiliary-primes-and-primary-generators",
+          "label": "proposition m1-table-construction",
+          "fullLabel": "proposition m1-table-construction",
+          "kind": "proposition",
+          "source": "Auxiliary primes and primary generators",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geom-filtration",
+          "role": "divisions-on-a-cyclic-cover",
+          "label": "lemma m1-geom-filtration",
+          "fullLabel": "lemma m1-geom-filtration",
+          "kind": "lemma",
+          "source": "Divisions on a cyclic cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geom-ramification",
+          "role": "divisions-on-a-cyclic-cover",
+          "label": "lemma m1-geom-ramification",
+          "fullLabel": "lemma m1-geom-ramification",
+          "kind": "lemma",
+          "source": "Divisions on a cyclic cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geom-frobenius",
+          "role": "divisions-on-a-cyclic-cover",
+          "label": "lemma m1-geom-frobenius",
+          "fullLabel": "lemma m1-geom-frobenius",
+          "kind": "lemma",
+          "source": "Divisions on a cyclic cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geom-descent",
+          "role": "divisions-on-a-cyclic-cover",
+          "label": "lemma m1-geom-descent",
+          "fullLabel": "lemma m1-geom-descent",
+          "kind": "lemma",
+          "source": "Divisions on a cyclic cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geom-lifts",
+          "role": "divisions-on-a-cyclic-cover",
+          "label": "corollary m1-geom-lifts",
+          "fullLabel": "corollary m1-geom-lifts",
+          "kind": "corollary",
+          "source": "Divisions on a cyclic cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-geom-separation",
+          "role": "divisions-on-a-cyclic-cover",
+          "label": "proposition m1-geom-separation",
+          "fullLabel": "proposition m1-geom-separation",
+          "kind": "proposition",
+          "source": "Divisions on a cyclic cover",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-div-arithmetic",
+          "role": "divisor-arithmetic-without-factoring-supports",
+          "label": "proposition m1-div-arithmetic",
+          "fullLabel": "proposition m1-div-arithmetic",
+          "kind": "proposition",
+          "source": "Divisor arithmetic without factoring supports",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-div-compression",
+          "role": "divisor-arithmetic-without-factoring-supports",
+          "label": "lemma m1-div-compression",
+          "fullLabel": "lemma m1-div-compression",
+          "kind": "lemma",
+          "source": "Divisor arithmetic without factoring supports",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-div-trace",
+          "role": "divisor-arithmetic-without-factoring-supports",
+          "label": "lemma m1-div-trace",
+          "fullLabel": "lemma m1-div-trace",
+          "kind": "lemma",
+          "source": "Divisor arithmetic without factoring supports",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-div-circuits",
+          "role": "divisor-arithmetic-without-factoring-supports",
+          "label": "lemma m1-div-circuits",
+          "fullLabel": "lemma m1-div-circuits",
+          "kind": "lemma",
+          "source": "Divisor arithmetic without factoring supports",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-norm-solve",
+          "role": "solving-the-promised-norm-equations",
+          "label": "theorem m1-norm-solve",
+          "fullLabel": "theorem m1-norm-solve",
+          "kind": "theorem",
+          "source": "Solving the promised norm equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-norm-idempotent-to-norm",
+          "role": "solving-the-promised-norm-equations",
+          "label": "lemma m1-norm-idempotent-to-norm",
+          "fullLabel": "lemma m1-norm-idempotent-to-norm",
+          "kind": "lemma",
+          "source": "Solving the promised norm equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-norm-bundle-split",
+          "role": "solving-the-promised-norm-equations",
+          "label": "lemma m1-norm-bundle-split",
+          "fullLabel": "lemma m1-norm-bundle-split",
+          "kind": "lemma",
+          "source": "Solving the promised norm equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-norm-fiber-idempotent",
+          "role": "solving-the-promised-norm-equations",
+          "label": "lemma m1-norm-fiber-idempotent",
+          "fullLabel": "lemma m1-norm-fiber-idempotent",
+          "kind": "lemma",
+          "source": "Solving the promised norm equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-norm-local-bounds",
+          "role": "solving-the-promised-norm-equations",
+          "label": "lemma m1-norm-local-bounds",
+          "fullLabel": "lemma m1-norm-local-bounds",
+          "kind": "lemma",
+          "source": "Solving the promised norm equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-div-divide",
+          "role": "solving-the-promised-norm-equations",
+          "label": "proposition m1-div-divide",
+          "fullLabel": "proposition m1-div-divide",
+          "kind": "proposition",
+          "source": "Solving the promised norm equations",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-odd-split",
+          "role": "splitting-an-odd-number-of-roots",
+          "label": "proposition m1-odd-split",
+          "fullLabel": "proposition m1-odd-split",
+          "kind": "proposition",
+          "source": "Splitting an odd number of roots",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-driver-separator",
+          "role": "from-a-splitting-procedure-to-complete-factorization",
+          "label": "lemma m1-driver-separator",
+          "fullLabel": "lemma m1-driver-separator",
+          "kind": "lemma",
+          "source": "From a splitting procedure to complete factorization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-driver-correctness",
+          "role": "from-a-splitting-procedure-to-complete-factorization",
+          "label": "proposition m1-driver-correctness",
+          "fullLabel": "proposition m1-driver-correctness",
+          "kind": "proposition",
+          "source": "From a splitting procedure to complete factorization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-complexity-bound",
+          "role": "uniform-bit-complexity",
+          "label": "proposition m1-complexity-bound",
+          "fullLabel": "proposition m1-complexity-bound",
+          "kind": "proposition",
+          "source": "Uniform bit complexity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-analytic-hecke",
+          "role": "small-auxiliary-primes-from-a-uniform-zero-free-strip",
+          "label": "theorem m1-analytic-hecke",
+          "fullLabel": "theorem m1-analytic-hecke",
+          "kind": "theorem",
+          "source": "Small auxiliary primes from a uniform zero-free strip",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-analytic-explicit",
+          "role": "small-auxiliary-primes-from-a-uniform-zero-free-strip",
+          "label": "lemma m1-analytic-explicit",
+          "fullLabel": "lemma m1-analytic-explicit",
+          "kind": "lemma",
+          "source": "Small auxiliary primes from a uniform zero-free strip",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-analytic-auxiliary",
+          "role": "small-auxiliary-primes-from-a-uniform-zero-free-strip",
+          "label": "proposition m1-analytic-auxiliary",
+          "fullLabel": "proposition m1-analytic-auxiliary",
+          "kind": "proposition",
+          "source": "Small auxiliary primes from a uniform zero-free strip",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Deterministic Polynomial Factorization over Prime Fields",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/Deterministic-Polynomial-Factorization-over-Prime-Fields.pdf",
+      "kind": "paper"
+    }
+  ]
+}

@@ -1,0 +1,439 @@
+{
+  "familyNumber": "225",
+  "familyTitle": "Gaussian free field limits throughout the balanced six-vertex regime",
+  "manuscripts": [
+    {
+      "id": "The-Gaussian-free-field-limit-of-the-balanced-six-vertex-model-with-variance-multiplier-1-over-arcsin-c-over-2-September-23-2026",
+      "title": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Gaussian-free-field-limit-of-the-balanced-six-vertex-model-with-variance-multiplier-1-over-arcsin-c-over-2-September-23-2026/The-Gaussian-free-field-limit-of-the-balanced-six-vertex-model-with-variance-multiplier-1-over-arcsin-c-over-2-September-23-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Finite rows and their scalar products",
+    "Thermodynamic row kernels",
+    "The plane representation and its angular spectrum",
+    "Chiral currents and Gaussian correlations",
+    "Moment bounds and convergence of the height field",
+    "Completion of the proof"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every fixed \\(c(0,2]\\), the prescribed iterated balanced-torus limit \\(_c\\)…",
+      "statement": "For every fixed \\(c(0,2]\\), the prescribed iterated balanced-torus limit \\(_c\\) exists. Define =1-c^2 2 , (c)^2=2 =1 (c/2) . As \\(0\\) through arbitrary positive real values, the fields \\(h_\\)…",
+      "section": "Introduction",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-row-algebra",
+      "kind": "lemma",
+      "label": "Finite row algebra",
+      "statement": "[Finite row algebra] For even L , real b_j , and all complex spectral arguments, M_ ph (x)= P_L M(x) P_L Q_L, T^D(x)^*=T^ X D X ( x). The rows with a common diagonal twist commute. More generally,…",
+      "section": "Finite rows and their scalar products",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-bethe-data",
+      "kind": "lemma",
+      "label": "Finite Bethe data",
+      "statement": "[Finite Bethe data] Let L be even, b_j real, and 0<< . A real solution of satisfies . If its Bethe vector is nonzero, then |Y is an eigenvector of e^ it A(x)+e^ -it L(x) with eigenvalue _t(x;Y) , and…",
+      "section": "Finite rows and their scalar products",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-finite-actions",
+      "kind": "lemma",
+      "label": "Single-entry actions",
+      "statement": "[Single-entry actions] For a finite spectral set U , put E=U\\ v'\\ . Then B(v')|U&=|E,\\\\ A(v')|U &=_ p E a(p)(v'-p) _ u E\\ p\\ f(u-p) |E\\ p\\ , \\\\ L(v')|U &=_ p E l(p)(p-v') _ u E\\ p\\ f(p-u) |E\\ p\\ , \\\\…",
+      "section": "Finite rows and their scalar products",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-scalar-product",
+      "kind": "lemma",
+      "label": "Exact scalar products and deleted columns",
+      "statement": "[Exact scalar products and deleted columns] In the normalization , S(Y,U)=e^ -int (_ y Y l(y)) _ j,k _ y_j _t(U_k;Y) C(Y,U) . Consequently, if G_Y0 , then S(Y,Y)0 and S(Y,Y)=(2 i s_)^n (_ y Y…",
+      "section": "Finite rows and their scalar products",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-hilbert-dual",
+      "kind": "lemma",
+      "label": "The Hilbert dual",
+      "statement": "[The Hilbert dual] For even L and real inhomogeneities, B(x)^*=- C( x). Thus for a distinct real on-shell list with G_Y0 , the physical unit vector _Y= P_L|Y \\| P_L|Y\\| is well defined, and \\[ \\|…",
+      "section": "Finite rows and their scalar products",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-cor-finite-word-expansion",
+      "kind": "corollary",
+      "label": "Exact finite-word expansion",
+      "statement": "[Exact finite-word expansion] Expand each auxiliary mark as \\[ T^ D_j =_ , (D_j)_ M_ ph , . \\] For each resulting entry word, let n_j be the number of minus spins after its j th action, with n_0=n .…",
+      "section": "Finite rows and their scalar products",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-root-limits",
+      "kind": "lemma",
+      "label": "Construction and density of the roots",
+      "statement": "[Construction and density of the roots] The zero-twist consecutive-root equations of Lemma~ have distinct real solutions with the following properties. If >/2 , the solutions at half filling exist…",
+      "section": "Thermodynamic row kernels",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-gaudin-inverse",
+      "kind": "lemma",
+      "label": "Gaudin and mixed-measure inverse bounds",
+      "statement": "[Gaudin and mixed-measure inverse bounds] In the limits specified above, \\|(I+K)^ -1 \\|_ C, (K)_ ij =K(y_i-y_j)_j. There is also a small a>0 for which the inverse has uniformly bounded row norm after…",
+      "section": "Thermodynamic row kernels",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-row-normalization",
+      "kind": "lemma",
+      "label": "Harmonic row normalization",
+      "statement": "[Harmonic row normalization] There is a real harmonic function U on S_ such that, for every finite real-inhomogeneity chain, \\|T^D(x)\\|2\\|D\\| (_jU(x-b_j)). Choose a nonvanishing analytic function N_L…",
+      "section": "Thermodynamic row kernels",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-weighted-flags",
+      "kind": "lemma",
+      "label": "Finite-chain weighted flags",
+      "statement": "[Finite-chain weighted flags] Let E=^m be the coefficient space of the fixed column list. For each admissible >0 there is a subspace F_ ,L E of codimension at most r_ such that |W(c)(u)| C_ e^ - u…",
+      "section": "Thermodynamic row kernels",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-joint-determinant-tails",
+      "kind": "lemma",
+      "label": "Joint tail bound",
+      "statement": "[Joint tail bound] For a fixed generic row word and any one of its nonzero finite action paths, let H=(p_1,,p_k) be the deleted original roots and V its surviving row arguments. After extracting the…",
+      "section": "Thermodynamic row kernels",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-word-kernel",
+      "kind": "proposition",
+      "label": "Limits of fixed row words",
+      "statement": "[Limits of fixed row words] For each fixed integer m0 and fixed 22 matrices D_1,,D_m , the homogeneous plane coefficients _L, A_L^ D_m (x_m) A_L^ D_1 (x_1)_L converge locally uniformly on S_^m to a…",
+      "section": "Thermodynamic row kernels",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-word-clustering",
+      "kind": "proposition",
+      "label": "Separated diagonal words",
+      "statement": "[Separated diagonal words] Partition a fixed finite list of diagonal marked rows into groups. Within each group fix its internal arguments in the strict angle strip. Translate the arguments of group…",
+      "section": "Thermodynamic row kernels",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-angular-space",
+      "kind": "proposition",
+      "label": "The angular representation",
+      "statement": "[The angular representation] On H the rows act as bounded holomorphic operator families, with \\[ \\|A^D(z)\\| 2\\|D\\|, A^D(z)^*=A^ X D X (- z). \\] They satisfy the finite RTT exchange identities…",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-scalar-continuation",
+      "kind": "lemma",
+      "label": "Boundary division and scalar continuation",
+      "statement": "[Boundary division and scalar continuation] There is r_>0 , independent of the even chain length, for which the two homogeneous quotients \\[ T^D(z)T^I(z)^ -1 , T^I(z)^ -1 T^D(z) \\] are holomorphic…",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-physical-plane",
+      "kind": "proposition",
+      "label": "Physical law, both axes, and reflection",
+      "statement": "[Physical law, both axes, and reflection] The row representation gives the local probabilities of the plane law _c in Theorem~ . In particular its prescribed iterated balanced-torus limit exists when…",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-inner-spectra",
+      "kind": "lemma",
+      "label": "Inner spectra and the current measure",
+      "statement": "[Inner spectra and the current measure] On D , almost every spectral function is either 1 or a finite Blaschke product in the right half-plane, with f(0)=f()=1, f( w)=f(w). Its zeros obey . In…",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-low-band",
+      "kind": "lemma",
+      "label": "Low-band current estimates",
+      "statement": "[Low-band current estimates] There are constants A,a,C,u_0>0 such that, for 0<u<u_0 , Q_uJ(w)Q_u extends to a bounded holomorphic function on the full annulus Au<|w|<a/u . If Q_uJ(w)Q_u=_ j w^j J_…",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-endpoint-hamiltonian",
+      "kind": "lemma",
+      "label": "The local endpoint generator",
+      "statement": "[The local endpoint generator] The nonnegative self-adjoint spectral operator E=S^ -1 _zP(z)|_ z=v , E(f)=-._s f(ie^s)|_ s=0 , agrees on local-spin vectors with the vacuum-subtracted nearest-neighbor…",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-sum-rule",
+      "kind": "lemma",
+      "label": "Energy and winding sum rule",
+      "statement": "[Energy and winding sum rule] Let p denote the phase of the unit shift S=P(i) , modulo 2 , and let sym average a measure at p and -p . Set \\[ D_0=-,[Z_0,[Z_0,h_ 0,1 ]]. \\] Away from p=0 , the…",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-variogram",
+      "kind": "proposition",
+      "label": "Exact variogram and logarithmic growth",
+      "statement": "[Exact variogram and logarithmic growth] After an axial symmetry, any nonzero lattice displacement may be written (k,j) with k1 and |j| k . Its height variance is _c(h(k,j)-h(0,0))^2 &=2(1-f(1)^k f(…",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-normalization",
+      "kind": "proposition",
+      "label": "The covariance constant below one",
+      "statement": "[The covariance constant below one] With the row and height conventions of Sections~ and~ , =1 2(-) . Consequently a limiting covariance \\(-2|x-y|\\) has squared multiplier \\(4=2/(-)=(c)^2\\) relative…",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-stiffness",
+      "kind": "lemma",
+      "label": "Homogeneous stiffness",
+      "statement": "[Homogeneous stiffness] The iterated homogeneous stiffness satisfies _ Q _ L L e_L''(0) =2 - .",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-infrared",
+      "kind": "lemma",
+      "label": "Infrared comparison",
+      "statement": "[Infrared comparison] With \\(\\) as in Section~ , 1 2(-) .",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-overlap-asymptotic",
+      "kind": "lemma",
+      "label": "Staggered overlap asymptotic",
+      "statement": "[Staggered overlap asymptotic] In the order \\(B\\), then \\(d0\\), I_L B 1 2(-) . The limit is understood in the double-limit convention .",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-detector-packing",
+      "kind": "lemma",
+      "label": "Packing angular windows",
+      "statement": "[Packing angular windows] The plane orbit mass satisfies 2(-) .",
+      "section": "The plane representation and its angular spectrum",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-chiral-forms",
+      "kind": "lemma",
+      "label": "There are consistent skew-adjoint forms j_ on D_^ fin such that, for every R>0…",
+      "statement": "There are consistent skew-adjoint forms j_ on D_^ fin such that, for every R>0 , \\|E_(R)j_ E_(R)\\| CR, E_(R)j_=E_(R)a_ h. Their vacuum means vanish. For s>0 , the damped forms extend to bounded…",
+      "section": "Chiral currents and Gaussian correlations",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-chiral-representatives",
+      "kind": "lemma",
+      "label": "Suppose T_ are uniformly bounded operators and, on every finite word tensor, T_…",
+      "statement": "Suppose T_ are uniformly bounded operators and, on every finite word tensor, T_ u_ converges strongly to Tu . Then T extends to a bounded operator on the tensor completion, and T_ v_ Tv for every…",
+      "section": "Chiral currents and Gaussian correlations",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-two-scale",
+      "kind": "proposition",
+      "label": "Two-scale spectral limit",
+      "statement": "[Two-scale spectral limit] Take r_1=^ -1 and r_2= , with 0 through arbitrary positive real values. On core representatives, the joint spectral functions (f(^ -1 \\,),f(\\,)) converge in law in the…",
+      "section": "Chiral currents and Gaussian correlations",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-current-limit",
+      "kind": "lemma",
+      "label": "For every admissible R>0 in Proposition~ and every |w|=1 with w0 , ^ -1…",
+      "statement": "For every admissible R>0 in Proposition~ and every |w|=1 with w0 , ^ -1 Q_(R)N(w)Q_(R) Q(R)(w(j_+ I)+w^ -1 (I j_-))Q(R) strongly on representatives. All displayed operators are bounded at fixed R .…",
+      "section": "Chiral currents and Gaussian correlations",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-chiral-holomorphy",
+      "kind": "lemma",
+      "label": "Let \\[ U_x=\\ (z_1,,z_k): z_i z_j for i j\\ , U_y=\\ (z_1,,z_k): z_i z_j for i j\\…",
+      "statement": "Let \\[ U_x=\\ (z_1,,z_k): z_i z_j for i j\\ , U_y=\\ (z_1,,z_k): z_i z_j for i j\\ . \\] The function F_k has a symmetric, jointly holomorphic extension to U_x U_y , and is the limit of the centered +…",
+      "section": "Chiral currents and Gaussian correlations",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-collision",
+      "kind": "lemma",
+      "label": "For a=a_+ and j=j_+ , the bounded operators K_=e^ - a ( j)e^ - a ( j)e^ - a are…",
+      "statement": "For a=a_+ and j=j_+ , the bounded operators K_=e^ - a ( j)e^ - a ( j)e^ - a are uniformly bounded for >0 and satisfy K_- I (0). Consequently, fix z_2,,z_k with pairwise distinct real coordinates and…",
+      "section": "Chiral currents and Gaussian correlations",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-gaussian-currents",
+      "kind": "proposition",
+      "label": "Let k1 , and let z_1,,z_k have pairwise distinct real coordinates or pairwise…",
+      "statement": "Let k1 , and let z_1,,z_k have pairwise distinct real coordinates or pairwise distinct imaginary coordinates. For _i\\ +,-\\ and moving mesh faces z_ i, z_i , _ 0 _ i=1 ^k ^ -1 D_^ _i h_(z_ i, ) =_ \\ _…",
+      "section": "Chiral currents and Gaussian correlations",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-ordinary-moments",
+      "kind": "lemma",
+      "label": "Ordinary spatial moments",
+      "statement": "[Ordinary spatial moments] Fix \\(0<A<\\). Let \\(R1\\), and let \\(g=(g_l)_ l \\) be a finitely supported real sequence such that _l|g_l| AR, _l|g_ l+1 -g_l| A, _l|g_ l+1 -g_l|^2 A/R. Then, for every \\(1…",
+      "section": "Moment bounds and convergence of the height field",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-cor-neutral-blocks",
+      "kind": "corollary",
+      "label": "Neutral blocks",
+      "statement": "[Neutral blocks] Let \\(b^2\\), \\(r>0\\), and let \\(f\\) be a measurable real density supported in a square of side \\(Ar\\) centered within distance \\(Ar\\) of \\(b\\), with \\[ f=0, |f| A r^ -2 . \\] For…",
+      "section": "Moment bounds and convergence of the height field",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-smooth-tests",
+      "kind": "proposition",
+      "label": "For every finite family of smooth compactly supported densities \\(_1,,_m\\) of…",
+      "statement": "For every finite family of smooth compactly supported densities \\(_1,,_m\\) of integral zero, the vector \\(( h_,_i)_i\\) converges jointly in law and in every joint moment to the corresponding pairings…",
+      "section": "Moment bounds and convergence of the height field",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-separated-block",
+      "kind": "lemma",
+      "label": "A separated endpoint factor",
+      "statement": "[A separated endpoint factor] Fix an integer \\(k2\\), constants \\(A,c_0,c_1>0\\), a separation \\(d_0>0\\), and a bounded region containing all factor centers. Choose \\(r_0=a_kd_0\\), with \\(a_k>0\\)…",
+      "section": "Moment bounds and convergence of the height field",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-offdiagonal",
+      "kind": "proposition",
+      "label": "For every \\(k1\\), all \\(k\\)-point height-increment moments converge to the Wick…",
+      "statement": "For every \\(k1\\), all \\(k\\)-point height-increment moments converge to the Wick increment moments of \\( H_\\), uniformly on compact sets of tuples whose endpoint sets belonging to different increments…",
+      "section": "Moment bounds and convergence of the height field",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-log-integrability",
+      "kind": "lemma",
+      "label": "Let \\(\\) be a compactly supported finite signed measure for which \\(…",
+      "statement": "Let \\(\\) be a compactly supported finite signed measure for which \\( G(x,y)\\,(dx)(dy)\\) is an ordinary finite signed-measure integral. Then \\(\\) has no atoms, and _+1 |x-y| \\,||(dx)||(dy)<. If \\(,\\)…",
+      "section": "Moment bounds and convergence of the height field",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-finite-energy",
+      "kind": "proposition",
+      "label": "For every finite family of compactly supported, neutral, finite signed measures…",
+      "statement": "For every finite family of compactly supported, neutral, finite signed measures of the ordinary finite-energy class in Theorem~ , the associated height pairings converge jointly in law to the…",
+      "section": "Moment bounds and convergence of the height field",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-pinned-averages",
+      "kind": "lemma",
+      "label": "Pinned averages",
+      "statement": "[Pinned averages] Let \\(0<1\\), and let \\(_ b, \\) be supported in a square of side \\(A\\) about \\(b\\), with \\(|_ b, | A^ -2 \\). For centers \\(b\\) in a fixed compact set and every finite \\(q\\), \\| X_^,_…",
+      "section": "Moment bounds and convergence of the height field",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-negative-regularity",
+      "kind": "proposition",
+      "label": "For every bounded open \\(U^2\\) and every \\(-1<<0\\), the pinned fields converge…",
+      "statement": "For every bounded open \\(U^2\\) and every \\(-1<<0\\), the pinned fields converge in law, with tightness, in the ordinary restriction spaces \\[ C^_ res (U):=B^_ , (U), B^_ p,q (U), W^ ,p (U), 1 p<,1 q,…",
+      "section": "Moment bounds and convergence of the height field",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-cell-averages",
+      "kind": "lemma",
+      "label": "Averages on small-area cells",
+      "statement": "[Averages on small-area cells] Let \\(Q\\) be a square of side \\(0<1\\) in a fixed bounded box, and let \\(A Q\\) be measurable with \\(|A|>0\\). Put \\(t=|A|/^2\\). Then for every finite \\(b\\), \\|1 |A| _A…",
+      "section": "Moment bounds and convergence of the height field",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-intrinsic-dual",
+      "kind": "proposition",
+      "label": "Intrinsic dual convergence",
+      "statement": "[Intrinsic dual convergence] Let \\(U^2\\) be bounded and open, let \\(0<s<1\\), and let \\(1 p<\\), with conjugate exponent \\(q=p'\\). The pinned fields converge in law, with norm tightness, in \\((W^ s,q…",
+      "section": "Moment bounds and convergence of the height field",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-endpoint-topologies",
+      "kind": "proposition",
+      "label": "Endpoint topology implication",
+      "statement": "[Endpoint topology implication] At \\(c=2\\), suppose that the height pairings with every finite family of ordinary finite-energy neutral measures converge jointly to those of \\(\\). Then the commonly…",
+      "section": "Moment bounds and convergence of the height field",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-thm-rr-rotation",
+      "kind": "theorem",
+      "label": "Isometry invariance of the endpoint correlations",
+      "statement": "[Isometry invariance of the endpoint correlations] For every even k2 and every compact K D_k , _ 0 _ u K _ IIsom(^2) |_ k, ( u) -_ k, (I u)|=0.",
+      "section": "Completion of the proof",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-rr-bkw",
+      "kind": "lemma",
+      "label": "The endpoint plane correspondence",
+      "statement": "[The endpoint plane correspondence] After the fixed similarity identifying the medial square grid with ^2 , the fair unit-jump height of critical plane FK_4 has the same gradient law as the…",
+      "section": "Completion of the proof",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-rr-estimates",
+      "kind": "lemma",
+      "label": "Counts, escape, and deterministic-point avoidance",
+      "statement": "[Counts, escape, and deterministic-point avoidance] Let N(a,M) be the number of loops of diameter at least a meeting B(0,M) . For sufficiently smaller than a , and every fixed p< , \\|N(a,M)\\|_ L^p…",
+      "section": "Completion of the proof",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-lem-rr-nails",
+      "kind": "lemma",
+      "label": "Homotopy coupling with dense marked clusters",
+      "statement": "[Homotopy coupling with dense marked clusters] Fix (0,) . As the mesh tends to zero, the construction of gives a coupling of two auxiliary loop samples. Their restrictions to a deterministic window…",
+      "section": "Completion of the proof",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    },
+    {
+      "id": "m1-prop-endpoint-completion",
+      "kind": "proposition",
+      "label": "Completion at the endpoint",
+      "statement": "[Completion at the endpoint] The conclusions of Theorem~ hold at c=2 , with squared multiplier 2/ .",
+      "section": "Completion of the proof",
+      "manuscript": "The Gaussian free field limit of the balanced six-vertex model with variance multiplier 1/arcsin(c/2)"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-endpoint-completion",
+      "to": "m1-thm-main",
+      "label": "prop:endpoint-completion",
+      "context": "[Proof of Theorem~\\ref{thm:main}] At $c=2$, Proposition~\\ref{prop:endpoint-completion} proves the result. Its independent loop argument supplies the rotational-invariance premise of the public endpoint proo"
+    }
+  ]
+}

@@ -14,6 +14,9 @@ import {
   assertDelegationAllows,
   verifyDelegationSignature,
 } from "@/packages/domain/delegation.mjs";
+import { defaultLocale, type Locale } from "@/app/i18n/config";
+import { getDictionary } from "@/app/i18n/dictionaries";
+import { createTranslator } from "@/app/i18n/translate";
 
 export type DemoVerificationCheck = {
   id: string;
@@ -86,10 +89,12 @@ export type BuildWeekDemoVerification = {
 };
 
 export async function verifyBuildWeekDemoFixture(
-  options: { mode?: DemoVerificationMode; stableRun?: boolean } = {},
+  options: { mode?: DemoVerificationMode; stableRun?: boolean; locale?: Locale } = {},
 ): Promise<BuildWeekDemoVerification> {
   const mode = options.mode ?? "reference";
   const stableRun = options.stableRun === true;
+  const locale = options.locale ?? defaultLocale;
+  const t = createTranslator(getDictionary(locale));
   const checkedFixture = mode === "tampered_copy" ? structuredClone(fixture) : fixture;
   if (mode === "tampered_copy") tamperOneArtifactByte(checkedFixture);
 
@@ -110,12 +115,12 @@ export async function verifyBuildWeekDemoFixture(
     check(
       {
         id: "delegation",
-        label: "Person delegation is valid",
-        detail: "The Person signature binds this Agent key and grants formalize/prove scope at the event time.",
-        method: "Delegation policy + Ed25519 signature",
+        label: t("demo.check.delegation.label"),
+        detail: t("demo.check.delegation.detail"),
+        method: t("demo.check.delegation.method"),
         input: `${checkedFixture.delegation.certificate.id} · scope prove`,
         evidence: checkedFixture.delegation.payloadHash,
-        failureResult: "Delegation scope, validity, Agent binding, or Person signature did not verify.",
+        failureResult: t("demo.check.delegation.result.failed"),
       },
       async () => {
         assertDelegationAllows(checkedFixture.delegation.certificate, "prove", checkedFixture.bundle.agentEvent.occurredAt);
@@ -127,36 +132,39 @@ export async function verifyBuildWeekDemoFixture(
           });
         return {
           passed,
-          result: `Valid at ${checkedFixture.bundle.agentEvent.occurredAt} · scopes ${checkedFixture.delegation.certificate.scopes.join(", ")}`,
+          result: t("demo.check.delegation.result.passed", {
+            date: checkedFixture.bundle.agentEvent.occurredAt,
+            scopes: checkedFixture.delegation.certificate.scopes.join(", "),
+          }),
         };
       },
     ),
     check(
       {
         id: "bundle",
-        label: "Agent bundle signature is valid",
-        detail: "The signed payload covers the target, Git commit, Lean environment, workspace hashes, and proof policy.",
-        method: "Canonical Bundle hash + Ed25519 signature",
+        label: t("demo.check.bundle.label"),
+        detail: t("demo.check.bundle.detail"),
+        method: t("demo.check.bundle.method"),
         input: `${checkedFixture.bundle.id} · ${checkedFixture.bundle.repositorySnapshot.commitSha}`,
         evidence: bundleHash,
-        failureResult: "The Bundle hash no longer matches the Receipt, or the Agent signature is invalid.",
+        failureResult: t("demo.check.bundle.result.failed"),
       },
       async () => {
         const currentBundleHash = await artifactBundleHash(checkedFixture.bundle);
         const passed = currentBundleHash === checkedFixture.receipt.artifactBundleHash &&
           await verifyArtifactBundleAgentSignature(checkedFixture.bundle);
-        return { passed, result: "Bundle hash matches Receipt · Agent signature valid." };
+        return { passed, result: t("demo.check.bundle.result.passed") };
       },
     ),
     check(
       {
         id: "objects",
-        label: "Artifact bytes match their hashes",
-        detail: "The archive, normalized patch, Lake manifest, and Lean source are re-hashed from their current bytes.",
-        method: "SHA-256 over stored artifact bytes",
+        label: t("demo.check.objects.label"),
+        detail: t("demo.check.objects.detail"),
+        method: t("demo.check.objects.method"),
         input: `${checkedFixture.objects.length + 1} payloads · archive, patch, manifest, Lean source`,
         evidence: checkedFixture.bundle.workspace.tree.hash,
-        failureResult: "At least one current byte payload does not match its declared SHA-256 hash.",
+        failureResult: t("demo.check.objects.result.failed", { role: t("demo.role.leanSource") }),
       },
       async () => {
         const objectHashes = await Promise.all(checkedFixture.objects.map(async (object) => ({
@@ -169,23 +177,26 @@ export async function verifyBuildWeekDemoFixture(
         ));
         const sourceMatches = await sha256Bytes(new TextEncoder().encode(checkedFixture.source.content)) === checkedFixture.source.contentHash;
         const passed = !mismatchedObject && sourceMatches;
+        const total = checkedFixture.objects.length + 1;
+        const role = mismatchedObject?.role ?? t("demo.role.leanSource");
         return {
           passed,
           result: passed
-            ? `${checkedFixture.objects.length + 1}/${checkedFixture.objects.length + 1} current byte payloads match their declared hashes.`
-            : `Hash mismatch detected in ${mismatchedObject?.role ?? "Lean source"}; the signed original was not modified.`,
+            ? t("demo.check.objects.result.passed", { matched: total, total })
+            : t("demo.check.objects.result.failed", { role }),
+          failureResult: t("demo.check.objects.result.failed", { role }),
         };
       },
     ),
     check(
       {
         id: "runner",
-        label: "Recorded Runner result is valid",
-        detail: "This verifies the signed historical Runner result and its kernel policy fields; it does not start Lean again.",
-        method: "Runner Ed25519 signature + recorded policy fields",
+        label: t("demo.check.runner.label"),
+        detail: t("demo.check.runner.detail"),
+        method: t("demo.check.runner.method"),
         input: `${checkedFixture.runner.result.jobId} · ${checkedFixture.bundle.environment.leanToolchain}`,
         evidence: checkedFixture.runner.result.requestHash,
-        failureResult: "The recorded Runner signature, Bundle binding, kernel status, or no-sorry policy is invalid.",
+        failureResult: t("demo.check.runner.result.failed"),
       },
       async () => {
         const passed = checkedFixture.runner.result.artifacts.manifestHash === bundleHash &&
@@ -196,18 +207,18 @@ export async function verifyBuildWeekDemoFixture(
             result: checkedFixture.runner.result,
             runnerPublicKey: checkedFixture.runner.publicKey,
           });
-        return { passed, result: "Runner signature valid · kernel accepted · no sorry recorded · Lean not rerun now." };
+        return { passed, result: t("demo.check.runner.result.passed") };
       },
     ),
     check(
       {
         id: "review",
-        label: "Independent attestations are signed",
-        detail: "Different Person-owned review Agents attest reproducibility, kernel acceptance, and project acceptance separately.",
-        method: "Owner separation + attestation Ed25519 signatures",
+        label: t("demo.check.review.label"),
+        detail: t("demo.check.review.detail"),
+        method: t("demo.check.review.method"),
         input: `${checkedFixture.attestations.length} attestations · ${new Set(checkedFixture.attestations.map((candidate) => candidate.verifierPersonId)).size} reviewer owners`,
         evidence: checkedFixture.attestations[0]?.payloadHash ?? bundleHash,
-        failureResult: "A reviewer is not independent, an attestation points to another Bundle, or a signature is invalid.",
+        failureResult: t("demo.check.review.result.failed"),
       },
       async () => {
         const signatures = await Promise.all(checkedFixture.attestations.map((attestation) => (
@@ -219,25 +230,28 @@ export async function verifyBuildWeekDemoFixture(
         )) && signatures.every(Boolean);
         return {
           passed,
-          result: `${signatures.filter(Boolean).length}/${signatures.length} signatures valid · every reviewer owner differs from the researcher.`,
+          result: t("demo.check.review.result.passed", {
+            valid: signatures.filter(Boolean).length,
+            total: signatures.length,
+          }),
         };
       },
     ),
     check(
       {
         id: "receipt",
-        label: "Reference receipt satisfies policy",
-        detail: "The issuer signature covers attribution, Bundle, Run, and all required independent review claims.",
-        method: "Receipt policy + canonical hash + issuer Ed25519 signature",
+        label: t("demo.check.receipt.label"),
+        detail: t("demo.check.receipt.detail"),
+        method: t("demo.check.receipt.method"),
         input: `${checkedFixture.receipt.id} · beneficiary ${checkedFixture.receipt.beneficiary.personId}`,
         evidence: receiptHash,
-        failureResult: "Receipt policy, canonical hash, attribution, or issuer signature did not verify.",
+        failureResult: t("demo.check.receipt.result.failed"),
       },
       async () => {
         assertContributionReceiptPolicy(checkedFixture.receipt);
         const currentReceiptHash = await contributionReceiptHash(checkedFixture.receipt);
         const passed = currentReceiptHash === checkedFixture.receiptHash && await verifyContributionReceiptSignature(checkedFixture.receipt);
-        return { passed, result: "Receipt hash matches · attribution policy satisfied · issuer signature valid." };
+        return { passed, result: t("demo.check.receipt.result.passed") };
       },
     ),
   ]);
@@ -254,50 +268,50 @@ export async function verifyBuildWeekDemoFixture(
     {
       id: "delegate",
       number: "01",
-      title: "Delegate the local research Agent",
-      actor: "Reference researcher Person",
+      title: t("demo.journey.delegate.title"),
+      actor: t("demo.journey.delegate.actor"),
       actorMode: "local_reference",
-      detail: "A Person signature grants one local Agent formalize and prove scope for a bounded period.",
+      detail: t("demo.journey.delegate.detail"),
       evidence: checkedFixture.delegation.payloadHash,
       passed: checksById.get("delegation") === true,
     },
     {
       id: "bundle",
       number: "02",
-      title: "Package the minimum reproducible workspace",
-      actor: "Local Codex Agent",
+      title: t("demo.journey.bundle.title"),
+      actor: t("demo.journey.bundle.actor"),
       actorMode: "local_reference",
-      detail: "The Agent signs the target, Git commit, Lean environment, patch, file tree and no-sorry policy.",
+      detail: t("demo.journey.bundle.detail"),
       evidence: bundleHash,
       passed: checksById.get("bundle") === true && checksById.get("objects") === true,
     },
     {
       id: "lean",
       number: "03",
-      title: "Replay the exact Lean entry file",
-      actor: "Local Lean fixture",
+      title: t("demo.journey.lean.title"),
+      actor: t("demo.journey.lean.actor"),
       actorMode: "local_reference",
-      detail: "The checked fixture was executed by Lean locally; this request verifies the signed result but does not start Lean again.",
+      detail: t("demo.journey.lean.detail"),
       evidence: checkedFixture.runner.result.requestHash,
       passed: checksById.get("runner") === true,
     },
     {
       id: "review",
       number: "04",
-      title: "Review from a different owner",
-      actor: "Mock Reviewer Person",
+      title: t("demo.journey.review.title"),
+      actor: t("demo.journey.review.actor"),
       actorMode: "mock_second_account",
-      detail: "The second account is simulated for the demo, but owns a distinct Ed25519 review key and signs real protocol attestations.",
+      detail: t("demo.journey.review.detail"),
       evidence: mockReviewerAttestations[0]?.payloadHash ?? bundleHash,
       passed: checksById.get("review") === true,
     },
     {
       id: "receipt",
       number: "05",
-      title: "Issue an attributable Receipt",
-      actor: "Proofweave reference issuer",
+      title: t("demo.journey.receipt.title"),
+      actor: t("demo.journey.receipt.actor"),
       actorMode: "protocol_issuer",
-      detail: "Receipt policy binds the Person, Agent, Bundle, kernel result and different-owner claims into one signed record.",
+      detail: t("demo.journey.receipt.detail"),
       evidence: receiptHash,
       passed: checksById.get("receipt") === true,
     },
@@ -319,7 +333,7 @@ export async function verifyBuildWeekDemoFixture(
       evidenceSource: "checked_in_reference_fixture",
       signedEvidenceReverified: true,
       leanReplay: "not_run_by_this_request",
-      statement: "This request re-hashes current evidence bytes and re-verifies signatures and policy. It verifies the recorded Runner result; it does not execute Lean again.",
+      statement: t("demo.executionBoundary"),
     },
     record: {
       target: checkedFixture.bundle.target.declaration,
@@ -345,16 +359,18 @@ export async function verifyBuildWeekDemoFixture(
       status: "receipt_derived_preview_not_settled",
       unit: "non_transferable_research_credit",
       transferable: false,
-      researcher: [{ label: "Certified lemma", value: checksById.get("receipt") === true ? 1 : 0 }],
-      mockReviewer: [{ label: "Independent verification claims", value: checksById.get("receipt") === true ? mockReviewerAttestations.length : 0 }],
+      researcher: [{ label: t("demo.credit.certifiedLemma"), value: checksById.get("receipt") === true ? 1 : 0 }],
+      mockReviewer: [{ label: t("demo.credit.independentClaims"), value: checksById.get("receipt") === true ? mockReviewerAttestations.length : 0 }],
     },
-    disclosure: `${checkedFixture.disclosure} The second reviewer account is a labeled deterministic mock; its key separation and signatures are checked by the real protocol.`,
+    disclosure: locale === "en"
+      ? `${checkedFixture.disclosure} The second reviewer account is a labeled deterministic mock; its key separation and signatures are checked by the real protocol.`
+      : t("demo.disclosure"),
   };
 }
 
 async function check(
   descriptor: Omit<DemoVerificationCheck, "passed" | "result" | "durationMs"> & { failureResult: string },
-  verify: () => Promise<{ passed: boolean; result: string }>,
+  verify: () => Promise<{ passed: boolean; result: string; failureResult?: string }>,
 ): Promise<DemoVerificationCheck> {
   const started = preciseNow();
   try {
@@ -367,7 +383,7 @@ async function check(
       input: descriptor.input,
       evidence: descriptor.evidence,
       passed: evaluation.passed,
-      result: evaluation.passed ? evaluation.result : descriptor.failureResult,
+      result: evaluation.passed ? evaluation.result : (evaluation.failureResult ?? descriptor.failureResult),
       durationMs: roundDuration(preciseNow() - started),
     };
   } catch {

@@ -1,0 +1,421 @@
+{
+  "familyNumber": "078",
+  "familyTitle": "The three-dimensional Bochner–Riesz conjecture",
+  "manuscripts": [
+    {
+      "id": "Bochner-Riesz-Multipliers-in-Three-Dimensions-September-24-2026",
+      "title": "Bochner–Riesz multipliers in three dimensions",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Bochner-Riesz-Multipliers-in-Three-Dimensions-September-24-2026/Bochner-Riesz-Multipliers-in-Three-Dimensions-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Finite entropy, conditioning, and passage to profiles",
+    "The planar projection estimate",
+    "Extremal positive transport and its aspect",
+    "Exclusion of isotropic extremizers",
+    "The matched plane and its traces",
+    "Rate transfer at matched clocks",
+    "Closure of the classical growth argument",
+    "Packet scores and finite decompositions",
+    "Finite packet composition and the uncertainty boundary",
+    "Finite packet repayment and closure",
+    "Oscillatory integrals and Bochner--Riesz multipliers"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-bochner-riesz",
+      "kind": "theorem",
+      "label": "For every >0 , there is a finite constant C_ such that T_ f_ L^3(^3) C_ f_…",
+      "statement": "For every >0 , there is a finite constant C_ such that T_ f_ L^3(^3) C_ f_ L^3(^3) (f S(^3)). Consequently T_ has a unique bounded extension to L^3(^3) .",
+      "section": "Introduction",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-entropy-restriction",
+      "kind": "lemma",
+      "label": "Determination, masses, and restriction",
+      "statement": "[Determination, masses, and restriction] Let A,B,D,T be finite observations. Then (T;B)&(T;A)+(B A), \\\\ |(B T)-(A T)| &(B A)+(A B). If, outside an event of probability , B has at most N possible…",
+      "section": "Finite entropy, conditioning, and passage to profiles",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-typical-conditioning",
+      "kind": "lemma",
+      "label": "Domination and conditioning on typical cells",
+      "statement": "[Domination and conditioning on typical cells] Let U, V be probability laws on the same finite space with U A V , A1 , and let C be a finite observation. For 0<<1 , U_C\\ c: U_C(c)< V_C(c)\\ . At every…",
+      "section": "Finite entropy, conditioning, and passage to profiles",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-entropy-splitting",
+      "kind": "lemma",
+      "label": "Finite splitting and resampling",
+      "statement": "[Finite splitting and resampling] For any finite tag Q , 0(D B)-(D B,Q)&(Q),\\\\ |(T;D Q)-(T;D)|&(Q),\\\\ (U;V Z,Q)&(U;V Z)+(Q). The conditional quantities on the left are averages of the quantities on…",
+      "section": "Finite entropy, conditioning, and passage to profiles",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-homogenization",
+      "kind": "lemma",
+      "label": "Finite homogenization",
+      "statement": "[Finite homogenization] Fix a law P , a finite list (X_j,Y_j) , 1 j q , and numbers A_j0 such that | Y_j|^ -A_j . There is no cardinality assumption on X_j . For a,,>0 , there are disjoint events E_z…",
+      "section": "Finite entropy, conditioning, and passage to profiles",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-zero-information",
+      "kind": "lemma",
+      "label": "Zero information and product domination",
+      "statement": "[Zero information and product domination] Let be a law and let be a comparison probability law with . Write L=d/d and D=() . For every v>0 , ( L>v)D+1/e v . Consequently, if D=o() , there is v=o()…",
+      "section": "Finite entropy, conditioning, and passage to profiles",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-marginal-core",
+      "kind": "lemma",
+      "label": "Simultaneous replacement by actual marginals",
+      "statement": "[Simultaneous replacement by actual marginals] Let be a subprobability of mass m>0 on a finite space. For 1 l r , suppose a tuple of observations (F_ l1 ,,F_ lk_l ) satisfies _ F_ l1 ,,F_ lk_l A_l_…",
+      "section": "Finite entropy, conditioning, and passage to profiles",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-thm-finite-conditioning",
+      "kind": "theorem",
+      "label": "Finite stars and conditioning with named comparison laws",
+      "statement": "[Finite stars and conditioning with named comparison laws] Let (p,b) be a probability law with =_P , =_B . Let E be an allowed set with (E)1- and suppose 1_E(p,b)(p,b) K(p)(b), K1. Choose 0<<1 with…",
+      "section": "Finite entropy, conditioning, and passage to profiles",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-cor-point-slicing",
+      "kind": "corollary",
+      "label": "Point slicing after a fixed-label core",
+      "statement": "[Point slicing after a fixed-label core] Fix the values of some labels. On that fiber let be a retained probability law of a point P and free labels (B_j)_ j F , with \\[ A_P_ j F _j. \\] The…",
+      "section": "Finite entropy, conditioning, and passage to profiles",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-profile-diagonal",
+      "kind": "lemma",
+      "label": "Profiles, countable homogenization, and diagonals",
+      "statement": "[Profiles, countable homogenization, and diagonals] The following three statements hold. Suppose for each 0 there is a countable list (X_j,Y_j)_ j1 , with | Y_j|^ -A_j for each fixed j . One can…",
+      "section": "Finite entropy, conditioning, and passage to profiles",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-thm-ren-wang",
+      "kind": "theorem",
+      "label": "Ren--Wang, discrete form",
+      "statement": "[Ren--Wang, discrete form] Fix \\(0<s1\\), \\(0<d2\\), and \\(>0\\). There are \\(_0=_0(,s,d)>0\\) and \\(_0=_0(,s,d)>0\\) with the following property. Suppose \\( P\\) is a nonempty \\((,d,^ -_0 )\\)-set of…",
+      "section": "The planar projection estimate",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-thm-planar-projection",
+      "kind": "theorem",
+      "label": "Weighted projection bound with parameter tags",
+      "statement": "[Weighted projection bound with parameter tags] Fix \\(0<d2\\), \\(0<s1\\), and \\(>0\\), and fixed bounded point and slope domains. There are \\(>0\\) and \\(_1>0\\) such that the following holds for…",
+      "section": "The planar projection estimate",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-thm-classical-growth",
+      "kind": "theorem",
+      "label": "Positive-transport growth",
+      "statement": "[Positive-transport growth] For the aperture systems of Definition~ , the rate in satisfies .",
+      "section": "Extremal positive transport and its aspect",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-classical-splitting",
+      "kind": "lemma",
+      "label": "Splitting saturated laws",
+      "statement": "[Splitting saturated laws] Let Z be a finite tag. If = t+_L(T)- F_t(G) , and _z is the corresponding deficit for the law conditional on Z=z , then \\[ _Z+3(Z). \\] In particular subpower splittings…",
+      "section": "Extremal positive transport and its aspect",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-classical-cap-regularization",
+      "kind": "lemma",
+      "label": "Greedy cap regularization",
+      "statement": "[Greedy cap regularization] After a subpower splitting and removal of probability o(1) , a particle law can be restricted to classes with a bounded number h such that _T(cap(D)) ^ w(D)-h-o(1) ,…",
+      "section": "Extremal positive transport and its aspect",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-classical-localization",
+      "kind": "lemma",
+      "label": "Localization and composition",
+      "statement": "[Localization and composition] Let G have fixed shape (b,a) at t , put e=a-b , and fix 0 r<t , 0 d e . Let J be the aperture at r of shape (b,b+d) whose frame is the depth- d prefix of the frame of G…",
+      "section": "Extremal positive transport and its aspect",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-prop-least-aspect",
+      "kind": "proposition",
+      "label": "Least-aspect limiting extremizer",
+      "statement": "[Least-aspect limiting extremizer] There exists a saturated sequence at duration one with b=0 , endpoint aspect e=m , and horizon 1+m , where m0 is the least aspect of any such saturated sequence.…",
+      "section": "Extremal positive transport and its aspect",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-prop-saturated-path",
+      "kind": "proposition",
+      "label": "Saturated path and coherence",
+      "statement": "[Saturated path and coherence] The sequence in Proposition~ can carry, on one joint law of (T,c) , saturated observations G_u at every positive dyadic time u1 . Their shapes satisfy \\[ b(1)=0,…",
+      "section": "Extremal positive transport and its aspect",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-prop-isotropic-reduction",
+      "kind": "proposition",
+      "label": "Tangent reduction",
+      "statement": "[Tangent reduction] One of the following alternatives holds for the least aspect m . If m=0 , there is a saturated sequence of duration and horizon one, with isotropic endpoint (b,a)=(0,0) and…",
+      "section": "Extremal positive transport and its aspect",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-prop-isotropic-exclusion",
+      "kind": "proposition",
+      "label": "Isotropic exclusion",
+      "statement": "[Isotropic exclusion] Suppose that 0<<1 and that the classical universal growth rate satisfies > . There is no saturated isotropic system of duration and horizon 1 furnished by Proposition~ , with…",
+      "section": "Exclusion of isotropic extremizers",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-isotropic-intercepts",
+      "kind": "lemma",
+      "label": "Counting intercepts on retained fibers",
+      "statement": "[Counting intercepts on retained fibers] Suppose an incidence population uses at most N point cells. For every retained exact particle and slope bin incident to it, suppose there are at least m…",
+      "section": "Exclusion of isotropic extremizers",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-isotropic-grid-projections",
+      "kind": "lemma",
+      "label": "Two elementary projection inequalities",
+      "statement": "[Two elementary projection inequalities] Let E be a set of occupied -cells in a fixed bounded region. In ^3 , let v_1,v_2,v_3^2 be bounded slopes and put D= ((1,v_1),(1,v_2),(1,v_3))>0 . If _ v_i (E)…",
+      "section": "Exclusion of isotropic extremizers",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-thm-characteristic-trace",
+      "kind": "theorem",
+      "label": "Characteristic-plane traces",
+      "statement": "[Characteristic-plane traces] Suppose f is locally Lipschitz on D , and, in its interior, \\[ 0 f_j d_j, 0 f_v d_v, f_ jk 0\\ (j k), f_ jv 0 \\] in the distributional sense. The derivative bounds may…",
+      "section": "The matched plane and its traces",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-cor-finite-characteristic-trace",
+      "kind": "corollary",
+      "label": "Quantified finite profile approximation",
+      "statement": "[Quantified finite profile approximation] Assume Theorem~ , and let f_ f locally uniformly on D along the sequence of finite systems under consideration. Fix a bounded measurable base patch Q of…",
+      "section": "The matched plane and its traces",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-curve-traces",
+      "kind": "lemma",
+      "label": "Transverse traces on a Lipschitz curve",
+      "statement": "[Transverse traces on a Lipschitz curve] Let b be Lipschitz on an interval J , and let =\\ (b(u),u):u J\\ lie in an open plane region. Suppose bounded fields a_j,D in this region satisfy V_ja_j M_ loc…",
+      "section": "The matched plane and its traces",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-prop-rate-transfer",
+      "kind": "proposition",
+      "label": "Matched-clock rate transfer",
+      "statement": "[Matched-clock rate transfer] For almost every point (i,u) of the characteristic plane with i>0 and 0<u<1 , put s=S'(u) . There is a constant >0 , depending only on the matched process and m , for…",
+      "section": "Rate transfer at matched clocks",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-affine-block-core",
+      "kind": "lemma",
+      "label": "A finite core for a point--parameter law and its coordinates",
+      "statement": "[A finite core for a point--parameter law and its coordinates] Fix an integer k1 . Let p^0 be a probability law on a finite pair space P . Write ^0=p^0_P and ^0=p^0_ . Let Q_j=Q_j(P,) , 1 j k , be…",
+      "section": "Rate transfer at matched clocks",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-prop-directional-bootstrap",
+      "kind": "proposition",
+      "label": "Directional bootstrap",
+      "statement": "[Directional bootstrap] Let 0<s1 . Let a sequence of pair laws of bounded planar parameters (A,B) be dominated, with subpower loss at precision , by the product of two populations having conditional…",
+      "section": "Rate transfer at matched clocks",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-closure-contact-tuples",
+      "kind": "lemma",
+      "label": "Contact tuples",
+      "statement": "[Contact tuples] At almost every u_0(0,1) , set \\[ b_0=b(u_0), p=-b'(u_0), s=S'(u_0). \\] The following assertions hold on each side of the contact curve that lies inward from the aperture boundary.…",
+      "section": "Closure of the classical growth argument",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-closure-positive-x",
+      "kind": "lemma",
+      "label": "Positive X rate",
+      "statement": "[Positive X rate] At the contact points of Lemma~ , x^- if p>0 . If p=0 , an admissible plus tuple can be chosen with x>0 .",
+      "section": "Closure of the classical growth argument",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-closure-sign-algebra",
+      "kind": "lemma",
+      "label": "Algebraic rate bounds",
+      "statement": "[Algebraic rate bounds] Let m>0 , 0<s1 , and let a rate tuple obey the capacity bounds and the implications of Proposition~ . Put p_*=(1+m)/2 . Then x>0,\\ z<1& F(p_*)1+s, \\\\ x>0,\\ z=1& F(0)1+s, \\\\…",
+      "section": "Closure of the classical growth argument",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-thm-packet-growth",
+      "kind": "theorem",
+      "label": "Packet growth",
+      "statement": "[Packet growth] For the phase class -- , \\(/2\\). Equivalently, for fixed admissible depth parameters and uniform bounds on the data, and for every \\(>0\\), there is \\(_0>0\\) such that P_t K_0+(2+)t…",
+      "section": "Packet scores and finite decompositions",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-packet-bessel",
+      "kind": "lemma",
+      "label": "Uniform packet Bessel estimates",
+      "statement": "[Uniform packet Bessel estimates] At a fixed time anchor, packets with natural spacings \\(\\) in velocity and \\(=()^ -1 \\) in position satisfy _O m_O(f) C\\|f\\|_2^2, \\|_T c_T g_T\\|_2^2 C_T|c_T|^2,…",
+      "section": "Packet scores and finite decompositions",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-packet-decomposition",
+      "kind": "lemma",
+      "label": "Finite packet decomposition",
+      "statement": "[Finite packet decomposition] Fix the data bounds, admissible depths, \\(r<t\\), and \\(b_* b\\). Put \\(=u_r-b_*\\); then \\((t-r)/2>0\\). For each localization \\(J_0\\), there is a finite family of atoms…",
+      "section": "Packet scores and finite decompositions",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-cap-class",
+      "kind": "lemma",
+      "label": "Greedy cap classes",
+      "statement": "[Greedy cap classes] In a geometric localizer, bin nonnegligible coefficients so that ||c_T|^2- m| on each bin. Each bin admits a partition into classes, with a count parameter \\(g\\) and fixed…",
+      "section": "Packet scores and finite decompositions",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-prop-local-root-comparison",
+      "kind": "proposition",
+      "label": "Local root comparison",
+      "statement": "[Local root comparison] Fix a winning retained class as above, and use translated coordinates . Let \\(K_0^ loc \\) be the canonical root supremum of its input, including the norm option. Set A_J= N+32…",
+      "section": "Packet scores and finite decompositions",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-prop-packet-trivial-growth",
+      "kind": "proposition",
+      "label": "A finite upper bound for packet growth",
+      "statement": "[A finite upper bound for packet growth] The supremum \\(\\) is finite and \\(1\\). This conclusion uses no identification of the original coherent mass with a positive particle law.",
+      "section": "Packet scores and finite decompositions",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-prop-finite-packet-composition",
+      "kind": "proposition",
+      "label": "Finite packet composition",
+      "statement": "[Finite packet composition] Fix 0 r<t , a shape 0 b a(L-t,u_t) , and 0 b_* b . Choose 0<<(u_r-b_*)/4 , and make the decomposition and cap-class construction of Section~ , with the mass floor . Within…",
+      "section": "Finite packet composition and the uncertainty boundary",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-packet-boundary-slack",
+      "kind": "lemma",
+      "label": "Exclusion of a fixed uncertainty slack",
+      "statement": "[Exclusion of a fixed uncertainty slack] Assume Theorem~ and >/2 . A saturating packet law at any fixed positive duration has a=u_t+o(1) on its typical fixed-shape branches. More precisely, if…",
+      "section": "Finite packet composition and the uncertainty boundary",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-prop-boundary-alternatives",
+      "kind": "proposition",
+      "label": "Boundary alternatives and finite chains",
+      "statement": "[Boundary alternatives and finite chains] Assume >/2 . For every fixed integer q1 and every fixed M>0 , a saturation array approaching admits q successive backward cuts at times \\[ t_j=t_0-2jh>0(0 j…",
+      "section": "Finite packet composition and the uncertainty boundary",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-packet-credit-retention",
+      "kind": "lemma",
+      "label": "Retention of a conditional probability bound",
+      "statement": "[Retention of a conditional probability bound] Suppose a finite law satisfies \\((W=w P=p)^ k- \\). Let \\(A\\) have probability \\(p_A>0\\), and let \\(>0\\). Under the law conditioned on \\(A\\), the set of…",
+      "section": "Finite packet repayment and closure",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-orientation-prediction",
+      "kind": "lemma",
+      "label": "Prediction of a normal from isotropic replacements",
+      "statement": "[Prediction of a normal from isotropic replacements] Assume the elongated geometry. On \\(^ buf \\), suppose the replacement losses for the isotropic apertures of widths \\(a\\) and \\(b\\) are included in…",
+      "section": "Finite packet repayment and closure",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-orientation-alignment",
+      "kind": "lemma",
+      "label": "Alignment of the selected earlier aperture",
+      "statement": "[Alignment of the selected earlier aperture] For the elongated prepared cut, let \\(\\) be a current endpoint law supported on \\(A_ pre \\), with the frozen winner map, and let \\(d_i,R_t\\) be its…",
+      "section": "Finite packet repayment and closure",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-prop-finite-repayment",
+      "kind": "proposition",
+      "label": "Finite packet repayment",
+      "statement": "[Finite packet repayment] Fix \\(0<<1\\) and a comparison rate \\(b_ q \\). For the prepared cut constructed above, let \\(\\) bound the composition budget \\( R\\), \\(++( C)/\\), all logarithmic class,…",
+      "section": "Finite packet repayment and closure",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-packet-coherence",
+      "kind": "lemma",
+      "label": "Packet coherence on a strip or a cell",
+      "statement": "[Packet coherence on a strip or a cell] Use local coordinates with root time \\(r\\), endpoint duration \\(2h\\), and put \\[ =^u, s=^ u+h , =^ u+2h =s^2/, _ loc =s^ -2 . \\] Fixed multiplicative errors in…",
+      "section": "Finite packet repayment and closure",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-thm-oscillatory-estimate",
+      "kind": "theorem",
+      "label": "Oscillatory integral estimate",
+      "statement": "[Oscillatory integral estimate] Fix bounded input and output regions K_v,K_x^2 . For the input patch K_v , fix a class of smooth real phases satisfying the phase assumptions of Section~ , with common…",
+      "section": "Oscillatory integrals and Bochner--Riesz multipliers",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-br-kernel",
+      "kind": "lemma",
+      "label": "Endpoint expansion of the kernel",
+      "statement": "[Endpoint expansion of the kernel] The kernel is bounded on ^3 . For R1 it has an expansion K_(Re_3)=e^ 2 iR b_+(R)+e^ -2 iR b_-(R), |b_^ (j) (R)| C_ ,j R^ -2--j (j0). In particular K_ L^1(^3)…",
+      "section": "Oscillatory integrals and Bochner--Riesz multipliers",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-lem-br-complex-order",
+      "kind": "lemma",
+      "label": "Complex orders from a real order",
+      "statement": "[Complex orders from a real order] For z>0 and R>0 , let T_ z,R have multiplier (1-||^2/R^2)_+^z , and write T_z=T_ z,1 . Suppose r>0 and T_r is bounded on L^q for 1 q< . If a>r and N is an integer…",
+      "section": "Oscillatory integrals and Bochner--Riesz multipliers",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    },
+    {
+      "id": "m1-cor-full-bochner-riesz",
+      "kind": "corollary",
+      "label": "Strict Bochner--Riesz range in three dimensions",
+      "statement": "[Strict Bochner--Riesz range in three dimensions] Let 1 p and >\\ 0,\\,3|1p-12|-12\\ . Then the multiplier (1-||^2)_+^ is bounded on L^p(^3) . The same bounds hold uniformly for every positive radius…",
+      "section": "Oscillatory integrals and Bochner--Riesz multipliers",
+      "manuscript": "Bochner–Riesz multipliers in three dimensions"
+    }
+  ],
+  "edges": []
+}

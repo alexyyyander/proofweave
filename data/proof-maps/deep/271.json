@@ -1,0 +1,1004 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "271",
+  "title": "Bloch's law, its lattice correction, and the spherical magnetization law",
+  "result": {
+    "id": "paper-result",
+    "label": "Bloch's law, its lattice correction, and the spherical magnetization law",
+    "statement": "Proves Bloch's T 3/2 law with its exact coefficient for three-dimensional quantum Heisenberg ferromagnets at every positive quantum spin, allowing nonnegative symmetric finite-range couplings whose support generates ℤ 3 . The thermodynamic limit precedes the zero-field derivative and low-temperature limit. The family also proves spontaneous magnetization for nearest-neighbor models in every dimension d ≥ 3 and determines the first lattice correction for three-dimensional nearest-neighbor couplings.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exchange-pictures-and-pinned-returns",
+      "label": "Exchange pictures and pinned returns",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "kernels-and-the-geometry-of-available-slots",
+      "label": "Kernels and the geometry of available slots",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-uniform-sparse-pin-estimate",
+      "label": "A uniform sparse-pin estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-long-return-remainder",
+      "label": "The long-return remainder",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-returns-and-the-bloch-coefficient",
+      "label": "Finite returns and the Bloch coefficient",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-pinned-returns-to-spontaneous-magnetization",
+      "label": "From pinned returns to spontaneous magnetization",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "pinned-cycles-and-the-return-walk",
+      "label": "Pinned cycles and the return walk",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-capacity-comparison-on-one-period",
+      "label": "A capacity comparison on one period",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "sparse-obstacles-and-local-propagation",
+      "label": "Sparse obstacles and local propagation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-ideal-potential-and-its-profiles",
+      "label": "The ideal potential and its profiles",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "comparison-sources-and-their-cancellation",
+      "label": "Comparison sources and their cancellation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-scalar-error-at-the-trial-potential",
+      "label": "The scalar error at the trial potential",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "residuals-in-the-dual-energy-norm",
+      "label": "Residuals in the dual energy norm",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "from-the-pinned-comparison-to-magnetization",
+      "label": "From the pinned comparison to magnetization",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exchange-cycles-pins-and-zero-free-traces",
+      "label": "Exchange cycles, pins, and zero-free traces",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "sparse-pins-on-the-torus",
+      "label": "Sparse pins on the torus",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "spatial-comparison-at-a-vanishing-field",
+      "label": "Spatial comparison at a vanishing field",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "removing-the-field-and-comparing-spatial-scales",
+      "label": "Removing the field and comparing spatial scales",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "equilibrium-states-and-vanishing-replica-cross-terms",
+      "label": "Equilibrium states and vanishing replica cross terms",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "pressure-tangents-and-the-equilibrium-magnetization-radius",
+      "label": "Pressure tangents and the equilibrium magnetization radius",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions",
+      "title": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Blochs-Law-for-Finite-Range-Heisenberg-Ferromagnets-in-Three-Dimensions-October-5-2026/bloch-law-heisenberg.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-loop-representation",
+          "role": "exchange-pictures-and-pinned-returns",
+          "label": "proposition m1-prop-loop-representation",
+          "fullLabel": "proposition m1-prop-loop-representation",
+          "kind": "proposition",
+          "source": "Exchange pictures and pinned returns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-dense-boundary",
+          "role": "exchange-pictures-and-pinned-returns",
+          "label": "lemma m1-lem-dense-boundary",
+          "fullLabel": "lemma m1-lem-dense-boundary",
+          "kind": "lemma",
+          "source": "Exchange pictures and pinned returns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-factorial",
+          "role": "exchange-pictures-and-pinned-returns",
+          "label": "lemma m1-lem-factorial",
+          "fullLabel": "lemma m1-lem-factorial",
+          "kind": "lemma",
+          "source": "Exchange pictures and pinned returns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-pin-identities",
+          "role": "exchange-pictures-and-pinned-returns",
+          "label": "proposition m1-prop-pin-identities",
+          "fullLabel": "proposition m1-prop-pin-identities",
+          "kind": "proposition",
+          "source": "Exchange pictures and pinned returns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-exposure",
+          "role": "exchange-pictures-and-pinned-returns",
+          "label": "proposition m1-prop-exposure",
+          "fullLabel": "proposition m1-prop-exposure",
+          "kind": "proposition",
+          "source": "Exchange pictures and pinned returns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-exterior-moments",
+          "role": "exchange-pictures-and-pinned-returns",
+          "label": "lemma m1-lem-exterior-moments",
+          "fullLabel": "lemma m1-lem-exterior-moments",
+          "kind": "lemma",
+          "source": "Exchange pictures and pinned returns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-next-pin-kernel",
+          "role": "exchange-pictures-and-pinned-returns",
+          "label": "proposition m1-prop-next-pin-kernel",
+          "fullLabel": "proposition m1-prop-next-pin-kernel",
+          "kind": "proposition",
+          "source": "Exchange pictures and pinned returns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-fresh-walk",
+          "role": "exchange-pictures-and-pinned-returns",
+          "label": "proposition m1-prop-fresh-walk",
+          "fullLabel": "proposition m1-prop-fresh-walk",
+          "kind": "proposition",
+          "source": "Exchange pictures and pinned returns",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-nash",
+          "role": "kernels-and-the-geometry-of-available-slots",
+          "label": "proposition m1-prop-nash",
+          "fullLabel": "proposition m1-prop-nash",
+          "kind": "proposition",
+          "source": "Kernels and the geometry of available slots",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-routed-flow",
+          "role": "kernels-and-the-geometry-of-available-slots",
+          "label": "lemma m1-lem-routed-flow",
+          "fullLabel": "lemma m1-lem-routed-flow",
+          "kind": "lemma",
+          "source": "Kernels and the geometry of available slots",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-sparse-energy",
+          "role": "kernels-and-the-geometry-of-available-slots",
+          "label": "proposition m1-prop-sparse-energy",
+          "fullLabel": "proposition m1-prop-sparse-energy",
+          "kind": "proposition",
+          "source": "Kernels and the geometry of available slots",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-near-flow",
+          "role": "kernels-and-the-geometry-of-available-slots",
+          "label": "lemma m1-lem-near-flow",
+          "fullLabel": "lemma m1-lem-near-flow",
+          "kind": "lemma",
+          "source": "Kernels and the geometry of available slots",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-spread-energy",
+          "role": "kernels-and-the-geometry-of-available-slots",
+          "label": "proposition m1-prop-spread-energy",
+          "fullLabel": "proposition m1-prop-spread-energy",
+          "kind": "proposition",
+          "source": "Kernels and the geometry of available slots",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-blocking",
+          "role": "a-uniform-sparse-pin-estimate",
+          "label": "lemma m1-lem-blocking",
+          "fullLabel": "lemma m1-lem-blocking",
+          "kind": "lemma",
+          "source": "A uniform sparse-pin estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-component-tail",
+          "role": "a-uniform-sparse-pin-estimate",
+          "label": "lemma m1-lem-component-tail",
+          "fullLabel": "lemma m1-lem-component-tail",
+          "kind": "lemma",
+          "source": "A uniform sparse-pin estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-irregularity",
+          "role": "a-uniform-sparse-pin-estimate",
+          "label": "proposition m1-prop-irregularity",
+          "fullLabel": "proposition m1-prop-irregularity",
+          "kind": "proposition",
+          "source": "A uniform sparse-pin estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-localization",
+          "role": "a-uniform-sparse-pin-estimate",
+          "label": "lemma m1-lem-localization",
+          "fullLabel": "lemma m1-lem-localization",
+          "kind": "lemma",
+          "source": "A uniform sparse-pin estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-diffusion",
+          "role": "a-uniform-sparse-pin-estimate",
+          "label": "proposition m1-prop-diffusion",
+          "fullLabel": "proposition m1-prop-diffusion",
+          "kind": "proposition",
+          "source": "A uniform sparse-pin estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-hitting-energy",
+          "role": "a-uniform-sparse-pin-estimate",
+          "label": "lemma m1-lem-hitting-energy",
+          "fullLabel": "lemma m1-lem-hitting-energy",
+          "kind": "lemma",
+          "source": "A uniform sparse-pin estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-suffix-energy",
+          "role": "a-uniform-sparse-pin-estimate",
+          "label": "lemma m1-lem-suffix-energy",
+          "fullLabel": "lemma m1-lem-suffix-energy",
+          "kind": "lemma",
+          "source": "A uniform sparse-pin estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-sparse-pins",
+          "role": "a-uniform-sparse-pin-estimate",
+          "label": "theorem m1-thm-sparse-pins",
+          "fullLabel": "theorem m1-thm-sparse-pins",
+          "kind": "theorem",
+          "source": "A uniform sparse-pin estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-return-expansion",
+          "role": "the-long-return-remainder",
+          "label": "lemma m1-lem-return-expansion",
+          "fullLabel": "lemma m1-lem-return-expansion",
+          "kind": "lemma",
+          "source": "The long-return remainder",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-long-tail",
+          "role": "the-long-return-remainder",
+          "label": "proposition m1-prop-long-tail",
+          "fullLabel": "proposition m1-prop-long-tail",
+          "kind": "proposition",
+          "source": "The long-return remainder",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-singleton-bound",
+          "role": "the-long-return-remainder",
+          "label": "corollary m1-cor-singleton-bound",
+          "fullLabel": "corollary m1-cor-singleton-bound",
+          "kind": "corollary",
+          "source": "The long-return remainder",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ideal-kernel",
+          "role": "finite-returns-and-the-bloch-coefficient",
+          "label": "lemma m1-lem-ideal-kernel",
+          "fullLabel": "lemma m1-lem-ideal-kernel",
+          "kind": "lemma",
+          "source": "Finite returns and the Bloch coefficient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-finite-word",
+          "role": "finite-returns-and-the-bloch-coefficient",
+          "label": "proposition m1-prop-finite-word",
+          "fullLabel": "proposition m1-prop-finite-word",
+          "kind": "proposition",
+          "source": "Finite returns and the Bloch coefficient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-return-bounds",
+          "role": "finite-returns-and-the-bloch-coefficient",
+          "label": "theorem m1-thm-return-bounds",
+          "fullLabel": "theorem m1-thm-return-bounds",
+          "kind": "theorem",
+          "source": "Finite returns and the Bloch coefficient",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-pressure-equivalence",
+          "role": "from-pinned-returns-to-spontaneous-magnetization",
+          "label": "proposition m1-prop-pressure-equivalence",
+          "fullLabel": "proposition m1-prop-pressure-equivalence",
+          "kind": "proposition",
+          "source": "From pinned returns to spontaneous magnetization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-pin-mixture",
+          "role": "from-pinned-returns-to-spontaneous-magnetization",
+          "label": "lemma m1-lem-pin-mixture",
+          "fullLabel": "lemma m1-lem-pin-mixture",
+          "kind": "lemma",
+          "source": "From pinned returns to spontaneous magnetization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "The first lattice correction to Bloch's law",
+      "title": "The first lattice correction to Bloch's law",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-first-lattice-correction-to-Blochs-law-October-5-2026/first-lattice-correction-bloch-law.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The first lattice correction to Bloch's law.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-expansion",
+          "role": "introduction",
+          "label": "corollary m2-cor-expansion",
+          "fullLabel": "corollary m2-cor-expansion",
+          "kind": "corollary",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-loopinputs",
+          "role": "pinned-cycles-and-the-return-walk",
+          "label": "proposition m2-prop-loopinputs",
+          "fullLabel": "proposition m2-prop-loopinputs",
+          "kind": "proposition",
+          "source": "Pinned cycles and the return walk",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-kernelenergy",
+          "role": "pinned-cycles-and-the-return-walk",
+          "label": "lemma m2-lem-kernelenergy",
+          "fullLabel": "lemma m2-lem-kernelenergy",
+          "kind": "lemma",
+          "source": "Pinned cycles and the return walk",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-comparison",
+          "role": "a-capacity-comparison-on-one-period",
+          "label": "proposition m2-prop-comparison",
+          "fullLabel": "proposition m2-prop-comparison",
+          "kind": "proposition",
+          "source": "A capacity comparison on one period",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-capacity",
+          "role": "a-capacity-comparison-on-one-period",
+          "label": "lemma m2-lem-capacity",
+          "fullLabel": "lemma m2-lem-capacity",
+          "kind": "lemma",
+          "source": "A capacity comparison on one period",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-geometryinputs",
+          "role": "sparse-obstacles-and-local-propagation",
+          "label": "proposition m2-prop-geometryinputs",
+          "fullLabel": "proposition m2-prop-geometryinputs",
+          "kind": "proposition",
+          "source": "Sparse obstacles and local propagation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-snapshot",
+          "role": "sparse-obstacles-and-local-propagation",
+          "label": "proposition m2-prop-snapshot",
+          "fullLabel": "proposition m2-prop-snapshot",
+          "kind": "proposition",
+          "source": "Sparse obstacles and local propagation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-isolatedpath",
+          "role": "sparse-obstacles-and-local-propagation",
+          "label": "lemma m2-lem-isolatedpath",
+          "fullLabel": "lemma m2-lem-isolatedpath",
+          "kind": "lemma",
+          "source": "Sparse obstacles and local propagation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-good",
+          "role": "sparse-obstacles-and-local-propagation",
+          "label": "proposition m2-prop-good",
+          "fullLabel": "proposition m2-prop-good",
+          "kind": "proposition",
+          "source": "Sparse obstacles and local propagation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-heatbound",
+          "role": "sparse-obstacles-and-local-propagation",
+          "label": "lemma m2-lem-heatbound",
+          "fullLabel": "lemma m2-lem-heatbound",
+          "kind": "lemma",
+          "source": "Sparse obstacles and local propagation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-localization",
+          "role": "sparse-obstacles-and-local-propagation",
+          "label": "lemma m2-lem-localization",
+          "fullLabel": "lemma m2-lem-localization",
+          "kind": "lemma",
+          "source": "Sparse obstacles and local propagation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-flowoverlap",
+          "role": "sparse-obstacles-and-local-propagation",
+          "label": "lemma m2-lem-flowoverlap",
+          "fullLabel": "lemma m2-lem-flowoverlap",
+          "kind": "lemma",
+          "source": "Sparse obstacles and local propagation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-freebounds",
+          "role": "the-ideal-potential-and-its-profiles",
+          "label": "lemma m2-lem-freebounds",
+          "fullLabel": "lemma m2-lem-freebounds",
+          "kind": "lemma",
+          "source": "The ideal potential and its profiles",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-signedsource",
+          "role": "comparison-sources-and-their-cancellation",
+          "label": "lemma m2-lem-signedsource",
+          "fullLabel": "lemma m2-lem-signedsource",
+          "kind": "lemma",
+          "source": "Comparison sources and their cancellation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cancellation",
+          "role": "comparison-sources-and-their-cancellation",
+          "label": "lemma m2-lem-cancellation",
+          "fullLabel": "lemma m2-lem-cancellation",
+          "kind": "lemma",
+          "source": "Comparison sources and their cancellation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sourcebins",
+          "role": "comparison-sources-and-their-cancellation",
+          "label": "lemma m2-lem-sourcebins",
+          "fullLabel": "lemma m2-lem-sourcebins",
+          "kind": "lemma",
+          "source": "Comparison sources and their cancellation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-duhamel",
+          "role": "comparison-sources-and-their-cancellation",
+          "label": "lemma m2-lem-duhamel",
+          "fullLabel": "lemma m2-lem-duhamel",
+          "kind": "lemma",
+          "source": "Comparison sources and their cancellation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-scalar",
+          "role": "the-scalar-error-at-the-trial-potential",
+          "label": "proposition m2-prop-scalar",
+          "fullLabel": "proposition m2-prop-scalar",
+          "kind": "proposition",
+          "source": "The scalar error at the trial potential",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-boxmoment",
+          "role": "the-scalar-error-at-the-trial-potential",
+          "label": "lemma m2-lem-boxmoment",
+          "fullLabel": "lemma m2-lem-boxmoment",
+          "kind": "lemma",
+          "source": "The scalar error at the trial potential",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-dualenergy",
+          "role": "residuals-in-the-dual-energy-norm",
+          "label": "proposition m2-prop-dualenergy",
+          "fullLabel": "proposition m2-prop-dualenergy",
+          "kind": "proposition",
+          "source": "Residuals in the dual energy norm",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-blockflow",
+          "role": "residuals-in-the-dual-energy-norm",
+          "label": "lemma m2-lem-blockflow",
+          "fullLabel": "lemma m2-lem-blockflow",
+          "kind": "lemma",
+          "source": "Residuals in the dual energy norm",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-earlysourceenergy",
+          "role": "residuals-in-the-dual-energy-norm",
+          "label": "lemma m2-lem-earlysourceenergy",
+          "fullLabel": "lemma m2-lem-earlysourceenergy",
+          "kind": "lemma",
+          "source": "Residuals in the dual energy norm",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-surfacecost",
+          "role": "from-the-pinned-comparison-to-magnetization",
+          "label": "lemma m2-lem-surfacecost",
+          "fullLabel": "lemma m2-lem-surfacecost",
+          "kind": "lemma",
+          "source": "From the pinned comparison to magnetization",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "label": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet",
+      "title": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#c98b5c",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-spherical-magnetization-law-for-the-three-dimensional-quantum-Heisenberg-ferromagnet-October-5-2026/spherical-magnetization.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m3-thm-main",
+          "role": "introduction",
+          "label": "theorem m3-thm-main",
+          "fullLabel": "theorem m3-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-pin-inputs",
+          "role": "exchange-cycles-pins-and-zero-free-traces",
+          "label": "lemma m3-lem-pin-inputs",
+          "fullLabel": "lemma m3-lem-pin-inputs",
+          "kind": "lemma",
+          "source": "Exchange cycles, pins, and zero-free traces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-next-pin",
+          "role": "exchange-cycles-pins-and-zero-free-traces",
+          "label": "lemma m3-lem-next-pin",
+          "fullLabel": "lemma m3-lem-next-pin",
+          "kind": "lemma",
+          "source": "Exchange cycles, pins, and zero-free traces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-trace-zero-free",
+          "role": "exchange-cycles-pins-and-zero-free-traces",
+          "label": "lemma m3-lem-trace-zero-free",
+          "fullLabel": "lemma m3-lem-trace-zero-free",
+          "kind": "lemma",
+          "source": "Exchange cycles, pins, and zero-free traces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-strip-maps",
+          "role": "exchange-cycles-pins-and-zero-free-traces",
+          "label": "lemma m3-lem-strip-maps",
+          "fullLabel": "lemma m3-lem-strip-maps",
+          "kind": "lemma",
+          "source": "Exchange cycles, pins, and zero-free traces",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-sparse-pins",
+          "role": "sparse-pins-on-the-torus",
+          "label": "proposition m3-prop-sparse-pins",
+          "fullLabel": "proposition m3-prop-sparse-pins",
+          "kind": "proposition",
+          "source": "Sparse pins on the torus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-lattice-inputs",
+          "role": "sparse-pins-on-the-torus",
+          "label": "lemma m3-lem-lattice-inputs",
+          "fullLabel": "lemma m3-lem-lattice-inputs",
+          "kind": "lemma",
+          "source": "Sparse pins on the torus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-torus-blocking",
+          "role": "sparse-pins-on-the-torus",
+          "label": "lemma m3-lem-torus-blocking",
+          "fullLabel": "lemma m3-lem-torus-blocking",
+          "kind": "lemma",
+          "source": "Sparse pins on the torus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-torus-diffusion",
+          "role": "sparse-pins-on-the-torus",
+          "label": "lemma m3-lem-torus-diffusion",
+          "fullLabel": "lemma m3-lem-torus-diffusion",
+          "kind": "lemma",
+          "source": "Sparse pins on the torus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-torus-flow-pairing",
+          "role": "sparse-pins-on-the-torus",
+          "label": "lemma m3-lem-torus-flow-pairing",
+          "fullLabel": "lemma m3-lem-torus-flow-pairing",
+          "kind": "lemma",
+          "source": "Sparse pins on the torus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-cor-positive-magnetization",
+          "role": "sparse-pins-on-the-torus",
+          "label": "corollary m3-cor-positive-magnetization",
+          "fullLabel": "corollary m3-cor-positive-magnetization",
+          "kind": "corollary",
+          "source": "Sparse pins on the torus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-weak-field",
+          "role": "spatial-comparison-at-a-vanishing-field",
+          "label": "proposition m3-prop-weak-field",
+          "fullLabel": "proposition m3-prop-weak-field",
+          "kind": "proposition",
+          "source": "Spatial comparison at a vanishing field",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-soft-resolvent",
+          "role": "spatial-comparison-at-a-vanishing-field",
+          "label": "lemma m3-lem-soft-resolvent",
+          "fullLabel": "lemma m3-lem-soft-resolvent",
+          "kind": "lemma",
+          "source": "Spatial comparison at a vanishing field",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-hole-cancellation",
+          "role": "spatial-comparison-at-a-vanishing-field",
+          "label": "lemma m3-lem-hole-cancellation",
+          "fullLabel": "lemma m3-lem-hole-cancellation",
+          "kind": "lemma",
+          "source": "Spatial comparison at a vanishing field",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-skeleton-graph",
+          "role": "spatial-comparison-at-a-vanishing-field",
+          "label": "lemma m3-lem-skeleton-graph",
+          "fullLabel": "lemma m3-lem-skeleton-graph",
+          "kind": "lemma",
+          "source": "Spatial comparison at a vanishing field",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-bad-box-tail",
+          "role": "spatial-comparison-at-a-vanishing-field",
+          "label": "lemma m3-lem-bad-box-tail",
+          "fullLabel": "lemma m3-lem-bad-box-tail",
+          "kind": "lemma",
+          "source": "Spatial comparison at a vanishing field",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-good-box-paths",
+          "role": "spatial-comparison-at-a-vanishing-field",
+          "label": "lemma m3-lem-good-box-paths",
+          "fullLabel": "lemma m3-lem-good-box-paths",
+          "kind": "lemma",
+          "source": "Spatial comparison at a vanishing field",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-hull-comparison",
+          "role": "spatial-comparison-at-a-vanishing-field",
+          "label": "lemma m3-lem-hull-comparison",
+          "fullLabel": "lemma m3-lem-hull-comparison",
+          "kind": "lemma",
+          "source": "Spatial comparison at a vanishing field",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-cell-resolvent",
+          "role": "spatial-comparison-at-a-vanishing-field",
+          "label": "lemma m3-lem-cell-resolvent",
+          "fullLabel": "lemma m3-lem-cell-resolvent",
+          "kind": "lemma",
+          "source": "Spatial comparison at a vanishing field",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-strip-curvature",
+          "role": "removing-the-field-and-comparing-spatial-scales",
+          "label": "lemma m3-lem-strip-curvature",
+          "fullLabel": "lemma m3-lem-strip-curvature",
+          "kind": "lemma",
+          "source": "Removing the field and comparing spatial scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-zero-field",
+          "role": "removing-the-field-and-comparing-spatial-scales",
+          "label": "proposition m3-prop-zero-field",
+          "fullLabel": "proposition m3-prop-zero-field",
+          "kind": "proposition",
+          "source": "Removing the field and comparing spatial scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-scale-comparison",
+          "role": "removing-the-field-and-comparing-spatial-scales",
+          "label": "proposition m3-prop-scale-comparison",
+          "fullLabel": "proposition m3-prop-scale-comparison",
+          "kind": "proposition",
+          "source": "Removing the field and comparing spatial scales",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-variational-framework",
+          "role": "equilibrium-states-and-vanishing-replica-cross-terms",
+          "label": "proposition m3-prop-variational-framework",
+          "fullLabel": "proposition m3-prop-variational-framework",
+          "kind": "proposition",
+          "source": "Equilibrium states and vanishing replica cross terms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-ergodic-variance",
+          "role": "equilibrium-states-and-vanishing-replica-cross-terms",
+          "label": "lemma m3-lem-ergodic-variance",
+          "fullLabel": "lemma m3-lem-ergodic-variance",
+          "kind": "lemma",
+          "source": "Equilibrium states and vanishing replica cross terms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-lem-replica-cross",
+          "role": "equilibrium-states-and-vanishing-replica-cross-terms",
+          "label": "lemma m3-lem-replica-cross",
+          "fullLabel": "lemma m3-lem-replica-cross",
+          "kind": "lemma",
+          "source": "Equilibrium states and vanishing replica cross terms",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m3-prop-harmonic-tangent",
+          "role": "pressure-tangents-and-the-equilibrium-magnetization-radius",
+          "label": "proposition m3-prop-harmonic-tangent",
+          "fullLabel": "proposition m3-prop-harmonic-tangent",
+          "kind": "proposition",
+          "source": "Pressure tangents and the equilibrium magnetization radius",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Bloch's Law for Finite-Range Heisenberg Ferromagnets in Three Dimensions",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Blochs-Law-for-Finite-Range-Heisenberg-Ferromagnets-in-Three-Dimensions-October-5-2026/bloch-law-heisenberg.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The first lattice correction to Bloch's law",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-first-lattice-correction-to-Blochs-law-October-5-2026/first-lattice-correction-bloch-law.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "The spherical magnetization law for the three-dimensional quantum Heisenberg ferromagnet",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-spherical-magnetization-law-for-the-three-dimensional-quantum-Heisenberg-ferromagnet-October-5-2026/spherical-magnetization.pdf",
+      "kind": "paper"
+    }
+  ]
+}

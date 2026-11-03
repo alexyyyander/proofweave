@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "031",
+  "title": "Uchida’s conjecture for open homomorphisms of Galois groups",
+  "result": {
+    "id": "paper-result",
+    "label": "Uchida’s conjecture for open homomorphisms of Galois groups",
+    "statement": "Proves Uchida's conjecture: every continuous open homomorphism between Galois groups of possibly infinite solvably closed Galois extensions of number fields comes from a unique equivariant field embedding in the opposite direction. No restriction on the kernel or separate cyclotomic-compatibility assumption is needed.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "galois-groups-and-partial-local-correspondences",
+      "label": "Galois groups and partial local correspondences",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "additive-characters-and-frobenius-detection",
+      "label": "Additive characters and Frobenius detection",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "normalizer-extension-and-frobenius-generation",
+      "label": "Normalizer extension and Frobenius generation",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "matching-residue-characteristics",
+      "label": "Matching residue characteristics",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "identifying-the-homomorphism",
+      "label": "Identifying the homomorphism",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Open Homomorphisms of Global Solvably Closed Galois Groups",
+      "title": "Open Homomorphisms of Global Solvably Closed Galois Groups",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Open-Homomorphisms-of-Global-Solvably-Closed-Galois-Groups-October-5-2026/open-homomorphisms-solvably-closed-galois-groups.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Open Homomorphisms of Global Solvably Closed Galois Groups.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-solvable-closure"
+          ]
+        },
+        {
+          "id": "m1-lem-solvable-closure",
+          "role": "galois-groups-and-partial-local-correspondences",
+          "label": "lemma m1-lem-solvable-closure",
+          "fullLabel": "lemma m1-lem-solvable-closure",
+          "kind": "lemma",
+          "source": "Galois groups and partial local correspondences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-uchida-isomorphism",
+          "role": "galois-groups-and-partial-local-correspondences",
+          "label": "theorem m1-thm-uchida-isomorphism",
+          "fullLabel": "theorem m1-thm-uchida-isomorphism",
+          "kind": "theorem",
+          "source": "Galois groups and partial local correspondences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-centralizer",
+          "role": "galois-groups-and-partial-local-correspondences",
+          "label": "lemma m1-lem-centralizer",
+          "fullLabel": "lemma m1-lem-centralizer",
+          "kind": "lemma",
+          "source": "Galois groups and partial local correspondences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-local-correspondence",
+          "role": "galois-groups-and-partial-local-correspondences",
+          "label": "theorem m1-thm-local-correspondence",
+          "fullLabel": "theorem m1-thm-local-correspondence",
+          "kind": "theorem",
+          "source": "Galois groups and partial local correspondences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-hoshi",
+          "role": "galois-groups-and-partial-local-correspondences",
+          "label": "theorem m1-thm-hoshi",
+          "fullLabel": "theorem m1-thm-hoshi",
+          "kind": "theorem",
+          "source": "Galois groups and partial local correspondences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-norm-identity",
+          "role": "galois-groups-and-partial-local-correspondences",
+          "label": "lemma m1-lem-norm-identity",
+          "fullLabel": "lemma m1-lem-norm-identity",
+          "kind": "lemma",
+          "source": "Galois groups and partial local correspondences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-log-rank",
+          "role": "additive-characters-and-frobenius-detection",
+          "label": "lemma m1-lem-log-rank",
+          "fullLabel": "lemma m1-lem-log-rank",
+          "kind": "lemma",
+          "source": "Additive characters and Frobenius detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-character-detection",
+          "role": "additive-characters-and-frobenius-detection",
+          "label": "proposition m1-prop-character-detection",
+          "fullLabel": "proposition m1-prop-character-detection",
+          "kind": "proposition",
+          "source": "Additive characters and Frobenius detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-signed-representation",
+          "role": "additive-characters-and-frobenius-detection",
+          "label": "proposition m1-prop-signed-representation",
+          "fullLabel": "proposition m1-prop-signed-representation",
+          "kind": "proposition",
+          "source": "Additive characters and Frobenius detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-normalizer-extension",
+          "role": "normalizer-extension-and-frobenius-generation",
+          "label": "lemma m1-lem-normalizer-extension",
+          "fullLabel": "lemma m1-lem-normalizer-extension",
+          "kind": "lemma",
+          "source": "Normalizer extension and Frobenius generation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-quotient-amplification",
+          "role": "normalizer-extension-and-frobenius-generation",
+          "label": "lemma m1-lem-quotient-amplification",
+          "fullLabel": "lemma m1-lem-quotient-amplification",
+          "kind": "lemma",
+          "source": "Normalizer extension and Frobenius generation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-frobenius-generation",
+          "role": "normalizer-extension-and-frobenius-generation",
+          "label": "proposition m1-prop-frobenius-generation",
+          "fullLabel": "proposition m1-prop-frobenius-generation",
+          "kind": "proposition",
+          "source": "Normalizer extension and Frobenius generation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-normalized-map",
+          "role": "normalizer-extension-and-frobenius-generation",
+          "label": "theorem m1-thm-normalized-map",
+          "fullLabel": "theorem m1-thm-normalized-map",
+          "kind": "theorem",
+          "source": "Normalizer extension and Frobenius generation",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-finite-fibers",
+          "role": "matching-residue-characteristics",
+          "label": "lemma m1-lem-finite-fibers",
+          "fullLabel": "lemma m1-lem-finite-fibers",
+          "kind": "lemma",
+          "source": "Matching residue characteristics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-kummer-unramified",
+          "role": "matching-residue-characteristics",
+          "label": "lemma m1-lem-kummer-unramified",
+          "fullLabel": "lemma m1-lem-kummer-unramified",
+          "kind": "lemma",
+          "source": "Matching residue characteristics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-uniform-missed-primes",
+          "role": "matching-residue-characteristics",
+          "label": "proposition m1-prop-uniform-missed-primes",
+          "fullLabel": "proposition m1-prop-uniform-missed-primes",
+          "kind": "proposition",
+          "source": "Matching residue characteristics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-power-separation",
+          "role": "matching-residue-characteristics",
+          "label": "lemma m1-lem-power-separation",
+          "fullLabel": "lemma m1-lem-power-separation",
+          "kind": "lemma",
+          "source": "Matching residue characteristics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-same-characteristic",
+          "role": "matching-residue-characteristics",
+          "label": "proposition m1-prop-same-characteristic",
+          "fullLabel": "proposition m1-prop-same-characteristic",
+          "kind": "proposition",
+          "source": "Matching residue characteristics",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-identify-normalized",
+          "role": "identifying-the-homomorphism",
+          "label": "proposition m1-prop-identify-normalized",
+          "fullLabel": "proposition m1-prop-identify-normalized",
+          "kind": "proposition",
+          "source": "Identifying the homomorphism",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-prosolvable-rigidity",
+          "role": "identifying-the-homomorphism",
+          "label": "theorem m1-thm-prosolvable-rigidity",
+          "fullLabel": "theorem m1-thm-prosolvable-rigidity",
+          "kind": "theorem",
+          "source": "Identifying the homomorphism",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Open Homomorphisms of Global Solvably Closed Galois Groups",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Open-Homomorphisms-of-Global-Solvably-Closed-Galois-Groups-October-5-2026/open-homomorphisms-solvably-closed-galois-groups.pdf",
+      "kind": "paper"
+    }
+  ]
+}

@@ -5,12 +5,13 @@ import { type ReactNode } from "react";
 import { getParticipantOperationState } from "@/db";
 
 import { type ActivePage } from "./navigation";
+import { getI18n } from "@/app/i18n/server";
 
 export function personalWritesPaused(): boolean {
   return !getParticipantOperationState().writesEnabled;
 }
 
-export function ReadOnlyPersonalSurface({
+export async function ReadOnlyPersonalSurface({
   active,
   eyebrow,
   title,
@@ -23,6 +24,7 @@ export function ReadOnlyPersonalSurface({
   detail: string;
   children?: ReactNode;
 }) {
+  const { t } = await getI18n();
   return <SiteFrame className="site-shell app-shell" active={active} mainClassName="workbench-main signed-out-workbench">
       <section className="workspace-onboarding" aria-labelledby="read-only-personal-title">
         <div className="workspace-onboarding-copy">
@@ -30,14 +32,14 @@ export function ReadOnlyPersonalSurface({
           <PageTitle id="read-only-personal-title">{title}</PageTitle>
           <p>{detail}</p>
           <div className="button-row">
-            <ActionLink className="button button-primary" href="/explore">Browse public research <span aria-hidden="true">→</span></ActionLink>
-            <ActionLink className="button button-secondary" href="/demo">Open verified demo</ActionLink>
+            <ActionLink className="button button-primary" href="/explore">{t("readOnly.browse")} <span aria-hidden="true">→</span></ActionLink>
+            <ActionLink className="button button-secondary" href="/demo">{t("readOnly.demo")}</ActionLink>
           </div>
         </div>
-        <ol className="workspace-onboarding-steps" aria-label="What remains available">
-          <li><span>01</span><div><strong>Public research remains readable</strong><p>Statements, cited sources, and published verification states are still available.</p></div></li>
-          <li><span>02</span><div><strong>No personal record is changed</strong><p>Proofweave does not create placeholder identities, assignments, evidence, or connections during maintenance.</p></div></li>
-          <li><span>03</span><div><strong>Resume after maintenance</strong><p>Personal controls return only after the durable control plane can record the complete action safely.</p></div></li>
+        <ol className="workspace-onboarding-steps" aria-label={t("readOnly.aria")}>
+          <li><span>01</span><div><strong>{t("readOnly.public.title")}</strong><p>{t("readOnly.public.body")}</p></div></li>
+          <li><span>02</span><div><strong>{t("readOnly.nochange.title")}</strong><p>{t("readOnly.nochange.body")}</p></div></li>
+          <li><span>03</span><div><strong>{t("readOnly.resume.title")}</strong><p>{t("readOnly.resume.body")}</p></div></li>
         </ol>
       </section>
       {children}

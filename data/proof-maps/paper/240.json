@@ -1,0 +1,683 @@
+{
+  "familyNumber": "240",
+  "familyTitle": "Shelah's eventual categoricity and the prescribed-threshold obstruction",
+  "manuscripts": [
+    {
+      "id": "A-CH-Obstruction-to-a-Prescribed-Categoricity-Threshold-September-24-2026",
+      "title": "A CH obstruction to a prescribed categoricity threshold",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-CH-Obstruction-to-a-Prescribed-Categoricity-Threshold-September-24-2026/paper.pdf"
+    },
+    {
+      "id": "Eventual-Categoricity-for-Abstract-Elementary-Classes-September-24-2026",
+      "title": "Eventual categoricity for abstract elementary classes",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Eventual-Categoricity-for-Abstract-Elementary-Classes-September-24-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Countable diagrams and their tests",
+    "The abstract elementary class",
+    "Two models at the prescribed endpoint",
+    "A bound on uncountable base orders and categoricity on a tail",
+    "The endpoint failure and its logical scope",
+    "An obstruction to Booleanizing the canonical point",
+    "Set codes and models indexed by orders",
+    "Reversing maps on bounded tuples",
+    "Stable diagrams and amalgamation at closed levels",
+    "Working schemes and uniform comparison of diagrams",
+    "The one-dimensional calculus",
+    "Isolation and dominated extensions"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "Assume the continuum hypothesis. There is an abstract elementary class \\(K\\) in…",
+      "statement": "Assume the continuum hypothesis. There is an abstract elementary class \\(K\\) in a countable finitary relational language such that [label=( *)] \\((K)=_0\\); \\(K\\) has at least two nonisomorphic models…",
+      "section": "Introduction",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-col-coding",
+      "kind": "lemma",
+      "label": "Coding",
+      "statement": "[Coding] There are injections \\[ _k: D_k S (k1) \\] whose ranges are pairwise disjoint.",
+      "section": "Countable diagrams and their tests",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-col-quotients",
+      "kind": "lemma",
+      "label": "Maps between quotient diagrams",
+      "statement": "[Maps between quotient diagrams] Suppose the test in Definition~ passes. If \\( J\\), then the label map \\(_J\\) induces an injective map \\[ Q_ D_J Q_ D_ [k] . \\] This map preserves tags and preserves…",
+      "section": "Countable diagrams and their tests",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-aec-order-size",
+      "kind": "lemma",
+      "label": "Size of the base order",
+      "statement": "[Size of the base order] Every order \\(B\\) in a basic structure has cardinality at most \\(_1\\).",
+      "section": "The abstract elementary class",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-aec-size",
+      "kind": "lemma",
+      "label": "Size of a basic structure",
+      "statement": "[Size of a basic structure] For every basic structure \\(M\\), \\|M\\|=(|I^M|,|B^M|,_0).",
+      "section": "The abstract elementary class",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-aec-representatives",
+      "kind": "lemma",
+      "label": "Representative independence",
+      "statement": "[Representative independence] The color in is independent of \\(w\\). If \\( z, z'\\) are two row-choice systems, then, for each fixed \\(t\\), their colors \\(c_t^ z (b)\\) and \\(c_t^ z' (b)\\) agree outside…",
+      "section": "The abstract elementary class",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-aec-arrays",
+      "kind": "lemma",
+      "label": "Free realization of bit arrays",
+      "statement": "[Free realization of bit arrays] Let \\(I\\), and let \\(B\\) be an order satisfying Definition~ (a). For every family of binary sequences \\((a_ t,b 2^:t T(I),\\,b B)\\), there is a basic structure whose…",
+      "section": "The abstract elementary class",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-aec-order-coherence",
+      "kind": "lemma",
+      "label": "The class and strong relation are isomorphism invariant, \\(_K\\) is a partial…",
+      "statement": "The class and strong relation are isomorphism invariant, \\(_K\\) is a partial order whose comparisons are induced substructure inclusions, and coherence holds.",
+      "section": "The abstract elementary class",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-aec-directed",
+      "kind": "lemma",
+      "label": "Let \\((M_i:i D)\\) be a nonempty set-indexed family of objects directed under…",
+      "statement": "Let \\((M_i:i D)\\) be a nonempty set-indexed family of objects directed under strong inclusion: any two members have a common strong upper bound within the family. Its union \\(U\\) is an object, and…",
+      "section": "The abstract elementary class",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-aec-convex-hull",
+      "kind": "lemma",
+      "label": "Let \\(B\\) be a nonempty dense linear order without endpoints, with countable…",
+      "statement": "Let \\(B\\) be a nonempty dense linear order without endpoints, with countable bounded intervals. For every infinite cardinal \\(\\) and every \\(D B\\) of size at most \\(\\), there is a nonempty convex…",
+      "section": "The abstract elementary class",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-aec-ls",
+      "kind": "lemma",
+      "label": "For every \\(M C\\) and every \\(A |M|\\), there is \\(N_K M\\) such that \\(A |N|\\)…",
+      "statement": "For every \\(M C\\) and every \\(A |M|\\), there is \\(N_K M\\) such that \\(A |N|\\) and \\(\\|N\\| |A|+_0\\).",
+      "section": "The abstract elementary class",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-aec-class",
+      "kind": "theorem",
+      "label": "The pair \\(K=( C,_K)\\) of Definition~ is an abstract elementary class in a…",
+      "statement": "The pair \\(K=( C,_K)\\) of Definition~ is an abstract elementary class in a fixed countable finitary relational language, with \\[ (K)=_0. \\] It has the union and common-upper-bound properties for…",
+      "section": "The abstract elementary class",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-end-domination",
+      "kind": "lemma",
+      "label": "There are functions \\(f_:\\), for \\(<\\), such that for all \\(<<\\) the set \\[ E_…",
+      "statement": "There are functions \\(f_:\\), for \\(<\\), such that for all \\(<<\\) the set \\[ E_ , =\\ <:f_() f_()\\ \\] is countable.",
+      "section": "Two models at the prescribed endpoint",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-end-hierarchy-size",
+      "kind": "lemma",
+      "label": "The cumulative hierarchy satisfies \\[ |V_ + |=_ for every ordinal . \\] In…",
+      "statement": "The cumulative hierarchy satisfies \\[ |V_ + |=_ for every ordinal . \\] In particular, \\(|V_|=_\\), and every element of \\(V_\\) has rank below \\(\\).",
+      "section": "Two models at the prescribed endpoint",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-end-countable-closures",
+      "kind": "lemma",
+      "label": "There is a family \\[ (D_X: X^ < ) \\] of nonempty countable subsets of \\(D\\)…",
+      "statement": "There is a family \\[ (D_X: X^ < ) \\] of nonempty countable subsets of \\(D\\) such that: [label=( *)] \\(X D_X\\); \\(D_Y D_X\\) whenever \\( Y X\\); the relation of actual membership on \\(D_X\\) is…",
+      "section": "Two models at the prescribed endpoint",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-end-diagrams",
+      "kind": "lemma",
+      "label": "For every tuple \\(t\\) as above, the equality quotient of \\( D_ t, \\) identifies…",
+      "statement": "For every tuple \\(t\\) as above, the equality quotient of \\( D_ t, \\) identifies with \\(D_X\\), with its actual membership relation, for every \\(<\\). The diagrams satisfy the following additional…",
+      "section": "Two models at the prescribed endpoint",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-end-two-models",
+      "kind": "theorem",
+      "label": "The class \\(K\\) has two nonisomorphic models of cardinality \\(_\\). One has an…",
+      "statement": "The class \\(K\\) has two nonisomorphic models of cardinality \\(_\\). One has an order sort of cardinality \\(_1\\), and the other has a countable order sort.",
+      "section": "Two models at the prescribed endpoint",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-col-collapse",
+      "kind": "lemma",
+      "label": "Collapse of the tagged relation",
+      "statement": "[Collapse of the tagged relation] Let \\(Q\\) be a set with an extensional binary relation \\(R\\) and a function \\(:Q\\) such that \\[ yRx\\ \\ (y)<(x). \\] Then there is an injection \\(F:Q V_\\) satisfying…",
+      "section": "A bound on uncountable base orders and categoricity on a tail",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-col-no-pattern",
+      "kind": "lemma",
+      "label": "No fixed pattern at all finite arities",
+      "statement": "[No fixed pattern at all finite arities] There is no sequence \\((s_j:j1)\\) of elements of \\(S\\) such that T_k((s_ |J| )_ J ) holds for every k1.",
+      "section": "A bound on uncountable base orders and categoricity on a tail",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-cat-cardinals",
+      "kind": "lemma",
+      "label": "The cardinal is a strong limit and \\[ ()=^+>. \\] If < is infinite, then both ^…",
+      "statement": "The cardinal is a strong limit and \\[ ()=^+>. \\] If < is infinite, then both ^ and (^)^+ are below .",
+      "section": "A bound on uncountable base orders and categoricity on a tail",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-cat-finite-partition",
+      "kind": "lemma",
+      "label": "Finite partition estimate",
+      "statement": "[Finite partition estimate] For every positive integer m and every infinite cardinal < , there is a cardinal < such that every map c:[]^m C with |C| has a homogeneous subset of cardinality .",
+      "section": "A bound on uncountable base orders and categoricity on a tail",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-cat-finite-patterns",
+      "kind": "lemma",
+      "label": "Let X be a set with |X| . For each positive integer j , let c_j:[X]^j C_j ,…",
+      "statement": "Let X be a set with |X| . For each positive integer j , let c_j:[X]^j C_j , where |C_j| . There are colors p_j C_j such that for every positive integer k there is A_k^k satisfying \\[ c_j(A)=p_j (1 j…",
+      "section": "A bound on uncountable base orders and categoricity on a tail",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-cat-bounded",
+      "kind": "proposition",
+      "label": "If M K and B^M is uncountable, then |I^M|< .",
+      "statement": "If M K and B^M is uncountable, then |I^M|< .",
+      "section": "A bound on uncountable base orders and categoricity on a tail",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-cat-countable-base",
+      "kind": "lemma",
+      "label": "If M,N K have countable base orders and |I^M|=|I^N| , then M N .",
+      "statement": "If M,N K have countable base orders and |I^M|=|I^N| , then M N .",
+      "section": "A bound on uncountable base orders and categoricity on a tail",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-cat-tail",
+      "kind": "theorem",
+      "label": "The class K is categorical in every cardinal .",
+      "statement": "The class K is categorical in every cardinal .",
+      "section": "A bound on uncountable base orders and categoricity on a tail",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-cor-consistency",
+      "kind": "corollary",
+      "label": "ZFC proves \\(CH\\). For each fixed \\(\\) as above, it also proves \\(CH\\), and \\[…",
+      "statement": "ZFC proves \\(CH\\). For each fixed \\(\\) as above, it also proves \\(CH\\), and \\[ (ZFC) (ZFC+) (ZFC+). \\] If ZFC is consistent, no such \\(\\) is a theorem of ZFC.",
+      "section": "The endpoint failure and its logical scope",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-prop-no-amalgamation",
+      "kind": "proposition",
+      "label": "The class \\(K\\) has neither joint embedding nor amalgamation. The failure of…",
+      "statement": "The class \\(K\\) has neither joint embedding nor amalgamation. The failure of amalgamation can be witnessed over a countable model.",
+      "section": "The endpoint failure and its logical scope",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-bool-extension",
+      "kind": "lemma",
+      "label": "Every countable \\(M K\\) has a countable strong extension \\(M'\\) with \\(I^ M'…",
+      "statement": "Every countable \\(M K\\) has a countable strong extension \\(M'\\) with \\(I^ M' =I^M\\) and \\(B^M B^ M' \\).",
+      "section": "An obstruction to Booleanizing the canonical point",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m1-bool-obstruction",
+      "kind": "proposition",
+      "label": "If \\(H K\\) has countable base, its canonical point \\(p_H\\) does not factor…",
+      "statement": "If \\(H K\\) has countable base, its canonical point \\(p_H\\) does not factor through \\(Sh( C_0^ op ,J_ )\\). This applies, in particular, to every model on the categoricity tail \\(\\|H\\|\\).",
+      "section": "An obstruction to Booleanizing the canonical point",
+      "manuscript": "A CH obstruction to a prescribed categoricity threshold"
+    },
+    {
+      "id": "m2-main-uniform",
+      "kind": "theorem",
+      "label": "Uniform eventual categoricity",
+      "statement": "[Uniform eventual categoricity] For every infinite cardinal there is a cardinal () such that the following holds for every AEC K with (K) : \\[ (() K is categorical in ) ('() K is categorical in ').…",
+      "section": "Introduction",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-main-qualitative",
+      "kind": "theorem",
+      "label": "The qualitative form",
+      "statement": "[The qualitative form] An AEC categorical in unboundedly many cardinals is categorical on a tail of the cardinals.",
+      "section": "Introduction",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-directed-colimits",
+      "kind": "lemma",
+      "label": "Directed unions and coherent direct limits",
+      "statement": "[Directed unions and coherent direct limits] If a nonempty set of models is directed under strong inclusion, its union belongs to and every member is strong in the union. If every member is strong in…",
+      "section": "Set codes and models indexed by orders",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-small-code",
+      "kind": "lemma",
+      "label": "Recovery from small models and pairs",
+      "statement": "[Recovery from small models and pairs] Fix an infinite cardinal and a finitary language of cardinality at most . An AEC in with () is determined by its models of cardinality at most and its strong…",
+      "section": "Set codes and models indexed by orders",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-uniform-reduction",
+      "kind": "proposition",
+      "label": "The uniform reduction",
+      "statement": "[The uniform reduction] The uniform assertion in Theorem~ is equivalent to the following qualitative assertion: Every AEC categorical in unboundedly many cardinals is categorical in all cardinals…",
+      "section": "Set codes and models indexed by orders",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-partition",
+      "kind": "lemma",
+      "label": "For infinite cardinals , and a positive integer k , there is an infinite…",
+      "statement": "For infinite cardinals , and a positive integer k , there is an infinite cardinal R_k(,) such that every coloring of the k -element subsets of an ordinal of cardinality at least R_k(,) into colors…",
+      "section": "Set codes and models indexed by orders",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-order-template",
+      "kind": "theorem",
+      "label": "Order presentation",
+      "statement": "[Order presentation] Suppose has arbitrarily large models and ()= . There are at most labels, each of positive finite arity, and a functor E from nonempty linear orders and order embeddings to and…",
+      "section": "Set codes and models indexed by orders",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-order-basic",
+      "kind": "lemma",
+      "label": "The order H() is dense without endpoints and has cardinality || . Its points…",
+      "statement": "The order H() is dense without endpoints and has cardinality || . Its points have character () on both sides. All nonempty bounded open intervals have one order type. All left rays have one order…",
+      "section": "Reversing maps on bounded tuples",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-balanced-cuts",
+      "kind": "lemma",
+      "label": "Balance of cuts",
+      "statement": "[Balance of cuts] Every interior nonprincipal cut of _ , and every such cut of H() , is balanced.",
+      "section": "Reversing maps on bounded tuples",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-cut-segments",
+      "kind": "lemma",
+      "label": "Segments approaching a small cut",
+      "statement": "[Segments approaching a small cut] Let L be a dense linear order without endpoints, all of whose points have character on both sides. Suppose all bounded open intervals have one order type and every…",
+      "section": "Reversing maps on bounded tuples",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-order-orbits",
+      "kind": "theorem",
+      "label": "Short-sequence order orbits",
+      "statement": "[Short-sequence order orbits] Let be an infinite limit ordinal and let be an infinite cardinal with <() . Two sequences of length at most in H() lie in the same (H()) -orbit if and only if they have…",
+      "section": "Reversing maps on bounded tuples",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-orbit-bound",
+      "kind": "lemma",
+      "label": "Uniform orbit bound",
+      "statement": "[Uniform orbit bound] There is a fixed set R_ of possible presentation records, depending only on and , with \\[ | R_| B(,):=2^ 2^ + . \\] For every categoricity cardinal (,^+) , the set of…",
+      "section": "Reversing maps on bounded tuples",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-ordinal-support-closure",
+      "kind": "lemma",
+      "label": "Closure of ordinal supports",
+      "statement": "[Closure of ordinal supports] Let ^+ a be infinite cardinals and let be an ordinal of cofinality greater than a . Every subset S of size at most a is contained in a set T_0 of size at most a with the…",
+      "section": "Reversing maps on bounded tuples",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-append-segment",
+      "kind": "lemma",
+      "label": "Appending a long indecomposable segment",
+      "statement": "[Appending a long indecomposable segment] Under the hypotheses of Lemma~ , suppose is additively indecomposable. Let T_0 be as there, and let < be additively indecomposable, with (T_0)< and ()> .…",
+      "section": "Reversing maps on bounded tuples",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-alignment",
+      "kind": "proposition",
+      "label": "Alignment of model orbits",
+      "statement": "[Alignment of model orbits] Fix the record set and orbit naming at an infinite length . Let a< be categoricity cardinals with a(,^+) . Suppose the following data have one common profile: a…",
+      "section": "Reversing maps on bounded tuples",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-indecomposable-occurrences",
+      "kind": "lemma",
+      "label": "If is an infinite cardinal and is infinite regular, the additively…",
+      "statement": "If is an infinite cardinal and is infinite regular, the additively indecomposable ordinals <^+ with ||= and ()= are cofinal in ^+ .",
+      "section": "Reversing maps on bounded tuples",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-found-reversal",
+      "kind": "theorem",
+      "label": "Eventual reversal at categoricity cardinals",
+      "statement": "[Eventual reversal at categoricity cardinals] For each infinite cardinal there is a cardinal b_() such that, whenever b_() is a categoricity cardinal, M has size , f:M M is strong, and a is a tuple…",
+      "section": "Reversing maps on bounded tuples",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-canonical-classes",
+      "kind": "lemma",
+      "label": "Canonical classes above one categoricity size",
+      "statement": "[Canonical classes above one categoricity size] For \\(\\|N\\|\\), a tuple \\(a\\) in \\(N\\) has a well-defined \\(^_\\)-class: compute it in any strong \\(\\)-submodel containing \\(a\\). Strong embeddings…",
+      "section": "Stable diagrams and amalgamation at closed levels",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-stabilization",
+      "kind": "proposition",
+      "label": "Stable diagrams",
+      "statement": "[Stable diagrams] There is a definable, nondecreasing cardinal function \\(t\\), with \\(t()>+\\) a categoricity cardinal for every infinite \\(\\), having the following properties. Tuples of length at…",
+      "section": "Stable diagrams and amalgamation at closed levels",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-closure-categoricity",
+      "kind": "proposition",
+      "label": "Categoricity at countably cofinal closure points",
+      "statement": "[Categoricity at countably cofinal closure points] Suppose \\(>\\) is an infinite cardinal of countable cofinality and \\[ t()<for every infinite <. \\] Then \\(\\) is categorical in \\(\\). Moreover any…",
+      "section": "Stable diagrams and amalgamation at closed levels",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-parameter-orbits",
+      "kind": "lemma",
+      "label": "Orbits over parameters",
+      "statement": "[Orbits over parameters] Let \\(\\) be infinite and suppose \\[ ^=, +2^ 2^ . \\] At every sufficiently large categoricity cardinal, there are at most \\(\\) automorphism orbits of \\(\\)-tuples over any…",
+      "section": "Stable diagrams and amalgamation at closed levels",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-block-transpositions",
+      "kind": "lemma",
+      "label": "Disjoint block transpositions",
+      "statement": "[Disjoint block transpositions] Take two set-sized families of labeled terms. In disjoint convex regions of their joint support order, suppose each region consists of two adjacent blocks, one used…",
+      "section": "Stable diagrams and amalgamation at closed levels",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-ordinal-vectors",
+      "kind": "lemma",
+      "label": "Ordinal-vector witnesses",
+      "statement": "[Ordinal-vector witnesses] Let \\(C\\) be a set, and let \\(U\\) be a definable class of functions \\(C\\), with fixed set parameters allowed in its definition. There is a set \\(U_0 U\\) such that each \\(u…",
+      "section": "Stable diagrams and amalgamation at closed levels",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-testing",
+      "kind": "proposition",
+      "label": "Uniform testing of placed comparisons",
+      "statement": "[Uniform testing of placed comparisons] There is a definable nondecreasing infinite cardinal function \\(g\\), depending on \\(\\) and its fixed presentation, such that the following holds. If \\(I\\) is…",
+      "section": "Stable diagrams and amalgamation at closed levels",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-compact-placement",
+      "kind": "proposition",
+      "label": "Compact placement",
+      "statement": "[Compact placement] Let \\(A=E(I)\\), where \\(I\\) is an infinite well-order, and let \\(>+\\) satisfy \\(^=\\). Suppose that for every \\(X A\\) of size at most \\(\\) a possible joint diagram \\(q_X(d,X)\\) is…",
+      "section": "Stable diagrams and amalgamation at closed levels",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-placed-lifts",
+      "kind": "lemma",
+      "label": "Unique lifts of bounded diagrams",
+      "statement": "[Unique lifts of bounded diagrams] Let \\(>\\) be a strong-limit cardinal of countable cofinality strictly closed below itself under \\(t\\) and \\(g\\). Let \\(A_ B\\) have size \\(\\), and identify…",
+      "section": "Stable diagrams and amalgamation at closed levels",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-amalgamation",
+      "kind": "theorem",
+      "label": "Amalgamation at closed levels",
+      "statement": "[Amalgamation at closed levels] There is an unbounded class of strong-limit cardinals \\(\\) of countable cofinality with the following properties. \\(\\) is categorical in \\(\\), and any two \\(\\)-sized…",
+      "section": "Stable diagrams and amalgamation at closed levels",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-directed-unions",
+      "kind": "lemma",
+      "label": "Directed unions and padded presentations",
+      "statement": "[Directed unions and padded presentations] Assume the structural union and presentation conditions of Definition~ at a level . Every nonempty directed family of inclusion subobjects at that level,…",
+      "section": "Working schemes and uniform comparison of diagrams",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-rich-orders",
+      "kind": "lemma",
+      "label": "Rich padded orders",
+      "statement": "[Rich padded orders] Let be infinite. There is a dense linear order Q_ without endpoints of cardinality 2^ such that every cut given by at most parameters on either side is filled. Equivalently,…",
+      "section": "Working schemes and uniform comparison of diagrams",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-single-model-package",
+      "kind": "proposition",
+      "label": "The package for single models",
+      "statement": "[The package for single models] At the sufficiently closed levels supplied by Proposition~ , the single -models, with strong maps as arrows and the original term presentation E , form a working…",
+      "section": "Working schemes and uniform comparison of diagrams",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-named-package",
+      "kind": "proposition",
+      "label": "Naming bounded data",
+      "statement": "[Naming bounded data] Let C be a working scheme, and fix a bounded list c and its diagram, witnessed at some eligible level. After increasing the fixed lower threshold, the objects with a named…",
+      "section": "Working schemes and uniform comparison of diagrams",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-scheme-diagram-routes",
+      "kind": "proposition",
+      "label": "Obtaining the diagram clause",
+      "statement": "[Obtaining the diagram clause] Suppose a finite-system scheme has the structural and presentation conditions of Definition~ , and is categorical at its eligible levels. For an unbounded supply after…",
+      "section": "Working schemes and uniform comparison of diagrams",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-lev-diagram-coding",
+      "kind": "proposition",
+      "label": "Uniform coding of working diagrams",
+      "statement": "[Uniform coding of working diagrams] There is a fixed first-order set-theoretic definition D_F of an equivalence relation on term patterns, uniform in a coherent finite-support template code F .…",
+      "section": "Working schemes and uniform comparison of diagrams",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-parameter-orbits",
+      "kind": "lemma",
+      "label": "Parameter orbits for a scheme",
+      "statement": "[Parameter orbits for a scheme] Fix an infinite . If >b+ and ^= , then, at every sufficiently closed level greater than , there are at most diagrams of -tuples over a fixed parameter tuple of length…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-testing",
+      "kind": "proposition",
+      "label": "Uniform testing for natural layouts",
+      "statement": "[Uniform testing for natural layouts] For each fixed natural layout there is a monotone cardinal function g() with the following property. Two placed comparison types of tuples of length at most over…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-compact-placement",
+      "kind": "lemma",
+      "label": "Compact placement for a scheme",
+      "statement": "[Compact placement for a scheme] Let P be any chosen parameter set in a well-ordered presentation, with one fixed term representation for each parameter. Let v have length at most , and let \\[ >b+,…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-placed-comparisons",
+      "kind": "lemma",
+      "label": "Placed comparisons of actual tuples",
+      "statement": "[Placed comparisons of actual tuples] Suppose A N is an arrow between same-level objects and v is a bounded tuple in N . Its diagrams over bounded subsets of A have a placed comparison over a…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-scheme-amalgamation",
+      "kind": "theorem",
+      "label": "Amalgamation and types for a scheme",
+      "statement": "[Amalgamation and types for a scheme] At sufficiently closed levels, C has amalgamation. If A B_0,B_1 are arrows and v_i are equally indexed bounded tuples in B_i , then an amalgam over A identifying…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-mixed-realization",
+      "kind": "corollary",
+      "label": "Realization into a larger level",
+      "statement": "[Realization into a larger level] Let < be sufficiently closed eligible levels. If A B are -objects and A N is an arrow into a -object, then there is an arrow B N extending the given arrow on A . One…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-approximations",
+      "kind": "lemma",
+      "label": "Uniform majority approximations",
+      "statement": "[Uniform majority approximations] Let |v| and let _0 be bounded. At sufficiently closed levels there are approximation sequences for p=(v/A) at size , of every prescribed bounded infinite length .…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-free-extension",
+      "kind": "theorem",
+      "label": "Stationary free extension",
+      "statement": "[Stationary free extension] Let A B be an arrow at a sufficiently closed level and let p=(v/A) , where |v| . There is a specified actual type p^B over B , called its free lift, extending p . At every…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-average-descent",
+      "kind": "lemma",
+      "label": "An average criterion for descent",
+      "statement": "[An average criterion for descent] Let A B have eligible sizes , and let q=(d/B) be actual, with |d|=< . Choose c() below . Suppose that a bounded sequence I=(d_i:i<) in A , with +_0<< , has majority…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-products",
+      "kind": "proposition",
+      "label": "Products of bounded types",
+      "statement": "[Products of bounded types] For bounded types p(x),q(y) over A , realize p in an extension B A and then realize q^B in a further extension. The joint type of (x,y) over A , denoted p q , is…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-local-character",
+      "kind": "proposition",
+      "label": "Local character and continuity",
+      "statement": "[Local character and continuity] Let (A_i:i<) be an increasing chain of objects at one eligible level , whose union A has size , and let be a nonzero limit ordinal. If p=(v/A) and either v is finite…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-support-closure",
+      "kind": "lemma",
+      "label": "Closure of a bounded support set",
+      "statement": "[Closure of a bounded support set] Let J J^* be linear orders, let V be a convex strip in J^* , and put J_0=J V . Allow any fixed finite coloring of positions in J_0 , including their side of V . Let…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-universal-strip",
+      "kind": "proposition",
+      "label": "Universality of a fresh strip",
+      "statement": "[Universality of a fresh strip] Let C already satisfy the working package. In addition to its fixed template F , one may use a presentation G with the following properties: it has a fixed set of…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-retractions",
+      "kind": "corollary",
+      "label": "Approximate retractions",
+      "statement": "[Approximate retractions] For same-level A B there are arrows (r_i:B A:i<) such that, for every a A , \\[ |\\ i<:r_i(a) a\\ |<_0. \\] The maps are not asserted to fix all of A at once.",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-calc-retraction-descent",
+      "kind": "lemma",
+      "label": "Descent through approximate retractions",
+      "statement": "[Descent through approximate retractions] Let A U be objects at an eligible level , and let A' U' be objects at an eligible level , with compatible arrows A' A and U' U . Suppose there are arrows…",
+      "section": "The one-dimensional calculus",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-iso-free-isolation",
+      "kind": "lemma",
+      "label": "The following hold at sufficiently closed eligible levels. A projection of a…",
+      "statement": "The following hold at sufficiently closed eligible levels. A projection of a relatively isolated type is relatively isolated. Suppose A B , q=(u,c/A) is isolated relative to u , and an actual…",
+      "section": "Isolation and dominated extensions",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-iso-alternative",
+      "kind": "proposition",
+      "label": "There is a bound function h , depending only on the fixed working scheme, with…",
+      "statement": "There is a bound function h , depending only on the fixed working scheme, with the following property. Put =|u,c|+_0 . At sufficiently closed eligible levels, precisely one of the following…",
+      "section": "Isolation and dominated extensions",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    },
+    {
+      "id": "m2-iso-prime",
+      "kind": "proposition",
+      "label": "Let Y be all-dominated over X+b at a sufficiently closed eligible level . If an…",
+      "statement": "Let Y be all-dominated over X+b at a sufficiently closed eligible level . If an extension N of X contains a tuple b' of the same type over X , there is an arrow Y N over X sending b to b' . The…",
+      "section": "Isolation and dominated extensions",
+      "manuscript": "Eventual categoricity for abstract elementary classes"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-aec-class",
+      "to": "m1-thm-main",
+      "label": "aec:class",
+      "context": "[Proof of Theorem~\\ref{thm:main}] Work in ZFC with CH. Theorem~\\ref{aec:class} gives an AEC \\(K\\) with \\(\\LS(K)=\\aleph_0\\). Hence \\[ H(K)=\\beth_{(2^{\\aleph_0})^+}=\\beth_{\\omega_2} =\\beth_\\eta"
+    }
+  ]
+}

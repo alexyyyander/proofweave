@@ -1,0 +1,654 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "281",
+  "title": "QAOA attains the SK optimum in the thermodynamic-first limit",
+  "result": {
+    "id": "paper-result",
+    "label": "QAOA attains the SK optimum in the thermodynamic-first limit",
+    "statement": "Proves that QAOA approaches the ground-state energy of the Gaussian zero-field Sherrington–Kirkpatrick model when system size tends to infinity before circuit depth. For every accuracy, finite depth and deterministic angles independent of size and disorder achieve the required limiting expected energy per spin. This also yields leading-order optimal expected MaxCut values on large-degree random regular graphs, with size tending to infinity before degree.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction-and-statement-of-the-result",
+      "label": "Introduction and statement of the result",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-fixed-word-tree-calculus",
+      "label": "The fixed-word tree calculus",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-near-optimal-bounded-classical-formula",
+      "label": "A near-optimal bounded classical formula",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compiling-classical-formulas-with-seeded-controls",
+      "label": "Compiling classical formulas with seeded controls",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "removing-the-longitudinal-seed-controls",
+      "label": "Removing the longitudinal seed controls",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-independent-positive-temperature-construction",
+      "label": "The independent positive-temperature construction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "integrable-coefficients-and-the-controlled-diffusion",
+      "label": "Integrable coefficients and the controlled diffusion",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "shape-inequalities-for-finite-step-functions",
+      "label": "Shape inequalities for finite step functions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-exact-coercive-identity",
+      "label": "An exact coercive identity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "strict-curvature-on-constant-intervals",
+      "label": "Strict curvature on constant intervals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "full-support-and-regularity",
+      "label": "Full support and regularity",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "martingale-representation-and-optimization-consequences",
+      "label": "Martingale representation and optimization consequences",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "QAOA attains the SK ground-state energy in the thermodynamic-first limit",
+      "title": "QAOA attains the SK ground-state energy in the thermodynamic-first limit",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026/QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from QAOA attains the SK ground-state energy in the thermodynamic-first limit.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction-and-statement-of-the-result",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction and statement of the result",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-prop-classical-near-optimum"
+          ]
+        },
+        {
+          "id": "m1-cor-regular-maxcut",
+          "role": "introduction-and-statement-of-the-result",
+          "label": "corollary m1-cor-regular-maxcut",
+          "fullLabel": "corollary m1-cor-regular-maxcut",
+          "kind": "corollary",
+          "source": "Introduction and statement of the result",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-tree-transfer",
+          "role": "the-fixed-word-tree-calculus",
+          "label": "proposition m1-prop-tree-transfer",
+          "fullLabel": "proposition m1-prop-tree-transfer",
+          "kind": "proposition",
+          "source": "The fixed-word tree calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-energy",
+          "role": "the-fixed-word-tree-calculus",
+          "label": "proposition m1-prop-energy",
+          "fullLabel": "proposition m1-prop-energy",
+          "kind": "proposition",
+          "source": "The fixed-word tree calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-weyl-bounds",
+          "role": "the-fixed-word-tree-calculus",
+          "label": "lemma m1-lem-weyl-bounds",
+          "fullLabel": "lemma m1-lem-weyl-bounds",
+          "kind": "lemma",
+          "source": "The fixed-word tree calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-centered-sums",
+          "role": "the-fixed-word-tree-calculus",
+          "label": "lemma m1-lem-centered-sums",
+          "fullLabel": "lemma m1-lem-centered-sums",
+          "kind": "lemma",
+          "source": "The fixed-word tree calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-unitary-clt",
+          "role": "the-fixed-word-tree-calculus",
+          "label": "lemma m1-lem-unitary-clt",
+          "fullLabel": "lemma m1-lem-unitary-clt",
+          "kind": "lemma",
+          "source": "The fixed-word tree calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ordinary-updates",
+          "role": "the-fixed-word-tree-calculus",
+          "label": "lemma m1-lem-ordinary-updates",
+          "fullLabel": "lemma m1-lem-ordinary-updates",
+          "kind": "lemma",
+          "source": "The fixed-word tree calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-commuting-substitution",
+          "role": "the-fixed-word-tree-calculus",
+          "label": "lemma m1-lem-commuting-substitution",
+          "fullLabel": "lemma m1-lem-commuting-substitution",
+          "kind": "lemma",
+          "source": "The fixed-word tree calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-gate-calculus",
+          "role": "the-fixed-word-tree-calculus",
+          "label": "theorem m1-thm-gate-calculus",
+          "fullLabel": "theorem m1-thm-gate-calculus",
+          "kind": "theorem",
+          "source": "The fixed-word tree calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-additive-response",
+          "role": "the-fixed-word-tree-calculus",
+          "label": "corollary m1-cor-additive-response",
+          "fullLabel": "corollary m1-cor-additive-response",
+          "kind": "corollary",
+          "source": "The fixed-word tree calculus",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-gaussian-rooted-realization",
+          "role": "a-near-optimal-bounded-classical-formula",
+          "label": "lemma m1-lem-gaussian-rooted-realization",
+          "fullLabel": "lemma m1-lem-gaussian-rooted-realization",
+          "kind": "lemma",
+          "source": "A near-optimal bounded classical formula",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-classical-trigonometric-density",
+          "role": "a-near-optimal-bounded-classical-formula",
+          "label": "lemma m1-lem-classical-trigonometric-density",
+          "fullLabel": "lemma m1-lem-classical-trigonometric-density",
+          "kind": "lemma",
+          "source": "A near-optimal bounded classical formula",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-classical-color-exclusion",
+          "role": "a-near-optimal-bounded-classical-formula",
+          "label": "lemma m1-lem-classical-color-exclusion",
+          "fullLabel": "lemma m1-lem-classical-color-exclusion",
+          "kind": "lemma",
+          "source": "A near-optimal bounded classical formula",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-classical-near-optimum",
+          "role": "a-near-optimal-bounded-classical-formula",
+          "label": "proposition m1-prop-classical-near-optimum",
+          "fullLabel": "proposition m1-prop-classical-near-optimum",
+          "kind": "proposition",
+          "source": "A near-optimal bounded classical formula",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-classical-synthesis",
+          "role": "compiling-classical-formulas-with-seeded-controls",
+          "label": "theorem m1-thm-classical-synthesis",
+          "fullLabel": "theorem m1-thm-classical-synthesis",
+          "kind": "theorem",
+          "source": "Compiling classical formulas with seeded controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-helper-contraction",
+          "role": "compiling-classical-formulas-with-seeded-controls",
+          "label": "proposition m1-prop-helper-contraction",
+          "fullLabel": "proposition m1-prop-helper-contraction",
+          "kind": "proposition",
+          "source": "Compiling classical formulas with seeded controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fixed-field-exponentials",
+          "role": "compiling-classical-formulas-with-seeded-controls",
+          "label": "lemma m1-lem-fixed-field-exponentials",
+          "fullLabel": "lemma m1-lem-fixed-field-exponentials",
+          "kind": "lemma",
+          "source": "Compiling classical formulas with seeded controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-orthogonal-quadratics",
+          "role": "compiling-classical-formulas-with-seeded-controls",
+          "label": "lemma m1-lem-orthogonal-quadratics",
+          "fullLabel": "lemma m1-lem-orthogonal-quadratics",
+          "kind": "lemma",
+          "source": "Compiling classical formulas with seeded controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-seed-simulation",
+          "role": "removing-the-longitudinal-seed-controls",
+          "label": "theorem m1-thm-seed-simulation",
+          "fullLabel": "theorem m1-thm-seed-simulation",
+          "kind": "theorem",
+          "source": "Removing the longitudinal seed controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-seed-packet-estimates",
+          "role": "removing-the-longitudinal-seed-controls",
+          "label": "lemma m1-lem-seed-packet-estimates",
+          "fullLabel": "lemma m1-lem-seed-packet-estimates",
+          "kind": "lemma",
+          "source": "Removing the longitudinal seed controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-seed-high-directions",
+          "role": "removing-the-longitudinal-seed-controls",
+          "label": "lemma m1-lem-seed-high-directions",
+          "fullLabel": "lemma m1-lem-seed-high-directions",
+          "kind": "lemma",
+          "source": "Removing the longitudinal seed controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-seed-ensemble-control",
+          "role": "removing-the-longitudinal-seed-controls",
+          "label": "lemma m1-lem-seed-ensemble-control",
+          "fullLabel": "lemma m1-lem-seed-ensemble-control",
+          "kind": "lemma",
+          "source": "Removing the longitudinal seed controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-seed-selective-accuracy",
+          "role": "removing-the-longitudinal-seed-controls",
+          "label": "lemma m1-lem-seed-selective-accuracy",
+          "fullLabel": "lemma m1-lem-seed-selective-accuracy",
+          "kind": "lemma",
+          "source": "Removing the longitudinal seed controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-seed-low-insertions",
+          "role": "removing-the-longitudinal-seed-controls",
+          "label": "lemma m1-lem-seed-low-insertions",
+          "fullLabel": "lemma m1-lem-seed-low-insertions",
+          "kind": "lemma",
+          "source": "Removing the longitudinal seed controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-seed-one-echo",
+          "role": "removing-the-longitudinal-seed-controls",
+          "label": "lemma m1-lem-seed-one-echo",
+          "fullLabel": "lemma m1-lem-seed-one-echo",
+          "kind": "lemma",
+          "source": "Removing the longitudinal seed controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-seed-gram-induction",
+          "role": "removing-the-longitudinal-seed-controls",
+          "label": "lemma m1-lem-seed-gram-induction",
+          "fullLabel": "lemma m1-lem-seed-gram-induction",
+          "kind": "lemma",
+          "source": "Removing the longitudinal seed controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-seed-huge-transverse",
+          "role": "removing-the-longitudinal-seed-controls",
+          "label": "lemma m1-lem-seed-huge-transverse",
+          "fullLabel": "lemma m1-lem-seed-huge-transverse",
+          "kind": "lemma",
+          "source": "Removing the longitudinal seed controls",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-positive-temperature-bound",
+          "role": "the-independent-positive-temperature-construction",
+          "label": "lemma m1-lem-positive-temperature-bound",
+          "fullLabel": "lemma m1-lem-positive-temperature-bound",
+          "kind": "lemma",
+          "source": "The independent positive-temperature construction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-eams-finite-step",
+          "role": "the-independent-positive-temperature-construction",
+          "label": "lemma m1-lem-eams-finite-step",
+          "fullLabel": "lemma m1-lem-eams-finite-step",
+          "kind": "lemma",
+          "source": "The independent positive-temperature construction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-eams-positive-continuum",
+          "role": "the-independent-positive-temperature-construction",
+          "label": "lemma m1-lem-eams-positive-continuum",
+          "fullLabel": "lemma m1-lem-eams-positive-continuum",
+          "kind": "lemma",
+          "source": "The independent positive-temperature construction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-classical-strong-limit",
+          "role": "the-independent-positive-temperature-construction",
+          "label": "lemma m1-lem-classical-strong-limit",
+          "fullLabel": "lemma m1-lem-classical-strong-limit",
+          "kind": "lemma",
+          "source": "The independent positive-temperature construction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-classical-near-optimum-positive-temperature",
+          "role": "the-independent-positive-temperature-construction",
+          "label": "proposition m1-prop-classical-near-optimum-positive-temperature",
+          "fullLabel": "proposition m1-prop-classical-near-optimum-positive-temperature",
+          "kind": "proposition",
+          "source": "The independent positive-temperature construction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter",
+      "title": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-27",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Full-support-of-the-zero-temperature-Sherrington-Kirkpatrick-order-parameter-September-27-2026/main.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Full support of the zero-temperature Sherrington-Kirkpatrick order parameter.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-full-support",
+          "role": "introduction",
+          "label": "theorem m2-thm-full-support",
+          "fullLabel": "theorem m2-thm-full-support",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-regularity",
+          "role": "integrable-coefficients-and-the-controlled-diffusion",
+          "label": "lemma m2-lem-regularity",
+          "fullLabel": "lemma m2-lem-regularity",
+          "kind": "lemma",
+          "source": "Integrable coefficients and the controlled diffusion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-diffusion",
+          "role": "integrable-coefficients-and-the-controlled-diffusion",
+          "label": "lemma m2-lem-diffusion",
+          "fullLabel": "lemma m2-lem-diffusion",
+          "kind": "lemma",
+          "source": "Integrable coefficients and the controlled diffusion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-constant-transfer",
+          "role": "integrable-coefficients-and-the-controlled-diffusion",
+          "label": "lemma m2-lem-constant-transfer",
+          "fullLabel": "lemma m2-lem-constant-transfer",
+          "kind": "lemma",
+          "source": "Integrable coefficients and the controlled diffusion",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tail-class",
+          "role": "shape-inequalities-for-finite-step-functions",
+          "label": "lemma m2-tail-class",
+          "fullLabel": "lemma m2-tail-class",
+          "kind": "lemma",
+          "source": "Shape inequalities for finite step functions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shape-backward",
+          "role": "shape-inequalities-for-finite-step-functions",
+          "label": "lemma m2-shape-backward",
+          "fullLabel": "lemma m2-shape-backward",
+          "kind": "lemma",
+          "source": "Shape inequalities for finite step functions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shape-forward",
+          "role": "shape-inequalities-for-finite-step-functions",
+          "label": "lemma m2-shape-forward",
+          "fullLabel": "lemma m2-shape-forward",
+          "kind": "lemma",
+          "source": "Shape inequalities for finite step functions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-shape-ibp",
+          "role": "shape-inequalities-for-finite-step-functions",
+          "label": "lemma m2-shape-ibp",
+          "fullLabel": "lemma m2-shape-ibp",
+          "kind": "lemma",
+          "source": "Shape inequalities for finite step functions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cert-identity-lemma",
+          "role": "an-exact-coercive-identity",
+          "label": "lemma m2-cert-identity-lemma",
+          "fullLabel": "lemma m2-cert-identity-lemma",
+          "kind": "lemma",
+          "source": "An exact coercive identity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cert-coercivity",
+          "role": "an-exact-coercive-identity",
+          "label": "proposition m2-cert-coercivity",
+          "fullLabel": "proposition m2-cert-coercivity",
+          "kind": "proposition",
+          "source": "An exact coercive identity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-gap-curvature",
+          "role": "strict-curvature-on-constant-intervals",
+          "label": "proposition m2-prop-gap-curvature",
+          "fullLabel": "proposition m2-prop-gap-curvature",
+          "kind": "proposition",
+          "source": "Strict curvature on constant intervals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-first-variation",
+          "role": "full-support-and-regularity",
+          "label": "lemma m2-lem-first-variation",
+          "fullLabel": "lemma m2-lem-first-variation",
+          "kind": "lemma",
+          "source": "Full support and regularity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-contact",
+          "role": "full-support-and-regularity",
+          "label": "lemma m2-lem-contact",
+          "fullLabel": "lemma m2-lem-contact",
+          "kind": "lemma",
+          "source": "Full support and regularity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-no-terminal-plateau",
+          "role": "full-support-and-regularity",
+          "label": "lemma m2-lem-no-terminal-plateau",
+          "fullLabel": "lemma m2-lem-no-terminal-plateau",
+          "kind": "lemma",
+          "source": "Full support and regularity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-smooth-measure",
+          "role": "full-support-and-regularity",
+          "label": "corollary m2-cor-smooth-measure",
+          "fullLabel": "corollary m2-cor-smooth-measure",
+          "kind": "corollary",
+          "source": "Full support and regularity",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-value",
+          "role": "martingale-representation-and-optimization-consequences",
+          "label": "corollary m2-cor-value",
+          "fullLabel": "corollary m2-cor-value",
+          "kind": "corollary",
+          "source": "Martingale representation and optimization consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-gaussian",
+          "role": "martingale-representation-and-optimization-consequences",
+          "label": "proposition m2-prop-gaussian",
+          "fullLabel": "proposition m2-prop-gaussian",
+          "kind": "proposition",
+          "source": "Martingale representation and optimization consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-algorithm",
+          "role": "martingale-representation-and-optimization-consequences",
+          "label": "corollary m2-cor-algorithm",
+          "fullLabel": "corollary m2-cor-algorithm",
+          "kind": "corollary",
+          "source": "Martingale representation and optimization consequences",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "QAOA attains the SK ground-state energy in the thermodynamic-first limit",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026/QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Full support of the zero-temperature Sherrington-Kirkpatrick order parameter",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Full-support-of-the-zero-temperature-Sherrington-Kirkpatrick-order-parameter-September-27-2026/main.pdf",
+      "kind": "paper"
+    }
+  ]
+}

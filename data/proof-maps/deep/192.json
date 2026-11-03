@@ -1,0 +1,195 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "192",
+  "title": "Boolean functions violate the square-root degree bound by arbitrary factors",
+  "result": {
+    "id": "paper-result",
+    "label": "Boolean functions violate the square-root degree bound by arbitrary factors",
+    "statement": "Disproves the proposed square-root bound relating a Boolean function's linear Fourier coefficients to its polynomial degree. For every C > 0, there is a sign-valued Boolean function f with f( i ) C (f) . Thus its total signed correlation with individual input bits can exceed the proposed bound by an arbitrary factor.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-observations-and-amplification",
+      "label": "Finite observations and amplification",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "retaining-more-variance-than-the-degree-cost",
+      "label": "Retaining more variance than the degree cost",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "two-other-reporting-rules",
+      "label": "Two other reporting rules",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "amplifying-an-average-degree-saving",
+      "label": "Amplifying an average degree saving",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-weighted-gaussian-mixture",
+      "label": "A weighted Gaussian mixture",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Unbounded Violations of the Square-Root Degree Bound",
+      "title": "Unbounded Violations of the Square-Root Degree Bound",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-26",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Unbounded-Violations-of-the-Square-Root-Degree-Bound-September-26-2026/Unbounded-Violations-of-the-Square-Root-Degree-Bound-September-26-2026.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Unbounded Violations of the Square-Root Degree Bound.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transfer",
+          "role": "finite-observations-and-amplification",
+          "label": "lemma m1-lem-transfer",
+          "fullLabel": "lemma m1-lem-transfer",
+          "kind": "lemma",
+          "source": "Finite observations and amplification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-readout",
+          "role": "finite-observations-and-amplification",
+          "label": "lemma m1-lem-readout",
+          "fullLabel": "lemma m1-lem-readout",
+          "kind": "lemma",
+          "source": "Finite observations and amplification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-amplification",
+          "role": "finite-observations-and-amplification",
+          "label": "proposition m1-prop-amplification",
+          "fullLabel": "proposition m1-prop-amplification",
+          "kind": "proposition",
+          "source": "Finite observations and amplification",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-report",
+          "role": "retaining-more-variance-than-the-degree-cost",
+          "label": "lemma m1-lem-report",
+          "fullLabel": "lemma m1-lem-report",
+          "kind": "lemma",
+          "source": "Retaining more variance than the degree cost",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-gaussian",
+          "role": "retaining-more-variance-than-the-degree-cost",
+          "label": "lemma m1-lem-gaussian",
+          "fullLabel": "lemma m1-lem-gaussian",
+          "kind": "lemma",
+          "source": "Retaining more variance than the degree cost",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-coarse-report",
+          "role": "two-other-reporting-rules",
+          "label": "lemma m1-lem-coarse-report",
+          "fullLabel": "lemma m1-lem-coarse-report",
+          "kind": "lemma",
+          "source": "Two other reporting rules",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-refinement",
+          "role": "amplifying-an-average-degree-saving",
+          "label": "lemma m1-lem-refinement",
+          "fullLabel": "lemma m1-lem-refinement",
+          "kind": "lemma",
+          "source": "Amplifying an average degree saving",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-mean-cost",
+          "role": "amplifying-an-average-degree-saving",
+          "label": "theorem m1-thm-mean-cost",
+          "fullLabel": "theorem m1-thm-mean-cost",
+          "kind": "theorem",
+          "source": "Amplifying an average degree saving",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-mc-transfer",
+          "role": "amplifying-an-average-degree-saving",
+          "label": "lemma m1-lem-mc-transfer",
+          "fullLabel": "lemma m1-lem-mc-transfer",
+          "kind": "lemma",
+          "source": "Amplifying an average degree saving",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-weighted-event",
+          "role": "a-weighted-gaussian-mixture",
+          "label": "lemma m1-lem-weighted-event",
+          "fullLabel": "lemma m1-lem-weighted-event",
+          "kind": "lemma",
+          "source": "A weighted Gaussian mixture",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Unbounded Violations of the Square-Root Degree Bound",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Unbounded-Violations-of-the-Square-Root-Degree-Bound-September-26-2026/Unbounded-Violations-of-the-Square-Root-Degree-Bound-September-26-2026.pdf",
+      "kind": "paper"
+    }
+  ]
+}

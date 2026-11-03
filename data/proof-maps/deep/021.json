@@ -1,0 +1,495 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "021",
+  "title": "A quadratic bound for Jacobsthal’s function",
+  "result": {
+    "id": "paper-result",
+    "label": "A quadratic bound for Jacobsthal’s function",
+    "statement": "Answers Jacobsthal's quadratic-bound question: every interval of Ck^2 consecutive integers contains an integer coprime to any prescribed positive integer with at most k distinct prime divisors, for an absolute constant C . The bound is uniform over prime sets and interval positions and removes the classical logarithmic loss.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "sieve-and-prime-distribution-inputs",
+      "label": "Sieve and prime-distribution inputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-decreasing-prime-tree",
+      "label": "The decreasing-prime tree",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "delay-functions-and-the-continuous-path-process",
+      "label": "Delay functions and the continuous path process",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "passage-from-harmonic-paths-to-primes",
+      "label": "Passage from harmonic paths to primes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "evaluation-of-the-reference-tree",
+      "label": "Evaluation of the reference tree",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compact-errors-and-independent-prime-boxes",
+      "label": "Compact errors and independent prime boxes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-inverse-estimate-for-a-witnessing-edge",
+      "label": "An inverse estimate for a witnessing edge",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "variance-after-the-inverse-estimate",
+      "label": "Variance after the inverse estimate",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "stops-for-endpoints-with-small-effective-size",
+      "label": "Stops for endpoints with small effective size",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "completion-of-the-proof",
+      "label": "Completion of the proof",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "elementary-forms-of-four-auxiliary-estimates",
+      "label": "Elementary forms of four auxiliary estimates",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "A quadratic bound for Jacobsthal's function",
+      "title": "A quadratic bound for Jacobsthal's function",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-25",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-quadratic-bound-for-Jacobsthals-function-September-25-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from A quadratic bound for Jacobsthal's function.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-survivors",
+          "role": "introduction",
+          "label": "theorem m1-thm-survivors",
+          "fullLabel": "theorem m1-thm-survivors",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-fundamental",
+          "role": "sieve-and-prime-distribution-inputs",
+          "label": "lemma m1-lem-fundamental",
+          "fullLabel": "lemma m1-lem-fundamental",
+          "kind": "lemma",
+          "source": "Sieve and prime-distribution inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-prime-inputs",
+          "role": "sieve-and-prime-distribution-inputs",
+          "label": "lemma m1-lem-prime-inputs",
+          "fullLabel": "lemma m1-lem-prime-inputs",
+          "kind": "lemma",
+          "source": "Sieve and prime-distribution inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-small-sieve",
+          "role": "sieve-and-prime-distribution-inputs",
+          "label": "lemma m1-lem-small-sieve",
+          "fullLabel": "lemma m1-lem-small-sieve",
+          "kind": "lemma",
+          "source": "Sieve and prime-distribution inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tree-lower-bound",
+          "role": "the-decreasing-prime-tree",
+          "label": "lemma m1-lem-tree-lower-bound",
+          "fullLabel": "lemma m1-lem-tree-lower-bound",
+          "kind": "lemma",
+          "source": "The decreasing-prime tree",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-future-integrals",
+          "role": "delay-functions-and-the-continuous-path-process",
+          "label": "lemma m1-lem-future-integrals",
+          "fullLabel": "lemma m1-lem-future-integrals",
+          "kind": "lemma",
+          "source": "Delay functions and the continuous path process",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-derivative-weights",
+          "role": "delay-functions-and-the-continuous-path-process",
+          "label": "lemma m1-lem-derivative-weights",
+          "fullLabel": "lemma m1-lem-derivative-weights",
+          "kind": "lemma",
+          "source": "Delay functions and the continuous path process",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-regeneration",
+          "role": "delay-functions-and-the-continuous-path-process",
+          "label": "lemma m1-lem-regeneration",
+          "fullLabel": "lemma m1-lem-regeneration",
+          "kind": "lemma",
+          "source": "Delay functions and the continuous path process",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-invariant",
+          "role": "delay-functions-and-the-continuous-path-process",
+          "label": "lemma m1-lem-invariant",
+          "fullLabel": "lemma m1-lem-invariant",
+          "kind": "lemma",
+          "source": "Delay functions and the continuous path process",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-occupation",
+          "role": "delay-functions-and-the-continuous-path-process",
+          "label": "proposition m1-prop-occupation",
+          "fullLabel": "proposition m1-prop-occupation",
+          "kind": "proposition",
+          "source": "Delay functions and the continuous path process",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-band-bounds",
+          "role": "delay-functions-and-the-continuous-path-process",
+          "label": "lemma m1-lem-band-bounds",
+          "fullLabel": "lemma m1-lem-band-bounds",
+          "kind": "lemma",
+          "source": "Delay functions and the continuous path process",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-marked-visits",
+          "role": "delay-functions-and-the-continuous-path-process",
+          "label": "lemma m1-lem-marked-visits",
+          "fullLabel": "lemma m1-lem-marked-visits",
+          "kind": "lemma",
+          "source": "Delay functions and the continuous path process",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-prime-harmonic",
+          "role": "passage-from-harmonic-paths-to-primes",
+          "label": "lemma m1-lem-prime-harmonic",
+          "fullLabel": "lemma m1-lem-prime-harmonic",
+          "kind": "lemma",
+          "source": "Passage from harmonic paths to primes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-high-states",
+          "role": "passage-from-harmonic-paths-to-primes",
+          "label": "lemma m1-lem-high-states",
+          "fullLabel": "lemma m1-lem-high-states",
+          "kind": "lemma",
+          "source": "Passage from harmonic paths to primes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-prime-coupling",
+          "role": "passage-from-harmonic-paths-to-primes",
+          "label": "proposition m1-prop-prime-coupling",
+          "fullLabel": "proposition m1-prop-prime-coupling",
+          "kind": "proposition",
+          "source": "Passage from harmonic paths to primes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-discrete-marginals",
+          "role": "passage-from-harmonic-paths-to-primes",
+          "label": "lemma m1-lem-discrete-marginals",
+          "fullLabel": "lemma m1-lem-discrete-marginals",
+          "kind": "lemma",
+          "source": "Passage from harmonic paths to primes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-prime-occupation",
+          "role": "passage-from-harmonic-paths-to-primes",
+          "label": "proposition m1-prop-prime-occupation",
+          "fullLabel": "proposition m1-prop-prime-occupation",
+          "kind": "proposition",
+          "source": "Passage from harmonic paths to primes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ref-residual",
+          "role": "evaluation-of-the-reference-tree",
+          "label": "lemma m1-lem-ref-residual",
+          "fullLabel": "lemma m1-lem-ref-residual",
+          "kind": "lemma",
+          "source": "Evaluation of the reference tree",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-ref-anomaly",
+          "role": "evaluation-of-the-reference-tree",
+          "label": "lemma m1-lem-ref-anomaly",
+          "fullLabel": "lemma m1-lem-ref-anomaly",
+          "kind": "lemma",
+          "source": "Evaluation of the reference tree",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-reference-margin",
+          "role": "evaluation-of-the-reference-tree",
+          "label": "proposition m1-prop-reference-margin",
+          "fullLabel": "proposition m1-prop-reference-margin",
+          "kind": "proposition",
+          "source": "Evaluation of the reference tree",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-local-reference",
+          "role": "evaluation-of-the-reference-tree",
+          "label": "lemma m1-lem-local-reference",
+          "fullLabel": "lemma m1-lem-local-reference",
+          "kind": "lemma",
+          "source": "Evaluation of the reference tree",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-edge-witness",
+          "role": "compact-errors-and-independent-prime-boxes",
+          "label": "lemma m1-lem-edge-witness",
+          "fullLabel": "lemma m1-lem-edge-witness",
+          "kind": "lemma",
+          "source": "Compact errors and independent prime boxes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-regular-boxes",
+          "role": "compact-errors-and-independent-prime-boxes",
+          "label": "proposition m1-prop-regular-boxes",
+          "fullLabel": "proposition m1-prop-regular-boxes",
+          "kind": "proposition",
+          "source": "Compact errors and independent prime boxes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-inverse",
+          "role": "an-inverse-estimate-for-a-witnessing-edge",
+          "label": "proposition m1-prop-inverse",
+          "fullLabel": "proposition m1-prop-inverse",
+          "kind": "proposition",
+          "source": "An inverse estimate for a witnessing edge",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-nonlinear-points",
+          "role": "an-inverse-estimate-for-a-witnessing-edge",
+          "label": "lemma m1-lem-nonlinear-points",
+          "fullLabel": "lemma m1-lem-nonlinear-points",
+          "kind": "lemma",
+          "source": "An inverse estimate for a witnessing edge",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-random-variance",
+          "role": "variance-after-the-inverse-estimate",
+          "label": "lemma m1-lem-random-variance",
+          "fullLabel": "lemma m1-lem-random-variance",
+          "kind": "lemma",
+          "source": "Variance after the inverse estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-structured-variance",
+          "role": "variance-after-the-inverse-estimate",
+          "label": "proposition m1-prop-structured-variance",
+          "fullLabel": "proposition m1-prop-structured-variance",
+          "kind": "proposition",
+          "source": "Variance after the inverse estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-hard-endpoints",
+          "role": "variance-after-the-inverse-estimate",
+          "label": "corollary m1-cor-hard-endpoints",
+          "fullLabel": "corollary m1-cor-hard-endpoints",
+          "kind": "corollary",
+          "source": "Variance after the inverse estimate",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-stops-aligned-average",
+          "role": "stops-for-endpoints-with-small-effective-size",
+          "label": "lemma m1-lem-stops-aligned-average",
+          "fullLabel": "lemma m1-lem-stops-aligned-average",
+          "kind": "lemma",
+          "source": "Stops for endpoints with small effective size",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-stops-euler-probability",
+          "role": "stops-for-endpoints-with-small-effective-size",
+          "label": "lemma m1-lem-stops-euler-probability",
+          "fullLabel": "lemma m1-lem-stops-euler-probability",
+          "kind": "lemma",
+          "source": "Stops for endpoints with small effective size",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-stopped-comparison",
+          "role": "stops-for-endpoints-with-small-effective-size",
+          "label": "proposition m1-prop-stopped-comparison",
+          "fullLabel": "proposition m1-prop-stopped-comparison",
+          "kind": "proposition",
+          "source": "Stops for endpoints with small effective size",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-hard-stopping",
+          "role": "stops-for-endpoints-with-small-effective-size",
+          "label": "proposition m1-prop-hard-stopping",
+          "fullLabel": "proposition m1-prop-hard-stopping",
+          "kind": "proposition",
+          "source": "Stops for endpoints with small effective size",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-hyperbola",
+          "role": "completion-of-the-proof",
+          "label": "lemma m1-lem-hyperbola",
+          "fullLabel": "lemma m1-lem-hyperbola",
+          "kind": "lemma",
+          "source": "Completion of the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-elementary-buchstab",
+          "role": "elementary-forms-of-four-auxiliary-estimates",
+          "label": "lemma m1-lem-elementary-buchstab",
+          "fullLabel": "lemma m1-lem-elementary-buchstab",
+          "kind": "lemma",
+          "source": "Elementary forms of four auxiliary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-elementary-large-sieve",
+          "role": "elementary-forms-of-four-auxiliary-estimates",
+          "label": "lemma m1-lem-elementary-large-sieve",
+          "fullLabel": "lemma m1-lem-elementary-large-sieve",
+          "kind": "lemma",
+          "source": "Elementary forms of four auxiliary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-elementary-bezout",
+          "role": "elementary-forms-of-four-auxiliary-estimates",
+          "label": "lemma m1-lem-elementary-bezout",
+          "fullLabel": "lemma m1-lem-elementary-bezout",
+          "kind": "lemma",
+          "source": "Elementary forms of four auxiliary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-elementary-brun-titchmarsh",
+          "role": "elementary-forms-of-four-auxiliary-estimates",
+          "label": "lemma m1-lem-elementary-brun-titchmarsh",
+          "fullLabel": "lemma m1-lem-elementary-brun-titchmarsh",
+          "kind": "lemma",
+          "source": "Elementary forms of four auxiliary estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "A quadratic bound for Jacobsthal's function",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-quadratic-bound-for-Jacobsthals-function-September-25-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

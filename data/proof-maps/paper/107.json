@@ -1,0 +1,580 @@
+{
+  "familyNumber": "107",
+  "familyTitle": "Matrix multiplication with exponent at most 9/4",
+  "manuscripts": [
+    {
+      "id": "Matrix-Multiplication-Nine-Fourths-October-2-2026",
+      "title": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent",
+      "date": "2026-10-02",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Matrix-Multiplication-Nine-Fourths-October-2-2026/paper.pdf"
+    },
+    {
+      "id": "Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026",
+      "title": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026/Complex-Matrix-Multiplication-Below-2.258-and-Rectangular-Bounds-September-24-2026.pdf"
+    },
+    {
+      "id": "Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026",
+      "title": "Staggered extraction for exact matrix multiplication over every field",
+      "date": "2026-09-24",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Tensors and their characters",
+    "Separating a shared tensor leg",
+    "Two inequalities for polynomial multiplication",
+    "Discrete growth and the arithmetic exponent",
+    "Existence of detecting characters",
+    "Tensors and arithmetic exponents",
+    "Finite tensor constructions",
+    "Banked constructions and attainable values",
+    "Arithmetic-progression restrictions and differential comparison",
+    "The three-state boundary seed",
+    "A rational certificate for the comparison bound",
+    "Conditional labels and entropy",
+    "Recursive completion trees",
+    "An exact finite-family optimization",
+    "Three parameter certificates",
+    "Comparison with ordinary combinations",
+    "Finite-exception characteristic transfer",
+    "Rank and the basic tensor",
+    "A joint extraction at several depths",
+    "Recovering the ideal outputs and composing extractions",
+    "Terminal dimensions and the rank comparison",
+    "Exact parameters and numerical certification"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every >0 , two n n complex matrices can be multiplied using O_(n^ 9/4+ )…",
+      "statement": "For every >0 , two n n complex matrices can be multiplied using O_(n^ 9/4+ ) arithmetic operations. In particular, 9/4 .",
+      "section": "Introduction",
+      "manuscript": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent"
+    },
+    {
+      "id": "m1-lem-existence",
+      "kind": "lemma",
+      "label": "Detecting characters",
+      "statement": "[Detecting characters] Let d2 and k0 be integers with k<d^ , where is defined by . There is a tensor character with (T_d) k .",
+      "section": "Tensors and their characters",
+      "manuscript": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent"
+    },
+    {
+      "id": "m1-lem-interpolation",
+      "kind": "lemma",
+      "label": "Interpolation",
+      "statement": "[Interpolation] If A B , then (A)(B) for every tensor character .",
+      "section": "Tensors and their characters",
+      "manuscript": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent"
+    },
+    {
+      "id": "m1-prop-separation",
+      "kind": "proposition",
+      "label": "Finite separation",
+      "statement": "[Finite separation] Let M1 and \\[ A=_ h=1 ^M A_h, A_h X Y_h Z_h, \\] where the Y_h are disjoint coordinate spaces and so are the Z_h . There are no terms between unmatched second- and third-leg…",
+      "section": "Separating a shared tensor leg",
+      "manuscript": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent"
+    },
+    {
+      "id": "m1-cor-entropy",
+      "kind": "corollary",
+      "label": "Shared-leg entropy inequality",
+      "statement": "[Shared-leg entropy inequality] Let T=_ i=1 ^s T_i be a sum of nonzero tensors with a common first space and matched, pairwise disjoint sectors on the other two legs, as in Proposition~ . For every…",
+      "section": "Separating a shared tensor leg",
+      "manuscript": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent"
+    },
+    {
+      "id": "m1-lem-concavity",
+      "kind": "lemma",
+      "label": "Discrete concavity",
+      "statement": "[Discrete concavity] For a1 and b2 , 2P(a,b) P(a,b+1)+P(a,b-1). By symmetry, the analogous inequality holds in the first argument.",
+      "section": "Two inequalities for polynomial multiplication",
+      "manuscript": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent"
+    },
+    {
+      "id": "m1-lem-tripling",
+      "kind": "lemma",
+      "label": "Shifted tripling",
+      "statement": "[Shifted tripling] For all positive integers a,h , P(a,3h+a-1)3P(a,h).",
+      "section": "Two inequalities for polynomial multiplication",
+      "manuscript": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent"
+    },
+    {
+      "id": "m1-lem-growth",
+      "kind": "lemma",
+      "label": "Diagonal growth",
+      "statement": "[Diagonal growth] Let P:_ >0 ^2_ >0 be symmetric, with P(1,b)=b . Suppose it satisfies for a1,b2 and for a,h1 . Then P(a,a) a^ 4/3 for every a1 .",
+      "section": "Discrete growth and the arithmetic exponent",
+      "manuscript": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent"
+    },
+    {
+      "id": "m1-lem-multiplicativity",
+      "kind": "lemma",
+      "label": "Let K be a nonempty compact convex set of states in the topology of…",
+      "statement": "Let K be a nonempty compact convex set of states in the topology of coordinatewise convergence. Suppose that, for every nonzero z S , the map \\[ (P_z)(x)= (zx) (z) \\] takes K into itself. Then K…",
+      "section": "Existence of detecting characters",
+      "manuscript": "An Upper Bound of 9/4 for the Matrix Multiplication Exponent"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "Over \\(\\), the arithmetic matrix-multiplication exponents satisfy \\[ <1129 500…",
+      "statement": "Over \\(\\), the arithmetic matrix-multiplication exponents satisfy \\[ <1129 500 =2.258, >0.465, w(0.709)<2.092. \\]",
+      "section": "Introduction",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-lem-rank-exponent",
+      "kind": "lemma",
+      "label": "For \\(a_i0\\), W(a_1,a_2,a_3)= _ s R ( e^ sa_1 , e^ sa_2 , e^ sa_3 ) s .…",
+      "statement": "For \\(a_i0\\), W(a_1,a_2,a_3)= _ s R ( e^ sa_1 , e^ sa_2 , e^ sa_3 ) s . Moreover, \\(W\\) is coordinatewise nondecreasing, homogeneous, subadditive, permutation invariant, and continuous. It satisfies…",
+      "section": "Tensors and arithmetic exponents",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-lem-border-overhead",
+      "kind": "lemma",
+      "label": "For a fixed tensor of cost \\(R\\), its \\(N\\)-th tensor power has exact rank at…",
+      "statement": "For a fixed tensor of cost \\(R\\), its \\(N\\)-th tensor power has exact rank at most \\(O(N+1)R^N\\), where the implicit constant may depend on the fixed witness.",
+      "section": "Tensors and arithmetic exponents",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-lem-rectangular-sum",
+      "kind": "lemma",
+      "label": "Equal rectangular summands",
+      "statement": "[Equal rectangular summands] Suppose a tensor of cost \\(R\\) restricts or degenerates to a direct sum of \\(M\\) copies of the matrix-multiplication tensor with dimensions \\(l_1,l_2,l_3\\). Then W( l_1,…",
+      "section": "Tensors and arithmetic exponents",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-alg-cw-rank",
+      "kind": "lemma",
+      "label": "The tensor \\(T\\) has border rank three. Consequently \\((T^ n )3^n\\) for every…",
+      "statement": "The tensor \\(T\\) has border rank three. Consequently \\((T^ n )3^n\\) for every integer \\(n1\\).",
+      "section": "Finite tensor constructions",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-thm-asi",
+      "kind": "theorem",
+      "label": "Asymptotic sum inequality,",
+      "statement": "[Asymptotic sum inequality, ] If a tensor \\(U\\) degenerates to \\(_ =1 ^ L a_,b_,c_\\), with all dimensions positive integers, then \\[ _ =1 ^ L (a_ b_ c_)^ /3 (U). \\] In particular, if \\(T^ n A _ =1 ^…",
+      "section": "Finite tensor constructions",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-lem-group",
+      "kind": "lemma",
+      "label": "Pairwise label separation",
+      "statement": "[Pairwise label separation] Let \\(U=_ s=1 ^ K U_s\\), where \\(U_s\\) uses \\(X\\)-variables in \\(X_s\\) and \\(Y\\)-variables in \\(Y_s\\), and the families \\((X_s)_ s=1 ^K\\) and \\((Y_s)_ s=1 ^K\\) are each…",
+      "section": "Finite tensor constructions",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-alg-payload",
+      "kind": "lemma",
+      "label": "Preservation of unresolved fibers",
+      "statement": "[Preservation of unresolved fibers] The identity in Lemma~ holds with arbitrary coefficients and arbitrary unresolved local indices inside the tensors \\(U_s\\), including indices correlated between…",
+      "section": "Finite tensor constructions",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-lem-hierarchy",
+      "kind": "lemma",
+      "label": "Accounting for a finite label hierarchy",
+      "statement": "[Accounting for a finite label hierarchy] Let \\(b1\\), and let \\( B S^b\\) be nonempty. Suppose local restrictions and degenerations of \\(T^ b \\) retain exactly these original scalar components, with…",
+      "section": "Finite tensor constructions",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-alg-completion",
+      "kind": "lemma",
+      "label": "Completion",
+      "statement": "[Completion] Let a tensor have a W-partition with labels \\(0,1,2\\). For an integer \\(b1\\), a local monomial degeneration of its \\(b\\)-th power retains exactly the coarse words \\ 0,1\\ ^b\\ \\ \\ 0,2\\ ^b.…",
+      "section": "Finite tensor constructions",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-thm-elementary",
+      "kind": "theorem",
+      "label": "Elementary completion bound",
+      "statement": "[Elementary completion bound] For every integer \\(b2\\), 3b 3 (4^b+3^b-2^ b+1 ) . In particular, \\[ 9 3 75 =2.290107196. \\]",
+      "section": "Finite tensor constructions",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-alg-parity",
+      "kind": "lemma",
+      "label": "Parity restriction",
+      "statement": "[Parity restriction] In three W-partitioned occurrences, a local monomial degeneration removes exactly the six words in which all three labels occur and retains the other 21 coarse words. On the…",
+      "section": "Finite tensor constructions",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-alg-orientation-banks",
+      "kind": "lemma",
+      "label": "Equal physical orientation supplies",
+      "statement": "[Equal physical orientation supplies] Fix a finite oriented schedule of operations with prescribed exact conditional populations. Suppose its exact types fix, for each relative physical permutation…",
+      "section": "Finite tensor constructions",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-alg-completion-hierarchy",
+      "kind": "lemma",
+      "label": "Resolving a tree of completion gates",
+      "statement": "[Resolving a tree of completion gates] Consider a finite rooted tree whose leaves are W-partitioned occurrences and whose internal nodes apply Lemma~ to their children. Before a child is used at a…",
+      "section": "Finite tensor constructions",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-alg-recipe-composition",
+      "kind": "proposition",
+      "label": "Composition of finite recipe laws",
+      "statement": "[Composition of finite recipe laws] Consider a primitive completion, a finite tree of completion gates as in Lemma~ , or a parity operation on \\(b\\) original occurrences. Let \\(s\\) be its outer W…",
+      "section": "Finite tensor constructions",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-prop-values",
+      "kind": "proposition",
+      "label": "Bounds, concavity, and continuity",
+      "statement": "[Bounds, concavity, and continuity] For 0<3 and 1 , 0 F_() H()6, 0 U^W_(q) H(q)3. Both functions are concave and continuous on their closed probability simplices. They have supporting affine…",
+      "section": "Banked constructions and attainable values",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-val-canonical-symmetry",
+      "kind": "lemma",
+      "label": "Symmetry of canonical laws",
+      "statement": "[Symmetry of canonical laws] For S_3 , define (_*)(s)=(^ -1 s) . Then \\[ F_(_*)=F_(), U^W_(_*q)=U^W_(q). \\]",
+      "section": "Banked constructions and attainable values",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-val-recompile",
+      "kind": "lemma",
+      "label": "Recompiling a fixed finite recipe",
+      "statement": "[Recompiling a fixed finite recipe] Fix a finite recipe on n original occurrences with canonical law q , L terminal labels, charged auxiliary rank R , and additional volume v . Fix 1 . There is a…",
+      "section": "Banked constructions and attainable values",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-prop-monotonicity",
+      "kind": "proposition",
+      "label": "Monotonicity",
+      "statement": "[Monotonicity] For 1_0_1 and every W law q , \\[ U^W_ _1 (q) U^W_ _0 (q). \\]",
+      "section": "Banked constructions and attainable values",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-val-ap-set",
+      "kind": "lemma",
+      "label": "Progression-free labels",
+      "statement": "[Progression-free labels] For all sufficiently large integers L there is a set J\\ 1,,L\\ containing no nonconstant three-term arithmetic progression and satisfying \\[ |J|= L-O( L). \\] For primes P , a…",
+      "section": "Banked constructions and attainable values",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-prop-matching",
+      "kind": "proposition",
+      "label": "Banked marginal matching",
+      "statement": "[Banked marginal matching] Let ( S) , and let _X,_Y,_Z be its three canonical local-grade marginals. For every 0<3 , F_() H_ marg () :=H( _X)+H( _Y)+H( _Z)3. The constructions proving this bound are…",
+      "section": "Banked constructions and attainable values",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-prop-face",
+      "kind": "proposition",
+      "label": "W constructions on a face",
+      "statement": "[ W constructions on a face] Suppose =(p_0,p_1,p_2,E_0,E_1,E_2)( S) satisfies E_1=0 . Put Q&=(p_2+E_0,\\ p_0+E_2,\\ p_1), \\\\ J()&=(p_2)+(E_0)+(p_0)+(E_2) -(Q_0)-(Q_1), where (s)=-s s and (0)=0 . Then…",
+      "section": "Banked constructions and attainable values",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-thm-ap",
+      "kind": "theorem",
+      "label": "Lower tests for the six-state value",
+      "statement": "[Lower tests for the six-state value] Fix \\(0<3\\), and let \\(()\\) be a \\(C^2\\) chart of strictly positive six-state laws, parametrized by their means on an open subset of \\(\\ :_i_i=2\\ \\). Suppose…",
+      "section": "Arithmetic-progression restrictions and differential comparison",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-ap-behrend",
+      "kind": "lemma",
+      "label": "For all sufficiently large integers \\(L\\), there is a set \\(J\\ 1,,L\\ \\) with no…",
+      "statement": "For all sufficiently large integers \\(L\\), there is a set \\(J\\ 1,,L\\ \\) with no nonconstant three-term arithmetic progression and \\[ |J| L-O( L). \\]",
+      "section": "Arithmetic-progression restrictions and differential comparison",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-lem-compile",
+      "kind": "lemma",
+      "label": "Compiling a finite tree",
+      "statement": "[Compiling a finite tree] Fix a finite horizon \\(n\\), a finite set of disjoint shared terminal windows \\(J\\), and a rational target law \\(a\\). At every target and prefix node \\(v=(j,h)\\), prescribe…",
+      "section": "Arithmetic-progression restrictions and differential comparison",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-ap-corridor",
+      "kind": "lemma",
+      "label": "Shrinking-corridor control",
+      "statement": "[Shrinking-corridor control] Assume that every \\(|m| m_0\\) is available as a soft mean, with cost at most \\(|m|^2/2\\), bounded increments \\(|X| B\\), and the limit . Assume also the singleton controls…",
+      "section": "Arithmetic-progression restrictions and differential comparison",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-cor-w-ap",
+      "kind": "corollary",
+      "label": "Lower tests for the W value",
+      "statement": "[Lower tests for the W value] Fix \\(1\\). On the relative interior of the three-letter simplex, put \\[ C_W(q)=(q)-qq^, L_W=C_W(q):D^2. \\] Every \\(C^2\\) lower test \\(\\) for \\(U_\\) satisfies L_W- at its…",
+      "section": "Arithmetic-progression restrictions and differential comparison",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-ap-comparison",
+      "kind": "corollary",
+      "label": "Strict comparison",
+      "statement": "[Strict comparison] Let \\(\\) be a bounded domain in the mean plane with compact closure, and let a chart \\(\\) as in Theorem~ extend continuously to \\(\\). Suppose \\(f C() C^2()\\), \\(f F_\\) on \\(\\),…",
+      "section": "Arithmetic-progression restrictions and differential comparison",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-ap-chart-error",
+      "kind": "lemma",
+      "label": "Supporting-plane chart error",
+      "statement": "[Supporting-plane chart error] Suppose \\(0 h K\\) is a concave value on the full source simplex, \\(\\) is an interior law, and \\(g\\) is a supporting supergradient there. For a probability-law chart…",
+      "section": "Arithmetic-progression restrictions and differential comparison",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-cert-w-correction",
+      "kind": "lemma",
+      "label": "Correction to an exact target law",
+      "statement": "[Correction to an exact target law] Let q be a strictly positive probability vector, let K0 , and suppose a construction has law q and attainable utility u K . Then the closed attainable value…",
+      "section": "The three-state boundary seed",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-cert-w-seed",
+      "kind": "proposition",
+      "label": "Certified W seed",
+      "statement": "[Certified W seed] With the preceding exact coefficients and domain, \\[ U(q) F_0(q)+H_W(z)-910^ -6 (z_W), \\] and U(q) F_0(q)+H_W(z)-2210^ -6 (z_W).",
+      "section": "The three-state boundary seed",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-thm-certificate",
+      "kind": "theorem",
+      "label": "The certificate bound",
+      "statement": "[The certificate bound] Let =1129/500 . The construction class defining F_ satisfies \\[ F_(_*)\\ \\ 1.098619383270680538 \\ >\\ 3, \\] where _*=(p,p,p,1/3-p,1/3-p,1/3-p) and \\[ p=2^ -500 2^ 500 18623…",
+      "section": "A rational certificate for the comparison bound",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-ap-covariance",
+      "kind": "lemma",
+      "label": "Complex covariance normalization",
+      "statement": "[Complex covariance normalization] For =(p_0,p_1,p_2,E_0,E_1,E_2) , set \\[ r_i=1-_i, z=x+iy=3r_0-1+i3(r_2-r_1), D_i=r_i(1-r_i)+2p_i. \\] Then D_i=Var(g_i) . In the (x,y) coordinates the covariance…",
+      "section": "A rational certificate for the comparison bound",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-cert-interior-lemma",
+      "kind": "lemma",
+      "label": "Interior certificate",
+      "statement": "[Interior certificate] On , \\[ L>-1+9.810^ -8 . \\]",
+      "section": "A rational certificate for the comparison bound",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-cert-boundary-lemma",
+      "kind": "lemma",
+      "label": "Continuous boundary margin",
+      "statement": "[Continuous boundary margin] On the boundary of the full six-state probability domain, \\[ F_((z))(z)+5.510^ -6 . \\]",
+      "section": "A rational certificate for the comparison bound",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-thm-entropy",
+      "kind": "theorem",
+      "label": "Conditional-label entropy bound",
+      "statement": "[Conditional-label entropy bound] If a tensor of cost \\(e^C\\) has a readable label tree, then W(r_ XY (),r_ XZ (),r_ YZ ()) C for every leaf law \\(\\).",
+      "section": "Conditional labels and entropy",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-cor-balance",
+      "kind": "corollary",
+      "label": "Balancing two axes",
+      "statement": "[Balancing two axes] Fix a side \\(L\\). Let \\(S\\) be the sum of the two rates incident to \\(L\\), and let \\(T\\) be the remaining rate. Then W(S/2,T,S/2) C. For \\(C>0\\), the normalized pairs…",
+      "section": "Conditional labels and entropy",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-lem-completion",
+      "kind": "lemma",
+      "label": "Completion is a local leading-term degeneration. It produces another three-flag…",
+      "statement": "Completion is a local leading-term degeneration. It produces another three-flag tensor with conditional readable trees. If the old tensor contains \\(b\\) base factors of budget \\(R\\), the new one has…",
+      "section": "Recursive completion trees",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-lem-score-optimality",
+      "kind": "lemma",
+      "label": "The values in -- are the exact maxima of \\(S+tT\\) over their conditional or…",
+      "statement": "The values in -- are the exact maxima of \\(S+tT\\) over their conditional or complete leaf laws. Thus \\(F\\) is the support function, in direction \\((1,t)\\), of the downward convex hull of the…",
+      "section": "An exact finite-family optimization",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-thm-shape-optimization",
+      "kind": "theorem",
+      "label": "For \\(U=F\\) or \\(U=F_p\\), and \\(0 k1\\), the largest feasible scale on this ray…",
+      "statement": "For \\(U=F\\) or \\(U=F_p\\), and \\(0 k1\\), the largest feasible scale on this ray is d_U(k):=\\ d0:(2d,kd)_U\\ =_ 0 t1 U(t) 2+kt . Consequently, w(k)1 d_U(k) =_ 0 t1 2+kt U(t) . A maximizing parameter is…",
+      "section": "An exact finite-family optimization",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-lem-uniform-update",
+      "kind": "lemma",
+      "label": "The maintained properties are preserved by the following laws. At a completion…",
+      "statement": "The maintained properties are preserved by the following laws. At a completion centered on \\(\\) of size \\(m\\), '&=^m,& h'_ &=m h_ , \\\\ h'_i&= m( - ' 1-' h_ +1- 1-' h_i) &&(i=,). At a completion…",
+      "section": "Three parameter certificates",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-lem-plane-preservation",
+      "kind": "lemma",
+      "label": "The condition \\(e P_p(a,b,c)\\) is preserved by all the operations in . The…",
+      "statement": "The condition \\(e P_p(a,b,c)\\) is preserved by all the operations in . The square input satisfies it with equality, and the naive estimates satisfy it.",
+      "section": "Comparison with ordinary combinations",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-prop-comparison",
+      "kind": "proposition",
+      "label": "Assume \\(2<p2.258\\) and \\(w(1) p\\). Against \\( B_p\\), the new bounds are…",
+      "statement": "Assume \\(2<p2.258\\) and \\(w(1) p\\). Against \\( B_p\\), the new bounds are strictly better for \\(0.321334<k<1\\). More generally they improve any separator-satisfying baseline throughout the part of…",
+      "section": "Comparison with ordinary combinations",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-prop-extra-inputs",
+      "kind": "proposition",
+      "label": "Under , every such additional input satisfies the separator test.",
+      "statement": "Under , every such additional input satisfies the separator test.",
+      "section": "Comparison with ordinary combinations",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-cor-characteristic-transfer",
+      "kind": "corollary",
+      "label": "Finite-exception field bounds",
+      "statement": "[Finite-exception field bounds] There is a finite set \\( S\\) of positive primes such that, for every field \\(F\\) with \\(charF=0\\) or \\(charF=p S\\), \\[ _F<1129 500 =2.258, w_F\\!(709 1000 )<523 250…",
+      "section": "Finite-exception characteristic transfer",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m2-cor-characteristic-zero-dual",
+      "kind": "corollary",
+      "label": "Characteristic-zero dual bound",
+      "statement": "[Characteristic-zero dual bound] For every field \\(F\\) of characteristic zero, \\(_F>0.465\\).",
+      "section": "Finite-exception characteristic transfer",
+      "manuscript": "Complex Matrix Multiplication Below 2.258 and Rectangular Bounds"
+    },
+    {
+      "id": "m3-thm-main",
+      "kind": "theorem",
+      "label": "Over every fixed field , the arithmetic exponent of square matrix…",
+      "statement": "Over every fixed field , the arithmetic exponent of square matrix multiplication satisfies \\[ _<2.371054886006746<2.371054887. \\]",
+      "section": "Introduction",
+      "manuscript": "Staggered extraction for exact matrix multiplication over every field"
+    },
+    {
+      "id": "m3-lem-direct-sum",
+      "kind": "lemma",
+      "label": "Direct sums of identical matrix tensors",
+      "statement": "[Direct sums of identical matrix tensors] Let s,a,b,c be positive integers. If \\[ (_ j=1 ^ s a,b,c) R_*, \\] then s(abc)^ w/3 R_*.",
+      "section": "Rank and the basic tensor",
+      "manuscript": "Staggered extraction for exact matrix multiplication over every field"
+    },
+    {
+      "id": "m3-lem-cw-rank",
+      "kind": "lemma",
+      "label": "Rank bound for powers of the basic tensor",
+      "statement": "[Rank bound for powers of the basic tensor] Over every field and for every integer m0 , (_q^ m ) (q+2)^m3m+2 2 .",
+      "section": "Rank and the basic tensor",
+      "manuscript": "Staggered extraction for exact matrix multiplication over every field"
+    },
+    {
+      "id": "m3-thm-joint-step",
+      "kind": "theorem",
+      "label": "Heterogeneous joint step",
+      "statement": "[Heterogeneous joint step] Let B_N be the restriction of _r F_r^ m_r by the inherited masks just specified, with the population data above. Set A_ amb =_ r R c_rH(p_r), C_W=_ r R c_rC_ r,W , E=\\…",
+      "section": "A joint extraction at several depths",
+      "manuscript": "Staggered extraction for exact matrix multiplication over every field"
+    },
+    {
+      "id": "m3-lem-compatibility-count",
+      "kind": "lemma",
+      "label": "Compatibility incidence count",
+      "statement": "[Compatibility incidence count] For fixed population data, there is a function (,)0 as (,)(0,0) such that any fine side variable passing the pair filters is compatible with at most (N(A_ amb…",
+      "section": "A joint extraction at several depths",
+      "manuscript": "Staggered extraction for exact matrix multiplication over every field"
+    },
+    {
+      "id": "m3-lem-orbit-masks",
+      "kind": "lemma",
+      "label": "Uniform loss from inherited masks",
+      "statement": "[Uniform loss from inherited masks] The total number of G_e -orbits of variables on the three sides is polynomial in N , uniformly over target triples e . Suppose every inherited or global mask is…",
+      "section": "Recovering the ideal outputs and composing extractions",
+      "manuscript": "Staggered extraction for exact matrix multiplication over every field"
+    },
+    {
+      "id": "m3-lem-hole-repair",
+      "kind": "lemma",
+      "label": "Exact repair by presence masks",
+      "statement": "[Exact repair by presence masks] Let Q_N be a tensor over an arbitrary field, with at most (bN) nonzero monomials for a fixed b>0 . Let G_N be a finite group of coefficient-preserving permutations of…",
+      "section": "Recovering the ideal outputs and composing extractions",
+      "manuscript": "Staggered extraction for exact matrix multiplication over every field"
+    },
+    {
+      "id": "m3-lem-replication",
+      "kind": "lemma",
+      "label": "Replication and composition",
+      "statement": "[Replication and composition] Suppose D_ s_1 (T) D_ r_1 (S) and D_ s_2 (V) D_ r_2 (T) . Then \\[ D_ s_1s_2 (V) D_ r_1r_2 (S). \\] For any finite collection of tensors, \\[ _ i=1 ^j D_ r_i (F_i) D_ _ i=1…",
+      "section": "Recovering the ideal outputs and composing extractions",
+      "manuscript": "Staggered extraction for exact matrix multiplication over every field"
+    },
+    {
+      "id": "m3-prop-leaf-volume",
+      "kind": "proposition",
+      "label": "Leaf volumes and common dimensions",
+      "statement": "[Leaf volumes and common dimensions] Fix a finite number K of lots and rational stage laws satisfying the prescriptions of Section~ . Use fixed rational subdivisions retaining each history class's…",
+      "section": "Terminal dimensions and the rank comparison",
+      "manuscript": "Staggered extraction for exact matrix multiplication over every field"
+    },
+    {
+      "id": "m3-prop-staggered-yield",
+      "kind": "proposition",
+      "label": "Finite staggered yield",
+      "statement": "[Finite staggered yield] Assume the prescriptions of Section~ , the balance conditions , and positive entries of L_A,L_B,L_C . Let S_*=S_0+S_1+S_2 be the terminal rate defined above. For every fixed…",
+      "section": "Terminal dimensions and the rank comparison",
+      "manuscript": "Staggered extraction for exact matrix multiplication over every field"
+    },
+    {
+      "id": "m3-prop-numerical-certificate",
+      "kind": "proposition",
+      "label": "Numerical certificate",
+      "statement": "[Numerical certificate] The exact parameters above satisfy every positivity and balance condition used in Proposition~ . All thirty partial capacity entries in Table~ are positive. In particular,…",
+      "section": "Exact parameters and numerical certification",
+      "manuscript": "Staggered extraction for exact matrix multiplication over every field"
+    }
+  ],
+  "edges": []
+}

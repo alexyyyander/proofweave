@@ -1,0 +1,693 @@
+{
+  "familyNumber": "261",
+  "familyTitle": "Localization and delocalization in the Anderson model",
+  "manuscripts": [
+    {
+      "id": "Absolutely-Continuous-Spectrum-for-Weak-Disorder-Anderson-Models-in-Dimensions-at-Least-Three-September-23-2026",
+      "title": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Absolutely-Continuous-Spectrum-for-Weak-Disorder-Anderson-Models-in-Dimensions-at-Least-Three-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "Pure-Point-Spectrum-for-the-Two-Dimensional-Anderson-Model-at-Every-Positive-Disorder-September-23-2026",
+      "title": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Pure-Point-Spectrum-for-the-Two-Dimensional-Anderson-Model-at-Every-Positive-Disorder-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "A finite-volume certificate and the matrix state",
+    "The initial state and its comparison forms",
+    "The algebra and estimates of an ordinary sweep",
+    "Local trials and the ordinary sweep",
+    "Clearing a small pending component",
+    "Committing clearings and restoring the stage bounds",
+    "Failure histories and removal of pending sites",
+    "From the certificate to pure absolute continuity",
+    "Scattering matrices and analytic estimates",
+    "The resonant cell law",
+    "A weighted projected impedance estimate",
+    "Transmission through a cell",
+    "A hierarchy of probability splits and energy comparisons",
+    "Screening and affine energies at a fixed stage",
+    "Vanishing of the limiting energy in two dimensions",
+    "A fixed-energy fractional-moment estimate"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There is a fixed sufficiently small number e_2(0,1/100) such that, for every…",
+      "statement": "There is a fixed sufficiently small number e_2(0,1/100) such that, for every fixed integer d3 , there is a number _d>0 with the following property. Set I_d= (-6+e_2/2,-6+e_2),&d=3,\\\\…",
+      "section": "Introduction",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-cor-coexistence",
+      "kind": "corollary",
+      "label": "Spectral coexistence",
+      "statement": "[Spectral coexistence] For every fixed d3 and every fixed 0<<_d , there is a deterministic number _ d, (0,/2] such that the open interval \\[ J_ d, =(-2d-,-2d-+_ d, ) \\] is disjoint from I_d and,…",
+      "section": "Introduction",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-prop-certificate",
+      "kind": "proposition",
+      "label": "Finite-volume certificate",
+      "statement": "[Finite-volume certificate] For each fixed d3 there exist _0(d)>0 and constants c,C>0 with the following property. For every fixed 0<<_0(d) , every E I_d , and every m4n_0 , one can use auxiliary…",
+      "section": "A finite-volume certificate and the matrix state",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-conditional-freshness",
+      "kind": "lemma",
+      "label": "Conditional freshness",
+      "statement": "[Conditional freshness] Suppose queries obey the preceding rule. Conditional on the retained history, the unqueried true digits retain their product fair-sign law. The same holds jointly for unused…",
+      "section": "A finite-volume certificate and the matrix state",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-dual-forms",
+      "kind": "lemma",
+      "label": "Dual comparison forms",
+      "statement": "[Dual comparison forms] For b>0 , define \\[ W(f)&=_ f=+ Cv (\\|\\|_2^2+b^ -1 \\| v\\|_2^2),\\\\ W^*(y)&=\\|y\\|_2^2+ b y_,^+y_, _ x A y_x=0. \\] Then W is a positive definite quadratic form on functions on A…",
+      "section": "The initial state and its comparison forms",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-fourier-charge",
+      "kind": "lemma",
+      "label": "A charge estimate for fixed dimension d3",
+      "statement": "[A charge estimate for fixed dimension d3 ] There is a constant C_d such that, for every L4 , every index set A as above, and every charge y on A , \\[ y_,^+y_ C_d\\|y\\|_1^ 4/3 \\|y\\|_2^ 2/3 . \\]",
+      "section": "The initial state and its comparison forms",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-cube-weight",
+      "kind": "lemma",
+      "label": "Weighted cube inequality",
+      "statement": "[Weighted cube inequality] Let Q be a lattice cube in ^d of integer side l1 , let v:Q , and let w_i0 be weights. With the gradient restricted to edges contained in Q , \\[ \\|v-avg_Qv\\|_ 2,Q ^2 C_d…",
+      "section": "The initial state and its comparison forms",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-lattice-counting",
+      "kind": "lemma",
+      "label": "Spatial counting and exponential moments",
+      "statement": "[Spatial counting and exponential moments] For ordinary nearest-neighbor distance on T_L , balls satisfy |B(x,R)| C_d(1+R)^d . If 1 R L/4 , they also satisfy |B(x,R)| c_dR^d . Uniformly in L , for…",
+      "section": "The initial state and its comparison forms",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-initial-bottom-density",
+      "kind": "lemma",
+      "label": "The free resolvent near the band minimum",
+      "statement": "[The free resolvent near the band minimum] The function \\[ G_0(z)=_ [-,)^d 1 a(k)-z \\, dk (2)^d , z>0, \\] extends continuously from above to -2d+ J_d . Its boundary imaginary part there is bounded…",
+      "section": "The initial state and its comparison forms",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-prop-initialization",
+      "kind": "proposition",
+      "label": "Initialization",
+      "statement": "[Initialization] For each fixed d3 there are _0(d)>0 and positive constants a_0,B,c,C,C_0 , depending only on the fixed dimension and window, with the following property. For 0<<_0(d) , the scales in…",
+      "section": "The initial state and its comparison forms",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-duplication",
+      "kind": "lemma",
+      "label": "Port identities",
+      "statement": "[Port identities] For every numerical prefix represented by -- , the virtual matrices satisfy the Ward identity h(p)h^*= g . Their operator norm obeys \\|h\\| C/ t . At the initial duplication, the…",
+      "section": "The algebra and estimates of an ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-single-update",
+      "kind": "lemma",
+      "label": "Single deletion",
+      "statement": "[Single deletion] For sufficiently small t , suppose |g_ xx |+|r_x| C and q_x-p_xF_ xx >0 , and let R be the remaining ports other than x . With l=h_ Rx , h'=h_ RR - ll^, = _0+tr_x t[1+(_0+tr_x)g_ xx…",
+      "section": "The algebra and estimates of an ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-sweep-prestate",
+      "kind": "lemma",
+      "label": "Analytic prestate bounds",
+      "statement": "[Analytic prestate bounds] Suppose the initial physical state satisfies the bounds at a stage boundary in Section~ , including self-consistency, and is duplicated as in Lemma~ . Suppose its current…",
+      "section": "The algebra and estimates of an ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-sweep-j",
+      "kind": "lemma",
+      "label": "Means and operator squares for J",
+      "statement": "[Means and operator squares for J ] For every such subset B , \\|_ x B J_x\\| Ct^. For every collection of allowable hypothetical outcomes and every vector u , _ x B \\|J_xu\\|^2 +_ x B \\|J_x^*u\\|^2 Ct^…",
+      "section": "The algebra and estimates of an ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-sweep-laplacian",
+      "kind": "lemma",
+      "label": "Laplacian increment estimates",
+      "statement": "[Laplacian increment estimates] Fix a valid prestate as in Lemma~ , with current port set \\(V\\), and let \\(S\\) be any subset of its remaining bit ports. For each \\(x S\\), let \\(L_x\\) be the Laplacian…",
+      "section": "The algebra and estimates of an ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-sweep-lag",
+      "kind": "lemma",
+      "label": "Increments of the transformed lag",
+      "statement": "[Increments of the transformed lag] Let \\(t>0\\) be sufficiently small, \\(=.42\\), and \\(H_*=t^ 1+ \\). At a fixed prestate, suppose that \\(h=h^\\), \\(g=h/ t\\), \\(K_ ij =h_ ij ^2\\), \\(F_ ij =|h_ ij…",
+      "section": "The algebra and estimates of an ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-sweep-fourth",
+      "kind": "lemma",
+      "label": "Fourth-power proxies",
+      "statement": "[Fourth-power proxies] At a prestate satisfying Lemma~ , fix a surviving row i , a tracked column set C , and any subset B of possible next bit ports. Let R_i^x be the proxy increment just defined,…",
+      "section": "The algebra and estimates of an ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-prop-sweep-increments",
+      "kind": "proposition",
+      "label": "Ordinary-sweep increment estimates",
+      "statement": "[Ordinary-sweep increment estimates] Consider a current numerical prefix of a sweep whose initial physical state satisfies the bounds at a stage boundary in Section~ , including self-consistency, and…",
+      "section": "The algebra and estimates of an ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-locality",
+      "kind": "lemma",
+      "label": "Decay in the collapsed distance",
+      "statement": "[Decay in the collapsed distance] Suppose the true terminal principal matrix is invertible. Let \\(g\\) be the active inverse with imaginary diagonal damping between \\(ct\\) and \\(Ct\\). There are…",
+      "section": "Local trials and the ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-inverse-row",
+      "kind": "lemma",
+      "label": "Absolute row bound",
+      "statement": "[Absolute row bound] For an active inverse or its port representation as in Lemma~ , assume , bounded positive \\(p\\), \\(\\|K\\|_0<1\\), and \\[ Fp=q, q_i=p_i+O(t^), >0. \\] Then, for sufficiently small…",
+      "section": "Local trials and the ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-local-prospective",
+      "kind": "lemma",
+      "label": "A prospective ordinary update",
+      "statement": "[A prospective ordinary update] Suppose the sweep starts by duplicating a physical state satisfying the complete stage-boundary bounds of Section~ , including self-consistency, the broad bounds and…",
+      "section": "Local trials and the ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-local-pullback",
+      "kind": "lemma",
+      "label": "Local pullback",
+      "statement": "[Local pullback] The maps in satisfy \\[ W(B_Tf) C\\|f\\|_ loc ^2, \\|B_T^*y\\|_ loc ,* ^2 CW^*(y) \\] for neutral charges \\(y\\). At a prestate satisfying the inherited stage-start and current hypotheses…",
+      "section": "Local trials and the ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-local-transfer",
+      "kind": "lemma",
+      "label": "Transfer from tiles to the whole sweep",
+      "statement": "[Transfer from tiles to the whole sweep] Under the standing duplicated stage-start and metric assumptions, consider the numerical record consisting of the accepted endpoint records of earlier tiles…",
+      "section": "Local trials and the ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-matrix-concentration",
+      "kind": "lemma",
+      "label": "Let Y_k be self-adjoint D_s -dimensional matrix martingale differences adapted…",
+      "statement": "Let Y_k be self-adjoint D_s -dimensional matrix martingale differences adapted to ( F_k) , with \\|Y_k\\| J . Suppose \\[ (Y_k^2 F_ k-1 ) v_k, _k v_k V \\] pathwise, where v_k is nonnegative and F_ k-1…",
+      "section": "Local trials and the ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-local-trial",
+      "kind": "lemma",
+      "label": "One trial",
+      "statement": "[One trial] Under the standing duplicated stage-start and metric assumptions, suppose all earlier tiles were accepted under the trial rule and the present trial starts with their accepted matrix…",
+      "section": "Local trials and the ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-prop-ordinary-sweep",
+      "kind": "proposition",
+      "label": "Ordinary sweep",
+      "statement": "[Ordinary sweep] Suppose a committed stage state satisfies the complete stage-boundary bounds of Section~ , including the broad bounds and comparators , the self-consistency relation \\(r_i=g_ ii \\),…",
+      "section": "Local trials and the ordinary sweep",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-core-completion",
+      "kind": "lemma",
+      "label": "Core completion from its scattering range",
+      "statement": "[Core completion from its scattering range] Consider an active split B,R , with R , frozen positive bounded p , damping t , and |B| r_* . Suppose every relevant true terminal principal matrix is…",
+      "section": "Clearing a small pending component",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-clearing-range-localization",
+      "kind": "lemma",
+      "label": "Localization of the full scattering range",
+      "statement": "[Localization of the full scattering range] Let B,R split the active sites of a matrix obtained by eliminating true terminal sites, and suppose the active damping is t(p) with c p_i C . For C=S_ RB…",
+      "section": "Clearing a small pending component",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-cor-core-decay",
+      "kind": "corollary",
+      "label": "Spatial decay of a core completion",
+      "statement": "[Spatial decay of a core completion] Under the hypotheses of Lemma~ , let d_T be the collapsed distance immediately before completion. The same survivor change satisfies | h_ ij | Ct^ -1/2 \\…",
+      "section": "Clearing a small pending component",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-leverage-drift",
+      "kind": "lemma",
+      "label": "Conditional leverage drift",
+      "statement": "[Conditional leverage drift] Suppose the active inverse \\(g\\), with frozen \\(r,p\\), satisfies \\[ |g_ ii |+|r_i| C, c p_i C, |g_ ii -r_i| Ct^ _w , _j|h_ ij |^4 H_* \\] at the prestate of a heat, where…",
+      "section": "Clearing a small pending component",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-clearing-heat-count",
+      "kind": "lemma",
+      "label": "Number of heats",
+      "statement": "[Number of heats] Consider an adapted procedure using the ridge rule above, with heats only at positive ridge and at prestates satisfying Lemma~ . Stop the procedure at completion, at any prescribed…",
+      "section": "Clearing a small pending component",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-prop-clearing-trial",
+      "kind": "proposition",
+      "label": "Preparation of a small component",
+      "statement": "[Preparation of a small component] Assume , the geometry and conditional residual inputs just stated, and 1 |B| r_* . At trial start suppose _i_k|h^0_ ik |^4 .8H_*, _i|g^0_ ii -r_i|=o(t^ _w ),…",
+      "section": "Clearing a small pending component",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-assembly-metric",
+      "kind": "lemma",
+      "label": "Adding separated terminal groups",
+      "statement": "[Adding separated terminal groups] Let c>0 and 0 , and suppose d_T(u,v) c(u,v)- . Let O_a be sets of new terminals, each containing at most M sites, with (O_a,O_ a' ) R-2 for a a' . If \\[…",
+      "section": "Committing clearings and restoring the stage bounds",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-clearing-locality",
+      "kind": "lemma",
+      "label": "Localization of a clearing trial",
+      "statement": "[Localization of a clearing trial] At post-sweep stage j m/2 , put \\[ R_j=4^ 8j , _j=4^ 4j , r_*=t_j^ - , n_h= t_j^ -1-e_h , e_h=.46. \\] Take the snapshot components of pending sites joined at…",
+      "section": "Committing clearings and restoring the stage bounds",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-prop-committed-assembly",
+      "kind": "proposition",
+      "label": "Deterministic assembly of committed changes",
+      "statement": "[Deterministic assembly of committed changes] Fix a clearing stage with parameter t . Consider the finite sequence of its committed numerical states: the initial post-sweep state, indexed by 0 , and…",
+      "section": "Committing clearings and restoring the stage bounds",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-prop-reset",
+      "kind": "proposition",
+      "label": "Diagonal reset",
+      "statement": "[Diagonal reset] Let g=(M-t r)^ -1 on a nonempty active set, where M is real symmetric, r is bounded, and 0<c p_i= r_i C . Assume D=1 . Suppose q_i= g_ ii C , the lag e'=(g)-r satisfies \\|e'\\|_=o(t^…",
+      "section": "Committing clearings and restoring the stage bounds",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-prop-deterministic-induction",
+      "kind": "proposition",
+      "label": "Uniform stage bounds",
+      "statement": "[Uniform stage bounds] Choose the fixed energy window and the initialization constants as in Proposition~ . For sufficiently large n_0 , uniformly in m4n_0 and in the fixed energy in that window, the…",
+      "section": "Committing clearings and restoring the stage bounds",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-prop-witness-bound",
+      "kind": "proposition",
+      "label": "Pending-site bound",
+      "statement": "[Pending-site bound] There is a constant c_ h >0 such that, after increasing the fixed lower cutoff n_0 if necessary, for every n_0 j m/2 and every torus site x , \\[ (x is pending at the end of stage…",
+      "section": "Failure histories and removal of pending sites",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-prop-threshold",
+      "kind": "proposition",
+      "label": "Existence and measurability of the threshold",
+      "statement": "[Existence and measurability of the threshold] The feasibility event in is Borel, and the set of integers in Definition~ is nonempty. Consequently _d>0 . For every fixed 0<<_d , every m4n_0 , and…",
+      "section": "Failure histories and removal of pending sites",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-lem-spectral-averaging",
+      "kind": "lemma",
+      "label": "Own-site averaging",
+      "statement": "[Own-site averaging] Let K be a Hilbert space, let H^c be bounded and self-adjoint on K , and let b K . On K set \\[ H_s= s&b^*\\&H^c , s. \\] Let _s be the spectral measure of (1,0) for H_s . If s has…",
+      "section": "From the certificate to pure absolute continuity",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m1-prop-certificate-readout",
+      "kind": "proposition",
+      "label": "Spectral readout",
+      "statement": "[Spectral readout] Fix d3 , >0 and a nonempty bounded open interval I . Let H_m be the true Anderson operator on T_m=(/L_m)^d , L_m=4^ 20m , with independent uniform diagonal values in [-,] at every…",
+      "section": "From the certificate to pure absolute continuity",
+      "manuscript": "Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three"
+    },
+    {
+      "id": "m2-main-theorem",
+      "kind": "theorem",
+      "label": "For each fixed h>0 , almost surely H_v has pure-point spectral type, admits a…",
+      "statement": "For each fixed h>0 , almost surely H_v has pure-point spectral type, admits a complete orthonormal eigenbasis, and has spectrum \\[ (H_v)=[-4-h,4+h]. \\] Its eigenvalues are dense in this interval. The…",
+      "section": "Introduction",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-mat-ward",
+      "kind": "lemma",
+      "label": "Absorption identities",
+      "statement": "[Absorption identities] Suppose L is invertible and W=-Im L YY^ . Then ImG&=G^*WG=GWG^*, \\\\ Y^ GYa^2 & Im(a^*Y^ GYa), Y^ GY1. For the physical system in , S is symmetric and unitary. If L is complex…",
+      "section": "Scattering matrices and analytic estimates",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-mat-closure",
+      "kind": "lemma",
+      "label": "Common-phase closure",
+      "statement": "[Common-phase closure] Partition the ports into retained ports and a set C to be closed, and write \\[ S= A&T\\^&B . \\] Close every port in C and add the real shift w_j to the physical diagonal for…",
+      "section": "Scattering matrices and analytic estimates",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-mat-energy-closure",
+      "kind": "lemma",
+      "label": "Conditional single-port comparison",
+      "statement": "[Conditional single-port comparison] Consider closing a single port a . Set \\[ u=S_ a,a , b=S_ aa , =z 1-zb , \\] where a means that port a is omitted. Let F contain the open system and the real data…",
+      "section": "Scattering matrices and analytic estimates",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-mat-cutoff",
+      "kind": "lemma",
+      "label": "A cutoff-Cauchy closing law",
+      "statement": "[A cutoff-Cauchy closing law] Fix a smooth function : equal to one near zero and supported in a fixed sufficiently small interval about zero. For a port of strength , give its hidden real shift the…",
+      "section": "Scattering matrices and analytic estimates",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-mat-weak",
+      "kind": "lemma",
+      "label": "Weak- L^1 resolvent estimate",
+      "statement": "[Weak- L^1 resolvent estimate] Let B be a contraction and let U,V be compatible deterministic matrices. At the almost-everywhere boundary values of the rational function in question, \\| U(-zB)^ -1 V…",
+      "section": "Scattering matrices and analytic estimates",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-mat-phase",
+      "kind": "lemma",
+      "label": "Phase integration",
+      "statement": "[Phase integration] Let D(s) be a continuously differentiable d d matrix on a bounded real interval, with -ImD(s)>0 . Its determinant has a continuous phase such that -d<(s)<0, '(s)=Im(D'(s)D(s)^ -1…",
+      "section": "Scattering matrices and analytic estimates",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-cell-geometry",
+      "kind": "lemma",
+      "label": "The clipped boundary",
+      "statement": "[The clipped boundary] The set Z consists of the four sides of the square with their corners removed. Every site of Z has an inward nearest neighbor in J Z . The restriction M:P^Z is an isomorphism…",
+      "section": "The resonant cell law",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-cell-profile",
+      "kind": "lemma",
+      "label": "Choice of the profile parameter",
+      "statement": "[Choice of the profile parameter] There is a fixed exponent C_2 such that, for every sufficiently large L , a deterministic u_L can be chosen for which the real symmetric Dirichlet matrix \\[…",
+      "section": "The resonant cell law",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-cell-branch",
+      "kind": "proposition",
+      "label": "Properties of the branch law",
+      "statement": "[Properties of the branch law] For sufficiently large L , the above choices have the following properties, uniformly over permitted corner boxes: [label=()] Every interior draw has A^ -1 2L^ C_2 ,…",
+      "section": "The resonant cell law",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-imp-weighted",
+      "kind": "proposition",
+      "label": "Weighted projected impedance",
+      "statement": "[Weighted projected impedance] Let T be any fixed complex symmetric matrix on the boundary space with -ImT0 , and let k be any fixed vector there. For each boundary site prescribe a_i to be one of 0…",
+      "section": "A weighted projected impedance estimate",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-imp-comparison",
+      "kind": "lemma",
+      "label": "Comparison of absorbed responses",
+      "statement": "[Comparison of absorbed responses] Suppose D_1,D_2 are invertible matrices with -ImD_j P . If D_2-D_1=P P and K , then, for every k , \\[ (1+K)^ -1 PD_1^ -1 k PD_2^ -1 k (1+K) PD_1^ -1 k . \\]",
+      "section": "A weighted projected impedance estimate",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-imp-polynomials",
+      "kind": "lemma",
+      "label": "Polynomial norms and products",
+      "statement": "[Polynomial norms and products] On a rectangular box in a fixed number of real variables, let p be a polynomial of degree at most d with values in a finite-dimensional Hilbert space. There is a…",
+      "section": "A weighted projected impedance estimate",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-imp-resolution",
+      "kind": "lemma",
+      "label": "Resolution of a weighted slice",
+      "statement": "[Resolution of a weighted slice] Let I be an interval of length at least , let N be a Hilbert-space-valued polynomial of fixed degree on I , and let z be a continuously differentiable complex…",
+      "section": "A weighted projected impedance estimate",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-imp-schur-estimates",
+      "kind": "lemma",
+      "label": "Corner Schur estimates",
+      "statement": "[Corner Schur estimates] Uniformly throughout the box, Ime&d_1^2, & _s e& C(1+d_1), \\\\ _s d_1& C, & _s & C a, \\\\ _ t_j d_1 & C, & _ t_j e & C(1+d_1). If at least one artificial probe is present in…",
+      "section": "A weighted projected impedance estimate",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-imp-schur-interface",
+      "kind": "corollary",
+      "label": "Eliminating the missing directions",
+      "statement": "[Eliminating the missing directions] Let N=-P on the boundary space. Almost everywhere in the boundary law, the N,N block of T is invertible. Define its Schur matrix and transformed source by T &=P…",
+      "section": "A weighted projected impedance estimate",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-trans-cell",
+      "kind": "proposition",
+      "label": "Branch transmission",
+      "statement": "[Branch transmission] Choose the branch parameters in the order described below and fix c_*>2 . For 0 e^ -c_*L , uniformly in the fixed exterior data and allowed corner boxes, t^2 & e^ -C( L)^2 \\,_B,…",
+      "section": "Transmission through a cell",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-trans-envelope",
+      "kind": "proposition",
+      "label": "Interior envelope",
+      "statement": "[Interior envelope] For almost every fixed boundary datum there is a nonnegative function E(v_V) depending only on the true interior potentials, the fixed exterior and boundary data, and the…",
+      "section": "Transmission through a cell",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-hier-sampling",
+      "kind": "proposition",
+      "label": "Conditional sampling",
+      "statement": "[Conditional sampling] Fix the offset and all selector marks. Expose the box identities of the eligible tiles and of their ancestors. Conditional on this information, the unexplored variables in…",
+      "section": "A hierarchy of probability splits and energy comparisons",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-hier-hidden",
+      "kind": "lemma",
+      "label": "The hidden root law",
+      "statement": "[The hidden root law] At an accepted root whose cell port is still open, condition on the selectors, the needed corner-box identities, all branch acceptance indicators, and the other true potentials.…",
+      "section": "A hierarchy of probability splits and energy comparisons",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-hier-comparison",
+      "kind": "theorem",
+      "label": "Energy comparison under thinning",
+      "statement": "[Energy comparison under thinning] There is a deterministic sequence _n0 , after replacing it by a decreasing majorant if necessary, such that for all sufficiently large n , every n<m N , every…",
+      "section": "A hierarchy of probability splits and energy comparisons",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-hier-cap",
+      "kind": "lemma",
+      "label": "The parent-alternative cap",
+      "statement": "[The parent-alternative cap] There are constants C,C_1 such that, with K_l=(C(1+b_ l+1 )^ C_1 ) , for 01 , Z_l() K_l Q_ current (f) +C B_l(f). The estimate holds during either pass and during every…",
+      "section": "A hierarchy of probability splits and energy comparisons",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-hier-charges",
+      "kind": "lemma",
+      "label": "Charge tails",
+      "statement": "[Charge tails] Put r_n=_ l=n ^ q_lp_l , so that r_n0 . [label=(),leftmargin=*] If f has global lattice Lipschitz constant at most K , then \\[ b_N^ -2 C_ n,m (f) C K^2 r_n, n<m N. \\] Suppose f…",
+      "section": "A hierarchy of probability splits and energy comparisons",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-screen-observation",
+      "kind": "lemma",
+      "label": "Generic local observation",
+      "statement": "[Generic local observation] For sufficiently large Q_1 , almost every choice of the true potentials on _ 3Q_1 (z) has the following property. For every set O_ 3Q_1 (z) that is a C Q_1^ 1/4 -net of _…",
+      "section": "Screening and affine energies at a fixed stage",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-screen-projected",
+      "kind": "proposition",
+      "label": "Projected screening",
+      "statement": "[Projected screening] For all the systems just described, ^ G C_n. Give cost one to nearest-neighbor edges whose endpoints both belong to counted good cores, and cost zero to other edges; any of the…",
+      "section": "Screening and affine energies at a fixed stage",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-screen-paths",
+      "kind": "proposition",
+      "label": "Full-stage path estimate",
+      "statement": "[Full-stage path estimate] There is an absolute >0 such that, for the full stage- n good-core costs and all sufficiently large r up to a small fixed fraction of the torus side, ( c some…",
+      "section": "Screening and affine energies at a fixed stage",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-screen-walls",
+      "kind": "proposition",
+      "label": "Screening on retained walls",
+      "statement": "[Screening on retained walls] Fix an aligned square grid of side L_* , deterministic given the offset. Suppose a system retains the full stage- n data on a wall set containing strips of width L_*…",
+      "section": "Screening and affine energies at a fixed stage",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-screen-limits",
+      "kind": "proposition",
+      "label": "Fixed-stage limits",
+      "statement": "[Fixed-stage limits] For each fixed sufficiently large n there is a finite number d_n0 with the following properties. The jump tails satisfy _n(D), _n(D)0, uniformly in the site, sufficiently large…",
+      "section": "Screening and affine energies at a fixed stage",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-screen-profiles",
+      "kind": "proposition",
+      "label": "Compact-profile estimate",
+      "statement": "[Compact-profile estimate] Let :^2^q be compactly supported and Lipschitz, piecewise smooth with bounded gradients and piecewise regular interfaces. Let its center c be prescribed from the offset and…",
+      "section": "Screening and affine energies at a fixed stage",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-screen-limit",
+      "kind": "proposition",
+      "label": "Limit of the affine energy densities",
+      "statement": "[Limit of the affine energy densities] The fixed-stage limits satisfy d_n dfor some 0 d<. More precisely, a deterministic _n0 can be chosen such that d_m(1+_n)d_n+_n (m>n) for all sufficiently large…",
+      "section": "Screening and affine energies at a fixed stage",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-van-zero",
+      "kind": "proposition",
+      "label": "The limiting affine energy vanishes: d=0 .",
+      "statement": "The limiting affine energy vanishes: d=0 .",
+      "section": "Vanishing of the limiting energy in two dimensions",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-van-adjustment",
+      "kind": "lemma",
+      "label": "Fix M_0 . For every a>0 , one can arrange a by taking n , then m>n , then N…",
+      "statement": "Fix M_0 . For every a>0 , one can arrange a by taking n , then m>n , then N sufficiently large. More precisely, the estimate holds for all sufficiently large n , all sufficiently large m depending on…",
+      "section": "Vanishing of the limiting energy in two dimensions",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-van-barrier",
+      "kind": "lemma",
+      "label": "For suitable fixed d_0,>0 , ( B^c) C e^ -cM_0R . On B P , for every compatible…",
+      "statement": "For suitable fixed d_0,>0 , ( B^c) C e^ -cM_0R . On B P , for every compatible matrix D' on the source columns indexed by J , A_ IJ D' _ HS C M_0R d_0 S_ CJ D' _ HS . The constant includes the fixed…",
+      "section": "Vanishing of the limiting energy in two dimensions",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-van-good",
+      "kind": "lemma",
+      "label": "Assume d>0 . There is a constant c_1>0 with the following property. For every…",
+      "statement": "Assume d>0 . There is a constant c_1>0 with the following property. For every sufficiently small fixed >0 , one can choose M_0 sufficiently large and finite constants C_1,C_F , before choosing…",
+      "section": "Vanishing of the limiting energy in two dimensions",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-van-analytic-bounds",
+      "kind": "lemma",
+      "label": "Choose sufficiently small depending on d , then the constants in , and then C_0…",
+      "statement": "Choose sufficiently small depending on d , then the constants in , and then C_0 sufficiently large. There are constants c_2>0 and B_p< , independent of the later choices n,m,N , such that on G |…",
+      "section": "Vanishing of the limiting energy in two dimensions",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-boot-fractional",
+      "kind": "theorem",
+      "label": "True torus Green function",
+      "statement": "[True torus Green function] Fix \\(0<s<1/16\\). There are constants \\(A=A(h,E,s)<\\), \\(a=a(h,E,s)>0\\), and an integer \\(N_0=N_0(h,E,s)\\) such that, for every \\(N N_0\\) and every \\(x,y_N^2\\), (H_N-E)^…",
+      "section": "A fixed-energy fractional-moment estimate",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-boot-twist",
+      "kind": "lemma",
+      "label": "Mixture domination",
+      "statement": "[Mixture domination] There is \\(C_s<\\), independent of the masks, centers, \\(R,N\\), and \\(C_01\\), such that S^ old _ Y'X _ HS ^ s C_s(1+C_0). As everywhere in this section, the constant may depend on…",
+      "section": "A fixed-energy fractional-moment estimate",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-boot-tilted",
+      "kind": "lemma",
+      "label": "Uniform one-site estimates under tilt",
+      "statement": "[Uniform one-site estimates under tilt] Suppose \\( V^s>0\\), and define the probability law \\[ =V^s V^s \\,. \\] For a site \\(i C\\), conditional on all other potentials, put \\(W(v_i)=V^s\\). Then (_i…",
+      "section": "A fixed-energy fractional-moment estimate",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    },
+    {
+      "id": "m2-boot-return",
+      "kind": "lemma",
+      "label": "Small return to a filled annulus",
+      "statement": "[Small return to a filled annulus] For each fixed sufficiently large \\(C_0\\) and each \\(>0\\), one can choose \\(n\\), then \\(m>n\\), then a threshold for \\(N\\), so that \\[ U^2< \\] for every subsequent…",
+      "section": "A fixed-energy fractional-moment estimate",
+      "manuscript": "Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-prop-deterministic-induction",
+      "to": "m1-prop-certificate",
+      "label": "prop:deterministic-induction",
+      "context": "[Completion of the proof of Proposition~\\ref{prop:certificate}] Initialization and Proposition~\\ref{prop:deterministic-induction} provide the committed-state invariants throughout the construction. Lemma~\\ref{lem:conditional-freshness}, together wit"
+    },
+    {
+      "from": "m1-prop-certificate",
+      "to": "m1-thm-main",
+      "label": "prop:certificate",
+      "context": "[Proof of Theorem~\\ref{thm:main}] For $d=3$, fix the interval $I_3=(-6+e_2/2,-6+e_2)$ and set $\\lambda_3=\\lambda_0(3)>0$ from Proposition~\\ref{prop:certificate}. For each fixed $0<\\lambda<\\lambda_3$, that proposition supplies the certificate with probability tending to one, hence"
+    }
+  ]
+}

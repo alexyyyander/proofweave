@@ -89,7 +89,7 @@ Person A 固定目标
 - Worker 的 `RUNNER_EXECUTION_ENVIRONMENTS_JSON` 把 4.27 的 `executionEnabled` 设为 `true`（4.31 保持 `false`）；4.27 Runner 只消费指定 Run，其他 4.27 请求会排队但不会被消费。
 - 临时启用 4.27 Runner 的消费者，发送一次 wake；4.31 Runner 不受影响，不开放普通队列。
 - 队列按 `runner_environment_key` 路由，4.27 Run 只会被 4.27 Runner claim；4.31 Runner 不会领取它。
-- checker 只有在 `RUNNER_EXECUTION_ENABLED=true` 与 `RUNNER_ONLY_RUN_ID` 同时存在时，才允许 `template_ready` 环境执行；缺少任一条件时 `--strict` 会拒绝。
+- checker 只有在 `RUNNER_EXECUTION_ENABLED=true`、`RUNNER_ONLY_RUN_ID` 与 `RUNNER_MAX_DELIVERY_ATTEMPTS=1` 同时存在时，才允许 `template_ready` 环境执行；缺少任一条件时 `--strict` 会拒绝。
 - 验证：
   - 工作区哈希、工具链 4.27、Mathlib `a3a10db…`；
   - Lean accepted；`noSorry`、allowed axioms、lean build 四项检查；

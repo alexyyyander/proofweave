@@ -1,0 +1,111 @@
+{
+  "familyNumber": "192",
+  "familyTitle": "Boolean functions violate the square-root degree bound by arbitrary factors",
+  "manuscripts": [
+    {
+      "id": "Unbounded-Violations-of-the-Square-Root-Degree-Bound-September-26-2026",
+      "title": "Unbounded Violations of the Square-Root Degree Bound",
+      "date": "2026-09-26",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Unbounded-Violations-of-the-Square-Root-Degree-Bound-September-26-2026/Unbounded-Violations-of-the-Square-Root-Degree-Bound-September-26-2026.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Finite observations and amplification",
+    "Retaining more variance than the degree cost",
+    "Two other reporting rules",
+    "Amplifying an average degree saving",
+    "A weighted Gaussian mixture"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "For every real \\(C>0\\), there are a positive integer \\(n\\) and a nonconstant…",
+      "statement": "For every real \\(C>0\\), there are a positive integer \\(n\\) and a nonconstant Boolean function \\(f:\\ -1,1\\ ^n\\ -1,1\\ \\) such that \\[ _ i=1 ^n f(\\ i\\ )>C (f). \\] Consequently, \\[ _ n1,\\ f:\\ -1,1\\ ^n\\…",
+      "section": "Introduction",
+      "manuscript": "Unbounded Violations of the Square-Root Degree Bound"
+    },
+    {
+      "id": "m1-lem-transfer",
+      "kind": "lemma",
+      "label": "Transfer of predictor errors",
+      "statement": "[Transfer of predictor errors] Let \\(Z_j\\) be centered, variance-one random variables converging in distribution to a standard normal, with \\(_j Z_j^4<\\). For fixed \\(r\\), let \\( Z_j\\) consist of…",
+      "section": "Finite observations and amplification",
+      "manuscript": "Unbounded Violations of the Square-Root Degree Bound"
+    },
+    {
+      "id": "m1-lem-readout",
+      "kind": "lemma",
+      "label": "Boolean readout",
+      "statement": "[Boolean readout] Suppose finite observations have positive cell degree bounds \\(D\\) and arbitrarily large ratios \\(v(F)/D\\). Then Theorem~ holds.",
+      "section": "Finite observations and amplification",
+      "manuscript": "Unbounded Violations of the Square-Root Degree Bound"
+    },
+    {
+      "id": "m1-prop-amplification",
+      "kind": "proposition",
+      "label": "Amplification criterion",
+      "statement": "[Amplification criterion] Let \\(1 d<r\\) be integers, and let \\( W\\) be a measurable observation rule on \\(r\\) real inputs. Suppose: On any product of finite input alphabets, the indicator of each…",
+      "section": "Finite observations and amplification",
+      "manuscript": "Unbounded Violations of the Square-Root Degree Bound"
+    },
+    {
+      "id": "m1-lem-report",
+      "kind": "lemma",
+      "label": "For every product of finite input alphabets, the rule W has finite range, and…",
+      "statement": "For every product of finite input alphabets, the rule W has finite range, and each output indicator is a finite linear combination of functions of at most m input coordinates. For independent…",
+      "section": "Retaining more variance than the degree cost",
+      "manuscript": "Unbounded Violations of the Square-Root Degree Bound"
+    },
+    {
+      "id": "m1-lem-gaussian",
+      "kind": "lemma",
+      "label": "There are a finite odd integer m3 , closed intervals I_1,,I_m , and a selector…",
+      "statement": "There are a finite odd integer m3 , closed intervals I_1,,I_m , and a selector with finitely many cut points such that the following holds for independent standard normal inputs. Let _j be the…",
+      "section": "Retaining more variance than the degree cost",
+      "manuscript": "Unbounded Violations of the Square-Root Degree Bound"
+    },
+    {
+      "id": "m1-lem-coarse-report",
+      "kind": "lemma",
+      "label": "Cost and error of the coarse report",
+      "statement": "[Cost and error of the coarse report] On every product of finite input alphabets, O has finite range, and each output indicator is a finite linear combination of functions of at most m input…",
+      "section": "Two other reporting rules",
+      "manuscript": "Unbounded Violations of the Square-Root Degree Bound"
+    },
+    {
+      "id": "m1-lem-refinement",
+      "kind": "lemma",
+      "label": "Refining the complement of one event",
+      "statement": "[Refining the complement of one event] Let q2 , let G=(G_1,,G_q) have independent standard normal coordinates, and put S_G=_iG_i . Suppose a measurable set A^q has Gaussian-null boundary, \\[ p_A:=(G…",
+      "section": "Amplifying an average degree saving",
+      "manuscript": "Unbounded Violations of the Square-Root Degree Bound"
+    },
+    {
+      "id": "m1-thm-mean-cost",
+      "kind": "theorem",
+      "label": "Amplification from a mean cost advantage",
+      "statement": "[Amplification from a mean cost advantage] Let q2 , let P:^q L be a measurable map to a finite label set, and let : L\\ 1,,q\\ . Suppose that, on every product of finite input alphabets, each cell…",
+      "section": "Amplifying an average degree saving",
+      "manuscript": "Unbounded Violations of the Square-Root Degree Bound"
+    },
+    {
+      "id": "m1-lem-mc-transfer",
+      "kind": "lemma",
+      "label": "Transfer for a fixed finite partition",
+      "statement": "[Transfer for a fixed finite partition] Under the boundary hypothesis of Theorem~ , let Z_n be centered random variables of variance one converging in distribution to a standard normal. Use q…",
+      "section": "Amplifying an average degree saving",
+      "manuscript": "Unbounded Violations of the Square-Root Degree Bound"
+    },
+    {
+      "id": "m1-lem-weighted-event",
+      "kind": "lemma",
+      "label": "The weighted-mixture event",
+      "statement": "[The weighted-mixture event] For all sufficiently large finite R , the event A just defined satisfies \\[ p_A:=(G A)>0, r_A:=(L G A)<1. \\] Its boundary is contained in finitely many coordinate…",
+      "section": "A weighted Gaussian mixture",
+      "manuscript": "Unbounded Violations of the Square-Root Degree Bound"
+    }
+  ],
+  "edges": []
+}

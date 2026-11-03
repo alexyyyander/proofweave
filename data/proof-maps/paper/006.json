@@ -1,0 +1,682 @@
+{
+  "familyNumber": "006",
+  "familyTitle": "Goldfeld’s conjecture: densities and mean analytic rank",
+  "manuscripts": [
+    {
+      "id": "Goldfelds-analytic-density-conjecture-and-the-2-converse-for-elliptic-curves-October-7-2026",
+      "title": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves",
+      "date": "2026-10-07",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Goldfelds-analytic-density-conjecture-and-the-2-converse-for-elliptic-curves-October-7-2026/paper.pdf"
+    },
+    {
+      "id": "The-mean-analytic-rank-of-quadratic-twists-of-elliptic-curves-October-6-2026",
+      "title": "The mean analytic rank of quadratic twists of elliptic curves",
+      "date": "2026-10-06",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-mean-analytic-rank-of-quadratic-twists-of-elliptic-curves-October-6-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "Selmer ranks and local conventions",
+    "Arithmetic estimates for finite twist families",
+    "Coefficients that detect analytic rank",
+    "Trace identities and prime substitutions",
+    "Prime graphs and simultaneous unit coefficients",
+    "The converse with rational two-torsion",
+    "Selmer matrices and three-state relations",
+    "Proof of auxiliary nonvanishing",
+    "Transfer on a binary cube",
+    "Cyclotomic interpolation at analytic rank zero",
+    "Heegner points and transfer"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main-converse",
+      "kind": "theorem",
+      "label": "The 2 -converse",
+      "statement": "[The 2 -converse] For every elliptic curve E/ with c_2(E)\\ 0,1\\ , \\[ a(E)=r(E)=c_2(E), (E/) is finite. \\]",
+      "section": "Introduction",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-thm-main-density",
+      "kind": "theorem",
+      "label": "Goldfeld's analytic density conjecture",
+      "statement": "[Goldfeld's analytic density conjecture] For every elliptic curve E/ and each j\\ 0,1\\ , \\[ _ X \\#\\ d D(X):a(E^ (d) )=j\\ \\# D(X) =12. \\] Consequently the twists of analytic rank at least two have…",
+      "section": "Introduction",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-cor-finite-descent",
+      "kind": "corollary",
+      "label": "A finite Selmer criterion",
+      "statement": "[A finite Selmer criterion] If d_2(E)\\ 0,1\\ , then \\[ a(E)=r(E)=c_2(E)=d_2(E), (E/) is finite, (E/)[2^]=0. \\]",
+      "section": "Introduction",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pr-ranks",
+      "kind": "lemma",
+      "label": "Ranks and the forward implication",
+      "statement": "[Ranks and the forward implication] For an elliptic curve A/ there is an exact sequence \\[ 0 A()/ _ 2^ (A/) (A/)[2^]0. \\] In particular \\[ c_2(A)=r(A)+_ (A/)[2^]. \\] If a(A)1 , then r(A)=a(A) , the…",
+      "section": "Selmer ranks and local conventions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pr-invariance",
+      "kind": "lemma",
+      "label": "Parity and change of curve",
+      "statement": "[Parity and change of curve] For every elliptic curve A/ with root number (A) , \\[ (-1)^ c_2(A) =(A). \\] A rational isogeny preserves a(A) , r(A) and c_2(A) . For a quadratic field K=(k) , \\[ _ _ 2^…",
+      "section": "Selmer ranks and local conventions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pr-residual-cases",
+      "kind": "lemma",
+      "label": "The residual alternatives",
+      "statement": "[The residual alternatives] The representation E[2] is reducible over _2 if and only if E()[2]0 . In that case it is an extension of two trivial _2 -representations. Otherwise its image is C_3 or S_3…",
+      "section": "Selmer ranks and local conventions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pr-finite-descent",
+      "kind": "lemma",
+      "label": "Finite descent and corank",
+      "statement": "[Finite descent and corank] Let F be the quotient of (E/)[2^] by its maximal divisible subgroup. Then \\[ d_2(E)=c_2(E)+_ _2 F[2], _ _2 F[2] is even. \\] Thus d_2(E)\\ 0,1\\ implies c_2(E)=d_2(E) and F=0…",
+      "section": "Selmer ranks and local conventions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-thm-cyclotomic-interpolation",
+      "kind": "theorem",
+      "label": "Cyclotomic missing vertex",
+      "statement": "[Cyclotomic missing vertex] There is a constant C_E , depending only on E , with the following property. Fix an odd fundamental discriminant h_0 , prime to 2N , with c_2(E^ (h_0) )=0 . Suppose that…",
+      "section": "Arithmetic estimates for finite twist families",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-prop-heegner-comparison",
+      "kind": "proposition",
+      "label": "Comparison of the two Heegner constructions",
+      "statement": "[Comparison of the two Heegner constructions] For either set of data, h(P_c(e)) =C_E\\,c|k|\\, '_ s=1 , with a fixed nonzero constant determined by the parametrization and height conventions. In…",
+      "section": "Arithmetic estimates for finite twist families",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-thm-heegner-interpolation",
+      "kind": "theorem",
+      "label": "Heegner interpolation",
+      "statement": "[Heegner interpolation] Fix E and an initial discriminant h_0 . Consider families h_x , x_2^b , obtained from h_0 by adjoining new prime factors with linear activation functions on _2^b . No old…",
+      "section": "Arithmetic estimates for finite twist families",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-h-base-selmer-bound",
+      "kind": "lemma",
+      "label": "The finite-quotient bound in Theorem~ holds if K belongs to a fixed finite…",
+      "statement": "The finite-quotient bound in Theorem~ holds if K belongs to a fixed finite collection. It also holds if E^ (h_0) is fixed with Selmer corank one, the curves E^ (h_0k) have analytic rank zero with…",
+      "section": "Arithmetic estimates for finite twist families",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-thm-cyclotomic-bound",
+      "kind": "theorem",
+      "label": "Cyclotomic lower bound",
+      "statement": "[Cyclotomic lower bound] Suppose that E[2] is an extension of two trivial _2 -modules. There is a constant C_E such that every odd fundamental discriminant h prime to 2N with L(E^ (h) ,1)0 satisfies…",
+      "section": "Arithmetic estimates for finite twist families",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-thm-heegner-genus-bound",
+      "kind": "theorem",
+      "label": "Genus bound",
+      "statement": "[Genus bound] In genus data, suppose the product in Equation~ has a simple zero and E[2] is irreducible. Then, uniformly in h , 2j(P_1(h_*)) 2w(h)+s(h)-O_ E,h_* (1). In proving the uniform estimate,…",
+      "section": "Arithmetic estimates for finite twist families",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-thm-heegner-ring-bound",
+      "kind": "theorem",
+      "label": "Ring bound",
+      "statement": "[Ring bound] In ring data, suppose the product in Equation~ has a simple zero, every q h splits in K , and (k) a , where counts distinct prime factors. Then 2j(P_ |h| (h)) 4w(h)+s(h)+s(hk)-O_ E,a…",
+      "section": "Arithmetic estimates for finite twist families",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-prop-rough-nonvanishing",
+      "kind": "proposition",
+      "label": "Auxiliary nonvanishing",
+      "statement": "[Auxiliary nonvanishing] Let E/ have conductor N , and let S be a finite set of primes containing the prime divisors of 2N . Prescribe a real sign \\ 1,-1\\ and a unit squareclass c_p_p^/_p^ 2 for each…",
+      "section": "Arithmetic estimates for finite twist families",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-prop-even-coefficients",
+      "kind": "proposition",
+      "label": "Even coefficients",
+      "statement": "[Even coefficients] Fix a nonempty filter with even functional sign. There are a holomorphic weight- 3/2 cusp form \\[ g=_ n1 a(n)q^n \\] of level supported on S , after enlarging exponents at those…",
+      "section": "Coefficients that detect analytic rank",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-prop-odd-coefficients",
+      "kind": "proposition",
+      "label": "Odd coefficients under a genus-index bound",
+      "statement": "[Odd coefficients under a genus-index bound] Assume that a constant C_* satisfies j(P_D) w(D)+12s(h)-C_* for every h in the filter with a simple zero. There are arbitrarily large precisions M , good…",
+      "section": "Coefficients that detect analytic rank",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-cs-fixed-weight-uniformity",
+      "kind": "lemma",
+      "label": "Uniformity at a fixed weight bound",
+      "statement": "[Uniformity at a fixed weight bound] For every fixed W , on an ultrafilter-large set of sufficiently high precisions, \\[ v(a_M(D))+w(D) \\] for every admissible index with w(D) W , with valuations…",
+      "section": "Coefficients that detect analytic rank",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-prop-unit-symbol-detection",
+      "kind": "proposition",
+      "label": "Detection by a unit symbol",
+      "statement": "[Detection by a unit symbol] For either coefficient source, A(D)=1 implies the prescribed analytic order: zero in the even case and one in the odd case. At every such index, v( L (h))&2w(D)+C &&in…",
+      "section": "Coefficients that detect analytic rank",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-tc-shell-bound",
+      "kind": "lemma",
+      "label": "Coefficient bound and first shell",
+      "statement": "[Coefficient bound and first shell] Write an index prime to S uniquely as \\[ n=Jr m^2, J U, r squarefree, (r,U)=1, \\] and put D=(U/J)r . For the even source, B_U has integral coefficients and…",
+      "section": "Trace identities and prime substitutions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-tc-unary-integrality",
+      "kind": "lemma",
+      "label": "The form in Equation~ is integral. Each _J is a weight- 3/2 unary theta form…",
+      "statement": "The form in Equation~ is integral. Each _J is a weight- 3/2 unary theta form with character \\[ _ -4 ^i(-J/), \\] whose new level primes are the primes of J , each to exponent one. Its character…",
+      "section": "Trace identities and prime substitutions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-tc-trace-algebra",
+      "kind": "lemma",
+      "label": "Trace identities and fresh-prime tests",
+      "statement": "[Trace identities and fresh-prime tests] In this reduced operator algebra, d(u)t(v)=t(v), t(u)t(v)=t(uv)+t(uv^ -1 ), t(1)=0. A coefficient of a product of traces can be tested by replacing its…",
+      "section": "Trace identities and prime substitutions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-tc-inertia-identity",
+      "kind": "lemma",
+      "label": "Inertia and a level operator",
+      "statement": "[Inertia and a level operator] For p U , choose a place over p , an inertia element _p on which the ramified quadratic character is -1 , and a corresponding arithmetic Frobenius lift _p . On the…",
+      "section": "Trace identities and prime substitutions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-tc-rational-rules",
+      "kind": "proposition",
+      "label": "Rational trace and contraction rules",
+      "statement": "[Rational trace and contraction rules] Suppose E()[2]0 . [label=( *)] For matching U , on the subtracted vector H_U , \\[ t(g)t(u)=0(u split). \\] The trace on split elements factors through the…",
+      "section": "Trace identities and prime substitutions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-tc-simple-twins",
+      "kind": "proposition",
+      "label": "Insertion of a pair of simple primes",
+      "statement": "[Insertion of a pair of simple primes] Suppose E()[2]0 and U has matching parity. Let a rational elementary label, relative to S and all existing split vertices, be realized by a simple prime q with…",
+      "section": "Trace identities and prime substitutions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-tc-root-character",
+      "kind": "lemma",
+      "label": "Root character",
+      "statement": "[Root character] On matching B_U one has t(u)=0 for every nonroot u . On opposite B_U one has t(u)=0 for split u and t(g)t(u)=0 for two simple elements. In either parity, \\[ t(u)^2=1(u a root). \\]…",
+      "section": "Trace identities and prime substitutions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-tc-irreducible-rules",
+      "kind": "proposition",
+      "label": "Irreducible substitution rules",
+      "statement": "[Irreducible substitution rules] Suppose E[2] is irreducible. [label=( *)] On matching B_U , coefficient 1 of a product of root traces reads A on the union of U and those roots. It depends on the…",
+      "section": "Trace identities and prime substitutions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-tc-minimum-transfer",
+      "kind": "lemma",
+      "label": "Transfer at the least nonzero weight",
+      "statement": "[Transfer at the least nonzero weight] Suppose E[2] is irreducible, and let m be the least weight of an index on the filter with nonzero symbol. At weight m , the dependence on each nonroot vertex is…",
+      "section": "Trace identities and prime substitutions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-thm-symbol-rules",
+      "kind": "theorem",
+      "label": "Symbol rules",
+      "statement": "[Symbol rules] For either coefficient source of Propositions~ and , assume its stated coefficient lower bound and use its normalized symbol and filter. Then the following rules hold for finite…",
+      "section": "Trace identities and prime substitutions",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-gr-realization",
+      "kind": "lemma",
+      "label": "Finite realization and product labels",
+      "statement": "[Finite realization and product labels] Fix finitely many old vertices and individually realizable new types. Every choice of independent forward bits is realized by distinct fresh primes, avoiding…",
+      "section": "Prime graphs and simultaneous unit coefficients",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-gr-forest",
+      "kind": "lemma",
+      "label": "Oriented forests",
+      "statement": "[Oriented forests] Assume the contraction, isolation, and omitted-prime assertions of Theorem~ . Differentiation along a tree contracts it, adding product labels and external incidences; the result…",
+      "section": "Prime graphs and simultaneous unit coefficients",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-gr-network",
+      "kind": "lemma",
+      "label": "Network expansion",
+      "statement": "[Network expansion] A network satisfies f(z,1)= N P(z) , where N is a sum of terminal finite-difference operators indexed by forests. In each surviving forest term, every component containing an…",
+      "section": "Prime graphs and simultaneous unit coefficients",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-gr-programs",
+      "kind": "lemma",
+      "label": "Two address programs",
+      "statement": "[Two address programs] With these activations and grounding, there are the following networks: A singular program S such that \\[ S_ x_* =_z+O_ 2 , S_x=1+O_ 1 (x x_*). \\] Two nonsingular programs on…",
+      "section": "Prime graphs and simultaneous unit coefficients",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-gr-address",
+      "kind": "theorem",
+      "label": "Address lemma",
+      "statement": "[Address lemma] Assume the contraction, isolation, and whole-prime omission rules of Proposition~ , or the same rules for another symbol, together with the realization freedoms of Lemma~ . Let b1 and…",
+      "section": "Prime graphs and simultaneous unit coefficients",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pw-minimum-seeds",
+      "kind": "lemma",
+      "label": "Minimum seeds",
+      "statement": "[Minimum seeds] In an all-split alphabet, suppose a unit symbol has a nonempty witness. At the least positive vertex count r of such a witness, all mutual edge bits are immaterial. The symbol is…",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pw-reserves",
+      "kind": "lemma",
+      "label": "Finite label reserves",
+      "statement": "[Finite label reserves] Fix a minimum seed and a finite label alphabet. In the all-split rational alphabet, a list with the same total label as the seed and sufficiently many copies of its labels is…",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pw-packets",
+      "kind": "lemma",
+      "label": "Neutral packets",
+      "statement": "[Neutral packets] For any of the finite reserve problems above with prescribed rational total zero, one can choose a finite packet of terminal labels with rational total zero such that every nonempty…",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pw-even-base",
+      "kind": "proposition",
+      "label": "Even original base",
+      "statement": "[Even original base] If c_2(E)=0 , then a(E)=0 .",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pw-partitionable-even",
+      "kind": "proposition",
+      "label": "Partitionable even estimate",
+      "statement": "[Partitionable even estimate] Fix an even unit symbol on a prescribed filter. For every partitionable parameter h on its filter with c_2(E^ (h) )=0 , L(h)0, v( L(h))-2w(h)-s(h) C. The constant…",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pw-rough-companion",
+      "kind": "lemma",
+      "label": "A bounded companion for a varying odd parameter",
+      "statement": "[A bounded companion for a varying odd parameter] Fix a positive odd-sign filter and a negative genus partner h_* with L(E^ (h_*) ,1)0 , chosen using Proposition~ and then excluded from the variable…",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pw-odd-lower",
+      "kind": "proposition",
+      "label": "Uniform lower bound for the odd detector",
+      "statement": "[Uniform lower bound for the odd detector] Every analytically rank-one h in the fixed positive filter satisfies 2j(P_h) 2w(h)+s(h)-C. In particular j(P_h) w(h)-C uniformly in h and its prime count.",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pw-recurrence",
+      "kind": "lemma",
+      "label": "Recurrence congruences",
+      "statement": "[Recurrence congruences] Let p be odd, a p+14 , and let \\[ b_0=1, b_1=a-, b_ s+1 =ab_s-pb_ s-1 . \\] If =1 , then b_ s+1 -b_s is even and \\[ b_ s+1 -b_s 2 a- -1 2 2 (s0). \\] If =0 , put b_ -1 =0 ;…",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pw-split-witness",
+      "kind": "lemma",
+      "label": "Nonempty K -split witness",
+      "statement": "[Nonempty K -split witness] Suppose E[2] is rational. Choose a negative unit k of a fixed even symbol for E , prime to all previous fixed support and to the ramification support of E[8] . Put K= Q(k)…",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pw-coinvariants",
+      "kind": "lemma",
+      "label": "Orientation correction",
+      "statement": "[Orientation correction] Let K be imaginary quadratic, let S_0 contain 2 and its ramification support, and let V_0 be the elementary label space over K unramified off S_0 . Complex conjugation acts…",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pw-fixed-companion-families",
+      "kind": "proposition",
+      "label": "Families with a fixed companion",
+      "statement": "[Families with a fixed companion] With the fixed odd coefficient system and companion k chosen in Section~ , suppose the odd symbol at 1 is zero. There is a constant C with the following property.…",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-pw-odd-base",
+      "kind": "proposition",
+      "label": "Odd original base",
+      "statement": "[Odd original base] If c_2(E)=1 , then a(E)=1 .",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-thm-rational-converse",
+      "kind": "theorem",
+      "label": "The rational-two-torsion converse",
+      "statement": "[The rational-two-torsion converse] Let E/ satisfy E()[2]0 and c_2(E)=corank_ _2 _ 2^ (E/)\\ 0,1\\ , with the local Kummer conditions at every place. Then \\[ ord_ s=1 L(E,s)=c_2(E). \\] There is no…",
+      "section": "The converse with rational two-torsion",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-lm-arithmetic-realization",
+      "kind": "lemma",
+      "label": "Realization of finite matrix prescriptions",
+      "statement": "[Realization of finite matrix prescriptions] Fix finitely many individually admissible oriented prime templates, including generator neighborhoods at S , any additional finite places, and oriented…",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-prop-selmer-matrix-bound",
+      "kind": "proposition",
+      "label": "Nullity forces Selmer dimension",
+      "statement": "[Nullity forces Selmer dimension] Fix the curve, support types, a bound for the number of additional constrained places, and a bound for the dimension of a stationary environment. Partition a finite…",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-lm-site-relations",
+      "kind": "lemma",
+      "label": "The site relations",
+      "statement": "[The site relations] Fix the total parameter label at the fixed support and the diagonal choices at the other present sites. In each state choose aggregate roots restoring this label, compatibly with…",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-binary-tensor-span",
+      "kind": "lemma",
+      "label": "Binary tensor span",
+      "statement": "[Binary tensor span] Let W=_ i=1 ^rW_i , where each W_i has dimension two over _2 , and let 0 f W^* . The nonzero pure tensors annihilated by f span f . Thus if pure tensors e,t satisfy f(e)=f(t)=1 ,…",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-lm-address-program",
+      "kind": "lemma",
+      "label": "A block address program",
+      "statement": "[A block address program] Let M_* be the singular matrix of a finite site state, and let D be a sum of its pair toggles such that N_*=M_*+D is invertible. For b2 and 0 x_*_2^b , one can add finitely…",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-thm-irreducible-converse",
+      "kind": "theorem",
+      "label": "The irreducible converse",
+      "statement": "[The irreducible converse] Let E/ be an elliptic curve for which E[2] is irreducible as a G_ -module. If \\[ c_2(E)=_ _ 2^ (E/)\\ 0,1\\ , \\] then _ s=1 L(E,s)=c_2(E) .",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-sa-profile",
+      "kind": "lemma",
+      "label": "A finitely realizable ordered profile",
+      "statement": "[A finitely realizable ordered profile] For the fixed symbol A , there is a countable library of site slots in each block and an ordered profile with the following properties. [label=( *)] Every…",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-sa-punctured-cube",
+      "kind": "lemma",
+      "label": "Saturation of a punctured cube",
+      "statement": "[Saturation of a punctured cube] For the profile in Lemma~ , either the empty word has value~ 1 , or there is a fixed finite word W of singular blocks with value~ 1 such that, for every sufficiently…",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-sa-root-calibration",
+      "kind": "lemma",
+      "label": "Calibration by root primes",
+      "statement": "[Calibration by root primes] The cubes in Lemma~ admit realizations by signed squarefree parameters \\[ h_x=_p(p^*)^ f_p(x) , x_2^b, h_0=1, \\] where each f_p:_2^b_2 is linear. The prescribed local…",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-prop-sa-bounded-companion",
+      "kind": "proposition",
+      "label": "An odd cube with a bounded even companion",
+      "statement": "[An odd cube with a bounded even companion] For the fixed symbols A,A_0 just chosen, suppose A(1)=0 . There is a constant C such that, for every sufficiently large b , one can find an odd negative…",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-sa-prefix",
+      "kind": "lemma",
+      "label": "A determinant-conditioned prefix",
+      "statement": "[A determinant-conditioned prefix] For the fixed even symbol A_0 , there are a finite list a of singular blocks and an environment consisting of at most one simple vertex with the following property.…",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-sa-balanced-copies",
+      "kind": "lemma",
+      "label": "Address copies with even total activation",
+      "statement": "[Address copies with even total activation] For every b2 , the address construction for W may be chosen so that its symbol is 1 at every nonzero x and all sites are absent at zero. At a nonzero x ,…",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-sa-interface",
+      "kind": "lemma",
+      "label": "Alternating interface repair",
+      "statement": "[Alternating interface repair] Let U be an even-dimensional vector space over _2 , let N be symmetric and invertible on U , and let D be alternating. There are at most U linear maps b_i:U_2^2 such…",
+      "section": "Selmer matrices and three-state relations",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-nv-odd-first-moment",
+      "kind": "lemma",
+      "label": "Odd first moment",
+      "statement": "[Odd first moment] Let f be the weight-two newform of an elliptic curve of conductor N , with its L -function normalized to have center 1/2 . Fix H divisible by 8 and N , a reduced class a H , and \\…",
+      "section": "Proof of auxiliary nonvanishing",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-h-laurent-expansions",
+      "kind": "lemma",
+      "label": "Laurent expansions",
+      "statement": "[Laurent expansions] For M1 , \\[ O/2^MO(/2^M)((t)). \\] Thus an element of O has a unique expansion _ n a_nt^n with a_n and v(a_n) as n- . Its O -valuation is _n v(a_n) .",
+      "section": "Transfer on a binary cube",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-h-bounded-poles",
+      "kind": "lemma",
+      "label": "A uniform pole bound for Schur elimination",
+      "statement": "[A uniform pole bound for Schur elimination] Let A_1,,A_m be square matrices over with nonzero residual determinants and _t( A_j) h . Put A=(A_1,,A_m) . If B=A+2E_1 with E_1 a matrix over , then B is…",
+      "section": "Transfer on a binary cube",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-h-pivot-clearing",
+      "kind": "lemma",
+      "label": "A bounded clearing factor",
+      "statement": "[A bounded clearing factor] Let D be a based bounded complex of finite free O[G] -modules, of total graded rank at most r , whose augmentation D_0 is a complex over . Suppose that the rational…",
+      "section": "Transfer on a binary cube",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-h-boolean-coefficients",
+      "kind": "lemma",
+      "label": "Finite coefficient congruences",
+      "statement": "[Finite coefficient congruences] Let A_1(x),,A_q(x) each be one specified Laurent coefficient of the evaluation of an element of O[G] . If \\[ b>q(2^ M-1 -1), \\] there is x0 such that A_i(x) A_i(0)2^M…",
+      "section": "Transfer on a binary cube",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-h-boolean-transfer",
+      "kind": "lemma",
+      "label": "Transfer through a bounded clearing factor",
+      "statement": "[Transfer through a bounded clearing factor] Let f,d O[G] and let u_x satisfy d_x=f_xu_x at each character. Suppose f_0 and c_0=v(f_0(0))< . Fix M>c_0 , and suppose every f_x2^M has no powers below…",
+      "section": "Transfer on a binary cube",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-rl-finite-model",
+      "kind": "lemma",
+      "label": "Finite Artin models",
+      "statement": "[Finite Artin models] Let (A, m,k) be an Artin local ring, and let D be a complex of flat A -modules. Suppose H^*(D_A k) is finite dimensional and supported in [a,b] . There is a bounded finite free…",
+      "section": "Transfer on a binary cube",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-cy-positive-model",
+      "kind": "lemma",
+      "label": "The complex in Equation~ is perfect over R and computes derived coefficient…",
+      "statement": "The complex in Equation~ is perfect over R and computes derived coefficient specializations. There is a class a H^1(C_S^+( T)) whose rational span is the real-place summand. Its integral index in…",
+      "section": "Cyclotomic interpolation at analytic rank zero",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-cy-kato-class",
+      "kind": "lemma",
+      "label": "Fixed-lattice zeta class",
+      "statement": "[Fixed-lattice zeta class] For every binary family and its ramification set S , the corrected class z_S satisfies the central reciprocity formula and the rational divisibility . For some c_E0…",
+      "section": "Cyclotomic interpolation at analytic rank zero",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-prop-cy-specialization",
+      "kind": "proposition",
+      "label": "Central determinant formula",
+      "statement": "[Central determinant formula] There is a constant C_ loc , depending only on the fixed curve and local classes, with the following property. Suppose c_2(E^ (h_x) )=0 . If L(E^ (h_x) ,1)=0 , then…",
+      "section": "Cyclotomic interpolation at analytic rank zero",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-cy-residual-free",
+      "kind": "lemma",
+      "label": "Residual concentration",
+      "statement": "[Residual concentration] If E[2] is an extension of two trivial _2 -modules, then there is an isomorphism in the derived category \\[ C_S^+( T)_R O[G] O[G]^2[-1]. \\]",
+      "section": "Cyclotomic interpolation at analytic rank zero",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-cy-cyclotomic-poles",
+      "kind": "lemma",
+      "label": "Suppose that q is an added prime and v_2(q^2-1) L . At augmentation G1 , the…",
+      "statement": "Suppose that q is an added prime and v_2(q^2-1) L . At augmentation G1 , the inverse singular Frobenius block contributed by q has, modulo each fixed 2^M , negative Laurent support bounded in terms…",
+      "section": "Cyclotomic interpolation at analytic rank zero",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-rl-finite-limits",
+      "kind": "lemma",
+      "label": "Limits of finite diagrams",
+      "statement": "[Limits of finite diagrams] Suppose diagrams of bounded finite free complexes over A_i , or over A_i[G] , have a common bounded cohomological degree interval and bounded ranks in every degree.…",
+      "section": "Heegner points and transfer",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-rl-kummer",
+      "kind": "lemma",
+      "label": "Integral Kummer local condition",
+      "statement": "[Integral Kummer local condition] Let F be a finite extension of a nonarchimedean local field of characteristic zero, and let B/F be any elliptic curve. Put M_F=B(F)^_2=_n B(F)/2^nB(F) . There is a…",
+      "section": "Heegner points and transfer",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-rl-characters",
+      "kind": "proposition",
+      "label": "Ring-class characters with prescribed local values",
+      "statement": "[Ring-class characters with prescribed local values] Fix finitely many split primes of K above odd rational primes, outside 2N , and orient one prime in each conjugate pair. There are distinct split…",
+      "section": "Heegner points and transfer",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-rl-local-acyclic",
+      "kind": "lemma",
+      "label": "Acyclic relaxed local complexes",
+      "statement": "[Acyclic relaxed local complexes] For a primitive character constituent, let C denote the limiting Selmer complex with full conditions at r and at its active good conductor primes, and the prescribed…",
+      "section": "Heegner points and transfer",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-lem-h-central-valuation",
+      "kind": "lemma",
+      "label": "Central determinant valuation",
+      "statement": "[Central determinant valuation] For a simple-zero instance, v(u(0))&=2j(P_c(e)) -(E^ (e) /K)[2^] -_ q c _ v q t_v+O_E(1),\\\\ t_v&=_ _2 E[2]^ _v . Furthermore, (E^ (e) /K)[2^] +_ q c _ v q t_v…",
+      "section": "Heegner points and transfer",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-rl-evaluation",
+      "kind": "lemma",
+      "label": "Evaluation on arbitrary Galois sequences",
+      "statement": "[Evaluation on arbitrary Galois sequences] Fix K and a sequence of the finite cochain constructions above. Keep the contraction maps into the original global cochains. Let _K=_i G_K and =_K_iG_ Q ,…",
+      "section": "Heegner points and transfer",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-rl-kernel",
+      "kind": "lemma",
+      "label": "The exact common kernel",
+      "statement": "[The exact common kernel] In the notation of Lemma~ , let H be the group of sequences each of whose entries acts trivially on the full Tate module, on all ring-class fields of K , and on the…",
+      "section": "Heegner points and transfer",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    },
+    {
+      "id": "m1-rl-irreducibility",
+      "kind": "lemma",
+      "label": "Irreducibility on the characteristic-zero tests",
+      "statement": "[Irreducibility on the characteristic-zero tests] On an inner characteristic-zero test where ^21 , the four-dimensional representation induced from T is absolutely irreducible. If ^2=1 on an inner…",
+      "section": "Heegner points and transfer",
+      "manuscript": "Goldfeld's analytic density conjecture and the 2-converse for elliptic curves"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-sa-prefix",
+      "to": "m1-prop-sa-bounded-companion",
+      "label": "lem:sa:prefix",
+      "context": "[Proof of Proposition~\\ref{prop:sa:bounded-companion}] Choose the prefix and possible one-coordinate environment from Lemma~\\ref{lem:sa:prefix} and fix all their primes. Build the odd address profile disjoint from them, with $B=L$ to every prefix block. The alter"
+    }
+  ]
+}

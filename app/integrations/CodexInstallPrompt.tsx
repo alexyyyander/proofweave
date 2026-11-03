@@ -3,6 +3,7 @@
 import { Button } from "@/app/components/ui";
 
 import { useState } from "react";
+import { useI18n } from "@/app/i18n/client";
 
 const installationRequest = `Install the Proofweave Research plugin by following the public, auditable instructions at https://proofweave.org/codex-install.md.
 
@@ -19,6 +20,7 @@ export function CodexSetupPrompt({
   returnHref: string;
   onRequestCopied?: () => void;
 }) {
+  const { t } = useI18n();
   const [copied, setCopied] = useState(false);
   const destination = `https://proofweave.org${returnHref}`;
   const setupRequest = `Help me connect this Codex to Proofweave for research.
@@ -41,11 +43,12 @@ If Proofweave reports maintenance or read-only mode, stop and tell me that conne
   }
 
   return <Button className="button button-primary" type="button" onClick={copySetupRequest}>
-    {copied ? "Setup request copied" : "Continue in Codex"}
+    {copied ? t("integrations.prompt.setupCopied") : t("integrations.prompt.continueCodex")}
   </Button>;
 }
 
 export function CodexInstallPrompt() {
+  const { t } = useI18n();
   const [copied, setCopied] = useState(false);
 
   async function copyInstallRequest() {
@@ -61,20 +64,16 @@ export function CodexInstallPrompt() {
   return (
     <div className="codex-install-prompt">
       <div>
-        <span className="micro-label">Ask Codex</span>
-        <strong>Let Codex perform the install—with your confirmation.</strong>
-        <p>
-          Copy one request into a Codex chat. It tells Codex to use the
-          checksum-published local marketplace archive, show every command,
-          and stop before connecting your account.
-        </p>
+        <span className="micro-label">{t("integrations.prompt.askCodex")}</span>
+        <strong>{t("integrations.prompt.installTitle")}</strong>
+        <p>{t("integrations.prompt.installBody")}</p>
       </div>
       <div className="codex-install-actions">
         <Button className="button button-primary" type="button" onClick={copyInstallRequest}>
-          {copied ? "Install request copied" : "Copy request for Codex"}
+          {copied ? t("integrations.prompt.installCopied") : t("integrations.prompt.copyInstall")}
         </Button>
         <a className="text-link" href="/codex-install.md" target="_blank" rel="noreferrer">
-          Read the install guide <span>→</span>
+          {t("integrations.prompt.readGuide")} <span>→</span>
         </a>
       </div>
     </div>
@@ -98,6 +97,7 @@ export function CodexConnectPrompt({
   returnHref?: string;
   onRequestCopied?: () => void;
 }) {
+  const { t } = useI18n();
   const [copied, setCopied] = useState(false);
   const destination = returnHref
     ? `https://proofweave.org${returnHref}`
@@ -120,7 +120,7 @@ After connection succeeds, tell me to return to ${destination}${targetTitle ? ` 
   }
 
   return <Button className="button button-primary" type="button" onClick={copyConnectionRequest}>
-    {copied ? "Request copied" : role === "review" ? "Copy review connection request" : "Copy connection request"}
+    {copied ? t("integrations.prompt.requestCopied") : role === "review" ? t("integrations.prompt.copyReview") : t("integrations.prompt.copyConnection")}
   </Button>;
 }
 
@@ -130,6 +130,7 @@ const workflowRequests = {
 } as const;
 
 export function CodexWorkflowPrompt({ workflow }: { workflow: keyof typeof workflowRequests }) {
+  const { t } = useI18n();
   const [copied, setCopied] = useState(false);
 
   async function copyWorkflowRequest() {
@@ -143,6 +144,6 @@ export function CodexWorkflowPrompt({ workflow }: { workflow: keyof typeof workf
   }
 
   return <Button className="button button-secondary" type="button" onClick={copyWorkflowRequest}>
-    {copied ? "Request copied" : workflow === "review_queue" ? "Copy “show my reviews”" : "Copy submission request"}
+    {copied ? t("integrations.prompt.requestCopied") : workflow === "review_queue" ? t("integrations.prompt.copyReviews") : t("integrations.prompt.copySubmission")}
   </Button>;
 }

@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "372",
+  "title": "Global uniqueness in smooth isotropic elasticity",
+  "result": {
+    "id": "paper-result",
+    "label": "Global uniqueness in smooth isotropic elasticity",
+    "statement": "Proves that full static boundary displacement-to-traction data determine both smooth real Lamé moduli on every bounded connected smooth domain in ℝ 3 , provided μ > 0 and 3 +2 0 on the closure. Neither analyticity, proximity to constant coefficients nor prior knowledge near the boundary is required.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "boundary-reduction-and-physical-transfer",
+      "label": "Boundary reduction and physical transfer",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-augmented-system-and-analytic-estimates",
+      "label": "An augmented system and analytic estimates",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "physical-solutions-realizing-local-transport-frames",
+      "label": "Physical solutions realizing local transport frames",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "matching-the-leading-transports",
+      "label": "Matching the leading transports",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "recovery-of-the-coefficients",
+      "label": "Recovery of the coefficients",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Global Uniqueness for the Smooth Isotropic Elasticity Inverse Problem",
+      "title": "Global Uniqueness for the Smooth Isotropic Elasticity Inverse Problem",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-Uniqueness-for-the-Smooth-Isotropic-Elasticity-Inverse-Problem-September-24-2026/article.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Global Uniqueness for the Smooth Isotropic Elasticity Inverse Problem.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-common-extension"
+          ]
+        },
+        {
+          "id": "m1-lem-common-extension",
+          "role": "boundary-reduction-and-physical-transfer",
+          "label": "lemma m1-lem-common-extension",
+          "fullLabel": "lemma m1-lem-common-extension",
+          "kind": "lemma",
+          "source": "Boundary reduction and physical transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-physical-transfer",
+          "role": "boundary-reduction-and-physical-transfer",
+          "label": "proposition m1-prop-physical-transfer",
+          "fullLabel": "proposition m1-prop-physical-transfer",
+          "kind": "proposition",
+          "source": "Boundary reduction and physical transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-augmented-system",
+          "role": "an-augmented-system-and-analytic-estimates",
+          "label": "lemma m1-lem-augmented-system",
+          "fullLabel": "lemma m1-lem-augmented-system",
+          "kind": "lemma",
+          "source": "An augmented system and analytic estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-carleman",
+          "role": "an-augmented-system-and-analytic-estimates",
+          "label": "proposition m1-prop-carleman",
+          "fullLabel": "proposition m1-prop-carleman",
+          "kind": "proposition",
+          "source": "An augmented system and analytic estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-physical-solvability",
+          "role": "an-augmented-system-and-analytic-estimates",
+          "label": "corollary m1-cor-physical-solvability",
+          "fullLabel": "corollary m1-cor-physical-solvability",
+          "kind": "corollary",
+          "source": "An augmented system and analytic estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-scaled-interior",
+          "role": "an-augmented-system-and-analytic-estimates",
+          "label": "lemma m1-lem-scaled-interior",
+          "fullLabel": "lemma m1-lem-scaled-interior",
+          "kind": "lemma",
+          "source": "An augmented system and analytic estimates",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-planar-frames",
+          "role": "physical-solutions-realizing-local-transport-frames",
+          "label": "lemma m1-lem-planar-frames",
+          "fullLabel": "lemma m1-lem-planar-frames",
+          "kind": "lemma",
+          "source": "Physical solutions realizing local transport frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-physical-amplitudes",
+          "role": "physical-solutions-realizing-local-transport-frames",
+          "label": "proposition m1-prop-physical-amplitudes",
+          "fullLabel": "proposition m1-prop-physical-amplitudes",
+          "kind": "proposition",
+          "source": "Physical solutions realizing local transport frames",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-transport-normal-form",
+          "role": "matching-the-leading-transports",
+          "label": "lemma m1-lem-transport-normal-form",
+          "fullLabel": "lemma m1-lem-transport-normal-form",
+          "kind": "lemma",
+          "source": "Matching the leading transports",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-supported-transport",
+          "role": "matching-the-leading-transports",
+          "label": "lemma m1-lem-supported-transport",
+          "fullLabel": "lemma m1-lem-supported-transport",
+          "kind": "lemma",
+          "source": "Matching the leading transports",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-transport-matching",
+          "role": "matching-the-leading-transports",
+          "label": "proposition m1-prop-transport-matching",
+          "fullLabel": "proposition m1-prop-transport-matching",
+          "kind": "proposition",
+          "source": "Matching the leading transports",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-conic-bundle",
+          "role": "recovery-of-the-coefficients",
+          "label": "lemma m1-lem-conic-bundle",
+          "fullLabel": "lemma m1-lem-conic-bundle",
+          "kind": "lemma",
+          "source": "Recovery of the coefficients",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-comparison-rigidity",
+          "role": "recovery-of-the-coefficients",
+          "label": "proposition m1-prop-comparison-rigidity",
+          "fullLabel": "proposition m1-prop-comparison-rigidity",
+          "kind": "proposition",
+          "source": "Recovery of the coefficients",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-finite-type",
+          "role": "recovery-of-the-coefficients",
+          "label": "lemma m1-lem-finite-type",
+          "fullLabel": "lemma m1-lem-finite-type",
+          "kind": "lemma",
+          "source": "Recovery of the coefficients",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Global Uniqueness for the Smooth Isotropic Elasticity Inverse Problem",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-Uniqueness-for-the-Smooth-Isotropic-Elasticity-Inverse-Problem-September-24-2026/article.pdf",
+      "kind": "paper"
+    }
+  ]
+}

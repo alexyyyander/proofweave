@@ -1,0 +1,958 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "014",
+  "title": "Restricted geometric Langlands, global Arthur enhancements, and generic Ramanujan",
+  "result": {
+    "id": "paper-result",
+    "label": "Restricted geometric Langlands, global Arthur enhancements, and generic Ramanujan",
+    "statement": "Proves the restricted geometric Langlands equivalence for connected reductive groups on smooth projective connected curves over F q under the four stated Lie-theoretic characteristic hypotheses. Over arbitrary algebraically closed fields of characteristic p > 0, the same conclusion holds assuming additionally that p is very good for the group and p |WG|. Over global function fields, proves Ramanujan at every place for globally generic cuspidal representations of split adjoint absolutely simple exceptional groups, without characteristic or ramification-depth restrictions, and at every unramified place for cuspidal representations of split adjoint absolutely simple groups with a generic unramified component. Assuming the finite-level Ramanujan–Arthur decomposition, constructs global Arthur enhancements of occurring cuspidal excursion parameters for split connected semisimple groups at full finite level, recovering the given parameters by diagonal specialization on the entire Weil group, including inertia.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "introduction",
+      "label": "Introduction",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-global-support-from-shtuka-cohomology",
+      "label": "A global support from shtuka cohomology",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-open-orbit-criterion-for-enhancement",
+      "label": "An open-orbit criterion for enhancement",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-frobenius-compatible-realization-of-the-iwahori-category",
+      "label": "A Frobenius-compatible realization of the Iwahori category",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "horizontal-traces-and-spherical-transfer",
+      "label": "Horizontal traces and spherical transfer",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "coherent-local-tests-after-regrading",
+      "label": "Coherent local tests after regrading",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-simultaneous-lower-bound",
+      "label": "A simultaneous lower bound",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "simultaneous-boundary-tests-and-completion-of-the-proof",
+      "label": "Simultaneous boundary tests and completion of the proof",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "geometric-inputs-and-frobenius-conventions",
+      "label": "Geometric inputs and Frobenius conventions",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-quadratic-model-with-its-frobenius-action",
+      "label": "A quadratic model with its Frobenius action",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-category-on-a-nilpotent-orbit",
+      "label": "The category on a nilpotent orbit",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "frobenius-traces-and-compact-weil-classes",
+      "label": "Frobenius traces and compact Weil classes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "hecke-matrix-coefficients-and-support-detection",
+      "label": "Hecke matrix coefficients and support detection",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "compact-spectral-sets-and-rational-descent",
+      "label": "Compact spectral sets and rational descent",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "Global Arthur Enhancements of Cuspidal Excursion Parameters",
+      "title": "Global Arthur Enhancements of Cuspidal Excursion Parameters",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-10-05",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-Arthur-Enhancements-of-Cuspidal-Excursion-Parameters-October-5-2026/manuscript.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Global Arthur Enhancements of Cuspidal Excursion Parameters.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-thm-parent",
+          "role": "introduction",
+          "label": "theorem m1-thm-parent",
+          "fullLabel": "theorem m1-thm-parent",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-main",
+          "role": "introduction",
+          "label": "theorem m1-thm-main",
+          "fullLabel": "theorem m1-thm-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-lem-tensor-nilpotence"
+          ]
+        },
+        {
+          "id": "m1-lem-glob-cohomology",
+          "role": "a-global-support-from-shtuka-cohomology",
+          "label": "lemma m1-lem-glob-cohomology",
+          "fullLabel": "lemma m1-lem-glob-cohomology",
+          "kind": "lemma",
+          "source": "A global support from shtuka cohomology",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-glob-weights",
+          "role": "a-global-support-from-shtuka-cohomology",
+          "label": "lemma m1-lem-glob-weights",
+          "fullLabel": "lemma m1-lem-glob-weights",
+          "kind": "lemma",
+          "source": "A global support from shtuka cohomology",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-glob-matrices",
+          "role": "a-global-support-from-shtuka-cohomology",
+          "label": "lemma m1-lem-glob-matrices",
+          "fullLabel": "lemma m1-lem-glob-matrices",
+          "kind": "lemma",
+          "source": "A global support from shtuka cohomology",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-glob-degree-two",
+          "role": "a-global-support-from-shtuka-cohomology",
+          "label": "lemma m1-lem-glob-degree-two",
+          "fullLabel": "lemma m1-lem-glob-degree-two",
+          "kind": "lemma",
+          "source": "A global support from shtuka cohomology",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-glob-frames",
+          "role": "a-global-support-from-shtuka-cohomology",
+          "label": "lemma m1-lem-glob-frames",
+          "fullLabel": "lemma m1-lem-glob-frames",
+          "kind": "lemma",
+          "source": "A global support from shtuka cohomology",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-global-support",
+          "role": "a-global-support-from-shtuka-cohomology",
+          "label": "proposition m1-prop-global-support",
+          "fullLabel": "proposition m1-prop-global-support",
+          "kind": "proposition",
+          "source": "A global support from shtuka cohomology",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-test-places",
+          "role": "an-open-orbit-criterion-for-enhancement",
+          "label": "lemma m1-lem-test-places",
+          "fullLabel": "lemma m1-lem-test-places",
+          "kind": "lemma",
+          "source": "An open-orbit criterion for enhancement",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-orbit-open",
+          "role": "an-open-orbit-criterion-for-enhancement",
+          "label": "lemma m1-lem-orbit-open",
+          "fullLabel": "lemma m1-lem-orbit-open",
+          "kind": "lemma",
+          "source": "An open-orbit criterion for enhancement",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-orbit-tuples",
+          "role": "an-open-orbit-criterion-for-enhancement",
+          "label": "lemma m1-lem-orbit-tuples",
+          "fullLabel": "lemma m1-lem-orbit-tuples",
+          "kind": "lemma",
+          "source": "An open-orbit criterion for enhancement",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-open-orbit-enhancement",
+          "role": "an-open-orbit-criterion-for-enhancement",
+          "label": "proposition m1-prop-open-orbit-enhancement",
+          "fullLabel": "proposition m1-prop-open-orbit-enhancement",
+          "kind": "proposition",
+          "source": "An open-orbit criterion for enhancement",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-orbit-boundary",
+          "role": "an-open-orbit-criterion-for-enhancement",
+          "label": "corollary m1-cor-orbit-boundary",
+          "fullLabel": "corollary m1-cor-orbit-boundary",
+          "kind": "corollary",
+          "source": "An open-orbit criterion for enhancement",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-enhanced-iwahori",
+          "role": "a-frobenius-compatible-realization-of-the-iwahori-category",
+          "label": "theorem m1-thm-enhanced-iwahori",
+          "fullLabel": "theorem m1-thm-enhanced-iwahori",
+          "kind": "theorem",
+          "source": "A Frobenius-compatible realization of the Iwahori category",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-enh-mixed-central-comparison"
+          ]
+        },
+        {
+          "id": "m1-enh-frobenius-normalization",
+          "role": "a-frobenius-compatible-realization-of-the-iwahori-category",
+          "label": "lemma m1-enh-frobenius-normalization",
+          "fullLabel": "lemma m1-enh-frobenius-normalization",
+          "kind": "lemma",
+          "source": "A Frobenius-compatible realization of the Iwahori category",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-enh-central-objects",
+          "role": "a-frobenius-compatible-realization-of-the-iwahori-category",
+          "label": "lemma m1-enh-central-objects",
+          "fullLabel": "lemma m1-enh-central-objects",
+          "kind": "lemma",
+          "source": "A Frobenius-compatible realization of the Iwahori category",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-enh-pure-homs",
+          "role": "a-frobenius-compatible-realization-of-the-iwahori-category",
+          "label": "lemma m1-enh-pure-homs",
+          "fullLabel": "lemma m1-enh-pure-homs",
+          "kind": "lemma",
+          "source": "A Frobenius-compatible realization of the Iwahori category",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-enh-localized-standards",
+          "role": "a-frobenius-compatible-realization-of-the-iwahori-category",
+          "label": "lemma m1-enh-localized-standards",
+          "fullLabel": "lemma m1-enh-localized-standards",
+          "kind": "lemma",
+          "source": "A Frobenius-compatible realization of the Iwahori category",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-enh-monoidal-frobenius",
+          "role": "a-frobenius-compatible-realization-of-the-iwahori-category",
+          "label": "lemma m1-enh-monoidal-frobenius",
+          "fullLabel": "lemma m1-enh-monoidal-frobenius",
+          "kind": "lemma",
+          "source": "A Frobenius-compatible realization of the Iwahori category",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-enh-pure-formality",
+          "role": "a-frobenius-compatible-realization-of-the-iwahori-category",
+          "label": "lemma m1-enh-pure-formality",
+          "fullLabel": "lemma m1-enh-pure-formality",
+          "kind": "lemma",
+          "source": "A Frobenius-compatible realization of the Iwahori category",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-enh-lift",
+          "role": "a-frobenius-compatible-realization-of-the-iwahori-category",
+          "label": "proposition m1-enh-lift",
+          "fullLabel": "proposition m1-enh-lift",
+          "kind": "proposition",
+          "source": "A Frobenius-compatible realization of the Iwahori category",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-enh-mixed-central-comparison",
+          "role": "a-frobenius-compatible-realization-of-the-iwahori-category",
+          "label": "lemma m1-enh-mixed-central-comparison",
+          "fullLabel": "lemma m1-enh-mixed-central-comparison",
+          "kind": "lemma",
+          "source": "A Frobenius-compatible realization of the Iwahori category",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-enh-central-normalization",
+          "role": "a-frobenius-compatible-realization-of-the-iwahori-category",
+          "label": "proposition m1-enh-central-normalization",
+          "fullLabel": "proposition m1-enh-central-normalization",
+          "kind": "proposition",
+          "source": "A Frobenius-compatible realization of the Iwahori category",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-trace-coend",
+          "role": "horizontal-traces-and-spherical-transfer",
+          "label": "lemma m1-trace-coend",
+          "fullLabel": "lemma m1-trace-coend",
+          "kind": "lemma",
+          "source": "Horizontal traces and spherical transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-trace-hecke-algebra",
+          "role": "horizontal-traces-and-spherical-transfer",
+          "label": "lemma m1-trace-hecke-algebra",
+          "fullLabel": "lemma m1-trace-hecke-algebra",
+          "kind": "lemma",
+          "source": "Horizontal traces and spherical transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-trace-model",
+          "role": "horizontal-traces-and-spherical-transfer",
+          "label": "proposition m1-prop-trace-model",
+          "fullLabel": "proposition m1-prop-trace-model",
+          "kind": "proposition",
+          "source": "Horizontal traces and spherical transfer",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": [
+            "m1-trace-coend"
+          ]
+        },
+        {
+          "id": "m1-local-semisimple-slice",
+          "role": "coherent-local-tests-after-regrading",
+          "label": "lemma m1-local-semisimple-slice",
+          "fullLabel": "lemma m1-local-semisimple-slice",
+          "kind": "lemma",
+          "source": "Coherent local tests after regrading",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-local-equation-models",
+          "role": "coherent-local-tests-after-regrading",
+          "label": "lemma m1-local-equation-models",
+          "fullLabel": "lemma m1-local-equation-models",
+          "kind": "lemma",
+          "source": "Coherent local tests after regrading",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-local-graded-koszul",
+          "role": "coherent-local-tests-after-regrading",
+          "label": "proposition m1-local-graded-koszul",
+          "fullLabel": "proposition m1-local-graded-koszul",
+          "kind": "proposition",
+          "source": "Coherent local tests after regrading",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-local-flag-slice",
+          "role": "coherent-local-tests-after-regrading",
+          "label": "lemma m1-local-flag-slice",
+          "fullLabel": "lemma m1-local-flag-slice",
+          "kind": "lemma",
+          "source": "Coherent local tests after regrading",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-local-flag-image",
+          "role": "coherent-local-tests-after-regrading",
+          "label": "proposition m1-local-flag-image",
+          "fullLabel": "proposition m1-local-flag-image",
+          "kind": "proposition",
+          "source": "Coherent local tests after regrading",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-local-polynomial-representatives",
+          "role": "coherent-local-tests-after-regrading",
+          "label": "lemma m1-local-polynomial-representatives",
+          "fullLabel": "lemma m1-local-polynomial-representatives",
+          "kind": "lemma",
+          "source": "Coherent local tests after regrading",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-local-spherical-reconstruction",
+          "role": "coherent-local-tests-after-regrading",
+          "label": "proposition m1-local-spherical-reconstruction",
+          "fullLabel": "proposition m1-local-spherical-reconstruction",
+          "kind": "proposition",
+          "source": "Coherent local tests after regrading",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-local-test-model",
+          "role": "coherent-local-tests-after-regrading",
+          "label": "theorem m1-thm-local-test-model",
+          "fullLabel": "theorem m1-thm-local-test-model",
+          "kind": "theorem",
+          "source": "Coherent local tests after regrading",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bounds-disjoint-hecke",
+          "role": "a-simultaneous-lower-bound",
+          "label": "lemma m1-bounds-disjoint-hecke",
+          "fullLabel": "lemma m1-bounds-disjoint-hecke",
+          "kind": "lemma",
+          "source": "A simultaneous lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bounds-curve-map",
+          "role": "a-simultaneous-lower-bound",
+          "label": "lemma m1-bounds-curve-map",
+          "fullLabel": "lemma m1-bounds-curve-map",
+          "kind": "lemma",
+          "source": "A simultaneous lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bounds-nearby",
+          "role": "a-simultaneous-lower-bound",
+          "label": "proposition m1-bounds-nearby",
+          "fullLabel": "proposition m1-bounds-nearby",
+          "kind": "proposition",
+          "source": "A simultaneous lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bounds-constituent-inclusion",
+          "role": "a-simultaneous-lower-bound",
+          "label": "proposition m1-bounds-constituent-inclusion",
+          "fullLabel": "proposition m1-bounds-constituent-inclusion",
+          "kind": "proposition",
+          "source": "A simultaneous lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bounds-weight-bound",
+          "role": "a-simultaneous-lower-bound",
+          "label": "proposition m1-bounds-weight-bound",
+          "fullLabel": "proposition m1-bounds-weight-bound",
+          "kind": "proposition",
+          "source": "A simultaneous lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-bounds-central-actions",
+          "role": "a-simultaneous-lower-bound",
+          "label": "lemma m1-bounds-central-actions",
+          "fullLabel": "lemma m1-bounds-central-actions",
+          "kind": "lemma",
+          "source": "A simultaneous lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-thm-simultaneous-bound",
+          "role": "a-simultaneous-lower-bound",
+          "label": "theorem m1-thm-simultaneous-bound",
+          "fullLabel": "theorem m1-thm-simultaneous-bound",
+          "kind": "theorem",
+          "source": "A simultaneous lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-prop-ind-qc-comparison",
+          "role": "a-simultaneous-lower-bound",
+          "label": "proposition m1-prop-ind-qc-comparison",
+          "fullLabel": "proposition m1-prop-ind-qc-comparison",
+          "kind": "proposition",
+          "source": "A simultaneous lower bound",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-boundary-cyclic-module",
+          "role": "simultaneous-boundary-tests-and-completion-of-the-proof",
+          "label": "proposition m1-boundary-cyclic-module",
+          "fullLabel": "proposition m1-boundary-cyclic-module",
+          "kind": "proposition",
+          "source": "Simultaneous boundary tests and completion of the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-boundary-bad-flag",
+          "role": "simultaneous-boundary-tests-and-completion-of-the-proof",
+          "label": "lemma m1-boundary-bad-flag",
+          "fullLabel": "lemma m1-boundary-bad-flag",
+          "kind": "lemma",
+          "source": "Simultaneous boundary tests and completion of the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-boundary-fiber-zero",
+          "role": "simultaneous-boundary-tests-and-completion-of-the-proof",
+          "label": "lemma m1-boundary-fiber-zero",
+          "fullLabel": "lemma m1-boundary-fiber-zero",
+          "kind": "lemma",
+          "source": "Simultaneous boundary tests and completion of the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-lem-tensor-nilpotence",
+          "role": "simultaneous-boundary-tests-and-completion-of-the-proof",
+          "label": "lemma m1-lem-tensor-nilpotence",
+          "fullLabel": "lemma m1-lem-tensor-nilpotence",
+          "kind": "lemma",
+          "source": "Simultaneous boundary tests and completion of the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-boundary-simple-quotient",
+          "role": "simultaneous-boundary-tests-and-completion-of-the-proof",
+          "label": "lemma m1-boundary-simple-quotient",
+          "fullLabel": "lemma m1-boundary-simple-quotient",
+          "kind": "lemma",
+          "source": "Simultaneous boundary tests and completion of the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-boundary-f-survives",
+          "role": "simultaneous-boundary-tests-and-completion-of-the-proof",
+          "label": "proposition m1-boundary-f-survives",
+          "fullLabel": "proposition m1-boundary-f-survives",
+          "kind": "proposition",
+          "source": "Simultaneous boundary tests and completion of the proof",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Rationality of the Canonical Unramified Arthur Filtration",
+      "title": "Rationality of the Canonical Unramified Arthur Filtration",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-24",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Rationality-of-the-Canonical-Unramified-Arthur-Filtration-September-24-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Rationality of the Canonical Unramified Arthur Filtration.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-intro-main",
+          "role": "introduction",
+          "label": "theorem m2-intro-main",
+          "fullLabel": "theorem m2-intro-main",
+          "kind": "theorem",
+          "source": "Introduction",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inp-langlands",
+          "role": "geometric-inputs-and-frobenius-conventions",
+          "label": "theorem m2-inp-langlands",
+          "fullLabel": "theorem m2-inp-langlands",
+          "kind": "theorem",
+          "source": "Geometric inputs and Frobenius conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inp-trace",
+          "role": "geometric-inputs-and-frobenius-conventions",
+          "label": "theorem m2-inp-trace",
+          "fullLabel": "theorem m2-inp-trace",
+          "kind": "theorem",
+          "source": "Geometric inputs and Frobenius conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inp-duality",
+          "role": "geometric-inputs-and-frobenius-conventions",
+          "label": "theorem m2-inp-duality",
+          "fullLabel": "theorem m2-inp-duality",
+          "kind": "theorem",
+          "source": "Geometric inputs and Frobenius conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inp-components",
+          "role": "geometric-inputs-and-frobenius-conventions",
+          "label": "theorem m2-inp-components",
+          "fullLabel": "theorem m2-inp-components",
+          "kind": "theorem",
+          "source": "Geometric inputs and Frobenius conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-inp-pure-lift",
+          "role": "geometric-inputs-and-frobenius-conventions",
+          "label": "theorem m2-inp-pure-lift",
+          "fullLabel": "theorem m2-inp-pure-lift",
+          "kind": "theorem",
+          "source": "Geometric inputs and Frobenius conventions",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mod-finite-covariants",
+          "role": "a-quadratic-model-with-its-frobenius-action",
+          "label": "lemma m2-mod-finite-covariants",
+          "fullLabel": "lemma m2-mod-finite-covariants",
+          "kind": "lemma",
+          "source": "A quadratic model with its Frobenius action",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mod-reconstruction",
+          "role": "a-quadratic-model-with-its-frobenius-action",
+          "label": "lemma m2-mod-reconstruction",
+          "fullLabel": "lemma m2-mod-reconstruction",
+          "kind": "lemma",
+          "source": "A quadratic model with its Frobenius action",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mod-nonresonance",
+          "role": "a-quadratic-model-with-its-frobenius-action",
+          "label": "lemma m2-mod-nonresonance",
+          "fullLabel": "lemma m2-mod-nonresonance",
+          "kind": "lemma",
+          "source": "A quadratic model with its Frobenius action",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mod-model",
+          "role": "a-quadratic-model-with-its-frobenius-action",
+          "label": "theorem m2-mod-model",
+          "fullLabel": "theorem m2-mod-model",
+          "kind": "theorem",
+          "source": "A quadratic model with its Frobenius action",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mod-frobenius",
+          "role": "a-quadratic-model-with-its-frobenius-action",
+          "label": "lemma m2-mod-frobenius",
+          "fullLabel": "lemma m2-mod-frobenius",
+          "kind": "lemma",
+          "source": "A quadratic model with its Frobenius action",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-mod-compact-normalization",
+          "role": "a-quadratic-model-with-its-frobenius-action",
+          "label": "lemma m2-mod-compact-normalization",
+          "fullLabel": "lemma m2-mod-compact-normalization",
+          "kind": "lemma",
+          "source": "A quadratic model with its Frobenius action",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-orb-koszul",
+          "role": "the-category-on-a-nilpotent-orbit",
+          "label": "lemma m2-orb-koszul",
+          "fullLabel": "lemma m2-orb-koszul",
+          "kind": "lemma",
+          "source": "The category on a nilpotent orbit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-orb-localization",
+          "role": "the-category-on-a-nilpotent-orbit",
+          "label": "lemma m2-orb-localization",
+          "fullLabel": "lemma m2-orb-localization",
+          "kind": "lemma",
+          "source": "The category on a nilpotent orbit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-orb-generation",
+          "role": "the-category-on-a-nilpotent-orbit",
+          "label": "proposition m2-orb-generation",
+          "fullLabel": "proposition m2-orb-generation",
+          "kind": "proposition",
+          "source": "The category on a nilpotent orbit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-orb-weil-lifts",
+          "role": "the-category-on-a-nilpotent-orbit",
+          "label": "proposition m2-orb-weil-lifts",
+          "fullLabel": "proposition m2-orb-weil-lifts",
+          "kind": "proposition",
+          "source": "The category on a nilpotent orbit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-orb-hom-calculation",
+          "role": "the-category-on-a-nilpotent-orbit",
+          "label": "proposition m2-orb-hom-calculation",
+          "fullLabel": "proposition m2-orb-hom-calculation",
+          "kind": "proposition",
+          "source": "The category on a nilpotent orbit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tr-invariant-support",
+          "role": "frobenius-traces-and-compact-weil-classes",
+          "label": "lemma m2-tr-invariant-support",
+          "fullLabel": "lemma m2-tr-invariant-support",
+          "kind": "lemma",
+          "source": "Frobenius traces and compact Weil classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tr-bar-contraction",
+          "role": "frobenius-traces-and-compact-weil-classes",
+          "label": "lemma m2-tr-bar-contraction",
+          "fullLabel": "lemma m2-tr-bar-contraction",
+          "kind": "lemma",
+          "source": "Frobenius traces and compact Weil classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tr-orbit-trace",
+          "role": "frobenius-traces-and-compact-weil-classes",
+          "label": "proposition m2-tr-orbit-trace",
+          "fullLabel": "proposition m2-tr-orbit-trace",
+          "kind": "proposition",
+          "source": "Frobenius traces and compact Weil classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-tr-spanning",
+          "role": "frobenius-traces-and-compact-weil-classes",
+          "label": "theorem m2-tr-spanning",
+          "fullLabel": "theorem m2-tr-spanning",
+          "kind": "theorem",
+          "source": "Frobenius traces and compact Weil classes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-meas-detector",
+          "role": "hecke-matrix-coefficients-and-support-detection",
+          "label": "theorem m2-meas-detector",
+          "fullLabel": "theorem m2-meas-detector",
+          "kind": "theorem",
+          "source": "Hecke matrix coefficients and support detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-meas-hom-functions",
+          "role": "hecke-matrix-coefficients-and-support-detection",
+          "label": "lemma m2-meas-hom-functions",
+          "fullLabel": "lemma m2-meas-hom-functions",
+          "kind": "lemma",
+          "source": "Hecke matrix coefficients and support detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-meas-supported-convergence",
+          "role": "hecke-matrix-coefficients-and-support-detection",
+          "label": "lemma m2-meas-supported-convergence",
+          "fullLabel": "lemma m2-meas-supported-convergence",
+          "kind": "lemma",
+          "source": "Hecke matrix coefficients and support detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-meas-common-support",
+          "role": "hecke-matrix-coefficients-and-support-detection",
+          "label": "proposition m2-meas-common-support",
+          "fullLabel": "proposition m2-meas-common-support",
+          "kind": "proposition",
+          "source": "Hecke matrix coefficients and support detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-meas-cancel-density",
+          "role": "hecke-matrix-coefficients-and-support-detection",
+          "label": "lemma m2-meas-cancel-density",
+          "fullLabel": "lemma m2-meas-cancel-density",
+          "kind": "lemma",
+          "source": "Hecke matrix coefficients and support detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-meas-top-detection",
+          "role": "hecke-matrix-coefficients-and-support-detection",
+          "label": "lemma m2-meas-top-detection",
+          "fullLabel": "lemma m2-meas-top-detection",
+          "kind": "lemma",
+          "source": "Hecke matrix coefficients and support detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-meas-boundary-rank",
+          "role": "hecke-matrix-coefficients-and-support-detection",
+          "label": "lemma m2-meas-boundary-rank",
+          "fullLabel": "lemma m2-meas-boundary-rank",
+          "kind": "lemma",
+          "source": "Hecke matrix coefficients and support detection",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-desc-compactsets",
+          "role": "compact-spectral-sets-and-rational-descent",
+          "label": "lemma m2-desc-compactsets",
+          "fullLabel": "lemma m2-desc-compactsets",
+          "kind": "lemma",
+          "source": "Compact spectral sets and rational descent",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-desc-unique-measure",
+          "role": "compact-spectral-sets-and-rational-descent",
+          "label": "corollary m2-desc-unique-measure",
+          "fullLabel": "corollary m2-desc-unique-measure",
+          "kind": "corollary",
+          "source": "Compact spectral sets and rational descent",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-desc-coefficient-independence",
+          "role": "compact-spectral-sets-and-rational-descent",
+          "label": "proposition m2-desc-coefficient-independence",
+          "fullLabel": "proposition m2-desc-coefficient-independence",
+          "kind": "proposition",
+          "source": "Compact spectral sets and rational descent",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-desc-descent",
+          "role": "compact-spectral-sets-and-rational-descent",
+          "label": "lemma m2-desc-descent",
+          "fullLabel": "lemma m2-desc-descent",
+          "kind": "lemma",
+          "source": "Compact spectral sets and rational descent",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "Global Arthur Enhancements of Cuspidal Excursion Parameters",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Global-Arthur-Enhancements-of-Cuspidal-Excursion-Parameters-October-5-2026/manuscript.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Rationality of the Canonical Unramified Arthur Filtration",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Rationality-of-the-Canonical-Unramified-Arthur-Filtration-September-24-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Ramanujan-Arthur Decompositions of Cuspidal Functions at Full Finite Level",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Ramanujan-Arthur-Decompositions-of-Cuspidal-Functions-at-Full-Finite-Level-September-24-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

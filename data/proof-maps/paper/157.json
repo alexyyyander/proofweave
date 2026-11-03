@@ -1,0 +1,712 @@
+{
+  "familyNumber": "157",
+  "familyTitle": "Graph coloring, clique minors, and Colin de Verdière invariants",
+  "manuscripts": [
+    {
+      "id": "A-counterexample-to-Hadwigers-conjecture-September-23-2026",
+      "title": "A counterexample to Hadwiger's conjecture",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-Hadwigers-conjecture-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "A-counterexample-to-the-Colin-de-Verdiere-chromatic-conjecture-September-23-2026",
+      "title": "A counterexample to the Colin de Verdière chromatic conjecture",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-counterexample-to-the-Colin-de-Verdiere-chromatic-conjecture-September-23-2026/paper.pdf"
+    },
+    {
+      "id": "A-linear-list-coloring-bound-in-terms-of-the-Hadwiger-number-September-23-2026",
+      "title": "A linear list-coloring bound in terms of the Hadwiger number",
+      "date": "2026-09-23",
+      "pdfUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/A-linear-list-coloring-bound-in-terms-of-the-Hadwiger-number-September-23-2026/paper.pdf"
+    }
+  ],
+  "sections": [
+    "Introduction",
+    "The hole relation and its tensor realization",
+    "From supersaturation to a finite graph",
+    "Frame laws and preparation of unit laws",
+    "Low-rank moments and mixing forms",
+    "Recipes and realization of the gradients",
+    "From overlapping key distributions to four holes",
+    "Phase estimates before key collisions",
+    "Preparation of the two-endpoint statuses",
+    "Leaf histograms and mixed-law estimates",
+    "Weak product testing",
+    "A common limit for successful queries",
+    "Solving the status constraints",
+    "The inverse-polynomial option and completion of the proof",
+    "Finite trees for Lorentz blocks",
+    "The matrix obstruction",
+    "The tensor geometry and the hole relation",
+    "The distribution problem and its preliminary tools"
+  ],
+  "nodes": [
+    {
+      "id": "m1-thm-main",
+      "kind": "theorem",
+      "label": "There are arbitrarily large integers \\(m\\) for which an \\(m\\)-vertex finite…",
+      "statement": "There are arbitrarily large integers \\(m\\) for which an \\(m\\)-vertex finite simple graph \\(G\\) satisfies \\[ (G)2 and (G)<m 100 . \\]",
+      "section": "Introduction",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-cor-hadwiger",
+      "kind": "corollary",
+      "label": "There are finite nonempty simple graphs \\(G\\) of arbitrarily large order \\(m\\)…",
+      "statement": "There are finite nonempty simple graphs \\(G\\) of arbitrarily large order \\(m\\) for which \\[ h(G)<26m 75 +23 < m2_f(G)(G). \\] Thus Hadwiger's conjecture and its fractional-coloring weakening \\(_f(G)…",
+      "section": "Introduction",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-hole-triangle-free",
+      "kind": "lemma",
+      "label": "The hole relation is symmetric, has no loops, and is triangle-free.",
+      "statement": "The hole relation is symmetric, has no loops, and is triangle-free.",
+      "section": "The hole relation and its tensor realization",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-cut-kernel",
+      "kind": "lemma",
+      "label": "The intersection of \\(W_l\\) over any strict majority of tags is \\(W_*\\). Two…",
+      "statement": "The intersection of \\(W_l\\) over any strict majority of tags is \\(W_*\\). Two representations of the same cut profile differ by a constant tuple with value in \\(W_*\\).",
+      "section": "The hole relation and its tensor realization",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-thm-raw-supersaturation",
+      "kind": "theorem",
+      "label": "Raw supersaturation",
+      "statement": "[Raw supersaturation] For the construction parameters specified in , for all sufficiently large \\(n\\), every probability law \\(\\) on units satisfying _1 M, _2 M, 2^ DN ^2 has the following property:…",
+      "section": "From supersaturation to a finite graph",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-entropy-support",
+      "kind": "lemma",
+      "label": "Let \\( P\\) be a nonempty compact convex set of probability measures on a finite…",
+      "statement": "Let \\( P\\) be a nonempty compact convex set of probability measures on a finite set, and let \\(\\) minimize \\( D( q)\\) on \\( P\\). Then \\(\\) is positive on the union of the supports of measures in \\(…",
+      "section": "From supersaturation to a finite graph",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-terminal-cut",
+      "kind": "lemma",
+      "label": "Let \\(R_n^2\\). If no probability law supported on \\(R\\) satisfies , there are…",
+      "statement": "Let \\(R_n^2\\). If no probability law supported on \\(R\\) satisfies , there are sets \\(S_n\\) and \\(E_0_n^2\\) such that \\[ (S)<1/M, ^2(E_0)<2^ -DN , \\] and every pair in \\(R\\) either has an endpoint in…",
+      "section": "From supersaturation to a finite graph",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-prop-raw-to-graph",
+      "kind": "proposition",
+      "label": "Assume the conclusion of at a given sufficiently large \\(n\\). For \\(m=2^ C_0gN…",
+      "statement": "Assume the conclusion of at a given sufficiently large \\(n\\). For \\(m=2^ C_0gN \\), the sampled graph defined in satisfies \\[ (G)2, (G)<m/100 \\] with probability \\(1-(-(m))\\). The implied positive…",
+      "section": "From supersaturation to a finite graph",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-prop-matching-minor",
+      "kind": "proposition",
+      "label": "For every finite nonempty graph \\(G\\) of order \\(m\\), \\[ (G)m+4 (G)+2 3 . \\] In…",
+      "statement": "For every finite nonempty graph \\(G\\) of order \\(m\\), \\[ (G)m+4 (G)+2 3 . \\] In particular, if \\((G)2\\) and \\((G)<m/100\\), then \\[ (G)<26m 75 +23< m2(G) (m5). \\]",
+      "section": "From supersaturation to a finite graph",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-paired-frame-orbit",
+      "kind": "lemma",
+      "label": "Let \\(A,A':U V\\) and \\(B,B':W V^*\\) be injective maps between…",
+      "statement": "Let \\(A,A':U V\\) and \\(B,B':W V^*\\) be injective maps between finite-dimensional spaces over \\(\\). If \\[ B A=(B') A', \\] there is \\(L(V)\\) with \\(LA=A'\\) and \\(L^ - T B=B'\\). Thus based individually…",
+      "section": "Frame laws and preparation of unit laws",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-gram-frame-normalization",
+      "kind": "lemma",
+      "label": "Gram normalization",
+      "statement": "[Gram normalization] Let \\(p,q\\) be nonnegative integers with \\(p+q N\\). For \\(p\\) independent uniform plus vectors and \\(q\\) independent uniform minus vectors in paired copies of \\(^N\\), and a…",
+      "section": "Frame laws and preparation of unit laws",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-frame-images",
+      "kind": "lemma",
+      "label": "The following statements hold for all sufficiently large \\(n\\). [label=( *)]…",
+      "statement": "The following statements hold for all sufficiently large \\(n\\). [label=( *)] The plus frame \\([P,X]\\) is uniform among injective maps. Conditional on it, the minus columns are independent uniforms on…",
+      "section": "Frame laws and preparation of unit laws",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-raw-intersections",
+      "kind": "lemma",
+      "label": "Let \\(\\) satisfy the joint cap in . Outside a set of \\(\\)-probability \\(2^ -(N)…",
+      "statement": "Let \\(\\) satisfy the joint cap in . Outside a set of \\(\\)-probability \\(2^ -(N) \\), \\[ _ e ( P_ 1,e P_ 2,e )2D. \\] For any unit outside that exceptional set and any \\(U_1_1=U_2_2\\), both \\(_i\\) have…",
+      "section": "Frame laws and preparation of unit laws",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-peeling",
+      "kind": "lemma",
+      "label": "Two peelings",
+      "statement": "[Two peelings] Take the constants in , and choose the reference accuracy in with \\(</4\\). For every law \\(\\) satisfying , the following decompositions are available. [label=( *)] After discarding the…",
+      "section": "Frame laws and preparation of unit laws",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-walsh",
+      "kind": "lemma",
+      "label": "Walsh estimates",
+      "statement": "[Walsh estimates] Let all weights below have absolute value at most one. [label=( *)] If \\(x,y\\) are independent uniform vectors and \\(B(x,y)\\) is a bilinear form of rank \\(d\\), then \\[ |…",
+      "section": "Frame laws and preparation of unit laws",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-base-moments",
+      "kind": "lemma",
+      "label": "The span of (1,z)(1,z) , z^ d_ b , consists precisely of symmetric (1+d_ b )…",
+      "statement": "The span of (1,z)(1,z) , z^ d_ b , consists precisely of symmetric (1+d_ b ) -by- (1+d_ b ) matrices Z satisfying Z_ ii =Z_ 0i for every i . For any u distinct selectors, their evaluation vectors p_s…",
+      "section": "Low-rank moments and mixing forms",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-label-support",
+      "kind": "lemma",
+      "label": "Label support",
+      "statement": "[Label support] Every w W of rank at most R_* has a representation w=_ s L (p_s I)Z_s(p_s I), |L| R_*, where each Z_s is symmetric, (Z_s)_ ii =(Z_s)_ 0i , and _ s L Z_s R_* .",
+      "section": "Low-rank moments and mixing forms",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-sparse-pin-labels",
+      "kind": "lemma",
+      "label": "Put L_0^ lab =R_*+14 . At an endpoint, the union of the nonzero label supports…",
+      "statement": "Put L_0^ lab =R_*+14 . At an endpoint, the union of the nonzero label supports of all vectors in all S_ i,e ^ that can be written as _ s L p_s z_s with |L| L_0^ lab has size at most B_0=2||K(R_*+14).",
+      "section": "Low-rank moments and mixing forms",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-generic-mixers",
+      "kind": "lemma",
+      "label": "Uniform mixing forms",
+      "statement": "[Uniform mixing forms] For all sufficiently large n one can choose the matrices L_j^ ef ,R_j^ ef and M_a in so that: [label=( *)] For every nonzero x of total component rank at most K , every tag,…",
+      "section": "Low-rank moments and mixing forms",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-small-tables",
+      "kind": "lemma",
+      "label": "Table flags and binary prescriptions",
+      "statement": "[Table flags and binary prescriptions] The following statements hold. [label=( *)] For a fixed pair of leaves and a numerical small table, admissibility is the intersection of two unary orientation…",
+      "section": "Recipes and realization of the gradients",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-thm-gradient-realization",
+      "kind": "theorem",
+      "label": "Gradient realization",
+      "statement": "[Gradient realization] Suppose two units in fixed leaves have lists satisfying , the binary prescriptions yielding , equal matched keys, and an admissible injecting small table. Freeze their actual…",
+      "section": "Recipes and realization of the gradients",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-prop-collision",
+      "kind": "proposition",
+      "label": "Collision criterion",
+      "statement": "[Collision criterion] Let be a unit law in , and let be a restriction of it of relative mass at least 2^ -o(N) , decomposed into leaves satisfying . Mix the leaves with their actual masses in .…",
+      "section": "From overlapping key distributions to four holes",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-thm-phase-alternative",
+      "kind": "theorem",
+      "label": "Phase alternative",
+      "statement": "[Phase alternative] Suppose a marked-unit law is obtained by restricting an admissible law in to mass at least \\(10^ -12 \\), and \\(_O0\\) throughout. For all sufficiently large \\(n\\), one can retain a…",
+      "section": "Phase estimates before key collisions",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-no-cover-rank",
+      "kind": "lemma",
+      "label": "Rank growth without a cover",
+      "statement": "[Rank growth without a cover] Let \\(r1\\) be an integer, set \\(m_r=100r+10\\) and \\(q_r=2^ -m_r \\), and let \\(s\\) be a power of two with \\(s2^ m_r \\). Suppose \\(T_1,,T_s\\) are independent copies of a…",
+      "section": "Phase estimates before key collisions",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-injection",
+      "kind": "lemma",
+      "label": "Injection on accepting pairs",
+      "statement": "[Injection on accepting pairs] Let a prepared marked-unit law have final pins of total dimension at most \\(K\\), and mixed marginals at most \\(M2^ o(N) \\). Let \\( A \\) be a pair event for independent…",
+      "section": "Phase estimates before key collisions",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-tiny-cover",
+      "kind": "lemma",
+      "label": "Consequences of a tiny cover",
+      "statement": "[Consequences of a tiny cover] Suppose the second alternative of holds, and write \\[ F(A,B)=u_ B,\\ 1,2\\ (_A). \\] Then the following assertions hold. [label=( *)] The matrix \\(F\\) on the finite…",
+      "section": "Phase estimates before key collisions",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-prop-status-preparation",
+      "kind": "proposition",
+      "label": "Status preparation",
+      "statement": "[Status preparation] Along a subsequence, the unit law can be prepared with final pin dimension at most \\(K\\) and the final per-leaf bounds of , at relative mass cost \\(2^ -o(N) \\), so that one of…",
+      "section": "Preparation of the two-endpoint statuses",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-empty-status",
+      "kind": "lemma",
+      "label": "Exactification of vanishing prediction classes",
+      "statement": "[Exactification of vanishing prediction classes] If \\(e_1=e_2=0\\), deleting \\(o(1)\\) unit mass makes p_i=T(_i,)+a on all of , i=1,2, an exact identity on every retained unit.",
+      "section": "Preparation of the two-endpoint statuses",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-synthetic-slice",
+      "kind": "lemma",
+      "label": "Affine-slice comparison",
+      "statement": "[Affine-slice comparison] Fix a selector, a flavor, and a fixed number \\(d\\) of affine parameter variables. Write a random affine coefficient map as \\[ C(t,u)=p_s(t,z_0t+Lu), (t,u)^d. \\] Assume the…",
+      "section": "Preparation of the two-endpoint statuses",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-zero-delta",
+      "kind": "lemma",
+      "label": "Equal coefficients when the tensor difference vanishes",
+      "statement": "[Equal coefficients when the tensor difference vanishes] On a predicted branch with \\(=0\\) throughout, \\(_1=_2\\).",
+      "section": "Preparation of the two-endpoint statuses",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-histogram-control",
+      "kind": "lemma",
+      "label": "Uniform histogram control",
+      "statement": "[Uniform histogram control] Fix a query shape, a constant C_L , and an integer F . Consider any collection of normalized leaf laws satisfying 2^ C_LN ^2. The following assertions are uniform over…",
+      "section": "Leaf histograms and mixed-law estimates",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-histogram-gram-normalization",
+      "kind": "lemma",
+      "label": "Gram normalization",
+      "statement": "[Gram normalization] Let a plus slots and b minus slots in one ambient component be independent uniform vectors, and prescribe their entire a by b Gram matrix. If a+b N/2 , the probability of that…",
+      "section": "Leaf histograms and mixed-law estimates",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-histogram-batch-comparison",
+      "kind": "lemma",
+      "label": "Comparison of two bounded batches",
+      "statement": "[Comparison of two bounded batches] Consider two bounded batches of prescribed nominal columns in one raw endpoint, or in two independent raw endpoints. Suppose their union is nominally independent…",
+      "section": "Leaf histograms and mixed-law estimates",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-reference-product",
+      "kind": "lemma",
+      "label": "Product tests under the key reference",
+      "statement": "[Product tests under the key reference] For a fixed query shape and arbitrary global single-key functions f_ j,n with f_ j,n 1 , \\[ _jf_ j,n (k_j)\\,d_n =_j f_ j,n \\,d_ l_j,q_j,n +O(2^ -N/2 ). \\] The…",
+      "section": "Leaf histograms and mixed-law estimates",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-histogram-many-queries",
+      "kind": "lemma",
+      "label": "Many queries and prescribed cells",
+      "statement": "[Many queries and prescribed cells] Fix a bounded query shape. There are constants c_1,c_2>0 , independent of any key-space partition, with the following property. Put = c_1n and repeat the query…",
+      "section": "Leaf histograms and mixed-law estimates",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-typicality",
+      "kind": "lemma",
+      "label": "Typicality of common input-and-key tests",
+      "statement": "[Typicality of common input-and-key tests] Let F_n be a uniformly bounded common function of the inputs and keys of a fixed bounded query, with no other orientation dependence. Put \\[ A_n(O)=_z…",
+      "section": "Leaf histograms and mixed-law estimates",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-binary-mixing",
+      "kind": "lemma",
+      "label": "Binary mixing",
+      "statement": "[Binary mixing] Fix a query template whose labels are distinct at each used endpoint. Impose the off-position Gram zeros of _n and a consistent fixed specification of the within-endpoint ordered L,R…",
+      "section": "Leaf histograms and mixed-law estimates",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-histogram-quadratic-bias",
+      "kind": "lemma",
+      "label": "Quadratic signs on affine subspaces",
+      "statement": "[Quadratic signs on affine subspaces] Let Q be a quadratic function on a binary vector space and let its polar form have rank 2r . Its uniform sign bias has magnitude at most 2^ -r . On an affine…",
+      "section": "Leaf histograms and mixed-law estimates",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-unary-positivity",
+      "kind": "lemma",
+      "label": "Unary reference law and base-status positivity",
+      "statement": "[Unary reference law and base-status positivity] Fix an endpoint, tag, label, flavor, and feasible tester summary with diagonal q . For a bounded number of common global key tests, its empirical…",
+      "section": "Leaf histograms and mixed-law estimates",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-thm-weak-product",
+      "kind": "theorem",
+      "label": "Weak product comparison",
+      "statement": "[Weak product comparison] Let W_n be any sequence of real functions on _n with W_n_ B , where B is fixed. Extend it to the product of the single-key spaces with the same bound. For every >0 there are…",
+      "section": "Weak product testing",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-product-twisted-regularity",
+      "kind": "lemma",
+      "label": "Finite twisted regularity",
+      "statement": "[Finite twisted regularity] Let W B on the product key space of I J , and let >0 . There is a decomposition W=_ a=1 ^ L' c_a f_a(k_I)g_a(k_J)_a(k_I,k_J)+D, where f_a,g_a1 , _a T_ I,J , c_a B , D_2B ,…",
+      "section": "Weak product testing",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-product-terminal-remainder",
+      "kind": "lemma",
+      "label": "A terminal remainder on actual inputs",
+      "statement": "[A terminal remainder on actual inputs] Let I,J be a nontrivial partition of some of the template positions. Let D_n be a common function of their global keys with D_n_ B_1 and D_n_ , T . Let _n(I,J)…",
+      "section": "Weak product testing",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-cor-weak-product-factorized-integration",
+      "kind": "corollary",
+      "label": "Factorized integration of the approximant",
+      "statement": "[Factorized integration of the approximant] For the structured sum in and arbitrary bounded unary input weights, outside exponentially small mixed mass, &_z A_n(O,z)S_n(K(O,z))_jw_j(O,z_j)\\\\ &= _ a=1…",
+      "section": "Weak product testing",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-limit-global-projection",
+      "kind": "lemma",
+      "label": "Global projections with adaptive filter choices",
+      "statement": "[Global projections with adaptive filter choices] Let (K_n,_n) be finite probability spaces. On each first-side leaf L and each second-side leaf L' let there be a family of subdensities. Assume that,…",
+      "section": "A common limit for successful queries",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-limit-model",
+      "kind": "lemma",
+      "label": "Common signature model",
+      "statement": "[Common signature model] There is a subsequence and a common limiting experiment with the following properties. [label=( *)] For each tag and diagonal bit (l,q) there is a compact bit-sequence space…",
+      "section": "A common limit for successful queries",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-limit-zero-product",
+      "kind": "lemma",
+      "label": "Passage of vanishing overlaps",
+      "statement": "[Passage of vanishing overlaps] Assume . For almost every Z , the measures _A(Z),_B(Z) of every usable option are absolutely continuous with respect to , and their densities have product zero -almost…",
+      "section": "A common limit for successful queries",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-limit-density",
+      "kind": "lemma",
+      "label": "Successful-query density",
+      "statement": "[Successful-query density] For almost every Z , the full limiting successful-query measure on this side has density G_Z(u)= _ h^_ t_,_ (_(u))\\,d_Z() (u) with respect to .",
+      "section": "A common limit for successful queries",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-prop-limit-overlap",
+      "kind": "proposition",
+      "label": "The limiting overlap obstruction",
+      "statement": "[The limiting overlap obstruction] Assume . In the common experiment of , almost every sampled pair of orientation records has the following property: there is no usable numerical option whose two…",
+      "section": "A common limit for successful queries",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-status-duality",
+      "kind": "lemma",
+      "label": "Dual relations",
+      "statement": "[Dual relations] Any obstruction to the scalar system has a nonzero vector of weights (s_1,s_2,r_1,r_2)^4 . On every edge span V_ ij these give a relation s_j(p_ A,i +h_ A,i )+r_i(p_ B,j +h_ B,j ) =…",
+      "section": "Solving the status constraints",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-status-global-prediction",
+      "kind": "lemma",
+      "label": "Extraction of a global prediction",
+      "statement": "[Extraction of a global prediction] On the no-prediction alternative of , the probability that the iid base arrays are obstructable is less than .1 .",
+      "section": "Solving the status constraints",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-status-predicted",
+      "kind": "lemma",
+      "label": "Predicted scalar compatibility",
+      "statement": "[Predicted scalar compatibility] For a predicted pair with a table satisfying the compatibility conditions of , the system -- is soluble. The assertion survives any further bounded label exclusions…",
+      "section": "Solving the status constraints",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-status-span",
+      "kind": "lemma",
+      "label": "Scalar solvability on positive mass",
+      "statement": "[Scalar solvability on positive mass] In each positive-mass alternative of , the common experiment has positive mass of passed injecting tables for which the scalar system is soluble, robustly under…",
+      "section": "Solving the status constraints",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-fresh-lists",
+      "kind": "lemma",
+      "label": "Fresh lists of at most seven generators",
+      "statement": "[Fresh lists of at most seven generators] On each scalar-soluble pair from , further bounded exclusions can be made so that every scalar solution on the resulting four edge spans can be realized by…",
+      "section": "Solving the status constraints",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-prop-positive-overlap",
+      "kind": "proposition",
+      "label": "Positive-mass overlap",
+      "statement": "[Positive-mass overlap] For every positive-mass alternative of , some fixed numerical option has expected unnormalized successful-query overlap bounded below by a positive constant along a…",
+      "section": "Solving the status constraints",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-rare-large-set-hit",
+      "kind": "lemma",
+      "label": "Uniform large-set hit estimate",
+      "statement": "[Uniform large-set hit estimate] Fix \\(>0\\), and consider a sequence of unit laws whose mixed joint densities are at most \\(2^ O(N) \\) relative to \\(^2\\), whose two marginals are at most \\(M2^ o(N)…",
+      "section": "The inverse-polynomial option and completion of the proof",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-lem-rare-superlevel-nets",
+      "kind": "lemma",
+      "label": "Superlevel sets from all-filter nets",
+      "statement": "[Superlevel sets from all-filter nets] Consider the family of unnormalized successful base-query densities on a prepared leaf, allowing every orientation-only filter. Suppose a member \\(d\\) has total…",
+      "section": "The inverse-polynomial option and completion of the proof",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m1-prop-rare-overlap",
+      "kind": "proposition",
+      "label": "In the inverse-polynomial alternative of , the overlap criterion holds with a…",
+      "statement": "In the inverse-polynomial alternative of , the overlap criterion holds with a lower bound \\((N^ -4 )\\), along the prepared sequence.",
+      "section": "The inverse-polynomial option and completion of the proof",
+      "manuscript": "A counterexample to Hadwiger's conjecture"
+    },
+    {
+      "id": "m2-thm-main",
+      "kind": "theorem",
+      "label": "There are finite graphs \\(G\\) of arbitrarily large order for which \\[ (G)2,…",
+      "statement": "There are finite graphs \\(G\\) of arbitrarily large order for which \\[ (G)2, (G)+1<|V(G)| 2 (G). \\] In particular, the Colin de Verdière chromatic conjecture is false.",
+      "section": "Introduction",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-thm-base-graphs",
+      "kind": "theorem",
+      "label": "Base graphs",
+      "statement": "[Base graphs] There is a constant \\(a>0\\) such that, for every \\(>0\\), there are arbitrarily large integers \\(m\\) and graphs \\(H\\) on \\(m\\) vertices with \\((H)2\\) and the following properties.…",
+      "section": "Introduction",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-cor-fractional-spectral",
+      "kind": "corollary",
+      "label": "Fractional-colouring obstruction",
+      "statement": "[Fractional-colouring obstruction] There are finite nonempty simple graphs \\(G\\) of arbitrarily large order for which \\[ _f(G) |V(G)| (G) |V(G)| 2 >(G)+1(G)+1 h(G). \\]",
+      "section": "Introduction",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-cor-list-spectral",
+      "kind": "corollary",
+      "label": "A linear list-colouring bound",
+      "statement": "[A linear list-colouring bound] Let \\(C\\) be the absolute integer in . Every finite nonempty simple graph \\(G\\) satisfies \\[ _ list (G) C((G)+1). \\]",
+      "section": "Introduction",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-mt-flat-normalization",
+      "kind": "lemma",
+      "label": "Normalization near a flat",
+      "statement": "[Normalization near a flat] Let \\(P\\) be positive and write \\(x=x_P+x_\\) for the orthogonal decomposition of \\(x H^d\\) relative to \\(P\\). Then ^2 d_ H (x,F_P)=[x_P,x_P]. Suppose \\(P_1,,P_k\\) are…",
+      "section": "Finite trees for Lorentz blocks",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-mt-finite-metric",
+      "kind": "lemma",
+      "label": "Finite tree approximation",
+      "statement": "[Finite tree approximation] For \\(1\\), put \\[ K()=4+2(\\ 1,-1\\ ). \\] Given any \\(\\) points \\(z_1,,z_\\) in a hyperboloid, in any dimension, there is a finite metric tree with marked points…",
+      "section": "Finite trees for Lorentz blocks",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-mt-segment-comparison",
+      "kind": "lemma",
+      "label": "Comparison of segment points",
+      "statement": "[Comparison of segment points] Let \\(T\\) and the points \\(z_i^T\\) satisfy . For \\(\\), associate the point at fraction \\(\\) of \\([z_i^T,z_j^T]_T\\) with the point at the same fraction of the hyperbolic…",
+      "section": "Finite trees for Lorentz blocks",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-mt-finite-tree",
+      "kind": "proposition",
+      "label": "Finite tree principle",
+      "statement": "[Finite tree principle] For each index \\(s\\), let \\(P_ 1,s ,,P_ k,s \\) be positive subspaces in a Lorentz space, whose dimension may depend on \\(s\\). Fix a set \\( D\\) of pairs of distinct labels, and…",
+      "section": "Finite trees for Lorentz blocks",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-mt-load-matching",
+      "kind": "lemma",
+      "label": "Matching from bounded loads",
+      "statement": "[Matching from bounded loads] Every edge family of total weight \\(W\\) satisfying has a matching of size at least \\(W/2\\). If it contains no conflicting pair and \\(am1\\), then \\(W<m/10\\).",
+      "section": "Finite trees for Lorentz blocks",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-mt-single-bag",
+      "kind": "lemma",
+      "label": "A bag with almost all vertex labels",
+      "statement": "[A bag with almost all vertex labels] Let \\(V_0 V(G)\\), and assign a nonempty subtree \\(S_v\\) of a finite combinatorial tree to each \\(v V_0\\). Assume \\(S_u S_v\\) whenever \\(uv\\) is a hole. Then some…",
+      "section": "Finite trees for Lorentz blocks",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-mt-weighted-bag",
+      "kind": "lemma",
+      "label": "A bag with positive edge weight",
+      "statement": "[A bag with positive edge weight] Suppose \\(am2\\). Let an edge family \\( E\\) satisfy and have total weight greater than \\(3m/10\\). Assign a nonempty subtree \\(S_e\\) of a finite tree to each edge, and…",
+      "section": "Finite trees for Lorentz blocks",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-mt-common-bag",
+      "kind": "proposition",
+      "label": "A common bag",
+      "statement": "[A common bag] Suppose the hypotheses of hold in the same tree. Suppose additionally that \\(S_e S_v\\) whenever the edge \\(e\\) and the vertex \\(v V_0\\) conflict. If \\(q cm/4\\), there is a vertex \\(x\\)…",
+      "section": "Finite trees for Lorentz blocks",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-thm-matrix-obstruction",
+      "kind": "theorem",
+      "label": "Matrix obstruction",
+      "statement": "[Matrix obstruction] For every a(0,1] there are constants _0(a)>0 and m_0(a) N with the following property. Let 0<_0(a) , let m m_0(a) , and let G be an m -vertex graph satisfying the following…",
+      "section": "The matrix obstruction",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-mr-positive-block",
+      "kind": "lemma",
+      "label": "Normalization of a positive block",
+      "statement": "[Normalization of a positive block] Let D be real symmetric with nonpositive off-diagonal entries. [label=( *)] If D is positive definite, its positive inverse square root D^ -1/2 is entrywise…",
+      "section": "The matrix obstruction",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-mr-spectral-support",
+      "kind": "lemma",
+      "label": "Spectral support from signs and inertia",
+      "statement": "[Spectral support from signs and inertia] Let v_j , and let B_j be symmetric entrywise nonnegative matrices of orders d_j v_j , with zero diagonal and _j\\|B_j\\|< . Suppose n_-(I-B_j)1 . Every weak…",
+      "section": "The matrix obstruction",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-mr-matching",
+      "kind": "lemma",
+      "label": "Extraction of coordinate pairs",
+      "statement": "[Extraction of coordinate pairs] Let B be a symmetric entrywise nonnegative d d matrix with zero diagonal, where d v . Suppose \\[ \\|B^2-I\\|_ F ^2 v, 0< 8^ -4 , =^ 1/4 . \\] There is a matching of…",
+      "section": "The matrix obstruction",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-mr-trace-cross",
+      "kind": "lemma",
+      "label": "A trace bound across the second normalization",
+      "statement": "[A trace bound across the second normalization] For each j , let H_j,Q_j be two lists of Lorentz vectors whose joint Gram matrix has operator norm at most a fixed K . Let v_j . Suppose that for every…",
+      "section": "The matrix obstruction",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-lem-cut-kernel",
+      "kind": "lemma",
+      "label": "The intersection of \\(W_l\\) over any strict majority of tags is \\(W_*\\). Two…",
+      "statement": "The intersection of \\(W_l\\) over any strict majority of tags is \\(W_*\\). Two representations of the same cut profile differ by a constant tuple with value in \\(W_*\\).",
+      "section": "The tensor geometry and the hole relation",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-lem-hole-triangle-free",
+      "kind": "lemma",
+      "label": "The hole relation is symmetric, has no loops, and is triangle-free.",
+      "statement": "The hole relation is symmetric, has no loops, and is triangle-free.",
+      "section": "The tensor geometry and the hole relation",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-lem-paired-frame-orbit",
+      "kind": "lemma",
+      "label": "Let \\(A,A':U V\\) and \\(B,B':W V^*\\) be injective maps between…",
+      "statement": "Let \\(A,A':U V\\) and \\(B,B':W V^*\\) be injective maps between finite-dimensional spaces over \\(\\). If \\[ B A=(B') A', \\] there is \\(L(V)\\) with \\(LA=A'\\) and \\(L^ - T B=B'\\). Thus based individually…",
+      "section": "The distribution problem and its preliminary tools",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-lem-frame-images",
+      "kind": "lemma",
+      "label": "The following statements hold for all sufficiently large \\(n\\). [label=( *)] At…",
+      "statement": "The following statements hold for all sufficiently large \\(n\\). [label=( *)] At independently sampled raw vertices and components, images of prescribed primal coefficient tuples that are independent…",
+      "section": "The distribution problem and its preliminary tools",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-lem-channel-thinning",
+      "kind": "lemma",
+      "label": "Channel thinning",
+      "statement": "[Channel thinning] Fix any bound \\(q_ test \\) on the lengths of the ambient tuples to be tested; this bound is fixed before \\(,M_0,n\\). For all sufficiently large \\(n\\) there are subsets \\(A_e^…",
+      "section": "The distribution problem and its preliminary tools",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    },
+    {
+      "id": "m2-thm-distribution-tests",
+      "kind": "theorem",
+      "label": "Distribution tests",
+      "statement": "[Distribution tests] There is a constant \\(_ col >0\\), depending only on the early parameters and \\(M\\), with the following property. Fix any \\(L<\\) after \\(_ col \\) and before the selector and…",
+      "section": "The distribution problem and its preliminary tools",
+      "manuscript": "A counterexample to the Colin de Verdière chromatic conjecture"
+    }
+  ],
+  "edges": [
+    {
+      "from": "m1-lem-injection",
+      "to": "m1-prop-status-preparation",
+      "label": "lem:injection",
+      "context": "[Proof of \\Cref{prop:status-preparation}] If no prediction exists along any subsequence, retain the first-peeling law. Apply \\Cref{lem:injection} to the unconditional pair event, using the first pins and the final budget \\(K\\) as an upper bound. The failure toleran"
+    },
+    {
+      "from": "m1-lem-generic-mixers",
+      "to": "m1-thm-raw-supersaturation",
+      "label": "lem:generic-mixers",
+      "context": "[Proof of \\Cref{thm:raw-supersaturation}] Fix the construction constants and, for every sufficiently large \\(n\\), fix mixers satisfying \\Cref{lem:generic-mixers}, before choosing a unit law. Suppose there is no common sufficiently-large-\\(n\\) bound as asserted. Then along an incre"
+    },
+    {
+      "from": "m1-prop-raw-to-graph",
+      "to": "m1-thm-main",
+      "label": "prop:raw-to-graph",
+      "context": "[Proof of \\Cref{thm:main}] Apply \\Cref{prop:raw-to-graph} to \\Cref{thm:raw-supersaturation}. For every sufficiently large admissible \\(n\\), there is a graph on \\(m=2^{C_0gN}\\) s"
+    },
+    {
+      "from": "m2-mt-weighted-bag",
+      "to": "m2-thm-matrix-obstruction",
+      "label": "mt:weighted-bag",
+      "context": "[Proof of \\Cref{thm:matrix-obstruction}] Use the constant $c=c(a)>0$ from \\Cref{mt:weighted-bag}; explicitly we may take \\begin{equation}\\label{mr:constants} \\begin{aligned} K(a)&=\\left\\lceil\\frac5a\\right\\rceil"
+    }
+  ]
+}

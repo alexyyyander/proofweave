@@ -1,0 +1,887 @@
+{
+  "schemaVersion": "pw-deep-proof-map-v1",
+  "machineDerived": true,
+  "status": "deep",
+  "reviewStatus": "unreviewed",
+  "curatedAt": "2026-11-03",
+  "familyNumber": "364",
+  "title": "Kinetic limits and fluctuations over the Boltzmann lifespan",
+  "result": {
+    "id": "paper-result",
+    "label": "Kinetic limits and fluctuations over the Boltzmann lifespan",
+    "statement": "Derives the nonlinear Boltzmann equation from three-dimensional grand-canonical Newtonian gases throughout every regular kinetic interval with uniform Gaussian decay. Stable finite-range radial potentials may have attractive wells and a singular repulsive core; initial pair exclusion and spatially summable Gaussian density and gradient bounds are assumed. A companion gives finite-dimensional hard-sphere Gaussian fluctuations, centered at the exact microscopic expectation and governed by the linear fluctuating Boltzmann equation.",
+    "source": "OpenAI mathematics release",
+    "roleNote": "The family's stated result in the release."
+  },
+  "roles": [
+    {
+      "id": "microscopic-flow-scattering-and-kinetic-envelopes",
+      "label": "Microscopic flow, scattering, and kinetic envelopes",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "an-exact-finite-expansion-on-one-cell",
+      "label": "An exact finite expansion on one cell",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "centering-at-the-layer-cuts",
+      "label": "Centering at the layer cuts",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "finite-history-integrals",
+      "label": "Finite history integrals",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "terminal-trees-and-exposure-of-first-defects",
+      "label": "Terminal trees and exposure of first defects",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "summation-stopping-and-convergence",
+      "label": "Summation, stopping, and convergence",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "introduction-and-statement-of-the-theorem",
+      "label": "Introduction and statement of the theorem",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-initial-ensemble-and-the-gaussian-target",
+      "label": "The initial ensemble and the Gaussian target",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "layered-histories-and-the-analytic-inputs",
+      "label": "Layered histories and the analytic inputs",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "a-componentwise-expansion-with-particle-records",
+      "label": "A componentwise expansion with particle records",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "sharp-bounds-and-the-limiting-tree-measures",
+      "label": "Sharp bounds and the limiting tree measures",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "identification-of-the-covariance-and-the-gaussian-limit",
+      "label": "Identification of the covariance and the Gaussian limit",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "the-probability-of-a-dynamical-cutoff",
+      "label": "The probability of a dynamical cutoff",
+      "description": "A section of the paper."
+    },
+    {
+      "id": "exact-centering-and-the-hard-sphere-fluctuation-limit",
+      "label": "Exact centering and the hard-sphere fluctuation limit",
+      "description": "A section of the paper."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "m1",
+      "label": "The Boltzmann–Grad limit for stable radial potentials on regular kinetic intervals",
+      "title": "The Boltzmann–Grad limit for stable radial potentials on regular kinetic intervals",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#8b75c9",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Boltzmann-Grad-limit-for-stable-radial-potentials-on-regular-kinetic-intervals-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from The Boltzmann–Grad limit for stable radial potentials on regular kinetic intervals.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m1-pre-flow",
+          "role": "microscopic-flow-scattering-and-kinetic-envelopes",
+          "label": "proposition m1-pre-flow",
+          "fullLabel": "proposition m1-pre-flow",
+          "kind": "proposition",
+          "source": "Microscopic flow, scattering, and kinetic envelopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pre-initial",
+          "role": "microscopic-flow-scattering-and-kinetic-envelopes",
+          "label": "proposition m1-pre-initial",
+          "fullLabel": "proposition m1-pre-initial",
+          "kind": "proposition",
+          "source": "Microscopic flow, scattering, and kinetic envelopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pre-duration",
+          "role": "microscopic-flow-scattering-and-kinetic-envelopes",
+          "label": "lemma m1-pre-duration",
+          "fullLabel": "lemma m1-pre-duration",
+          "kind": "lemma",
+          "source": "Microscopic flow, scattering, and kinetic envelopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pre-operator",
+          "role": "microscopic-flow-scattering-and-kinetic-envelopes",
+          "label": "lemma m1-pre-operator",
+          "fullLabel": "lemma m1-pre-operator",
+          "kind": "lemma",
+          "source": "Microscopic flow, scattering, and kinetic envelopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pre-scattering",
+          "role": "microscopic-flow-scattering-and-kinetic-envelopes",
+          "label": "proposition m1-pre-scattering",
+          "fullLabel": "proposition m1-pre-scattering",
+          "kind": "proposition",
+          "source": "Microscopic flow, scattering, and kinetic envelopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-pre-envelopes",
+          "role": "microscopic-flow-scattering-and-kinetic-envelopes",
+          "label": "proposition m1-pre-envelopes",
+          "fullLabel": "proposition m1-pre-envelopes",
+          "kind": "proposition",
+          "source": "Microscopic flow, scattering, and kinetic envelopes",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cell-expansion",
+          "role": "an-exact-finite-expansion-on-one-cell",
+          "label": "proposition m1-cell-expansion",
+          "fullLabel": "proposition m1-cell-expansion",
+          "kind": "proposition",
+          "source": "An exact finite expansion on one cell",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cor-cell-factorial",
+          "role": "an-exact-finite-expansion-on-one-cell",
+          "label": "corollary m1-cor-cell-factorial",
+          "fullLabel": "corollary m1-cor-cell-factorial",
+          "kind": "corollary",
+          "source": "An exact finite expansion on one cell",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cell-factorization",
+          "role": "an-exact-finite-expansion-on-one-cell",
+          "label": "proposition m1-cell-factorization",
+          "fullLabel": "proposition m1-cell-factorization",
+          "kind": "proposition",
+          "source": "An exact finite expansion on one cell",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cell-stopping",
+          "role": "an-exact-finite-expansion-on-one-cell",
+          "label": "proposition m1-cell-stopping",
+          "fullLabel": "proposition m1-cell-stopping",
+          "kind": "proposition",
+          "source": "An exact finite expansion on one cell",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cent-identity",
+          "role": "centering-at-the-layer-cuts",
+          "label": "proposition m1-cent-identity",
+          "fullLabel": "proposition m1-cent-identity",
+          "kind": "proposition",
+          "source": "Centering at the layer cuts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cent-pattern-collapse",
+          "role": "centering-at-the-layer-cuts",
+          "label": "corollary m1-cent-pattern-collapse",
+          "fullLabel": "corollary m1-cent-pattern-collapse",
+          "kind": "corollary",
+          "source": "Centering at the layer cuts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cent-residual",
+          "role": "centering-at-the-layer-cuts",
+          "label": "proposition m1-cent-residual",
+          "fullLabel": "proposition m1-cent-residual",
+          "kind": "proposition",
+          "source": "Centering at the layer cuts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cent-cancellation",
+          "role": "centering-at-the-layer-cuts",
+          "label": "proposition m1-cent-cancellation",
+          "fullLabel": "proposition m1-cent-cancellation",
+          "kind": "proposition",
+          "source": "Centering at the layer cuts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-cent-charges",
+          "role": "centering-at-the-layer-cuts",
+          "label": "proposition m1-cent-charges",
+          "fullLabel": "proposition m1-cent-charges",
+          "kind": "proposition",
+          "source": "Centering at the layer cuts",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-gaussian",
+          "role": "finite-history-integrals",
+          "label": "lemma m1-hist-gaussian",
+          "fullLabel": "lemma m1-hist-gaussian",
+          "kind": "lemma",
+          "source": "Finite history integrals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-pinning",
+          "role": "finite-history-integrals",
+          "label": "lemma m1-hist-pinning",
+          "fullLabel": "lemma m1-hist-pinning",
+          "kind": "lemma",
+          "source": "Finite history integrals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-basic",
+          "role": "finite-history-integrals",
+          "label": "proposition m1-hist-basic",
+          "fullLabel": "proposition m1-hist-basic",
+          "kind": "proposition",
+          "source": "Finite history integrals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-irregular",
+          "role": "finite-history-integrals",
+          "label": "proposition m1-hist-irregular",
+          "fullLabel": "proposition m1-hist-irregular",
+          "kind": "proposition",
+          "source": "Finite history integrals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-pivot",
+          "role": "finite-history-integrals",
+          "label": "lemma m1-hist-pivot",
+          "fullLabel": "lemma m1-hist-pivot",
+          "kind": "lemma",
+          "source": "Finite history integrals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-crowding",
+          "role": "finite-history-integrals",
+          "label": "proposition m1-hist-crowding",
+          "fullLabel": "proposition m1-hist-crowding",
+          "kind": "proposition",
+          "source": "Finite history integrals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-hist-separated",
+          "role": "finite-history-integrals",
+          "label": "corollary m1-hist-separated",
+          "fullLabel": "corollary m1-hist-separated",
+          "kind": "corollary",
+          "source": "Finite history integrals",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exp-rerouting",
+          "role": "terminal-trees-and-exposure-of-first-defects",
+          "label": "lemma m1-exp-rerouting",
+          "fullLabel": "lemma m1-exp-rerouting",
+          "kind": "lemma",
+          "source": "Terminal trees and exposure of first defects",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exp-terminal",
+          "role": "terminal-trees-and-exposure-of-first-defects",
+          "label": "lemma m1-exp-terminal",
+          "fullLabel": "lemma m1-exp-terminal",
+          "kind": "lemma",
+          "source": "Terminal trees and exposure of first defects",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exp-tube",
+          "role": "terminal-trees-and-exposure-of-first-defects",
+          "label": "lemma m1-exp-tube",
+          "fullLabel": "lemma m1-exp-tube",
+          "kind": "lemma",
+          "source": "Terminal trees and exposure of first defects",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exp-exposure",
+          "role": "terminal-trees-and-exposure-of-first-defects",
+          "label": "proposition m1-exp-exposure",
+          "fullLabel": "proposition m1-exp-exposure",
+          "kind": "proposition",
+          "source": "Terminal trees and exposure of first defects",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exp-defects",
+          "role": "terminal-trees-and-exposure-of-first-defects",
+          "label": "proposition m1-exp-defects",
+          "fullLabel": "proposition m1-exp-defects",
+          "kind": "proposition",
+          "source": "Terminal trees and exposure of first defects",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-exp-finite",
+          "role": "terminal-trees-and-exposure-of-first-defects",
+          "label": "corollary m1-exp-finite",
+          "fullLabel": "corollary m1-exp-finite",
+          "kind": "corollary",
+          "source": "Terminal trees and exposure of first defects",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-close-entropy",
+          "role": "summation-stopping-and-convergence",
+          "label": "lemma m1-close-entropy",
+          "fullLabel": "lemma m1-close-entropy",
+          "kind": "lemma",
+          "source": "Summation, stopping, and convergence",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-close-energy",
+          "role": "summation-stopping-and-convergence",
+          "label": "lemma m1-close-energy",
+          "fullLabel": "lemma m1-close-energy",
+          "kind": "lemma",
+          "source": "Summation, stopping, and convergence",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-close-summability",
+          "role": "summation-stopping-and-convergence",
+          "label": "proposition m1-close-summability",
+          "fullLabel": "proposition m1-close-summability",
+          "kind": "proposition",
+          "source": "Summation, stopping, and convergence",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-close-witness-extraction",
+          "role": "summation-stopping-and-convergence",
+          "label": "lemma m1-close-witness-extraction",
+          "fullLabel": "lemma m1-close-witness-extraction",
+          "kind": "lemma",
+          "source": "Summation, stopping, and convergence",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-close-amplification",
+          "role": "summation-stopping-and-convergence",
+          "label": "lemma m1-close-amplification",
+          "fullLabel": "lemma m1-close-amplification",
+          "kind": "lemma",
+          "source": "Summation, stopping, and convergence",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m1-close-tails",
+          "role": "summation-stopping-and-convergence",
+          "label": "proposition m1-close-tails",
+          "fullLabel": "proposition m1-close-tails",
+          "kind": "proposition",
+          "source": "Summation, stopping, and convergence",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "label": "Hard-sphere fluctuations on the regular Boltzmann lifespan",
+      "title": "Hard-sphere fluctuations on the regular Boltzmann lifespan",
+      "authors": [
+        "OpenAI"
+      ],
+      "date": "2026-09-23",
+      "pages": 0,
+      "color": "#5c8fd6",
+      "sourceUrl": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Hard-sphere-fluctuations-on-the-regular-Boltzmann-lifespan-September-23-2026/paper.pdf",
+      "sourceLabel": "paper",
+      "note": "Statements and proof-dependency references extracted from Hard-sphere fluctuations on the regular Boltzmann lifespan.",
+      "proofDetail": "section",
+      "nodes": [
+        {
+          "id": "m2-thm-main",
+          "role": "introduction-and-statement-of-the-theorem",
+          "label": "theorem m2-thm-main",
+          "fullLabel": "theorem m2-thm-main",
+          "kind": "theorem",
+          "source": "Introduction and statement of the theorem",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-initial",
+          "role": "the-initial-ensemble-and-the-gaussian-target",
+          "label": "proposition m2-prop-initial",
+          "fullLabel": "proposition m2-prop-initial",
+          "kind": "proposition",
+          "source": "The initial ensemble and the Gaussian target",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-target-moments",
+          "role": "the-initial-ensemble-and-the-gaussian-target",
+          "label": "lemma m2-lem-target-moments",
+          "fullLabel": "lemma m2-lem-target-moments",
+          "kind": "lemma",
+          "source": "The initial ensemble and the Gaussian target",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-target-propagator",
+          "role": "the-initial-ensemble-and-the-gaussian-target",
+          "label": "lemma m2-lem-target-propagator",
+          "fullLabel": "lemma m2-lem-target-propagator",
+          "kind": "lemma",
+          "source": "The initial ensemble and the Gaussian target",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-gaussian-target",
+          "role": "the-initial-ensemble-and-the-gaussian-target",
+          "label": "proposition m2-prop-gaussian-target",
+          "fullLabel": "proposition m2-prop-gaussian-target",
+          "kind": "proposition",
+          "source": "The initial ensemble and the Gaussian target",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-kinetic-envelopes",
+          "role": "layered-histories-and-the-analytic-inputs",
+          "label": "lemma m2-lem-kinetic-envelopes",
+          "fullLabel": "lemma m2-lem-kinetic-envelopes",
+          "kind": "lemma",
+          "source": "Layered histories and the analytic inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-dhm-package",
+          "role": "layered-histories-and-the-analytic-inputs",
+          "label": "theorem m2-thm-dhm-package",
+          "fullLabel": "theorem m2-thm-dhm-package",
+          "kind": "theorem",
+          "source": "Layered histories and the analytic inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-dhm-dummies",
+          "role": "layered-histories-and-the-analytic-inputs",
+          "label": "lemma m2-lem-dhm-dummies",
+          "fullLabel": "lemma m2-lem-dhm-dummies",
+          "kind": "lemma",
+          "source": "Layered histories and the analytic inputs",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-autonomous-partition",
+          "role": "a-componentwise-expansion-with-particle-records",
+          "label": "lemma m2-lem-autonomous-partition",
+          "fullLabel": "lemma m2-lem-autonomous-partition",
+          "kind": "lemma",
+          "source": "A componentwise expansion with particle records",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-rooted-forest",
+          "role": "a-componentwise-expansion-with-particle-records",
+          "label": "lemma m2-lem-rooted-forest",
+          "fullLabel": "lemma m2-lem-rooted-forest",
+          "kind": "lemma",
+          "source": "A componentwise expansion with particle records",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-one-slab-expansion",
+          "role": "a-componentwise-expansion-with-particle-records",
+          "label": "lemma m2-lem-one-slab-expansion",
+          "fullLabel": "lemma m2-lem-one-slab-expansion",
+          "kind": "lemma",
+          "source": "A componentwise expansion with particle records",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-one-root-bridge",
+          "role": "a-componentwise-expansion-with-particle-records",
+          "label": "lemma m2-lem-one-root-bridge",
+          "fullLabel": "lemma m2-lem-one-root-bridge",
+          "kind": "lemma",
+          "source": "A componentwise expansion with particle records",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-one-root",
+          "role": "a-componentwise-expansion-with-particle-records",
+          "label": "proposition m2-prop-one-root",
+          "fullLabel": "proposition m2-prop-one-root",
+          "kind": "proposition",
+          "source": "A componentwise expansion with particle records",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-marked-regrouping",
+          "role": "a-componentwise-expansion-with-particle-records",
+          "label": "lemma m2-lem-marked-regrouping",
+          "fullLabel": "lemma m2-lem-marked-regrouping",
+          "kind": "lemma",
+          "source": "A componentwise expansion with particle records",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-diagram-labels",
+          "role": "a-componentwise-expansion-with-particle-records",
+          "label": "lemma m2-lem-diagram-labels",
+          "fullLabel": "lemma m2-lem-diagram-labels",
+          "kind": "lemma",
+          "source": "A componentwise expansion with particle records",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-stopped-variation",
+          "role": "a-componentwise-expansion-with-particle-records",
+          "label": "lemma m2-lem-stopped-variation",
+          "fullLabel": "lemma m2-lem-stopped-variation",
+          "kind": "lemma",
+          "source": "A componentwise expansion with particle records",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-marked-expansion",
+          "role": "a-componentwise-expansion-with-particle-records",
+          "label": "theorem m2-thm-marked-expansion",
+          "fullLabel": "theorem m2-thm-marked-expansion",
+          "kind": "theorem",
+          "source": "A componentwise expansion with particle records",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-cor-terminal-witness",
+          "role": "a-componentwise-expansion-with-particle-records",
+          "label": "corollary m2-cor-terminal-witness",
+          "fullLabel": "corollary m2-cor-terminal-witness",
+          "kind": "corollary",
+          "source": "A componentwise expansion with particle records",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-thm-sharp-cumulants",
+          "role": "sharp-bounds-and-the-limiting-tree-measures",
+          "label": "theorem m2-thm-sharp-cumulants",
+          "fullLabel": "theorem m2-thm-sharp-cumulants",
+          "kind": "theorem",
+          "source": "Sharp bounds and the limiting tree measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sharp-merger-coordinates",
+          "role": "sharp-bounds-and-the-limiting-tree-measures",
+          "label": "lemma m2-lem-sharp-merger-coordinates",
+          "fullLabel": "lemma m2-lem-sharp-merger-coordinates",
+          "kind": "lemma",
+          "source": "Sharp bounds and the limiting tree measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sharp-factorials",
+          "role": "sharp-bounds-and-the-limiting-tree-measures",
+          "label": "lemma m2-lem-sharp-factorials",
+          "fullLabel": "lemma m2-lem-sharp-factorials",
+          "kind": "lemma",
+          "source": "Sharp bounds and the limiting tree measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sharp-summability",
+          "role": "sharp-bounds-and-the-limiting-tree-measures",
+          "label": "lemma m2-lem-sharp-summability",
+          "fullLabel": "lemma m2-lem-sharp-summability",
+          "kind": "lemma",
+          "source": "Sharp bounds and the limiting tree measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sharp-no-extra",
+          "role": "sharp-bounds-and-the-limiting-tree-measures",
+          "label": "lemma m2-lem-sharp-no-extra",
+          "fullLabel": "lemma m2-lem-sharp-no-extra",
+          "kind": "lemma",
+          "source": "Sharp bounds and the limiting tree measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sharp-spatial-traces",
+          "role": "sharp-bounds-and-the-limiting-tree-measures",
+          "label": "lemma m2-lem-sharp-spatial-traces",
+          "fullLabel": "lemma m2-lem-sharp-spatial-traces",
+          "kind": "lemma",
+          "source": "Sharp bounds and the limiting tree measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sharp-tree-completeness",
+          "role": "sharp-bounds-and-the-limiting-tree-measures",
+          "label": "lemma m2-lem-sharp-tree-completeness",
+          "fullLabel": "lemma m2-lem-sharp-tree-completeness",
+          "kind": "lemma",
+          "source": "Sharp bounds and the limiting tree measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-sharp-tree-splitting",
+          "role": "sharp-bounds-and-the-limiting-tree-measures",
+          "label": "lemma m2-lem-sharp-tree-splitting",
+          "fullLabel": "lemma m2-lem-sharp-tree-splitting",
+          "kind": "lemma",
+          "source": "Sharp bounds and the limiting tree measures",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-tree-evolution",
+          "role": "identification-of-the-covariance-and-the-gaussian-limit",
+          "label": "proposition m2-prop-tree-evolution",
+          "fullLabel": "proposition m2-prop-tree-evolution",
+          "kind": "proposition",
+          "source": "Identification of the covariance and the Gaussian limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-cumulant-clt",
+          "role": "identification-of-the-covariance-and-the-gaussian-limit",
+          "label": "proposition m2-prop-cumulant-clt",
+          "fullLabel": "proposition m2-prop-cumulant-clt",
+          "kind": "proposition",
+          "source": "Identification of the covariance and the Gaussian limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-cutoff",
+          "role": "the-probability-of-a-dynamical-cutoff",
+          "label": "proposition m2-prop-cutoff",
+          "fullLabel": "proposition m2-prop-cutoff",
+          "kind": "proposition",
+          "source": "The probability of a dynamical cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cutoff-energy-tail",
+          "role": "the-probability-of-a-dynamical-cutoff",
+          "label": "lemma m2-lem-cutoff-energy-tail",
+          "fullLabel": "lemma m2-lem-cutoff-energy-tail",
+          "kind": "lemma",
+          "source": "The probability of a dynamical cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-dhm-local",
+          "role": "the-probability-of-a-dynamical-cutoff",
+          "label": "lemma m2-lem-dhm-local",
+          "fullLabel": "lemma m2-lem-dhm-local",
+          "kind": "lemma",
+          "source": "The probability of a dynamical cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-prop-cutoff-import",
+          "role": "the-probability-of-a-dynamical-cutoff",
+          "label": "proposition m2-prop-cutoff-import",
+          "fullLabel": "proposition m2-prop-cutoff-import",
+          "kind": "proposition",
+          "source": "The probability of a dynamical cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cutoff-neutral",
+          "role": "the-probability-of-a-dynamical-cutoff",
+          "label": "lemma m2-lem-cutoff-neutral",
+          "fullLabel": "lemma m2-lem-cutoff-neutral",
+          "kind": "lemma",
+          "source": "The probability of a dynamical cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cutoff-pair",
+          "role": "the-probability-of-a-dynamical-cutoff",
+          "label": "lemma m2-lem-cutoff-pair",
+          "fullLabel": "lemma m2-lem-cutoff-pair",
+          "kind": "lemma",
+          "source": "The probability of a dynamical cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cutoff-amplified",
+          "role": "the-probability-of-a-dynamical-cutoff",
+          "label": "lemma m2-lem-cutoff-amplified",
+          "fullLabel": "lemma m2-lem-cutoff-amplified",
+          "kind": "lemma",
+          "source": "The probability of a dynamical cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cutoff-extraction",
+          "role": "the-probability-of-a-dynamical-cutoff",
+          "label": "lemma m2-lem-cutoff-extraction",
+          "fullLabel": "lemma m2-lem-cutoff-extraction",
+          "kind": "lemma",
+          "source": "The probability of a dynamical cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cutoff-ellipsoid",
+          "role": "the-probability-of-a-dynamical-cutoff",
+          "label": "lemma m2-lem-cutoff-ellipsoid",
+          "fullLabel": "lemma m2-lem-cutoff-ellipsoid",
+          "kind": "lemma",
+          "source": "The probability of a dynamical cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cutoff-time",
+          "role": "the-probability-of-a-dynamical-cutoff",
+          "label": "lemma m2-lem-cutoff-time",
+          "fullLabel": "lemma m2-lem-cutoff-time",
+          "kind": "lemma",
+          "source": "The probability of a dynamical cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-cutoff-sum",
+          "role": "the-probability-of-a-dynamical-cutoff",
+          "label": "lemma m2-lem-cutoff-sum",
+          "fullLabel": "lemma m2-lem-cutoff-sum",
+          "kind": "lemma",
+          "source": "The probability of a dynamical cutoff",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        },
+        {
+          "id": "m2-lem-center-transfer",
+          "role": "exact-centering-and-the-hard-sphere-fluctuation-limit",
+          "label": "lemma m2-lem-center-transfer",
+          "fullLabel": "lemma m2-lem-center-transfer",
+          "kind": "lemma",
+          "source": "Exact centering and the hard-sphere fluctuation limit",
+          "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
+          "dependsOn": []
+        }
+      ]
+    }
+  ],
+  "finalEdges": [],
+  "crossEdges": [],
+  "comparisons": [],
+  "sharedInputs": [],
+  "relatedManuscripts": [],
+  "leanAlignments": [],
+  "caveats": [
+    "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
+    "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+  ],
+  "sources": [
+    {
+      "label": "The Boltzmann–Grad limit for stable radial potentials on regular kinetic intervals",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/The-Boltzmann-Grad-limit-for-stable-radial-potentials-on-regular-kinetic-intervals-September-23-2026/paper.pdf",
+      "kind": "paper"
+    },
+    {
+      "label": "Hard-sphere fluctuations on the regular Boltzmann lifespan",
+      "url": "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/preprints/Hard-sphere-fluctuations-on-the-regular-Boltzmann-lifespan-September-23-2026/paper.pdf",
+      "kind": "paper"
+    }
+  ]
+}

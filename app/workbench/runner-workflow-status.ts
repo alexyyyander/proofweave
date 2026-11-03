@@ -1,5 +1,6 @@
 import type { McpRunSummary } from "@/packages/domain/mcp";
 import { hasAcceptedKernelEvidence } from "./accepted-kernel-evidence.ts";
+import type { Translator } from "@/app/i18n/translate";
 
 export type RunnerWorkflowStatus = Readonly<{
   tone: "pending" | "waiting" | "running" | "accepted" | "failed";
@@ -19,57 +20,58 @@ export type RunnerWorkflowStatus = Readonly<{
 export function runnerWorkflowStatus(
   run: McpRunSummary | null | undefined,
   bundleStaged: boolean,
+  t: Translator,
 ): RunnerWorkflowStatus {
   if (!run) {
     return bundleStaged
       ? {
           tone: "pending",
-          badge: "Runner needed",
-          title: "Your approved Bundle is ready for an isolated Lean Run.",
-          detail: "The evidence is safely recorded, but no Runner request exists yet. Start or inspect the exact evidence when you are ready to verify it.",
-          technicalTitle: "Lean kernel status · no Run recorded",
-          technicalDetail: "No isolated Lean Run is recorded for this Attempt. Only a Runner can record compiler diagnostics, a sorry audit, axioms, and kernel acceptance.",
+          badge: t("runnerWorkflow.noRun.badgeRunnerNeeded"),
+          title: t("runnerWorkflow.noRun.titleReady"),
+          detail: t("runnerWorkflow.noRun.detailReady"),
+          technicalTitle: t("runnerWorkflow.noRun.technicalTitle"),
+          technicalDetail: t("runnerWorkflow.noRun.technicalDetail"),
         }
       : {
           tone: "pending",
-          badge: "Awaiting evidence",
-          title: "No evidence has been approved for verification.",
-          detail: "Private work and local previews do not move this step. Proofweave does not render a sample source file or a fictional compiler result in place of a complete, Agent-signed Bundle.",
-          technicalTitle: "Lean kernel status · no Run recorded",
-          technicalDetail: "No isolated Lean Run is recorded for this Attempt. Only a Runner can record compiler diagnostics, a sorry audit, axioms, and kernel acceptance.",
+          badge: t("runnerWorkflow.noRun.badgeAwaitingEvidence"),
+          title: t("runnerWorkflow.noRun.titleNoEvidence"),
+          detail: t("runnerWorkflow.noRun.detailNoEvidence"),
+          technicalTitle: t("runnerWorkflow.noRun.technicalTitle"),
+          technicalDetail: t("runnerWorkflow.noRun.technicalDetail"),
         };
   }
 
   if (hasAcceptedKernelEvidence(run)) {
     return {
       tone: "accepted",
-      badge: "Lean accepted",
-      title: "Lean accepted the approved evidence.",
-      detail: "The signed Runner result passed its isolated kernel and policy checks. A different owner must still independently review the same Bundle before any Contribution Receipt can exist.",
-      technicalTitle: "Lean kernel status · accepted",
-      technicalDetail: "The recorded signed result passed the network, sorry, axiom, and Lean build checks. Inspect controlled evidence for the complete immutable record.",
+      badge: t("runnerWorkflow.accepted.badge"),
+      title: t("runnerWorkflow.accepted.title"),
+      detail: t("runnerWorkflow.accepted.detail"),
+      technicalTitle: t("runnerWorkflow.accepted.technicalTitle"),
+      technicalDetail: t("runnerWorkflow.accepted.technicalDetail"),
     };
   }
 
   if (run.evidenceState === "unreadable") {
     return {
       tone: "failed",
-      badge: "Inspection required",
-      title: "The stored Runner result needs controlled inspection.",
-      detail: "Proofweave cannot safely normalize this result as a Lean verdict. Inspect the bound evidence before retrying or publishing any further claim.",
-      technicalTitle: "Lean Runner result needs controlled inspection",
-      technicalDetail: "A stored result row could not be normalized and bound to this Run, so Proofweave will not show it as a Lean verdict. Inspect controlled evidence before acting on it.",
+      badge: t("runnerWorkflow.unreadable.badge"),
+      title: t("runnerWorkflow.unreadable.title"),
+      detail: t("runnerWorkflow.unreadable.detail"),
+      technicalTitle: t("runnerWorkflow.unreadable.technicalTitle"),
+      technicalDetail: t("runnerWorkflow.unreadable.technicalDetail"),
     };
   }
 
   if (run.result?.summary) {
     return {
       tone: "failed",
-      badge: "Lean check did not pass",
-      title: "This isolated Lean Run did not meet the accepted gate.",
-      detail: "The result is recorded for inspection. Do not describe the Bundle as Lean-accepted; prepare a corrected Bundle or start a new isolated Run.",
-      technicalTitle: `Lean Runner result · ${run.result.summary.status}`,
-      technicalDetail: "This terminal Runner result is recorded, but it did not meet the accepted Lean gate. A corrected Bundle or a new isolated Run may be required.",
+      badge: t("runnerWorkflow.failedResult.badge"),
+      title: t("runnerWorkflow.failedResult.title"),
+      detail: t("runnerWorkflow.failedResult.detail"),
+      technicalTitle: t("runnerWorkflow.failedResult.technicalTitle", { status: run.result.summary.status }),
+      technicalDetail: t("runnerWorkflow.failedResult.technicalDetail"),
     };
   }
 
@@ -77,11 +79,11 @@ export function runnerWorkflowStatus(
     const beforeExecution = run.startedAt === null;
     return {
       tone: "failed",
-      badge: "Runner needs repair",
-      title: beforeExecution ? "The Runner stopped before Lean could start." : "The Runner stopped before it could record a result.",
-      detail: "The service could not process this request. Your approved evidence is preserved. Inspect the recorded failure and repair the Runner before requesting another check.",
-      technicalTitle: "Runner delivery stopped",
-      technicalDetail: `Delivery stopped after ${run.delivery.attempts} attempt(s). ${run.delivery.errorCode ? `Diagnostic: ${run.delivery.errorCode}. ` : ""}No signed Lean acceptance was recorded.`,
+      badge: t("runnerWorkflow.deliveryStopped.badge"),
+      title: t(beforeExecution ? "runnerWorkflow.deliveryStopped.before" : "runnerWorkflow.deliveryStopped.after"),
+      detail: t("runnerWorkflow.deliveryStopped.detail"),
+      technicalTitle: t("runnerWorkflow.deliveryStopped.technicalTitle"),
+      technicalDetail: t("runnerWorkflow.deliveryStopped.technicalDetail", { attempts: run.delivery.attempts, diagnostic: run.delivery.errorCode ? t("runnerWorkflow.deliveryStopped.diagnostic", { code: run.delivery.errorCode }) : "" }),
     };
   }
 
@@ -89,38 +91,38 @@ export function runnerWorkflowStatus(
     case "queued":
       return {
         tone: "waiting",
-        badge: "Bundle safely queued",
-        title: "Your immutable Bundle is waiting for the Runner.",
-        detail: "The Runner may be waking or waiting for capacity. Do not resubmit the Bundle: this page refreshes while the Run is pending, and the existing request remains bound to the same evidence.",
-        technicalTitle: "Lean Runner lifecycle · queued",
-        technicalDetail: "This is lifecycle state only, not a Lean verdict. A terminal signed result must be recorded before kernel, axiom, and sorry checks can count.",
+        badge: t("runnerWorkflow.queued.badge"),
+        title: t("runnerWorkflow.queued.title"),
+        detail: t("runnerWorkflow.queued.detail"),
+        technicalTitle: t("runnerWorkflow.lifecycle.technicalTitle", { state: "queued" }),
+        technicalDetail: t("runnerWorkflow.lifecycle.technicalDetail"),
       };
     case "preparing":
       return {
         tone: "running",
-        badge: "Preparing isolated workspace",
-        title: "The Runner is preparing an isolated Lean workspace.",
-        detail: "Your Bundle remains immutable while its pinned environment is prepared. No proof result has been recorded yet.",
-        technicalTitle: "Lean Runner lifecycle · preparing",
-        technicalDetail: "This is lifecycle state only, not a Lean verdict. A terminal signed result must be recorded before kernel, axiom, and sorry checks can count.",
+        badge: t("runnerWorkflow.preparing.badge"),
+        title: t("runnerWorkflow.preparing.title"),
+        detail: t("runnerWorkflow.preparing.detail"),
+        technicalTitle: t("runnerWorkflow.lifecycle.technicalTitle", { state: "preparing" }),
+        technicalDetail: t("runnerWorkflow.lifecycle.technicalDetail"),
       };
     case "running":
       return {
         tone: "running",
-        badge: "Lean running in isolation",
-        title: "Lean is checking the Bundle in an isolated workspace.",
-        detail: "The Runner will record a signed result only after its compiler, kernel, and policy checks finish. Refreshing cannot change the Bundle being checked.",
-        technicalTitle: "Lean Runner lifecycle · running",
-        technicalDetail: "This is lifecycle state only, not a Lean verdict. A terminal signed result must be recorded before kernel, axiom, and sorry checks can count.",
+        badge: t("runnerWorkflow.running.badge"),
+        title: t("runnerWorkflow.running.title"),
+        detail: t("runnerWorkflow.running.detail"),
+        technicalTitle: t("runnerWorkflow.lifecycle.technicalTitle", { state: "running" }),
+        technicalDetail: t("runnerWorkflow.lifecycle.technicalDetail"),
       };
     case "cancel_requested":
       return {
         tone: "waiting",
-        badge: "Cancellation requested",
-        title: "The Runner is resolving a cancellation request.",
-        detail: "Wait for a terminal Run record before treating the request as cancelled or starting replacement evidence.",
-        technicalTitle: "Lean Runner lifecycle · cancel requested",
-        technicalDetail: "This is lifecycle state only, not a Lean verdict. A terminal signed result must be recorded before kernel, axiom, and sorry checks can count.",
+        badge: t("runnerWorkflow.cancel.badge"),
+        title: t("runnerWorkflow.cancel.title"),
+        detail: t("runnerWorkflow.cancel.detail"),
+        technicalTitle: t("runnerWorkflow.cancel.technicalTitle"),
+        technicalDetail: t("runnerWorkflow.lifecycle.technicalDetail"),
       };
     case "failed":
     case "timed_out":
@@ -128,20 +130,20 @@ export function runnerWorkflowStatus(
     case "cancelled":
       return {
         tone: "failed",
-        badge: "Runner did not complete",
-        title: "This isolated Lean Run did not complete successfully.",
-        detail: "No Lean acceptance was recorded. Inspect the exact evidence and terminal Run record before preparing a new Bundle or retrying the check.",
-        technicalTitle: `Lean Runner lifecycle · ${run.state}`,
-        technicalDetail: "This terminal lifecycle state is not a Lean verdict. Inspect controlled evidence before acting on it.",
+        badge: t("runnerWorkflow.terminal.badge"),
+        title: t("runnerWorkflow.terminal.title"),
+        detail: t("runnerWorkflow.terminal.detail"),
+        technicalTitle: t("runnerWorkflow.terminal.technicalTitle", { state: run.state }),
+        technicalDetail: t("runnerWorkflow.terminal.technicalDetail"),
       };
     case "succeeded":
       return {
         tone: "failed",
-        badge: "Result inspection required",
-        title: "A terminal Runner state exists, but no accepted Lean result is readable.",
-        detail: "Proofweave will not upgrade lifecycle state into a proof claim. Inspect controlled evidence before publishing or retrying.",
-        technicalTitle: "Lean Runner lifecycle · succeeded",
-        technicalDetail: "A terminal signed result must be recorded and satisfy every acceptance check before kernel acceptance can count.",
+        badge: t("runnerWorkflow.succeeded.badge"),
+        title: t("runnerWorkflow.succeeded.title"),
+        detail: t("runnerWorkflow.succeeded.detail"),
+        technicalTitle: t("runnerWorkflow.succeeded.technicalTitle"),
+        technicalDetail: t("runnerWorkflow.succeeded.technicalDetail"),
       };
   }
 }

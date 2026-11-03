@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useI18n } from "@/app/i18n/client";
 
 export type PersonalWorkspacePage = "workbench" | "reviews" | "evidence" | "profile" | "settings";
 
@@ -13,12 +16,13 @@ export function PersonalWorkspaceNavigation({
   activeReviewCount: number | null;
   evidenceCount: number | null;
 }) {
-  return <nav className="workspace-personal-links" aria-label="Personal workspace">
-    <WorkspaceLink active={active === "workbench"} href="/workbench" label="My work" value={activeAttemptCount} />
-    <WorkspaceLink active={active === "reviews"} href="/reviews#my-review-work" label="Review work" value={activeReviewCount} />
-    <WorkspaceLink active={active === "evidence"} href="/evidence" label="Evidence" value={evidenceCount} />
-    <WorkspaceLink active={active === "profile"} href="/profile" label="My profile" />
-    <WorkspaceLink active={active === "settings"} href="/settings" label="Agent settings" />
+  const { t } = useI18n();
+  return <nav className="workspace-personal-links" aria-label={t("workspace.navAria")}>
+    <WorkspaceLink active={active === "workbench"} href="/workbench" label={t("workspace.nav.myWork")} value={activeAttemptCount} />
+    <WorkspaceLink active={active === "reviews"} href="/reviews#my-review-work" label={t("workspace.nav.reviewWork")} value={activeReviewCount} />
+    <WorkspaceLink active={active === "evidence"} href="/evidence" label={t("workspace.nav.evidence")} value={evidenceCount} />
+    <WorkspaceLink active={active === "profile"} href="/profile" label={t("workspace.nav.profile")} />
+    <WorkspaceLink active={active === "settings"} href="/settings" label={t("workspace.nav.settings")} />
   </nav>;
 }
 

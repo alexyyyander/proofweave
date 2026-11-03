@@ -1,5 +1,6 @@
 import { type McpAttempt, type McpRunSummary } from "@/packages/domain/mcp";
 import { hasAcceptedKernelEvidence } from "./accepted-kernel-evidence";
+import type { Translator } from "@/app/i18n/translate";
 
 export type AttemptBucket = "needs-attention" | "active" | "waiting" | "history";
 
@@ -15,27 +16,29 @@ export function deriveAttemptPresentation({
   attempt,
   runs,
   agentConnected,
+  t,
 }: {
   attempt: McpAttempt;
   runs: readonly McpRunSummary[];
   agentConnected: boolean;
+  t: Translator;
 }): AttemptPresentation {
   if (attempt.status === "paused") {
     return {
       bucket: "needs-attention",
-      label: "Paused",
+      label: t("attemptPresentation.paused.label"),
       tone: "attention",
-      nextAction: "Resume the same Attempt",
-      detail: "The stable task and evidence are retained; new Agent writes are currently blocked.",
+      nextAction: t("attemptPresentation.paused.action"),
+      detail: t("attemptPresentation.paused.detail"),
     };
   }
   if (attempt.status !== "active") {
     return {
       bucket: "history",
-      label: attempt.status === "submitted" ? "Submitted" : attempt.status === "completed" ? "Completed" : "Abandoned",
+      label: attempt.status === "submitted" ? t("attemptPresentation.submitted.label") : attempt.status === "completed" ? t("attemptPresentation.completed.label") : t("attemptPresentation.abandoned.label"),
       tone: "complete",
-      nextAction: "Inspect retained records",
-      detail: "No future Agent progress is accepted for this Attempt.",
+      nextAction: t("attemptPresentation.history.action"),
+      detail: t("attemptPresentation.history.detail"),
     };
   }
 
@@ -51,45 +54,45 @@ export function deriveAttemptPresentation({
 
   if (!agentConnected) return {
     bucket: "needs-attention",
-    label: "Needs attention",
+    label: t("attemptPresentation.needsAttention.label"),
     tone: "attention",
-    nextAction: "Restore the bound Agent approval",
-    detail: "This Attempt cannot accept new work until its delegated Agent has an active website approval again.",
+    nextAction: t("attemptPresentation.needsAttention.action"),
+    detail: t("attemptPresentation.needsAttention.detail"),
   };
   if (runFailed) return {
     bucket: "needs-attention",
-    label: deliveryStopped ? "Runner needs repair" : "Lean check needs attention",
+    label: deliveryStopped ? t("attemptPresentation.deliveryStopped.label") : t("attemptPresentation.leanFailed.label"),
     tone: "attention",
-    nextAction: "Inspect the failed Run",
-    detail: deliveryStopped ? "Runner delivery stopped before an accepted kernel result was recorded. The approved evidence remains available." : "The latest isolated Run ended without an accepted kernel result.",
+    nextAction: t("attemptPresentation.leanFailed.action"),
+    detail: deliveryStopped ? t("attemptPresentation.deliveryStopped.detail") : t("attemptPresentation.leanFailed.detail"),
   };
   if (runPending) return {
     bucket: "waiting",
-    label: "Lean check running",
+    label: t("attemptPresentation.leanRunning.label"),
     tone: "waiting",
-    nextAction: "Wait for the isolated Run",
-    detail: "Proofweave is waiting for a signed Runner result.",
+    nextAction: t("attemptPresentation.leanRunning.action"),
+    detail: t("attemptPresentation.leanRunning.detail"),
   };
   if (kernelAccepted) return {
     bucket: "waiting",
-    label: "Awaiting independent review",
+    label: t("attemptPresentation.review.label"),
     tone: "waiting",
-    nextAction: "Track verification",
-    detail: "Lean evidence passed; independent claims still need a different owner.",
+    nextAction: t("attemptPresentation.review.action"),
+    detail: t("attemptPresentation.review.detail"),
   };
   if (hasBundle) return {
     bucket: "waiting",
-    label: "Checkpoint ready",
+    label: t("attemptPresentation.checkpoint.label"),
     tone: "waiting",
-    nextAction: "Complete the Lean check",
-    detail: "A signed evidence Bundle is staged for this Attempt.",
+    nextAction: t("attemptPresentation.checkpoint.action"),
+    detail: t("attemptPresentation.checkpoint.detail"),
   };
   return {
     bucket: "active",
-    label: hasProgress ? "Researching" : "Ready to start",
+    label: hasProgress ? t("attemptPresentation.researching.label") : t("attemptPresentation.ready.label"),
     tone: "active",
-    nextAction: hasProgress ? "Continue with your Agent" : "Send the target to your Agent",
-    detail: hasProgress ? "Agent-reported progress is recorded, but not yet verified." : "The bounded workspace is ready for its first research step.",
+    nextAction: hasProgress ? t("attemptPresentation.researching.action") : t("attemptPresentation.ready.action"),
+    detail: hasProgress ? t("attemptPresentation.researching.detail") : t("attemptPresentation.ready.detail"),
   };
 }
 export function AttemptStatusBadge({ presentation }: { presentation: AttemptPresentation }) {
