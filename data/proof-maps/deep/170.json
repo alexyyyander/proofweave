@@ -114,7 +114,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-thm-stream"
+          ]
         },
         {
           "id": "m1-thm-upper",
@@ -144,9 +146,7 @@
           "kind": "lemma",
           "source": "The classical upper bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-occupancy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-incidence",
@@ -206,10 +206,7 @@
           "kind": "lemma",
           "source": "Preparing a consistent tuple for compression",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-incidence",
-            "m1-lem-stream-entropy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-decoupling",
@@ -229,9 +226,7 @@
           "kind": "lemma",
           "source": "Preparing a consistent tuple for compression",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-rectangles"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-high-ranks",
@@ -271,10 +266,7 @@
           "kind": "lemma",
           "source": "Compression along a tree of windows",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-flat-levels",
-            "m1-lem-fresh-test"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-pivot-compression",
@@ -284,11 +276,7 @@
           "kind": "lemma",
           "source": "Compression along a tree of windows",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-predictor",
-            "m1-lem-fresh-test",
-            "m1-lem-pivot-retention"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-compression-stage",
@@ -298,12 +286,7 @@
           "kind": "proposition",
           "source": "Compression along a tree of windows",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-marking",
-            "m1-lem-decoupling",
-            "m1-lem-flat-levels",
-            "m1-lem-pivot-compression"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-stream",
@@ -313,12 +296,7 @@
           "kind": "theorem",
           "source": "Compression along a tree of windows",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-stream-entropy"
-          ],
-          "objectUses": [
-            "m1-lem-rectangles"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-training",
@@ -348,9 +326,7 @@
           "kind": "lemma",
           "source": "Rich lines and overlapping hyperplanes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-rich-lines"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-score-procedure",
@@ -360,13 +336,7 @@
           "kind": "lemma",
           "source": "The Poisson score",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-stream",
-            "m1-thm-upper"
-          ],
-          "objectUses": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -493,9 +463,7 @@
           "kind": "lemma",
           "source": "Describing sparse pairs: validation and geometry",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-base-incidence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-geom-produced-test",
@@ -515,9 +483,7 @@
           "kind": "proposition",
           "source": "Describing sparse pairs: validation and geometry",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-geom-validation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-geom-preparation",
@@ -527,9 +493,7 @@
           "kind": "proposition",
           "source": "Describing sparse pairs: validation and geometry",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-geom-validation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-geom-rich-lines",
@@ -559,9 +523,7 @@
           "kind": "lemma",
           "source": "Describing sparse pairs: validation and geometry",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-geom-radial"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-learn-short-row",
@@ -581,9 +543,7 @@
           "kind": "lemma",
           "source": "Learning a sparse support from a short row",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-base-incidence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-learn-empty-exceptional",
@@ -623,11 +583,7 @@
           "kind": "lemma",
           "source": "Learning a sparse support from a short row",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-learn-high-moment",
-            "m2-learn-second-moment",
-            "m2-base-tails"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-learn-implementation",
@@ -637,15 +593,7 @@
           "kind": "lemma",
           "source": "Learning a sparse support from a short row",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-learn-short-row",
-            "m2-geom-projection"
-          ],
-          "objectUses": [
-            "m2-learn-row-success",
-            "m2-geom-description",
-            "m2-geom-preparation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-mark-marking",
@@ -655,10 +603,7 @@
           "kind": "lemma",
           "source": "Marking and representative laws",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-base-incidence",
-            "m2-base-selection-entropy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-mark-representatives",
@@ -688,9 +633,7 @@
           "kind": "lemma",
           "source": "Marking and representative laws",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-base-event-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-mark-good-indices",
@@ -700,10 +643,7 @@
           "kind": "proposition",
           "source": "Marking and representative laws",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-mark-representatives",
-            "m2-mark-endpoint-mass"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-comp-step",
@@ -733,11 +673,7 @@
           "kind": "lemma",
           "source": "Replacing the context by a shorter description",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-base-incidence",
-            "m2-base-event-transfer",
-            "m2-comp-rich-union"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-comp-supports",
@@ -757,15 +693,7 @@
           "kind": "lemma",
           "source": "Replacing the context by a shorter description",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-geom-produced-test",
-            "m2-mark-good-indices",
-            "m2-mark-endpoint-mass",
-            "m2-comp-high-rank",
-            "m2-base-rectangles",
-            "m2-base-selection-entropy",
-            "m2-base-flag-graph"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-end-prime-interval",
@@ -795,9 +723,7 @@
           "kind": "proposition",
           "source": "Completion of the construction and the Ramsey bounds",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-end-triangle-free"
-          ]
+          "dependsOn": []
         }
       ]
     }

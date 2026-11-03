@@ -99,7 +99,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-candidate"
+          ]
         },
         {
           "id": "m1-cor-unipotent-squares",
@@ -109,9 +111,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-dual-test",
@@ -191,12 +191,7 @@
           "kind": "lemma",
           "source": "The band criterion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-sector-induction"
-          ],
-          "objectUses": [
-            "m1-thm-cyclic-input"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-band-separated",
@@ -216,9 +211,7 @@
           "kind": "lemma",
           "source": "The band criterion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-dual-test"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-band-one-extra",
@@ -228,10 +221,7 @@
           "kind": "lemma",
           "source": "The band criterion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-young-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-band-two-extras",
@@ -241,14 +231,7 @@
           "kind": "lemma",
           "source": "The band criterion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-lr-addition",
-            "m1-band-one-extra",
-            "m1-band-path-support",
-            "m1-lem-dual-test",
-            "m1-band-separated",
-            "m1-band-triangle-quotient"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-balance-separation",
@@ -268,9 +251,7 @@
           "kind": "lemma",
           "source": "Balance tests",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-young-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-bal-neighboring",
@@ -280,10 +261,7 @@
           "kind": "lemma",
           "source": "Balance tests",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-bal-coordinate-line",
-            "m1-band-path-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-bal-two-paths",
@@ -293,10 +271,7 @@
           "kind": "lemma",
           "source": "Balance tests",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-bal-coordinate-line",
-            "m1-band-path-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-bal-even-rows",
@@ -306,9 +281,7 @@
           "kind": "lemma",
           "source": "Balance tests",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-dual-test"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-bal-odd-strip",
@@ -328,13 +301,7 @@
           "kind": "proposition",
           "source": "Balance tests",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-bal-neighboring",
-            "m1-lem-balance-separation"
-          ],
-          "objectUses": [
-            "m1-lem-young-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-three-row",
@@ -344,10 +311,7 @@
           "kind": "proposition",
           "source": "Balance tests",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-bal-even-rows",
-            "m1-lem-balance-separation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-capacity-rectangle",
@@ -367,12 +331,7 @@
           "kind": "lemma",
           "source": "Exhaustion of the capacity conditions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-capacity-rectangle"
-          ],
-          "objectUses": [
-            "m1-prop-band-test"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-capacity-intermediate",
@@ -402,12 +361,7 @@
           "kind": "lemma",
           "source": "Exhaustion of the capacity conditions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-bal-neighboring",
-            "m1-bal-two-paths",
-            "m1-lem-capacity-prefix-pruning",
-            "m1-lem-lr-addition"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-capacity-enumeration",
@@ -417,10 +371,7 @@
           "kind": "lemma",
           "source": "Exhaustion of the capacity conditions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-balance-four",
-            "m1-lem-capacity-hit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-capacity-exhaustion",
@@ -430,13 +381,7 @@
           "kind": "proposition",
           "source": "Exhaustion of the capacity conditions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-balance-four",
-            "m1-lem-capacity-large",
-            "m1-lem-capacity-intermediate",
-            "m1-lem-capacity-hit",
-            "m1-lem-capacity-enumeration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-finite-check",
@@ -446,11 +391,7 @@
           "kind": "proposition",
           "source": "Small degrees by exact character calculation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-candidate",
-            "m1-thm-cyclic-input",
-            "m1-prop-capacity-exhaustion"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -507,9 +448,7 @@
           "kind": "lemma",
           "source": "Specht modules and horizontal strips",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-pieri"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-cyclic-saxl",
@@ -529,9 +468,7 @@
           "kind": "proposition",
           "source": "The triangular cyclic module and dominance",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-young-rule"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-sector-induction",
@@ -591,10 +528,7 @@
           "kind": "lemma",
           "source": "Completion of the induction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-young-rule",
-            "m2-prop-dominated"
-          ]
+          "dependsOn": []
         }
       ]
     }

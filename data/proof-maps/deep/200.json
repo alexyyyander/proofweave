@@ -164,9 +164,7 @@
           "kind": "proposition",
           "source": "Graded resolutions and leading coefficient spaces",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-filt-koszul"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-mono-transfer",
@@ -176,9 +174,7 @@
           "kind": "lemma",
           "source": "A monomial bound containing the prescribed powers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-filt-minimal"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-mono-bound",
@@ -188,10 +184,7 @@
           "kind": "proposition",
           "source": "A monomial bound containing the prescribed powers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-forms",
-            "m1-filt-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-stab-distraction",
@@ -211,10 +204,7 @@
           "kind": "proposition",
           "source": "Stabilization inside the exponent box",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-stab-distraction",
-            "m1-filt-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-box-inequalities",
@@ -234,9 +224,7 @@
           "kind": "proposition",
           "source": "Shadows and end slices in an exponent box",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-box-inequalities"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tor-deficit",
@@ -256,14 +244,7 @@
           "kind": "theorem",
           "source": "Betti bounds for stable ideals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-box-ideal",
-            "m1-filt-minimal",
-            "m1-tor-deficit",
-            "m1-box-inequalities",
-            "m1-mono-bound",
-            "m1-stab-main"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -300,7 +281,9 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-prop-monomial-reduction"
+          ]
         },
         {
           "id": "m2-cor-characteristic-zero",
@@ -330,10 +313,7 @@
           "kind": "proposition",
           "source": "Division coefficients and monomial ideals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-lem-ordered-basis"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-stage-basepoint",
@@ -403,9 +383,7 @@
           "kind": "theorem",
           "source": "The parameter complete intersections",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-homogeneous-joins"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-binary-curves",
@@ -415,7 +393,9 @@
           "kind": "proposition",
           "source": "Curves realizing binary power addition",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-lem-binary-matrices"
+          ]
         },
         {
           "id": "m2-lem-binary-cover",
@@ -455,9 +435,7 @@
           "kind": "lemma",
           "source": "Curves realizing binary power addition",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-binary-matrices"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-division",
@@ -477,7 +455,9 @@
           "kind": "proposition",
           "source": "Coherent descent and Euler characteristics",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-prop-binary-curves"
+          ]
         },
         {
           "id": "m2-lem-twisted-extension",
@@ -517,9 +497,7 @@
           "kind": "lemma",
           "source": "Coherent descent and Euler characteristics",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-binary-curves"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-index-equivariant-map",
@@ -549,10 +527,7 @@
           "kind": "proposition",
           "source": "The equivariant index calculation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-index-integral-pushforward",
-            "m2-lem-index-equivariant-map"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-index-padic-truncation",
@@ -562,10 +537,7 @@
           "kind": "lemma",
           "source": "The equivariant index calculation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-thm-division"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-veronese-extension",
@@ -585,15 +557,7 @@
           "kind": "proposition",
           "source": "Construction of the triangular power identities",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-simple-factor",
-            "m2-thm-parameters",
-            "m2-prop-binary-curves",
-            "m2-lem-veronese-extension",
-            "m2-lem-sparsity-preserved",
-            "m2-lem-ordered-basis",
-            "m2-prop-monomial-reduction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-local-cohomology",
@@ -603,9 +567,7 @@
           "kind": "corollary",
           "source": "Generality and consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-cor-characteristic-zero"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-quadratic-cayley-bacharach",

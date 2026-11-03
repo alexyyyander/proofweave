@@ -129,7 +129,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-zero-boundary"
+          ]
         },
         {
           "id": "m1-cor-rectangles",
@@ -179,10 +181,7 @@
           "kind": "lemma",
           "source": "Marginal tails and an initial box estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-tail"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-initial-box",
@@ -192,10 +191,7 @@
           "kind": "proposition",
           "source": "Marginal tails and an initial box estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-initial-buffer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-quasilocal-lr",
@@ -225,9 +221,7 @@
           "kind": "proposition",
           "source": "Positive constraints and truncation near a finite set",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-quasilocal-filter"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-quasilocal-roots",
@@ -257,9 +251,7 @@
           "kind": "lemma",
           "source": "Two conditional operator estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-continuity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-conditional-phases",
@@ -279,9 +271,7 @@
           "kind": "lemma",
           "source": "Two conditional operator estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-conditional-phases"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-schur",
@@ -301,9 +291,7 @@
           "kind": "lemma",
           "source": "Symmetric replicas and entropy metrics",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-schur"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-relative-pin",
@@ -313,10 +301,7 @@
           "kind": "lemma",
           "source": "Symmetric replicas and entropy metrics",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-movement"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-symbol",
@@ -326,10 +311,7 @@
           "kind": "lemma",
           "source": "Symmetric replicas and entropy metrics",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-replicas-metric",
-            "m1-lem-skew"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-transport-means",
@@ -369,15 +351,7 @@
           "kind": "proposition",
           "source": "Transport through finite trees of metrics",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-transport-cp",
-            "m1-transport-means",
-            "m1-lem-relative-pin",
-            "m1-lem-skew"
-          ],
-          "objectUses": [
-            "m1-lem-symbol"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-comparators",
@@ -397,9 +371,7 @@
           "kind": "lemma",
           "source": "Scanning collars and improving the entropy bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-schur"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-scanner",
@@ -409,16 +381,7 @@
           "kind": "proposition",
           "source": "Scanning collars and improving the entropy bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-continuity",
-            "m1-scanner-histories",
-            "m1-transport-means"
-          ],
-          "objectUses": [
-            "m1-lem-tail",
-            "m1-prop-transport",
-            "m1-lem-symbol"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-scanner-templates",
@@ -438,13 +401,7 @@
           "kind": "proposition",
           "source": "Scanning collars and improving the entropy bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-initial-box",
-            "m1-scanner-templates"
-          ],
-          "objectUses": [
-            "m1-prop-scanner"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-collar",
@@ -454,12 +411,7 @@
           "kind": "proposition",
           "source": "Scanning collars and improving the entropy bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-small-box",
-            "m1-scanner-templates",
-            "m1-prop-scanner",
-            "m1-lem-continuity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-amplification-local-products",
@@ -469,9 +421,7 @@
           "kind": "lemma",
           "source": "Amplifying the collar estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-quasilocal-roots"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-amplification",
@@ -481,13 +431,7 @@
           "kind": "proposition",
           "source": "Amplifying the collar estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-tail",
-            "m1-lem-continuity"
-          ],
-          "objectUses": [
-            "m1-lem-amplification-local-products"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geometry-cancellation",
@@ -537,13 +481,7 @@
           "kind": "lemma",
           "source": "Two families of regions and the area bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-zero-boundary",
-            "m1-prop-collar",
-            "m1-prop-amplification",
-            "m1-prop-two-families",
-            "m1-geometry-cancellation"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -610,9 +548,7 @@
           "kind": "lemma",
           "source": "Information bounds for separated regions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-coarse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-reset",
@@ -632,10 +568,7 @@
           "kind": "proposition",
           "source": "Information bounds for separated regions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-cell-cmi",
-            "m2-lem-reset"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-patch",
@@ -645,9 +578,7 @@
           "kind": "proposition",
           "source": "Adaptive finite-rank constraints on small patches",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-area-law"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-effects",
@@ -667,9 +598,7 @@
           "kind": "theorem",
           "source": "Compression of distributed density networks",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-effects"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-group-tensor",
@@ -689,13 +618,7 @@
           "kind": "lemma",
           "source": "Encoded frames and changes of ownership",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-group-tensor",
-            "m2-thm-compression"
-          ],
-          "objectUses": [
-            "m2-prop-patch"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-splitting",
@@ -705,9 +628,7 @@
           "kind": "lemma",
           "source": "Encoded frames and changes of ownership",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-fidelity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-birth",
@@ -717,9 +638,7 @@
           "kind": "lemma",
           "source": "Encoded frames and changes of ownership",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-splitting"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-exchange",
@@ -729,9 +648,7 @@
           "kind": "lemma",
           "source": "Encoded frames and changes of ownership",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-splitting"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-protocol",
@@ -771,9 +688,7 @@
           "kind": "lemma",
           "source": "From the protocol to a PEPS",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-protocol"
-          ]
+          "dependsOn": []
         }
       ]
     }

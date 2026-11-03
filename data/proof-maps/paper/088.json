@@ -67,46 +67,10 @@
   ],
   "edges": [
     {
-      "from": "m1-lem-facets",
-      "to": "m1-prop-product",
-      "label": "lem:facets",
-      "context": "(|B|s_F\\nu_F,0) \\quad\\hbox{and}\\quad (0,|A|s_G\\nu_G), \\] respectively. The area factors are products because the two coordinate spaces are orthogonal. Lemma~\\ref{lem:facets} now gives \\[ h_{\\Pi(A\\times B)}(u,v) =|B|h_{\\Pi A}(u)+|A|h_{\\Pi B}(v). \\] This is the support function of the right s"
-    },
-    {
-      "from": "m1-lem-facets",
-      "to": "m1-prop-simplex",
-      "label": "lem:facets",
-      "context": "rojects it onto the standard \\((d-1)\\)-simplex with Jacobian \\(1/\\sqrt d\\); its area-normal vector is therefore \\(w/(d-1)!\\). In the centered segments of Lemma~\\ref{lem:facets}, changing the sign of a generator changes no segment. Translating each segment to start at the origin therefore shows t"
-    },
-    {
-      "from": "m1-lem-affine",
-      "to": "m1-prop-simplex",
-      "label": "lem:affine",
-      "context": "R_d(T_d)=\\frac{(d+1)(d!)^{d-1}}{((d-1)!)^d} =\\frac{(d+1)d^d}{d!}. \\] Every full-dimensional simplex is an invertible affine image of \\(T_d\\), so Lemma~\\ref{lem:affine} proves the final assertion."
-    },
-    {
-      "from": "m1-thm-counterexample",
-      "to": "m1-prop-simplex",
-      "label": "thm:counterexample",
-      "context": "[Proof of Theorem~\\ref{thm:counterexample}] The product \\(K=T_{10}\\times T_{10}\\) is compact and convex with nonempty interior in \\(\\R^{20}\\). Propositions~\\ref{p"
-    },
-    {
       "from": "m1-prop-product",
-      "to": "m1-prop-simplex",
+      "to": "m1-thm-counterexample",
       "label": "prop:product",
       "context": "[Proof of Theorem~\\ref{thm:counterexample}] The product \\(K=T_{10}\\times T_{10}\\) is compact and convex with nonempty interior in \\(\\R^{20}\\). Propositions~\\ref{prop:product} and~\\ref{prop:simplex} give \\[ R_{20}(K)=R_{10}(T_{10})^2 =\\left(\\frac{11\\cdot10^{10}}{10!}\\right)^2. \\] Cons"
-    },
-    {
-      "from": "m1-prop-product",
-      "to": "m1-cor-exponential-excess",
-      "label": "prop:product",
-      "context": "Cartesian product. All factors and their successive products are full-dimensional convex polytopes, with each factor dimension at least ten. Thus Propositions~\\ref{prop:product} and~\\ref{prop:simplex} apply iteratively and give \\[ R_n(K_n)=c_{10}^k c_{d_r}. \\] To compare this value with \\(c_n\\)"
-    },
-    {
-      "from": "m1-prop-simplex",
-      "to": "m1-cor-exponential-excess",
-      "label": "prop:simplex",
-      "context": "factors and their successive products are full-dimensional convex polytopes, with each factor dimension at least ten. Thus Propositions~\\ref{prop:product} and~\\ref{prop:simplex} apply iteratively and give \\[ R_n(K_n)=c_{10}^k c_{d_r}. \\] To compare this value with \\(c_n\\), we bound the simplex"
     }
   ]
 }

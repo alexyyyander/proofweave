@@ -134,9 +134,7 @@
           "kind": "proposition",
           "source": "Separating the boundary from the log canonical cycle",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-surface-nef"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-isolation",
@@ -156,10 +154,7 @@
           "kind": "corollary",
           "source": "Isolating a log canonical component",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-prop-isolation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-torsion",
@@ -179,9 +174,7 @@
           "kind": "proposition",
           "source": "Torsion on the full boundary cycle",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-torsion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-prepared",
@@ -191,15 +184,7 @@
           "kind": "proposition",
           "source": "Construction of the prepared cycle",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-separation",
-            "m1-prop-boundary-torsion",
-            "m1-prop-reduction"
-          ],
-          "objectUses": [
-            "m1-prop-isolation",
-            "m1-lem-dlt-boundary"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -226,7 +211,10 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-cor-form-vanishing"
+          ]
         },
         {
           "id": "m2-prop-prepared-cycle",
@@ -256,9 +244,7 @@
           "kind": "lemma",
           "source": "Birational preparation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-exceptional-intersections"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-full-cycle-torsion",
@@ -288,9 +274,7 @@
           "kind": "lemma",
           "source": "Slopes, foliations, and polar parts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-connection-destabilization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-foliation-quotient",
@@ -310,10 +294,7 @@
           "kind": "proposition",
           "source": "Slopes, foliations, and polar parts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-foliation-quotient",
-            "m2-lem-connection-destabilization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-degree-zero-line-sections",
@@ -333,9 +314,7 @@
           "kind": "lemma",
           "source": "Slopes, foliations, and polar parts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-degree-zero-line-sections"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-polar-bounds",
@@ -345,9 +324,7 @@
           "kind": "proposition",
           "source": "Slopes, foliations, and polar parts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-semistable-hom-bound"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-no-scalar-poles",
@@ -357,9 +334,7 @@
           "kind": "corollary",
           "source": "Slopes, foliations, and polar parts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-polar-bounds"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-page-calculus",
@@ -399,10 +374,7 @@
           "kind": "proposition",
           "source": "Jets and the three rows",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-scalar-jets",
-            "m2-lem-page-calculus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-scalar-widths",
@@ -432,12 +404,7 @@
           "kind": "theorem",
           "source": "Laurent cohomology of vector bundles",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-scalar-widths"
-          ],
-          "objectUses": [
-            "m2-lem-page-calculus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-laurent-cartier-algebra",
@@ -457,13 +424,7 @@
           "kind": "corollary",
           "source": "Laurent cohomology of vector bundles",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-strong-semistability",
-            "m2-prop-polar-bounds",
-            "m2-lem-phase-bound",
-            "m2-prop-scalar-widths",
-            "m2-lem-laurent-cartier-algebra"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-cartier-adjustment",
@@ -473,9 +434,7 @@
           "kind": "lemma",
           "source": "Cartier descent and the final degree contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-cor-form-vanishing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-cartier-fixed-connection",
@@ -485,9 +444,7 @@
           "kind": "lemma",
           "source": "Cartier descent and the final degree contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-cartier-adjustment"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-cartier-curvature",
@@ -527,12 +484,7 @@
           "kind": "proposition",
           "source": "Cartier descent and the final degree contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-cartier-fixed-connection",
-            "m2-lem-cartier-curvature",
-            "m2-lem-horizontal-expansion",
-            "m2-lem-formal-line-extension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-laurent-unit-orders",
@@ -552,14 +504,7 @@
           "kind": "proposition",
           "source": "Cartier descent and the final degree contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-laurent-unit-orders",
-            "m2-prop-picard-divisibility"
-          ],
-          "objectUses": [
-            "m2-thm-main",
-            "m2-cor-form-vanishing"
-          ]
+          "dependsOn": []
         }
       ]
     }

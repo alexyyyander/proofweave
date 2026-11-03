@@ -64,7 +64,10 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-integral"
+          ]
         },
         {
           "id": "m1-lem-model",
@@ -104,9 +107,7 @@
           "kind": "lemma",
           "source": "The field comparison and norm detector",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-field"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-opens",
@@ -116,14 +117,7 @@
           "kind": "lemma",
           "source": "Detection on the projective curve",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-model",
-            "m1-lem-field",
-            "m1-lem-norm-detector"
-          ],
-          "objectUses": [
-            "m1-prop-integral"
-          ]
+          "dependsOn": []
         }
       ]
     }

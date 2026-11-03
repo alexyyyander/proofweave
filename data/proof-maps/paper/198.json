@@ -149,76 +149,10 @@
   ],
   "edges": [
     {
-      "from": "m1-prop-selection",
-      "to": "m1-lem-finite-central-quotients",
-      "label": "prop:selection",
-      "context": "[Proof of \\Cref{prop:selection}] Take $R=\\C G$. A finite group presentation yields a finite presentation of its unital group algebra: for each group g"
-    },
-    {
-      "from": "m1-lem-group-finite-presentation",
-      "to": "m1-lem-finite-central-quotients",
-      "label": "lem:group-finite-presentation",
-      "context": "or adjoin a formal inverse and the two inverse equations, and impose the finitely many group relators as algebra relations. Hence $R$ is finitely presented by \\Cref{lem:group-finite-presentation}. Extend $\\alpha_G$ linearly to an algebra automorphism $\\alpha$ and put \\[ e=\\frac{1+z_0}{2}. \\] By \\Cref{lem:central"
-    },
-    {
-      "from": "m1-lem-central-shift",
-      "to": "m1-lem-finite-central-quotients",
-      "label": "lem:central-shift",
-      "context": "initely presented by \\Cref{lem:group-finite-presentation}. Extend $\\alpha_G$ linearly to an algebra automorphism $\\alpha$ and put \\[ e=\\frac{1+z_0}{2}. \\] By \\Cref{lem:central-shift}, this is a central idempotent. For $q\\geq0$, write \\[ e_q=\\alpha^q(e)=\\frac{1+z_q}{2}. \\] These are commuting centra"
-    },
-    {
-      "from": "m1-thm-realization",
-      "to": "m1-lem-rectification",
-      "label": "thm:realization",
-      "context": "[Proof of \\Cref{thm:realization}] Choose the fixed complexes \\(D_i\\), arrow maps \\(f_a\\), and relation homotopies \\(h_\\rho\\) of \\Cref{prop:lifted-diagra"
-    },
-    {
       "from": "m1-prop-lifted-diagram",
-      "to": "m1-lem-rectification",
+      "to": "m1-thm-realization",
       "label": "prop:lifted-diagram",
       "context": "[Proof of \\Cref{thm:realization}] Choose the fixed complexes \\(D_i\\), arrow maps \\(f_a\\), and relation homotopies \\(h_\\rho\\) of \\Cref{prop:lifted-diagram}, and apply \\Cref{lem:rectification}. Since \\(P\\) and the \\(D_i\\) are bounded complexes of projective right modules, th"
-    },
-    {
-      "from": "m1-lem-directed-bound",
-      "to": "m1-lem-rectification",
-      "label": "lem:directed-bound",
-      "context": "rphism belongs to \\[ \\Hom_{\\D^b(B\\text{-}\\modu)}(A_0,A_{-3}[4]) =\\Ext_B^4(A_0,A_{-3})=0, \\] where the vanishing follows from the bound \\(\\gldim B\\leq2\\) in \\Cref{lem:directed-bound}. The triangle consequently splits, giving \\(T_Y\\simeq A_0\\oplus A_{-3}[3]\\), which is \\eqref{eq:realization}. The compl"
-    },
-    {
-      "from": "m1-lem-directed-bound",
-      "to": "m1-prop-ordinary-simulation",
-      "label": "lem:directed-bound",
-      "context": "omponent between distinct vertices moves in the product of the two directed orders. Choosing a linear extension of that product order permits an application of \\Cref{lem:directed-bound}, on both sides. In particular, \\[ \\gldim(B\\otimes_k C)\\le3(l+1)-1, \\qquad \\gldim\\bigl((B\\otimes_k C)^{\\mathrm{op}}\\bigr"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-cor-pd-detection",
-      "label": "thm:main",
-      "context": "[Proof of \\Cref{thm:main}] Work over \\(k=\\C\\). Fix the algebra \\(R\\), its central idempotent \\(e\\), the automorphism \\(\\alpha\\), and the selectio"
-    },
-    {
-      "from": "m1-prop-selection",
-      "to": "m1-cor-pd-detection",
-      "label": "prop:selection",
-      "context": "ef{thm:main}] Work over \\(k=\\C\\). Fix the algebra \\(R\\), its central idempotent \\(e\\), the automorphism \\(\\alpha\\), and the selection functor \\(H\\) supplied by \\Cref{prop:selection}. Apply \\Cref{thm:realization} to these fixed data, obtaining \\(B\\) and \\(P\\) satisfying \\eqref{eq:realization}. Choose"
-    },
-    {
-      "from": "m1-thm-realization",
-      "to": "m1-cor-pd-detection",
-      "label": "thm:realization",
-      "context": "C\\). Fix the algebra \\(R\\), its central idempotent \\(e\\), the automorphism \\(\\alpha\\), and the selection functor \\(H\\) supplied by \\Cref{prop:selection}. Apply \\Cref{thm:realization} to these fixed data, obtaining \\(B\\) and \\(P\\) satisfying \\eqref{eq:realization}. Choose the support interval \\([a_*,b_"
-    },
-    {
-      "from": "m1-prop-ordinary-simulation",
-      "to": "m1-cor-pd-detection",
-      "label": "prop:ordinary-simulation",
-      "context": "uses the iterate index \\(r=2m-2\\) in \\Cref{cor:pd-detection}, not a new estimate on the shifts. The algebra \\(D\\) has finite global dimension on both sides by \\Cref{prop:ordinary-simulation}. Applying \\Cref{cor:pd-detection} proves \\[ 2m-2\\le\\pd_A N_m<\\infty \\qquad(m\\ge1). \\] All \\(N_m\\) are finitely generate"
-    },
-    {
-      "from": "m1-cor-left-right-asymmetry",
-      "to": "m1-cor-pd-detection",
-      "label": "cor:left-right-asymmetry",
-      "context": "[Proof of \\Cref{cor:left-right-asymmetry}] Let \\(A\\) be the algebra of \\Cref{thm:main}, and choose a basic finite-dimensional complex algebra \\(C\\) Morita equiva"
     }
   ]
 }

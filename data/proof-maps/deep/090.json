@@ -184,9 +184,7 @@
           "kind": "proposition",
           "source": "Energy from Gaussian minorants",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-energy-low-frequency"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-energy-laplace",
@@ -226,9 +224,7 @@
           "kind": "lemma",
           "source": "Signs between the interpolation nodes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-finite-certificate"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-deleted-jets",
@@ -238,10 +234,7 @@
           "kind": "lemma",
           "source": "Signs between the interpolation nodes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-finite-certificate",
-            "m1-lem-curvature-envelopes"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-gaussian-divided-difference",
@@ -261,9 +254,7 @@
           "kind": "proposition",
           "source": "Signs between the interpolation nodes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-gaussian-divided-difference"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-sine-barrier",
@@ -273,13 +264,7 @@
           "kind": "lemma",
           "source": "Signs between the interpolation nodes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-finite-certificate",
-            "m1-lem-curvature-envelopes"
-          ],
-          "objectUses": [
-            "m1-prop-global-signs"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -316,7 +301,9 @@
           "kind": "theorem",
           "source": "Cardinal interpolation and Fourier transformation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-prop-exact-interpolation"
+          ]
         },
         {
           "id": "m2-lem-cardinal-measure",
@@ -386,12 +373,7 @@
           "kind": "proposition",
           "source": "Exact interpolation in the summable coefficient space",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-kernel-bounds",
-            "m2-prop-finite-certificate",
-            "m2-lem-quadrature-error",
-            "m2-lem-fourier-pair"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-exponential-support",
@@ -411,10 +393,7 @@
           "kind": "lemma",
           "source": "Signs on every radius and parameter",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-finite-certificate",
-            "m2-lem-exponential-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-sine-product-barrier",
@@ -434,12 +413,7 @@
           "kind": "lemma",
           "source": "Signs on every radius and parameter",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-kernel-bounds",
-            "m2-lem-sine-product-barrier",
-            "m2-prop-exact-interpolation",
-            "m2-lem-fourier-pair"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-density-lp",
@@ -459,9 +433,7 @@
           "kind": "lemma",
           "source": "From Gaussian pairs to energy comparisons",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-normalized-pair"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-positive-mixture",
@@ -481,10 +453,7 @@
           "kind": "proposition",
           "source": "Shifted moments and positive mixtures",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-thm-universal"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-riesz-jellium",
@@ -504,9 +473,7 @@
           "kind": "lemma",
           "source": "Renormalized and jellium energies",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-normalized-cubic-approximation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-rational-pi-b",
@@ -526,7 +493,9 @@
           "kind": "proposition",
           "source": "Periodic approximation for the field energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-lem-field-cutoff-control"
+          ]
         },
         {
           "id": "m2-lem-field-cutoff-control",
@@ -556,10 +525,7 @@
           "kind": "lemma",
           "source": "Periodic approximation for the field energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-field-cutoff-control",
-            "m2-lem-stationary-field-minimizers"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-rational-roundoff",
@@ -569,9 +535,7 @@
           "kind": "lemma",
           "source": "An alternative rational verification procedure",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-kernel-bounds"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -638,9 +602,7 @@
           "kind": "lemma",
           "source": "Solving the interpolation equations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-cert-moment-error"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-interpolation-inverse",
@@ -660,10 +622,7 @@
           "kind": "proposition",
           "source": "Solving the interpolation equations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-interpolation-inverse",
-            "m3-fourier-equivalence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-signs-bernstein",
@@ -673,9 +632,7 @@
           "kind": "lemma",
           "source": "Global signs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-cert-moment-error"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-signs-p-lower-bound",
@@ -705,9 +662,7 @@
           "kind": "lemma",
           "source": "Poisson normalization",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-signs-global"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-normalization-periodic-uniqueness",
@@ -727,9 +682,7 @@
           "kind": "proposition",
           "source": "Poisson normalization",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-signs-global"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cert-moment-error",
@@ -759,9 +712,7 @@
           "kind": "lemma",
           "source": "Alternative certification methods",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-cert-rounded-exponential"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ind-taylor-average",
@@ -781,12 +732,7 @@
           "kind": "proposition",
           "source": "Alternative certification methods",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-ind-taylor-average"
-          ],
-          "objectUses": [
-            "m3-cert-moment-error"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ind-node-taylor-proposition",

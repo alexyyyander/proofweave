@@ -533,310 +533,40 @@
   ],
   "edges": [
     {
-      "from": "m1-lem-cyclic-module",
-      "to": "m1-prop-affine",
-      "label": "lem:cyclic-module",
-      "context": "The ring $R$ is finitely presented, so the Krsti\\'c--McCool theorem applies to $\\St_6(R)$. Lemma~\\ref{lem:cyclic-module} identifies $B$ with a quotient of $R$ by a finitely generated left ideal. Lemma~\\ref{lem:affine-presentation}, with $n="
-    },
-    {
-      "from": "m1-lem-affine-presentation",
-      "to": "m1-prop-affine",
-      "label": "lem:affine-presentation",
-      "context": "Krsti\\'c--McCool theorem applies to $\\St_6(R)$. Lemma~\\ref{lem:cyclic-module} identifies $B$ with a quotient of $R$ by a finitely generated left ideal. Lemma~\\ref{lem:affine-presentation}, with $n=6$, gives the result."
-    },
-    {
-      "from": "m1-lem-external-roots",
-      "to": "m1-lem-corner-centrality",
-      "label": "lem:external-roots",
-      "context": "These formulas follow by multiplying the three elementary matrices and using \\eqref{eq:corner-equivalence}. Let $y=EyE$ and $k\\notin\\{1,6\\}$. Applying Lemma~\\ref{lem:external-roots} to the actual word $W$ gives \\begin{equation}\\label{eq:corner-compression-roots} \\begin{aligned} Wx_{1k}(y)W^{-1}&=x_"
-    },
-    {
-      "from": "m1-lem-corner-centrality",
-      "to": "m1-lem-corner-comparison",
-      "label": "lem:corner-centrality",
-      "context": "e multiplicative because $E$ and $F$ are idempotent and commute with $\\psi(R)$. Their root words have identity matrix by \\eqref{eq:kernel-nonunital}, so Lemma~\\ref{lem:corner-centrality}, in both orders, gives centrality. Put $b=d+d^*+1-E-F$. The squares of $d$ and $d^*$ vanish, their cross products are"
-    },
-    {
-      "from": "m1-lem-external-roots",
-      "to": "m1-lem-corner-comparison",
-      "label": "lem:external-roots",
-      "context": "ction} Dx_{ij}(y)D^{-1}=x_{ij}(byb^{-1}) \\qquad(y\\in R). \\end{equation} If $i$ and $j$ belong to different pairs among $(1,2),(3,4),(5,6)$, apply Lemma~\\ref{lem:external-roots} to the two relevant factors of $D$. The pair containing $i$ multiplies the coefficient on the left by $b$, and the pai"
-    },
-    {
-      "from": "m1-thm-kernel",
-      "to": "m1-lem-orthogonal-root-images",
-      "label": "thm:kernel",
-      "context": "[Proof of Theorem~\\ref{thm:kernel}] Define four idempotents by \\[ E_i=U_iV_i\\quad(i=0,1),\\qquad E_{0i}=U_0U_iV_iV_0\\quad(i=0,1). \\] They commute with $\\"
-    },
-    {
-      "from": "m1-lem-corner-comparison",
-      "to": "m1-lem-orthogonal-root-images",
-      "label": "lem:corner-comparison",
-      "context": "ernel-corners} \\end{figure} Fix $z\\in\\ker\\pi$ and let $z_Q$ denote its image under the coefficient map $a\\mapsto\\psi(a)Q$ for each of these idempotents. Lemma~\\ref{lem:corner-comparison}, applied three times with the second corner $E_1$, gives \\begin{equation}\\label{eq:four-corner-equality} z_{E_0}=z_{E_"
-    },
-    {
-      "from": "m1-thm-kernel",
-      "to": "m1-lem-affine-limit",
-      "label": "thm:kernel",
-      "context": "If a class represented by $h\\in\\St_6(R)$ maps to the identity, some iterate of $F$ sends $\\pi(h)$ to $I$. Since $F$ is injective, $\\pi(h)=I$ already. Theorem~\\ref{thm:kernel} now gives $\\theta(h)=1$, so that class is trivial. The compatibility of the module action is \\begin{equation}\\label{eq"
-    },
-    {
-      "from": "m1-lem-mapping-torus",
-      "to": "m1-lem-affine-limit",
-      "label": "lem:mapping-torus",
-      "context": "ves $\\pi(h)=I$. Consequently $\\Theta(v,h)=(0,1)$ by Theorem~\\ref{thm:kernel}. The homomorphism is injective. The construction respects stage shifts, so Lemma~\\ref{lem:mapping-torus} gives the second isomorphism as well."
-    },
-    {
-      "from": "m1-thm-algebra-package",
-      "to": "m1-prop-two-transitive-action",
-      "label": "thm:algebra-package",
-      "context": "age $j+1$, let $v$ have $b_*$ in coordinate $b$ and zero in the other coordinates. The $a$th coordinate of $F(g)v-v$ is \\[ \\psi(r)\\cdot b_*\\ne0 \\] by Theorem~\\ref{thm:algebra-package}. It remains nonzero in the direct limit because $\\phi$ is injective. This proves faithfulness of the linear action."
-    },
-    {
-      "from": "m1-thm-envelope",
-      "to": "m1-prop-two-transitive-action",
-      "label": "thm:envelope",
-      "context": "[Proof of Theorem~\\ref{thm:envelope}] Let $\\widehat G$ be the auxiliary group of Lemma~\\ref{lem:group-input}. Theorem~\\ref{thm:algebra-package} supplies an"
-    },
-    {
       "from": "m1-lem-group-input",
-      "to": "m1-prop-two-transitive-action",
+      "to": "m1-thm-envelope",
       "label": "lem:group-input",
       "context": "[Proof of Theorem~\\ref{thm:envelope}] Let $\\widehat G$ be the auxiliary group of Lemma~\\ref{lem:group-input}. Theorem~\\ref{thm:algebra-package} supplies an injective homomorphism $\\iota:\\widehat G\\to A^\\times$, where units in $"
     },
     {
-      "from": "m1-lem-affine-limit",
-      "to": "m1-prop-two-transitive-action",
-      "label": "lem:affine-limit",
-      "context": "iven by the diagonal on the right has image in $\\E_6(R)$. Since the transition $F$ is injective, this embeds $G$ in $E_\\infty$, and hence in $\\Gamma$ by Lemma~\\ref{lem:affine-limit}. Proposition~\\ref{prop:two-transitive-action} and the finite presentation of $\\Gamma$ give all the remaining assertion"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-prop-two-transitive-action",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] Suppose first that $G$ is finitely generated and has decidable word problem. Theorem~\\ref{thm:envelope} embeds it in"
-    },
-    {
-      "from": "m1-thm-zaremsky",
-      "to": "m1-prop-two-transitive-action",
-      "label": "thm:zaremsky",
-      "context": "y infinite set and finitely generated point stabilizers. There is exactly one orbit on unordered two-element subsets. These are all the hypotheses of Theorem~\\ref{thm:zaremsky}, which embeds $\\Gamma$ in a finitely presented simple group $S$. The group $S$ is nontrivial, since $\\Gamma$ acts tran"
-    },
-    {
-      "from": "m1-thm-monoids",
-      "to": "m1-lem-algebra-embeddings",
-      "label": "thm:monoids",
-      "context": "be a nonzero element of \\(A_0\\), with distinct nonzero support elements \\(h_j\\) and nonzero coefficients \\(\\lambda_j\\in k\\). Choose the selectors from Theorem~\\ref{thm:monoids}(iii). In the contracted algebra they give \\(LaR=\\lambda_1 1_{A_0}\\). Hence every nonzero two-sided ideal contains the"
-    },
-    {
-      "from": "m1-thm-algebra-package",
-      "to": "m1-lem-binary-tail-corner",
-      "label": "thm:algebra-package",
-      "context": "[Proof of Theorem~\\ref{thm:algebra-package}] The algebra \\(B\\) is nonzero and finitely presented by Lemma~\\ref{lem:algebra-embeddings}. Its subalgebra \\(A=i(A_0)\\"
-    },
-    {
       "from": "m1-lem-algebra-embeddings",
-      "to": "m1-lem-binary-tail-corner",
+      "to": "m1-thm-algebra-package",
       "label": "lem:algebra-embeddings",
       "context": "[Proof of Theorem~\\ref{thm:algebra-package}] The algebra \\(B\\) is nonzero and finitely presented by Lemma~\\ref{lem:algebra-embeddings}. Its subalgebra \\(A=i(A_0)\\) is simple with identity \\(e\\), and contains \\(L\\) in its unit group. The map \\(\\phi\\) is"
     },
     {
-      "from": "m1-lem-compiler",
-      "to": "m1-lem-bootstrap",
-      "label": "lem:compiler",
-      "context": "trict-dependency} m=M\\lfloor n/D_0\\rfloor<n. \\end{equation} The induction hypothesis supplies \\eqref{eq:budget-total}--\\eqref{eq:budget-context} at $m$. Lemma~\\ref{lem:compiler} therefore makes all these tests terminate. There are only finitely many tests and tuple decisions, and the subsequent s"
-    },
-    {
-      "from": "m2-lem-controlled-additivity",
-      "to": "m2-prop-uniform-fillings",
-      "label": "lem:controlled-additivity",
-      "context": "ded lengths. Suppose that the proposition is known in degrees less than $n$, where $n\\ge1$. We first obtain the controlled partial homotopy required by Lemma~\\ref{lem:controlled-additivity}. Begin with the map induced by $f$ and choose the vertex paths just described for its degree-zero homotopy to the cons"
-    },
-    {
-      "from": "m2-lem-idempotents",
-      "to": "m2-prop-uniform-fillings",
-      "label": "lem:idempotents",
-      "context": ". For a fixed $n$-cycle $z$, set \\[ z_E=[(h_Ef^k)_*z] \\] in the homology of this single bounded output complex. These classes satisfy all relations of Lemma~\\ref{lem:idempotents}. The identity class is the same in both systems, namely \\[ z_I=[(f^{k+1})_*z]. \\] It is annihilated by both $2$ and $"
-    },
-    {
-      "from": "m2-lem-product-criterion",
-      "to": "m2-lem-finite-extension",
-      "label": "lem:product-criterion",
-      "context": "finite. Complete it arbitrarily to a free \\(R\\)-resolution and restrict to \\(A\\). Index a product of copies of \\(A\\) by all cycles in degree \\(n\\). As in Lemma~\\ref{lem:product-criterion}, this family is one tensor cycle, and the preceding vanishing supplies a boundary using only finitely many basis elemen"
-    },
-    {
-      "from": "m2-lem-action-monoid-normal-form",
-      "to": "m2-lem-bounded-action-calculus",
-      "label": "lem:action-monoid-normal-form",
-      "context": "ems; no complete group is assumed, and no minimum-cost representative is sought. \\paragraph{Normal forms for the action monoid.} Apply the reductions of Lemma~\\ref{lem:action-monoid-normal-form} to the third family. Every reduction consumes disjoint input data, so the output labels have representations of jointl"
-    },
-    {
-      "from": "m2-lem-bounded-action-calculus",
-      "to": "m2-lem-encoding-bootstrap",
-      "label": "lem:bounded-action-calculus",
-      "context": "ependency} 3\\lfloor n/10\\rfloor<n, \\end{equation} the induction hypothesis supplies the compiler hypotheses through length $3d$. All tests terminate by Lemma~\\ref{lem:bounded-action-calculus}. Only finitely many code strings have length at most $n$, even though the symbol alphabet is countable and can contain"
-    },
-    {
-      "from": "m2-lem-action-monoid-normal-form",
-      "to": "m2-lem-encoding-embeddings",
-      "label": "lem:action-monoid-normal-form",
-      "context": ". Codes concatenate and the empty identity representative is allowed, giving unital multiplicative embeddings. The embedded groups are units, using also Lemma~\\ref{lem:action-monoid-normal-form}. For $h\\in L$ with normal word $\\overline h$, put \\[ c(h)=[\\operatorname{raw}(\\overline h)]\\in K. \\] Distinct normal"
-    },
-    {
-      "from": "m2-thm-ring-data",
-      "to": "m2-lem-encoding-finite-presentation",
-      "label": "thm:ring-data",
-      "context": "[Proof of Theorem~\\ref{thm:ring-data}] The ring properties follow from Lemma~\\ref{lem:encoding-finite-presentation}. The code embeddings put $G$ and $W$ in $"
-    },
-    {
-      "from": "m2-lem-enlargement",
-      "to": "m2-lem-encoding-finite-presentation",
-      "label": "lem:enlargement",
-      "context": "Thus these elements centralize $\\phi(B)$. Since $p\\in eBe$ and $e\\ne1_B$, we have $p\\ne1_B$, so $\\phi$ is nonunital. The diagram assertions follow from Lemma~\\ref{lem:enlargement} and Equations~\\eqref{eq:two-diagrams} and~\\eqref{eq:diagram-fixed-points}."
-    },
-    {
-      "from": "m2-lem-diagonal",
-      "to": "m2-lem-stage-permutations",
-      "label": "lem:diagonal",
-      "context": "by $\\eta^{-1}$. Moreover, \\[ vS_x=S_{\\eta(x)}\\quad(x\\in F), \\qquad vS_x=S_x\\quad(x\\in X\\setminus F). \\] The matrix $D_1(1+\\phi^2(v-1))$ lies in $Q$ by Lemma~\\ref{lem:diagonal}, and acts on $\\sigma(X)$ as required."
-    },
-    {
-      "from": "m2-lem-stage-permutations",
-      "to": "m2-lem-stage-faithful-transitive",
-      "label": "lem:stage-permutations",
-      "context": "images in the next stage lie in $\\sigma(X)$. The prescribed bijection between their entries extends to a finitely supported permutation of $\\sigma(X)$. Lemma~\\ref{lem:stage-permutations} supplies the required element of $Q_{i+1}$. This proves the asserted transitivity."
-    },
-    {
-      "from": "m2-thm-stage-kernel",
-      "to": "m2-lem-steinberg-lift",
-      "label": "thm:stage-kernel",
-      "context": "Apply Theorem~\\ref{thm:stage-kernel} with \\[ R=B,\\quad \\psi=\\phi,\\quad P=p, \\quad U_i=s_i,\\quad V_i=d_i. \\] Its hypotheses are precisely the support, comm"
-    },
-    {
-      "from": "m2-thm-ring-data",
-      "to": "m2-lem-steinberg-lift",
-      "label": "thm:ring-data",
-      "context": "with \\[ R=B,\\quad \\psi=\\phi,\\quad P=p, \\quad U_i=s_i,\\quad V_i=d_i. \\] Its hypotheses are precisely the support, commutation, and binary relations in Theorem~\\ref{thm:ring-data}. Consequently its coefficient map factors as a homomorphism \\[ \\lambda:\\E_6(B)\\longrightarrow\\St_6(B), \\qquad \\lambda"
-    },
-    {
-      "from": "m2-lem-diagonal",
-      "to": "m2-lem-steinberg-lift",
-      "label": "lem:diagonal",
-      "context": "$. By Equation~\\eqref{eq:stage-nonunital-matrix}, \\[ \\pi\\lambda(g)=I+\\phi^{(6)}(g-I). \\] The homomorphism on units used to define $\\mu$, together with Lemma~\\ref{lem:diagonal}, supplies a homomorphism \\[ A:B^\\times\\longrightarrow\\E_6(B), \\qquad A(v)=D_1\\bigl(1+\\phi(v-1)\\bigr). \\] Take $L=\\lam"
-    },
-    {
-      "from": "m2-lem-encoding-finite-presentation",
-      "to": "m2-lem-steinberg-lift",
-      "label": "lem:encoding-finite-presentation",
-      "context": ", \\qquad A(v)=D_1\\bigl(1+\\phi(v-1)\\bigr). \\] Take $L=\\lambda A$. The displayed formula for $\\pi\\lambda$ gives Equation~\\eqref{eq:stage-lift}. Finally, Lemma~\\ref{lem:encoding-finite-presentation} proves that $B$ is finitely presented as a unital associative ring: to its finite $\\F_2$-algebra presentation one adds"
-    },
-    {
-      "from": "m2-lem-steinberg-lift",
-      "to": "m2-lem-stage-stabilizer-factor",
-      "label": "lem:steinberg-lift",
-      "context": "E D_1(v')E^{-1}=D_2(v'). \\end{equation} In particular, the signed exchange leaves no sign or inversion on the moved unit. Let $L$ be the homomorphism of Lemma~\\ref{lem:steinberg-lift}, and define \\begin{equation}\\label{eq:stage-alpha} \\alpha(u)=L(\\rho(\\iota(u))). \\end{equation} By Equation~\\eqref{eq:s"
-    },
-    {
-      "from": "m2-thm-action",
-      "to": "m2-lem-stage-stabilizer-factor",
-      "label": "thm:action",
-      "context": "[Proof of Theorem~\\ref{thm:action}] The embedding $G\\hookrightarrow Q\\hookrightarrow\\Lambda$ was constructed above, and Lemma~\\ref{lem:stage-faithful-tran"
-    },
-    {
       "from": "m2-lem-stage-faithful-transitive",
-      "to": "m2-lem-stage-stabilizer-factor",
+      "to": "m2-thm-action",
       "label": "lem:stage-faithful-transitive",
       "context": "[Proof of Theorem~\\ref{thm:action}] The embedding $G\\hookrightarrow Q\\hookrightarrow\\Lambda$ was constructed above, and Lemma~\\ref{lem:stage-faithful-transitive} proves the assertions about the action. For a tuple $z$ chosen as above, Lemma~\\ref{lem:stage-stabilizer-torus} identi"
     },
     {
-      "from": "m2-lem-stage-stabilizer-torus",
-      "to": "m2-lem-stage-stabilizer-factor",
-      "label": "lem:stage-stabilizer-torus",
-      "context": "ow\\Lambda$ was constructed above, and Lemma~\\ref{lem:stage-faithful-transitive} proves the assertions about the action. For a tuple $z$ chosen as above, Lemma~\\ref{lem:stage-stabilizer-torus} identifies its pointwise stabilizer with the ascending torus of the injective endomorphism $f:U\\to U$. The diagrams in"
-    },
-    {
-      "from": "m2-thm-torus",
-      "to": "m2-lem-stage-stabilizer-factor",
-      "label": "thm:torus",
-      "context": "he injective endomorphism $f:U\\to U$. The diagrams in Equation~\\eqref{eq:stage-stabilizer-diagrams} satisfy the two orthogonal-splitting hypotheses of Theorem~\\ref{thm:torus}. Lemma~\\ref{lem:stage-stabilizer-factor}, together with finite presentation in Lemma~\\ref{lem:steinberg-lift}, supplies"
-    },
-    {
-      "from": "m2-thm-main",
-      "to": "m2-thm-twisted-transfer",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] Fix the finitely generated group \\(G\\) and its word-problem decider. Theorem~\\ref{thm:action} supplies an embedding \\("
-    },
-    {
       "from": "m2-thm-action",
-      "to": "m2-thm-twisted-transfer",
+      "to": "m2-thm-main",
       "label": "thm:action",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix the finitely generated group \\(G\\) and its word-problem decider. Theorem~\\ref{thm:action} supplies an embedding \\(G\\hookrightarrow\\Lambda\\) and a faithful highly transitive action of \\(\\Lambda\\) on a countably"
     },
     {
-      "from": "m2-lem-finite-extension",
-      "to": "m2-thm-twisted-transfer",
-      "label": "lem:finite-extension",
-      "context": "The setwise stabilizer \\(\\Lambda_{\\{F\\}}\\) acts on \\(F\\); its kernel is \\(\\Lambda_{(F)}\\), and its image lies in the finite symmetric group \\(\\Sym(F)\\). Lemma~\\ref{lem:finite-extension} therefore gives type \\(\\Finfty\\) for \\(\\Lambda_{\\{F\\}}\\). All hypotheses of Theorem~\\ref{thm:twisted-transfer} hold. Ta"
-    },
-    {
-      "from": "m3-thm-main",
-      "to": "m3-cor-recursive",
-      "label": "thm:main",
-      "context": "itely generated and recursively presented, Higman's embedding theorem places it in a finitely presented group~\\cite{Higman1961}, which embeds in $H$ by Theorem~\\ref{thm:main}. Conversely, $H$ is finitely presented because it has type $\\Finfty$. For a finitely generated subgroup $G\\le H$, repre"
-    },
-    {
-      "from": "m3-lem-hnn-injection",
-      "to": "m3-lem-universal",
-      "label": "lem:hnn-injection",
-      "context": "a,p\\rangle$ killing $C$ sends them to the $v_i$. Consequently $v_i\\mapsto c_iv_i$ extends to an isomorphism between these two free subgroups of $D$. By Lemma~\\ref{lem:hnn-injection}, $D$, and hence $C$, embeds in \\[ V=\\bigl\\langle D,q\\mid q^{-1}v_iq=c_iv_i\\quad(i\\geq0)\\bigr\\rangle. \\] The identities"
-    },
-    {
-      "from": "m3-prop-finite-envelope",
-      "to": "m3-prop-self-map",
-      "label": "prop:finite-envelope",
-      "context": "Apply Proposition~\\ref{prop:finite-envelope} to $U$. Since $\\widehat W$ is finitely presented, universality supplies an embedding $\\kappa:\\widehat W\\to U$. Set \\["
-    },
-    {
-      "from": "m3-thm-torus",
-      "to": "m3-prop-uniform-fillings",
-      "label": "thm:torus",
-      "context": "We argue by induction on $n$. By the finite-presentation factorization $f=ba$ in Theorem~\\ref{thm:torus}, the subgroup $b(P)$ is finitely generated and contains $f(U)$. Choose a finite symmetric generating set $S$ for $b(P)"
-    },
-    {
-      "from": "m3-lem-controlled-additivity",
-      "to": "m3-prop-uniform-fillings",
-      "label": "lem:controlled-additivity",
-      "context": "uppose $n\\ge1$ and the assertion holds in all degrees less than $n$, for every finite input bound. We first construct the partial controlled homotopy in Lemma~\\ref{lem:controlled-additivity} on $C_*^A(U)$. Start with $F=f_*$ and the vertex paths just chosen, which give its homotopy to the constant map in deg"
-    },
-    {
-      "from": "m3-lem-idempotents",
-      "to": "m3-prop-uniform-fillings",
-      "label": "lem:idempotents",
-      "context": "the common input $f^k(u)$. The two full-identity classes agree because both systems have $h_{\\ell,I}=f$: \\[ z_I:=z_{2,I}=z_{3,I}=[(f^{k+1})_*z]. \\] By Lemma~\\ref{lem:idempotents}, this single class is annihilated by both $2$ and $3$. Hence it is zero, since $z_I=3z_I-2z_I$. It therefore has a fin"
-    },
-    {
-      "from": "m3-thm-main",
-      "to": "m3-lem-product-criterion",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] Let $U$ be the universal finitely presented group supplied by Lemma~\\ref{lem:universal}. Corollary~\\ref{prop:self-map}"
-    },
-    {
       "from": "m3-lem-universal",
-      "to": "m3-lem-product-criterion",
+      "to": "m3-thm-main",
       "label": "lem:universal",
       "context": "[Proof of Theorem~\\ref{thm:main}] Let $U$ be the universal finitely presented group supplied by Lemma~\\ref{lem:universal}. Corollary~\\ref{prop:self-map} gives an injective endomorphism $f:U\\to U$ and, for each $\\ell\\in\\{2,3\\}$, homomorphisms"
     },
     {
       "from": "m3-prop-self-map",
-      "to": "m3-lem-product-criterion",
+      "to": "m3-thm-main",
       "label": "prop:self-map",
       "context": "[Proof of Theorem~\\ref{thm:main}] Let $U$ be the universal finitely presented group supplied by Lemma~\\ref{lem:universal}. Corollary~\\ref{prop:self-map} gives an injective endomorphism $f:U\\to U$ and, for each $\\ell\\in\\{2,3\\}$, homomorphisms $h_{\\ell,E}:U\\to U$ indexed by"
-    },
-    {
-      "from": "m3-thm-torus",
-      "to": "m3-lem-product-criterion",
-      "label": "thm:torus",
-      "context": "exed by $E\\in\\mathcal P_\\ell$. Their full-identity maps are both $f$, and they satisfy all the elementwise commutation and orthogonal-sum identities in Theorem~\\ref{thm:torus}. The factorization hypothesis of that theorem is automatic here: take $P=U$, $a=\\operatorname{id}_U$, and $b=f$. Hence"
     }
   ]
 }

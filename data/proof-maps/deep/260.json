@@ -99,7 +99,9 @@
           "kind": "theorem",
           "source": "Initial data and the main theorems",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-en-rest-preparation"
+          ]
         },
         {
           "id": "m1-thm-rigidity",
@@ -109,7 +111,10 @@
           "kind": "theorem",
           "source": "Initial data and the main theorems",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-va-stationary-data",
+            "m1-st-maximal-slice"
+          ]
         },
         {
           "id": "m1-thm-converse",
@@ -139,9 +144,7 @@
           "kind": "proposition",
           "source": "Full enclosing cuts and their minimizing frontiers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-ct-flux"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ct-confinement",
@@ -201,9 +204,7 @@
           "kind": "proposition",
           "source": "Full enclosing cuts and their minimizing frontiers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-ct-strict-compactness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ct-compatible-planes",
@@ -213,10 +214,7 @@
           "kind": "lemma",
           "source": "Full enclosing cuts and their minimizing frontiers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-ct-perimeter-equivalence",
-            "m1-ct-strict-compactness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-en-conformal",
@@ -256,9 +254,7 @@
           "kind": "lemma",
           "source": "Charge-preserving preparation of the asymptotic end",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-ct-full-cut-positive"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-en-compact-inverses",
@@ -278,9 +274,7 @@
           "kind": "lemma",
           "source": "Charge-preserving preparation of the asymptotic end",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-en-compact-inverses"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-en-rest-preparation",
@@ -290,12 +284,7 @@
           "kind": "proposition",
           "source": "Charge-preserving preparation of the asymptotic end",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-en-adm-flux",
-            "m1-en-annular-replacement",
-            "m1-en-strictification",
-            "m1-ct-perimeter-equivalence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sy-filled-setup",
@@ -365,10 +354,7 @@
           "kind": "lemma",
           "source": "Height, floor exclusion, and quantitative distortion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-es-height",
-            "m1-sy-stationary-minimum"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-es-high-integral",
@@ -388,9 +374,7 @@
           "kind": "lemma",
           "source": "Height, floor exclusion, and quantitative distortion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-sy-coercivity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-es-energy",
@@ -410,13 +394,7 @@
           "kind": "proposition",
           "source": "Height, floor exclusion, and quantitative distortion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-es-sobolev",
-            "m1-es-energy",
-            "m1-es-high-integral",
-            "m1-es-floor",
-            "m1-es-height"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-so-rough-gradient",
@@ -446,11 +424,7 @@
           "kind": "proposition",
           "source": "The elliptic construction and its physical end",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-es-distortion",
-            "m1-so-rough-gradient",
-            "m1-so-potential"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-so-trial-trace",
@@ -460,10 +434,7 @@
           "kind": "proposition",
           "source": "The elliptic construction and its physical end",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-so-rough-gradient"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-so-filled-solver",
@@ -473,11 +444,7 @@
           "kind": "theorem",
           "source": "The elliptic construction and its physical end",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-so-trial-trace",
-            "m1-so-coupled-regularity",
-            "m1-sy-zero-trace-reduction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cp-mass-cost",
@@ -487,10 +454,7 @@
           "kind": "lemma",
           "source": "Charged comparison and the numerical inequality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-so-filled-solver",
-            "m1-sy-coercivity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cp-height-gap",
@@ -510,13 +474,7 @@
           "kind": "lemma",
           "source": "Charged comparison and the numerical inequality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-so-filled-solver",
-            "m1-cp-mass-cost"
-          ],
-          "objectUses": [
-            "m1-sy-scalar-identity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cp-flux-projection",
@@ -556,12 +514,7 @@
           "kind": "proposition",
           "source": "Charged comparison and the numerical inequality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cp-outermost-enclosure",
-            "m1-cp-contact-exclusion",
-            "m1-cp-curvature",
-            "m1-cp-flux-projection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cp-numerical-prepared",
@@ -571,11 +524,7 @@
           "kind": "proposition",
           "source": "Charged comparison and the numerical inequality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cp-flux-projection",
-            "m1-en-timelike-reduction",
-            "m1-en-rest-preparation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-va-area-envelope",
@@ -585,10 +534,7 @@
           "kind": "lemma",
           "source": "Equality and multipliers on the original data",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-ct-area-derivative"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-va-separation",
@@ -618,9 +564,7 @@
           "kind": "lemma",
           "source": "Equality and multipliers on the original data",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-ct-compatible-planes"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-va-enlarged-obstacle",
@@ -630,9 +574,7 @@
           "kind": "proposition",
           "source": "Equality and multipliers on the original data",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-va-trace-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-va-smooth-moments",
@@ -642,9 +584,7 @@
           "kind": "lemma",
           "source": "Equality and multipliers on the original data",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-va-enlarged-obstacle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-va-normalization",
@@ -654,10 +594,7 @@
           "kind": "lemma",
           "source": "Equality and multipliers on the original data",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-va-separation",
-            "m1-va-smooth-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-va-stationary-data",
@@ -687,10 +624,7 @@
           "kind": "proposition",
           "source": "Equality and multipliers on the original data",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-en-conformal",
-            "m1-va-smooth-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-st-communication",
@@ -730,9 +664,7 @@
           "kind": "proposition",
           "source": "The communicating stationary region and a maximal hypersurface",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-st-smooth-parity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-st-stationary-end",
@@ -742,9 +674,7 @@
           "kind": "proposition",
           "source": "The communicating stationary region and a maximal hypersurface",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-va-stationary-data"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-st-temporal-graph",
@@ -754,10 +684,7 @@
           "kind": "lemma",
           "source": "The communicating stationary region and a maximal hypersurface",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-st-attachment"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-st-attachment-causality",
@@ -767,9 +694,7 @@
           "kind": "lemma",
           "source": "The communicating stationary region and a maximal hypersurface",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-st-temporal-graph"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-st-maximal-slice",
@@ -779,11 +704,7 @@
           "kind": "proposition",
           "source": "The communicating stationary region and a maximal hypersurface",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-st-attachment",
-            "m1-st-attachment-causality",
-            "m1-st-communication"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-st-maximal-boundary-graph",
@@ -803,12 +724,7 @@
           "kind": "lemma",
           "source": "Staticity, recovery of the original data, and sharpness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-st-maximal-slice"
-          ],
-          "objectUses": [
-            "m1-st-attachment"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ri-staticity",
@@ -818,12 +734,7 @@
           "kind": "proposition",
           "source": "Staticity, recovery of the original data, and sharpness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-va-stationary-data"
-          ],
-          "objectUses": [
-            "m1-va-potentials"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ri-static-mass",
@@ -833,16 +744,7 @@
           "kind": "lemma",
           "source": "Staticity, recovery of the original data, and sharpness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-st-maximal-slice",
-            "m1-ri-orbit-graph",
-            "m1-st-stationary-end",
-            "m1-va-stationary-data"
-          ],
-          "objectUses": [
-            "m1-ri-staticity",
-            "m1-en-adm-flux"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ri-rn-identification",
@@ -852,11 +754,7 @@
           "kind": "proposition",
           "source": "Staticity, recovery of the original data, and sharpness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-va-potentials",
-            "m1-st-stationary-end",
-            "m1-ri-static-mass"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ri-original-embedding",
@@ -866,17 +764,7 @@
           "kind": "proposition",
           "source": "Staticity, recovery of the original data, and sharpness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-ri-rn-identification",
-            "m1-ri-orbit-graph",
-            "m1-va-boundary",
-            "m1-st-attachment",
-            "m1-va-stationary-data",
-            "m1-st-maximal-slice",
-            "m1-va-potentials",
-            "m1-ri-staticity",
-            "m1-ri-static-mass"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ri-sharp-examples",
@@ -1013,10 +901,7 @@
           "kind": "proposition",
           "source": "Area positivity and preparation of the asymptotic end",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prep-strictification",
-            "m2-prep-compact-inverses"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prep-source-extension",

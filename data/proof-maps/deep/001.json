@@ -109,7 +109,9 @@
           "kind": "proposition",
           "source": "Transport through Hodge-type integral models",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-auxiliary-datum"
+          ]
         },
         {
           "id": "m1-lem-auxiliary-datum",
@@ -129,9 +131,7 @@
           "kind": "lemma",
           "source": "Transport through Hodge-type integral models",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-auxiliary-datum"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-cm-transport",
@@ -141,9 +141,7 @@
           "kind": "corollary",
           "source": "Transport through Hodge-type integral models",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-transport"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-filtration",
@@ -173,9 +171,7 @@
           "kind": "lemma",
           "source": "An endomorphism-stable weakly admissible filtration",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-avoidance"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-filtration-admissible",
@@ -195,10 +191,7 @@
           "kind": "corollary",
           "source": "An endomorphism-stable weakly admissible filtration",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-lift-hom"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-weil",
@@ -208,7 +201,10 @@
           "kind": "proposition",
           "source": "Balanced Weil classes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m1-lem-weil-orthogonality"
+          ]
         },
         {
           "id": "m1-lem-weil-orthogonality",
@@ -238,15 +234,7 @@
           "kind": "lemma",
           "source": "Balanced Weil classes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-transport",
-            "m1-cor-filtration-divisor",
-            "m1-lem-lift-hom",
-            "m1-lem-weil-divisor-span"
-          ],
-          "mentions": [
-            "m1-lem-weil-orthogonality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-cm-reduction",
@@ -266,12 +254,7 @@
           "kind": "corollary",
           "source": "CM reduction and consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-cm-reduction",
-            "m1-prop-weil",
-            "m1-lem-pairing-functorial",
-            "m1-cor-cm-transport"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-all-hodge-specialization",
@@ -281,9 +264,7 @@
           "kind": "corollary",
           "source": "CM reduction and consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cor-cm-transport"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-algebraic-specialization",
@@ -293,9 +274,7 @@
           "kind": "corollary",
           "source": "CM reduction and consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cor-cm-transport"
-          ]
+          "dependsOn": []
         }
       ]
     }

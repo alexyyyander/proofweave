@@ -69,7 +69,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-solvable-closure"
+          ]
         },
         {
           "id": "m1-lem-solvable-closure",
@@ -99,9 +101,7 @@
           "kind": "lemma",
           "source": "Galois groups and partial local correspondences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-uchida-isomorphism"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-local-correspondence",
@@ -131,9 +131,7 @@
           "kind": "lemma",
           "source": "Galois groups and partial local correspondences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-local-correspondence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-log-rank",
@@ -153,10 +151,7 @@
           "kind": "proposition",
           "source": "Additive characters and Frobenius detection",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-log-rank"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-signed-representation",
@@ -176,9 +171,7 @@
           "kind": "lemma",
           "source": "Normalizer extension and Frobenius generation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-uchida-isomorphism"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-quotient-amplification",
@@ -188,9 +181,7 @@
           "kind": "lemma",
           "source": "Normalizer extension and Frobenius generation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-signed-representation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-frobenius-generation",
@@ -200,10 +191,7 @@
           "kind": "proposition",
           "source": "Normalizer extension and Frobenius generation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-quotient-amplification",
-            "m1-prop-character-detection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-normalized-map",
@@ -213,10 +201,7 @@
           "kind": "theorem",
           "source": "Normalizer extension and Frobenius generation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-norm-identity",
-            "m1-prop-character-detection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-finite-fibers",
@@ -226,11 +211,7 @@
           "kind": "lemma",
           "source": "Matching residue characteristics",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-signed-representation",
-            "m1-prop-character-detection",
-            "m1-thm-normalized-map"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-kummer-unramified",
@@ -250,10 +231,7 @@
           "kind": "proposition",
           "source": "Matching residue characteristics",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-normalized-map",
-            "m1-lem-kummer-unramified"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-power-separation",
@@ -273,11 +251,7 @@
           "kind": "proposition",
           "source": "Matching residue characteristics",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-finite-fibers",
-            "m1-lem-power-separation",
-            "m1-lem-norm-identity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-identify-normalized",
@@ -287,11 +261,7 @@
           "kind": "proposition",
           "source": "Identifying the homomorphism",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-same-characteristic",
-            "m1-prop-character-detection",
-            "m1-prop-signed-representation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-prosolvable-rigidity",
@@ -301,12 +271,7 @@
           "kind": "theorem",
           "source": "Identifying the homomorphism",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-identify-normalized",
-            "m1-lem-centralizer",
-            "m1-lem-solvable-closure",
-            "m1-thm-hoshi"
-          ]
+          "dependsOn": []
         }
       ]
     }

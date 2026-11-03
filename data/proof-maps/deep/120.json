@@ -169,9 +169,7 @@
           "kind": "lemma",
           "source": "Matching states and structural operations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-match-deletion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-match-tight-contraction",
@@ -181,9 +179,7 @@
           "kind": "lemma",
           "source": "Matching states and structural operations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-match-bottom-surplus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-match-pair-action",
@@ -203,9 +199,7 @@
           "kind": "lemma",
           "source": "Matching states and structural operations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-match-tight-contraction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-projection",
@@ -225,9 +219,7 @@
           "kind": "lemma",
           "source": "Local projection and the perfect-matching bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prelim-small-violation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-proj-local-cut",
@@ -237,10 +229,7 @@
           "kind": "lemma",
           "source": "Local projection and the perfect-matching bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-phase-guard-adequacy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-phase-accounting",
@@ -250,14 +239,7 @@
           "kind": "lemma",
           "source": "Local projection and the perfect-matching bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-match-deletion",
-            "m1-match-exchange-projection",
-            "m1-match-bottom-surplus"
-          ],
-          "objectUses": [
-            "m1-match-top-maintenance"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-phase-stall",
@@ -267,9 +249,7 @@
           "kind": "lemma",
           "source": "Local projection and the perfect-matching bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-match-top-maintenance"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-phase-guard-adequacy",
@@ -289,13 +269,7 @@
           "kind": "theorem",
           "source": "Local projection and the perfect-matching bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-phase-guard-adequacy"
-          ],
-          "objectUses": [
-            "m1-match-pair-action",
-            "m1-lem-priced-steps"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-priced-steps",
@@ -315,7 +289,10 @@
           "kind": "lemma",
           "source": "Priced logarithmic steps",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-update-anchor-core",
+            "m1-lem-backend-reduction"
+          ]
         },
         {
           "id": "m1-engine-tree-cost",
@@ -345,7 +322,9 @@
           "kind": "lemma",
           "source": "A resource-preserving static routing sparsifier",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-route-sampling"
+          ]
         },
         {
           "id": "m1-route-sampling",
@@ -385,12 +364,7 @@
           "kind": "lemma",
           "source": "A resource-preserving static routing sparsifier",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-route-cheeger",
-            "m1-route-sampling",
-            "m1-lem-integral-flow",
-            "m1-lem-capacity-scaling"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-back-base",
@@ -440,9 +414,7 @@
           "kind": "lemma",
           "source": "Frozen decompositions and cycle quality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-back-path-law"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-back-portals",
@@ -472,9 +444,7 @@
           "kind": "lemma",
           "source": "Frozen decompositions and cycle quality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-back-frozen-decomposition"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-back-quality-induction",
@@ -484,9 +454,7 @@
           "kind": "corollary",
           "source": "Frozen decompositions and cycle quality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-backend-reduction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-update-classes",
@@ -506,10 +474,7 @@
           "kind": "lemma",
           "source": "Maintaining and exposing the cycle backend",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-update-classes",
-            "m1-lem-routing-helper"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-update-support",
@@ -519,9 +484,7 @@
           "kind": "lemma",
           "source": "Maintaining and exposing the cycle backend",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-update-classes"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-update-compressed-edits",
@@ -531,9 +494,7 @@
           "kind": "lemma",
           "source": "Maintaining and exposing the cycle backend",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-update-support"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-update-flat-lift",
@@ -563,9 +524,7 @@
           "kind": "lemma",
           "source": "Maintaining and exposing the cycle backend",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-update-compressed-edits"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-update-recurrences",
@@ -575,10 +534,7 @@
           "kind": "lemma",
           "source": "Maintaining and exposing the cycle backend",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-update-compressed-edits",
-            "m1-update-recourse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-update-reliability",
@@ -588,16 +544,7 @@
           "kind": "lemma",
           "source": "Maintaining and exposing the cycle backend",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-update-recurrences",
-            "m1-lem-routing-helper",
-            "m1-lem-flat-cycle",
-            "m1-update-anchor-core",
-            "m1-lem-backend-reduction",
-            "m1-update-flat-lift",
-            "m1-update-multiplicity",
-            "m1-update-recourse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-uniform-network",
@@ -617,9 +564,7 @@
           "kind": "lemma",
           "source": "Explicit output and one uniform program",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-uniform-network"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-uniform-degree",
@@ -639,10 +584,7 @@
           "kind": "lemma",
           "source": "Explicit output and one uniform program",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-subcubic",
-            "m1-lem-flat-cycle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-uniform-physical-ram",
@@ -652,10 +594,7 @@
           "kind": "lemma",
           "source": "Explicit output and one uniform program",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-uniform-fixed-branch"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-f-factor",
@@ -675,12 +614,7 @@
           "kind": "lemma",
           "source": "Prescribed-degree factors",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main"
-          ],
-          "objectUses": [
-            "m1-uniform-network"
-          ]
+          "dependsOn": []
         }
       ]
     }

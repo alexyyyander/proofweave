@@ -114,9 +114,7 @@
           "kind": "proposition",
           "source": "Path diagrams and missing recurrent classes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-auto-representation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-diag-missing",
@@ -146,9 +144,7 @@
           "kind": "lemma",
           "source": "Path diagrams and missing recurrent classes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-diag-rectangles"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-nest-absorption",
@@ -168,10 +164,7 @@
           "kind": "lemma",
           "source": "A loss budget for nested idempotents",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-diag-rectangles",
-            "m1-nest-absorption"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-nest-chain",
@@ -181,10 +174,7 @@
           "kind": "proposition",
           "source": "A loss budget for nested idempotents",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-nest-absorption",
-            "m1-nest-containment"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-amp-minimal-corner",
@@ -214,14 +204,7 @@
           "kind": "proposition",
           "source": "An exponential bound for order-reversing images",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-diag-rectangles",
-            "m1-diag-transport",
-            "m1-diag-missing",
-            "m1-nest-chain",
-            "m1-amp-relation-corner",
-            "m1-amp-minimal-corner"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-auto-source",
@@ -231,10 +214,7 @@
           "kind": "lemma",
           "source": "Finite computations and the main lower bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-auto-order-reversal",
-            "m1-amp-image"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-auto-determinization",
@@ -244,9 +224,7 @@
           "kind": "corollary",
           "source": "Finite computations and the main lower bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-main-theorem"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -273,7 +251,10 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m2-prop-small-nfa"
+          ]
         },
         {
           "id": "m2-cor-no-polynomial",
@@ -313,9 +294,7 @@
           "kind": "lemma",
           "source": "Matching and relation corners",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-corners"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-relation-corner",
@@ -335,12 +314,7 @@
           "kind": "theorem",
           "source": "An exponential rank-loss bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-corners",
-            "m2-lem-rank-basic",
-            "m2-lem-unit-lifts",
-            "m2-lem-relation-corner"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-divisor-degree",
@@ -350,10 +324,7 @@
           "kind": "corollary",
           "source": "An exponential rank-loss bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-unit-lifts",
-            "m2-thm-rank-loss"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-machine-diagrams",
@@ -403,13 +374,7 @@
           "kind": "lemma",
           "source": "From relation products to the state lower bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-machine-diagrams",
-            "m2-cor-divisor-degree"
-          ],
-          "mentions": [
-            "m2-prop-small-nfa"
-          ]
+          "dependsOn": []
         }
       ]
     }

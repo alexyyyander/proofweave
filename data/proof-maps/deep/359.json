@@ -139,7 +139,10 @@
           "kind": "proposition",
           "source": "Two inputs and the bounded-map obstruction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-metric-complete"
+          ]
         },
         {
           "id": "m1-map-obstruction",
@@ -249,12 +252,7 @@
           "kind": "lemma",
           "source": "Positive representing densities",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-density-moments"
-          ],
-          "objectUses": [
-            "m1-density-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tests-averaging",
@@ -264,9 +262,7 @@
           "kind": "lemma",
           "source": "Regularized logarithmic tests",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-density-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tests-negative",
@@ -276,10 +272,7 @@
           "kind": "proposition",
           "source": "Regularized logarithmic tests",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-peaks-profiles",
-            "m1-peaks-bounds"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tests-later",
@@ -289,10 +282,7 @@
           "kind": "lemma",
           "source": "Regularized logarithmic tests",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-density-moments",
-            "m1-density-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-base-convergence",
@@ -302,9 +292,7 @@
           "kind": "lemma",
           "source": "The controlled base potential",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-peaks-bounds"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-base-minorant",
@@ -314,10 +302,7 @@
           "kind": "lemma",
           "source": "The controlled base potential",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-density-main",
-            "m1-peaks-mean-criterion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-base-chart-estimates",
@@ -327,15 +312,7 @@
           "kind": "lemma",
           "source": "The controlled base potential",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-base-convergence",
-            "m1-base-minorant",
-            "m1-metric-transfer"
-          ],
-          "objectUses": [
-            "m1-peaks-bounds",
-            "m1-tests-later"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-metric-complete",
@@ -405,13 +382,7 @@
           "kind": "lemma",
           "source": "Uniform pinching on real two-planes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-pinch-algebra",
-            "m1-curv-tensor"
-          ],
-          "objectUses": [
-            "m1-metric-complete"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -438,7 +409,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-tube-transfer"
+          ]
         },
         {
           "id": "m2-tube-transfer",
@@ -498,12 +471,7 @@
           "kind": "proposition",
           "source": "Polynomial tests for bounded holomorphic functions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-grid-phases"
-          ],
-          "objectUses": [
-            "m2-grid-frequency"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-fiber-metric",
@@ -563,13 +531,7 @@
           "kind": "proposition",
           "source": "A spatially varying quiet fiber profile",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-fiber-perturbation",
-            "m2-fiber-metric"
-          ],
-          "objectUses": [
-            "m2-fiber-blocks"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-quiet-shear",
@@ -579,13 +541,7 @@
           "kind": "proposition",
           "source": "A spatially varying quiet fiber profile",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-fiber-metric",
-            "m2-fiber-perturbation"
-          ],
-          "objectUses": [
-            "m2-fiber-blocks"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-radial-odes",
@@ -625,12 +581,7 @@
           "kind": "proposition",
           "source": "Radial spatial geometry and aligned profiles",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-radial-scaled",
-            "m2-radial-curvature",
-            "m2-fiber-perturbation",
-            "m2-fiber-ranktwo"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-center-change",
@@ -650,14 +601,7 @@
           "kind": "lemma",
           "source": "Changing the fiber center",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-radial-curvature",
-            "m2-radial-scaled",
-            "m2-radial-aligned"
-          ],
-          "objectUses": [
-            "m2-fiber-blocks"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-assembly-base",
@@ -717,9 +661,7 @@
           "kind": "lemma",
           "source": "Assembly of the complete base",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-radial-aligned"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-assembly-reset",
@@ -729,14 +671,7 @@
           "kind": "lemma",
           "source": "Assembly of the complete base",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-quiet-profile",
-            "m2-assembly-height",
-            "m2-grid-criterion",
-            "m2-thm-main",
-            "m2-tube-transfer",
-            "m2-tube-negative-plane"
-          ]
+          "dependsOn": []
         }
       ]
     }

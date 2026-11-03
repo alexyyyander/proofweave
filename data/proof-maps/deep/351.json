@@ -124,7 +124,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-scalar-inner"
+          ]
         },
         {
           "id": "m1-prop-input",
@@ -174,9 +176,7 @@
           "kind": "lemma",
           "source": "Geometric identities and profile consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-uniform"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-full-curvature",
@@ -196,9 +196,7 @@
           "kind": "lemma",
           "source": "Curvature at the radius and cap scales",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-annuli"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-pole-size",
@@ -208,10 +206,7 @@
           "kind": "lemma",
           "source": "Curvature at the radius and cap scales",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-gap",
-            "m1-lem-gradients"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-cap-slope",
@@ -221,10 +216,7 @@
           "kind": "lemma",
           "source": "Curvature at the radius and cap scales",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-pole-size",
-            "m1-lem-r-curvature"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-heat-perturbation",
@@ -244,10 +236,7 @@
           "kind": "lemma",
           "source": "A dimension-explicit Ricci reaction bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-uniform"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-reaction",
@@ -257,10 +246,7 @@
           "kind": "proposition",
           "source": "A dimension-explicit Ricci reaction bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-largeq-derivatives",
-            "m1-prop-full-curvature"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-ricci-barrier",
@@ -270,9 +256,7 @@
           "kind": "proposition",
           "source": "Comparison and the scalar-curvature bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-annuli"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-scalar-inner",
@@ -282,9 +266,7 @@
           "kind": "proposition",
           "source": "Comparison and the scalar-curvature bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-annuli"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-exterior",
@@ -294,15 +276,7 @@
           "kind": "proposition",
           "source": "Comparison and the scalar-curvature bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-scalar-inner",
-            "m1-lem-gradients",
-            "m1-lem-pole-size"
-          ],
-          "objectUses": [
-            "m1-prop-reaction",
-            "m1-lem-annuli"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-rates",
@@ -312,10 +286,7 @@
           "kind": "corollary",
           "source": "Comparison and the scalar-curvature bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-full-curvature",
-            "m1-lem-pole-size"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -432,9 +403,7 @@
           "kind": "lemma",
           "source": "Small-scale geometry and the outermost scale",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-root-scale"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-buffered-intervals",
@@ -444,9 +413,7 @@
           "kind": "proposition",
           "source": "Small-scale geometry and the outermost scale",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-geom-scale-change-time"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-geom-rescaled-motion",
@@ -456,9 +423,7 @@
           "kind": "corollary",
           "source": "Small-scale geometry and the outermost scale",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-geom-slow-motion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-geom-exterior-geometry",
@@ -468,10 +433,7 @@
           "kind": "proposition",
           "source": "Small-scale geometry and the outermost scale",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-geom-neck",
-            "m2-geom-rescaled-motion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-para-local-smoothing",
@@ -511,12 +473,7 @@
           "kind": "proposition",
           "source": "Concentration estimates for the Ricci equation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-para-local-smoothing"
-          ],
-          "objectUses": [
-            "m2-para-radial-lemma"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-para-maximal-lemma",
@@ -526,9 +483,7 @@
           "kind": "lemma",
           "source": "Concentration estimates for the Ricci equation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-exterior-ricci"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-interior-ricci",
@@ -538,10 +493,7 @@
           "kind": "proposition",
           "source": "Concentration estimates for the Ricci equation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-para-local-smoothing",
-            "m2-para-radial-lemma"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-collar-extension",
@@ -581,13 +533,7 @@
           "kind": "lemma",
           "source": "Functional change and the contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-exterior-ricci",
-            "m2-thm-degeneration"
-          ],
-          "objectUses": [
-            "m2-prop-root-scale"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-final-collar-bound",
@@ -597,9 +543,7 @@
           "kind": "lemma",
           "source": "Functional change and the contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-exterior-ricci"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-final-variation",
@@ -609,9 +553,7 @@
           "kind": "proposition",
           "source": "Functional change and the contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-final-collar-position"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-final-functional-smallness",
@@ -621,10 +563,7 @@
           "kind": "proposition",
           "source": "Functional change and the contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-thm-tree-inequality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-final-energy-vanishes",
@@ -644,11 +583,7 @@
           "kind": "lemma",
           "source": "Functional change and the contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-interior-ricci",
-            "m2-final-energy-vanishes",
-            "m2-prop-exterior-ricci"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-final-good-points",
@@ -658,10 +593,7 @@
           "kind": "lemma",
           "source": "Functional change and the contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-geom-geodesic-radius",
-            "m2-thm-degeneration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-final-root-fixed",
@@ -671,11 +603,7 @@
           "kind": "proposition",
           "source": "Functional change and the contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-final-good-points",
-            "m2-thm-degeneration",
-            "m2-prop-root-scale"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -712,7 +640,10 @@
           "kind": "theorem",
           "source": "Tree geometry and the renormalized functional",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m3-ell-functional"
+          ]
         },
         {
           "id": "m3-thm-path-selection",
@@ -722,7 +653,9 @@
           "kind": "theorem",
           "source": "Selection of paths at several exponential ends",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m3-path-centers"
+          ]
         },
         {
           "id": "m3-path-variation",
@@ -752,9 +685,7 @@
           "kind": "lemma",
           "source": "Selection of paths at several exponential ends",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-path-sector-uniqueness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-path-family-limits",
@@ -764,9 +695,7 @@
           "kind": "lemma",
           "source": "Selection of paths at several exponential ends",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-path-clock"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-path-prepared-contours",
@@ -786,9 +715,7 @@
           "kind": "lemma",
           "source": "Selection of paths at several exponential ends",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-path-prepared-contours"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-path-detection",
@@ -808,10 +735,7 @@
           "kind": "lemma",
           "source": "Selection of paths at several exponential ends",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-path-roots",
-            "m3-path-prepared-contours"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-path-centers",
@@ -821,15 +745,7 @@
           "kind": "proposition",
           "source": "Selection of paths at several exponential ends",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-path-adjoin-p",
-            "m3-path-clock",
-            "m3-path-prepared-contours",
-            "m3-path-family-limits",
-            "m3-path-sector-uniqueness",
-            "m3-path-detection",
-            "m3-path-roots"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-path-sign-elimination",
@@ -839,12 +755,7 @@
           "kind": "lemma",
           "source": "Selection of paths at several exponential ends",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-path-roots",
-            "m3-path-centers",
-            "m3-path-prepared-contours",
-            "m3-path-clock"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ell-disconnected-inverse",
@@ -864,9 +775,7 @@
           "kind": "lemma",
           "source": "Augmented inverses and the analytic family",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-ell-disconnected-inverse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ell-complex-inverse",
@@ -876,9 +785,7 @@
           "kind": "lemma",
           "source": "Augmented inverses and the analytic family",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-ell-seam-inverse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ell-gauge",
@@ -898,9 +805,7 @@
           "kind": "lemma",
           "source": "Augmented inverses and the analytic family",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-ell-complex-inverse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ell-comparison",
@@ -910,9 +815,7 @@
           "kind": "lemma",
           "source": "Augmented inverses and the analytic family",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-ell-functional"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ell-flat-tail",
@@ -922,10 +825,7 @@
           "kind": "lemma",
           "source": "Tail expansions and prescribed growth",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m3-ell-complex-inverse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ell-prescribed-tails",
@@ -935,10 +835,7 @@
           "kind": "lemma",
           "source": "Tail expansions and prescribed growth",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-ell-flat-tail",
-            "m3-ell-analytic-family"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ell-triangular",
@@ -958,14 +855,7 @@
           "kind": "lemma",
           "source": "Expansion in one length",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-ell-prescribed-tails",
-            "m3-ell-triangular",
-            "m3-ell-flat-tail"
-          ],
-          "objectUses": [
-            "m3-ell-seam-inverse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ell-finite-parts",
@@ -975,9 +865,7 @@
           "kind": "lemma",
           "source": "Scalar expansions and the tree inequality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-ell-analytic-family"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ell-all-orders",
@@ -987,15 +875,7 @@
           "kind": "proposition",
           "source": "Scalar expansions and the tree inequality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-ell-one-length",
-            "m3-ell-finite-parts",
-            "m3-ell-analytic-family",
-            "m3-ell-flat-tail"
-          ],
-          "objectUses": [
-            "m3-thm-path-selection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-ell-differential",
@@ -1005,14 +885,7 @@
           "kind": "lemma",
           "source": "Scalar expansions and the tree inequality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-ell-comparison",
-            "m3-ell-all-orders",
-            "m3-path-variation"
-          ],
-          "mentions": [
-            "m3-ell-functional"
-          ]
+          "dependsOn": []
         }
       ]
     }

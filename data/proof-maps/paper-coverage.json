@@ -4,14 +4,14 @@
   "reviewStatus": "unreviewed",
   "generatedAt": "2026-11-02",
   "commit": "1581d4cbdd69a0faf34b2089614fe2a814316a6a",
-  "sourceNote": "Theorem-like statements and explicit references inside proofs, extracted from the pinned upstream LaTeX sources. A reference is not a verified proof dependency.",
+  "sourceNote": "Theorem-like statements and references from explicitly named proofs in pinned upstream LaTeX. References are not verified proof dependencies; proofs without a unique explicit target are omitted.",
   "summary": {
     "families": 372,
     "familiesWithStructure": 347,
     "papers": 548,
     "sections": 3544,
     "statements": 13629,
-    "edges": 14401
+    "edges": 357
   },
   "families": [
     {
@@ -20,7 +20,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 21,
-      "edges": 20
+      "edges": 2
     },
     {
       "familyNumber": "002",
@@ -28,7 +28,7 @@
       "manuscripts": 3,
       "sections": 12,
       "statements": 80,
-      "edges": 77
+      "edges": 1
     },
     {
       "familyNumber": "003",
@@ -36,7 +36,7 @@
       "manuscripts": 2,
       "sections": 22,
       "statements": 70,
-      "edges": 87
+      "edges": 2
     },
     {
       "familyNumber": "004",
@@ -44,7 +44,7 @@
       "manuscripts": 2,
       "sections": 12,
       "statements": 80,
-      "edges": 100
+      "edges": 1
     },
     {
       "familyNumber": "005",
@@ -52,7 +52,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 13,
-      "edges": 7
+      "edges": 2
     },
     {
       "familyNumber": "006",
@@ -60,7 +60,7 @@
       "manuscripts": 2,
       "sections": 12,
       "statements": 80,
-      "edges": 108
+      "edges": 1
     },
     {
       "familyNumber": "007",
@@ -68,7 +68,7 @@
       "manuscripts": 1,
       "sections": 16,
       "statements": 65,
-      "edges": 55
+      "edges": 2
     },
     {
       "familyNumber": "008",
@@ -76,7 +76,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 25,
-      "edges": 22
+      "edges": 0
     },
     {
       "familyNumber": "009",
@@ -84,7 +84,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 59,
-      "edges": 95
+      "edges": 2
     },
     {
       "familyNumber": "010",
@@ -92,7 +92,7 @@
       "manuscripts": 2,
       "sections": 12,
       "statements": 54,
-      "edges": 55
+      "edges": 1
     },
     {
       "familyNumber": "011",
@@ -100,7 +100,7 @@
       "manuscripts": 3,
       "sections": 19,
       "statements": 80,
-      "edges": 47
+      "edges": 1
     },
     {
       "familyNumber": "012",
@@ -108,7 +108,7 @@
       "manuscripts": 1,
       "sections": 11,
       "statements": 39,
-      "edges": 24
+      "edges": 1
     },
     {
       "familyNumber": "013",
@@ -116,7 +116,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 16,
-      "edges": 9
+      "edges": 0
     },
     {
       "familyNumber": "014",
@@ -124,7 +124,7 @@
       "manuscripts": 3,
       "sections": 14,
       "statements": 80,
-      "edges": 90
+      "edges": 5
     },
     {
       "familyNumber": "015",
@@ -132,7 +132,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 43,
-      "edges": 39
+      "edges": 1
     },
     {
       "familyNumber": "016",
@@ -140,7 +140,7 @@
       "manuscripts": 3,
       "sections": 18,
       "statements": 58,
-      "edges": 58
+      "edges": 2
     },
     {
       "familyNumber": "017",
@@ -148,7 +148,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 12,
-      "edges": 11
+      "edges": 1
     },
     {
       "familyNumber": "018",
@@ -156,7 +156,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 80,
-      "edges": 61
+      "edges": 0
     },
     {
       "familyNumber": "019",
@@ -164,7 +164,7 @@
       "manuscripts": 2,
       "sections": 8,
       "statements": 23,
-      "edges": 28
+      "edges": 0
     },
     {
       "familyNumber": "020",
@@ -172,7 +172,7 @@
       "manuscripts": 1,
       "sections": 11,
       "statements": 26,
-      "edges": 13
+      "edges": 0
     },
     {
       "familyNumber": "021",
@@ -180,7 +180,7 @@
       "manuscripts": 1,
       "sections": 12,
       "statements": 38,
-      "edges": 60
+      "edges": 1
     },
     {
       "familyNumber": "022",
@@ -188,7 +188,7 @@
       "manuscripts": 1,
       "sections": 10,
       "statements": 54,
-      "edges": 58
+      "edges": 1
     },
     {
       "familyNumber": "023",
@@ -196,7 +196,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 27,
-      "edges": 35
+      "edges": 1
     },
     {
       "familyNumber": "025",
@@ -204,7 +204,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 18,
-      "edges": 17
+      "edges": 2
     },
     {
       "familyNumber": "026",
@@ -212,7 +212,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 11,
-      "edges": 9
+      "edges": 2
     },
     {
       "familyNumber": "027",
@@ -220,7 +220,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 15,
-      "edges": 9
+      "edges": 0
     },
     {
       "familyNumber": "028",
@@ -228,7 +228,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 15,
-      "edges": 12
+      "edges": 0
     },
     {
       "familyNumber": "029",
@@ -236,7 +236,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 43,
-      "edges": 36
+      "edges": 0
     },
     {
       "familyNumber": "030",
@@ -244,7 +244,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 30,
-      "edges": 34
+      "edges": 0
     },
     {
       "familyNumber": "031",
@@ -252,7 +252,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 21,
-      "edges": 30
+      "edges": 1
     },
     {
       "familyNumber": "032",
@@ -260,7 +260,7 @@
       "manuscripts": 3,
       "sections": 17,
       "statements": 80,
-      "edges": 109
+      "edges": 3
     },
     {
       "familyNumber": "033",
@@ -268,7 +268,7 @@
       "manuscripts": 3,
       "sections": 13,
       "statements": 80,
-      "edges": 82
+      "edges": 1
     },
     {
       "familyNumber": "034",
@@ -276,7 +276,7 @@
       "manuscripts": 3,
       "sections": 13,
       "statements": 80,
-      "edges": 129
+      "edges": 3
     },
     {
       "familyNumber": "035",
@@ -284,7 +284,7 @@
       "manuscripts": 2,
       "sections": 11,
       "statements": 40,
-      "edges": 39
+      "edges": 1
     },
     {
       "familyNumber": "036",
@@ -292,7 +292,7 @@
       "manuscripts": 3,
       "sections": 17,
       "statements": 80,
-      "edges": 81
+      "edges": 3
     },
     {
       "familyNumber": "037",
@@ -300,7 +300,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 56,
-      "edges": 61
+      "edges": 2
     },
     {
       "familyNumber": "038",
@@ -308,7 +308,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 18,
-      "edges": 13
+      "edges": 0
     },
     {
       "familyNumber": "039",
@@ -316,7 +316,7 @@
       "manuscripts": 3,
       "sections": 15,
       "statements": 48,
-      "edges": 57
+      "edges": 2
     },
     {
       "familyNumber": "040",
@@ -324,7 +324,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 33,
-      "edges": 40
+      "edges": 2
     },
     {
       "familyNumber": "041",
@@ -332,7 +332,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 17,
-      "edges": 5
+      "edges": 0
     },
     {
       "familyNumber": "042",
@@ -340,7 +340,7 @@
       "manuscripts": 1,
       "sections": 10,
       "statements": 40,
-      "edges": 43
+      "edges": 2
     },
     {
       "familyNumber": "043",
@@ -348,7 +348,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 32,
-      "edges": 23
+      "edges": 1
     },
     {
       "familyNumber": "044",
@@ -356,7 +356,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 25,
-      "edges": 32
+      "edges": 0
     },
     {
       "familyNumber": "046",
@@ -364,7 +364,7 @@
       "manuscripts": 2,
       "sections": 12,
       "statements": 45,
-      "edges": 30
+      "edges": 1
     },
     {
       "familyNumber": "047",
@@ -372,7 +372,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 17,
-      "edges": 21
+      "edges": 1
     },
     {
       "familyNumber": "048",
@@ -380,7 +380,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 18,
-      "edges": 15
+      "edges": 1
     },
     {
       "familyNumber": "049",
@@ -388,7 +388,7 @@
       "manuscripts": 1,
       "sections": 2,
       "statements": 3,
-      "edges": 2
+      "edges": 0
     },
     {
       "familyNumber": "050",
@@ -396,7 +396,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 10,
-      "edges": 11
+      "edges": 2
     },
     {
       "familyNumber": "051",
@@ -404,7 +404,7 @@
       "manuscripts": 1,
       "sections": 11,
       "statements": 25,
-      "edges": 21
+      "edges": 0
     },
     {
       "familyNumber": "052",
@@ -412,7 +412,7 @@
       "manuscripts": 2,
       "sections": 16,
       "statements": 41,
-      "edges": 25
+      "edges": 1
     },
     {
       "familyNumber": "053",
@@ -420,7 +420,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 33,
-      "edges": 25
+      "edges": 2
     },
     {
       "familyNumber": "054",
@@ -428,7 +428,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 46,
-      "edges": 71
+      "edges": 1
     },
     {
       "familyNumber": "055",
@@ -436,7 +436,7 @@
       "manuscripts": 2,
       "sections": 11,
       "statements": 55,
-      "edges": 46
+      "edges": 1
     },
     {
       "familyNumber": "056",
@@ -444,7 +444,7 @@
       "manuscripts": 2,
       "sections": 17,
       "statements": 68,
-      "edges": 95
+      "edges": 4
     },
     {
       "familyNumber": "057",
@@ -452,7 +452,7 @@
       "manuscripts": 2,
       "sections": 8,
       "statements": 39,
-      "edges": 37
+      "edges": 1
     },
     {
       "familyNumber": "058",
@@ -460,7 +460,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 73,
-      "edges": 64
+      "edges": 1
     },
     {
       "familyNumber": "059",
@@ -468,7 +468,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 51,
-      "edges": 54
+      "edges": 2
     },
     {
       "familyNumber": "060",
@@ -476,7 +476,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 33,
-      "edges": 47
+      "edges": 1
     },
     {
       "familyNumber": "062",
@@ -484,7 +484,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 32,
-      "edges": 29
+      "edges": 1
     },
     {
       "familyNumber": "063",
@@ -492,7 +492,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 13,
-      "edges": 9
+      "edges": 0
     },
     {
       "familyNumber": "064",
@@ -500,7 +500,7 @@
       "manuscripts": 1,
       "sections": 12,
       "statements": 33,
-      "edges": 28
+      "edges": 0
     },
     {
       "familyNumber": "065",
@@ -508,7 +508,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 62,
-      "edges": 68
+      "edges": 1
     },
     {
       "familyNumber": "066",
@@ -516,7 +516,7 @@
       "manuscripts": 2,
       "sections": 16,
       "statements": 80,
-      "edges": 81
+      "edges": 1
     },
     {
       "familyNumber": "067",
@@ -524,7 +524,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 13,
-      "edges": 9
+      "edges": 0
     },
     {
       "familyNumber": "069",
@@ -532,7 +532,7 @@
       "manuscripts": 1,
       "sections": 12,
       "statements": 68,
-      "edges": 69
+      "edges": 0
     },
     {
       "familyNumber": "071",
@@ -540,7 +540,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 42,
-      "edges": 56
+      "edges": 1
     },
     {
       "familyNumber": "072",
@@ -548,7 +548,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 38,
-      "edges": 38
+      "edges": 2
     },
     {
       "familyNumber": "073",
@@ -556,7 +556,7 @@
       "manuscripts": 1,
       "sections": 11,
       "statements": 46,
-      "edges": 61
+      "edges": 1
     },
     {
       "familyNumber": "074",
@@ -564,7 +564,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 80,
-      "edges": 111
+      "edges": 1
     },
     {
       "familyNumber": "075",
@@ -572,7 +572,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 30,
-      "edges": 32
+      "edges": 0
     },
     {
       "familyNumber": "076",
@@ -580,7 +580,7 @@
       "manuscripts": 3,
       "sections": 14,
       "statements": 32,
-      "edges": 31
+      "edges": 5
     },
     {
       "familyNumber": "077",
@@ -588,7 +588,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 76,
-      "edges": 95
+      "edges": 0
     },
     {
       "familyNumber": "078",
@@ -596,7 +596,7 @@
       "manuscripts": 1,
       "sections": 12,
       "statements": 49,
-      "edges": 47
+      "edges": 0
     },
     {
       "familyNumber": "079",
@@ -604,7 +604,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 80,
-      "edges": 66
+      "edges": 0
     },
     {
       "familyNumber": "080",
@@ -612,7 +612,7 @@
       "manuscripts": 2,
       "sections": 12,
       "statements": 80,
-      "edges": 81
+      "edges": 3
     },
     {
       "familyNumber": "081",
@@ -620,7 +620,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 26,
-      "edges": 37
+      "edges": 0
     },
     {
       "familyNumber": "082",
@@ -628,7 +628,7 @@
       "manuscripts": 3,
       "sections": 17,
       "statements": 57,
-      "edges": 72
+      "edges": 1
     },
     {
       "familyNumber": "083",
@@ -636,7 +636,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 50,
-      "edges": 42
+      "edges": 0
     },
     {
       "familyNumber": "084",
@@ -644,7 +644,7 @@
       "manuscripts": 2,
       "sections": 7,
       "statements": 17,
-      "edges": 15
+      "edges": 0
     },
     {
       "familyNumber": "085",
@@ -652,7 +652,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 21,
-      "edges": 16
+      "edges": 0
     },
     {
       "familyNumber": "086",
@@ -660,7 +660,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 58,
-      "edges": 74
+      "edges": 0
     },
     {
       "familyNumber": "087",
@@ -668,7 +668,7 @@
       "manuscripts": 3,
       "sections": 21,
       "statements": 60,
-      "edges": 44
+      "edges": 0
     },
     {
       "familyNumber": "088",
@@ -676,7 +676,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 6,
-      "edges": 7
+      "edges": 1
     },
     {
       "familyNumber": "089",
@@ -684,7 +684,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 59,
-      "edges": 64
+      "edges": 1
     },
     {
       "familyNumber": "090",
@@ -692,7 +692,7 @@
       "manuscripts": 3,
       "sections": 21,
       "statements": 57,
-      "edges": 42
+      "edges": 2
     },
     {
       "familyNumber": "091",
@@ -700,7 +700,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 7,
-      "edges": 7
+      "edges": 1
     },
     {
       "familyNumber": "092",
@@ -708,7 +708,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 27,
-      "edges": 24
+      "edges": 0
     },
     {
       "familyNumber": "093",
@@ -716,7 +716,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 44,
-      "edges": 60
+      "edges": 2
     },
     {
       "familyNumber": "094",
@@ -724,7 +724,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 7,
-      "edges": 2
+      "edges": 0
     },
     {
       "familyNumber": "095",
@@ -732,7 +732,7 @@
       "manuscripts": 2,
       "sections": 8,
       "statements": 11,
-      "edges": 8
+      "edges": 1
     },
     {
       "familyNumber": "096",
@@ -740,7 +740,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 14,
-      "edges": 7
+      "edges": 0
     },
     {
       "familyNumber": "097",
@@ -748,7 +748,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 16,
-      "edges": 16
+      "edges": 0
     },
     {
       "familyNumber": "098",
@@ -756,7 +756,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 6,
-      "edges": 3
+      "edges": 0
     },
     {
       "familyNumber": "099",
@@ -764,7 +764,7 @@
       "manuscripts": 3,
       "sections": 17,
       "statements": 48,
-      "edges": 21
+      "edges": 1
     },
     {
       "familyNumber": "100",
@@ -772,7 +772,7 @@
       "manuscripts": 3,
       "sections": 14,
       "statements": 29,
-      "edges": 18
+      "edges": 1
     },
     {
       "familyNumber": "102",
@@ -780,7 +780,7 @@
       "manuscripts": 3,
       "sections": 23,
       "statements": 64,
-      "edges": 64
+      "edges": 1
     },
     {
       "familyNumber": "103",
@@ -788,7 +788,7 @@
       "manuscripts": 1,
       "sections": 13,
       "statements": 67,
-      "edges": 105
+      "edges": 2
     },
     {
       "familyNumber": "104",
@@ -796,7 +796,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 9,
-      "edges": 12
+      "edges": 0
     },
     {
       "familyNumber": "105",
@@ -804,7 +804,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 34,
-      "edges": 34
+      "edges": 0
     },
     {
       "familyNumber": "107",
@@ -812,7 +812,7 @@
       "manuscripts": 3,
       "sections": 23,
       "statements": 66,
-      "edges": 68
+      "edges": 0
     },
     {
       "familyNumber": "109",
@@ -820,7 +820,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 22,
-      "edges": 22
+      "edges": 0
     },
     {
       "familyNumber": "111",
@@ -828,7 +828,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 18,
-      "edges": 16
+      "edges": 1
     },
     {
       "familyNumber": "113",
@@ -836,7 +836,7 @@
       "manuscripts": 2,
       "sections": 21,
       "statements": 62,
-      "edges": 65
+      "edges": 0
     },
     {
       "familyNumber": "114",
@@ -844,7 +844,7 @@
       "manuscripts": 2,
       "sections": 12,
       "statements": 37,
-      "edges": 27
+      "edges": 0
     },
     {
       "familyNumber": "115",
@@ -852,7 +852,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 42,
-      "edges": 49
+      "edges": 0
     },
     {
       "familyNumber": "116",
@@ -860,7 +860,7 @@
       "manuscripts": 3,
       "sections": 14,
       "statements": 30,
-      "edges": 26
+      "edges": 1
     },
     {
       "familyNumber": "119",
@@ -868,7 +868,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 41,
-      "edges": 39
+      "edges": 1
     },
     {
       "familyNumber": "120",
@@ -876,7 +876,7 @@
       "manuscripts": 1,
       "sections": 10,
       "statements": 53,
-      "edges": 57
+      "edges": 4
     },
     {
       "familyNumber": "121",
@@ -884,7 +884,7 @@
       "manuscripts": 1,
       "sections": 10,
       "statements": 24,
-      "edges": 17
+      "edges": 0
     },
     {
       "familyNumber": "122",
@@ -892,7 +892,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 17,
-      "edges": 6
+      "edges": 0
     },
     {
       "familyNumber": "124",
@@ -900,7 +900,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 26,
-      "edges": 25
+      "edges": 1
     },
     {
       "familyNumber": "125",
@@ -908,7 +908,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 40,
-      "edges": 44
+      "edges": 1
     },
     {
       "familyNumber": "127",
@@ -916,7 +916,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 5,
-      "edges": 4
+      "edges": 0
     },
     {
       "familyNumber": "128",
@@ -924,7 +924,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 17,
-      "edges": 17
+      "edges": 0
     },
     {
       "familyNumber": "129",
@@ -932,7 +932,7 @@
       "manuscripts": 2,
       "sections": 9,
       "statements": 28,
-      "edges": 32
+      "edges": 1
     },
     {
       "familyNumber": "130",
@@ -940,7 +940,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 47,
-      "edges": 46
+      "edges": 0
     },
     {
       "familyNumber": "131",
@@ -948,7 +948,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 14,
-      "edges": 12
+      "edges": 0
     },
     {
       "familyNumber": "132",
@@ -956,7 +956,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 8,
-      "edges": 7
+      "edges": 1
     },
     {
       "familyNumber": "133",
@@ -964,7 +964,7 @@
       "manuscripts": 3,
       "sections": 16,
       "statements": 44,
-      "edges": 50
+      "edges": 1
     },
     {
       "familyNumber": "134",
@@ -972,7 +972,7 @@
       "manuscripts": 3,
       "sections": 21,
       "statements": 64,
-      "edges": 68
+      "edges": 4
     },
     {
       "familyNumber": "135",
@@ -980,7 +980,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 10,
-      "edges": 9
+      "edges": 0
     },
     {
       "familyNumber": "136",
@@ -988,7 +988,7 @@
       "manuscripts": 1,
       "sections": 11,
       "statements": 80,
-      "edges": 82
+      "edges": 1
     },
     {
       "familyNumber": "138",
@@ -996,7 +996,7 @@
       "manuscripts": 2,
       "sections": 11,
       "statements": 26,
-      "edges": 22
+      "edges": 0
     },
     {
       "familyNumber": "139",
@@ -1004,7 +1004,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 39,
-      "edges": 44
+      "edges": 0
     },
     {
       "familyNumber": "140",
@@ -1012,7 +1012,7 @@
       "manuscripts": 3,
       "sections": 20,
       "statements": 80,
-      "edges": 100
+      "edges": 5
     },
     {
       "familyNumber": "141",
@@ -1020,7 +1020,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 25,
-      "edges": 28
+      "edges": 0
     },
     {
       "familyNumber": "142",
@@ -1028,7 +1028,7 @@
       "manuscripts": 1,
       "sections": 10,
       "statements": 30,
-      "edges": 24
+      "edges": 0
     },
     {
       "familyNumber": "143",
@@ -1036,7 +1036,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 80,
-      "edges": 109
+      "edges": 3
     },
     {
       "familyNumber": "144",
@@ -1044,7 +1044,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 12,
-      "edges": 17
+      "edges": 0
     },
     {
       "familyNumber": "145",
@@ -1052,7 +1052,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 24,
-      "edges": 28
+      "edges": 3
     },
     {
       "familyNumber": "146",
@@ -1060,7 +1060,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 24,
-      "edges": 18
+      "edges": 1
     },
     {
       "familyNumber": "147",
@@ -1068,7 +1068,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 80,
-      "edges": 83
+      "edges": 4
     },
     {
       "familyNumber": "148",
@@ -1076,7 +1076,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 15,
-      "edges": 13
+      "edges": 0
     },
     {
       "familyNumber": "149",
@@ -1084,7 +1084,7 @@
       "manuscripts": 2,
       "sections": 5,
       "statements": 13,
-      "edges": 9
+      "edges": 0
     },
     {
       "familyNumber": "150",
@@ -1092,7 +1092,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 7,
-      "edges": 6
+      "edges": 1
     },
     {
       "familyNumber": "152",
@@ -1100,7 +1100,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 21,
-      "edges": 20
+      "edges": 1
     },
     {
       "familyNumber": "153",
@@ -1108,7 +1108,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 24,
-      "edges": 15
+      "edges": 0
     },
     {
       "familyNumber": "154",
@@ -1116,7 +1116,7 @@
       "manuscripts": 3,
       "sections": 18,
       "statements": 62,
-      "edges": 55
+      "edges": 1
     },
     {
       "familyNumber": "155",
@@ -1124,7 +1124,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 21,
-      "edges": 17
+      "edges": 0
     },
     {
       "familyNumber": "156",
@@ -1132,7 +1132,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 16,
-      "edges": 23
+      "edges": 1
     },
     {
       "familyNumber": "157",
@@ -1140,7 +1140,7 @@
       "manuscripts": 3,
       "sections": 18,
       "statements": 80,
-      "edges": 116
+      "edges": 4
     },
     {
       "familyNumber": "158",
@@ -1148,7 +1148,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 45,
-      "edges": 37
+      "edges": 4
     },
     {
       "familyNumber": "159",
@@ -1156,7 +1156,7 @@
       "manuscripts": 1,
       "sections": 11,
       "statements": 42,
-      "edges": 45
+      "edges": 1
     },
     {
       "familyNumber": "160",
@@ -1164,7 +1164,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 23,
-      "edges": 26
+      "edges": 1
     },
     {
       "familyNumber": "161",
@@ -1172,7 +1172,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 31,
-      "edges": 27
+      "edges": 1
     },
     {
       "familyNumber": "162",
@@ -1180,7 +1180,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 35,
-      "edges": 28
+      "edges": 1
     },
     {
       "familyNumber": "164",
@@ -1188,7 +1188,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 32,
-      "edges": 43
+      "edges": 0
     },
     {
       "familyNumber": "165",
@@ -1196,7 +1196,7 @@
       "manuscripts": 2,
       "sections": 9,
       "statements": 19,
-      "edges": 12
+      "edges": 0
     },
     {
       "familyNumber": "166",
@@ -1204,7 +1204,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 59,
-      "edges": 69
+      "edges": 0
     },
     {
       "familyNumber": "167",
@@ -1212,7 +1212,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 49,
-      "edges": 34
+      "edges": 0
     },
     {
       "familyNumber": "168",
@@ -1220,7 +1220,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 19,
-      "edges": 18
+      "edges": 0
     },
     {
       "familyNumber": "169",
@@ -1228,7 +1228,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 36,
-      "edges": 38
+      "edges": 1
     },
     {
       "familyNumber": "170",
@@ -1236,7 +1236,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 60,
-      "edges": 59
+      "edges": 1
     },
     {
       "familyNumber": "171",
@@ -1252,7 +1252,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 23,
-      "edges": 20
+      "edges": 1
     },
     {
       "familyNumber": "175",
@@ -1260,7 +1260,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 9,
-      "edges": 8
+      "edges": 0
     },
     {
       "familyNumber": "178",
@@ -1268,7 +1268,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 35,
-      "edges": 27
+      "edges": 1
     },
     {
       "familyNumber": "179",
@@ -1276,7 +1276,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 8,
-      "edges": 11
+      "edges": 0
     },
     {
       "familyNumber": "180",
@@ -1284,7 +1284,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 12,
-      "edges": 7
+      "edges": 0
     },
     {
       "familyNumber": "181",
@@ -1292,7 +1292,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 16,
-      "edges": 18
+      "edges": 0
     },
     {
       "familyNumber": "182",
@@ -1300,7 +1300,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 45,
-      "edges": 51
+      "edges": 0
     },
     {
       "familyNumber": "183",
@@ -1308,7 +1308,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 20,
-      "edges": 5
+      "edges": 1
     },
     {
       "familyNumber": "184",
@@ -1316,7 +1316,7 @@
       "manuscripts": 2,
       "sections": 9,
       "statements": 26,
-      "edges": 19
+      "edges": 1
     },
     {
       "familyNumber": "185",
@@ -1324,7 +1324,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 21,
-      "edges": 20
+      "edges": 0
     },
     {
       "familyNumber": "186",
@@ -1332,7 +1332,7 @@
       "manuscripts": 2,
       "sections": 6,
       "statements": 11,
-      "edges": 7
+      "edges": 0
     },
     {
       "familyNumber": "187",
@@ -1340,7 +1340,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 10,
-      "edges": 5
+      "edges": 0
     },
     {
       "familyNumber": "188",
@@ -1348,7 +1348,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 13,
-      "edges": 4
+      "edges": 0
     },
     {
       "familyNumber": "189",
@@ -1356,7 +1356,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 35,
-      "edges": 51
+      "edges": 2
     },
     {
       "familyNumber": "190",
@@ -1364,7 +1364,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 9,
-      "edges": 8
+      "edges": 1
     },
     {
       "familyNumber": "191",
@@ -1372,7 +1372,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 22,
-      "edges": 22
+      "edges": 0
     },
     {
       "familyNumber": "192",
@@ -1380,7 +1380,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 11,
-      "edges": 2
+      "edges": 0
     },
     {
       "familyNumber": "193",
@@ -1388,7 +1388,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 25,
-      "edges": 23
+      "edges": 1
     },
     {
       "familyNumber": "194",
@@ -1396,7 +1396,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 24,
-      "edges": 37
+      "edges": 1
     },
     {
       "familyNumber": "195",
@@ -1404,7 +1404,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 8,
-      "edges": 3
+      "edges": 1
     },
     {
       "familyNumber": "196",
@@ -1412,7 +1412,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 12,
-      "edges": 11
+      "edges": 1
     },
     {
       "familyNumber": "197",
@@ -1420,7 +1420,7 @@
       "manuscripts": 3,
       "sections": 14,
       "statements": 43,
-      "edges": 36
+      "edges": 6
     },
     {
       "familyNumber": "198",
@@ -1428,7 +1428,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 16,
-      "edges": 12
+      "edges": 1
     },
     {
       "familyNumber": "199",
@@ -1436,7 +1436,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 51,
-      "edges": 48
+      "edges": 2
     },
     {
       "familyNumber": "200",
@@ -1444,7 +1444,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 45,
-      "edges": 46
+      "edges": 5
     },
     {
       "familyNumber": "201",
@@ -1452,7 +1452,7 @@
       "manuscripts": 1,
       "sections": 10,
       "statements": 30,
-      "edges": 28
+      "edges": 1
     },
     {
       "familyNumber": "202",
@@ -1460,7 +1460,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 41,
-      "edges": 44
+      "edges": 2
     },
     {
       "familyNumber": "203",
@@ -1468,7 +1468,7 @@
       "manuscripts": 2,
       "sections": 12,
       "statements": 80,
-      "edges": 104
+      "edges": 3
     },
     {
       "familyNumber": "204",
@@ -1476,7 +1476,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 34,
-      "edges": 40
+      "edges": 3
     },
     {
       "familyNumber": "205",
@@ -1484,7 +1484,7 @@
       "manuscripts": 2,
       "sections": 12,
       "statements": 42,
-      "edges": 56
+      "edges": 1
     },
     {
       "familyNumber": "206",
@@ -1492,7 +1492,7 @@
       "manuscripts": 2,
       "sections": 9,
       "statements": 80,
-      "edges": 44
+      "edges": 1
     },
     {
       "familyNumber": "207",
@@ -1500,7 +1500,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 40,
-      "edges": 42
+      "edges": 1
     },
     {
       "familyNumber": "208",
@@ -1508,7 +1508,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 23,
-      "edges": 18
+      "edges": 2
     },
     {
       "familyNumber": "209",
@@ -1516,7 +1516,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 6,
-      "edges": 6
+      "edges": 1
     },
     {
       "familyNumber": "210",
@@ -1524,7 +1524,7 @@
       "manuscripts": 2,
       "sections": 8,
       "statements": 16,
-      "edges": 13
+      "edges": 1
     },
     {
       "familyNumber": "211",
@@ -1532,7 +1532,7 @@
       "manuscripts": 3,
       "sections": 16,
       "statements": 80,
-      "edges": 112
+      "edges": 3
     },
     {
       "familyNumber": "212",
@@ -1540,7 +1540,7 @@
       "manuscripts": 2,
       "sections": 21,
       "statements": 80,
-      "edges": 87
+      "edges": 1
     },
     {
       "familyNumber": "213",
@@ -1548,7 +1548,7 @@
       "manuscripts": 1,
       "sections": 10,
       "statements": 23,
-      "edges": 19
+      "edges": 1
     },
     {
       "familyNumber": "214",
@@ -1556,7 +1556,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 45,
-      "edges": 31
+      "edges": 1
     },
     {
       "familyNumber": "215",
@@ -1564,7 +1564,7 @@
       "manuscripts": 3,
       "sections": 19,
       "statements": 80,
-      "edges": 108
+      "edges": 1
     },
     {
       "familyNumber": "216",
@@ -1572,7 +1572,7 @@
       "manuscripts": 3,
       "sections": 19,
       "statements": 80,
-      "edges": 74
+      "edges": 0
     },
     {
       "familyNumber": "217",
@@ -1580,7 +1580,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 54,
-      "edges": 28
+      "edges": 1
     },
     {
       "familyNumber": "218",
@@ -1588,7 +1588,7 @@
       "manuscripts": 3,
       "sections": 19,
       "statements": 80,
-      "edges": 86
+      "edges": 0
     },
     {
       "familyNumber": "219",
@@ -1596,7 +1596,7 @@
       "manuscripts": 2,
       "sections": 12,
       "statements": 48,
-      "edges": 50
+      "edges": 3
     },
     {
       "familyNumber": "220",
@@ -1604,7 +1604,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 56,
-      "edges": 55
+      "edges": 1
     },
     {
       "familyNumber": "221",
@@ -1612,7 +1612,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 26,
-      "edges": 11
+      "edges": 0
     },
     {
       "familyNumber": "222",
@@ -1620,7 +1620,7 @@
       "manuscripts": 3,
       "sections": 15,
       "statements": 80,
-      "edges": 78
+      "edges": 0
     },
     {
       "familyNumber": "223",
@@ -1628,7 +1628,7 @@
       "manuscripts": 3,
       "sections": 18,
       "statements": 80,
-      "edges": 83
+      "edges": 0
     },
     {
       "familyNumber": "224",
@@ -1636,7 +1636,7 @@
       "manuscripts": 3,
       "sections": 15,
       "statements": 80,
-      "edges": 92
+      "edges": 1
     },
     {
       "familyNumber": "225",
@@ -1644,7 +1644,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 51,
-      "edges": 71
+      "edges": 1
     },
     {
       "familyNumber": "226",
@@ -1652,7 +1652,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 24,
-      "edges": 19
+      "edges": 0
     },
     {
       "familyNumber": "227",
@@ -1660,7 +1660,7 @@
       "manuscripts": 3,
       "sections": 14,
       "statements": 80,
-      "edges": 99
+      "edges": 6
     },
     {
       "familyNumber": "228",
@@ -1668,7 +1668,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 42,
-      "edges": 44
+      "edges": 1
     },
     {
       "familyNumber": "229",
@@ -1676,7 +1676,7 @@
       "manuscripts": 3,
       "sections": 15,
       "statements": 38,
-      "edges": 22
+      "edges": 2
     },
     {
       "familyNumber": "230",
@@ -1684,7 +1684,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 47,
-      "edges": 44
+      "edges": 1
     },
     {
       "familyNumber": "231",
@@ -1692,7 +1692,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 14,
-      "edges": 15
+      "edges": 0
     },
     {
       "familyNumber": "232",
@@ -1700,7 +1700,7 @@
       "manuscripts": 3,
       "sections": 11,
       "statements": 80,
-      "edges": 156
+      "edges": 0
     },
     {
       "familyNumber": "233",
@@ -1708,7 +1708,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 62,
-      "edges": 108
+      "edges": 2
     },
     {
       "familyNumber": "236",
@@ -1716,7 +1716,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 26,
-      "edges": 15
+      "edges": 0
     },
     {
       "familyNumber": "237",
@@ -1724,7 +1724,7 @@
       "manuscripts": 3,
       "sections": 24,
       "statements": 80,
-      "edges": 44
+      "edges": 1
     },
     {
       "familyNumber": "238",
@@ -1732,7 +1732,7 @@
       "manuscripts": 3,
       "sections": 23,
       "statements": 80,
-      "edges": 67
+      "edges": 1
     },
     {
       "familyNumber": "239",
@@ -1740,7 +1740,7 @@
       "manuscripts": 2,
       "sections": 16,
       "statements": 68,
-      "edges": 78
+      "edges": 1
     },
     {
       "familyNumber": "240",
@@ -1748,7 +1748,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 80,
-      "edges": 94
+      "edges": 1
     },
     {
       "familyNumber": "241",
@@ -1756,7 +1756,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 8,
-      "edges": 8
+      "edges": 1
     },
     {
       "familyNumber": "242",
@@ -1764,7 +1764,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 13,
-      "edges": 13
+      "edges": 1
     },
     {
       "familyNumber": "243",
@@ -1772,7 +1772,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 51,
-      "edges": 52
+      "edges": 1
     },
     {
       "familyNumber": "244",
@@ -1780,7 +1780,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 33,
-      "edges": 37
+      "edges": 2
     },
     {
       "familyNumber": "245",
@@ -1788,7 +1788,7 @@
       "manuscripts": 1,
       "sections": 10,
       "statements": 58,
-      "edges": 42
+      "edges": 1
     },
     {
       "familyNumber": "246",
@@ -1796,7 +1796,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 31,
-      "edges": 35
+      "edges": 1
     },
     {
       "familyNumber": "247",
@@ -1804,7 +1804,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 68,
-      "edges": 88
+      "edges": 2
     },
     {
       "familyNumber": "248",
@@ -1812,7 +1812,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 10,
-      "edges": 5
+      "edges": 1
     },
     {
       "familyNumber": "249",
@@ -1820,7 +1820,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 15,
-      "edges": 6
+      "edges": 0
     },
     {
       "familyNumber": "250",
@@ -1828,7 +1828,7 @@
       "manuscripts": 3,
       "sections": 18,
       "statements": 61,
-      "edges": 51
+      "edges": 6
     },
     {
       "familyNumber": "251",
@@ -1836,7 +1836,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 10,
-      "edges": 8
+      "edges": 0
     },
     {
       "familyNumber": "252",
@@ -1844,7 +1844,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 13,
-      "edges": 8
+      "edges": 0
     },
     {
       "familyNumber": "253",
@@ -1852,7 +1852,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 47,
-      "edges": 71
+      "edges": 2
     },
     {
       "familyNumber": "254",
@@ -1860,7 +1860,7 @@
       "manuscripts": 3,
       "sections": 17,
       "statements": 80,
-      "edges": 86
+      "edges": 1
     },
     {
       "familyNumber": "255",
@@ -1868,7 +1868,7 @@
       "manuscripts": 1,
       "sections": 11,
       "statements": 47,
-      "edges": 99
+      "edges": 3
     },
     {
       "familyNumber": "256",
@@ -1876,7 +1876,7 @@
       "manuscripts": 2,
       "sections": 7,
       "statements": 10,
-      "edges": 5
+      "edges": 0
     },
     {
       "familyNumber": "257",
@@ -1884,7 +1884,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 31,
-      "edges": 35
+      "edges": 2
     },
     {
       "familyNumber": "259",
@@ -1892,7 +1892,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 15,
-      "edges": 14
+      "edges": 1
     },
     {
       "familyNumber": "260",
@@ -1900,7 +1900,7 @@
       "manuscripts": 2,
       "sections": 12,
       "statements": 80,
-      "edges": 88
+      "edges": 3
     },
     {
       "familyNumber": "261",
@@ -1908,7 +1908,7 @@
       "manuscripts": 2,
       "sections": 17,
       "statements": 80,
-      "edges": 85
+      "edges": 2
     },
     {
       "familyNumber": "262",
@@ -1916,7 +1916,7 @@
       "manuscripts": 3,
       "sections": 15,
       "statements": 37,
-      "edges": 26
+      "edges": 1
     },
     {
       "familyNumber": "263",
@@ -1924,7 +1924,7 @@
       "manuscripts": 3,
       "sections": 23,
       "statements": 79,
-      "edges": 102
+      "edges": 0
     },
     {
       "familyNumber": "264",
@@ -1932,7 +1932,7 @@
       "manuscripts": 3,
       "sections": 18,
       "statements": 80,
-      "edges": 69
+      "edges": 2
     },
     {
       "familyNumber": "265",
@@ -1940,7 +1940,7 @@
       "manuscripts": 2,
       "sections": 18,
       "statements": 55,
-      "edges": 51
+      "edges": 1
     },
     {
       "familyNumber": "266",
@@ -1948,7 +1948,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 71,
-      "edges": 44
+      "edges": 2
     },
     {
       "familyNumber": "267",
@@ -1956,7 +1956,7 @@
       "manuscripts": 2,
       "sections": 18,
       "statements": 80,
-      "edges": 74
+      "edges": 1
     },
     {
       "familyNumber": "268",
@@ -1964,7 +1964,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 35,
-      "edges": 32
+      "edges": 1
     },
     {
       "familyNumber": "269",
@@ -1972,7 +1972,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 60,
-      "edges": 59
+      "edges": 3
     },
     {
       "familyNumber": "271",
@@ -1980,7 +1980,7 @@
       "manuscripts": 3,
       "sections": 21,
       "statements": 80,
-      "edges": 94
+      "edges": 0
     },
     {
       "familyNumber": "273",
@@ -1988,7 +1988,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 17,
-      "edges": 16
+      "edges": 0
     },
     {
       "familyNumber": "274",
@@ -1996,7 +1996,7 @@
       "manuscripts": 2,
       "sections": 11,
       "statements": 24,
-      "edges": 26
+      "edges": 1
     },
     {
       "familyNumber": "275",
@@ -2004,7 +2004,7 @@
       "manuscripts": 2,
       "sections": 10,
       "statements": 34,
-      "edges": 28
+      "edges": 0
     },
     {
       "familyNumber": "276",
@@ -2012,7 +2012,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 14,
-      "edges": 19
+      "edges": 0
     },
     {
       "familyNumber": "277",
@@ -2020,7 +2020,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 11,
-      "edges": 9
+      "edges": 0
     },
     {
       "familyNumber": "278",
@@ -2028,7 +2028,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 27,
-      "edges": 37
+      "edges": 0
     },
     {
       "familyNumber": "279",
@@ -2036,7 +2036,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 12,
-      "edges": 10
+      "edges": 0
     },
     {
       "familyNumber": "280",
@@ -2044,7 +2044,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 22,
-      "edges": 32
+      "edges": 0
     },
     {
       "familyNumber": "281",
@@ -2052,7 +2052,7 @@
       "manuscripts": 2,
       "sections": 13,
       "statements": 51,
-      "edges": 78
+      "edges": 1
     },
     {
       "familyNumber": "282",
@@ -2060,7 +2060,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 60,
-      "edges": 51
+      "edges": 0
     },
     {
       "familyNumber": "283",
@@ -2068,7 +2068,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 16,
-      "edges": 17
+      "edges": 1
     },
     {
       "familyNumber": "284",
@@ -2076,7 +2076,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 13,
-      "edges": 9
+      "edges": 3
     },
     {
       "familyNumber": "285",
@@ -2084,7 +2084,7 @@
       "manuscripts": 3,
       "sections": 14,
       "statements": 80,
-      "edges": 75
+      "edges": 1
     },
     {
       "familyNumber": "286",
@@ -2092,7 +2092,7 @@
       "manuscripts": 2,
       "sections": 9,
       "statements": 80,
-      "edges": 105
+      "edges": 0
     },
     {
       "familyNumber": "287",
@@ -2100,7 +2100,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 16,
-      "edges": 17
+      "edges": 0
     },
     {
       "familyNumber": "288",
@@ -2108,7 +2108,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 24,
-      "edges": 25
+      "edges": 0
     },
     {
       "familyNumber": "289",
@@ -2116,7 +2116,7 @@
       "manuscripts": 3,
       "sections": 16,
       "statements": 66,
-      "edges": 73
+      "edges": 3
     },
     {
       "familyNumber": "290",
@@ -2124,7 +2124,7 @@
       "manuscripts": 2,
       "sections": 11,
       "statements": 22,
-      "edges": 22
+      "edges": 1
     },
     {
       "familyNumber": "291",
@@ -2132,7 +2132,7 @@
       "manuscripts": 3,
       "sections": 19,
       "statements": 80,
-      "edges": 78
+      "edges": 3
     },
     {
       "familyNumber": "292",
@@ -2140,7 +2140,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 11,
-      "edges": 6
+      "edges": 0
     },
     {
       "familyNumber": "293",
@@ -2148,7 +2148,7 @@
       "manuscripts": 2,
       "sections": 11,
       "statements": 32,
-      "edges": 22
+      "edges": 0
     },
     {
       "familyNumber": "294",
@@ -2156,7 +2156,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 8,
-      "edges": 7
+      "edges": 1
     },
     {
       "familyNumber": "295",
@@ -2164,7 +2164,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 17,
-      "edges": 17
+      "edges": 1
     },
     {
       "familyNumber": "296",
@@ -2172,7 +2172,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 15,
-      "edges": 12
+      "edges": 0
     },
     {
       "familyNumber": "297",
@@ -2180,7 +2180,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 25,
-      "edges": 44
+      "edges": 0
     },
     {
       "familyNumber": "298",
@@ -2188,7 +2188,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 9,
-      "edges": 8
+      "edges": 0
     },
     {
       "familyNumber": "299",
@@ -2196,7 +2196,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 18,
-      "edges": 20
+      "edges": 1
     },
     {
       "familyNumber": "301",
@@ -2204,7 +2204,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 45,
-      "edges": 69
+      "edges": 0
     },
     {
       "familyNumber": "302",
@@ -2212,7 +2212,7 @@
       "manuscripts": 2,
       "sections": 9,
       "statements": 28,
-      "edges": 27
+      "edges": 0
     },
     {
       "familyNumber": "303",
@@ -2220,7 +2220,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 38,
-      "edges": 60
+      "edges": 1
     },
     {
       "familyNumber": "304",
@@ -2228,7 +2228,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 40,
-      "edges": 48
+      "edges": 1
     },
     {
       "familyNumber": "305",
@@ -2236,7 +2236,7 @@
       "manuscripts": 3,
       "sections": 14,
       "statements": 80,
-      "edges": 68
+      "edges": 3
     },
     {
       "familyNumber": "306",
@@ -2244,7 +2244,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 80,
-      "edges": 125
+      "edges": 2
     },
     {
       "familyNumber": "307",
@@ -2252,7 +2252,7 @@
       "manuscripts": 2,
       "sections": 9,
       "statements": 21,
-      "edges": 20
+      "edges": 0
     },
     {
       "familyNumber": "308",
@@ -2260,7 +2260,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 80,
-      "edges": 82
+      "edges": 0
     },
     {
       "familyNumber": "309",
@@ -2268,7 +2268,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 71,
-      "edges": 58
+      "edges": 1
     },
     {
       "familyNumber": "310",
@@ -2276,7 +2276,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 34,
-      "edges": 38
+      "edges": 2
     },
     {
       "familyNumber": "311",
@@ -2284,7 +2284,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 29,
-      "edges": 33
+      "edges": 3
     },
     {
       "familyNumber": "312",
@@ -2292,7 +2292,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 19,
-      "edges": 34
+      "edges": 0
     },
     {
       "familyNumber": "313",
@@ -2300,7 +2300,7 @@
       "manuscripts": 1,
       "sections": 12,
       "statements": 58,
-      "edges": 16
+      "edges": 0
     },
     {
       "familyNumber": "314",
@@ -2308,7 +2308,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 29,
-      "edges": 33
+      "edges": 0
     },
     {
       "familyNumber": "315",
@@ -2316,7 +2316,7 @@
       "manuscripts": 1,
       "sections": 11,
       "statements": 50,
-      "edges": 70
+      "edges": 1
     },
     {
       "familyNumber": "316",
@@ -2324,7 +2324,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 30,
-      "edges": 42
+      "edges": 2
     },
     {
       "familyNumber": "317",
@@ -2332,7 +2332,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 27,
-      "edges": 52
+      "edges": 0
     },
     {
       "familyNumber": "318",
@@ -2340,7 +2340,7 @@
       "manuscripts": 3,
       "sections": 15,
       "statements": 80,
-      "edges": 119
+      "edges": 3
     },
     {
       "familyNumber": "319",
@@ -2348,7 +2348,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 59,
-      "edges": 71
+      "edges": 2
     },
     {
       "familyNumber": "320",
@@ -2356,7 +2356,7 @@
       "manuscripts": 1,
       "sections": 10,
       "statements": 55,
-      "edges": 63
+      "edges": 4
     },
     {
       "familyNumber": "321",
@@ -2364,7 +2364,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 7,
-      "edges": 6
+      "edges": 0
     },
     {
       "familyNumber": "322",
@@ -2372,7 +2372,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 12,
-      "edges": 10
+      "edges": 1
     },
     {
       "familyNumber": "323",
@@ -2380,7 +2380,7 @@
       "manuscripts": 1,
       "sections": 10,
       "statements": 33,
-      "edges": 35
+      "edges": 0
     },
     {
       "familyNumber": "324",
@@ -2388,7 +2388,7 @@
       "manuscripts": 2,
       "sections": 11,
       "statements": 34,
-      "edges": 26
+      "edges": 1
     },
     {
       "familyNumber": "325",
@@ -2396,7 +2396,7 @@
       "manuscripts": 2,
       "sections": 10,
       "statements": 18,
-      "edges": 17
+      "edges": 0
     },
     {
       "familyNumber": "326",
@@ -2404,7 +2404,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 11,
-      "edges": 11
+      "edges": 0
     },
     {
       "familyNumber": "327",
@@ -2412,7 +2412,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 8,
-      "edges": 8
+      "edges": 1
     },
     {
       "familyNumber": "328",
@@ -2420,7 +2420,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 13,
-      "edges": 9
+      "edges": 0
     },
     {
       "familyNumber": "329",
@@ -2428,7 +2428,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 9,
-      "edges": 8
+      "edges": 0
     },
     {
       "familyNumber": "330",
@@ -2436,7 +2436,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 11,
-      "edges": 11
+      "edges": 1
     },
     {
       "familyNumber": "331",
@@ -2444,7 +2444,7 @@
       "manuscripts": 3,
       "sections": 26,
       "statements": 80,
-      "edges": 97
+      "edges": 0
     },
     {
       "familyNumber": "332",
@@ -2452,7 +2452,7 @@
       "manuscripts": 1,
       "sections": 5,
       "statements": 7,
-      "edges": 4
+      "edges": 0
     },
     {
       "familyNumber": "333",
@@ -2460,7 +2460,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 16,
-      "edges": 8
+      "edges": 2
     },
     {
       "familyNumber": "334",
@@ -2468,7 +2468,7 @@
       "manuscripts": 1,
       "sections": 4,
       "statements": 10,
-      "edges": 5
+      "edges": 0
     },
     {
       "familyNumber": "335",
@@ -2476,7 +2476,7 @@
       "manuscripts": 2,
       "sections": 12,
       "statements": 44,
-      "edges": 38
+      "edges": 0
     },
     {
       "familyNumber": "336",
@@ -2484,7 +2484,7 @@
       "manuscripts": 3,
       "sections": 22,
       "statements": 80,
-      "edges": 115
+      "edges": 1
     },
     {
       "familyNumber": "337",
@@ -2492,7 +2492,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 52,
-      "edges": 65
+      "edges": 0
     },
     {
       "familyNumber": "338",
@@ -2500,7 +2500,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 32,
-      "edges": 25
+      "edges": 1
     },
     {
       "familyNumber": "339",
@@ -2508,7 +2508,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 68,
-      "edges": 91
+      "edges": 2
     },
     {
       "familyNumber": "340",
@@ -2516,7 +2516,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 17,
-      "edges": 13
+      "edges": 1
     },
     {
       "familyNumber": "341",
@@ -2524,7 +2524,7 @@
       "manuscripts": 1,
       "sections": 11,
       "statements": 54,
-      "edges": 74
+      "edges": 4
     },
     {
       "familyNumber": "342",
@@ -2532,7 +2532,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 20,
-      "edges": 24
+      "edges": 2
     },
     {
       "familyNumber": "343",
@@ -2540,7 +2540,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 24,
-      "edges": 37
+      "edges": 0
     },
     {
       "familyNumber": "344",
@@ -2548,7 +2548,7 @@
       "manuscripts": 1,
       "sections": 10,
       "statements": 27,
-      "edges": 29
+      "edges": 1
     },
     {
       "familyNumber": "345",
@@ -2556,7 +2556,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 37,
-      "edges": 50
+      "edges": 0
     },
     {
       "familyNumber": "346",
@@ -2564,7 +2564,7 @@
       "manuscripts": 2,
       "sections": 15,
       "statements": 47,
-      "edges": 80
+      "edges": 1
     },
     {
       "familyNumber": "347",
@@ -2572,7 +2572,7 @@
       "manuscripts": 3,
       "sections": 10,
       "statements": 34,
-      "edges": 33
+      "edges": 1
     },
     {
       "familyNumber": "348",
@@ -2580,7 +2580,7 @@
       "manuscripts": 2,
       "sections": 10,
       "statements": 77,
-      "edges": 56
+      "edges": 0
     },
     {
       "familyNumber": "349",
@@ -2588,7 +2588,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 28,
-      "edges": 30
+      "edges": 0
     },
     {
       "familyNumber": "350",
@@ -2596,7 +2596,7 @@
       "manuscripts": 3,
       "sections": 21,
       "statements": 71,
-      "edges": 77
+      "edges": 1
     },
     {
       "familyNumber": "351",
@@ -2604,7 +2604,7 @@
       "manuscripts": 3,
       "sections": 17,
       "statements": 73,
-      "edges": 98
+      "edges": 3
     },
     {
       "familyNumber": "352",
@@ -2612,7 +2612,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 22,
-      "edges": 21
+      "edges": 2
     },
     {
       "familyNumber": "353",
@@ -2620,7 +2620,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 19,
-      "edges": 24
+      "edges": 4
     },
     {
       "familyNumber": "354",
@@ -2628,7 +2628,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 26,
-      "edges": 20
+      "edges": 1
     },
     {
       "familyNumber": "355",
@@ -2636,7 +2636,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 48,
-      "edges": 65
+      "edges": 2
     },
     {
       "familyNumber": "356",
@@ -2644,7 +2644,7 @@
       "manuscripts": 2,
       "sections": 9,
       "statements": 44,
-      "edges": 41
+      "edges": 2
     },
     {
       "familyNumber": "358",
@@ -2652,7 +2652,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 17,
-      "edges": 15
+      "edges": 0
     },
     {
       "familyNumber": "359",
@@ -2660,7 +2660,7 @@
       "manuscripts": 2,
       "sections": 16,
       "statements": 54,
-      "edges": 54
+      "edges": 6
     },
     {
       "familyNumber": "360",
@@ -2668,7 +2668,7 @@
       "manuscripts": 2,
       "sections": 9,
       "statements": 55,
-      "edges": 61
+      "edges": 0
     },
     {
       "familyNumber": "361",
@@ -2676,7 +2676,7 @@
       "manuscripts": 2,
       "sections": 12,
       "statements": 27,
-      "edges": 27
+      "edges": 0
     },
     {
       "familyNumber": "362",
@@ -2684,7 +2684,7 @@
       "manuscripts": 1,
       "sections": 9,
       "statements": 24,
-      "edges": 16
+      "edges": 0
     },
     {
       "familyNumber": "363",
@@ -2692,7 +2692,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 80,
-      "edges": 98
+      "edges": 1
     },
     {
       "familyNumber": "364",
@@ -2700,7 +2700,7 @@
       "manuscripts": 2,
       "sections": 14,
       "statements": 74,
-      "edges": 111
+      "edges": 2
     },
     {
       "familyNumber": "365",
@@ -2708,7 +2708,7 @@
       "manuscripts": 3,
       "sections": 17,
       "statements": 72,
-      "edges": 83
+      "edges": 4
     },
     {
       "familyNumber": "366",
@@ -2716,7 +2716,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 11,
-      "edges": 12
+      "edges": 1
     },
     {
       "familyNumber": "367",
@@ -2724,7 +2724,7 @@
       "manuscripts": 1,
       "sections": 7,
       "statements": 27,
-      "edges": 21
+      "edges": 0
     },
     {
       "familyNumber": "368",
@@ -2732,7 +2732,7 @@
       "manuscripts": 2,
       "sections": 9,
       "statements": 80,
-      "edges": 89
+      "edges": 0
     },
     {
       "familyNumber": "369",
@@ -2740,7 +2740,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 18,
-      "edges": 13
+      "edges": 0
     },
     {
       "familyNumber": "370",
@@ -2748,7 +2748,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 13,
-      "edges": 6
+      "edges": 0
     },
     {
       "familyNumber": "371",
@@ -2756,7 +2756,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 39,
-      "edges": 36
+      "edges": 0
     },
     {
       "familyNumber": "372",
@@ -2764,7 +2764,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 15,
-      "edges": 15
+      "edges": 1
     },
     {
       "familyNumber": "373",
@@ -2772,7 +2772,7 @@
       "manuscripts": 1,
       "sections": 6,
       "statements": 8,
-      "edges": 10
+      "edges": 0
     },
     {
       "familyNumber": "375",
@@ -2780,7 +2780,7 @@
       "manuscripts": 1,
       "sections": 8,
       "statements": 45,
-      "edges": 39
+      "edges": 0
     },
     {
       "familyNumber": "376",
@@ -2788,7 +2788,7 @@
       "manuscripts": 3,
       "sections": 13,
       "statements": 21,
-      "edges": 10
+      "edges": 0
     }
   ]
 }

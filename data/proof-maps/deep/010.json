@@ -99,7 +99,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-cor-classical-point"
+          ]
         },
         {
           "id": "m1-lem-density",
@@ -119,9 +121,7 @@
           "kind": "lemma",
           "source": "The integral algebra and its Galois determinant",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-density"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-noetherian",
@@ -131,10 +131,7 @@
           "kind": "proposition",
           "source": "The integral algebra and its Galois determinant",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-determinant",
-            "m1-lem-density"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-lower",
@@ -164,11 +161,7 @@
           "kind": "corollary",
           "source": "Finding cuspidal points on every component",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-exceptional",
-            "m1-thm-lower",
-            "m1-lem-density"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-tangent",
@@ -208,13 +201,7 @@
           "kind": "proposition",
           "source": "The adjoint cohomology bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-local-invariants",
-            "m1-lem-global-selmer",
-            "m1-cor-classical-point",
-            "m1-prop-noetherian",
-            "m1-thm-lower"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -301,9 +288,7 @@
           "kind": "lemma",
           "source": "Deformations and local geometry",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-rep-space"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-curve-cohomology",
@@ -343,9 +328,7 @@
           "kind": "lemma",
           "source": "Deformations and local geometry",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-formal-point-density"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-inertia-basechange",
@@ -365,9 +348,7 @@
           "kind": "proposition",
           "source": "Deformations and local geometry",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-curve-completion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-marked-local-base",
@@ -377,9 +358,7 @@
           "kind": "lemma",
           "source": "Deformations and local geometry",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-local-geometry"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-completed-forms",
@@ -399,10 +378,7 @@
           "kind": "proposition",
           "source": "Completed forms and their local parameters",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-prop-completed-forms"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-simple-growth",
@@ -422,10 +398,7 @@
           "kind": "proposition",
           "source": "Completed forms and their local parameters",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-block-comparison",
-            "m2-lem-simple-growth"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-auxiliary-level",
@@ -435,10 +408,7 @@
           "kind": "lemma",
           "source": "Completed forms and their local parameters",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-prop-completed-forms"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-forward-basechange",
@@ -448,9 +418,7 @@
           "kind": "lemma",
           "source": "Completed forms and their local parameters",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-inertia-basechange"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-localized-propagation",
@@ -470,10 +438,7 @@
           "kind": "lemma",
           "source": "Propagation from a characteristic-two curve",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-lem-curve-cohomology"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-twist-rank",
@@ -503,9 +468,7 @@
           "kind": "proposition",
           "source": "Propagation from a characteristic-two curve",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-jet-exactness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-patched-support",
@@ -515,11 +478,7 @@
           "kind": "proposition",
           "source": "Propagation from a characteristic-two curve",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-twist-rank",
-            "m2-lem-jet-exactness",
-            "m2-lem-curve-completion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-field-preparation",
@@ -599,15 +558,7 @@
           "kind": "lemma",
           "source": "Connectedness and potential pro-modularity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-marked-local-base"
-          ],
-          "objectUses": [
-            "m2-prop-relative-presentation"
-          ],
-          "mentions": [
-            "m2-lem-pseudo-bad-loci"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-chart-propagation",
@@ -617,16 +568,7 @@
           "kind": "lemma",
           "source": "Connectedness and potential pro-modularity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-good-connectedness",
-            "m2-lem-dimension-comparison",
-            "m2-prop-rep-space",
-            "m2-lem-inertia-basechange",
-            "m2-lem-forward-basechange"
-          ],
-          "objectUses": [
-            "m2-lem-pseudo-bad-loci"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-transverse-fiber",
@@ -636,13 +578,7 @@
           "kind": "lemma",
           "source": "Connectedness and potential pro-modularity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-chart-propagation",
-            "m2-prop-completed-forms",
-            "m2-prop-hecke-dimension",
-            "m2-lem-pseudo-bad-loci",
-            "m2-prop-field-preparation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-higher-line",
@@ -662,16 +598,7 @@
           "kind": "lemma",
           "source": "Classicality and descent",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-cor-charzero-line-dimension",
-            "m2-lem-curve-completion",
-            "m2-lem-dimension-comparison",
-            "m2-thm-potential-promodularity",
-            "m2-prop-block-comparison"
-          ],
-          "objectUses": [
-            "m2-prop-relative-presentation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-ordinary-weight-finiteness",
@@ -681,9 +608,7 @@
           "kind": "proposition",
           "source": "Classicality and descent",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-completed-forms"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-joint-image",
@@ -693,9 +618,7 @@
           "kind": "lemma",
           "source": "Classicality and descent",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-ordinary-character-family"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-dense-thorne-points",

@@ -57,30 +57,5 @@
       "manuscript": "Average sensitivity of polynomial threshold functions"
     }
   ],
-  "edges": [
-    {
-      "from": "m1-thm-main",
-      "to": "m1-lem-edges",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] We may assume that $p(x)\\ne0$ for every $x\\in\\Omega$. Indeed, if $p$ takes negative values, add a positive constant s"
-    },
-    {
-      "from": "m1-lem-coupling",
-      "to": "m1-lem-edges",
-      "label": "lem:coupling",
-      "context": "nd{equation} Both marginals are $\\operatorname{Bin}(n,1/2)$, and the preceding energy identity becomes \\[ \\frac1N\\norm T_{\\HS}^2=\\E(R+S-n)^2. \\] To use Lemma~\\ref{lem:coupling}, reflect the first index: put $U=S$ and $V=n-R$. Binomial symmetry gives $U$ and $V$ the same distribution, with mean $"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-cor-noise-sensitivity",
-      "label": "thm:main",
-      "context": "\\qquad z\\in\\{-1,1\\}^q. \\] Multilinearizing the substituted polynomial preserves its cube values, including zeros, and gives degree at most $\\min(d,q)$. Theorem~\\ref{thm:main} therefore gives $I(g)\\le8d\\sqrt q$; a constant substitution contributes zero. Independently choose uniform $z\\in\\{-1,1"
-    },
-    {
-      "from": "m1-cor-noise-sensitivity",
-      "to": "m1-cor-agnostic-learning",
-      "label": "cor:noise-sensitivity",
-      "context": "dependent noise of rate $\\eta$ is applied to $x$. Since $f$ is Boolean and $T_\\rho f$ takes values in $[-1,1]$, $|f-T_\\rho f|=1-fT_\\rho f$ pointwise. Corollary~\\ref{cor:noise-sensitivity} therefore gives, with $C=8\\sqrt2$, \\[ \\norm{f-T_\\rho f}_1=2\\operatorname{NS}_\\eta(f)\\le2Cd\\sqrt\\eta. \\] Take $\\eta=(\\a"
-    }
-  ]
+  "edges": []
 }

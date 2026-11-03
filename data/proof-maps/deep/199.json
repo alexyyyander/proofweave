@@ -184,10 +184,7 @@
           "kind": "lemma",
           "source": "A simple module with polynomial self-extensions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-res-base",
-            "m1-coc-data"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-res-tensor",
@@ -197,9 +194,7 @@
           "kind": "lemma",
           "source": "A simple module with polynomial self-extensions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-res-polynomial"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cone-finite",
@@ -249,9 +244,7 @@
           "kind": "lemma",
           "source": "Twisted bimodules and a lift to the two cones",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-coc-data"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lift-evaluation",
@@ -271,9 +264,7 @@
           "kind": "lemma",
           "source": "Two twists and a finite bimodule fiber",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cone-profile"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-branch-twist",
@@ -293,9 +284,7 @@
           "kind": "proposition",
           "source": "Two twists and a finite bimodule fiber",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-branch-profile"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-radical",
@@ -315,10 +304,7 @@
           "kind": "proposition",
           "source": "The radical and extension of scalars",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-prop-radical"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -405,9 +391,7 @@
           "kind": "lemma",
           "source": "Homological preliminaries",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-h-derived-models"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-h-perfect-factor",
@@ -417,9 +401,7 @@
           "kind": "lemma",
           "source": "Homological preliminaries",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-h-derived-models"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-h-evaluation",
@@ -429,10 +411,7 @@
           "kind": "lemma",
           "source": "Homological preliminaries",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-h-stable-image"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-tr-trivial-symmetric",
@@ -452,10 +431,7 @@
           "kind": "proposition",
           "source": "Passing to a symmetric algebra",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-h-comparison",
-            "m2-tr-trivial-symmetric"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-a-table",
@@ -505,10 +481,7 @@
           "kind": "proposition",
           "source": "Polynomial stable endomorphisms and twists",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-e-polynomial",
-            "m2-h-duality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-e-socle",
@@ -518,9 +491,7 @@
           "kind": "lemma",
           "source": "Polynomial stable endomorphisms and twists",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-e-all-degrees"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-e-twists",
@@ -530,10 +501,7 @@
           "kind": "proposition",
           "source": "Polynomial stable endomorphisms and twists",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-e-socle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-b-bimodule",
@@ -543,7 +511,12 @@
           "kind": "proposition",
           "source": "Derived induction and the trace obstruction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-b-profile"
+          ],
+          "objectUses": [
+            "m2-b-bar-model"
+          ]
         },
         {
           "id": "m2-b-bar-model",
@@ -553,11 +526,7 @@
           "kind": "lemma",
           "source": "Derived induction and the trace obstruction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-a-dual-dimensions",
-            "m2-h-stable-image",
-            "m2-h-evaluation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-b-profile",
@@ -567,12 +536,7 @@
           "kind": "lemma",
           "source": "Derived induction and the trace obstruction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-h-evaluation",
-            "m2-h-derived-models",
-            "m2-h-stable-image",
-            "m2-e-all-degrees"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-b-ordinary-factorization",
@@ -582,9 +546,7 @@
           "kind": "lemma",
           "source": "Derived induction and the trace obstruction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-a-dual-dimensions"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-b-trace-obstruction",
@@ -594,9 +556,7 @@
           "kind": "lemma",
           "source": "Derived induction and the trace obstruction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-b-ordinary-factorization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-b-stable-adjunction",
@@ -616,17 +576,7 @@
           "kind": "lemma",
           "source": "Derived induction and the trace obstruction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-h-evaluation",
-            "m2-h-duality",
-            "m2-h-perfect-factor",
-            "m2-a-dual-dimensions",
-            "m2-b-stable-adjunction",
-            "m2-b-profile"
-          ],
-          "objectUses": [
-            "m2-b-bar-model"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-t-comparison-maps",
@@ -636,10 +586,7 @@
           "kind": "lemma",
           "source": "The triangular module and the counterexample",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-e-twists",
-            "m2-e-all-degrees"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-t-finite-module",
@@ -649,9 +596,7 @@
           "kind": "lemma",
           "source": "The triangular module and the counterexample",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-e-all-degrees"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-t-vanishing",
@@ -661,13 +606,7 @@
           "kind": "proposition",
           "source": "The triangular module and the counterexample",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-t-comparison-maps",
-            "m2-t-finite-module"
-          ],
-          "objectUses": [
-            "m2-tr-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-endomorphism",
@@ -687,9 +626,7 @@
           "kind": "corollary",
           "source": "The endomorphism algebra and homological consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-cor-homological"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-stratifying",

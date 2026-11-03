@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { explicitProofOwner } from "../packages/domain/paper-reference-owner.mjs";
 import { readdir, readFile } from "node:fs/promises";
 import { test } from "node:test";
 import {
@@ -43,7 +44,7 @@ test("the coverage summary is truthful and statuses are explicit", () => {
   assert.deepEqual(index.statusCounts, { deep: 343, draft: 0, paper: 4, lean: 18, scaffold: 7 });
   assert.equal(index.summary.paper, 4);
   assert.equal(index.summary.paperStatements, 13629);
-  assert.equal(index.summary.paperEdges, 14401);
+  assert.equal(index.summary.paperEdges, 357);
   assert.equal(index.summary.lean, 18);
   assert.equal(index.summary.scaffold, 7);
   assert.equal(index.entries.filter((entry) => entry.status === "scaffold").every((entry) => entry.reviewStatus === "not_started"), true);
@@ -65,7 +66,7 @@ test("the curated families have the expected routes and labels", () => {
   assert.equal(byNumber.get("001").route, "/proof-evolution/openai-math/001");
   assert.equal(byNumber.get("001").statusLabel, "Deep argument map");
   assert.match(byNumber.get("001").nextStep, /Extend version coverage/);
-  assert.deepEqual(byNumber.get("001").paper, { manuscripts: 1, sections: 6, statements: 21, edges: 20 });
+  assert.deepEqual(byNumber.get("001").paper, { manuscripts: 1, sections: 6, statements: 21, edges: 2 });
   assert.equal(byNumber.get("171").status, "paper");
   assert.equal(byNumber.get("049").status, "paper");
   assert.equal(byNumber.get("049").statusLabel, "Paper-derived structure");
@@ -187,6 +188,19 @@ test("every generated deep map satisfies the deep contract and keeps both edge k
       }
     }
   }
-  assert.ok(objectUses > 500, `expected recorded object relations, found ${objectUses}`);
-  assert.ok(mentions > 20, `expected recorded mention relations, found ${mentions}`);
+  assert.ok(objectUses > 0, `expected recorded object relations, found ${objectUses}`);
+  assert.ok(mentions > 0, `expected recorded mention relations, found ${mentions}`);
+});
+
+test("proof ownership requires an explicit, unambiguous named target", async () => {
+  assert.equal(explicitProofOwner(String.raw`[Proof of Theorem~\ref{thm:A}] By Theorem~\ref{thm:C}`), "thm:A");
+  assert.equal(explicitProofOwner(String.raw`[Completion of the proof of Proposition~\ref{prop:A}]`), "prop:A");
+  assert.equal(explicitProofOwner(String.raw`[Proof using Lemma~\ref{lem:C}]`), null);
+  assert.equal(explicitProofOwner(String.raw`[Proof of \ref{thm:A} and \ref{thm:B}]`), null);
+  assert.equal(explicitProofOwner("The proof follows from the preceding statement."), null);
+  const paper = JSON.parse(await readFile(new URL("../data/proof-maps/paper/050.json", import.meta.url), "utf8"));
+  const edge = paper.edges.find((item) => item.from === "m1-prop-ampleness");
+  assert.equal(edge?.to, "m1-thm-main");
+  assert.equal(explicitProofOwner(edge.context), "thm:main");
+  assert.ok(!paper.edges.some((item) => item.from === "m1-prop-ampleness" && item.to === "m1-prop-obstruction"));
 });

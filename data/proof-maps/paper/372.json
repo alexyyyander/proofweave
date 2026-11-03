@@ -141,94 +141,10 @@
   ],
   "edges": [
     {
-      "from": "m1-prop-carleman",
-      "to": "m1-cor-physical-solvability",
-      "label": "prop:carleman",
-      "context": "Apply Proposition~\\ref{prop:carleman} to $(w,\\diverg w)$. By \\eqref{eq:augmented-identity}, its augmented forcing is formed from $Lw$ and $\\diverg(Lw)$. If $"
-    },
-    {
-      "from": "m1-lem-planar-frames",
-      "to": "m1-prop-physical-amplitudes",
-      "label": "lem:planar-frames",
-      "context": "d displacement using the physical operator. Fix an integer $N\\ge4$ and radii $R_0>R_1>\\cdots>R_N>5r$. The coefficients are smooth on all of $\\R^3$. Apply Lemma~\\ref{lem:planar-frames} to the rank-three system \\eqref{eq:constrained-transport}, starting on a disk strictly larger than $D_{R_0}^2$. It supp"
-    },
-    {
-      "from": "m1-cor-physical-solvability",
-      "to": "m1-prop-physical-amplitudes",
-      "label": "cor:physical-solvability",
-      "context": "r]. \\end{aligned} \\end{equation} All coefficients on the right are fixed smooth functions. Consequently $\\norm{f_\\tau}_{L^2(B_{5r})}=O(\\tau^{1-N})$. Corollary~\\ref{cor:physical-solvability} gives a correction $r_\\tau\\in L^2(B_{5r};\\C^3)$ satisfying \\[ E_\\tau^{-1}L(E_\\tau r_\\tau)=-f_\\tau, \\qquad \\norm{r_\\ta"
-    },
-    {
-      "from": "m1-lem-scaled-interior",
-      "to": "m1-prop-physical-amplitudes",
-      "label": "lem:scaled-interior",
-      "context": "n L^2(B_{5r};\\C^3)$ satisfying \\[ E_\\tau^{-1}L(E_\\tau r_\\tau)=-f_\\tau, \\qquad \\norm{r_\\tau}_{L^2(B_{5r})}=O(\\tau^{1-N}). \\] It is smooth in $B_{5r}$ by Lemma~\\ref{lem:scaled-interior}. The same Lemma, on $B_{4r}$, gives \\begin{equation} \\label{eq:physical-remainder-two-derivatives} \\sum_{j=0}^2h^j\\nor"
-    },
-    {
-      "from": "m1-lem-planar-frames",
-      "to": "m1-lem-supported-transport",
-      "label": "lem:planar-frames",
-      "context": "planar variables: its principal symbol is $\\gamma(\\rho)(i\\xi_1-\\xi_2)$, which is nonzero for $\\xi\\in\\R^2\\setminus\\{0\\}$. On each sufficiently small disk, Lemma~\\ref{lem:planar-frames} gives a smooth invertible matrix $F$ satisfying $\\Pcal_\\rho F=0$. If $\\Pcal_\\rho W=0$, then \\[ (\\partial_{y_1}+i\\parti"
-    },
-    {
-      "from": "m1-prop-physical-amplitudes",
-      "to": "m1-prop-transport-matching",
-      "label": "prop:physical-amplitudes",
-      "context": "\\emph{Physical transfer and weak limits.} Fix a nonzero null vector $\\theta$ and $t_0\\in(-2r,2r)$. Apply Proposition~\\ref{prop:physical-amplitudes} to the first coefficient pair. It supplies three exact smooth solutions on $B_{5r}$, with the limits and estimates in \\"
-    },
-    {
-      "from": "m1-prop-physical-transfer",
-      "to": "m1-prop-transport-matching",
-      "label": "prop:physical-transfer",
-      "context": "r leading columns form a frame on $D_{2r}^2\\times J$. We perform the following construction for each column, temporarily suppressing its index. By Proposition~\\ref{prop:physical-transfer}, the first solution $u_{1,\\tau}$ has a smooth transferred solution $u_{2,\\tau}$ on $B_{5r}$, with $u_{2,\\tau}=u_{1,\\tau"
-    },
-    {
-      "from": "m1-lem-augmented-system",
-      "to": "m1-prop-transport-matching",
-      "label": "lem:augmented-system",
-      "context": "j,\\tau},\\diverg u_{j,\\tau}),\\qquad j=1,2. \\] The difference $V_{2,\\tau}-V_{1,\\tau}$ is smooth and compactly supported in $\\overline\\Omega\\subset B_r$. By Lemma~\\ref{lem:augmented-system}, \\begin{equation}\\label{eq:physical-transfer-forcing} \\Lcal_2(V_{2,\\tau}-V_{1,\\tau}) =(\\Lcal_1-\\Lcal_2)V_{1,\\ta"
-    },
-    {
-      "from": "m1-prop-carleman",
-      "to": "m1-prop-transport-matching",
-      "label": "prop:carleman",
-      "context": "\\right)\\\\ &=O(\\tau). \\end{aligned} \\] The function on the left is extended by zero off its compact support when a norm on $\\R^3$ is used. Apply Proposition~\\ref{prop:carleman} to the difference in \\eqref{eq:physical-transfer-forcing}. Since $\\norm{F}_{H_h^{-1}}\\leq\\norm{F}_{L^2}$ and $h=\\tau^{-"
-    },
-    {
-      "from": "m1-lem-supported-transport",
-      "to": "m1-prop-transport-matching",
-      "label": "lem:supported-transport",
-      "context": "smooth and invertible. The change of variables agrees for the two pairs outside $\\overline\\Omega$. Define \\[ G=Y_2Y_1^{-1}. \\] The calculation preceding Lemma~\\ref{lem:supported-transport} now applies: $G$ is a locally $L^2$ endomorphism on the cylinder, equals the identity outside $\\overline\\Omega$, and sa"
-    },
-    {
-      "from": "m1-lem-conic-bundle",
-      "to": "m1-prop-comparison-rigidity",
-      "label": "lem:conic-bundle",
-      "context": "=H\\oplus\\mathcal O$, the upper-right block of the holomorphic endomorphism $G(x,\\cdot)$ is a global holomorphic section of $H$, and therefore vanishes by Lemma~\\ref{lem:conic-bundle}. Its lower-right block is a holomorphic scalar function on the compact conic, and hence is independent of direction. W"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-lem-finite-type",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] Suppose that the two displacement-to-traction maps agree, and use the common exterior extensions furnished by Lemma~\\r"
-    },
-    {
       "from": "m1-lem-common-extension",
-      "to": "m1-lem-finite-type",
+      "to": "m1-thm-main",
       "label": "lem:common-extension",
       "context": "[Proof of Theorem~\\ref{thm:main}] Suppose that the two displacement-to-traction maps agree, and use the common exterior extensions furnished by Lemma~\\ref{lem:common-extension}. Propositions~\\ref{prop:transport-matching} and \\ref{prop:comparison-rigidity} give equality of the transport matrices"
-    },
-    {
-      "from": "m1-prop-transport-matching",
-      "to": "m1-lem-finite-type",
-      "label": "prop:transport-matching",
-      "context": "}] Suppose that the two displacement-to-traction maps agree, and use the common exterior extensions furnished by Lemma~\\ref{lem:common-extension}. Propositions~\\ref{prop:transport-matching} and \\ref{prop:comparison-rigidity} give equality of the transport matrices on $\\Ecal_\\theta$ for every nonzero null $\\t"
-    },
-    {
-      "from": "m1-prop-comparison-rigidity",
-      "to": "m1-lem-finite-type",
-      "label": "prop:comparison-rigidity",
-      "context": "nt-to-traction maps agree, and use the common exterior extensions furnished by Lemma~\\ref{lem:common-extension}. Propositions~\\ref{prop:transport-matching} and \\ref{prop:comparison-rigidity} give equality of the transport matrices on $\\Ecal_\\theta$ for every nonzero null $\\theta$. In particular, \\eqref{eq:tr"
     }
   ]
 }

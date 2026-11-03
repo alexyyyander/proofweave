@@ -124,56 +124,20 @@
   ],
   "edges": [
     {
-      "from": "m1-lem-amplification",
-      "to": "m1-prop-tournament",
-      "label": "lem:amplification",
-      "context": "index registers are orthogonal, so the total success probability is $W/m$, and the conditional distribution of $i$ on success is exactly $w_i/W$. Apply Lemma~\\ref{lem:amplification} with $\\gamma=1/(2m)$ and $\\eta=\\epsilon$. A successful sample still has exactly this index distribution: amplification"
-    },
-    {
-      "from": "m1-lem-adaptive-product",
-      "to": "m1-prop-classical",
-      "label": "lem:adaptive-product",
-      "context": "dependence of $I$ gives \\begin{equation}\\label{eq:heavy-probability} \\Pr(I\\text{ is heavy})\\leq\\frac{G}{mL}. \\end{equation} For the other columns we use Lemma~\\ref{lem:adaptive-product}. The following simulation bounds a joint event and does not condition the input distribution on a column being nonheav"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-prop-classical",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] For each fixed $k\\ge2$, Proposition~\\ref{prop:quantum} gives $\\Q(F_{k,m})\\le C_k\\sqrt m(\\log m)^{b_k}$ for suitable co"
-    },
-    {
       "from": "m1-prop-quantum",
-      "to": "m1-prop-classical",
+      "to": "m1-thm-main",
       "label": "prop:quantum",
       "context": "[Proof of Theorem~\\ref{thm:main}] For each fixed $k\\ge2$, Proposition~\\ref{prop:quantum} gives $\\Q(F_{k,m})\\le C_k\\sqrt m(\\log m)^{b_k}$ for suitable constants. Proposition~\\ref{prop:classical} gives \\[ \\R(F"
     },
     {
-      "from": "m1-thm-quartic-upper",
-      "to": "m1-prop-classical",
-      "label": "thm:quartic-upper",
-      "context": "alpha/2}} {(\\log m)^{2+\\alpha b_k}} \\longrightarrow\\infty. \\] Hence no exponent smaller than four belongs to the set in \\eqref{eq:alpha}. Conversely, Theorem~\\ref{thm:quartic-upper} proves $\\R(f)\\le\\D(f)=O((1+\\Q(f))^4)$ for every total Boolean function. Therefore four does belong to that set, and its"
-    },
-    {
-      "from": "m1-lem-adversary",
-      "to": "m1-lem-bs-lambda",
-      "label": "lem:adversary",
-      "context": "tries elsewhere. Its norm is $\\sqrt b$. Each coordinate belongs to at most one block, so $\\Gamma_i$ has at most one undirected edge and norm at most one. Lemma~\\ref{lem:adversary} gives $\\Q(f)=\\Omega(\\sqrt b)$. This recovers the usual block-sensitivity lower bound for quantum queries~\\cite{BBCMW01}"
-    },
-    {
-      "from": "m1-thm-quartic-upper",
-      "to": "m1-lem-degree-bs",
-      "label": "thm:quartic-upper",
-      "context": "[Proof of Theorem~\\ref{thm:quartic-upper}] For nonconstant $f$, Lemmas~\\ref{lem:bs-lambda} and \\ref{lem:degree-lambda} give both $\\bs(f)=O(\\Q(f)^2)$ and $\\deg(f)"
-    },
-    {
       "from": "m1-lem-bs-lambda",
-      "to": "m1-lem-degree-bs",
+      "to": "m1-thm-quartic-upper",
       "label": "lem:bs-lambda",
       "context": "[Proof of Theorem~\\ref{thm:quartic-upper}] For nonconstant $f$, Lemmas~\\ref{lem:bs-lambda} and \\ref{lem:degree-lambda} give both $\\bs(f)=O(\\Q(f)^2)$ and $\\deg(f)=O(\\Q(f)^2)$. Lemma~\\ref{lem:degree-bs} then give"
     },
     {
       "from": "m1-lem-degree-lambda",
-      "to": "m1-lem-degree-bs",
+      "to": "m1-thm-quartic-upper",
       "label": "lem:degree-lambda",
       "context": "[Proof of Theorem~\\ref{thm:quartic-upper}] For nonconstant $f$, Lemmas~\\ref{lem:bs-lambda} and \\ref{lem:degree-lambda} give both $\\bs(f)=O(\\Q(f)^2)$ and $\\deg(f)=O(\\Q(f)^2)$. Lemma~\\ref{lem:degree-bs} then gives $\\D(f)=O(\\Q(f)^4)$. Since"
     }

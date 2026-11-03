@@ -166,106 +166,16 @@
   ],
   "edges": [
     {
-      "from": "m1-thm-main",
-      "to": "m1-lem-greedy",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}, assuming Proposition~\\ref{prop:density}] For the upper bound, fix \\(1\\le a<b\\), put \\(S=\\log b\\), and assume that \\(S\\"
-    },
-    {
-      "from": "m1-prop-density",
-      "to": "m1-lem-greedy",
-      "label": "prop:density",
-      "context": "[Proof of Theorem~\\ref{thm:main}, assuming Proposition~\\ref{prop:density}] For the upper bound, fix \\(1\\le a<b\\), put \\(S=\\log b\\), and assume that \\(S\\) is sufficiently large. Apply Lemma~\\re"
-    },
-    {
-      "from": "m1-lem-distinct",
-      "to": "m1-lem-greedy",
-      "label": "lem:distinct",
-      "context": "assume that \\(S\\) is sufficiently large. Apply Lemma~\\ref{lem:greedy} with \\(T=e^{D_CS}\\). This uses \\(O(\\log S)\\) terms. If the procedure terminates, Lemma~\\ref{lem:distinct} gives the required upper bound. Otherwise its remainder \\(A/C\\) satisfies \\[ 1\\le A<b,\\qquad e^{D_CS}\\le C<e^{2D_CS}."
-    },
-    {
-      "from": "m1-lem-reciprocal-phase",
-      "to": "m1-lem-deterministic",
-      "label": "lem:reciprocal-phase",
-      "context": "ons with dyadic intervals \\([U,2U]\\). We may take \\(Y/2\\le U\\le X\\), so for large \\(S\\), \\[ e^{0.8S}\\le U\\le e^{D_XS},\\qquad U^4\\le |Z|\\le U^{3D_C}. \\] Lemma~\\ref{lem:reciprocal-phase}, with the fixed value \\(B=3D_C\\), bounds the sum over each piece by \\(O(Ue^{-0.8\\delta_BS})\\). The sum of the dyadic \\("
-    },
-    {
-      "from": "m1-prop-density",
-      "to": "m1-lem-deterministic",
-      "label": "prop:density",
-      "context": "[Proof of Proposition~\\ref{prop:density}] Use the absolute constants and levels of Lemma~\\ref{lem:residues}. Before choosing \\(S\\), fix \\[ K_d=\\frac{3D_X}{\\et"
-    },
-    {
       "from": "m1-lem-residues",
-      "to": "m1-lem-deterministic",
+      "to": "m1-prop-density",
       "label": "lem:residues",
       "context": "[Proof of Proposition~\\ref{prop:density}] Use the absolute constants and levels of Lemma~\\ref{lem:residues}. Before choosing \\(S\\), fix \\[ K_d=\\frac{3D_X}{\\eta},\\qquad D_*=2D_C+D_M+1, \\qquad r\\in\\N,\\quad r\\ge \\max\\{2,8K_d\\}"
     },
     {
-      "from": "m1-lem-divisor",
-      "to": "m1-lem-deterministic",
-      "label": "lem:divisor",
-      "context": "values retain different indices. The drawn graph does not specify numerical degrees.} \\label{fig:predecessors} \\end{figure} We check the hypotheses of Lemma~\\ref{lem:divisor} before applying it. Since \\(j<d\\), one has \\[ \\frac{S}{2\\log S}\\le m<\\log X\\le D_XS\\le D_*S. \\] Also \\[ Y=Xe^{-\\eta m"
-    },
-    {
-      "from": "m1-cor-counting",
-      "to": "m1-lem-marked-cleanup",
-      "label": "cor:counting",
-      "context": "[Proof of Corollary~\\ref{cor:counting}] \\emph{A short initial expansion.} Let $r$ be a sufficiently large integer and let $Q$ be the product of the first $r$"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-lem-marked-cleanup",
-      "label": "thm:main",
-      "context": "$r$ odd primes. The prime number theorem, already used in Section~\\ref{sec:residues}, gives \\[ \\log Q=O(r\\log r),\\qquad \\log\\log Q=O(\\log r). \\] Apply Theorem~\\ref{thm:main} to $(Q-1)/Q$ and append $1/Q$. Lemma~\\ref{lem:marked-cleanup} produces a distinct expansion of one whose denominator se"
-    },
-    {
-      "from": "m1-prop-marked-length",
-      "to": "m1-lem-marked-grouping",
-      "label": "prop:marked-length",
-      "context": "[Proof of Proposition~\\ref{prop:marked-length}] Fix a sufficiently large integer $m$, put $L=\\log\\log m$, and take $K_m$ from Lemma~\\ref{lem:rational-divisor-supply}."
-    },
-    {
       "from": "m1-lem-rational-divisor-supply",
-      "to": "m1-lem-marked-grouping",
+      "to": "m1-prop-marked-length",
       "label": "lem:rational-divisor-supply",
       "context": "[Proof of Proposition~\\ref{prop:marked-length}] Fix a sufficiently large integer $m$, put $L=\\log\\log m$, and take $K_m$ from Lemma~\\ref{lem:rational-divisor-supply}. Apply Lemma~\\ref{lem:marked-greedy-prefix} with $T=2mK_m$, which is an integer at least $2m^2$. It gives \\[ 1=\\frac1m"
-    },
-    {
-      "from": "m1-lem-marked-greedy-prefix",
-      "to": "m1-lem-marked-grouping",
-      "label": "lem:marked-greedy-prefix",
-      "context": "on~\\ref{prop:marked-length}] Fix a sufficiently large integer $m$, put $L=\\log\\log m$, and take $K_m$ from Lemma~\\ref{lem:rational-divisor-supply}. Apply Lemma~\\ref{lem:marked-greedy-prefix} with $T=2mK_m$, which is an integer at least $2m^2$. It gives \\[ 1=\\frac1m+\\sum_{i=1}^{j}\\frac1{n_i}+\\frac Rq, \\qquad"
-    },
-    {
-      "from": "m1-lem-marked-divisor-density",
-      "to": "m1-lem-marked-grouping",
-      "label": "lem:marked-divisor-density",
-      "context": "rth that $R>0$. The denominator $q$ is retained without cancellation, beginning at $m$ and using multipliers at most the preceding denominator plus one. Lemma~\\ref{lem:marked-divisor-density} therefore applies to this $q$. Moreover $q\\ge2mK_m$ and $R<2m$, so the integer $X=RK_m$ satisfies $1\\le X<q$. Lemma~\\re"
-    },
-    {
-      "from": "m1-lem-distinct",
-      "to": "m1-lem-marked-grouping",
-      "label": "lem:distinct",
-      "context": "ac{\\log K_m+\\log(2m)}{2\\log m}+2 \\le\\left(\\frac{16}{\\log2}+o(1)\\right)L. \\] This count depends on $RK_m$, not on the potentially much larger $q$. Apply Lemma~\\ref{lem:distinct} only to this tail. It makes its denominators distinct without changing its number of terms. The tail sum is strictly be"
-    },
-    {
-      "from": "m1-cor-prescribed",
-      "to": "m1-lem-marked-grouping",
-      "label": "cor:prescribed",
-      "context": "[Proof of Corollary~\\ref{cor:prescribed}] Set $A=257/\\log2$. Fix a real number $c$ with $0<c<1/A$, and choose $\\varepsilon>0$ such that $c(A+\\varepsilon)<1$. Pr"
-    },
-    {
-      "from": "m1-lem-exact-marker-padding",
-      "to": "m1-lem-marked-grouping",
-      "label": "lem:exact-marker-padding",
-      "context": "$m\\ge2$ has at least three terms: denominator one would exhaust the sum, and two distinct denominators at least two contribute at most $1/2+1/3<1$. Thus Lemma~\\ref{lem:exact-marker-padding} may be iterated until the length is exactly $k$, retaining the exact integer $m$. We have proved \\[ \\{2,\\ldots,\\lfloor"
-    },
-    {
-      "from": "m1-cor-counting",
-      "to": "m1-lem-marked-grouping",
-      "label": "cor:counting",
-      "context": "$, so taking $c=1/600$ gives the stated eventual lower bound $v(k)\\ge\\exp(\\exp(k/600))$. For the upper bound, the product recurrence in the proof of Corollary~\\ref{cor:counting} gives $n_i\\le k^{2^{i-1}}$ in every distinct exact-$k$ expansion of $1$. Every denominator in such an expansion is ther"
     }
   ]
 }

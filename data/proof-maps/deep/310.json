@@ -79,7 +79,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-thm-reduction-odd"
+          ]
         },
         {
           "id": "m1-thm-reduction-two",
@@ -149,11 +151,7 @@
           "kind": "lemma",
           "source": "Propagation from a faithful component extension",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-saturated-residue",
-            "m1-lem-faithfulness-upgrade",
-            "m1-lem-product-shuffle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-maximal-family",
@@ -163,12 +161,7 @@
           "kind": "corollary",
           "source": "Propagation from a faithful component extension",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-faithfulness-upgrade"
-          ],
-          "objectUses": [
-            "m1-lem-propagation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-frame-bound",
@@ -198,9 +191,7 @@
           "kind": "lemma",
           "source": "Cycles from frames and a dimension estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-merger-coefficients"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-frame-marked-factor",
@@ -250,10 +241,7 @@
           "kind": "lemma",
           "source": "Decorations and restriction of cycles",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-opposite-chamber",
-            "m1-lem-saturated-residue"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-projective-rank",
@@ -283,16 +271,7 @@
           "kind": "proposition",
           "source": "Linear and unitary components",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-component-core",
-            "m1-lem-linear-sign-centralizer",
-            "m1-thm-frame-bound",
-            "m1-lem-restriction",
-            "m1-cor-maximal-family"
-          ],
-          "objectUses": [
-            "m1-lem-decorations"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-unitary-odd",
@@ -302,13 +281,7 @@
           "kind": "proposition",
           "source": "Linear and unitary components",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-projective-rank",
-            "m1-thm-frame-bound"
-          ],
-          "objectUses": [
-            "m1-lem-decorations"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-symplectic",
@@ -348,9 +321,7 @@
           "kind": "lemma",
           "source": "Symplectic components at two",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-symp-descent"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-orthogonal",
@@ -370,9 +341,7 @@
           "kind": "lemma",
           "source": "Orthogonal components",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-orthogonal-eight-naturality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-orthogonal-eight-naturality",
@@ -422,9 +391,7 @@
           "kind": "lemma",
           "source": "Orthogonal components",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-projective-rank"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-psl45-equivalent-poset",
@@ -444,18 +411,7 @@
           "kind": "proposition",
           "source": "Orthogonal components",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-frame-bound",
-            "m1-lem-restriction",
-            "m1-lem-psl45-intermediate-core",
-            "m1-lem-decorations",
-            "m1-lem-component-core",
-            "m1-thm-psl45-equivalent-poset",
-            "m1-lem-product-shuffle",
-            "m1-lem-psl45-homology",
-            "m1-thm-reduction-odd",
-            "m1-thm-reduction-two"
-          ]
+          "dependsOn": []
         }
       ]
     }

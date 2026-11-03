@@ -194,9 +194,7 @@
           "kind": "proposition",
           "source": "Why the recent noise contracts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-sequential-tv"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-reciprocal-degrees",
@@ -216,10 +214,7 @@
           "kind": "proposition",
           "source": "From eight large marginals to the whole group",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-thm-mixing"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -246,7 +241,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-prop-marginals"
+          ]
         },
         {
           "id": "m2-lem-lower",
@@ -316,10 +313,7 @@
           "kind": "proposition",
           "source": "Online observations and ordinary marginals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-shear-lem-tuple",
-            "m2-cor-frames-marginals"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-trim",
@@ -359,10 +353,7 @@
           "kind": "corollary",
           "source": "An elementary bound on representation degrees",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-degrees",
-            "m2-prop-lift-orbit-sum"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-plancherel",
@@ -382,12 +373,7 @@
           "kind": "lemma",
           "source": "Completion of the mixing bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-marginals",
-            "m2-lem-trim",
-            "m2-prop-lift",
-            "m2-lem-plancherel"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-concentration",
@@ -407,9 +393,7 @@
           "kind": "lemma",
           "source": "Fixed input laws and independent shears",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-concentration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-shear-prop-fixed-marginal",
@@ -419,12 +403,7 @@
           "kind": "proposition",
           "source": "Fixed input laws and independent shears",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-shear-lem-tuple"
-          ],
-          "objectUses": [
-            "m2-lem-frames"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-shear-lem-keys",
@@ -444,9 +423,7 @@
           "kind": "proposition",
           "source": "Estimates that average the input labels",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-shear-lem-tuple"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lifts-averaged-tuples",
@@ -456,9 +433,7 @@
           "kind": "lemma",
           "source": "Estimates that average the input labels",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-shear-lem-tuple"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lifts-tuple-constants",
@@ -478,9 +453,7 @@
           "kind": "proposition",
           "source": "Estimates that average the input labels",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-concentration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-average-law",
@@ -510,9 +483,7 @@
           "kind": "proposition",
           "source": "Fourier amplification of partial permutation laws",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-subprobability-fourier"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-shear-prop-disjoint-transfer",
@@ -532,9 +503,7 @@
           "kind": "lemma",
           "source": "Fourier amplification of partial permutation laws",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-plancherel"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-shear-cor-512",
@@ -544,10 +513,7 @@
           "kind": "corollary",
           "source": "Fourier amplification of partial permutation laws",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-shear-prop-fourier-inputs",
-            "m2-lem-subprobability-fourier"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-shear-thm-2048",
@@ -557,9 +523,7 @@
           "kind": "theorem",
           "source": "Fourier amplification of partial permutation laws",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-shear-prop-reservoir"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-average-marginals",
@@ -569,12 +533,7 @@
           "kind": "proposition",
           "source": "Fourier amplification of partial permutation laws",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-shear-prop-fourier-inputs"
-          ],
-          "mentions": [
-            "m2-frames-average-law"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-shear-thm-32-block",
@@ -604,11 +563,7 @@
           "kind": "corollary",
           "source": "Fourier amplification of partial permutation laws",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-lower",
-            "m2-lem-one-card-lower",
-            "m2-shear-cor-512"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-matching-invariance",
@@ -638,9 +593,7 @@
           "kind": "corollary",
           "source": "History events and conditional estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-frames-holes"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-cross-energy",
@@ -660,10 +613,7 @@
           "kind": "lemma",
           "source": "History events and conditional estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-shear-lem-fixed-balance"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-backward-removal",
@@ -673,9 +623,7 @@
           "kind": "lemma",
           "source": "History events and conditional estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-subprobability-fourier"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-pointwise-applications",
@@ -685,9 +633,7 @@
           "kind": "proposition",
           "source": "History events and conditional estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-frames-backward-removal"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-stopped-marginals",
@@ -697,9 +643,7 @@
           "kind": "proposition",
           "source": "History events and conditional estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-frames-cross-energy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-pruning-application",
@@ -709,9 +653,7 @@
           "kind": "proposition",
           "source": "History events and conditional estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-frames-stopped-marginals"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-reference-rows",
@@ -721,9 +663,7 @@
           "kind": "lemma",
           "source": "History events and conditional estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-frames-holes"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-typical-history",
@@ -733,12 +673,7 @@
           "kind": "lemma",
           "source": "History events and conditional estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-frames-matching-invariance"
-          ],
-          "objectUses": [
-            "m2-frames-cross-energy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-shadow-entropy",
@@ -748,9 +683,7 @@
           "kind": "lemma",
           "source": "History events and conditional estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-frames-reference-rows"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-entropy-tail",
@@ -760,9 +693,7 @@
           "kind": "proposition",
           "source": "History events and conditional estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-frames-typical-history"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-entropy-application",
@@ -772,9 +703,7 @@
           "kind": "proposition",
           "source": "History events and conditional estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-frames-entropy-tail"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-aux-theorem",
@@ -794,10 +723,7 @@
           "kind": "lemma",
           "source": "An averaged application of deferred columns",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-shear-lem-keys"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-aux-energy",
@@ -807,9 +733,7 @@
           "kind": "lemma",
           "source": "An averaged application of deferred columns",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-frames-aux-directions"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-aux-marginal",
@@ -819,13 +743,7 @@
           "kind": "proposition",
           "source": "An averaged application of deferred columns",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-frames-aux-directions",
-            "m2-frames-aux-energy"
-          ],
-          "objectUses": [
-            "m2-shear-lem-tuple"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-aux-orbit-lift",
@@ -845,11 +763,7 @@
           "kind": "proposition",
           "source": "Random input domains and equivariant kernels",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lifts-tuple-constants",
-            "m2-lem-trim",
-            "m2-lem-fair-sign"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lifts-sixteen-theorem",
@@ -859,9 +773,7 @@
           "kind": "theorem",
           "source": "Random input domains and equivariant kernels",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lifts-tuple-constants"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lifts-neumann-theorem",
@@ -871,10 +783,7 @@
           "kind": "proposition",
           "source": "Random input domains and equivariant kernels",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lifts-tuple-constants",
-            "m2-lem-fair-sign"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-frames-char-main",
@@ -934,10 +843,7 @@
           "kind": "proposition",
           "source": "Character smoothing from half-deck information",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-frames-char-one-pass",
-            "m2-frames-char-minimum-degree"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-char-main",
@@ -1034,10 +940,7 @@
           "kind": "proposition",
           "source": "Degree sums, common trimming, and normalization",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-l-degree-basic",
-            "m3-l-plancherel"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-l-single-orbit",
@@ -1057,9 +960,7 @@
           "kind": "proposition",
           "source": "The complete transfer from disjoint coset systems",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-l-single-orbit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-l-orbit-completion",
@@ -1069,11 +970,7 @@
           "kind": "corollary",
           "source": "The complete transfer from disjoint coset systems",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-l-trim",
-            "m3-l-orbit-span",
-            "m3-l-amplification"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-l-central-isotypic",

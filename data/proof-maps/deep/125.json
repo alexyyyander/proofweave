@@ -154,9 +154,7 @@
           "kind": "lemma",
           "source": "Local search and anchored comparison clusters",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-loc-descent"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-loc-anchoring",
@@ -166,9 +164,7 @@
           "kind": "theorem",
           "source": "Local search and anchored comparison clusters",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-loc-swap"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sam-computable-radius",
@@ -198,9 +194,7 @@
           "kind": "lemma",
           "source": "Joint sampling of leaders and removals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-sam-computable-radius"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sam-probability",
@@ -210,9 +204,7 @@
           "kind": "lemma",
           "source": "Joint sampling of leaders and removals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-sam-radius-budget"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sam-near-clients",
@@ -242,10 +234,7 @@
           "kind": "theorem",
           "source": "Joint sampling of leaders and removals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-sam-sampling-mass",
-            "m1-sam-probability"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-comp-partition-max",
@@ -275,10 +264,7 @@
           "kind": "theorem",
           "source": "Completing sampled prefixes and recovering the budget",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-comp-partition-max",
-            "m1-comp-surrogate-properties"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-comp-recovery",
@@ -288,11 +274,7 @@
           "kind": "theorem",
           "source": "Completing sampled prefixes and recovering the budget",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-sam-successful-prefix",
-            "m1-comp-completion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ref-two-stage",
@@ -302,14 +284,7 @@
           "kind": "lemma",
           "source": "Sharper recovery when few clusters are unanchored",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-sam-radius-budget",
-            "m1-sam-near-clients",
-            "m1-sam-computable-radius"
-          ],
-          "objectUses": [
-            "m1-sam-probability"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ref-charges",
@@ -319,10 +294,7 @@
           "kind": "lemma",
           "source": "Sharper recovery when few clusters are unanchored",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-comp-completion",
-            "m1-sam-radius-budget"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-imp-cglss",
@@ -362,15 +334,7 @@
           "kind": "proposition",
           "source": "The low sensitivity case",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-imp-cglss",
-            "m1-imp-surplus-history",
-            "m1-str-strictness",
-            "m1-loc-swap"
-          ],
-          "objectUses": [
-            "m1-loc-anchoring"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-asm-sensitive",
@@ -390,16 +354,7 @@
           "kind": "proposition",
           "source": "The stability dichotomy and the final algorithm",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-loc-descent",
-            "m1-loc-swap",
-            "m1-comp-recovery",
-            "m1-asm-sensitive"
-          ],
-          "objectUses": [
-            "m1-sur-low-sensitivity",
-            "m1-loc-anchoring"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -526,9 +481,7 @@
           "kind": "lemma",
           "source": "Tapered iterative rounding",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-rnd-completion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-rnd-average",
@@ -538,10 +491,7 @@
           "kind": "lemma",
           "source": "Tapered iterative rounding",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-thm-finite-inequality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-rnd-survival",
@@ -551,9 +501,7 @@
           "kind": "lemma",
           "source": "Tapered iterative rounding",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-rnd-batch"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-affine-support",
@@ -573,12 +521,7 @@
           "kind": "theorem",
           "source": "Deterministic implementation and completion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-grid-rounding"
-          ],
-          "objectUses": [
-            "m2-thm-li-svensson"
-          ]
+          "dependsOn": []
         }
       ]
     }

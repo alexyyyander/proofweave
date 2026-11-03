@@ -134,7 +134,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-finite-beta"
+          ]
         },
         {
           "id": "m1-thm-main",
@@ -264,10 +266,7 @@
           "kind": "lemma",
           "source": "Block observations and the free kernels",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-rg-ambient"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-rg-joint",
@@ -277,10 +276,7 @@
           "kind": "proposition",
           "source": "Block observations and the free kernels",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-rg-reserves"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-rg-canonical-contraction",
@@ -360,9 +356,7 @@
           "kind": "lemma",
           "source": "Integrated comparison of endpoint densities",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-comparison-remainder"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-editable-regions",
@@ -472,9 +466,7 @@
           "kind": "proposition",
           "source": "Continuum and infinite-volume limits",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-source-step"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-continuum-limit",
@@ -484,10 +476,7 @@
           "kind": "proposition",
           "source": "Continuum and infinite-volume limits",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cor-source-endpoints",
-            "m1-prop-source-products"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-euclidean-regularity",
@@ -497,9 +486,7 @@
           "kind": "proposition",
           "source": "Continuum and infinite-volume limits",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-continuum-limit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-boundary-strips",
@@ -519,10 +506,7 @@
           "kind": "lemma",
           "source": "Reconstruction, mass gap, and non-Gaussian correlations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-continuum-limit",
-            "m1-prop-moment-majorants"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-slab-clustering",
@@ -532,10 +516,7 @@
           "kind": "proposition",
           "source": "Reconstruction, mass gap, and non-Gaussian correlations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-moment-majorants",
-            "m1-prop-euclidean-regularity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-os-reconstruction",
@@ -545,13 +526,7 @@
           "kind": "proposition",
           "source": "Reconstruction, mass gap, and non-Gaussian correlations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-reflection-positivity",
-            "m1-prop-euclidean-regularity"
-          ],
-          "mentions": [
-            "m1-prop-slab-clustering"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-continuum-gap",
@@ -561,10 +536,7 @@
           "kind": "proposition",
           "source": "Reconstruction, mass gap, and non-Gaussian correlations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-moment-majorants",
-            "m1-prop-slab-clustering"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-non-gaussian",
@@ -574,14 +546,7 @@
           "kind": "proposition",
           "source": "Reconstruction, mass gap, and non-Gaussian correlations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-source-step",
-            "m1-lem-boundary-strips",
-            "m1-prop-continuum-gap",
-            "m1-thm-main",
-            "m1-prop-continuum-limit",
-            "m1-prop-euclidean-regularity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-rg-input",
@@ -591,12 +556,7 @@
           "kind": "proposition",
           "source": "Trajectories with a bounded bare offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-rg-step"
-          ],
-          "objectUses": [
-            "m1-prop-endpoint-matching"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-sensitivity",
@@ -626,10 +586,7 @@
           "kind": "lemma",
           "source": "Trajectories with a bounded bare offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-admission",
-            "m1-prop-shooting"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-matching",
@@ -639,11 +596,7 @@
           "kind": "proposition",
           "source": "Trajectories with a bounded bare offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-admission",
-            "m1-lem-sensitivity",
-            "m1-prop-rg-input"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-finite-beta",
@@ -653,9 +606,7 @@
           "kind": "lemma",
           "source": "Volume estimates uniform in the bare offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-preliminary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-band-endpoints",
@@ -665,13 +616,7 @@
           "kind": "lemma",
           "source": "Volume estimates uniform in the bare offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-editable-regions",
-            "m1-cor-terminal-alignment"
-          ],
-          "objectUses": [
-            "m1-prop-integrated-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-endpoint-comparison",
@@ -681,15 +626,7 @@
           "kind": "proposition",
           "source": "Volume estimates uniform in the bare offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-free-bounds",
-            "m1-thm-rg-step",
-            "m1-lem-band-endpoints",
-            "m1-prop-integrated-comparison"
-          ],
-          "objectUses": [
-            "m1-prop-endpoint-matching"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-offset-box-test",
@@ -699,13 +636,7 @@
           "kind": "lemma",
           "source": "Volume estimates uniform in the bare offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-retuning",
-            "m1-prop-endpoint-comparison"
-          ],
-          "objectUses": [
-            "m1-prop-preliminary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-uniform-volume",
@@ -725,9 +656,7 @@
           "kind": "lemma",
           "source": "Volume estimates uniform in the bare offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-uniform-volume"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-source-input",
@@ -737,10 +666,7 @@
           "kind": "proposition",
           "source": "Continuum fields at a fixed bare-coupling offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-admission",
-            "m1-prop-source-step"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-source-comparison",
@@ -750,10 +676,7 @@
           "kind": "lemma",
           "source": "Continuum fields at a fixed bare-coupling offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-matching",
-            "m1-prop-source-products"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-moment-bound",
@@ -763,13 +686,7 @@
           "kind": "lemma",
           "source": "Continuum fields at a fixed bare-coupling offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-integrated-comparison",
-            "m1-lem-source-comparison"
-          ],
-          "mentions": [
-            "m1-lem-finite-beta"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-offset-limits",
@@ -779,14 +696,7 @@
           "kind": "proposition",
           "source": "Continuum fields at a fixed bare-coupling offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-moment-bound",
-            "m1-prop-matching"
-          ],
-          "objectUses": [
-            "m1-prop-uniform-volume",
-            "m1-lem-inclined-periods"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-two-point-tails",
@@ -796,11 +706,7 @@
           "kind": "lemma",
           "source": "Continuum fields at a fixed bare-coupling offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-moment-bound",
-            "m1-prop-uniform-volume",
-            "m1-prop-offset-limits"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-normalization",
@@ -810,11 +716,7 @@
           "kind": "proposition",
           "source": "Continuum fields at a fixed bare-coupling offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cor-terminal-alignment",
-            "m1-lem-band-endpoints",
-            "m1-lem-two-point-tails"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-shooting-normalization",
@@ -824,14 +726,7 @@
           "kind": "lemma",
           "source": "Continuum fields at a fixed bare-coupling offset",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-trace-uniform",
-            "m1-prop-moment-majorants",
-            "m1-lem-two-point-tails",
-            "m1-prop-continuum-limit",
-            "m1-prop-non-gaussian",
-            "m1-prop-normalization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-two-scales",
@@ -841,11 +736,7 @@
           "kind": "proposition",
           "source": "Uniqueness after canonical normalization",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-admission",
-            "m1-prop-normalization",
-            "m1-prop-offset-limits"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-dense-periods",
@@ -855,16 +746,7 @@
           "kind": "lemma",
           "source": "Uniqueness after canonical normalization",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-finite-beta",
-            "m1-prop-two-scales",
-            "m1-prop-offset-limits",
-            "m1-prop-normalization",
-            "m1-lem-shooting-normalization"
-          ],
-          "objectUses": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -911,9 +793,7 @@
           "kind": "lemma",
           "source": "The continuum field and the uniform lattice inputs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-inp-contracts"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-inp-tails",
@@ -963,10 +843,7 @@
           "kind": "proposition",
           "source": "Transfer spectra and volume comparison",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-inp-contracts"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-tra-moments",
@@ -976,10 +853,7 @@
           "kind": "corollary",
           "source": "Transfer spectra and volume comparison",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-tra-comparison",
-            "m2-inp-tails"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-par-covariance",
@@ -1009,9 +883,7 @@
           "kind": "proposition",
           "source": "The even transfer sector",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-par-covariance"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-vis-proposition",
@@ -1041,10 +913,7 @@
           "kind": "lemma",
           "source": "Visibility of the lowest transfer energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-inp-kernel",
-            "m2-tra-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cou-linear",
@@ -1074,9 +943,7 @@
           "kind": "lemma",
           "source": "From the state count to an isolated mass",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-tra-comparison"
-          ]
+          "dependsOn": []
         }
       ]
     }

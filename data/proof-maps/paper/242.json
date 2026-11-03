@@ -126,82 +126,10 @@
   ],
   "edges": [
     {
-      "from": "m1-lem-rational-codes",
-      "to": "m1-lem-point-arithmetic",
-      "label": "lem:rational-codes",
-      "context": "rdinate of an inactive slope code is forced to zero. Only the shared output code remains globally valid. Thus no inactive branch contributes a choice. Lemma~\\ref{lem:rational-codes} gives uniqueness of every active arithmetic witness. Induction along a fixed finite chain proves the final assertions."
-    },
-    {
-      "from": "m1-prop-rank-one",
-      "to": "m1-lem-representatives",
-      "label": "prop:rank-one",
-      "context": "dinate zero, because such points are torsion. Exactly one of the two has positive y-coordinate. This proves the claim, including exhaustiveness by Proposition~\\ref{prop:rank-one}."
-    },
-    {
-      "from": "m1-lem-representatives",
-      "to": "m1-prop-growth",
-      "label": "lem:representatives",
-      "context": "\\). Since the sequence is strictly increasing and unbounded, and \\(u+W_1\\ge W_1\\), there is exactly one \\(k\\ge1\\) such that \\[ W_k\\le u+W_1<W_{k+1}. \\] Lemma~\\ref{lem:representatives} then gives exactly one permissible point \\(Q\\). This reasoning includes \\(u=0\\), for which \\(k=1\\). \\smallskip \\noind"
-    },
-    {
-      "from": "m1-lem-rational-codes",
-      "to": "m1-prop-growth",
-      "label": "lem:rational-codes",
-      "context": "\\). Once these points are fixed, their complete codes, every intermediate point and height, all comparison slacks, and all branch selectors are fixed. Lemmas \\ref{lem:rational-codes} and \\ref{lem:point-arithmetic}, together with the inactive-variable convention, give uniqueness of every expanded auxil"
-    },
-    {
-      "from": "m1-lem-point-arithmetic",
-      "to": "m1-prop-growth",
-      "label": "lem:point-arithmetic",
-      "context": "xed, their complete codes, every intermediate point and height, all comparison slacks, and all branch selectors are fixed. Lemmas \\ref{lem:rational-codes} and \\ref{lem:point-arithmetic}, together with the inactive-variable convention, give uniqueness of every expanded auxiliary. Conversely those uniquel"
-    },
-    {
-      "from": "m1-lem-pell-sequences",
-      "to": "m1-prop-power",
-      "label": "lem:pell-sequences",
-      "context": "The ratio in Lemma~\\ref{lem:pell-sequences} suggests taking $c$ as the integer quotient of $y_{n+1}(bu)$ by $y_{n+1}(u)$. To make its error less than one without i"
-    },
-    {
-      "from": "m1-prop-power",
-      "to": "m1-prop-subset",
-      "label": "prop:power",
-      "context": "Require $x\\le y$ and use three calls to Proposition~\\ref{prop:power} to specify \\begin{equation}\\label{eq:subset-powers} B=2^{y+1},\\qquad H=B^x,\\qquad N=(B+1)^y. \\end{equation} All three"
-    },
-    {
-      "from": "m1-prop-power",
-      "to": "m1-prop-machine-compiler",
-      "label": "prop:power",
-      "context": "roduced argument variable is equal to an already determined polynomial expression; every inequality slack is determined by its endpoints. Finally, Propositions~\\ref{prop:power} and~\\ref{prop:subset} determine all auxiliary variables in every expanded call. Their internal case selectors and inact"
-    },
-    {
-      "from": "m1-prop-subset",
-      "to": "m1-prop-machine-compiler",
-      "label": "prop:subset",
-      "context": "able is equal to an already determined polynomial expression; every inequality slack is determined by its endpoints. Finally, Propositions~\\ref{prop:power} and~\\ref{prop:subset} determine all auxiliary variables in every expanded call. Their internal case selectors and inactive variables are incl"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-prop-machine-compiler",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] Given the recursively enumerable set $S\\subseteq\\NN^n$, choose the machine of Lemma~\\ref{lem:counter-universality} and"
-    },
-    {
       "from": "m1-lem-counter-universality",
-      "to": "m1-prop-machine-compiler",
+      "to": "m1-thm-main",
       "label": "lem:counter-universality",
       "context": "[Proof of Theorem~\\ref{thm:main}] Given the recursively enumerable set $S\\subseteq\\NN^n$, choose the machine of Lemma~\\ref{lem:counter-universality} and apply Proposition~\\ref{prop:machine-compiler}. Expand each call to a single-fold relation into its finite polynomia"
-    },
-    {
-      "from": "m1-cor-unique-h10",
-      "to": "m1-prop-machine-compiler",
-      "label": "cor:unique-h10",
-      "context": "[Proof of Corollary~\\ref{cor:unique-h10}] Fix a nonrecursive recursively enumerable set $S\\subseteq\\NN$. Theorem~\\ref{thm:main}, with one parameter, supplies a"
-    },
-    {
-      "from": "m1-prop-rank-one",
-      "to": "m1-prop-machine-compiler",
-      "label": "prop:rank-one",
-      "context": "[Proof of Proposition~\\ref{prop:rank-one}] For \\(E:y^2=x^3-25x\\), we first prove \\([E(\\QQ):2E(\\QQ)]\\le8\\), which will force rank at most one. We then exhibit a"
     }
   ]
 }

@@ -74,7 +74,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-completion-no-action"
+          ]
         },
         {
           "id": "m1-lem-model-presentation",
@@ -94,7 +96,10 @@
           "kind": "theorem",
           "source": "Diagrams and linear filling",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-diagram-fragment"
+          ]
         },
         {
           "id": "m1-diagram-rank",
@@ -124,10 +129,7 @@
           "kind": "lemma",
           "source": "Diagrams and linear filling",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-diagram-existence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-diagram-weighted-rank",
@@ -137,9 +139,7 @@
           "kind": "lemma",
           "source": "Diagrams and linear filling",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-diagram-normal-form"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-diagram-apex",
@@ -149,9 +149,7 @@
           "kind": "lemma",
           "source": "Diagrams and linear filling",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-diagram-normal-form"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-diagram-fragment",
@@ -171,13 +169,7 @@
           "kind": "lemma",
           "source": "Diagrams and linear filling",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-diagram-rank",
-            "m1-diagram-normal-form"
-          ],
-          "objectUses": [
-            "m1-diagram-fragment"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sample-lem-budget",
@@ -197,9 +189,7 @@
           "kind": "lemma",
           "source": "Conditional sampling from the nested tables",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-sample-lem-budget"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sample-lem-coupling",
@@ -209,9 +199,7 @@
           "kind": "lemma",
           "source": "Conditional sampling from the nested tables",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-sample-lem-conditional-counts"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-sampling",
@@ -221,9 +209,7 @@
           "kind": "proposition",
           "source": "Conditional sampling from the nested tables",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-sample-lem-coupling"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-energy-minimizer",
@@ -263,9 +249,7 @@
           "kind": "lemma",
           "source": "Energy and a limiting configuration",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-sampling"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-energy-path-bounds",
@@ -275,9 +259,7 @@
           "kind": "lemma",
           "source": "Energy and a limiting configuration",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-conditional-test"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-energy-quadrilateral",
@@ -317,13 +299,7 @@
           "kind": "proposition",
           "source": "Energy and a limiting configuration",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-energy-minimizer",
-            "m1-energy-displacement-bound",
-            "m1-energy-path-bounds",
-            "m1-energy-hexagon-flatness",
-            "m1-energy-common-center"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geom-square",
@@ -343,10 +319,7 @@
           "kind": "lemma",
           "source": "The geometric obstruction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-configuration",
-            "m1-geom-square"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geom-exceptional",
@@ -356,10 +329,7 @@
           "kind": "lemma",
           "source": "The geometric obstruction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-geom-fan-sums",
-            "m1-prop-configuration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geom-antipodal",
@@ -369,10 +339,7 @@
           "kind": "lemma",
           "source": "The geometric obstruction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-geom-exceptional"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-no-configuration",
@@ -382,9 +349,7 @@
           "kind": "proposition",
           "source": "The geometric obstruction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-geom-antipodal"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-completion-diagonal",
@@ -394,9 +359,7 @@
           "kind": "lemma",
           "source": "Selection and the finite-model conclusion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-model-presentation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-completion-no-action",
@@ -406,9 +369,7 @@
           "kind": "proposition",
           "source": "Selection and the finite-model conclusion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-configuration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-completion-transfer",
@@ -418,10 +379,7 @@
           "kind": "lemma",
           "source": "Selection and the finite-model conclusion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-completion-no-action",
-            "m1-thm-diagram"
-          ]
+          "dependsOn": []
         }
       ]
     }

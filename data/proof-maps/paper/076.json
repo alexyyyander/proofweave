@@ -297,190 +297,34 @@
   ],
   "edges": [
     {
-      "from": "m1-lem-quadratic",
-      "to": "m1-lem-stationary-phase",
-      "label": "lem:quadratic",
-      "context": "set and uniformly bounded smooth norms, because $\\supp f$ is separated from the endpoints of $I$. At $y=0$ their value is $f(t_x)/\\sqrt{|\\phi''(t_x)|}$. Lemma~\\ref{lem:quadratic}, whose error is controlled by a fixed finite collection of smooth norms, proves the assertion uniformly in this case. I"
-    },
-    {
-      "from": "m1-lem-matrix-discrepancy",
-      "to": "m1-lem-complex-rounding",
-      "label": "lem:matrix-discrepancy",
-      "context": "s,1$, let $S_h$ contain those coordinates for which $2^hp_j^{(h)}$ is odd, and let $s_h=|S_h|$. If $s_h=0$, leave the vector unchanged. Otherwise apply Lemma~\\ref{lem:matrix-discrepancy} to the columns indexed by $S_h$. Reverse all its signs if necessary so that their sum is nonpositive, and put \\[ p_j^"
-    },
-    {
-      "from": "m1-lem-quadratic",
-      "to": "m1-lem-equal-modulus-spreading",
-      "label": "lem:quadratic",
-      "context": "such a $g$ with $\\int g^2\\ge1-q$. For a fixed $\\beta\\in\\mathcal B$, write \\[ I_\\beta(u)=\\int_{-1/2}^{1/2}g(y)\\e(T\\beta y^2/2-uy)\\,dy \\qquad(u\\in\\Z). \\] Lemma~\\ref{lem:quadratic} and $L_\\beta/(T|\\beta|)\\to1$ give, uniformly in $u$, \\begin{equation}\\label{eq:spreading-coefficient-bound} \\sqrt{L_\\b"
-    },
-    {
-      "from": "m1-lem-complex-rounding",
-      "to": "m1-lem-equal-modulus-spreading",
-      "label": "lem:complex-rounding",
-      "context": "}. \\] Since $1-|Z_u|\\le1-|Z_u|^2$, the defect $\\mu=\\frac12\\sum_u(1-|Z_u|)$ satisfies \\[ \\frac{\\mu}{L_\\beta}\\le\\frac{4q+q^2}{2(1+q)^2}\\le2q<1/2. \\] Apply Lemma~\\ref{lem:complex-rounding} on this consecutive interval of frequencies, and divide its conclusion by $\\sqrt{L_\\beta}$. It gives unit complex numb"
-    },
-    {
       "from": "m1-prop-balanced",
-      "to": "m1-lem-equal-modulus-spreading",
-      "label": "prop:balanced",
-      "context": "[Proof of Proposition~\\ref{prop:balanced}] We first construct a real polynomial with norm at most one and squared $L^2$ norm close to one. Starting with $p_0=0$"
-    },
-    {
-      "from": "m1-prop-waves",
-      "to": "m1-lem-signed-packing",
-      "label": "prop:waves",
-      "context": "[Proof of Proposition~\\ref{prop:waves}] Fix $\\delta$ and choose the data of Proposition~\\ref{prop:balanced}. Thus \\[ F(y)=\\sum_{a\\in\\mathcal A}c_a\\e(a\\cdot y"
-    },
-    {
-      "from": "m1-prop-balanced",
-      "to": "m1-lem-signed-packing",
+      "to": "m1-prop-waves",
       "label": "prop:balanced",
       "context": "[Proof of Proposition~\\ref{prop:waves}] Fix $\\delta$ and choose the data of Proposition~\\ref{prop:balanced}. Thus \\[ F(y)=\\sum_{a\\in\\mathcal A}c_a\\e(a\\cdot y),\\qquad \\lambda_a=a\\cdot v,\\qquad w_a=|\\lambda_a|, \\] where $F$ is"
     },
     {
-      "from": "m1-lem-oscillatory-bounds",
-      "to": "m1-lem-signed-packing",
-      "label": "lem:oscillatory-bounds",
-      "context": "h(X_{a,h}(t))$. On either endpoint part the phase has constant second derivative of modulus $1/(w_a\\sigma^2)$. The cutoff has bounded total variation. Lemma~\\ref{lem:oscillatory-bounds} therefore bounds this part, after multiplication by $\\sqrt N$, by \\[ C m_a\\sqrt{w_a}\\,\\sigma=C|c_a|\\sigma. \\] Choose $"
-    },
-    {
-      "from": "m1-lem-stationary-phase",
-      "to": "m1-lem-signed-packing",
-      "label": "lem:stationary-phase",
-      "context": "fore fixing the functions in \\eqref{eq:wave-taper}, that the sum of these bounds over all endpoints is at most $\\delta$. For the part with cutoff, apply Lemma~\\ref{lem:stationary-phase} with $x=k/N$. After multiplication by $\\sqrt N$, the leading term is zero if $x\\notin J_h$; if $x\\in J_h$, its station"
-    },
-    {
       "from": "m2-prop-auxiliary",
-      "to": "m2-lem-quadratic",
-      "label": "prop:auxiliary",
-      "context": "[Proof of Proposition~\\ref{prop:auxiliary}] Fix $\\delta$. The choices below are successive: once a parameter has been chosen, it stays fixed while later paramete"
-    },
-    {
-      "from": "m2-lem-signed-packing",
-      "to": "m2-thm-packing-edge-coloring",
-      "label": "lem:signed-packing",
-      "context": "[Proof of Lemma~\\ref{lem:signed-packing}] We place small disjoint slots on a finite grid in a half-circle. Each slot has one of the types $1,\\ldots,r$ and rese"
-    },
-    {
-      "from": "m2-lem-quadratic",
-      "to": "m2-lem-sampling-poisson",
-      "label": "lem:quadratic",
-      "context": "y many indices $|\\ell|\\le Q$, expand \\[ N\\phi_{\\beta,\\ell}(x) =\\frac{N\\lambda x^2}{2} -N(\\ell-\\beta+\\lambda x_*)x+\\frac{N\\lambda x_*^2}{2}. \\] Apply Lemma~\\ref{lem:quadratic} with $T=N$, curvature $\\lambda$, and $u=N(\\ell-\\beta+\\lambda x_*)$. Its stationary point is $x_{\\beta,\\ell}$, and $\\ph"
-    },
-    {
-      "from": "m2-prop-starting",
-      "to": "m2-lem-sampling-poisson",
-      "label": "prop:starting",
-      "context": "[Proof of Proposition~\\ref{prop:starting}] Fix $\\delta$, and take $F$, $\\mathcal A=\\{\\pm a_i:1\\le i\\le r\\}$, and $v$ from Proposition~\\ref{prop:auxiliary}. Writ"
-    },
-    {
-      "from": "m2-prop-auxiliary",
-      "to": "m2-lem-sampling-poisson",
+      "to": "m2-prop-starting",
       "label": "prop:auxiliary",
       "context": "[Proof of Proposition~\\ref{prop:starting}] Fix $\\delta$, and take $F$, $\\mathcal A=\\{\\pm a_i:1\\le i\\le r\\}$, and $v$ from Proposition~\\ref{prop:auxiliary}. Write \\[ F(y)=\\sum_{a\\in\\mathcal A}c_a\\e(a\\cdot y), \\qquad c_a=\\widehat F(a),\\qquad \\lambda_a=a\\cdot v. \\] The widt"
     },
     {
-      "from": "m2-lem-signed-packing",
-      "to": "m2-lem-sampling-poisson",
-      "label": "lem:signed-packing",
-      "context": ")=\\sum_{a\\in\\mathcal A}c_a\\e(a\\cdot y), \\qquad c_a=\\widehat F(a),\\qquad \\lambda_a=a\\cdot v. \\] The widths $w_i=|\\lambda_{a_i}|$ satisfy $2\\sum_iw_i<1$. Lemma~\\ref{lem:signed-packing}, with all centers negated, supplies $H\\ge1$ and $\\theta_1,\\ldots,\\theta_H\\in\\T^m$ such that the closed arcs \\begin{equa"
-    },
-    {
-      "from": "m2-lem-rounding",
-      "to": "m2-lem-rounding-matrix",
-      "label": "lem:rounding",
-      "context": "[Proof of Lemma~\\ref{lem:rounding}] Let $X=(X_0,\\ldots,X_{N-1})\\in[-1,1]^N$ and $\\mu=\\frac12\\sum_k(1-|X_k|)$. If $\\mu=0$, every $X_k$ is already a sign,"
-    },
-    {
-      "from": "m2-thm-main",
-      "to": "m2-lem-rounding-matrix",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] Let $b=1/8$ and let $D>0$ be the absolute constant in Proposition~\\ref{prop:correction}. For a fixed sufficiently smal"
-    },
-    {
       "from": "m2-prop-correction",
-      "to": "m2-lem-rounding-matrix",
+      "to": "m2-thm-main",
       "label": "prop:correction",
       "context": "[Proof of Theorem~\\ref{thm:main}] Let $b=1/8$ and let $D>0$ be the absolute constant in Proposition~\\ref{prop:correction}. For a fixed sufficiently small $\\delta>0$, take the real coefficients $Y_{N,k}$ and the functions $B_N$ from Propositi"
     },
     {
-      "from": "m2-prop-starting",
-      "to": "m2-lem-rounding-matrix",
-      "label": "prop:starting",
-      "context": "in Proposition~\\ref{prop:correction}. For a fixed sufficiently small $\\delta>0$, take the real coefficients $Y_{N,k}$ and the functions $B_N$ from Proposition~\\ref{prop:starting}, and the correction $R_N$ from Proposition~\\ref{prop:correction}. All estimates below hold for every sufficiently large"
-    },
-    {
-      "from": "m3-thm-main",
-      "to": "m3-lem-rounding",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] Fix $0<\\delta<1/20$ and choose the family from Proposition~\\ref{prop:almost-signs}. For all sufficiently large $N$, \\e"
-    },
-    {
       "from": "m3-prop-almost-signs",
-      "to": "m3-lem-rounding",
+      "to": "m3-thm-main",
       "label": "prop:almost-signs",
       "context": "[Proof of Theorem~\\ref{thm:main}] Fix $0<\\delta<1/20$ and choose the family from Proposition~\\ref{prop:almost-signs}. For all sufficiently large $N$, \\eqref{eq:almost-energy} gives \\[ \\frac1N\\sum_kX_{N,k}^2\\ge1-8\\delta. \\] Since $1-|x|"
     },
     {
-      "from": "m3-lem-signed-packing",
-      "to": "m3-thm-packing-edge-coloring",
-      "label": "lem:signed-packing",
-      "context": "[Proof of Lemma~\\ref{lem:signed-packing}] All constants implicit in asymptotic estimates may depend on the fixed forms and the fixed slot lengths chosen next."
-    },
-    {
       "from": "m3-prop-auxiliary",
-      "to": "m3-lem-quadratic",
-      "label": "prop:auxiliary",
-      "context": "[Proof of Proposition~\\ref{prop:auxiliary}] Fix $\\delta$. The choices below are successive: once a parameter has been chosen, it stays fixed while later paramete"
-    },
-    {
-      "from": "m3-lem-quadratic",
-      "to": "m3-lem-sampling-poisson",
-      "label": "lem:quadratic",
-      "context": "y indices $|\\ell|\\le L$, expand the phase as \\[ N\\phi_{b,\\ell}(x) =\\frac{N\\lambda x^2}{2} -N(\\ell-b+\\lambda x_*)x+\\frac{N\\lambda x_*^2}{2}. \\] Apply Lemma~\\ref{lem:quadratic} with $T=N$, curvature $\\lambda$, and $u=N(\\ell-b+\\lambda x_*)$. Its stationary point is $x_{b,\\ell}$, and $\\phi_{b,\\el"
-    },
-    {
-      "from": "m3-prop-almost-signs",
-      "to": "m3-lem-sampling-poisson",
-      "label": "prop:almost-signs",
-      "context": "[Proof of Proposition~\\ref{prop:almost-signs}] Fix $0<\\delta<1/20$. Proposition~\\ref{prop:auxiliary} supplies a real trigonometric polynomial on $\\T^m$, \\[ F(y)=\\s"
-    },
-    {
-      "from": "m3-prop-auxiliary",
-      "to": "m3-lem-sampling-poisson",
+      "to": "m3-prop-almost-signs",
       "label": "prop:auxiliary",
       "context": "[Proof of Proposition~\\ref{prop:almost-signs}] Fix $0<\\delta<1/20$. Proposition~\\ref{prop:auxiliary} supplies a real trigonometric polynomial on $\\T^m$, \\[ F(y)=\\sum_{a\\in\\mathcal A}c_a\\e(a\\cdot y), \\qquad c_a=\\widehat"
-    },
-    {
-      "from": "m3-lem-signed-packing",
-      "to": "m3-lem-sampling-poisson",
-      "label": "lem:signed-packing",
-      "context": "\\label{eq:sampling-coefficient-budget} \\end{gather} The set $\\mathcal A$ is a containing Fourier support; coefficients equal to zero are allowed. Apply Lemma~\\ref{lem:signed-packing} with $w_i=|\\lambda_{a_i}|$. Its strict width hypothesis holds because $2\\sum_i w_i=\\sum_{a\\in\\mathcal A}|\\lambda_a|<1$."
-    },
-    {
-      "from": "m3-lem-rounding",
-      "to": "m3-lem-rounding-matrix",
-      "label": "lem:rounding",
-      "context": "[Proof of Lemma~\\ref{lem:rounding}] Let $X=(X_0,\\ldots,X_{N-1})\\in[-1,1]^N$ and $\\mu=\\frac12\\sum_k(1-|X_k|)$. If $\\mu=0$, every $X_k$ is already a sign,"
-    },
-    {
-      "from": "m3-thm-main",
-      "to": "m3-cor-finite-flatness",
-      "label": "thm:main",
-      "context": "imizing polynomial at each length; the finite set of sign vectors ensures that the minimum is attained. Put $f_N(t)=|P_N(\\e(t))|/\\sqrt N$. Parseval and Theorem~\\ref{thm:main} give $\\int f_N^2=1$ and $\\norm{f_N}_\\infty=1+o(1)$. Hence \\[ 1\\le\\int f_N^4\\le\\norm{f_N}_\\infty^2\\int f_N^2=1+o(1), \\"
-    },
-    {
-      "from": "m3-thm-main",
-      "to": "m3-cor-merit",
-      "label": "thm:main",
-      "context": "{F(A_N)} =\\frac{\\norm{P_{A_N}}_4^4}{N^2}-1 \\le\\frac{\\norm{P_{A_N}}_\\infty^2\\norm{P_{A_N}}_2^2}{N^2}-1 =m_N^2-1\\longrightarrow0. \\] The last limit is Theorem~\\ref{thm:main}. Thus $F(A_N)\\to\\infty$ and $\\mathcal F_N\\ge F(A_N)$ has the same conclusion. The equivalence with the autocorrelation"
-    },
-    {
-      "from": "m3-cor-merit",
-      "to": "m3-cor-morse",
-      "label": "cor:merit",
-      "context": "Corollary~\\ref{cor:merit} supplies nontrivial finite binary words with arbitrarily large merit factors. The forward construction in \\cite[Theorem"
     }
   ]
 }

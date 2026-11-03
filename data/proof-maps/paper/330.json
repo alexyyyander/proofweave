@@ -109,70 +109,10 @@
   ],
   "edges": [
     {
-      "from": "m1-cor-renorming",
-      "to": "m1-prop-coefficients",
-      "label": "cor:renorming",
-      "context": "[Proof of \\Cref{cor:renorming}] Fix $p\\ge1$. By \\Cref{thm:blocks}, the set $M_p\\setminus\\{o\\}$ is countably infinite, so an enumeration identifies its"
-    },
-    {
       "from": "m1-thm-blocks",
-      "to": "m1-prop-coefficients",
+      "to": "m1-cor-renorming",
       "label": "thm:blocks",
       "context": "[Proof of \\Cref{cor:renorming}] Fix $p\\ge1$. By \\Cref{thm:blocks}, the set $M_p\\setminus\\{o\\}$ is countably infinite, so an enumeration identifies its coefficient space with real $\\ell_"
-    },
-    {
-      "from": "m1-lem-block-geometry",
-      "to": "m1-lem-measure-bounds",
-      "label": "lem:block-geometry",
-      "context": "inequality uses $\\norm{T}\\le2p$ and $\\norm{\\delta_x}=d_p(x,o)\\le B$. In particular, the estimate includes the mass at the basepoint. For a source vertex $x$, \\Cref{lem:block-geometry} gives $d_p(x,a(x))\\le R$. The anchor bound in \\eqref{eq:operator-bounds} therefore implies \\[ \\begin{split} \\norm{T\\d"
-    },
-    {
-      "from": "m1-lem-block-geometry",
-      "to": "m1-lem-rare-walks",
-      "label": "lem:block-geometry",
-      "context": "For $j\\in S$, set \\[ C_j=\\{i:h_i(j)<D\\}. \\] \\Cref{lem:block-geometry} gives $|C_j|\\le H$. If $x$ has color $i$ and is compatible with $j$, then $h_i(x)=0$ implies \\[ h_i(j)\\le K+2L+1=D-4<D"
-    },
-    {
-      "from": "m1-lem-local-limit",
-      "to": "m1-lem-rare-walks",
-      "label": "lem:local-limit",
-      "context": "d types. With $S$ and $n$ fixed, the sets $C_j$ and the transition relation are fixed, so the event selects the same finite union of these types for every $m$. \\Cref{lem:local-limit} gives convergence for every type and therefore for this particular finite union. Its empirical frequency converges to i"
-    },
-    {
-      "from": "m1-lem-block-geometry",
-      "to": "m1-lem-edge-test",
-      "label": "lem:block-geometry",
-      "context": "ality holds whenever $d_p(j,j')\\ge2L$. Suppose $d_p(j,j')<2L$ and $b_x(j)>0$. Then $\\norm{h(x)-h(j)}_\\infty<K$. Since $d_p(x,y)\\le1$ and $h$ is $1$-Lipschitz, \\Cref{lem:block-geometry} gives \\[ \\begin{split} \\norm{h(y)-h(j')}_\\infty &\\le\\norm{h(y)-h(x)}_\\infty +\\norm{h(x)-h(j)}_\\infty +"
-    },
-    {
-      "from": "m1-lem-exceptional-directions",
-      "to": "m1-lem-edge-test",
-      "label": "lem:exceptional-directions",
-      "context": "infty +\\norm{h(j)-h(j')}_\\infty\\\\ &<1+K+2L. \\end{split} \\] The pairs $(x,j)$ and $(y,j')$ are compatible, and their state distance is at most $2L$. By \\Cref{lem:exceptional-directions}, both prescriptions cannot be present. The same reasoning applies when $b_y(j')>0$. Hence whenever two states, one from"
-    },
-    {
-      "from": "m1-thm-blocks",
-      "to": "m1-lem-edge-test",
-      "label": "thm:blocks",
-      "context": "[Proof of \\Cref{thm:blocks}] For the chosen integer $p$, \\Cref{lem:block-geometry} supplies the countably infinite block, its separation and diamet"
-    },
-    {
-      "from": "m1-lem-finite-support",
-      "to": "m1-lem-edge-test",
-      "label": "lem:finite-support",
-      "context": "d the finite anchor set $A_p$. Suppose that a bounded finite-rank operator $T_0$ of norm at most $p$ has error less than $1/2$ on every anchor. Choose $T,S$ by \\Cref{lem:finite-support} and the measures $\\mu_x$ by \\Cref{lem:measure-bounds}. With this state set fixed, choose $n\\ge2$ and then $G=G_m$ by \\C"
-    },
-    {
-      "from": "m1-lem-measure-bounds",
-      "to": "m1-lem-edge-test",
-      "label": "lem:measure-bounds",
-      "context": "finite-rank operator $T_0$ of norm at most $p$ has error less than $1/2$ on every anchor. Choose $T,S$ by \\Cref{lem:finite-support} and the measures $\\mu_x$ by \\Cref{lem:measure-bounds}. With this state set fixed, choose $n\\ge2$ and then $G=G_m$ by \\Cref{lem:rare-walks}, so that the fraction $\\beta$ of b"
-    },
-    {
-      "from": "m1-lem-rare-walks",
-      "to": "m1-lem-edge-test",
-      "label": "lem:rare-walks",
-      "context": "Choose $T,S$ by \\Cref{lem:finite-support} and the measures $\\mu_x$ by \\Cref{lem:measure-bounds}. With this state set fixed, choose $n\\ge2$ and then $G=G_m$ by \\Cref{lem:rare-walks}, so that the fraction $\\beta$ of bad vertices is less than $1/(20V)$. Apply \\Cref{lem:exceptional-directions} and \\Cref"
     }
   ]
 }

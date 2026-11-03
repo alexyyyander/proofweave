@@ -124,7 +124,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-certificate"
+          ]
         },
         {
           "id": "m1-cor-coexistence",
@@ -134,10 +136,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-certificate",
@@ -147,7 +146,9 @@
           "kind": "proposition",
           "source": "A finite-volume certificate and the matrix state",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-deterministic-induction"
+          ]
         },
         {
           "id": "m1-lem-conditional-freshness",
@@ -217,9 +218,7 @@
           "kind": "proposition",
           "source": "The initial state and its comparison forms",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-initial-bottom-density"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-duplication",
@@ -249,9 +248,7 @@
           "kind": "lemma",
           "source": "The algebra and estimates of an ordinary sweep",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-fourier-charge"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-sweep-j",
@@ -271,11 +268,7 @@
           "kind": "lemma",
           "source": "The algebra and estimates of an ordinary sweep",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-single-update",
-            "m1-lem-sweep-prestate",
-            "m1-lem-fourier-charge"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-sweep-lag",
@@ -285,9 +278,7 @@
           "kind": "lemma",
           "source": "The algebra and estimates of an ordinary sweep",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-single-update"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-sweep-fourth",
@@ -307,11 +298,7 @@
           "kind": "proposition",
           "source": "The algebra and estimates of an ordinary sweep",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-sweep-laplacian",
-            "m1-lem-sweep-lag",
-            "m1-lem-sweep-fourth"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-locality",
@@ -331,9 +318,7 @@
           "kind": "lemma",
           "source": "Local trials and the ordinary sweep",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-locality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-local-prospective",
@@ -343,13 +328,7 @@
           "kind": "lemma",
           "source": "Local trials and the ordinary sweep",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-inverse-row",
-            "m1-lem-locality"
-          ],
-          "objectUses": [
-            "m1-prop-sweep-increments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-local-pullback",
@@ -369,11 +348,7 @@
           "kind": "lemma",
           "source": "Local trials and the ordinary sweep",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-local-prospective",
-            "m1-lem-inverse-row",
-            "m1-lem-local-pullback"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-matrix-concentration",
@@ -393,14 +368,7 @@
           "kind": "lemma",
           "source": "Local trials and the ordinary sweep",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-local-prospective",
-            "m1-prop-sweep-increments",
-            "m1-lem-local-pullback"
-          ],
-          "objectUses": [
-            "m1-lem-matrix-concentration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-ordinary-sweep",
@@ -410,11 +378,7 @@
           "kind": "proposition",
           "source": "Local trials and the ordinary sweep",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-local-trial",
-            "m1-lem-local-prospective",
-            "m1-lem-sweep-prestate"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-core-completion",
@@ -444,9 +408,7 @@
           "kind": "corollary",
           "source": "Clearing a small pending component",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-clearing-range-localization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-leverage-drift",
@@ -496,9 +458,7 @@
           "kind": "lemma",
           "source": "Committing clearings and restoring the stage bounds",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-assembly-metric"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-committed-assembly",
@@ -508,10 +468,7 @@
           "kind": "proposition",
           "source": "Committing clearings and restoring the stage bounds",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-cube-weight",
-            "m1-lem-locality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-reset",
@@ -531,16 +488,7 @@
           "kind": "proposition",
           "source": "Committing clearings and restoring the stage bounds",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-ordinary-sweep",
-            "m1-lem-duplication",
-            "m1-lem-clearing-locality",
-            "m1-lem-inverse-row"
-          ],
-          "objectUses": [
-            "m1-prop-committed-assembly",
-            "m1-prop-clearing-trial"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-witness-bound",
@@ -550,10 +498,7 @@
           "kind": "proposition",
           "source": "Failure histories and removal of pending sites",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-certificate",
-            "m1-prop-deterministic-induction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-threshold",
@@ -583,12 +528,7 @@
           "kind": "proposition",
           "source": "From the certificate to pure absolute continuity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-certificate"
-          ],
-          "objectUses": [
-            "m1-prop-threshold"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -705,9 +645,7 @@
           "kind": "proposition",
           "source": "The resonant cell law",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-cell-profile"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-imp-weighted",
@@ -787,9 +725,7 @@
           "kind": "proposition",
           "source": "Transmission through a cell",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-mat-phase"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-hier-sampling",
@@ -829,9 +765,7 @@
           "kind": "lemma",
           "source": "A hierarchy of probability splits and energy comparisons",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-mat-cutoff"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-hier-charges",
@@ -861,9 +795,7 @@
           "kind": "proposition",
           "source": "Screening and affine energies at a fixed stage",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-mat-ward"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-screen-paths",
@@ -883,9 +815,7 @@
           "kind": "proposition",
           "source": "Screening and affine energies at a fixed stage",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-screen-paths"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-screen-limits",
@@ -895,9 +825,7 @@
           "kind": "proposition",
           "source": "Screening and affine energies at a fixed stage",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-screen-projected"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-screen-profiles",
@@ -907,9 +835,7 @@
           "kind": "proposition",
           "source": "Screening and affine energies at a fixed stage",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-screen-limits"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-screen-limit",
@@ -959,11 +885,7 @@
           "kind": "lemma",
           "source": "Vanishing of the limiting energy in two dimensions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-screen-limits",
-            "m2-screen-walls",
-            "m2-screen-projected"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-van-analytic-bounds",
@@ -973,10 +895,7 @@
           "kind": "lemma",
           "source": "Vanishing of the limiting energy in two dimensions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-van-good",
-            "m2-mat-weak"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-boot-fractional",
@@ -996,10 +915,7 @@
           "kind": "lemma",
           "source": "A fixed-energy fractional-moment estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-mat-closure",
-            "m2-mat-weak"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-boot-tilted",
@@ -1019,9 +935,7 @@
           "kind": "lemma",
           "source": "A fixed-energy fractional-moment estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-hier-charges"
-          ]
+          "dependsOn": []
         }
       ]
     }

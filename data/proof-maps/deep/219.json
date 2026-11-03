@@ -119,9 +119,7 @@
           "kind": "lemma",
           "source": "Boundary Green functions and stability on the tree",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-tree-stability"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-tree-density",
@@ -131,9 +129,7 @@
           "kind": "corollary",
           "source": "Boundary Green functions and stability on the tree",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-tree-log"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-local-law",
@@ -163,9 +159,7 @@
           "kind": "lemma",
           "source": "A distributional local law on the finite graph",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-spectral-averaging"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-empirical-recursion",
@@ -175,10 +169,7 @@
           "kind": "proposition",
           "source": "A distributional local law on the finite graph",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-prop-tree-stability"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-local-consequences",
@@ -188,13 +179,7 @@
           "kind": "corollary",
           "source": "A distributional local law on the finite graph",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-tree-stability",
-            "m1-cor-tree-density"
-          ],
-          "objectUses": [
-            "m1-prop-empirical-recursion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-marked-limits",
@@ -204,10 +189,7 @@
           "kind": "proposition",
           "source": "Empirical eigenvector laws and conditional entropy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-spectral-averaging",
-            "m1-cor-local-consequences"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-conditional-mean",
@@ -247,10 +229,7 @@
           "kind": "lemma",
           "source": "Conditional Gaussian rigidity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-tree-log"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-gaussian-marks",
@@ -260,10 +239,7 @@
           "kind": "proposition",
           "source": "Conditional Gaussian rigidity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-conditional-mean",
-            "m1-prop-marked-limits"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-discrepancy",
@@ -283,9 +259,7 @@
           "kind": "proposition",
           "source": "Limiting resolvents and potential resampling",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-ward"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-transform-regularity",
@@ -335,9 +309,7 @@
           "kind": "lemma",
           "source": "Gaussian insertion by potential permutations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-sw-weighted-blocks"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sw-trace-cut",
@@ -357,12 +329,7 @@
           "kind": "lemma",
           "source": "Gaussian insertion by potential permutations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-gaussian-insertion",
-            "m1-sw-trace-cut",
-            "m1-prop-potential-switch",
-            "m1-prop-marked-resolvent"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-dbm-input",
@@ -382,11 +349,7 @@
           "kind": "lemma",
           "source": "Identification by finite-matrix Dyson Brownian motion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-transform-regularity",
-            "m1-lem-discrepancy",
-            "m1-prop-marked-resolvent"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-goe-counts",
@@ -396,11 +359,7 @@
           "kind": "lemma",
           "source": "Identification by finite-matrix Dyson Brownian motion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-tree-stability",
-            "m1-cor-tree-density",
-            "m1-prop-marked-limits"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -427,7 +386,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-prop-microscopic-limit"
+          ]
         },
         {
           "id": "m2-lem-model",
@@ -467,7 +428,9 @@
           "kind": "proposition",
           "source": "Gaussian moments at sampled edges",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-ent-projected-entropy"
+          ]
         },
         {
           "id": "m2-ent-type-count",
@@ -477,9 +440,7 @@
           "kind": "lemma",
           "source": "Gaussian moments at sampled edges",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-model"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ent-star-edge",
@@ -489,10 +450,7 @@
           "kind": "lemma",
           "source": "Gaussian moments at sampled edges",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-ent-type-count",
-            "m2-lem-tree-identities"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ent-projected-entropy",
@@ -502,9 +460,7 @@
           "kind": "lemma",
           "source": "Gaussian moments at sampled edges",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-tree-identities"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ent-tensor",
@@ -524,12 +480,7 @@
           "kind": "lemma",
           "source": "Gaussian moments at sampled edges",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-ent-projected-entropy"
-          ],
-          "objectUses": [
-            "m2-ent-tensor"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-endpoint-control",
@@ -539,10 +490,7 @@
           "kind": "proposition",
           "source": "Endpoint resolvents and microscopic limits",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-spectral-input",
-            "m2-lem-tree-identities"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-microscopic-limit",
@@ -552,10 +500,7 @@
           "kind": "proposition",
           "source": "Endpoint resolvents and microscopic limits",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-endpoint-control",
-            "m2-prop-edge-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-continuous-switching",
@@ -595,9 +540,7 @@
           "kind": "lemma",
           "source": "Continuous switches and Gaussian insertion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-sw-weighted-blocks"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-sw-trace-cut",
@@ -617,11 +560,7 @@
           "kind": "lemma",
           "source": "Continuous switches and Gaussian insertion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-gaussian-insertion",
-            "m2-sw-trace-cut",
-            "m2-prop-continuous-switching"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-dbm-input",
@@ -651,9 +590,7 @@
           "kind": "lemma",
           "source": "Identification by finite-matrix Dyson Brownian motion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-microscopic-limit"
-          ]
+          "dependsOn": []
         }
       ]
     }

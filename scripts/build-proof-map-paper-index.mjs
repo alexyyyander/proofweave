@@ -4,6 +4,7 @@ import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { createLeanSourceFetcher } from "./lib/proof-map-lean-cache.mjs";
+import { explicitProofOwner } from "../packages/domain/paper-reference-owner.mjs";
 
 /**
  * Extract a paper-derived structure for every result family from the pinned
@@ -93,7 +94,7 @@ function parseFile(name, text) {
       const end = Math.min(proofText.length, ref.index + ref[0].length + 120);
       refs.push({ label: ref[1], context: proofText.slice(start, end).replace(/\s+/g, " ").trim() });
     }
-    events.push({ at: match.index, type: "proof", refs, file: name });
+    events.push({ at: match.index, type: "proof", refs, owner: explicitProofOwner(proofText), file: name });
   }
   events.sort((left, right) => left.at - right.at);
   return { name, events };
@@ -132,7 +133,7 @@ function assemble(files) {
       } else if (event.type === "statement") {
         const id = uniqueId(event.label ? slug(event.label) : slug(`${event.kind}-${nodes.length + 1}`), ids);
         ids.add(id);
-        if (event.label) labelToId.set(event.label, id);
+        if (event.label) labelToId.set(event.label, labelToId.has(event.label) ? null : id);
         nodes.push({
           id,
           kind: event.kind,
@@ -146,20 +147,20 @@ function assemble(files) {
       }
     }
   }
-  // Second pass: attach proof references to the statement each proof follows.
+  // Attach only proofs with an explicit, uniquely named target. Proximity is
+  // ambiguous, especially across included files or delayed proofs.
   const edges = [];
   const seen = new Set();
-  let lastStatement = null;
   for (const event of ordered) {
-    if (event.type === "statement") {
-      lastStatement = event.nodeId;
-    } else if (event.type === "proof" && lastStatement) {
+    if (event.type === "proof" && event.owner) {
+      const owner = labelToId.get(event.owner);
+      if (!owner) continue;
       for (const ref of event.refs) {
         const from = labelToId.get(ref.label);
-        const key = `${from}|${lastStatement}`;
-        if (!from || from === lastStatement || seen.has(key)) continue;
+        const key = `${from}|${owner}`;
+        if (!from || from === owner || seen.has(key)) continue;
         seen.add(key);
-        edges.push({ from, to: lastStatement, label: ref.label, context: ref.context });
+        edges.push({ from, to: owner, label: ref.label, context: ref.context });
       }
     }
   }

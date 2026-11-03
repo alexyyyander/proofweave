@@ -104,7 +104,9 @@
           "kind": "proposition",
           "source": "From a dense set to every numerator",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-residues"
+          ]
         },
         {
           "id": "m1-lem-distinct",
@@ -124,9 +126,7 @@
           "kind": "lemma",
           "source": "From a dense set to every numerator",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-distinct"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-divisor",
@@ -176,13 +176,7 @@
           "kind": "lemma",
           "source": "Divisors with small residues",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-reciprocal-phase",
-            "m1-lem-residues"
-          ],
-          "objectUses": [
-            "m1-lem-divisor"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-marked-cleanup",
@@ -192,9 +186,7 @@
           "kind": "lemma",
           "source": "Counting representations of one",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-marked-greedy-prefix",
@@ -224,7 +216,9 @@
           "kind": "proposition",
           "source": "A quantitative prescribed-denominator bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-rational-divisor-supply"
+          ]
         },
         {
           "id": "m1-lem-rational-divisor-supply",
@@ -254,13 +248,7 @@
           "kind": "lemma",
           "source": "A quantitative prescribed-denominator bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-rational-divisor-supply",
-            "m1-lem-marked-greedy-prefix",
-            "m1-lem-marked-divisor-density",
-            "m1-lem-distinct",
-            "m1-cor-counting"
-          ]
+          "dependsOn": []
         }
       ]
     }

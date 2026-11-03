@@ -385,220 +385,40 @@
   ],
   "edges": [
     {
-      "from": "m1-thm-bounded-patterns",
-      "to": "m1-lem-link-word-counts",
-      "label": "thm:bounded-patterns",
-      "context": "[Proof of Theorem~\\ref{thm:bounded-patterns}] Lemma~\\ref{lem:multiplicity-incidence} shows that the total exponent of $n$ in $\\prod_{j=1}^{m_*}B_j$ is nonpositive."
-    },
-    {
       "from": "m1-lem-multiplicity-incidence",
-      "to": "m1-lem-link-word-counts",
+      "to": "m1-thm-bounded-patterns",
       "label": "lem:multiplicity-incidence",
       "context": "[Proof of Theorem~\\ref{thm:bounded-patterns}] Lemma~\\ref{lem:multiplicity-incidence} shows that the total exponent of $n$ in $\\prod_{j=1}^{m_*}B_j$ is nonpositive. For a component $\\mathcal U$ without a s"
     },
     {
-      "from": "m1-thm-no-arrangements",
-      "to": "m1-lem-separator",
-      "label": "thm:no-arrangements",
-      "context": "[Proof of Theorem~\\ref{thm:no-arrangements}] Let $\\varepsilon>0$ be the constant in Theorem~\\ref{thm:bounded-patterns}, independent of its fixed bounds $K_0,C,I$."
-    },
-    {
       "from": "m1-thm-bounded-patterns",
-      "to": "m1-lem-separator",
+      "to": "m1-thm-no-arrangements",
       "label": "thm:bounded-patterns",
       "context": "[Proof of Theorem~\\ref{thm:no-arrangements}] Let $\\varepsilon>0$ be the constant in Theorem~\\ref{thm:bounded-patterns}, independent of its fixed bounds $K_0,C,I$. Fix $d$ from Proposition~\\ref{prop:diameter} and $D_0$ from Lemma~\\ref{lem"
     },
     {
-      "from": "m1-prop-diameter",
-      "to": "m1-lem-separator",
-      "label": "prop:diameter",
-      "context": "-arrangements}] Let $\\varepsilon>0$ be the constant in Theorem~\\ref{thm:bounded-patterns}, independent of its fixed bounds $K_0,C,I$. Fix $d$ from Proposition~\\ref{prop:diameter} and $D_0$ from Lemma~\\ref{lem:closure}. We will cut long boundaries into pieces with at most $UL$ original occurrences,"
-    },
-    {
-      "from": "m1-lem-closure",
-      "to": "m1-lem-separator",
-      "label": "lem:closure",
-      "context": "e constant in Theorem~\\ref{thm:bounded-patterns}, independent of its fixed bounds $K_0,C,I$. Fix $d$ from Proposition~\\ref{prop:diameter} and $D_0$ from Lemma~\\ref{lem:closure}. We will cut long boundaries into pieces with at most $UL$ original occurrences, pay at most $D_0L$ to close each cut p"
-    },
-    {
-      "from": "m1-lem-paired-intervals",
-      "to": "m1-lem-separator",
-      "label": "lem:paired-intervals",
-      "context": "plit, all its pieces have become closed cyclically immersed paths. Otherwise it remains a single immersed interval starting at its original root. Apply Lemma~\\ref{lem:paired-intervals} before the closures are appended. The original pairing is specified by at most $6N'$ interval pairs, each lying in its"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-lem-cone-pictures",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] Use the prescribed types of Section~\\ref{sec:random} and let $m\\equiv1\\pmod4$ tend to infinity. The probability space"
-    },
-    {
-      "from": "m1-thm-no-arrangements",
-      "to": "m1-lem-cone-pictures",
-      "label": "thm:no-arrangements",
-      "context": "\\pmod4$ tend to infinity. The probability space conditioned on girth at least $L=\\lfloor c_0\\log(vm)\\rfloor$ is nonempty for sufficiently large $m$. By Theorem~\\ref{thm:no-arrangements}, with probability tending to one it contains no reduced spherical arrangement. Choose such an outcome with $L\\ge3$, so"
-    },
-    {
-      "from": "m1-prop-cone-criterion",
-      "to": "m1-lem-cone-pictures",
-      "label": "prop:cone-criterion",
-      "context": "el edges. Attach the cones to the rose as in Section~\\ref{sec:algebra}, obtaining the finite two-dimensional complex $X$, and put $G=\\pi_1(X)$. By Proposition~\\ref{prop:cone-criterion}, the universal cover of $X$ is contractible, $G$ is torsion-free, and the labels of paths from either root to a differe"
-    },
-    {
-      "from": "m1-prop-types",
-      "to": "m1-lem-cone-pictures",
-      "label": "prop:types",
-      "context": "different vertex of its component are nontrivial in $G$. Finiteness of $X$ gives a finite presentation of $G$. The intersection parities proved in Proposition~\\ref{prop:types} now satisfy the hypotheses of Proposition~\\ref{prop:parity}. That proposition supplies $a,b,c\\in\\Ftwo[G]$ with $ab=1$,"
-    },
-    {
-      "from": "m1-prop-parity",
-      "to": "m1-lem-cone-pictures",
-      "label": "prop:parity",
-      "context": "niteness of $X$ gives a finite presentation of $G$. The intersection parities proved in Proposition~\\ref{prop:types} now satisfy the hypotheses of Proposition~\\ref{prop:parity}. That proposition supplies $a,b,c\\in\\Ftwo[G]$ with $ab=1$, $ac=0$, and $c\\ne0$. Associativity excludes $ba=1$, as asser"
-    },
-    {
-      "from": "m2-lem-interpolation",
-      "to": "m2-prop-pairing",
-      "label": "lem:interpolation",
-      "context": "Interpolation is on the whole set $S$, although only the subset $O$ is deleted. For each $o\\in O$, Lemma~\\ref{lem:interpolation} gives a unique polynomial $f_o$ of total degree at most $d_0$ whose values on $S$ are the indicator function of $o$. Or"
-    },
-    {
-      "from": "m2-lem-line-sums",
-      "to": "m2-prop-pairing",
-      "label": "lem:line-sums",
-      "context": "{o\\in O}\\in Q^m\\subset K^m, \\qquad W_v=x_vx_v^{\\mathsf T}. \\] Each entry of $W_v$ is the value at $v$ of a polynomial of total degree at most $2d_0=q-2$. Lemma~\\ref{lem:line-sums} therefore gives \\[ \\sum_{v\\in f}W_v=0\\quad(f\\in\\mathcal F), \\qquad \\sum_{v\\in\\mathcal A}W_v=0. \\] For $o\\in O$, $x_o$ i"
-    },
-    {
       "from": "m2-lem-hypergraph-holes",
-      "to": "m2-lem-hypergraph-replacement-lines",
-      "label": "lem:hypergraph-holes",
-      "context": "Property~\\textup{(i)} of Lemma~\\ref{lem:hypergraph-holes} says that different holes lie in disjoint translates of a fixed $W_r$. Within one such plane the replacement lines are"
-    },
-    {
-      "from": "m2-lem-hypergraph-direction-spaces",
-      "to": "m2-lem-hypergraph-polygons",
-      "label": "lem:hypergraph-direction-spaces",
-      "context": "ep involves at most two members of the list of $W$- and $E$-spaces. Thus at most $2k\\le10$ distinct spaces occur, and their directness is available from Lemma~\\ref{lem:hypergraph-direction-spaces}. Closure forces the sum of the $E_j$-components to be zero for each generic label. Each such label therefore occurs at"
-    },
-    {
-      "from": "m2-lem-hypergraph-polygons",
-      "to": "m2-lem-hypergraph-event-bounds",
-      "label": "lem:hypergraph-polygons",
-      "context": "The assertion about four variables follows from Lemma~\\ref{lem:hypergraph-polygons}, with one variable for a hole-pair event. Fix $P_{j,C}$. There are at most $100$ holes in $C$, since $C\\subset C+W_r$"
-    },
-    {
-      "from": "m2-lem-hypergraph-replacement-lines",
-      "to": "m2-lem-hypergraph-trade",
-      "label": "lem:hypergraph-replacement-lines",
-      "context": "ct preliminary partitions have directions in distinct $U_j$'s with zero intersection, so cannot coincide. Inserted lines of a given label are distinct by Lemma~\\ref{lem:hypergraph-replacement-lines}. Lines of different labels cannot coincide either: their direction spaces are distinct $U_j$'s or $e_r$'s with pairwis"
-    },
-    {
-      "from": "m2-lem-hypergraph-direction-spaces",
-      "to": "m2-lem-hypergraph-trade",
-      "label": "lem:hypergraph-direction-spaces",
-      "context": "nt-lines}. Lines of different labels cannot coincide either: their direction spaces are distinct $U_j$'s or $e_r$'s with pairwise zero intersections, by Lemma~\\ref{lem:hypergraph-direction-spaces}. Hence the pointwise degree changes genuinely add when all trades are performed, even if planes from different bundles"
-    },
-    {
-      "from": "m2-thm-hypergraph",
-      "to": "m2-lem-hypergraph-trade",
-      "label": "thm:hypergraph",
-      "context": "[Proof of Theorem~\\ref{thm:hypergraph}] Use the holes from Lemma~\\ref{lem:hypergraph-holes}, the successful slab choices, and the line family from Lemma~\\ref{"
-    },
-    {
-      "from": "m2-lem-hypergraph-holes",
-      "to": "m2-lem-hypergraph-trade",
+      "to": "m2-thm-hypergraph",
       "label": "lem:hypergraph-holes",
       "context": "[Proof of Theorem~\\ref{thm:hypergraph}] Use the holes from Lemma~\\ref{lem:hypergraph-holes}, the successful slab choices, and the line family from Lemma~\\ref{lem:hypergraph-trade}. The size and degree assertions"
     },
     {
-      "from": "m2-thm-main",
-      "to": "m2-lem-hypergraph-trade",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] The finite search terminates by Theorem~\\ref{thm:hypergraph}. Its output satisfies Proposition~\\ref{prop:pairing}, and"
-    },
-    {
       "from": "m2-prop-pairing",
-      "to": "m2-lem-hypergraph-trade",
+      "to": "m2-thm-main",
       "label": "prop:pairing",
       "context": "[Proof of Theorem~\\ref{thm:main}] The finite search terminates by Theorem~\\ref{thm:hypergraph}. Its output satisfies Proposition~\\ref{prop:pairing}, and hence every hypothesis of Theorem~\\ref{thm:criterion}. That theorem proves the two product assertions for \\eqref{e"
     },
     {
-      "from": "m2-thm-criterion",
-      "to": "m2-lem-hypergraph-trade",
-      "label": "thm:criterion",
-      "context": "main}] The finite search terminates by Theorem~\\ref{thm:hypergraph}. Its output satisfies Proposition~\\ref{prop:pairing}, and hence every hypothesis of Theorem~\\ref{thm:criterion}. That theorem proves the two product assertions for \\eqref{eq:exact-outputs}, supplies a finite presentation of this gr"
-    },
-    {
-      "from": "m2-lem-ca-representation",
-      "to": "m2-prop-ca-transfer",
-      "label": "lem:ca-representation",
-      "context": "t of $b$ is finite, so Equation~\\eqref{eq:ca-rule} is a single finite-memory local rule, used at every $g\\in G$. The alphabet $K$ is finite and nonempty. Lemma~\\ref{lem:ca-representation} gives \\begin{equation} \\label{eq:ca-leftinverse} T_a\\circ\\tau=T_{ab}=T_1=\\id_{K^G}. \\end{equation} Applying $T_a$ to"
-    },
-    {
-      "from": "m2-prop-ca-transfer",
-      "to": "m2-cor-nonsurjunctive",
-      "label": "prop:ca-transfer",
-      "context": "Apply Proposition~\\ref{prop:ca-transfer} to $a=a_{\\mathrm{out}}$ and $b=b_{\\mathrm{out}}$. Their product relations are proved in Theorem~\\ref{thm:main}, and the"
-    },
-    {
-      "from": "m2-thm-main",
-      "to": "m2-cor-nonsurjunctive",
-      "label": "thm:main",
-      "context": "Apply Proposition~\\ref{prop:ca-transfer} to $a=a_{\\mathrm{out}}$ and $b=b_{\\mathrm{out}}$. Their product relations are proved in Theorem~\\ref{thm:main}, and the nonzero reverse-product defect has a nonzero coefficient in the ordinary group algebra."
-    },
-    {
-      "from": "m2-thm-main",
-      "to": "m2-cor-finfty-counterexample",
-      "label": "thm:main",
-      "context": "The group $G$ in Theorem~\\ref{thm:main} is finitely presented. The companion embedding theorem~\\cite[Theorem~1.1]{UniversalFinftyCompanion} therefore gives an"
-    },
-    {
-      "from": "m2-prop-ca-transfer",
-      "to": "m2-cor-finfty-counterexample",
-      "label": "prop:ca-transfer",
-      "context": "$U$ were sofic, Elek--Szab\\'o's theorem \\cite[Corollary~4.7]{ElekSzabo2004} would make $K[U]$ stably finite, contradicting these scalar identities. Proposition~\\ref{prop:ca-transfer}, applied to $U,K,A,B$, makes $T_B:K^U\\to K^U$ an injective nonsurjective cellular automaton over the finite alphabet $K"
-    },
-    {
-      "from": "m3-lem-logderivative",
-      "to": "m3-lem-shears",
-      "label": "lem:logderivative",
-      "context": "nd $R_x'R_x^{-1}$ have zero diagonal blocks, so each has trace zero. Cyclicity gives trace zero also for the conjugate $(L_xB)(R_x'R_x^{-1})(L_xB)^{-1}$. Lemma~\\ref{lem:logderivative} now gives zero derivative."
-    },
-    {
-      "from": "m3-lem-integral",
-      "to": "m3-prop-criterion",
-      "label": "lem:integral",
-      "context": "Lemma~\\ref{lem:integral} has already established integrality and the finite-support rational inverse. Apply Lemma~\\ref{lem:shears} to Equation~\\"
-    },
-    {
-      "from": "m3-lem-shears",
-      "to": "m3-prop-criterion",
-      "label": "lem:shears",
-      "context": "Lemma~\\ref{lem:integral} has already established integrality and the finite-support rational inverse. Apply Lemma~\\ref{lem:shears} to Equation~\\eqref{eq:path}. At $x=0$ the matrix is $B=\\diag(qI_r,-q^{-1}P-(I_m-P))$. Orthogonality gives \\[ B^*B=\\dia"
-    },
-    {
-      "from": "m3-thm-main",
-      "to": "m3-prop-criterion",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] Take $K_2,H_2,a_2,b_2$ from Theorem~\\ref{thm:input}. Apply Lemma~\\ref{lem:binary} with $d=[K_2:\\F_2]\\ge1$ and then Pro"
-    },
-    {
       "from": "m3-thm-input",
-      "to": "m3-prop-criterion",
+      "to": "m3-thm-main",
       "label": "thm:input",
       "context": "[Proof of Theorem~\\ref{thm:main}] Take $K_2,H_2,a_2,b_2$ from Theorem~\\ref{thm:input}. Apply Lemma~\\ref{lem:binary} with $d=[K_2:\\F_2]\\ge1$ and then Proposition~\\ref{prop:separation}. It gives the group $G"
     },
     {
       "from": "m3-lem-binary",
-      "to": "m3-prop-criterion",
+      "to": "m3-thm-main",
       "label": "lem:binary",
       "context": "[Proof of Theorem~\\ref{thm:main}] Take $K_2,H_2,a_2,b_2$ from Theorem~\\ref{thm:input}. Apply Lemma~\\ref{lem:binary} with $d=[K_2:\\F_2]\\ge1$ and then Proposition~\\ref{prop:separation}. It gives the group $G_D=(\\bigoplus_{H_2}C_3)\\rtimes"
-    },
-    {
-      "from": "m3-prop-separation",
-      "to": "m3-prop-criterion",
-      "label": "prop:separation",
-      "context": "Proof of Theorem~\\ref{thm:main}] Take $K_2,H_2,a_2,b_2$ from Theorem~\\ref{thm:input}. Apply Lemma~\\ref{lem:binary} with $d=[K_2:\\F_2]\\ge1$ and then Proposition~\\ref{prop:separation}. It gives the group $G_D=(\\bigoplus_{H_2}C_3)\\rtimes H_2$ and a projection $P$ of size $d+1$ whose binary reduction fac"
     }
   ]
 }

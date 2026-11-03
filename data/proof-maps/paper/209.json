@@ -68,40 +68,10 @@
   ],
   "edges": [
     {
-      "from": "m1-lem-field",
-      "to": "m1-lem-norm-detector",
-      "label": "lem:field",
-      "context": "is the $[k_E:k_L]$th power of the prime ideal of $L$. Hence \\[ v_L(N_{E/L}u)=[k_E:k_L]v_E(u). \\] Every $a\\in K_3(E;\\Z/5)$ has the form $\\theta_E(u)$ by Lemma~\\ref{lem:field}. Applying the formula to that $u$ proves the assertion for all $a$. The factor is the residue degree, not the total deg"
-    },
-    {
-      "from": "m1-lem-model",
-      "to": "m1-lem-opens",
-      "label": "lem:model",
-      "context": "is nonzero. Its pullback to $\\OO_E$ is therefore a unit, so $q$ lies in $U_h$. It follows that each point omitted from $U_h$ specializes away from $m$. Lemma~\\ref{lem:model} then gives $5\\mid[k_E:\\F_5]$. Finally, $C$ is an integral projective curve and $U_h$ is nonempty, so its closed comple"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-lem-opens",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] Take the integral class $c\\in K_3(A)$ constructed in Proposition~\\ref{prop:integral}, and put \\[ w=(q_0)_*\\theta_D(t)"
-    },
-    {
       "from": "m1-prop-integral",
-      "to": "m1-lem-opens",
+      "to": "m1-thm-main",
       "label": "prop:integral",
       "context": "[Proof of Theorem~\\ref{thm:main}] Take the integral class $c\\in K_3(A)$ constructed in Proposition~\\ref{prop:integral}, and put \\[ w=(q_0)_*\\theta_D(t)\\in G_3(C;\\Z/5). \\] Coherent $G$-theory provides proper pushforward even when $C$ is s"
-    },
-    {
-      "from": "m1-lem-field",
-      "to": "m1-lem-opens",
-      "label": "lem:field",
-      "context": "at \\begin{equation}\\label{eq:omitted-relation} w=\\sum_{q\\in Z_h}q_*a_q. \\end{equation} These are arbitrary coefficient classes supplied by localization. Lemma~\\ref{lem:field} applies to every finite extension $E_q/L$, so its surjectivity writes each of them as $a_q=\\theta_{E_q}(u_q)$ for some"
-    },
-    {
-      "from": "m1-lem-norm-detector",
-      "to": "m1-lem-opens",
-      "label": "lem:norm-detector",
-      "context": "\\eqref{eq:omitted-relation}. For every closed point, the composite $p_*q_*$ is the field transfer. Lemma~\\ref{lem:opens} gives $5\\mid[k_{E_q}:\\F_5]$, and Lemma~\\ref{lem:norm-detector} therefore gives \\[ \\lambda_L\\bigl(p_*q_*a_q\\bigr) =v_L\\bigl(N_{E_q/L}(u_q)\\bigr)\\bmod5 =[k_{E_q}:\\F_5]v_{E_q}(u_q)\\b"
     }
   ]
 }

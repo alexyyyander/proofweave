@@ -69,7 +69,10 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-tri-embedding"
+          ]
         },
         {
           "id": "m1-main-hessenberg",
@@ -119,9 +122,7 @@
           "kind": "lemma",
           "source": "Graph alphabets and the coloring reduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-graph-kernel"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-alg-reordering",
@@ -171,9 +172,7 @@
           "kind": "lemma",
           "source": "Positive reordering in a quantum torus",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-alg-restrictions"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-alg-coproduct",
@@ -183,9 +182,7 @@
           "kind": "lemma",
           "source": "Positive reordering in a quantum torus",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-alg-detection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-alg-bialgebra",
@@ -235,10 +232,7 @@
           "kind": "proposition",
           "source": "Positive wall transport and change of chart",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-alg-reordering",
-            "m1-wall-unit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-wall-recursion",
@@ -248,9 +242,7 @@
           "kind": "lemma",
           "source": "Positive wall transport and change of chart",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-wall-factors"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-wall-positivity",
@@ -260,10 +252,7 @@
           "kind": "theorem",
           "source": "Positive wall transport and change of chart",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-wall-factors"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-wall-product",
@@ -273,9 +262,7 @@
           "kind": "corollary",
           "source": "Positive wall transport and change of chart",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-wall-positivity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-wall-fiber-bound",
@@ -295,12 +282,7 @@
           "kind": "theorem",
           "source": "Positive wall transport and change of chart",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-wall-fiber-bound"
-          ],
-          "objectUses": [
-            "m1-wall-unit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tri-embedding",
@@ -320,9 +302,7 @@
           "kind": "lemma",
           "source": "The triangular chart and monomial sections",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-wall-mutation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tri-stationary",
@@ -342,9 +322,7 @@
           "kind": "lemma",
           "source": "The triangular chart and monomial sections",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-wall-mutation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tri-linear",
@@ -354,9 +332,7 @@
           "kind": "lemma",
           "source": "The triangular chart and monomial sections",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-tri-stationary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tri-domination",
@@ -366,12 +342,7 @@
           "kind": "lemma",
           "source": "The triangular chart and monomial sections",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-tri-linear",
-            "m1-wall-product",
-            "m1-tri-pure",
-            "m1-wall-positivity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tri-monomial",
@@ -381,10 +352,7 @@
           "kind": "theorem",
           "source": "The triangular chart and monomial sections",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-tri-domination",
-            "m1-tri-pure"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-tri-positivity",
@@ -394,15 +362,7 @@
           "kind": "corollary",
           "source": "The triangular chart and monomial sections",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-graph-kernel",
-            "m1-graph-reciprocity",
-            "m1-tri-monomial",
-            "m1-wall-positivity"
-          ],
-          "objectUses": [
-            "m1-tri-embedding"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-route-finite",
@@ -422,9 +382,7 @@
           "kind": "proposition",
           "source": "A finite witness on individual words",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-route-finite"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-route-return",
@@ -434,10 +392,7 @@
           "kind": "lemma",
           "source": "A finite witness on individual words",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-tri-monomial",
-            "m1-route-switch"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-route-parity",
@@ -447,9 +402,7 @@
           "kind": "proposition",
           "source": "A finite witness on individual words",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-route-finite"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-route-exact",
@@ -459,10 +412,7 @@
           "kind": "lemma",
           "source": "A finite witness on individual words",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-route-finite",
-            "m1-route-parity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-route-witness",
@@ -472,15 +422,7 @@
           "kind": "theorem",
           "source": "A finite witness on individual words",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-route-parity",
-            "m1-graph-kernel",
-            "m1-graph-digits",
-            "m1-graph-reciprocity"
-          ],
-          "objectUses": [
-            "m1-tri-embedding"
-          ]
+          "dependsOn": []
         }
       ]
     }

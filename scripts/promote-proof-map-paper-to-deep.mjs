@@ -106,7 +106,7 @@ function acyclic(nodes, dependencies) {
   return { dependencies: kept, dropped };
 }
 
-function buildDeep(structure, family) {
+function buildDeep(structure, family, preserveExisting = false) {
   const nodes = structure.nodes;
   const strategies = [];
   const counts = { background: 0, mention: 0, object: 0, mentions: 0, header: 0, unclear: 0, cycles: 0 };
@@ -166,7 +166,7 @@ function buildDeep(structure, family) {
   }
   if (strategies.length === 0) return { error: "no strategies" };
   const dependencyCount = strategies.reduce((total, strategy) => total + [...strategy.dependencies.values()].reduce((sum, list) => sum + list.length, 0), 0);
-  if (dependencyCount === 0) return { error: "no dependency edges" };
+  if (dependencyCount === 0 && !preserveExisting) return { error: "no dependency edges" };
 
   const usedRoleIds = new Set(["result"]);
   const rolesById = new Map();
@@ -264,7 +264,7 @@ for (const name of paperFiles) {
     if (!machine) continue; // curated map: never overwrite
   }
   const family = catalog.families.find((candidate) => candidate.number === structure.familyNumber);
-  const built = buildDeep(structure, family);
+  const built = buildDeep(structure, family, Boolean(existing));
   if (built.error) {
     results.push({ familyNumber: structure.familyNumber, outcome: existing ? "demoted" : "skipped", reason: built.error });
     continue;

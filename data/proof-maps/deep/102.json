@@ -194,9 +194,7 @@
           "kind": "lemma",
           "source": "A latent alphabet gadget",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-latent-block"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-latent-generic",
@@ -236,9 +234,7 @@
           "kind": "proposition",
           "source": "A latent alphabet gadget",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-latent-noise"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-parity",
@@ -288,7 +284,9 @@
           "kind": "proposition",
           "source": "Matrix extraction and Fourier decoding",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-projected-witness"
+          ]
         },
         {
           "id": "m1-lem-matrix-spectral",
@@ -298,9 +296,7 @@
           "kind": "lemma",
           "source": "Matrix extraction and Fourier decoding",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-latent"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-good-row-advice",
@@ -310,10 +306,7 @@
           "kind": "lemma",
           "source": "Matrix extraction and Fourier decoding",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-shortcode",
-            "m1-lem-matrix-spectral"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-projected-tv",
@@ -333,9 +326,7 @@
           "kind": "lemma",
           "source": "Matrix extraction and Fourier decoding",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-good-row-advice"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-fourier-coset-decoding",
@@ -345,14 +336,7 @@
           "kind": "lemma",
           "source": "Matrix extraction and Fourier decoding",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-projected-witness",
-            "m1-thm-shortcode",
-            "m1-lem-good-row-advice"
-          ],
-          "objectUses": [
-            "m1-lem-projected-tv"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-repetition",
@@ -372,9 +356,7 @@
           "kind": "lemma",
           "source": "Clean coordinates and the soundness gap",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-repetition"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-matrix-gap",
@@ -384,12 +366,7 @@
           "kind": "proposition",
           "source": "Clean coordinates and the soundness gap",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-matrix-decoding"
-          ],
-          "mentions": [
-            "m1-lem-outer-completeness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-unweighted-subdivision",
@@ -399,17 +376,7 @@
           "kind": "lemma",
           "source": "Completion of the reduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-repetition",
-            "m1-lem-latent",
-            "m1-thm-shortcode",
-            "m1-prop-matrix-decoding",
-            "m1-thm-parity",
-            "m1-lem-distinct-parity"
-          ],
-          "objectUses": [
-            "m1-lem-good-row-advice"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-raghavendra-consequence",
@@ -419,9 +386,7 @@
           "kind": "corollary",
           "source": "Approximation consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-ugc"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-ordering-csp",
@@ -431,10 +396,7 @@
           "kind": "corollary",
           "source": "Approximation consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-simple-strong-left",
-            "m1-thm-ugc"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-cut-clustering",
@@ -444,9 +406,7 @@
           "kind": "corollary",
           "source": "Approximation consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-ugc"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-simple-strong-left",
@@ -456,10 +416,7 @@
           "kind": "lemma",
           "source": "Finite formulations of the consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-thm-ugc"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-finite-ordering-transfer",
@@ -499,14 +456,7 @@
           "kind": "lemma",
           "source": "Finite formulations of the consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-ordering-local-data",
-            "m1-lem-ordering-collision",
-            "m1-thm-ugc"
-          ],
-          "objectUses": [
-            "m1-lem-simple-strong-left"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -643,10 +593,7 @@
           "kind": "proposition",
           "source": "From excess stability to a label",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-unsplit",
-            "m2-lem-hashing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-unsmooth",
@@ -686,10 +633,7 @@
           "kind": "proposition",
           "source": "Decoding with a hidden coordinate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-restriction",
-            "m2-lem-completeness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-affine-validity-invariance",
@@ -876,12 +820,7 @@
           "kind": "corollary",
           "source": "Pair decoding and soundness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-ana-function",
-            "m3-res-private-variance",
-            "m3-dec-pair",
-            "m3-graph-polynomial"
-          ]
+          "dependsOn": []
         }
       ]
     }

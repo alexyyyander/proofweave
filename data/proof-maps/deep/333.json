@@ -79,7 +79,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-primitive-addition"
+          ]
         },
         {
           "id": "m1-lem-phase-data",
@@ -149,9 +151,7 @@
           "kind": "lemma",
           "source": "An exact smooth correction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-small-increment"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-velocity-plane",
@@ -201,7 +201,10 @@
           "kind": "proposition",
           "source": "Realizing the primitive metric addition",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-exact-correction"
+          ]
         },
         {
           "id": "m1-lem-finite-periodic-expansion",
@@ -211,13 +214,7 @@
           "kind": "lemma",
           "source": "Realizing the primitive metric addition",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-phase-data"
-          ],
-          "objectUses": [
-            "m1-prop-exact-correction",
-            "m1-prop-small-increment"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-spherical-preparation",
@@ -237,12 +234,7 @@
           "kind": "lemma",
           "source": "Global preparation and finite assembly",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-primitive-addition"
-          ],
-          "objectUses": [
-            "m1-lem-spherical-preparation"
-          ]
+          "dependsOn": []
         }
       ]
     }

@@ -114,7 +114,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-universal"
+          ]
         },
         {
           "id": "m1-lem-universal",
@@ -144,9 +146,7 @@
           "kind": "proposition",
           "source": "From plane curves to normal polynomials",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-normal-polynomial"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-cubic-low-degree",
@@ -156,9 +156,7 @@
           "kind": "lemma",
           "source": "From plane curves to normal polynomials",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-normal-polynomial"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-necessary-w",
@@ -168,9 +166,7 @@
           "kind": "proposition",
           "source": "Polynomial sections on an elliptic curve",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-normal-polynomial"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-torus-sections",
@@ -190,9 +186,7 @@
           "kind": "lemma",
           "source": "Polynomial sections on an elliptic curve",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-torus-sections"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-collision",
@@ -202,9 +196,7 @@
           "kind": "lemma",
           "source": "Colliding points and degenerating sections",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-necessary-w"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-theta-limit",
@@ -214,9 +206,7 @@
           "kind": "lemma",
           "source": "Colliding points and degenerating sections",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-torus-sections"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-matrix-limit",
@@ -266,9 +256,7 @@
           "kind": "lemma",
           "source": "Interpolation on the exponent set",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-slice-profile"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-full-rank",
@@ -278,17 +266,7 @@
           "kind": "proposition",
           "source": "Interpolation on the exponent set",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-interpolation",
-            "m1-lem-integer-rows",
-            "m1-prop-matrix-limit",
-            "m1-lem-universal",
-            "m1-prop-necessary-w",
-            "m1-lem-collision"
-          ],
-          "objectUses": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-fields",
@@ -298,12 +276,7 @@
           "kind": "corollary",
           "source": "Fields and multipoint positivity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main"
-          ],
-          "objectUses": [
-            "m1-lem-universal"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-sesha",
@@ -340,7 +313,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-cor-torus-test"
+          ]
         },
         {
           "id": "m2-lem-rank-persistence",
@@ -360,9 +335,7 @@
           "kind": "proposition",
           "source": "Finite jet tests and initial monomials",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-rank-persistence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-node",
@@ -382,9 +355,7 @@
           "kind": "proposition",
           "source": "A nodal divisor and its exponent diagram",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-initial-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-slices",
@@ -404,10 +375,7 @@
           "kind": "proposition",
           "source": "A nodal divisor and its exponent diagram",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-slices",
-            "m2-lem-rank-persistence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-surface-transfer",
@@ -417,11 +385,7 @@
           "kind": "corollary",
           "source": "A nodal divisor and its exponent diagram",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-compression",
-            "m2-prop-quadrilateral",
-            "m2-prop-initial-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-triangle-multiplicity",
@@ -441,9 +405,7 @@
           "kind": "proposition",
           "source": "Finite subgroups as jet tests",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-triangle-multiplicity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-direction",
@@ -463,9 +425,7 @@
           "kind": "corollary",
           "source": "Finite subgroups as jet tests",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-direction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-jet-open",
@@ -505,13 +465,7 @@
           "kind": "lemma",
           "source": "From homogeneous jets to nefness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-positive-square",
-            "m2-cor-torus-test",
-            "m2-cor-surface-transfer",
-            "m2-lem-jet-open",
-            "m2-prop-homogeneous-nef"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-fields",
@@ -521,13 +475,7 @@
           "kind": "corollary",
           "source": "From homogeneous jets to nefness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-main",
-            "m2-lem-jet-open"
-          ],
-          "objectUses": [
-            "m2-lem-positive-square"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -574,9 +522,7 @@
           "kind": "lemma",
           "source": "Monomial spaces and finite jets",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-lem-least-terms"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-weighted-limit",
@@ -616,12 +562,7 @@
           "kind": "lemma",
           "source": "Monomial spaces and finite jets",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-lem-least-terms",
-            "m3-lem-row-valuation",
-            "m3-lem-weighted-limit",
-            "m3-lem-rank-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-prop-flag-simplex",
@@ -631,11 +572,7 @@
           "kind": "proposition",
           "source": "A simplex from a complete-intersection flag",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-lem-least-terms",
-            "m3-lem-weighted-limit",
-            "m3-lem-rank-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-prop-reshape",
@@ -645,14 +582,7 @@
           "kind": "proposition",
           "source": "Reshaping two intercepts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-lem-least-terms",
-            "m3-lem-row-valuation",
-            "m3-lem-weighted-limit",
-            "m3-lem-rank-transfer",
-            "m3-lem-unimodular",
-            "m3-lem-compression"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-interior-saturation",
@@ -682,10 +612,7 @@
           "kind": "proposition",
           "source": "Interior lattice points and interpolation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-lem-interior-saturation",
-            "m3-lem-simplex-interpolation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-jets-curves",

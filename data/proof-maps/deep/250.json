@@ -139,7 +139,10 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-lem-group-input"
+          ]
         },
         {
           "id": "m1-lem-group-input",
@@ -159,7 +162,9 @@
           "kind": "theorem",
           "source": "The group input and the algebraic data",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-algebra-embeddings"
+          ]
         },
         {
           "id": "m1-thm-zaremsky",
@@ -199,10 +204,7 @@
           "kind": "proposition",
           "source": "A finitely presented affine group",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-cyclic-module",
-            "m1-lem-affine-presentation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-transition",
@@ -242,9 +244,7 @@
           "kind": "lemma",
           "source": "Annihilating the Steinberg kernel",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-external-roots"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-corner-comparison",
@@ -254,10 +254,7 @@
           "kind": "lemma",
           "source": "Annihilating the Steinberg kernel",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-corner-centrality",
-            "m1-lem-external-roots"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-orthogonal-root-images",
@@ -267,9 +264,7 @@
           "kind": "lemma",
           "source": "Annihilating the Steinberg kernel",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-corner-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-mapping-torus",
@@ -289,10 +284,7 @@
           "kind": "lemma",
           "source": "The two-transitive envelope",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-kernel",
-            "m1-lem-mapping-torus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-two-transitive-action",
@@ -302,14 +294,7 @@
           "kind": "proposition",
           "source": "The two-transitive envelope",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-algebra-package",
-            "m1-lem-affine-limit"
-          ],
-          "objectUses": [
-            "m1-lem-group-input",
-            "m1-thm-zaremsky"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-partial-affine",
@@ -339,9 +324,7 @@
           "kind": "lemma",
           "source": "The algebra construction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-monoids"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-binary-tail-corner",
@@ -351,9 +334,7 @@
           "kind": "lemma",
           "source": "The algebra construction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-algebra-embeddings"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-compiler",
@@ -373,9 +354,7 @@
           "kind": "lemma",
           "source": "Coding with a decreasing dependency bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-compiler"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-compiler-components",
@@ -412,7 +391,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-thm-action"
+          ]
         },
         {
           "id": "m2-lem-idempotents",
@@ -472,12 +453,7 @@
           "kind": "proposition",
           "source": "A homological device for ascending tori",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-controlled-additivity"
-          ],
-          "objectUses": [
-            "m2-lem-idempotents"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-finite-extension",
@@ -537,9 +513,7 @@
           "kind": "lemma",
           "source": "Encoding the diagrams and their actions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-action-monoid-normal-form"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-encoding-bootstrap",
@@ -549,9 +523,7 @@
           "kind": "lemma",
           "source": "Encoding the diagrams and their actions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-bounded-action-calculus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-encoding-embeddings",
@@ -561,9 +533,7 @@
           "kind": "lemma",
           "source": "Encoding the diagrams and their actions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-action-monoid-normal-form"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-encoding-finite-presentation",
@@ -573,9 +543,7 @@
           "kind": "lemma",
           "source": "Encoding the diagrams and their actions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-enlargement"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-action",
@@ -585,7 +553,9 @@
           "kind": "theorem",
           "source": "A highly transitive action with finite-type stabilizers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-lem-stage-faithful-transitive"
+          ]
         },
         {
           "id": "m2-lem-diagonal",
@@ -605,9 +575,7 @@
           "kind": "lemma",
           "source": "A highly transitive action with finite-type stabilizers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-diagonal"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-stage-faithful-transitive",
@@ -617,9 +585,7 @@
           "kind": "lemma",
           "source": "A highly transitive action with finite-type stabilizers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-stage-permutations"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-stage-stabilizer-torus",
@@ -649,14 +615,7 @@
           "kind": "lemma",
           "source": "A highly transitive action with finite-type stabilizers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-stage-kernel",
-            "m2-lem-diagonal",
-            "m2-lem-encoding-finite-presentation"
-          ],
-          "objectUses": [
-            "m2-thm-ring-data"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-stage-stabilizer-factor",
@@ -666,14 +625,7 @@
           "kind": "lemma",
           "source": "A highly transitive action with finite-type stabilizers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-stage-faithful-transitive",
-            "m2-lem-stage-stabilizer-torus"
-          ],
-          "objectUses": [
-            "m2-lem-steinberg-lift",
-            "m2-thm-torus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-twisted-transfer",
@@ -683,10 +635,7 @@
           "kind": "theorem",
           "source": "The simple overgroup",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-action",
-            "m2-lem-finite-extension"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -713,7 +662,10 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m3-lem-universal",
+            "m3-prop-self-map"
+          ]
         },
         {
           "id": "m3-cor-recursive",
@@ -723,9 +675,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-hnn-injection",
@@ -745,9 +695,7 @@
           "kind": "lemma",
           "source": "A universal finitely presented group",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-lem-hnn-injection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-idempotents",
@@ -777,9 +725,7 @@
           "kind": "corollary",
           "source": "Faithful finite diagram envelopes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-prop-finite-envelope"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-thm-torus",
@@ -819,13 +765,7 @@
           "kind": "proposition",
           "source": "Uniform fillings with finitely many simplex types",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-thm-torus",
-            "m3-lem-idempotents"
-          ],
-          "objectUses": [
-            "m3-lem-controlled-additivity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-product-criterion",
@@ -835,13 +775,7 @@
           "kind": "lemma",
           "source": "From controlled fillings to finite skeleta",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-lem-universal",
-            "m3-prop-self-map"
-          ],
-          "objectUses": [
-            "m3-thm-torus"
-          ]
+          "dependsOn": []
         }
       ]
     }

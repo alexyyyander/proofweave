@@ -79,7 +79,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-detector"
+          ]
         },
         {
           "id": "m1-cor-cohomological-incompleteness",
@@ -89,9 +91,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-known-relations",
@@ -141,9 +141,7 @@
           "kind": "lemma",
           "source": "A formal detector",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-detector-cutoff"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-detector-forgetting",
@@ -153,10 +151,7 @@
           "kind": "lemma",
           "source": "A formal detector",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-detector-cutoff",
-            "m1-lem-detector-operations"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-detector-unit",
@@ -176,13 +171,7 @@
           "kind": "lemma",
           "source": "A formal detector",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-known-relations",
-            "m1-lem-detector-cutoff"
-          ],
-          "objectUses": [
-            "m1-lem-detector-unit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-tensor-test",
@@ -232,9 +221,7 @@
           "kind": "lemma",
           "source": "Faithful tensor tests in relative Chow",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-coefficient-algebra"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-surface",
@@ -294,10 +281,7 @@
           "kind": "proposition",
           "source": "A surface relation from determinant-fixed Quot schemes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-prop-tensor-test"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-scalar",
@@ -337,12 +321,7 @@
           "kind": "lemma",
           "source": "The triple coefficient and arbitrary color products",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-tensor-test"
-          ],
-          "objectUses": [
-            "m1-thm-surface"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-weighted-pullback",
@@ -372,9 +351,7 @@
           "kind": "lemma",
           "source": "A cubic class on weighted compactifications",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-three-position-blowup"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-controlled-lifts",
@@ -404,10 +381,7 @@
           "kind": "lemma",
           "source": "Support induction and Chow vanishing",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-tensor-test",
-            "m1-lem-support-advancement"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-repeated-color",
@@ -417,9 +391,7 @@
           "kind": "lemma",
           "source": "Support induction and Chow vanishing",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-point-centered-algebra"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-chow-vanishing",
@@ -429,11 +401,7 @@
           "kind": "theorem",
           "source": "Support induction and Chow vanishing",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-controlled-lifts",
-            "m1-lem-weighted-pullback",
-            "m1-prop-detector"
-          ]
+          "dependsOn": []
         }
       ]
     }

@@ -119,7 +119,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-inputs"
+          ]
         },
         {
           "id": "m1-lem-graph-energy",
@@ -149,10 +151,7 @@
           "kind": "proposition",
           "source": "Energy normalization and the common coupling",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-graph-energy",
-            "m1-lem-space-normalization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-operators",
@@ -162,9 +161,7 @@
           "kind": "proposition",
           "source": "Operators and finite-dimensional laws",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-inputs"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-uniform-recovery",
@@ -194,10 +191,7 @@
           "kind": "lemma",
           "source": "From energy recovery to path tightness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-uniform-recovery",
-            "m1-lem-stationary-maximal"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-path-limit",
@@ -207,12 +201,7 @@
           "kind": "proposition",
           "source": "From energy recovery to path tightness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-uniform-recovery",
-            "m1-lem-resolvent-approximation",
-            "m1-prop-inputs",
-            "m1-prop-operators"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-ambient-space",
@@ -232,10 +221,7 @@
           "kind": "lemma",
           "source": "Cable paths and the joint limit",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-inputs",
-            "m1-lem-ambient-space"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -302,9 +288,7 @@
           "kind": "proposition",
           "source": "The discrete energy and the common geometric limit",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-space-normalization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-readout-extension",
@@ -324,9 +308,7 @@
           "kind": "proposition",
           "source": "Local observations of the electrical network",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-readout-extension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-record-null-transfer",
@@ -346,9 +328,7 @@
           "kind": "lemma",
           "source": "Local observations of the electrical network",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-readout-extension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-finite-el",
@@ -398,17 +378,7 @@
           "kind": "proposition",
           "source": "Electrical control in fixed regions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-readout-extension",
-            "m2-prop-sphere-support",
-            "m2-lem-finite-el",
-            "m2-lem-edge-flow-compactness"
-          ],
-          "objectUses": [
-            "m2-lem-edge-density-budget",
-            "m2-lem-deterministic-germs",
-            "m2-prop-geometry"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-uniform-relaxation",
@@ -438,10 +408,7 @@
           "kind": "lemma",
           "source": "Identification of the electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-network-bounds",
-            "m2-lem-uniform-relaxation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-energy-bounds",
@@ -451,9 +418,7 @@
           "kind": "lemma",
           "source": "Identification of the electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-uniform-relaxation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-energy-tensor",
@@ -463,12 +428,7 @@
           "kind": "lemma",
           "source": "Identification of the electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-energy-bounds",
-            "m2-lem-uniform-relaxation",
-            "m2-prop-readout-extension",
-            "m2-lem-deterministic-germs"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-mixed-duality",
@@ -498,16 +458,7 @@
           "kind": "lemma",
           "source": "Identification of the electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-uniform-relaxation",
-            "m2-lem-energy-measures",
-            "m2-lem-harmonic-compactness",
-            "m2-lem-energy-bounds",
-            "m2-prop-sphere-support"
-          ],
-          "objectUses": [
-            "m2-prop-geometry"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-four-point",
@@ -517,7 +468,9 @@
           "kind": "theorem",
           "source": "Four-point potentials",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-lem-voltage-bounds"
+          ]
         },
         {
           "id": "m2-lem-voltage-bounds",
@@ -527,11 +480,7 @@
           "kind": "lemma",
           "source": "Four-point potentials",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-network-bounds",
-            "m2-prop-geometry",
-            "m2-lem-harmonic-compactness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-no-energy-defect",
@@ -541,11 +490,7 @@
           "kind": "lemma",
           "source": "Four-point potentials",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-uniform-relaxation",
-            "m2-thm-conductivity",
-            "m2-lem-voltage-bounds"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-block-approximation",
@@ -585,9 +530,7 @@
           "kind": "lemma",
           "source": "An approximation estimate at every smaller scale",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-truncated-packing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-one-base-credit",
@@ -597,12 +540,7 @@
           "kind": "lemma",
           "source": "An approximation estimate at every smaller scale",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-address-input"
-          ],
-          "objectUses": [
-            "m2-lem-truncated-packing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-finite-view-input",
@@ -622,13 +560,7 @@
           "kind": "proposition",
           "source": "An approximation estimate at every smaller scale",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-finite-view-input",
-            "m2-prop-readout-extension",
-            "m2-thm-network-bounds",
-            "m2-lem-record-null-transfer",
-            "m2-lem-finite-el"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-energy-overlap",
@@ -638,9 +570,7 @@
           "kind": "lemma",
           "source": "An approximation estimate at every smaller scale",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-reachable-packing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-segment-cover",
@@ -680,10 +610,7 @@
           "kind": "proposition",
           "source": "The continuum form and its Green operator",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-trace-green",
-            "m2-lem-quantum-ball-bounds"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-tour-order",
@@ -693,9 +620,7 @@
           "kind": "lemma",
           "source": "From voltage limits to the joint spectral limit",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-geometry"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-energy-compactness",
@@ -705,9 +630,7 @@
           "kind": "lemma",
           "source": "From voltage limits to the joint spectral limit",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-tour-order"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-inverse-kernel-compactness",
@@ -717,14 +640,7 @@
           "kind": "lemma",
           "source": "From voltage limits to the joint spectral limit",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-continuum-form",
-            "m2-prop-geometry"
-          ],
-          "objectUses": [
-            "m2-lem-normalization",
-            "m2-lem-space-normalization"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -791,9 +707,7 @@
           "kind": "lemma",
           "source": "Sewing and local electrical observations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-inp-complete-core"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-inp-kernel-transfer",
@@ -813,12 +727,7 @@
           "kind": "proposition",
           "source": "Sewing and local electrical observations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-inp-sandwich"
-          ],
-          "objectUses": [
-            "m3-inp-complete-core"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-inp-transport",
@@ -878,9 +787,7 @@
           "kind": "lemma",
           "source": "Nondegeneration of the electrical networks",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-inp-local-kernels"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-nd-coverage",
@@ -890,11 +797,7 @@
           "kind": "lemma",
           "source": "Nondegeneration of the electrical networks",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-inp-local-kernels",
-            "m3-inp-transport",
-            "m3-inp-array-interface"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-nd-densities",
@@ -914,13 +817,7 @@
           "kind": "proposition",
           "source": "Nondegeneration of the electrical networks",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-nd-coverage",
-            "m3-nd-densities",
-            "m3-nd-el-traffic",
-            "m3-nd-germs",
-            "m3-inp-topology"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-nd-cutoffs",
@@ -930,10 +827,7 @@
           "kind": "proposition",
           "source": "Nondegeneration of the electrical networks",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-nd-nondegeneration",
-            "m3-nd-el-traffic"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-en-circuit",
@@ -943,9 +837,7 @@
           "kind": "lemma",
           "source": "The limiting electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-inp-topology"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-en-harmonic-compactness",
@@ -955,9 +847,7 @@
           "kind": "lemma",
           "source": "The limiting electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-en-circuit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-en-envelope",
@@ -967,9 +857,7 @@
           "kind": "lemma",
           "source": "The limiting electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-inp-sandwich"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-en-fundamental",
@@ -979,9 +867,7 @@
           "kind": "lemma",
           "source": "The limiting electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-nd-cutoffs"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-en-measure",
@@ -1001,10 +887,7 @@
           "kind": "proposition",
           "source": "The limiting electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-en-measure",
-            "m3-en-circuit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-en-scalar",
@@ -1014,9 +897,7 @@
           "kind": "lemma",
           "source": "The limiting electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-nd-germs"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-en-condenser",
@@ -1026,12 +907,7 @@
           "kind": "lemma",
           "source": "The limiting electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-en-fundamental",
-            "m3-en-scalar",
-            "m3-en-harmonic-compactness",
-            "m3-inp-topology"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-en-current-period",
@@ -1041,9 +917,7 @@
           "kind": "lemma",
           "source": "The limiting electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-en-harmonic-compactness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-en-recovery-measures",
@@ -1053,9 +927,7 @@
           "kind": "lemma",
           "source": "The limiting electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-en-envelope"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-en-angular-recovery",
@@ -1065,9 +937,7 @@
           "kind": "lemma",
           "source": "The limiting electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-en-recovery-measures"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-en-reciprocity",
@@ -1077,12 +947,7 @@
           "kind": "proposition",
           "source": "The limiting electrical energy",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-inp-topology"
-          ],
-          "objectUses": [
-            "m3-en-angular-recovery"
-          ]
+          "dependsOn": []
         }
       ]
     }

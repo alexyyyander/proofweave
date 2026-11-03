@@ -104,7 +104,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-query-ptime"
+          ]
         },
         {
           "id": "m1-prop-query-ptime",
@@ -174,9 +176,7 @@
           "kind": "proposition",
           "source": "Small orbits have sparse supports",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-sparse-cochain"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-transitive-support",
@@ -216,9 +216,7 @@
           "kind": "lemma",
           "source": "Counting equivalence and homogeneity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-box-boundary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-base-homogeneity",
@@ -228,9 +226,7 @@
           "kind": "proposition",
           "source": "Counting equivalence and homogeneity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-partial-flow"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-hf-transfer",
@@ -270,9 +266,7 @@
           "kind": "lemma",
           "source": "From atom types to hereditarily finite sets",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-hf-type-counts"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-hf-bijection",
@@ -282,10 +276,7 @@
           "kind": "lemma",
           "source": "From atom types to hereditarily finite sets",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-hf-atomic-transfer",
-            "m1-lem-hf-type-counts"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-trace-size",
@@ -305,9 +296,7 @@
           "kind": "lemma",
           "source": "Encoding complete choiceless computations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-trace-size"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-substitution-width",
@@ -317,16 +306,7 @@
           "kind": "lemma",
           "source": "Encoding complete choiceless computations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-query-ptime",
-            "m1-cor-transitive-support",
-            "m1-prop-base-equivalence",
-            "m1-prop-base-homogeneity",
-            "m1-prop-opposite-answers"
-          ],
-          "objectUses": [
-            "m1-thm-hf-transfer"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -413,9 +393,7 @@
           "kind": "lemma",
           "source": "A witnessed-choice sentence on all inputs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-sen-history"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-sen-all-input",
@@ -425,10 +403,7 @@
           "kind": "proposition",
           "source": "A witnessed-choice sentence on all inputs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-sen-resources",
-            "m2-sen-tree-test"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-grid-parameters",
@@ -438,9 +413,7 @@
           "kind": "lemma",
           "source": "Witnessed choices on the grids",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-str-size"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-grid-matching",
@@ -460,11 +433,7 @@
           "kind": "proposition",
           "source": "Witnessed choices on the grids",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-str-action",
-            "m2-str-size",
-            "m2-grid-matching"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-grid-tree-divergence",
@@ -484,13 +453,7 @@
           "kind": "theorem",
           "source": "Witnessed choices on the grids",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-grid-parameters",
-            "m2-grid-transitivity",
-            "m2-grid-tree-divergence",
-            "m2-sen-tree-test",
-            "m2-sen-all-input"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-sup-sparse-cochain",
@@ -520,10 +483,7 @@
           "kind": "corollary",
           "source": "Small orbits give supports at every rank",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-sup-small-orbit",
-            "m2-str-size"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-base-boundary",
@@ -553,9 +513,7 @@
           "kind": "proposition",
           "source": "Counting equivalence and central-group homogeneity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-base-giant"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-base-partial-flow",
@@ -565,9 +523,7 @@
           "kind": "lemma",
           "source": "Counting equivalence and central-group homogeneity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-base-boundary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-base-homogeneity",
@@ -577,9 +533,7 @@
           "kind": "proposition",
           "source": "Counting equivalence and central-group homogeneity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-base-partial-flow"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-base-width",
@@ -629,9 +583,7 @@
           "kind": "lemma",
           "source": "Counting equivalence at every finite rank",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-hf-extension-counts"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-hf-bijection",
@@ -641,10 +593,7 @@
           "kind": "lemma",
           "source": "Counting equivalence at every finite rank",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-hf-atomic-transfer",
-            "m2-hf-representation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-eval-trace",
@@ -664,9 +613,7 @@
           "kind": "lemma",
           "source": "Full CPT cannot distinguish the grid pairs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-eval-trace"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-eval-pair-equivalence",
@@ -676,17 +623,7 @@
           "kind": "theorem",
           "source": "Full CPT cannot distinguish the grid pairs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-eval-trace",
-            "m2-eval-description",
-            "m2-sup-hereditary",
-            "m2-base-width",
-            "m2-sen-all-input",
-            "m2-grid-separation"
-          ],
-          "objectUses": [
-            "m2-hf-transfer"
-          ]
+          "dependsOn": []
         }
       ]
     }

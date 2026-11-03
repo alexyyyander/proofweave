@@ -69,7 +69,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-hopf-case"
+          ]
         },
         {
           "id": "m1-cor-eccles-spheres",
@@ -79,9 +81,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-curtis"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-finite-image",
@@ -91,9 +91,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-curtis"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-free-ring",
@@ -113,10 +111,7 @@
           "kind": "lemma",
           "source": "Weights, primitives, and homology suspension",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-prop-free-ring"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-linear-diagonal",
@@ -146,10 +141,7 @@
           "kind": "lemma",
           "source": "Weights, primitives, and homology suspension",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-weight-suspension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-zero-weights",
@@ -159,12 +151,7 @@
           "kind": "lemma",
           "source": "Weights, primitives, and homology suspension",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-weight-suspension"
-          ],
-          "objectUses": [
-            "m1-lem-weight-modules"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-suspension-kernel",
@@ -174,10 +161,7 @@
           "kind": "lemma",
           "source": "Weights, primitives, and homology suspension",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-weight-suspension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-primitive-roots",
@@ -207,9 +191,7 @@
           "kind": "proposition",
           "source": "Mapping-cone squares and a module extension",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-cone-square"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-tensor-detection",
@@ -219,9 +201,7 @@
           "kind": "corollary",
           "source": "Mapping-cone squares and a module extension",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-cone-extension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-no-fourth-powers",
@@ -261,16 +241,7 @@
           "kind": "lemma",
           "source": "Excluding fourth and higher powers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-pairing",
-            "m1-lem-primitive-roots",
-            "m1-lem-weight-suspension",
-            "m1-lem-weight-product"
-          ],
-          "objectUses": [
-            "m1-lem-weight-modules",
-            "m1-lem-cone-square"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-algebra-obstruction",
@@ -280,7 +251,10 @@
           "kind": "lemma",
           "source": "An obstruction in Steenrod modules",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m1-lem-algebra-odd-tensor"
+          ]
         },
         {
           "id": "m1-lem-algebra-milnor-quotient",
@@ -310,9 +284,7 @@
           "kind": "lemma",
           "source": "An obstruction in Steenrod modules",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-milnor-coinvariants"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-algebra-functional-halving",
@@ -322,10 +294,7 @@
           "kind": "lemma",
           "source": "An obstruction in Steenrod modules",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-milnor-coinvariants",
-            "m1-lem-cartier"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-tor-injection",
@@ -335,9 +304,7 @@
           "kind": "lemma",
           "source": "An obstruction in Steenrod modules",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-milnor-coinvariants"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-algebra-odd-tensor",
@@ -367,15 +334,7 @@
           "kind": "lemma",
           "source": "An obstruction in Steenrod modules",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-tor-injection",
-            "m1-lem-algebra-functional-halving",
-            "m1-lem-milnor-coinvariants",
-            "m1-lem-algebra-near-top-square"
-          ],
-          "mentions": [
-            "m1-lem-algebra-odd-tensor"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-last-root",
@@ -385,15 +344,7 @@
           "kind": "lemma",
           "source": "The last nonzero suspension and the sphere",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-suspension-kernel",
-            "m1-lem-primitive-roots",
-            "m1-lem-milnor-coinvariants",
-            "m1-lem-zero-weights"
-          ],
-          "objectUses": [
-            "m1-lem-weight-modules"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-hopf-case",
@@ -403,11 +354,7 @@
           "kind": "proposition",
           "source": "The last nonzero suspension and the sphere",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-algebra-obstruction",
-            "m1-lem-cone-square",
-            "m1-prop-free-ring"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-kervaire-case",
@@ -417,12 +364,7 @@
           "kind": "proposition",
           "source": "The last nonzero suspension and the sphere",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-zero-weights",
-            "m1-cor-tensor-detection",
-            "m1-lem-algebra-obstruction",
-            "m1-prop-hopf-case"
-          ]
+          "dependsOn": []
         }
       ]
     }

@@ -89,7 +89,10 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m1-prop-palettes-forward"
+          ]
         },
         {
           "id": "m1-thm-weak-five",
@@ -99,10 +102,7 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main",
-            "m1-thm-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-positive-badness",
@@ -112,9 +112,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-rigidity",
@@ -144,9 +142,7 @@
           "kind": "lemma",
           "source": "Spectral preliminaries and relative singularity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-spectral-null-events"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-spectral-location",
@@ -166,13 +162,7 @@
           "kind": "lemma",
           "source": "Spectral preliminaries and relative singularity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-spectral-location",
-            "m1-lem-line-average"
-          ],
-          "mentions": [
-            "m1-lem-spectral-null-events"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-compact-tower",
@@ -222,9 +212,7 @@
           "kind": "lemma",
           "source": "Compact factors, multiple averages, and Haar rigidity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-rigidity-general-position"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-palettes-continuous-factor",
@@ -244,10 +232,7 @@
           "kind": "proposition",
           "source": "Transfer between proper and weak measurable colorings",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-palettes-continuous-factor",
-            "m1-thm-rigidity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-palettes-density-proper",
@@ -257,10 +242,7 @@
           "kind": "lemma",
           "source": "Transfer between proper and weak measurable colorings",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "mentions": [
-            "m1-prop-palettes-forward"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-palette-transfer",
@@ -270,9 +252,7 @@
           "kind": "lemma",
           "source": "Circle palettes and their cardinality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-palettes-density-proper"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-palettes-sixty-degree",
@@ -282,9 +262,7 @@
           "kind": "corollary",
           "source": "Circle palettes and their cardinality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-palette-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-binary-separation",
@@ -294,9 +272,7 @@
           "kind": "lemma",
           "source": "Circle palettes and their cardinality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-palette-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-palette-size",
@@ -306,9 +282,7 @@
           "kind": "proposition",
           "source": "Circle palettes and their cardinality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-binary-separation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-transitions-avoiding-trace",
@@ -328,9 +302,7 @@
           "kind": "lemma",
           "source": "Transitions and local finiteness of cyclic centers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-palette-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-transitions-two-state",
@@ -340,9 +312,7 @@
           "kind": "lemma",
           "source": "Transitions and local finiteness of cyclic centers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-palette-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-cyclic-local-finiteness",
@@ -382,7 +352,10 @@
           "kind": "proposition",
           "source": "Extraction of common exclusion continua",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-interfaces-hole-maps",
+            "m1-lem-interfaces-core-loop"
+          ]
         },
         {
           "id": "m1-lem-transitions-disk-averages",
@@ -412,9 +385,7 @@
           "kind": "lemma",
           "source": "Extraction of common exclusion continua",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-transitions-missing-edge"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-interfaces-cover",
@@ -434,9 +405,7 @@
           "kind": "lemma",
           "source": "Extraction of common exclusion continua",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-transitions-disk-averages"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-interfaces-graph-word",
@@ -456,10 +425,7 @@
           "kind": "lemma",
           "source": "Extraction of common exclusion continua",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-interfaces-hole-maps",
-            "m1-lem-interfaces-core-loop"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-angular-strips",
@@ -509,12 +475,7 @@
           "kind": "proposition",
           "source": "Angular obstructions and the final contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-angular-words"
-          ],
-          "objectUses": [
-            "m1-lem-angular-four-rays"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-angular-binary-local",
@@ -534,9 +495,7 @@
           "kind": "lemma",
           "source": "Angular obstructions and the final contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-angular-binary-local"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-angular-region",
@@ -566,11 +525,7 @@
           "kind": "proposition",
           "source": "Angular obstructions and the final contradiction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-angular-region",
-            "m1-lem-angular-certificate",
-            "m1-prop-angular-four"
-          ]
+          "dependsOn": []
         }
       ]
     }

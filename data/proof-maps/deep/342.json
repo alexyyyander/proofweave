@@ -79,7 +79,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-invariant-cohomology"
+          ]
         },
         {
           "id": "m1-cor-taming-cones",
@@ -159,9 +161,7 @@
           "kind": "lemma",
           "source": "Regularization and angular control",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-growth"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-mixing",
@@ -181,11 +181,7 @@
           "kind": "proposition",
           "source": "Regularization and angular control",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-positive-pairing",
-            "m1-lem-mixing",
-            "m1-lem-zero-pairing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-splitting",
@@ -195,7 +191,10 @@
           "kind": "theorem",
           "source": "Densities and planar tangent measures",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m1-lem-density"
+          ]
         },
         {
           "id": "m1-lem-density",
@@ -215,14 +214,7 @@
           "kind": "lemma",
           "source": "Densities and planar tangent measures",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-separation",
-            "m1-prop-energy",
-            "m1-lem-zero-pairing"
-          ],
-          "mentions": [
-            "m1-lem-density"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-invariant-cohomology",
@@ -242,9 +234,7 @@
           "kind": "lemma",
           "source": "The compatible cone",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-invariant-cohomology"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-cohomological-pairing",
@@ -264,13 +254,7 @@
           "kind": "proposition",
           "source": "The compatible cone",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-invariant-cohomology",
-            "m1-lem-positive-pairing",
-            "m1-lem-kernel",
-            "m1-lem-mixing",
-            "m1-thm-splitting"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-general-residual",
@@ -280,11 +264,7 @@
           "kind": "lemma",
           "source": "The compatible cone",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-invariant-cohomology",
-            "m1-lem-class-separation",
-            "m1-prop-class-estimates"
-          ]
+          "dependsOn": []
         }
       ]
     }

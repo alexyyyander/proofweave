@@ -214,172 +214,22 @@
   ],
   "edges": [
     {
-      "from": "m1-lem-local-conditioning",
-      "to": "m1-lem-rolled-extension",
-      "label": "lem:local-conditioning",
-      "context": "l projection slots $a\\notin R$. Saturation will be used only for extensions already supplied by smaller parent sets. The resulting screening identity and Lemma~\\ref{lem:local-conditioning} will then verify the conditional product law for the larger parent set. Write an entry of the old level $n+1$ as $y_{c,"
-    },
-    {
-      "from": "m1-lem-rolled-extension",
-      "to": "m1-prop-square-locality",
-      "label": "lem:rolled-extension",
-      "context": "Column independence in (1) is the defining conditional independence at level two. To obtain rows, use the extension in Lemma~\\ref{lem:rolled-extension} with parent set $R$ and projection slot $a\\notin R$. For a bounded test $F$ of the entire projected row, saturation fo"
-    },
-    {
-      "from": "m1-lem-rectangle",
-      "to": "m1-lem-fixed-squares",
-      "label": "lem:rectangle",
-      "context": "n these four equations are, respectively, $(c,x,d)$, $(c,y,d)$, $(x,d,y)$ and $(x,c,y)$. Each has product law by the independence observations preceding Lemma~\\ref{lem:rectangle}. For the first equation, compare two independent values $c,c'$ using the same $x,d$. Fubini gives \\[ \\bigl(K(c)K(c)^"
-    },
-    {
-      "from": "m1-lem-active-reduction",
-      "to": "m1-lem-contraction-completeness",
-      "label": "lem:active-reduction",
-      "context": "from $t$ to $r$ given $Y_s=v$. Pairwise independence gives the vector-valued integral formula \\[ C_r(g,h)=\\int g(v)L_{r\\leftarrow t}(v)h\\dd\\mu_s(v). \\] Lemma~\\ref{lem:active-reduction} says $P_rL_{r\\leftarrow t}(v)=L_{r\\leftarrow t}(v)P_t$. Moving the projection through the integral proves $P_rC_r(g,h)="
-    },
-    {
-      "from": "m1-lem-fixed-squares",
-      "to": "m1-lem-contraction-completeness",
-      "label": "lem:fixed-squares",
-      "context": "g,h)(x)=\\ip{\\overline g}{L_A(x)h}. \\] Conjugation preserves $D_{A,s}$. On the restricted spaces, $L_A(x)=a(x)A_0$ for a fixed positive operator $A_0$ by Lemma~\\ref{lem:fixed-squares}. Thus every displayed coefficient is a function of $a(x)$ alone. The space $L^2(\\sigma(a(x)))$ is closed, being the r"
-    },
-    {
-      "from": "m1-lem-polar-group",
-      "to": "m1-lem-contraction-completeness",
-      "label": "lem:polar-group",
-      "context": "o the two $D$ spaces and their contraction span. Closure therefore yields $D_{P,r}\\subseteq L^2(\\sigma(h(z)))$. In the other direction, the monomials of Lemma~\\ref{lem:polar-group} are exact for both laws, hence lie in $D_{P,r}$, and they span $L^2(\\sigma(h(z)))$. This proves \\eqref{eq:corner-comple"
-    },
-    {
-      "from": "m1-lem-active-reduction",
-      "to": "m1-prop-common-exact-lines",
-      "label": "lem:active-reduction",
-      "context": "column-active spaces do not depend on the chosen splits: the other two grouped cells still contain exactly all the other entries of that row or column. Lemma~\\ref{lem:active-reduction} gives commutation, and Lemma~\\ref{lem:contraction-completeness} gives a spanning family of simultaneous exact lines for"
-    },
-    {
-      "from": "m1-lem-contraction-completeness",
-      "to": "m1-prop-common-exact-lines",
-      "label": "lem:contraction-completeness",
-      "context": ": the other two grouped cells still contain exactly all the other entries of that row or column. Lemma~\\ref{lem:active-reduction} gives commutation, and Lemma~\\ref{lem:contraction-completeness} gives a spanning family of simultaneous exact lines for the two split three-cell laws. We take this family to contain a"
-    },
-    {
-      "from": "m1-lem-exact-lines",
-      "to": "m1-prop-common-exact-lines",
-      "label": "lem:exact-lines",
-      "context": "on and vary the column-group partition. Every resulting family is a subset of the mutually orthogonal exact lines of the same fixed split column law, by Lemma~\\ref{lem:exact-lines}. All have the same closed span $V_{a,j}\\cap W_{a,j}$. Two subsets of one orthogonal family with the same closed span"
-    },
-    {
-      "from": "m1-lem-parameter-geometry",
-      "to": "m1-lem-active-exact",
-      "label": "lem:parameter-geometry",
-      "context": "Fix $i$. By Lemma~\\ref{lem:parameter-geometry}, the row and column tuples meeting at cell $(i,i)$ are conditionally independent with law \\[ \\pi_i^u:=\\pi(\\dd p\\mid p_"
-    },
-    {
-      "from": "m1-prop-common-exact-lines",
-      "to": "m1-lem-active-exact",
-      "label": "prop:common-exact-lines",
-      "context": "and column tuples meeting at cell $(i,i)$ are conditionally independent with law \\[ \\pi_i^u:=\\pi(\\dd p\\mid p_i=u) \\] given their common entry $u$. Proposition~\\ref{prop:common-exact-lines} therefore gives, for almost every such pair $(p,q)$, \\begin{equation}\\label{eq:random-projection-intersection} \\Pi_i(p"
-    },
-    {
-      "from": "m1-lem-active-exact",
-      "to": "m1-prop-measurable-labels",
-      "label": "lem:active-exact",
-      "context": "the exact lines over tuple parameters, then show that these enumerations describe a family depending only on a local entry. The distinction is necessary: Lemma~\\ref{lem:active-exact} alone gives no such independence from the other parameters. \\paragraph{Enumerating the tuple-dependent lines.} Fix $i$"
-    },
-    {
-      "from": "m1-lem-exact-lines",
-      "to": "m1-prop-measurable-labels",
-      "label": "lem:exact-lines",
-      "context": "gr) \\Delta_i(p). \\end{equation} All their matrix entries are measurable before any exact-line enumeration. Pointwise, Lemma~\\ref{lem:active-exact} and Lemma~\\ref{lem:exact-lines} give an orthogonal exact-line basis of the active space. Write $w_{j,\\ell}$ for the unit partner appearing at $j$ in $\\"
-    },
-    {
-      "from": "m1-prop-common-exact-lines",
-      "to": "m1-prop-measurable-labels",
-      "label": "prop:common-exact-lines",
-      "context": "ched tuple along row $a$, with unit representatives $v_j$ in its cells. At cell $(a,j)$ let $Q_j$ denote the column-active projection $\\Pi_a(q_j)$. Proposition~\\ref{prop:common-exact-lines} and orthogonality of distinct row exact lines show that \\begin{equation}\\label{eq:membership-indicator} Q_jv_j=\\vareps"
-    },
-    {
-      "from": "m1-lem-parameter-geometry",
-      "to": "m1-prop-measurable-labels",
-      "label": "lem:parameter-geometry",
-      "context": "$j,t$. Choose the row tuple measurably from the enumeration just obtained. Given $p_a$, each $\\varepsilon_j$ depends only on $q_j$ and this fixed tuple. Lemma~\\ref{lem:parameter-geometry} makes these indicators pairwise conditionally independent. Their common conditional probability $r(p_a)$ therefore sati"
-    },
-    {
-      "from": "m1-prop-square-locality",
-      "to": "m1-prop-measurable-labels",
-      "label": "prop:square-locality",
-      "context": "lumn relations by that row relation shows that the product of the remaining $k-1$ row products is constant. Those rows are independent as wholes by Proposition~\\ref{prop:square-locality}. Each row product has modulus one. The absolute mean of their product is one, so each has absolute mean one and is itse"
-    },
-    {
-      "from": "m1-prop-measurable-labels",
-      "to": "m1-lem-counting-lift",
-      "label": "prop:measurable-labels",
-      "context": "e chosen source slot $s$. Define the square measure in the same way, counting its unique matched arrays from one chosen cell. The last assertion of Proposition~\\ref{prop:measurable-labels} makes this independent of the chosen cell. Counting from a coordinate, row, or column gives the claimed marginals. The"
-    },
-    {
-      "from": "m1-lem-parameter-geometry",
-      "to": "m1-lem-counting-lift",
-      "label": "lem:parameter-geometry",
-      "context": "ne extension over every compatible parameter square. Its conditional parameter-square law is therefore the original law given that row's parameter tuple. Lemma~\\ref{lem:parameter-geometry} gives independent proper columns; their labels are then determined separately by their shared labels and their own para"
-    },
-    {
-      "from": "m1-lem-active-exact",
-      "to": "m1-prop-block-witness",
-      "label": "lem:active-exact",
-      "context": ", the product integral would vanish. In using complex inner products here one can conjugate the other product; the active space is conjugation invariant. Lemma~\\ref{lem:active-exact} and Proposition~\\ref{prop:measurable-labels} therefore give a choice $f=f_i$ with a nonzero coefficient on some local l"
-    },
-    {
-      "from": "m1-prop-measurable-labels",
-      "to": "m1-prop-block-witness",
-      "label": "prop:measurable-labels",
-      "context": "using complex inner products here one can conjugate the other product; the active space is conjugation invariant. Lemma~\\ref{lem:active-exact} and Proposition~\\ref{prop:measurable-labels} therefore give a choice $f=f_i$ with a nonzero coefficient on some local label on a set of positive $\\nu$-measure. The"
-    },
-    {
-      "from": "m1-lem-finite-blocks",
-      "to": "m1-prop-block-witness",
-      "label": "lem:finite-blocks",
-      "context": "xed block $b$ has $\\int c_b\\dd\\nu>0$. Its cardinality $m_b$ is fixed and finite, and hence $c_b\\le m_b\\norm f_\\infty$. Set $B=B_b\\subset\\mathcal L$ using Lemma~\\ref{lem:finite-blocks}, and $c=\\int c_b\\dd\\nu$. For each typical $u$ choose the block-preserving identification $J_u$ from that Lemma and put"
-    },
-    {
-      "from": "m1-prop-orbit-cancellation",
-      "to": "m1-lem-polynomial-cancellation",
-      "label": "prop:orbit-cancellation",
-      "context": "[Proof of Proposition~\\ref{prop:orbit-cancellation}] Apply Lemma~\\ref{lem:orbit-alternatives}. In the first alternative, Lemma~\\ref{lem:entropy-cancellation} applies direc"
-    },
-    {
       "from": "m1-lem-orbit-alternatives",
-      "to": "m1-lem-polynomial-cancellation",
+      "to": "m1-prop-orbit-cancellation",
       "label": "lem:orbit-alternatives",
       "context": "[Proof of Proposition~\\ref{prop:orbit-cancellation}] Apply Lemma~\\ref{lem:orbit-alternatives}. In the first alternative, Lemma~\\ref{lem:entropy-cancellation} applies directly. In the second, apply it on each of th"
     },
     {
       "from": "m1-lem-entropy-cancellation",
-      "to": "m1-lem-polynomial-cancellation",
+      "to": "m1-prop-orbit-cancellation",
       "label": "lem:entropy-cancellation",
       "context": "[Proof of Proposition~\\ref{prop:orbit-cancellation}] Apply Lemma~\\ref{lem:orbit-alternatives}. In the first alternative, Lemma~\\ref{lem:entropy-cancellation} applies directly. In the second, apply it on each of the finitely many residue classes modulo $p$, using the progressio"
     },
     {
-      "from": "m1-thm-main",
-      "to": "m1-lem-polynomial-cancellation",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] Suppose the conclusion fails, and let $k\\ge3$ be the least failing order. Proposition~\\ref{prop:zero-entropy-witness}"
-    },
-    {
       "from": "m1-prop-zero-entropy-witness",
-      "to": "m1-lem-polynomial-cancellation",
+      "to": "m1-thm-main",
       "label": "prop:zero-entropy-witness",
       "context": "[Proof of Theorem~\\ref{thm:main}] Suppose the conclusion fails, and let $k\\ge3$ be the least failing order. Proposition~\\ref{prop:zero-entropy-witness} gives a mixing finite-alphabet process $(X,\\mu_X,T_X)$ of zero entropy, centered finite-valued one-site functions, and"
-    },
-    {
-      "from": "m1-prop-block-witness",
-      "to": "m1-lem-polynomial-cancellation",
-      "label": "prop:block-witness",
-      "context": "by Section~\\ref{sec:arrays}. The square locality and operator results of Sections~\\ref{sec:arrays} and~\\ref{sec:operators} apply to this extension. Proposition~\\ref{prop:block-witness} supplies a centered one-site witness $f$, a countable abelian group $\\mathcal L$, an automorphism $G$, a finite nonempt"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-cor-endomorphisms-flows",
-      "label": "thm:main",
-      "context": "ng $A_i$, then for every nonnegative layout, \\[ \\mu\\left(\\bigcap_iT^{-t_i}A_i\\right) =\\widehat\\nu\\left(\\bigcap_i\\widehat V^{-t_i}p^{-1}C_i\\right). \\] Theorem~\\ref{thm:main} gives the required product limit. Only Borel cylinders are pulled back to the original space; no natural extension of t"
     }
   ]
 }

@@ -129,9 +129,7 @@
           "kind": "lemma",
           "source": "Oscillatory integral estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-quadratic"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-oscillatory-bounds",
@@ -161,9 +159,7 @@
           "kind": "lemma",
           "source": "Rounding with a small defect",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-matrix-discrepancy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-balanced",
@@ -183,10 +179,7 @@
           "kind": "lemma",
           "source": "A real auxiliary function with balanced coefficients",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-quadratic",
-            "m1-lem-complex-rounding"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-waves",
@@ -196,7 +189,10 @@
           "kind": "proposition",
           "source": "Waves of nearly constant modulus",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m1-prop-balanced"
+          ]
         },
         {
           "id": "m1-lem-signed-packing",
@@ -206,13 +202,7 @@
           "kind": "lemma",
           "source": "Waves of nearly constant modulus",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-oscillatory-bounds",
-            "m1-lem-stationary-phase"
-          ],
-          "objectUses": [
-            "m1-prop-balanced"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -239,7 +229,10 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "objectUses": [
+            "m2-prop-correction"
+          ]
         },
         {
           "id": "m2-prop-auxiliary",
@@ -289,7 +282,9 @@
           "kind": "proposition",
           "source": "Sampling and the geometry of the small values",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m2-prop-auxiliary"
+          ]
         },
         {
           "id": "m2-lem-sampling-poisson",
@@ -299,11 +294,7 @@
           "kind": "lemma",
           "source": "Sampling and the geometry of the small values",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-quadratic",
-            "m2-prop-auxiliary",
-            "m2-lem-signed-packing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-correction",
@@ -333,12 +324,7 @@
           "kind": "lemma",
           "source": "Rounding with a small defect mass",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-starting"
-          ],
-          "objectUses": [
-            "m2-prop-correction"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -365,7 +351,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m3-prop-almost-signs"
+          ]
         },
         {
           "id": "m3-prop-almost-signs",
@@ -375,7 +363,9 @@
           "kind": "proposition",
           "source": "Reduction to approximation and rounding",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m3-prop-auxiliary"
+          ]
         },
         {
           "id": "m3-lem-rounding",
@@ -385,9 +375,7 @@
           "kind": "lemma",
           "source": "Reduction to approximation and rounding",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-prop-almost-signs"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-signed-packing",
@@ -437,11 +425,7 @@
           "kind": "lemma",
           "source": "Sampling the auxiliary polynomial",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-lem-quadratic",
-            "m3-prop-auxiliary",
-            "m3-lem-signed-packing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-rounding-matrix",
@@ -461,9 +445,7 @@
           "kind": "corollary",
           "source": "Flatness for every finite exponent",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cor-merit",
@@ -473,10 +455,7 @@
           "kind": "corollary",
           "source": "Binary merit factors and Morse shifts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "mentions": [
-            "m3-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cor-morse",
@@ -486,9 +465,7 @@
           "kind": "corollary",
           "source": "Binary merit factors and Morse shifts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-cor-merit"
-          ]
+          "dependsOn": []
         }
       ]
     }

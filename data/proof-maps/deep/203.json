@@ -99,7 +99,12 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-sylow-comparison"
+          ],
+          "objectUses": [
+            "m1-thm-extension-finiteness"
+          ]
         },
         {
           "id": "m1-lem-central-transfer",
@@ -169,9 +174,7 @@
           "kind": "lemma",
           "source": "A Cartan bound for fixed root data",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-geom-flat-costalk"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geom-kummer-stalk",
@@ -191,9 +194,7 @@
           "kind": "proposition",
           "source": "A Cartan bound for fixed root data",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-geom-kummer-stalk"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geom-bounded-tiltings",
@@ -203,10 +204,7 @@
           "kind": "proposition",
           "source": "A Cartan bound for fixed root data",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-geom-cross-perfect",
-            "m1-geom-summed-ext"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geom-affineness",
@@ -226,9 +224,7 @@
           "kind": "proposition",
           "source": "A Cartan bound for fixed root data",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-geom-bounded-tiltings"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-geom-projected-norm",
@@ -238,10 +234,7 @@
           "kind": "lemma",
           "source": "A Cartan bound for fixed root data",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-geom-projective-images"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-quasisimple-cartan",
@@ -261,9 +254,7 @@
           "kind": "corollary",
           "source": "Cartan bounds for quasisimple groups",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-restriction-rows"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-fam-br-central",
@@ -283,11 +274,7 @@
           "kind": "proposition",
           "source": "Cartan bounds for quasisimple groups",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-fam-br-central",
-            "m1-fam-restriction",
-            "m1-thm-geometric-cartan"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-fam-regular-datum",
@@ -307,12 +294,7 @@
           "kind": "proposition",
           "source": "Cartan bounds for quasisimple groups",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-central-transfer",
-            "m1-lem-restriction-rows",
-            "m1-fam-br-central",
-            "m1-lem-abelian-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-fam-two",
@@ -322,10 +304,7 @@
           "kind": "proposition",
           "source": "Cartan bounds for quasisimple groups",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-fam-regular-datum",
-            "m1-thm-geometric-cartan"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-fam-packets",
@@ -335,9 +314,7 @@
           "kind": "lemma",
           "source": "Cartan bounds for quasisimple groups",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-fam-regular-datum"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-fam-central-order",
@@ -347,15 +324,7 @@
           "kind": "lemma",
           "source": "Cartan bounds for quasisimple groups",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-restriction-rows",
-            "m1-thm-geometric-cartan",
-            "m1-fam-type-a",
-            "m1-fam-central-classical",
-            "m1-fam-two",
-            "m1-prop-runner-reduction",
-            "m1-prop-triangle-cartan"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-label-degrees",
@@ -365,10 +334,7 @@
           "kind": "proposition",
           "source": "Ordinary labels, single cycles, and block cores",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lab-sparse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lab-fingerprints",
@@ -388,9 +354,7 @@
           "kind": "lemma",
           "source": "Ordinary labels, single cycles, and block cores",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lab-fingerprints"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lab-sparse",
@@ -400,10 +364,7 @@
           "kind": "lemma",
           "source": "Ordinary labels, single cycles, and block cores",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lab-fingerprints",
-            "m1-lab-slice"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-single-cycle",
@@ -413,10 +374,7 @@
           "kind": "proposition",
           "source": "Ordinary labels, single cycles, and block cores",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lab-sparse",
-            "m1-lab-fingerprints"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lab-projected-hc",
@@ -426,9 +384,7 @@
           "kind": "corollary",
           "source": "Ordinary labels, single cycles, and block cores",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-single-cycle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lab-packed-pair",
@@ -438,9 +394,7 @@
           "kind": "lemma",
           "source": "Ordinary labels, single cycles, and block cores",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-label-degrees"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-core-blocks",
@@ -450,11 +404,7 @@
           "kind": "proposition",
           "source": "Ordinary labels, single cycles, and block cores",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lab-packed-pair",
-            "m1-prop-single-cycle",
-            "m1-lab-fingerprints"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-runner-reduction",
@@ -484,12 +434,7 @@
           "kind": "lemma",
           "source": "Runner reductions and projective cones",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-label-degrees",
-            "m1-lem-row-projection",
-            "m1-fam-central-order",
-            "m1-run-localization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-run-ordered-swap",
@@ -499,9 +444,7 @@
           "kind": "lemma",
           "source": "Runner reductions and projective cones",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-run-localization"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-run-folding",
@@ -531,10 +474,7 @@
           "kind": "lemma",
           "source": "Runner reductions and projective cones",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-run-ordered-swap",
-            "m1-run-folding"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-run-d-one",
@@ -544,9 +484,7 @@
           "kind": "lemma",
           "source": "Runner reductions and projective cones",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-run-defect-bounds"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-run-d-two",
@@ -586,16 +524,7 @@
           "kind": "lemma",
           "source": "Runner reductions and projective cones",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-core-blocks",
-            "m1-run-cone-transfer",
-            "m1-thm-geometric-cartan",
-            "m1-lem-row-projection",
-            "m1-lem-central-transfer"
-          ],
-          "objectUses": [
-            "m1-prop-triangle-cartan"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-triangle-cartan",
@@ -615,11 +544,7 @@
           "kind": "lemma",
           "source": "The cuspidal triangle endpoint",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-single-cycle",
-            "m1-prop-label-degrees",
-            "m1-lem-central-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-end-linear-cuspidals",
@@ -639,10 +564,7 @@
           "kind": "lemma",
           "source": "The cuspidal triangle endpoint",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-prop-single-cycle"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-end-head",
@@ -672,9 +594,7 @@
           "kind": "lemma",
           "source": "The cuspidal triangle endpoint",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-end-averaging"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-end-extension",
@@ -684,11 +604,7 @@
           "kind": "lemma",
           "source": "The cuspidal triangle endpoint",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-single-cycle",
-            "m1-end-averaging",
-            "m1-end-linear-cuspidals"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-end-parameters",
@@ -698,10 +614,7 @@
           "kind": "lemma",
           "source": "The cuspidal triangle endpoint",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-label-degrees",
-            "m1-end-presentation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-end-even-algebra",
@@ -711,9 +624,7 @@
           "kind": "lemma",
           "source": "The cuspidal triangle endpoint",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-end-parameters"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-end-count",
@@ -723,10 +634,7 @@
           "kind": "lemma",
           "source": "The cuspidal triangle endpoint",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-end-even-algebra"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-end-exhaustion",
@@ -736,14 +644,7 @@
           "kind": "corollary",
           "source": "The cuspidal triangle endpoint",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-single-cycle",
-            "m1-end-head",
-            "m1-thm-geometric-cartan",
-            "m1-end-residual",
-            "m1-prop-runner-reduction",
-            "m1-lem-row-projection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-ext-reduced-structure",
@@ -753,10 +654,7 @@
           "kind": "lemma",
           "source": "Extensions and field Morita finiteness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-quasisimple-cartan",
-            "m1-lem-central-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-ext-partial-extension",
@@ -766,9 +664,7 @@
           "kind": "lemma",
           "source": "Extensions and field Morita finiteness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-abelian-transfer"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-ext-dual-recovery",
@@ -778,10 +674,7 @@
           "kind": "lemma",
           "source": "Extensions and field Morita finiteness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-ext-partial-extension",
-            "m1-lem-ext-reduced-structure"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-ext-integral-bases",
@@ -821,15 +714,7 @@
           "kind": "theorem",
           "source": "Extensions and field Morita finiteness",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-ext-integral-bases",
-            "m1-lem-ext-reduced-structure",
-            "m1-lem-ext-based-sylow",
-            "m1-lem-ext-kernel-removal"
-          ],
-          "objectUses": [
-            "m1-lem-ext-dual-recovery"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-sylow-comparison",
@@ -839,7 +724,9 @@
           "kind": "proposition",
           "source": "Sylow-equivariant Frobenius comparison",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-per-scalar-overlap"
+          ]
         },
         {
           "id": "m1-per-algebraic-action",
@@ -889,9 +776,7 @@
           "kind": "lemma",
           "source": "Sylow-equivariant Frobenius comparison",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-per-fixed-torus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-per-scalar-overlap",
@@ -901,12 +786,7 @@
           "kind": "lemma",
           "source": "Sylow-equivariant Frobenius comparison",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-per-row-return"
-          ],
-          "objectUses": [
-            "m1-per-br"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-per-scalar-cocycle",
@@ -916,13 +796,7 @@
           "kind": "lemma",
           "source": "Sylow-equivariant Frobenius comparison",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-per-scalar-overlap",
-            "m1-per-algebraic-action"
-          ],
-          "objectUses": [
-            "m1-per-row-return"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-coefficient-extension",
@@ -932,13 +806,7 @@
           "kind": "lemma",
           "source": "Sylow-equivariant Frobenius comparison",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-sylow-comparison",
-            "m1-thm-quasisimple-cartan"
-          ],
-          "objectUses": [
-            "m1-thm-extension-finiteness"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -1015,9 +883,7 @@
           "kind": "lemma",
           "source": "Integral orbits and gradings of a fixed order",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-orbit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-gradings",
@@ -1027,9 +893,7 @@
           "kind": "theorem",
           "source": "Integral orbits and gradings of a fixed order",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-orbit"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-marked",
@@ -1039,10 +903,7 @@
           "kind": "proposition",
           "source": "Integral orbits and gradings of a fixed order",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-hh",
-            "m2-thm-gradings"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-teich-cohomology",

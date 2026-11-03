@@ -129,10 +129,7 @@
           "kind": "lemma",
           "source": "Local approximation from complete directions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-loc-pieces"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-loc-spray",
@@ -162,9 +159,7 @@
           "kind": "lemma",
           "source": "Local approximation from complete directions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-loc-splitting"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-loc-planar",
@@ -174,10 +169,7 @@
           "kind": "proposition",
           "source": "Local approximation from complete directions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-loc-spray",
-            "m1-loc-gluing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-loc-disc",
@@ -187,10 +179,7 @@
           "kind": "corollary",
           "source": "Local approximation from complete directions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-loc-planar",
-            "m1-loc-criterion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ana-cap",
@@ -200,7 +189,10 @@
           "kind": "theorem",
           "source": "Approximation on polydiscs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [],
+          "mentions": [
+            "m1-ana-polydisc"
+          ]
         },
         {
           "id": "m1-glue-open",
@@ -230,14 +222,7 @@
           "kind": "proposition",
           "source": "Approximation on polydiscs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-loc-planar",
-            "m1-ana-concentration",
-            "m1-loc-spray"
-          ],
-          "objectUses": [
-            "m1-glue-open"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-glue-interval",
@@ -247,9 +232,7 @@
           "kind": "lemma",
           "source": "From polydiscs to convex approximation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-loc-spray"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ana-parameter-disc",
@@ -269,11 +252,7 @@
           "kind": "lemma",
           "source": "From polydiscs to convex approximation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-loc-spray",
-            "m1-glue-interval",
-            "m1-ana-parameter-disc"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-glue-linear-trace",
@@ -293,14 +272,7 @@
           "kind": "lemma",
           "source": "From polydiscs to convex approximation",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-glue-linear-trace",
-            "m1-loc-spray",
-            "m1-ana-face"
-          ],
-          "mentions": [
-            "m1-ana-polydisc"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prj-strips",
@@ -340,10 +312,7 @@
           "kind": "lemma",
           "source": "The projective case",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-loc-criterion",
-            "m1-loc-disc"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-sew-chain",
@@ -463,9 +432,7 @@
           "kind": "lemma",
           "source": "Periods containing a rational direction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-sew-chain"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-rat-two-periods",
@@ -475,12 +442,7 @@
           "kind": "lemma",
           "source": "Periods containing a rational direction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-rat-safe",
-            "m1-loc-criterion",
-            "m1-rat-strips",
-            "m1-loc-disc"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-dyn-orbits",
@@ -490,14 +452,7 @@
           "kind": "lemma",
           "source": "Period dynamics and the conclusion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-deg-open",
-            "m1-prj-strips",
-            "m1-ana-cap"
-          ],
-          "objectUses": [
-            "m1-rat-open"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-oka1",
@@ -517,9 +472,7 @@
           "kind": "corollary",
           "source": "Interpolation and further consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-global-spray",
@@ -529,10 +482,7 @@
           "kind": "corollary",
           "source": "Interpolation and further consequences",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main",
-            "m1-cor-surface-classification"
-          ]
+          "dependsOn": []
         }
       ]
     }

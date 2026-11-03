@@ -174,147 +174,27 @@
   "edges": [
     {
       "from": "m1-lem-proper-sections",
-      "to": "m1-lem-model-fibers",
-      "label": "lem:proper-sections",
-      "context": "=0$ this assertion uses the usual convention for $\\R^0$. Finally, for any $a\\in\\Omega$, the coordinates $s=z-l_a(x)$ and $y=x-a$ make $D$ a $1$-model by Lemma~\\ref{lem:proper-sections}."
-    },
-    {
-      "from": "m1-lem-linear-normalization",
-      "to": "m1-prop-centering",
-      "label": "lem:linear-normalization",
-      "context": "ls and positive fibers for which the inclusion with constant $j$ fails. Positive diagonal changes in $s$ put those fibers at $\\mathbf1=(1,\\ldots,1)$, and Lemma~\\ref{lem:linear-normalization} provides linear changes in $y$. Denote the resulting models by $C_j$ and their fibers at $\\mathbf1$ by $F_j$. Thus \\b"
-    },
-    {
-      "from": "m1-lem-model-fibers",
-      "to": "m1-prop-centering",
-      "label": "lem:model-fibers",
-      "context": "_j\\not\\subset jF_j. \\end{equation} All these coordinate changes preserve the model properties and the failed inclusion. For $T\\ge1$ and $0\\le s_i\\le T$, Lemma~\\ref{lem:model-fibers} gives \\begin{equation}\\label{eq:normalized-cap-bound} K_s^{(j)}\\subset K_{T\\mathbf1}^{(j)} \\subset T F_j\\subset\\overl"
-    },
-    {
-      "from": "m1-prop-centering",
-      "to": "m1-cor-normalized-fibers",
-      "label": "prop:centering",
-      "context": "The normalization follows from Proposition~\\ref{prop:centering} and Lemma~\\ref{lem:linear-normalization}. Monotonicity and contraction toward zero give $aK_{\\mathbf1}\\subset K_s\\subs"
-    },
-    {
-      "from": "m1-lem-linear-normalization",
-      "to": "m1-cor-normalized-fibers",
-      "label": "lem:linear-normalization",
-      "context": "The normalization follows from Proposition~\\ref{prop:centering} and Lemma~\\ref{lem:linear-normalization}. Monotonicity and contraction toward zero give $aK_{\\mathbf1}\\subset K_s\\subset bK_{\\mathbf1}$ on $[a,b]^k$, proving \\"
-    },
-    {
-      "from": "m1-lem-cap-compactness",
-      "to": "m1-cor-normalized-fibers",
-      "label": "lem:cap-compactness",
-      "context": "times\\overline B_{TR_0}. \\] Also $K_s\\supset\\overline B_{r_0/2}$ whenever each $s_i\\ge1/2$, which supplies the fixed interior ball about $(\\mathbf1,0)$. Lemma~\\ref{lem:cap-compactness} transfers each cap bound to the approximants; the strict point below its top is the origin. For a fixed box $[a,b]^k$,"
-    },
-    {
-      "from": "m1-lem-stationarity",
-      "to": "m1-lem-cap-identity",
-      "label": "lem:stationarity",
-      "context": "tes the ambient vertical coefficient of \\(\\ell\\), then \\[ DZ=H(x-o'),\\qquad \\tr(H^{-1}D^2Z)=n+(x-o')\\cdot D\\log\\det H,\\qquad D^2q=\\ell_z H. \\] Testing Lemma~\\ref{lem:stationarity} with \\(Z\\psi(q)\\) gives \\begin{align*} 0=\\int_M\\bigl[ &Z|\\dd q|_{H^{-1}}^2\\psi''(q) +nZ\\ell_z\\psi'(q) +2(x-o')\\cdot"
-    },
-    {
-      "from": "m1-lem-cap-compactness",
-      "to": "m1-lem-positive-cap-area",
-      "label": "lem:cap-compactness",
-      "context": "Lemma~\\ref{lem:cap-compactness} gives a uniform bound for these caps. Choose a closed ball \\(\\overline B_r(o)\\) in \\(\\operatorname{int}C\\cap\\{\\ell<b\\}\\"
-    },
-    {
-      "from": "m1-lem-stationarity",
-      "to": "m1-lem-positive-cap-area",
-      "label": "lem:stationarity",
-      "context": "ion \\(F(H)=(\\det H)^\\delta\\) is concave on positive definite matrices: the determinant \\(n\\)-th root is concave, and \\(n\\delta=n/(n+2)<1\\). Concavity and Lemma~\\ref{lem:stationarity} give \\begin{align*} \\int_{E_j}F(D^2\\widetilde g_j)\\,\\dd\\zeta &\\le \\int_{E_j}F(D^2g_j)\\,\\dd\\zeta\\\\ &\\quad+\\delta\\int_"
-    },
-    {
-      "from": "m1-cor-normalized-fibers",
-      "to": "m1-lem-log-cell-bound",
-      "label": "cor:normalized-fibers",
-      "context": "Rescale \\(s_i\\) by \\(e^{-a_i}\\) and make an invertible linear change in \\(y\\). By Corollary~\\ref{cor:normalized-fibers}, these changes can be chosen so that the limit fiber above \\(\\mathbf1=(1,\\ldots,1)\\) satisfies \\[ B_{r_*}\\subset K_{\\m"
-    },
-    {
-      "from": "m1-lem-cap-identity",
-      "to": "m1-lem-log-cell-bound",
-      "label": "lem:cap-identity",
-      "context": "tly supported in the bounded cap \\(\\ell_r\\le b_0\\). The functions \\(\\psi,\\psi'\\) and the levels \\(\\ell_r\\) are bounded there by uniform constants. Apply Lemma~\\ref{lem:cap-identity} with the center \\(o\\) of the fixed interior ball. If its radius is \\(r_0\\), the supporting-plane inequality gives \\["
-    },
-    {
-      "from": "m1-lem-area-bound",
-      "to": "m1-lem-log-cell-bound",
-      "label": "lem:area-bound",
-      "context": "has norm at least one, and \\[ |d\\ell_r|_{H^{-1}}^2=(a^{(r)})^{\\mathsf T}B^{-1}a^{(r)}. \\] The other terms in the cap identity have bounded integrals by Lemma~\\ref{lem:area-bound} and the uniform cap bound. Hence \\[ \\int_{\\mathcal T} I_0\\, (a^{(r)})^{\\mathsf T}B^{-1}a^{(r)} \\,\\dd s\\"
-    },
-    {
-      "from": "m1-prop-one-direction",
-      "to": "m1-lem-log-cell-bound",
-      "label": "prop:one-direction",
-      "context": "[Proof of Proposition~\\ref{prop:one-direction}] A model with one direction exists by Lemma~\\ref{lem:proper-sections}. Suppose that the maximal number \\(k\\) is at leas"
-    },
-    {
-      "from": "m1-lem-proper-sections",
-      "to": "m1-lem-log-cell-bound",
+      "to": "m1-prop-one-direction",
       "label": "lem:proper-sections",
       "context": "[Proof of Proposition~\\ref{prop:one-direction}] A model with one direction exists by Lemma~\\ref{lem:proper-sections}. Suppose that the maximal number \\(k\\) is at least two, and fix the model and approximants used above. The case \\(k=n+"
     },
     {
-      "from": "m1-prop-log-inequality",
-      "to": "m1-lem-log-cell-bound",
-      "label": "prop:log-inequality",
-      "context": "le l\\}\\), zero outside \\(\\{|t|_\\infty<l+1\\}\\), and with a uniformly bounded Euclidean gradient. Its gradient is supported in the intervening shell. Proposition~\\ref{prop:log-inequality}, applied with \\(v_l(s)=\\widetilde v_l(\\log s)\\), implies \\[ \\sigma_j(Q_l) \\le C_{\\mathrm{grow}} \\bi"
-    },
-    {
-      "from": "m1-lem-proper-sections",
-      "to": "m1-lem-uniform-balance",
-      "label": "lem:proper-sections",
-      "context": "ambient affine coordinates \\[ s=z-l_a(x),\\qquad y=x-a. \\] The epigraph lies in \\(s\\ge0\\), contains the ray \\(\\{s\\ge0,\\ y=0\\}\\), and has compact caps by Lemma~\\ref{lem:proper-sections}. It is therefore a model with one direction, whose fiber at height \\(t\\) is \\(K_a(t)\\). Proposition~\\ref{prop:one-dire"
-    },
-    {
       "from": "m1-prop-one-direction",
-      "to": "m1-lem-uniform-balance",
-      "label": "prop:one-direction",
-      "context": "), and has compact caps by Lemma~\\ref{lem:proper-sections}. It is therefore a model with one direction, whose fiber at height \\(t\\) is \\(K_a(t)\\). Proposition~\\ref{prop:one-direction} says that the maximal direction number is one. The uniformity over models and coordinates in Proposition~\\ref{prop:cen"
-    },
-    {
-      "from": "m1-prop-centering",
-      "to": "m1-lem-uniform-balance",
-      "label": "prop:centering",
-      "context": ") is \\(K_a(t)\\). Proposition~\\ref{prop:one-direction} says that the maximal direction number is one. The uniformity over models and coordinates in Proposition~\\ref{prop:centering} consequently gives \\(-K_a(t)\\subset C K_a(t)\\) with one finite constant \\(C\\). Taking \\(\\rho=\\min\\{1,C^{-1}\\}\\) proves"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-thm-tw-interior",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] Proposition~\\ref{prop:one-direction} applies for every \\(3\\le n\\le9\\). Lemmas~\\ref{lem:uniform-balance} and \\ref{lem:d"
-    },
-    {
-      "from": "m1-prop-one-direction",
-      "to": "m1-thm-tw-interior",
+      "to": "m1-thm-main",
       "label": "prop:one-direction",
       "context": "[Proof of Theorem~\\ref{thm:main}] Proposition~\\ref{prop:one-direction} applies for every \\(3\\le n\\le9\\). Lemmas~\\ref{lem:uniform-balance} and \\ref{lem:doubling-entire} therefore give \\(\\Omeg"
     },
     {
       "from": "m1-lem-uniform-balance",
-      "to": "m1-thm-tw-interior",
+      "to": "m1-thm-main",
       "label": "lem:uniform-balance",
       "context": "[Proof of Theorem~\\ref{thm:main}] Proposition~\\ref{prop:one-direction} applies for every \\(3\\le n\\le9\\). Lemmas~\\ref{lem:uniform-balance} and \\ref{lem:doubling-entire} therefore give \\(\\Omega=\\R^n\\) and uniform section balance. Fix any base point, translate"
     },
     {
       "from": "m1-lem-doubling-entire",
-      "to": "m1-thm-tw-interior",
+      "to": "m1-thm-main",
       "label": "lem:doubling-entire",
       "context": "[Proof of Theorem~\\ref{thm:main}] Proposition~\\ref{prop:one-direction} applies for every \\(3\\le n\\le9\\). Lemmas~\\ref{lem:uniform-balance} and \\ref{lem:doubling-entire} therefore give \\(\\Omega=\\R^n\\) and uniform section balance. Fix any base point, translate it to zero, subtract its tang"
-    },
-    {
-      "from": "m1-lem-normalized-modulus",
-      "to": "m1-thm-tw-interior",
-      "label": "lem:normalized-modulus",
-      "context": "equation unchanged as well. Apply Theorem~\\ref{thm:tw-interior} to \\(f_t=v_t-1\\) on \\(O=B_{1/4}\\), with \\(O'=B_{1/8}\\). There \\(-1\\le f_t\\le-3/4\\), and Lemma~\\ref{lem:normalized-modulus} supplies the same lower modulus at every point of \\(O\\). Restricting a section to \\(O\\) only decreases it. We obtain"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-cor-affine-complete",
-      "label": "thm:main",
-      "context": "and local uniform convexity give \\(u\\in C^\\infty(\\Omega)\\) with positive-definite Hessian, and classical stationarity gives \\eqref{eq:affine-maximal}. Theorem~\\ref{thm:main} now implies \\(\\Omega=\\R^n\\) and that \\(u\\) is a quadratic polynomial with positive-definite Hessian. Undoing the affine"
     }
   ]
 }

@@ -149,9 +149,7 @@
           "kind": "lemma",
           "source": "The binary model and the proof framework",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-principal-rank"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-corank-reduction",
@@ -161,10 +159,7 @@
           "kind": "lemma",
           "source": "The binary model and the proof framework",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-corank-tail"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-column-reduction",
@@ -184,7 +179,9 @@
           "kind": "proposition",
           "source": "The binary model and the proof framework",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-cor-inverse-rank"
+          ]
         },
         {
           "id": "m1-prop-path-potential",
@@ -214,9 +211,7 @@
           "kind": "lemma",
           "source": "Lattice tools and robust subsets",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-lattice-quotient"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-normal-height",
@@ -226,9 +221,7 @@
           "kind": "lemma",
           "source": "Lattice tools and robust subsets",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-lattice-quotient"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-reverse-minkowski",
@@ -248,9 +241,7 @@
           "kind": "lemma",
           "source": "Lattice tools and robust subsets",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-reverse-minkowski"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-det-minimizer",
@@ -280,10 +271,7 @@
           "kind": "lemma",
           "source": "Lattice tools and robust subsets",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-det-minimizer",
-            "m1-lem-gaussian-count"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-low-height-cover",
@@ -293,13 +281,7 @@
           "kind": "theorem",
           "source": "A finite cover for subspaces of controlled height",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-height-submodularity",
-            "m1-lem-normal-height",
-            "m1-lem-lattice-quotient",
-            "m1-lem-det-minimizer",
-            "m1-lem-gaussian-count"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-typical-ranks",
@@ -309,9 +291,7 @@
           "kind": "proposition",
           "source": "Typical rank and spectral properties",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-low-height-cover"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-inverse-rank",
@@ -321,9 +301,7 @@
           "kind": "corollary",
           "source": "Typical rank and spectral properties",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-typical-ranks"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-prime-corank",
@@ -333,9 +311,7 @@
           "kind": "proposition",
           "source": "Typical rank and spectral properties",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-corank-tail"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-typical-spectrum",
@@ -375,9 +351,7 @@
           "kind": "lemma",
           "source": "The discriminant pairing and admissible columns",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-primary-coloring"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-pairing-determinant",
@@ -387,15 +361,7 @@
           "kind": "lemma",
           "source": "The discriminant pairing and admissible columns",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cor-inverse-rank",
-            "m1-lem-robust-extraction",
-            "m1-lem-robust-height",
-            "m1-lem-colored-image-order"
-          ],
-          "objectUses": [
-            "m1-prop-typical-spectrum"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-gated-deletion",
@@ -465,11 +431,7 @@
           "kind": "lemma",
           "source": "Simultaneous concentration in lattice quotients",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-normal-height",
-            "m1-lem-det-minimizer",
-            "m1-lem-gaussian-count"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-witness-pricing",
@@ -479,12 +441,7 @@
           "kind": "proposition",
           "source": "Simultaneous concentration in lattice quotients",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-robust-height",
-            "m1-lem-det-minimizer",
-            "m1-lem-gaussian-count",
-            "m1-lem-robust-extraction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-certificate-pricing",
@@ -504,10 +461,7 @@
           "kind": "proposition",
           "source": "Pricing retained layers by certificates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-certificate-pricing",
-            "m1-lem-layer-quotient"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-budget-optimization",
@@ -517,12 +471,7 @@
           "kind": "lemma",
           "source": "Paying for an increase of potential",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-admissible-potential"
-          ],
-          "objectUses": [
-            "m1-prop-certificate-pricing"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-tail-recursion",
@@ -532,9 +481,7 @@
           "kind": "lemma",
           "source": "Paths of principal minors",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-layer-inequality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-heavy-retention-cost",
@@ -544,15 +491,7 @@
           "kind": "lemma",
           "source": "Paths of principal minors",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-retention-lattice",
-            "m1-prop-retention-cost",
-            "m1-prop-potential-step",
-            "m1-lem-gated-deletion",
-            "m1-lem-corank-reduction",
-            "m1-lem-column-reduction",
-            "m1-lem-sign-bit"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -629,11 +568,7 @@
           "kind": "lemma",
           "source": "From kernel vectors to possible columns",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-compressible",
-            "m2-lem-corank-reduction",
-            "m2-lem-anchor-congruence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-prime-corank",
@@ -703,9 +638,7 @@
           "kind": "lemma",
           "source": "A simultaneous bound for lattice intersections",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-separated-subsets"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-static-column",
@@ -785,13 +718,7 @@
           "kind": "lemma",
           "source": "Discriminant pairings and the number of admissible columns",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-robust-extraction",
-            "m2-lem-color-cost",
-            "m2-lem-robust-image",
-            "m2-lem-pairing-colors",
-            "m2-lem-pairing-determinant"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-inverse-rank",
@@ -801,9 +728,7 @@
           "kind": "proposition",
           "source": "Discriminant pairings and the number of admissible columns",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-height-cover"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-small-spectrum",
@@ -813,9 +738,7 @@
           "kind": "proposition",
           "source": "Discriminant pairings and the number of admissible columns",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-graph-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-path-deletion",
@@ -865,9 +788,7 @@
           "kind": "lemma",
           "source": "Two column constraints along a path of principal minors",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-path-dissociation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-path-high-tail",
@@ -877,10 +798,7 @@
           "kind": "lemma",
           "source": "Two column constraints along a path of principal minors",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-path-heavy-cost",
-            "m2-lem-prime-corank"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-path-window",
@@ -890,11 +808,7 @@
           "kind": "lemma",
           "source": "Two column constraints along a path of principal minors",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-path-algebra",
-            "m2-lem-path-high-tail",
-            "m2-lem-path-retention-cost"
-          ]
+          "dependsOn": []
         }
       ]
     }

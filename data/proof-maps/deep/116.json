@@ -129,9 +129,7 @@
           "kind": "proposition",
           "source": "Independent word series from a multiplicative shift",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-poles"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-acyclic-representation",
@@ -151,9 +149,7 @@
           "kind": "lemma",
           "source": "From formulas to finite shift systems",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-acyclic-representation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-formula-system",
@@ -163,9 +159,7 @@
           "kind": "proposition",
           "source": "From formulas to finite shift systems",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-words"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-order",
@@ -195,10 +189,7 @@
           "kind": "corollary",
           "source": "Truncation and construction over the prime field",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-order",
-            "m1-lem-coefficient-descent"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -255,10 +246,7 @@
           "kind": "proposition",
           "source": "From formulas to differential systems",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-formula-representation",
-            "m2-lem-word-independence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-wronskian",
@@ -278,9 +266,7 @@
           "kind": "theorem",
           "source": "A bound on the order of vanishing",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-wronskian"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-path-programs",
@@ -290,10 +276,7 @@
           "kind": "proposition",
           "source": "The rational hitting point",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-word-independence",
-            "m2-thm-multiplicity"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -320,7 +303,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m3-prop-generator-hitting"
+          ]
         },
         {
           "id": "m3-prop-rectangular",
@@ -360,10 +345,7 @@
           "kind": "lemma",
           "source": "Rectangular tests from subspace expansion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-lem-integral-reduction",
-            "m3-lem-wronskian-orders"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-division-lift",
@@ -383,12 +365,7 @@
           "kind": "proposition",
           "source": "Deformation inside a division algebra",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-prop-rectangular"
-          ],
-          "objectUses": [
-            "m3-lem-division-lift"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-invertible-witness",
@@ -398,9 +375,7 @@
           "kind": "lemma",
           "source": "Deformation inside a division algebra",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-lem-division-lift"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-lem-formula-realization",
@@ -420,10 +395,7 @@
           "kind": "proposition",
           "source": "Encoding a formula and its evaluation domain",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-lem-formula-realization",
-            "m3-lem-invertible-witness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-prop-generator-hitting",
@@ -433,9 +405,7 @@
           "kind": "proposition",
           "source": "A rational hitting list and its bit complexity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-prop-formula-certificates"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cor-pencil-hitting",
@@ -455,12 +425,7 @@
           "kind": "proposition",
           "source": "A rational hitting list and its bit complexity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-prop-generator-hitting"
-          ],
-          "objectUses": [
-            "m3-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m3-cor-rank-detecting-list",
@@ -470,10 +435,7 @@
           "kind": "corollary",
           "source": "A universal rank-detecting list",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m3-cor-pencil-hitting",
-            "m3-prop-generator-complexity"
-          ]
+          "dependsOn": []
         }
       ]
     }

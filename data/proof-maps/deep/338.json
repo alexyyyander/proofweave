@@ -84,7 +84,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-polynomial-models"
+          ]
         },
         {
           "id": "m1-prop-initial-data",
@@ -144,9 +146,7 @@
           "kind": "lemma",
           "source": "A global flow and scalar comparison by localization",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-flow-cutoff-lemma"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-symplectic-evolution",
@@ -186,10 +186,7 @@
           "kind": "lemma",
           "source": "The cotangent envelope: compactness and frames",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-extra-integrability",
-            "m1-prop-initial-data"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-disc-frames",
@@ -229,9 +226,7 @@
           "kind": "lemma",
           "source": "A differential inequality for the disc envelope",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-disc-frames"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-symplectic-schur",
@@ -241,10 +236,7 @@
           "kind": "lemma",
           "source": "A differential inequality for the disc envelope",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-prop-disc-inequality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-ell-optimizer-contacts",
@@ -274,10 +266,7 @@
           "kind": "theorem",
           "source": "Fiber ellipsoids and joint positivity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-ellipsoid-comparison",
-            "m1-prop-scalar-comparison"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-harnack-completeness",
@@ -287,10 +276,7 @@
           "kind": "proposition",
           "source": "Harnack inequalities and shrinking holomorphic charts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-joint-positivity",
-            "m1-thm-localized-flow"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-chart-local-charts",
@@ -320,13 +306,7 @@
           "kind": "proposition",
           "source": "Harnack inequalities and shrinking holomorphic charts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-harnack-completeness",
-            "m1-lem-static-distortion"
-          ],
-          "objectUses": [
-            "m1-chart-local-charts"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-simple-connectivity",
@@ -336,12 +316,7 @@
           "kind": "proposition",
           "source": "Harnack inequalities and shrinking holomorphic charts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-harnack-completeness"
-          ],
-          "objectUses": [
-            "m1-prop-ricci-windows"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-chart-psh-liouville",
@@ -361,11 +336,7 @@
           "kind": "proposition",
           "source": "Harnack inequalities and shrinking holomorphic charts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-simple-connectivity",
-            "m1-lem-psh-compactness-bridge",
-            "m1-chart-psh-liouville"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-polynomial-models",
@@ -425,11 +396,7 @@
           "kind": "proposition",
           "source": "Convergence and surjectivity of the coordinates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-unif-backward-limit",
-            "m1-prop-ricci-windows",
-            "m1-prop-polynomial-models"
-          ]
+          "dependsOn": []
         }
       ]
     }

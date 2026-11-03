@@ -69,7 +69,10 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-uniform-balance",
+            "m1-lem-doubling-entire"
+          ]
         },
         {
           "id": "m1-lem-proper-sections",
@@ -99,9 +102,7 @@
           "kind": "lemma",
           "source": "Convex limits and centered fibers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-proper-sections"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-linear-normalization",
@@ -121,10 +122,7 @@
           "kind": "proposition",
           "source": "Convex limits and centered fibers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-linear-normalization",
-            "m1-lem-model-fibers"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-normalized-fibers",
@@ -134,11 +132,7 @@
           "kind": "corollary",
           "source": "Convex limits and centered fibers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-centering",
-            "m1-lem-linear-normalization",
-            "m1-lem-cap-compactness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-stationarity",
@@ -168,9 +162,7 @@
           "kind": "lemma",
           "source": "Affine area and a cap identity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-stationarity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-log-inequality",
@@ -190,7 +182,9 @@
           "kind": "proposition",
           "source": "Excluding models with several directions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-proper-sections"
+          ]
         },
         {
           "id": "m1-lem-positive-cap-area",
@@ -200,10 +194,7 @@
           "kind": "lemma",
           "source": "Excluding models with several directions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-cap-compactness",
-            "m1-lem-stationarity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-log-cell-bound",
@@ -213,13 +204,7 @@
           "kind": "lemma",
           "source": "Excluding models with several directions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cor-normalized-fibers",
-            "m1-lem-cap-identity",
-            "m1-lem-area-bound",
-            "m1-lem-proper-sections",
-            "m1-prop-log-inequality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-uniform-balance",
@@ -229,11 +214,7 @@
           "kind": "lemma",
           "source": "Section balance and rigidity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-proper-sections",
-            "m1-prop-one-direction",
-            "m1-prop-centering"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-doubling-entire",
@@ -263,11 +244,7 @@
           "kind": "theorem",
           "source": "Section balance and rigidity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-uniform-balance",
-            "m1-lem-doubling-entire",
-            "m1-lem-normalized-modulus"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-affine-complete",
@@ -277,9 +254,7 @@
           "kind": "corollary",
           "source": "Section balance and rigidity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }

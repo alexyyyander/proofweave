@@ -114,7 +114,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-flat-scales"
+          ]
         },
         {
           "id": "m1-prop-flat-scales",
@@ -164,9 +166,7 @@
           "kind": "lemma",
           "source": "Fitting intervals and frequency control",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-local-fits"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-interval-frequency",
@@ -176,9 +176,7 @@
           "kind": "lemma",
           "source": "Fitting intervals and frequency control",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-weighted-bounds"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-inward-control",
@@ -188,10 +186,7 @@
           "kind": "lemma",
           "source": "Fitting intervals and frequency control",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-interval-frequency"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-target-frequency",
@@ -201,10 +196,7 @@
           "kind": "proposition",
           "source": "Fitting intervals and frequency control",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-inward-control",
-            "m1-lem-weighted-bounds"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-centered-blowup",
@@ -214,11 +206,7 @@
           "kind": "proposition",
           "source": "A centered height blow-up",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-target-frequency",
-            "m1-lem-local-fits",
-            "m1-lem-scalar-input"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-linearized",
@@ -228,10 +216,7 @@
           "kind": "proposition",
           "source": "Linearized measures and signed excess",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-signed-input",
-            "m1-lem-scalar-input"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-density-comparison",
@@ -261,12 +246,7 @@
           "kind": "lemma",
           "source": "Dimension reduction for the limiting measures",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-flat-scales",
-            "m1-prop-centered-blowup",
-            "m1-prop-linearized",
-            "m1-prop-density-comparison"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -353,9 +333,7 @@
           "kind": "lemma",
           "source": "Local first variation and height estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lt-curvedvariation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lt-config",
@@ -435,9 +413,7 @@
           "kind": "proposition",
           "source": "Heat-potential contacts and separated configurations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lt-gaussian"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ex-bottom",
@@ -447,9 +423,7 @@
           "kind": "lemma",
           "source": "The outward envelope and the low-frequency barrier",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lt-jacobian"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ex-envelope",
@@ -459,9 +433,7 @@
           "kind": "lemma",
           "source": "The outward envelope and the low-frequency barrier",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lt-gaussian"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ex-initialization",
@@ -471,10 +443,7 @@
           "kind": "lemma",
           "source": "The outward envelope and the low-frequency barrier",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lt-weightedballs",
-            "m2-lt-heighttests"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ex-barrier",
@@ -534,10 +503,7 @@
           "kind": "lemma",
           "source": "Witness scales and the signed estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-pk-packing",
-            "m2-ex-bands"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ce-fit",
@@ -547,9 +513,7 @@
           "kind": "lemma",
           "source": "A center adapted to the multiplicity defects",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lt-scalar"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ce-failed",
@@ -559,12 +523,7 @@
           "kind": "lemma",
           "source": "A center adapted to the multiplicity defects",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lt-monotonicity"
-          ],
-          "mentions": [
-            "m2-lt-potential"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ce-center",
@@ -584,9 +543,7 @@
           "kind": "proposition",
           "source": "A center adapted to the multiplicity defects",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-ce-failed"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-ce-constancy",
@@ -616,9 +573,7 @@
           "kind": "lemma",
           "source": "Inward comparison and the conclusion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lt-curvedvariation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-in-bootstrap",
@@ -638,10 +593,7 @@
           "kind": "proposition",
           "source": "Inward comparison and the conclusion",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-ce-constancy",
-            "m2-lt-monotonicity"
-          ]
+          "dependsOn": []
         }
       ]
     }

@@ -79,7 +79,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-early-phase"
+          ]
         },
         {
           "id": "m1-cor-target-size",
@@ -89,9 +91,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-discounted-accounts",
@@ -121,9 +121,7 @@
           "kind": "corollary",
           "source": "Simultaneous deterministic choice",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-scalar-excess"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lemma-configuration-algebra",
@@ -203,9 +201,7 @@
           "kind": "lemma",
           "source": "Pairing down to a sparse boundary",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-early-pair-contractions"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-early-trace-accounts",
@@ -215,9 +211,7 @@
           "kind": "lemma",
           "source": "Pairing down to a sparse boundary",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-early-trace-transitions"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-early-index-words",
@@ -237,9 +231,7 @@
           "kind": "lemma",
           "source": "Pairing down to a sparse boundary",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-early-index-words"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-early-near-reference",
@@ -259,13 +251,7 @@
           "kind": "lemma",
           "source": "Pairing down to a sparse boundary",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lemma-pencil-coefficients",
-            "m1-lem-early-near-reference"
-          ],
-          "objectUses": [
-            "m1-lem-early-index-words"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-early-interpolation",
@@ -275,9 +261,7 @@
           "kind": "lemma",
           "source": "Pairing down to a sparse boundary",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lemma-pencil-coefficients"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-early-linearization",
@@ -287,10 +271,7 @@
           "kind": "lemma",
           "source": "Pairing down to a sparse boundary",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-early-index-words"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-early-high-moments",
@@ -300,10 +281,7 @@
           "kind": "lemma",
           "source": "Pairing down to a sparse boundary",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-early-interpolation",
-            "m1-lemma-pencil-coefficients"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-cleanup",
@@ -353,10 +331,7 @@
           "kind": "lemma",
           "source": "Cleanup of the unresolved boundary",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-cleanup-words",
-            "m1-lem-cleanup-pathwise"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-cleanup-jumps",
@@ -376,10 +351,7 @@
           "kind": "lemma",
           "source": "Cleanup of the unresolved boundary",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-cleanup-pathwise",
-            "m1-lem-cleanup-words"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-boundary-completion",
@@ -449,15 +421,7 @@
           "kind": "proposition",
           "source": "The algorithm and its bit complexity",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-early-phase",
-            "m1-prop-cleanup",
-            "m1-lem-repair-projector",
-            "m1-lem-repair-bulk"
-          ],
-          "objectUses": [
-            "m1-thm-exact-repair"
-          ]
+          "dependsOn": []
         }
       ]
     }

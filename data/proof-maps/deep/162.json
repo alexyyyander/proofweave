@@ -104,7 +104,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-candidate-graph"
+          ]
         },
         {
           "id": "m1-cor-tree-cover",
@@ -114,17 +116,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main",
-            "m1-prop-candidate-graph",
-            "m1-sel-selection",
-            "m1-sel-deletion-domination",
-            "m1-cor-core-pencil"
-          ],
-          "objectUses": [
-            "m1-prop-deterministic-reduction",
-            "m1-prop-pencil-local"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-deterministic-reduction",
@@ -154,9 +146,7 @@
           "kind": "lemma",
           "source": "Deletion lines and concentration of core covers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-affine-second-moment"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-prime-stability",
@@ -176,10 +166,7 @@
           "kind": "corollary",
           "source": "Deletion lines and concentration of core covers",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-deletion",
-            "m1-lem-prime-stability"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-candidate-graph",
@@ -299,9 +286,7 @@
           "kind": "lemma",
           "source": "Elementary incidence and concentration estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-bounded-drift-concentration"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -338,9 +323,7 @@
           "kind": "corollary",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-main"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-incidence",
@@ -380,9 +363,7 @@
           "kind": "lemma",
           "source": "A uniform incidence bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-inc-sumset-estimates"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-inc-no-approximate-subfield",
@@ -392,10 +373,7 @@
           "kind": "lemma",
           "source": "A uniform incidence bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-inc-scalar-coverings",
-            "m2-inc-simultaneous-extraction"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-martingale",
@@ -415,12 +393,7 @@
           "kind": "lemma",
           "source": "Line covers after random deletions",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-martingale"
-          ],
-          "objectUses": [
-            "m2-thm-incidence"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-thm-selection",
@@ -450,9 +423,7 @@
           "kind": "lemma",
           "source": "A configuration with two coordinatizations",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-linecover"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-con-deletion-count",
@@ -462,9 +433,7 @@
           "kind": "lemma",
           "source": "Ambient placement",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-gadget"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-con-pool-properties",
@@ -474,9 +443,7 @@
           "kind": "lemma",
           "source": "Ambient placement",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-linecover"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-con-intersection",
@@ -496,12 +463,7 @@
           "kind": "lemma",
           "source": "The hypergraph and its covering number",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-main",
-            "m2-con-pool-properties",
-            "m2-con-deletion-count",
-            "m2-con-intersection"
-          ]
+          "dependsOn": []
         }
       ]
     }

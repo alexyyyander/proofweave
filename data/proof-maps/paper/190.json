@@ -91,52 +91,10 @@
   ],
   "edges": [
     {
-      "from": "m1-lem-anchor-properties",
-      "to": "m1-lem-anchor-rigidity",
-      "label": "lem:anchor-properties",
-      "context": "Fix an ordered copy of $S$. Two positions in a single anchor group have identical entries throughout $A_h$. By Lemma~\\ref{lem:anchor-properties}, the copy therefore uses at most one position from any one anchor group. The same reasoning shows that it uses at most"
-    },
-    {
-      "from": "m1-lem-nonanchor-traces",
-      "to": "m1-lem-anchor-rigidity",
-      "label": "lem:nonanchor-traces",
-      "context": "s and the last five selected columns are non-anchor positions. Their entries give all $32$ binary words by Lemma~\\ref{lem:anchor-properties}, contrary to Lemma~\\ref{lem:nonanchor-traces}. Hence more than $32$ selected positions are anchors on at least one axis. Assume first that more than $32$ selected r"
-    },
-    {
-      "from": "m1-lem-mode-incidences",
-      "to": "m1-lem-anchor-rigidity",
-      "label": "lem:mode-incidences",
-      "context": "Assume first that more than $32$ selected rows are anchors. In particular the first $32$ selected rows are anchors. No selected column can be variable: Lemma~\\ref{lem:mode-incidences} would give at most four ones in these rows, whereas each column of $S$ has at least $31$ ones in its first $32$ rows. T"
-    },
-    {
-      "from": "m1-lem-anchor-rigidity",
-      "to": "m1-cor-body-roles",
-      "label": "lem:anchor-rigidity",
-      "context": "Apply Lemma~\\ref{lem:anchor-rigidity} to the copy's prefix $S$. The two body rows must have entries $e_1^{\\mathsf T}$ and $e_2^{\\mathsf T}$ against these anc"
-    },
-    {
-      "from": "m1-cor-body-roles",
-      "to": "m1-prop-copy-count",
-      "label": "cor:body-roles",
-      "context": "By Corollary~\\ref{cor:body-roles}, the last two rows and columns of an $H$-copy lie in the prescribed body sets of a single mode. Their entries must for"
-    },
-    {
-      "from": "m1-thm-main",
-      "to": "m1-prop-copy-count",
-      "label": "thm:main",
-      "context": "[Proof of Theorem~\\ref{thm:main}] For each integer $h\\geq1$, set \\[ \\epsilon_h=d_h^{-2}=(386h+2)^{-2}, \\qquad n_h=d_h2^h. \\] Proposition~\\ref{prop:dis"
-    },
-    {
       "from": "m1-prop-distance",
-      "to": "m1-prop-copy-count",
+      "to": "m1-thm-main",
       "label": "prop:distance",
       "context": "[Proof of Theorem~\\ref{thm:main}] For each integer $h\\geq1$, set \\[ \\epsilon_h=d_h^{-2}=(386h+2)^{-2}, \\qquad n_h=d_h2^h. \\] Proposition~\\ref{prop:distance} shows that every $H$-free binary matrix differs from $A_h$ in at least $m^2=\\epsilon_h n_h^2$ entries. Proposition~\\ref"
-    },
-    {
-      "from": "m1-prop-copy-count",
-      "to": "m1-cor-canonical-testing",
-      "label": "prop:copy-count",
-      "context": "By Proposition~\\ref{prop:copy-count}, every copy of $H$ in $A_h$ uses a cell of $\\mathcal L_h$, and $|\\mathcal L_h|=2^h$. For each fixed cell $(r,c)$, indep"
     }
   ]
 }

@@ -64,7 +64,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-quantum"
+          ]
         },
         {
           "id": "m1-lem-forrelation",
@@ -104,9 +106,7 @@
           "kind": "proposition",
           "source": "Quantum search with probabilistic comparisons",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-amplification"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-quantum",
@@ -136,11 +136,7 @@
           "kind": "proposition",
           "source": "The randomized lower bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-adaptive-product",
-            "m1-prop-quantum",
-            "m1-thm-quartic-upper"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-quartic-upper",
@@ -150,7 +146,10 @@
           "kind": "theorem",
           "source": "The universal quartic bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-bs-lambda",
+            "m1-lem-degree-lambda"
+          ]
         },
         {
           "id": "m1-lem-adversary",
@@ -170,9 +169,7 @@
           "kind": "lemma",
           "source": "The universal quartic bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-adversary"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-degree-lambda",
@@ -192,10 +189,7 @@
           "kind": "lemma",
           "source": "The universal quartic bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-bs-lambda",
-            "m1-lem-degree-lambda"
-          ]
+          "dependsOn": []
         }
       ]
     }

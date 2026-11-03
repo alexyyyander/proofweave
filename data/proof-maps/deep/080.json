@@ -99,7 +99,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-thm-maximal"
+          ]
         },
         {
           "id": "m1-lem-packets",
@@ -129,9 +131,7 @@
           "kind": "lemma",
           "source": "Packets, localization, and fractal estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-fractal"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-cap",
@@ -141,10 +141,7 @@
           "kind": "lemma",
           "source": "Packets, localization, and fractal estimates",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-packets",
-            "m1-lem-prelim-weighted"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-transverse",
@@ -154,7 +151,9 @@
           "kind": "proposition",
           "source": "A power saving for transverse inputs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-transverse-tubes"
+          ]
         },
         {
           "id": "m1-lem-transverse-product",
@@ -174,12 +173,7 @@
           "kind": "lemma",
           "source": "A power saving for transverse inputs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-fractal",
-            "m1-lem-packets",
-            "m1-lem-transverse-product",
-            "m1-lem-cap"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-transverse-information",
@@ -209,9 +203,7 @@
           "kind": "lemma",
           "source": "A power saving for transverse inputs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-transverse-information"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-transverse-additivity",
@@ -231,9 +223,7 @@
           "kind": "lemma",
           "source": "A power saving for transverse inputs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-transverse-costs"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-transverse-projection",
@@ -263,9 +253,7 @@
           "kind": "lemma",
           "source": "A power saving for transverse inputs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-transverse-projection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-transverse-angular-choice",
@@ -285,10 +273,7 @@
           "kind": "lemma",
           "source": "A power saving for transverse inputs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-transverse-angular-choice",
-            "m1-lem-transverse-costs"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-transverse-hills",
@@ -308,12 +293,7 @@
           "kind": "lemma",
           "source": "A power saving for transverse inputs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-transverse-block-test"
-          ],
-          "objectUses": [
-            "m1-lem-transverse-hills"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-transverse-no-jump",
@@ -323,11 +303,7 @@
           "kind": "lemma",
           "source": "A power saving for transverse inputs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-transverse-tubes",
-            "m1-lem-transverse-binary",
-            "m1-lem-transverse-finite-jumps"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-sparse",
@@ -357,14 +333,7 @@
           "kind": "lemma",
           "source": "A sparse estimate for packet arrays",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-transverse-product",
-            "m1-lem-sparse-layers"
-          ],
-          "objectUses": [
-            "m1-lem-packets",
-            "m1-lem-fractal"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-frame",
@@ -424,9 +393,7 @@
           "kind": "lemma",
           "source": "A bilinear frame estimate without a scale loss",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-frame-flux"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-frame-local-bilinear",
@@ -446,9 +413,7 @@
           "kind": "proposition",
           "source": "Flat frequency arrays",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-frame"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-strip",
@@ -458,9 +423,7 @@
           "kind": "proposition",
           "source": "Flat frequency arrays",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-oned"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-rich",
@@ -530,9 +493,7 @@
           "kind": "lemma",
           "source": "The dyadic distribution estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-sparse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-dyadic-tuple",
@@ -542,11 +503,7 @@
           "kind": "lemma",
           "source": "The dyadic distribution estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-thm-frame",
-            "m1-thm-distribution"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-shortmax",
@@ -556,10 +513,7 @@
           "kind": "proposition",
           "source": "Endpoint square summation and the order of limits",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-distribution",
-            "m1-lem-packets"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-endpoint-time-separation",
@@ -579,9 +533,7 @@
           "kind": "lemma",
           "source": "Endpoint square summation and the order of limits",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-prop-shortmax"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-endpoint-square-sum",
@@ -591,9 +543,7 @@
           "kind": "lemma",
           "source": "Endpoint square summation and the order of limits",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-endpoint-time-separation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-thm-maximal",
@@ -603,10 +553,7 @@
           "kind": "theorem",
           "source": "Endpoint square summation and the order of limits",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-lem-endpoint-square-sum"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-endpoint-heat-envelope",
@@ -616,9 +563,7 @@
           "kind": "lemma",
           "source": "Endpoint square summation and the order of limits",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-maximal"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -755,9 +700,7 @@
           "kind": "lemma",
           "source": "Packet estimates and a near-Cauchy bound",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-p-weighted"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-f-frame",
@@ -797,11 +740,7 @@
           "kind": "lemma",
           "source": "The transverse frame estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-p-weighted",
-            "m2-p-hierarchy",
-            "m2-p-near-cauchy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-f-profiles",
@@ -821,10 +760,7 @@
           "kind": "lemma",
           "source": "The transverse frame estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-f-selection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-f-conditioning",
@@ -844,11 +780,7 @@
           "kind": "lemma",
           "source": "The transverse frame estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m2-p-weighted",
-            "m2-f-paths"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-f-inflation",
@@ -858,10 +790,7 @@
           "kind": "lemma",
           "source": "The transverse frame estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-f-angular",
-            "m2-p-kakeya"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-f-binary",
@@ -871,12 +800,7 @@
           "kind": "proposition",
           "source": "The transverse frame estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-f-paths",
-            "m2-f-conditioning",
-            "m2-f-inflation",
-            "m2-p-projection"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-f-midpoint",
@@ -886,9 +810,7 @@
           "kind": "lemma",
           "source": "The transverse frame estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-f-conditioning"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-f-cross-field-inflation",
@@ -898,9 +820,7 @@
           "kind": "lemma",
           "source": "The transverse frame estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-p-local-multilinear"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-f-left-limit",
@@ -910,9 +830,7 @@
           "kind": "lemma",
           "source": "The transverse frame estimate",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-p-hierarchy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-d-dz-input",
@@ -932,9 +850,7 @@
           "kind": "proposition",
           "source": "Fractal norms, compact arrays, and norm transport",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-d-dz-input"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-d-layers",
@@ -954,9 +870,7 @@
           "kind": "lemma",
           "source": "Fractal norms, compact arrays, and norm transport",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-d-layers"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-d-power-loss",

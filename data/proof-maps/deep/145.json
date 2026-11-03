@@ -74,7 +74,9 @@
           "kind": "theorem",
           "source": "Introduction",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-prop-zero-entropy-witness"
+          ]
         },
         {
           "id": "m1-prop-zero-entropy-witness",
@@ -124,9 +126,7 @@
           "kind": "proposition",
           "source": "Ordered arrays and conditional locality",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-rolled-extension"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-parameter-geometry",
@@ -196,13 +196,7 @@
           "kind": "lemma",
           "source": "The operator square",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-active-reduction",
-            "m1-lem-fixed-squares"
-          ],
-          "objectUses": [
-            "m1-lem-polar-group"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-common-exact-lines",
@@ -212,11 +206,7 @@
           "kind": "proposition",
           "source": "The operator square",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-active-reduction",
-            "m1-lem-contraction-completeness",
-            "m1-lem-exact-lines"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-active-exact",
@@ -226,10 +216,7 @@
           "kind": "lemma",
           "source": "Measurable labels and finite blocks",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-parameter-geometry",
-            "m1-prop-common-exact-lines"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-measurable-labels",
@@ -239,13 +226,7 @@
           "kind": "proposition",
           "source": "Measurable labels and finite blocks",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-active-exact",
-            "m1-lem-exact-lines",
-            "m1-prop-common-exact-lines",
-            "m1-lem-parameter-geometry",
-            "m1-prop-square-locality"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-counting-lift",
@@ -255,9 +236,7 @@
           "kind": "lemma",
           "source": "Measurable labels and finite blocks",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-parameter-geometry"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-lem-finite-blocks",
@@ -277,11 +256,7 @@
           "kind": "proposition",
           "source": "Measurable labels and finite blocks",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-active-exact",
-            "m1-prop-measurable-labels",
-            "m1-lem-finite-blocks"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-prop-orbit-cancellation",
@@ -291,7 +266,10 @@
           "kind": "proposition",
           "source": "Cancellation in one time dimension",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": []
+          "dependsOn": [
+            "m1-lem-orbit-alternatives",
+            "m1-lem-entropy-cancellation"
+          ]
         },
         {
           "id": "m1-lem-entropy-cancellation",
@@ -321,12 +299,7 @@
           "kind": "lemma",
           "source": "Cancellation in one time dimension",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-lem-orbit-alternatives",
-            "m1-lem-entropy-cancellation",
-            "m1-prop-zero-entropy-witness",
-            "m1-prop-block-witness"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cor-endomorphisms-flows",
@@ -336,9 +309,7 @@
           "kind": "corollary",
           "source": "Endomorphisms and flows",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-thm-main"
-          ]
+          "dependsOn": []
         }
       ]
     }

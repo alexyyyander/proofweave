@@ -123,7 +123,7 @@ test("the proof-map index, scaffold, deep maps, and API render with explicit sta
   assert.ok(leanDerivedHtml.includes("Lean-derived structure"));
   assert.ok(leanDerivedHtml.includes("Comparator metadata from the pinned source."));
   assert.ok(leanDerivedHtml.includes("unverified metadata"));
-  assert.ok(leanDerivedHtml.includes("Formal target"));
+  assert.ok(leanDerivedHtml.includes("Comparator source file"));
 
   const deep = await fetchPage("/proof-evolution/openai-math/032");
   assert.equal(deep.status, 200);
@@ -148,6 +148,22 @@ test("the proof-map index, scaffold, deep maps, and API render with explicit sta
   assert.equal(payload.summary.paperStatements, 13629);
   assert.equal(payload.summary.lean, 18);
   assert.equal(payload.summary.scaffold, 7);
+});
+
+test("Lean metadata is described accurately in both locales", async () => {
+  for (const [locale, expectedIndex, expectedFamily] of [
+    ["en", "unverified metadata", "Comparator source file"],
+    ["zh-CN", "未经验证的元数据", "Comparator 源文件"],
+  ]) {
+    for (const [path, expected] of [["/proof-evolution", expectedIndex], ["/proof-evolution/openai-math/024", expectedFamily]]) {
+      const response = await runtime.dispatchFetch(`http://localhost${path}`, { headers: { accept: "text/html", cookie: `pw_locale=${locale}` } });
+      assert.equal(response.status, 200);
+      const html = await response.text();
+      assert.ok(html.includes(expected), `${locale} ${path}`);
+      assert.ok(!html.includes("proving theorems"), `${locale} ${path}`);
+      assert.ok(!html.includes("求解定理"), `${locale} ${path}`);
+    }
+  }
 });
 
 

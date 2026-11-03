@@ -139,9 +139,7 @@
           "kind": "lemma",
           "source": "Microscopic flow, scattering, and kinetic envelopes",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-pre-duration"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-pre-scattering",
@@ -221,9 +219,7 @@
           "kind": "corollary",
           "source": "Centering at the layer cuts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cent-identity"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cent-residual",
@@ -233,14 +229,7 @@
           "kind": "proposition",
           "source": "Centering at the layer cuts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-pre-duration",
-            "m1-pre-envelopes",
-            "m1-pre-operator"
-          ],
-          "objectUses": [
-            "m1-pre-scattering"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-cent-cancellation",
@@ -260,10 +249,7 @@
           "kind": "proposition",
           "source": "Centering at the layer cuts",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cell-factorization",
-            "m1-cent-cancellation"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-hist-gaussian",
@@ -273,9 +259,7 @@
           "kind": "lemma",
           "source": "Finite history integrals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-pre-flow"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-hist-pinning",
@@ -285,9 +269,7 @@
           "kind": "lemma",
           "source": "Finite history integrals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cell-expansion"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-hist-basic",
@@ -297,11 +279,7 @@
           "kind": "proposition",
           "source": "Finite history integrals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [],
-          "objectUses": [
-            "m1-hist-gaussian",
-            "m1-cor-cell-factorial"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-hist-irregular",
@@ -311,11 +289,7 @@
           "kind": "proposition",
           "source": "Finite history integrals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-pre-scattering",
-            "m1-pre-duration",
-            "m1-hist-basic"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-hist-pivot",
@@ -325,10 +299,7 @@
           "kind": "lemma",
           "source": "Finite history integrals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-hist-gaussian",
-            "m1-hist-pinning"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-hist-crowding",
@@ -338,9 +309,7 @@
           "kind": "proposition",
           "source": "Finite history integrals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-hist-pivot"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-hist-separated",
@@ -350,9 +319,7 @@
           "kind": "corollary",
           "source": "Finite history integrals",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-hist-crowding"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-exp-rerouting",
@@ -362,10 +329,7 @@
           "kind": "lemma",
           "source": "Terminal trees and exposure of first defects",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-exp-tube",
-            "m1-hist-basic"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-exp-terminal",
@@ -375,13 +339,7 @@
           "kind": "lemma",
           "source": "Terminal trees and exposure of first defects",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-hist-basic",
-            "m1-exp-rerouting"
-          ],
-          "objectUses": [
-            "m1-hist-irregular"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-exp-tube",
@@ -401,14 +359,7 @@
           "kind": "proposition",
           "source": "Terminal trees and exposure of first defects",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-hist-gaussian"
-          ],
-          "objectUses": [
-            "m1-hist-pinning",
-            "m1-exp-terminal",
-            "m1-exp-tube"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-exp-defects",
@@ -418,16 +369,7 @@
           "kind": "proposition",
           "source": "Terminal trees and exposure of first defects",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-hist-crowding",
-            "m1-exp-rerouting",
-            "m1-exp-exposure",
-            "m1-exp-tube"
-          ],
-          "objectUses": [
-            "m1-exp-terminal",
-            "m1-cent-charges"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-exp-finite",
@@ -437,13 +379,7 @@
           "kind": "corollary",
           "source": "Terminal trees and exposure of first defects",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-hist-basic",
-            "m1-pre-scattering"
-          ],
-          "objectUses": [
-            "m1-exp-tube"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-close-entropy",
@@ -463,10 +399,7 @@
           "kind": "lemma",
           "source": "Summation, stopping, and convergence",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-hist-gaussian",
-            "m1-hist-basic"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-close-summability",
@@ -476,18 +409,7 @@
           "kind": "proposition",
           "source": "Summation, stopping, and convergence",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cent-charges",
-            "m1-hist-basic",
-            "m1-hist-irregular",
-            "m1-exp-terminal",
-            "m1-exp-defects",
-            "m1-exp-finite"
-          ],
-          "objectUses": [
-            "m1-cent-residual",
-            "m1-close-energy"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-close-witness-extraction",
@@ -497,9 +419,7 @@
           "kind": "lemma",
           "source": "Summation, stopping, and convergence",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-hist-pinning"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-close-amplification",
@@ -509,9 +429,7 @@
           "kind": "lemma",
           "source": "Summation, stopping, and convergence",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-cent-pattern-collapse"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m1-close-tails",
@@ -521,15 +439,7 @@
           "kind": "proposition",
           "source": "Summation, stopping, and convergence",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m1-close-amplification",
-            "m1-cell-stopping",
-            "m1-close-summability",
-            "m1-close-witness-extraction",
-            "m1-cent-residual",
-            "m1-pre-initial",
-            "m1-cent-identity"
-          ]
+          "dependsOn": []
         }
       ]
     },
@@ -596,9 +506,7 @@
           "kind": "proposition",
           "source": "The initial ensemble and the Gaussian target",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-target-moments"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-kinetic-envelopes",
@@ -628,9 +536,7 @@
           "kind": "lemma",
           "source": "Layered histories and the analytic inputs",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-dhm-package"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-autonomous-partition",
@@ -680,10 +586,7 @@
           "kind": "proposition",
           "source": "A componentwise expansion with particle records",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-initial",
-            "m2-thm-dhm-package"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-marked-regrouping",
@@ -723,9 +626,7 @@
           "kind": "theorem",
           "source": "A componentwise expansion with particle records",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-initial"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-cor-terminal-witness",
@@ -795,9 +696,7 @@
           "kind": "lemma",
           "source": "Sharp bounds and the limiting tree measures",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-sharp-summability"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-sharp-tree-completeness",
@@ -807,10 +706,7 @@
           "kind": "lemma",
           "source": "Sharp bounds and the limiting tree measures",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-thm-marked-expansion",
-            "m2-lem-sharp-summability"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-lem-sharp-tree-splitting",
@@ -820,9 +716,7 @@
           "kind": "lemma",
           "source": "Sharp bounds and the limiting tree measures",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-lem-sharp-summability"
-          ]
+          "dependsOn": []
         },
         {
           "id": "m2-prop-tree-evolution",
@@ -962,9 +856,7 @@
           "kind": "lemma",
           "source": "Exact centering and the hard-sphere fluctuation limit",
           "detail": "See the linked paper for the original statement; automatic text extraction is not a faithful quotation.",
-          "dependsOn": [
-            "m2-prop-cumulant-clt"
-          ]
+          "dependsOn": []
         }
       ]
     }

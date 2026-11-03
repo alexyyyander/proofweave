@@ -130,48 +130,5 @@
       "manuscript": "The Gaussian propeller bound in every dimension"
     }
   ],
-  "edges": [
-    {
-      "from": "m1-thm-main",
-      "to": "m1-cor-gaussian-maxima",
-      "label": "thm:main",
-      "context": "ing to the largest score $\\langle u_i,x\\rangle$, resolving ties by the smallest index, and let $z_i$ be the Gaussian first moments of these cells. Then Theorem~\\ref{thm:main} and Cauchy--Schwarz give \\[ \\mathbb E\\max_i\\langle v_i,g\\rangle =\\sum_i\\langle u_i,z_i\\rangle \\le\\left(\\sum_i\\|u_i\\|"
-    },
-    {
-      "from": "m1-geo-pair",
-      "to": "m1-geo-constraints",
-      "label": "geo:pair",
-      "context": "1}^2+D_{32}^2\\ge(c-t^2)(L-c-2t^2). \\] If $L-c-2t^2<0$, the same conclusion follows from the nonnegativity of the determinant squares. On the other hand, Lemma~\\ref{geo:pair} gives \\[ D_{31}^2+D_{32}^2 \\le\\left(\\frac3\\pi\\right)^2t^2 (1+a_3)^2\\big((1+a_1)^2+(1+a_2)^2\\big). \\] Because $a_1+a_"
-    },
-    {
-      "from": "m1-kc-matrix",
-      "to": "m1-kc-soundness",
-      "label": "kc:matrix",
-      "context": "Suppose an assignment \\(\\sigma\\) gives a larger value, and use the functions in Lemma~\\ref{kc:matrix}. Let \\[ V_{\\mathrm{good}}= \\{v:\\OBJ(F_v)>C_k+\\eta\\}. \\] If its \\(\\mu\\)-mass is \\(\\beta\\), then \\eqref{kc:object"
-    },
-    {
-      "from": "m1-kc-main",
-      "to": "m1-kc-soundness",
-      "label": "kc:main",
-      "context": "[Proof of the hardness assertion in Theorem~\\ref{kc:main}] Fix \\(k\\ge3\\) and \\(1\\le\\alpha<\\alpha_k\\). First choose rational \\(\\varepsilon,\\eta>0\\) sufficiently small that \\(\\var"
-    },
-    {
-      "from": "m1-kc-kn-input",
-      "to": "m1-kc-soundness",
-      "label": "kc:kn-input",
-      "context": "\\eta<1\\), and \\begin{equation}\\label{kc:separated-gap} \\alpha< \\frac{(1-1/k)(1-\\varepsilon)^2}{c_*+2\\eta}. \\end{equation} Next choose \\(\\tau,D\\) from Theorem~\\ref{kc:kn-input} and \\eqref{kc:cutoff}; these depend on \\(k,\\eta\\), not the game size. Choose a rational \\[ 0<\\delta< \\min\\left\\{\\frac"
-    },
-    {
-      "from": "m1-kc-ug-input",
-      "to": "m1-kc-soundness",
-      "label": "kc:ug-input",
-      "context": "kc:cutoff}; these depend on \\(k,\\eta\\), not the game size. Choose a rational \\[ 0<\\delta< \\min\\left\\{\\frac12,\\frac{\\eta\\tau^2}{4kD}\\right\\}. \\] Apply Theorem~\\ref{kc:ug-input} with these fixed errors. Only at this stage is the fixed alphabet size \\(r=2^s\\) determined. In particular \\(k^r\\) is a"
-    },
-    {
-      "from": "m1-kc-completeness",
-      "to": "m1-kc-soundness",
-      "label": "kc:completeness",
-      "context": "rmula size, although no uniform bound polynomial in the error reciprocals is asserted. Compose that deterministic reduction with Lemma~\\ref{kc:matrix}. Lemmas~\\ref{kc:completeness} and \\ref{kc:soundness}, together with \\eqref{kc:gaussian-constant}, give the gap \\[ \\begin{aligned} \\varphi\\text{ sat"
-    }
-  ]
+  "edges": []
 }
