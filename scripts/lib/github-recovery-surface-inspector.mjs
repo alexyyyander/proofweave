@@ -18,10 +18,10 @@ export const expectedGithubRecoverySurfaces = Object.freeze({
 });
 const reviewedGithubRecoveryWorkflowPolicies = Object.freeze({
   ".github/workflows/build-week-live-receipt.yml": Object.freeze({
-    sourceSha256: "sha256:cb941df884c53c4bf1151155637f752854a966562f5487d1964f9f59a46a0d52",
+    sourceSha256: "sha256:2adde48ab7266e880bcc5daad9177052825504e22fdff9494dc949cb6f80dade",
     allowedUses: Object.freeze([
       "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
-      "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+      "actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
     ]),
     allowedRuns: Object.freeze([
       "npm ci --ignore-scripts",
@@ -33,10 +33,10 @@ const reviewedGithubRecoveryWorkflowPolicies = Object.freeze({
     ]),
   }),
   ".github/workflows/e2b-lean-runner.yml": Object.freeze({
-    sourceSha256: "sha256:c002a15a38b0cd3d67108d35d23c9db091d5e83e747e22c11e1aab2986304b11",
+    sourceSha256: "sha256:492f1e2a40bf7c7fe899bb2896932df3c5f80295bb314134dd03f969c4713ebd",
     allowedUses: Object.freeze([
       "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
-      "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+      "actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
     ]),
     allowedRuns: Object.freeze([
       "npm ci --ignore-scripts",
