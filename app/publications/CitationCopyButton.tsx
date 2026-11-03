@@ -1,4 +1,6 @@
 "use client";
+import { Button } from "@/app/components/ui";
+
 import { useState } from "react";
 import { useI18n } from "@/app/i18n/client";
 
@@ -9,5 +11,5 @@ export function CitationCopyButton({ citation }: { citation: string }) {
     try { await navigator.clipboard.writeText(citation); setStatus(t("publicationDetail.copy.copied")); }
     catch { setStatus(t("publicationDetail.copy.manual")); }
   }
-  return <span className="publication-copy-action"><button type="button" onClick={copy}>{t("publicationDetail.copy.action")}</button><span role="status">{status}</span></span>;
+  return <span className="publication-copy-action"><Button type="button" onClick={copy}>{t("publicationDetail.copy.action")}</Button><span role="status">{status}</span></span>;
 }
