@@ -73,6 +73,18 @@ export function runnerWorkflowStatus(
     };
   }
 
+  if (["queued", "preparing", "running"].includes(run.state) && run.delivery?.state === "dead_letter") {
+    const beforeExecution = run.startedAt === null;
+    return {
+      tone: "failed",
+      badge: "Runner needs repair",
+      title: beforeExecution ? "The Runner stopped before Lean could start." : "The Runner stopped before it could record a result.",
+      detail: "The service could not process this request. Your approved evidence is preserved. Inspect the recorded failure and repair the Runner before requesting another check.",
+      technicalTitle: "Runner delivery stopped",
+      technicalDetail: `Delivery stopped after ${run.delivery.attempts} attempt(s). ${run.delivery.errorCode ? `Diagnostic: ${run.delivery.errorCode}. ` : ""}No signed Lean acceptance was recorded.`,
+    };
+  }
+
   switch (run.state) {
     case "queued":
       return {

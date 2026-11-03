@@ -140,3 +140,19 @@ test("a process-local Sandbox provider restages immutable evidence when recoveri
   assert.equal(result.run, run);
   assert.deepEqual(events, ["claim", "recover", "restage"]);
 });
+
+test("a failed reconstruction discards the cached Sandbox and preserves the transfer error", async () => {
+  const failure = new Error("workspace rejected");
+  const discarded = [];
+  const stager = new RunnerWorkspaceStager({
+    preflight: {
+      async claimAuthenticatedMessage() { return { action: "stage", run: { id: "run:discard", state: "preparing" }, resolvedBundle: {} }; },
+      async startAfterWorkspaceStaged() { assert.fail("Lean must not start after a failed reconstruction"); },
+    },
+    workspaceTransfer: { async stage() { throw failure; } },
+    getContainer: async () => ({ fetch: async () => {} }),
+    discardContainer: async (runId) => { discarded.push(runId); throw new Error("cleanup unavailable"); },
+  });
+  await assert.rejects(stager.executeAuthenticatedMessage({}, { preparingAt: "2026-10-13T00:00:00Z", startedAt: "2026-10-13T00:00:01Z" }), (error) => error === failure);
+  assert.deepEqual(discarded, ["run:discard"]);
+});

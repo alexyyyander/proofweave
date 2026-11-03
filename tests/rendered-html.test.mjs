@@ -3024,6 +3024,7 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
     startedAt: "2026-07-14T00:00:00Z",
     finishedAt: "2026-07-14T00:00:01Z",
     runnerResultHash,
+    delivery: null,
     evidenceState: "recorded",
     result: {
       resultHash: runnerResultHash,

@@ -262,7 +262,7 @@ function createMcpServer(principal, store, rateLimiter) {
   server.registerTool(
     "inspect_problem",
     {
-      title: "Inspect a frontier problem",
+      title: "Inspect a public research target",
       description: "Read one source-pinned target and its distinct claim layers.",
       inputSchema: { slug: z.string().min(1).max(120) },
       annotations: { readOnlyHint: true, destructiveHint: false },
