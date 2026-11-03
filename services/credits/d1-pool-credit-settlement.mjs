@@ -11,6 +11,7 @@ import { normalizeLeanRunnerResult } from "../../packages/protocol/lean-runner.m
 import { artifactBundleHash, canonicalArtifactBundle, normalizeArtifactBundle, verifyArtifactBundleAgentSignature } from "../../packages/protocol/artifact-bundle.mjs";
 import { assertDelegationAllows, delegationPayloadHash, delegationProtocolVersion, delegationSigningPayload, normalizeDelegationCertificate, verifyDelegationSignature } from "../../packages/domain/delegation.mjs";
 import { normalizePoolFinalityAdjudication, poolFinalityHash, trustedPoolFinalityAuthorities, verifyPoolFinalitySignatures } from "../../packages/protocol/pool-finality-adjudication.mjs";
+import { collectPoolEvidenceObjects, verifyPoolArtifactBytes } from "./pool-artifact-byte-verifier.mjs";
 
 const maximumClosureReceipts = 40;
 const eligibleDecisions = new Set(["attested", "rejected", "request_changes", "integrity_flagged"]);
@@ -26,10 +27,11 @@ export class PoolSettlementError extends Error {
  * No route, receipt hook, or scheduler invokes this automatically.
  */
 export class D1PoolCreditSettlement {
-  constructor(database, { now = () => new Date() } = {}) {
+  constructor(database, { now = () => new Date(), remoteArtifactBucket = null } = {}) {
     if (!database || typeof database.prepare !== "function" || typeof database.batch !== "function" || typeof now !== "function") throw new TypeError("Pool settlement requires a database and clock.");
     this.database = database;
     this.now = now;
+    this.remoteArtifactBucket = remoteArtifactBucket;
     this.receipts = new D1ContributionReceiptStore(database);
     this.verification = new D1VerificationStore(database);
     this.market = new D1VerificationMarketStore(database);
@@ -108,7 +110,6 @@ export class D1PoolCreditSettlement {
   async lock(poolId, finalReceiptId, { expectedPlanHash, finalityAdjudication } = {}) {
     if (typeof expectedPlanHash !== "string" || !/^sha256:[0-9a-f]{64}$/.test(expectedPlanHash)) throw new PoolSettlementError("The reviewed allocation plan hash is required.");
     if (!finalityAdjudication || trustedPoolFinalityAuthorities.length === 0) throw new PoolSettlementError("Independent target-completion and contribution-attribution adjudication is required; settlement is disabled.");
-    await this.#requireArtifactByteVerification();
     const existing = await this.readLocked(poolId);
     if (existing) {
       if (existing.allocation.finalReceipt.receiptId !== finalReceiptId) throw new PoolSettlementError("The pool is already locked to a different final Receipt.");
@@ -118,6 +119,7 @@ export class D1PoolCreditSettlement {
     const prepared = await this.preview(poolId, finalReceiptId);
     if (prepared.plan.payloadHash !== expectedPlanHash) throw new PoolSettlementError("The allocation differs from the reviewed plan; preview and review again.");
     const finality = await this.#verifyFinalityAdjudication(finalityAdjudication, prepared.plan, prepared.cutoff);
+    const verifiedObjects = await this.#requireArtifactByteVerification(prepared.plan, finality.adjudication);
     const sequence = prepared.lastEvent.sequence + 1;
     const payload = { protocolVersion: "pw-credit-pool-event-v1", poolId, sequence, eventType: "locked", occurredAt: prepared.cutoff, allocation: prepared.plan, finalityAdjudication: finality.adjudication };
     const hash = await sha256Canonical(payload);
@@ -155,6 +157,10 @@ export class D1PoolCreditSettlement {
              AND NOT EXISTS (SELECT 1 FROM person_key_revocations AS revoked WHERE revoked.person_key_id = signer.id)
          ))
          AND NOT EXISTS (SELECT 1 FROM json_each(?) AS item WHERE NOT EXISTS (
+           SELECT 1 FROM inline_artifact_bytes AS object WHERE object.object_key = json_extract(item.value, '$.objectKey')
+             AND object.content_hash = json_extract(item.value, '$.contentHash') AND object.byte_length = json_extract(item.value, '$.byteLength')
+         ))
+         AND NOT EXISTS (SELECT 1 FROM json_each(?) AS item WHERE NOT EXISTS (
            SELECT 1 FROM problem_revisions AS revision INNER JOIN projects AS project ON project.id = revision.project_id
            INNER JOIN source_snapshots AS snapshot ON snapshot.id = revision.source_snapshot_id
            WHERE revision.id = item.value AND project.visibility = 'public'
@@ -167,7 +173,7 @@ export class D1PoolCreditSettlement {
       JSON.stringify(prepared.bundleHashes), prepared.attestationCount, ...prepared.authoritySnapshot,
       prepared.plan.problemRevisionId, prepared.plan.problemRevisionId, prepared.targetDeclaration,
       prepared.plan.problemRevisionId, finality.projectId,
-      JSON.stringify(prepared.verifiedAttestations), JSON.stringify(prepared.bundleSigners), JSON.stringify(finality.signers), JSON.stringify(prepared.publicReviewRevisions), JSON.stringify(prepared.receiptIds)).run();
+      JSON.stringify(prepared.verifiedAttestations), JSON.stringify(prepared.bundleSigners), JSON.stringify(finality.signers), JSON.stringify(verifiedObjects), JSON.stringify(prepared.publicReviewRevisions), JSON.stringify(prepared.receiptIds)).run();
     if (Number(result?.meta?.changes ?? 0) !== 1) throw new PoolSettlementError("Pool or evidence changed before the lock; no allocation was written.");
     return Object.freeze({ ...await this.readLocked(poolId), created: true });
   }
@@ -181,8 +187,8 @@ export class D1PoolCreditSettlement {
     const calculated = await derivePoolCreditAllocation(stored);
     if (canonicalJson(calculated) !== canonicalJson(stored) || stored.poolId !== poolId) throw new PoolSettlementError("The stored pool allocation is invalid.");
     const finality = await this.#verifyFinalityAdjudication(locked.finalityAdjudication, stored, locked.occurredAt);
-    await this.#requireArtifactByteVerification();
     await this.verifyLockedEvidence(stored, locked.occurredAt, history);
+    await this.#requireArtifactByteVerification(stored, finality.adjudication);
     return Object.freeze({ state: projectCreditPoolState(history), lockedAt: locked.occurredAt, eventHash: locked.payloadHash, finalityHash: finality.hash, allocation: stored });
   }
 
@@ -425,12 +431,11 @@ export class D1PoolCreditSettlement {
     return verifyPoolFinalityEvidence({ database: this.database, receipts: this.receipts, verifyReviewAttestation: (attestation) => this.verifyReviewAttestation(attestation), authorities: trustedPoolFinalityAuthorities, value, plan, cutoff });
   }
 
-  async #requireArtifactByteVerification() {
-    // An artifact_objects row proves only that a hash is indexed. It does not
-    // establish that the object exists, or that its bytes hash to that value.
-    // Never commit or present an allocation as final until a real trusted
-    // object-store reader verifies every required evidence object.
-    throw new PoolSettlementError("Artifact object bytes have not been verified; settlement is disabled.");
+  async #requireArtifactByteVerification(plan, finalityAdjudication) {
+    const objects = await collectPoolEvidenceObjects({ database: this.database, receipts: this.receipts, plan, finality: finalityAdjudication });
+    const verified = await verifyPoolArtifactBytes({ database: this.database, objects, remoteBucket: this.remoteArtifactBucket });
+    if (!verified.allInline) throw new PoolSettlementError("R2-backed evidence cannot yet be bound atomically to settlement; settlement is disabled.");
+    return verified.objects;
   }
 }
 

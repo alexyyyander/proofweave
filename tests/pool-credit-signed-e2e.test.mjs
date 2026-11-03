@@ -14,9 +14,10 @@ import { D1ContributionReceiptStore } from "../services/receipts/d1-contribution
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
 import { D1VerificationMarketStore } from "../services/verification/d1-verification-market-store.mjs";
 import { D1PoolCreditSettlement, verifyPoolFinalityEvidence } from "../services/credits/d1-pool-credit-settlement.mjs";
+import { D1InlineArtifactBucket } from "../services/artifacts/d1-inline-artifact-store.mjs";
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 const runRequestHash = sha("b");
-let bundleHash, signedBundle, runResultHash, issuerPair, issuerPublicKey, reviewerPairs, runnerPair;
+let bundleHash, signedBundle, runResultHash, issuerPair, issuerPublicKey, reviewerPairs, runnerPair, noteHash, rootStdoutHash, rootStderrHash, fixtureObjects, fixtureBytes;
 
 // Synthetic data, real Ed25519 signatures and the real D1 stores. This does
 // not claim that the synthetic Runner executed Lean or proves any theorem.
@@ -31,11 +32,31 @@ test("signed public-market evidence requires an enrolled, independently adjudica
     delete publicJwk.d;
     reviewerPairs.carol = { privateKey: await crypto.subtle.importKey("jwk", privateJwk, { name: "Ed25519" }, true, ["sign"]), publicKey: await crypto.subtle.importKey("jwk", publicJwk, { name: "Ed25519" }, true, ["verify"]) };
   }
+  fixtureBytes = new Map();
+  const sourceArchive = await registerFixtureBytes("synthetic archive"), sourcePatch = await registerFixtureBytes("synthetic patch"), lakeManifest = await registerFixtureBytes("synthetic lake manifest");
+  noteHash = await registerFixtureBytes("synthetic review evidence");
+  rootStdoutHash = await registerFixtureBytes("synthetic runner stdout");
+  rootStderrHash = await registerFixtureBytes("synthetic runner stderr");
   signedBundle = fixtureBundle(base64Url(await crypto.subtle.exportKey("raw", reviewerPairs.alice.publicKey)), null);
+  signedBundle.source.archiveHash = sourceArchive;
+  signedBundle.source.archiveKey = `bundles/sha256/${sourceArchive.slice(7)}/source.tar.zst`;
+  signedBundle.source.patchHash = sourcePatch;
+  signedBundle.source.patchKey = `bundles/sha256/${sourcePatch.slice(7)}/normalized.patch`;
+  signedBundle.environment.lakeManifestHash = lakeManifest;
+  signedBundle.environment.lakeManifestKey = `bundles/sha256/${lakeManifest.slice(7)}/lake-manifest.json`;
   signedBundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(signedBundle);
   signedBundle.agentEvent.signature = base64Url(await crypto.subtle.sign("Ed25519", reviewerPairs.alice.privateKey, new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(signedBundle)))));
   bundleHash = await artifactBundleHash(signedBundle);
-  const mf = new Miniflare({ modules: true, script: "export default { fetch() { return new Response('ok'); } }", compatibilityDate: "2026-05-22", d1Databases: ["DB"] });
+  const manifestBytes = new TextEncoder().encode(canonicalJson(signedBundle));
+  fixtureBytes.set(bundleHash, manifestBytes);
+  fixtureObjects = [
+    { hash: bundleHash, key: `bundles/sha256/${bundleHash.slice(7)}/bundle.json`, type: "application/json" },
+    { hash: sourceArchive, key: signedBundle.source.archiveKey, type: "application/octet-stream" },
+    { hash: sourcePatch, key: signedBundle.source.patchKey, type: "text/plain" },
+    { hash: lakeManifest, key: signedBundle.environment.lakeManifestKey, type: "application/json" },
+    { hash: noteHash, key: `bundles/sha256/${noteHash.slice(7)}/review.json`, type: "application/json" },
+  ];
+  const mf = new Miniflare({ modules: true, script: "export default { fetch() { return new Response('ok'); } }", compatibilityDate: "2026-05-22", d1Databases: ["DB"], r2Buckets: ["ARTIFACTS"] });
   t.after(async () => mf.dispose());
   const db = await mf.getD1Database("DB");
   await applyMigrations(db);
@@ -68,7 +89,7 @@ test("signed public-market evidence requires an enrolled, independently adjudica
     const job = published.jobs.find((item) => item.claimType === claimType);
     assert.ok(job, claimType);
     const claim = await market.claimJob(job.id, "person:bob", "2026-07-13T00:00:10Z");
-    let evidenceHash = sha("f");
+    let evidenceHash = noteHash;
     if (["bundle_reproducible", "kernel_accepted"].includes(claimType)) {
       const replay = await seedReplayEvidence(db, { assignmentId: claim.assignment.id, bundleHash, tag: claimType, requestedAt: "2026-07-13T00:00:10Z", startedAt: "2026-07-13T00:00:11Z", finishedAt: "2026-07-13T00:00:11.500Z", recordedAt: "2026-07-13T00:00:11.500Z" });
       evidenceHash = replay.evidenceHash;
@@ -77,7 +98,23 @@ test("signed public-market evidence requires an enrolled, independently adjudica
   }
   const issued = await new D1ContributionReceiptStore(db).issue({ id: "receipt:signed-e2e", kind: "proof_patch", artifactBundleManifestHash: bundleHash, runId: "run:receipt-fixture", issuedAt: "2026-07-13T00:01:00Z", issuerKeyId: "issuer:closed-alpha-1", issuerPublicKey, issuerPrivateKey: issuerPair.privateKey });
   assert.equal(issued.created, true);
-  const settlement = new D1PoolCreditSettlement(db, { now: () => new Date("2026-07-13T00:02:00Z") });
+  const storageMode = process.env.PROOFWEAVE_TEST_STORAGE_MODE ?? "inline";
+  let remoteArtifactBucket = null;
+  const noteObject = fixtureObjects.find((item) => item.hash === noteHash);
+  if (["missing", "tampered", "remote"].includes(storageMode)) {
+    if (storageMode === "remote") {
+      remoteArtifactBucket = await mf.getR2Bucket("ARTIFACTS");
+      await remoteArtifactBucket.put(noteObject.key, fixtureBytes.get(noteHash));
+    }
+    if (storageMode === "tampered") {
+      await db.prepare("DROP TRIGGER inline_artifact_bytes_immutable_update").run();
+      await db.prepare("UPDATE inline_artifact_bytes SET bytes = ? WHERE object_key = ?").bind(new TextEncoder().encode("x".repeat(fixtureBytes.get(noteHash).byteLength)), noteObject.key).run();
+    } else {
+      await db.prepare("DROP TRIGGER inline_artifact_bytes_immutable_delete").run();
+      await db.prepare("DELETE FROM inline_artifact_bytes WHERE object_key = ?").bind(noteObject.key).run();
+    }
+  }
+  const settlement = new D1PoolCreditSettlement(db, { now: () => new Date("2026-07-13T00:02:00Z"), remoteArtifactBucket });
   const invalidDelegationDb = {
     prepare(sql) { const statement = db.prepare(sql); return { bind(...args) { const bound = statement.bind(...args); return { async first() { const row = await bound.first(); return { ...row, person_signature: base64Url(new Uint8Array(64)) }; } }; } }; },
     batch: async () => [],
@@ -117,27 +154,57 @@ test("signed public-market evidence requires an enrolled, independently adjudica
   await assert.rejects(verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [testAuthority], value: unbound }), /latest named independent statement and novelty review evidence/);
   const enrolledFixture = process.env.PROOFWEAVE_TEST_EXPECT_ENROLLED === "1";
   const lockArgs = { expectedPlanHash: preview.plan.payloadHash, finalityAdjudication: adjudication };
-  const results = await Promise.allSettled([settlement.lock(poolId, issued.receipt.id, lockArgs), settlement.lock(poolId, issued.receipt.id, lockArgs)]);
-  const expectedFailure = enrolledFixture ? /Artifact object bytes have not been verified/ : /adjudication is required/;
-  assert.ok(results.every((item) => item.status === "rejected" && expectedFailure.test(item.reason.message)));
+  let committed = false;
+  if (enrolledFixture && storageMode === "inline" && process.env.PROOFWEAVE_TEST_LOCK_MODE === "recovery") {
+    const read = settlement.readLocked.bind(settlement);
+    let count = 0;
+    settlement.readLocked = async (...args) => { if (++count === 2) throw new Error("synthetic readback failure"); return read(...args); };
+    await assert.rejects(settlement.lock(poolId, issued.receipt.id, lockArgs), /synthetic readback failure/);
+    settlement.readLocked = read;
+    assert.equal((await settlement.lock(poolId, issued.receipt.id, lockArgs)).created, false);
+    committed = true;
+  } else {
+    const results = await Promise.allSettled([settlement.lock(poolId, issued.receipt.id, lockArgs), settlement.lock(poolId, issued.receipt.id, lockArgs)]);
+    if (enrolledFixture && storageMode === "inline") {
+      assert.ok(results.some((item) => item.status === "fulfilled" && item.value.created));
+      assert.equal((await settlement.lock(poolId, issued.receipt.id, lockArgs)).created, false);
+      committed = true;
+    } else {
+      const expectedFailure = !enrolledFixture ? /adjudication is required/ : storageMode === "missing" ? /missing from trusted storage/ : storageMode === "tampered" ? /do not match/ : /cannot yet be bound atomically/;
+      assert.ok(results.every((item) => item.status === "rejected" && expectedFailure.test(item.reason.message)));
+    }
+  }
   const laterClaim = await verify.assign({ id: "assignment:late-novelty", artifactBundleManifestHash: bundleHash, claimType: "novelty_reviewed", verifierPersonId: "person:carol", assignedAt: "2026-07-13T00:02:10Z" });
   await verify.accept(laterClaim.assignment.id, "person:carol", "2026-07-13T00:02:20Z");
   const carolPublic = base64Url(await crypto.subtle.exportKey("raw", reviewerPairs.carol.publicKey));
-  await verify.recordAttestation(await fixtureAttestation({ id: "attestation:late-novelty", assignmentId: laterClaim.assignment.id, claimType: "novelty_reviewed", reviewer: "carol", agent: "agent:carol-curator", delegation: "delegation:carol-curator", publicKey: carolPublic, privateKey: reviewerPairs.carol.privateKey, evidenceHash: sha("f"), decision: "rejected", attestedAt: "2026-07-13T00:03:00Z" }));
-  assert.deepEqual((await settlement.preview(poolId, issued.receipt.id)).plan, preview.plan);
+  await verify.recordAttestation(await fixtureAttestation({ id: "attestation:late-novelty", assignmentId: laterClaim.assignment.id, claimType: "novelty_reviewed", reviewer: "carol", agent: "agent:carol-curator", delegation: "delegation:carol-curator", publicKey: carolPublic, privateKey: reviewerPairs.carol.privateKey, evidenceHash: noteHash, decision: "rejected", attestedAt: "2026-07-13T00:03:00Z" }));
+  if (committed) assert.deepEqual((await settlement.readLocked(poolId)).allocation, preview.plan);
+  else assert.deepEqual((await settlement.preview(poolId, issued.receipt.id)).plan, preview.plan);
   await assert.rejects(verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [testAuthority], cutoff: "2026-07-13T00:04:00Z" }), /latest named independent statement and novelty review evidence/);
   await assert.rejects(settlement.lock(poolId, issued.receipt.id, { expectedPlanHash: preview.plan.payloadHash }), /adjudication is required/);
-  assert.equal(Number(await db.prepare("SELECT COUNT(*) AS n FROM problem_credit_pool_events WHERE pool_id = ? AND event_type = 'locked'").bind(poolId).first("n")), 0);
+  assert.equal(Number(await db.prepare("SELECT COUNT(*) AS n FROM problem_credit_pool_events WHERE pool_id = ? AND event_type = 'locked'").bind(poolId).first("n")), committed ? 1 : 0);
   await db.prepare("INSERT INTO person_key_revocations (id, person_key_id, owner_person_id, revoked_at, reason) VALUES (?, ?, ?, ?, ?)")
     .bind("revocation:owner", "person-key:carol", "person:carol", "2026-07-13T00:04:00Z", "synthetic test").run();
   await assert.rejects(verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [testAuthority] }), /not an active verified Person key/);
+  if (committed) await assert.rejects(settlement.readLocked(poolId), /not an active verified Person key/);
 });
 
 async function seedOutputs(db, result) {
   for (const [role, hash] of [["stdout", result.artifacts.stdoutHash], ["stderr", result.artifacts.stderrHash]]) {
+    const bytes = fixtureBytes.get(hash);
+    assert.ok(bytes, `missing synthetic ${role} bytes`);
+    const objectKey = `runner-results/sha256/${hash.slice(7)}/${role}.log`;
     await db.prepare("INSERT INTO runner_output_artifacts (id, run_id, role, content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?, ?, ?, ?)")
-      .bind(`output:${result.jobId}:${role}`, result.jobId, role, hash, `synthetic/${result.jobId}/${role}`, 0, "text/plain").run();
+      .bind(`output:${result.jobId}:${role}`, result.jobId, role, hash, objectKey, bytes.byteLength, "text/plain").run();
+    await new D1InlineArtifactBucket(db).put(objectKey, bytes, { customMetadata: { sha256: hash }, httpMetadata: { contentType: "text/plain" } });
   }
+}
+
+async function registerFixtureBytes(value) {
+  const bytes = new TextEncoder().encode(value), digest = new Uint8Array(await crypto.subtle.digest("SHA-256", bytes));
+  const hash = `sha256:${[...digest].map((byte) => byte.toString(16).padStart(2, "0")).join("")}`;
+  fixtureBytes.set(hash, bytes);
+  return hash;
 }
 
 async function seedReceiptEvidence(d1) {
@@ -184,8 +251,7 @@ async function seedReceiptEvidence(d1) {
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       ["attempt:receipt", "person:alice", "revision:receipt", "agent:alice-prover", "delegation:alice-prover", "prove", "Alice prover", "attempt-receipt", "2026-07-13T00:00:00Z"],
     ],
-    ["INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)", [bundleHash, `bundles/sha256/${bundleHash.slice(7)}/bundle.json`, 2, "application/json"]],
-    ...["d", "e", "f"].map((character) => ["INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)", [sha(character), `bundles/sha256/${character.repeat(64)}/review.json`, 2, "application/json"]]),
+    ...fixtureObjects.map((object) => ["INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)", [object.hash, object.key, fixtureBytes.get(object.hash).byteLength, object.type]]),
     [
       `INSERT INTO artifact_bundles (id, attempt_id, problem_revision_id, manifest_hash, manifest_key, canonical_manifest, agent_event_id, agent_event_payload_hash)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -199,6 +265,8 @@ async function seedReceiptEvidence(d1) {
     ["INSERT INTO run_results (run_id, result_hash, canonical_result, received_at) VALUES (?, ?, ?, ?)", ["run:receipt-fixture", runResultHash, canonicalJson(runnerResult), "2026-07-13T00:00:02Z"]],
   ];
   for (const [statement, values] of statements) await d1.prepare(statement).bind(...values).run();
+  const inline = new D1InlineArtifactBucket(d1);
+  for (const object of fixtureObjects) await inline.put(object.key, fixtureBytes.get(object.hash), { customMetadata: { sha256: object.hash }, httpMetadata: { contentType: object.type } });
 }
 
 async function delegationStatements(publicKeys) {
@@ -278,7 +346,7 @@ function fixtureRunnerResult() {
     runnerKeyId: "runner-key:receipt", runnerSignature: base64Url(new Uint8Array(64)), status: "succeeded", exitCode: 0,
     startedAt: "2026-07-13T00:00:01Z", finishedAt: "2026-07-13T00:00:02Z", kernelStatus: "accepted",
     checks: { network: "passed", noSorry: "passed", allowedAxioms: "passed", leanBuild: "passed" },
-    artifacts: { manifestHash: bundleHash, stdoutHash: sha("8"), stderrHash: sha("9") },
+    artifacts: { manifestHash: bundleHash, stdoutHash: rootStdoutHash, stderrHash: rootStderrHash },
     environment: fixtureRunnerEnvironment(),
   };
 }
@@ -382,6 +450,8 @@ async function seedReplayEvidence(d1, {
   const evidenceHash = allowMalformedResult
     ? await sha256Canonical(evidence)
     : await verificationReplayEvidenceHash(evidence);
+  assert.equal(await registerFixtureBytes(canonicalJson({ fixture: "stdout", tag })), runnerResult.artifacts.stdoutHash);
+  assert.equal(await registerFixtureBytes(canonicalJson({ fixture: "stderr", tag })), runnerResult.artifacts.stderrHash);
   await d1.batch([
     d1
       .prepare("INSERT INTO artifact_objects (content_hash, object_key, byte_length, content_type) VALUES (?, ?, ?, ?)")
@@ -453,6 +523,9 @@ async function seedReplayEvidence(d1, {
         recordedAt,
       ),
   ]);
+  await new D1InlineArtifactBucket(d1).put(`bundles/sha256/${evidenceHash.slice(7)}/verification-replay-evidence.json`, new TextEncoder().encode(canonicalEvidence), {
+    customMetadata: { sha256: evidenceHash }, httpMetadata: { contentType: "application/vnd.proofweave.verification-replay-evidence+json" },
+  });
   await seedOutputs(d1, runnerResult);
   return Object.freeze({ evidenceHash, replayId, runId, runnerResultHash });
 }

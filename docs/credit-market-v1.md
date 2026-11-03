@@ -134,10 +134,15 @@ change; the operator cannot supply a trust root at runtime. Both Person keys
 must be active and their signatures valid. Review and owner decisions still
 require human judgment; the software does not prove novelty.
 Preview amounts are not credit balances and do not assert finality.
-An independent hard gate also rejects locking or final readback until actual
-Bundle and review-evidence object bytes can be read from trusted storage and
-rehashed. A database index row or stored metadata alone does not verify the
-object's availability or contents. This byte verifier is not yet implemented.
+An independent gate reads and rehashes the actual Bundle, source, Runner output
+and required review-evidence bytes before locking and again on final readback.
+It enforces a 32 MiB per-object limit and a 64 MiB total evidence limit.
+For D1-inline objects, the lock checks the verified immutable rows in the same
+database statement. An optional trusted R2 binding can read and verify remote
+bytes, but remote-only evidence still prevents locking and final readback:
+cross-storage immutability and atomicity have not been established, and the
+operator has no R2 credentials configured. The empty owner trust registry also
+keeps settlement disabled. Preview does not check the artifact bytes.
 If independent review finds a contribution is a reproduction of prior work,
 or novelty is unresolved, no one should sign an `original_final_result`
 decision. The final-result bucket remains unallocated. Completed public review
