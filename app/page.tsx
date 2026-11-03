@@ -73,8 +73,8 @@ export default async function Home() {
         <section className="home-boundary-section" aria-labelledby="home-boundary-title">
           <div><p className="eyebrow">A simple public boundary</p><SectionTitle id="home-boundary-title">Share evidence, not your private workspace.</SectionTitle></div>
           <div className="home-boundary-grid">
-            <Surface as="article"><span>Public when approved</span><p>Pinned statements, selected checkpoints, reproducible Bundles, review outcomes, dependencies, and signed Receipts.</p><Link href="/how-it-works/contribution-records">Contribution records →</Link></Surface>
-            <Surface as="article"><span>Private by default</span><p>Prompts, hidden reasoning, abandoned notes, unrelated files, credentials, and every artifact you have not approved.</p><Link href="/about/principles">Principles →</Link></Surface>
+            <Surface as="article"><span>Public when approved</span><p>Pinned statements, selected checkpoints, reproducible Bundles, review outcomes, dependencies, and signed Receipts.</p><Link href="/how-it-works#contribution-records">Contribution records →</Link></Surface>
+            <Surface as="article"><span>Private by default</span><p>Prompts, hidden reasoning, abandoned notes, unrelated files, credentials, and every artifact you have not approved.</p><Link href="/about#principles">Principles →</Link></Surface>
           </div>
         </section>
 

@@ -21,7 +21,7 @@ export default async function ReceiptsPage() {
       <SectionHeading as="section" className="receipt-heading"><div><p className="eyebrow">Public evidence index</p><PageTitle>Verified contributions, not activity counts.</PageTitle><p>Every entry is independently hash-checked, issuer-signed, and classified as a public research record before it appears here. Smoke tests and demos remain auditable without becoming mathematical contributions.</p></div><Badge className="record-chip">{unavailable ? "Unavailable" : `${receipts.length} records`}</Badge></SectionHeading>
       <nav className="public-section-nav" aria-label="Contribution records">
         <a href="#receipt-index"><span>Recent receipts</span><b>{unavailable ? "—" : receipts.length}</b></a>
-        <Link href="/how-it-works/contribution-records"><span>How records work</span><b aria-hidden="true">→</b></Link>
+        <Link href="/how-it-works#contribution-records"><span>How records work</span><b aria-hidden="true">→</b></Link>
         <Link href="/explore"><span>Explore research</span><b aria-hidden="true">→</b></Link>
       </nav>
       <div id="receipt-index">

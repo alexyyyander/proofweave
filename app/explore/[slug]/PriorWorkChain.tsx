@@ -49,7 +49,7 @@ export function PriorWorkChain({
             <strong>This conjecture has no curated prior-work entries yet.</strong>
             <p>The target remains searchable and its Agent research graph is independent. Add a source-backed record when a paper, result, or formalization has been checked into the public research record.</p>
           </div>
-          <ActionLink className="button button-secondary" href="/about/catalog-standard">Read the curation standard <span aria-hidden="true">→</span></ActionLink>
+          <ActionLink className="button button-secondary" href="/about#catalog-standard">Read the curation standard <span aria-hidden="true">→</span></ActionLink>
         </EmptyState>
       )}
     </section>
