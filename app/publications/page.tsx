@@ -20,7 +20,7 @@ const one = (value: Query[string]) => Array.isArray(value) ? value[0] ?? "" : va
 export default async function PublicationsPage({ searchParams }: { searchParams: Promise<Query> }) {
   const params = await searchParams;
   const result = searchPublicationFamilies(collection, {
-    q: one(params.q), subject: one(params.subject), evidence: one(params.evidence), page: one(params.page),
+    q: one(params.q), subject: one(params.subject), evidence: one(params.evidence), reading: one(params.reading), page: one(params.page),
   });
   const families = result.families as PublicationFamily[];
   const browseHref = (page: number) => publicationBrowseHref({ ...result, page });
@@ -50,18 +50,22 @@ export default async function PublicationsPage({ searchParams }: { searchParams:
         <div><a href="#collection-notes">Collection notes</a><a href="#withdrawals">{collection.withdrawals.length} withdrawals</a><Link href="/proof-evolution">Proof maps →</Link><Link href="/proof-evolution/landau-siegel">Landau–Siegel deep map →</Link><a href="/api/publications/openai-math?download=1" download="proofweave-openai-math.json">Download catalog JSON ↓</a></div>
       </nav>
 
+      <aside className="publication-reading-progress" aria-label="Reading guide coverage"><div><strong>Reading guides · {collection.statistics.readingGuideFamilies} / {collection.statistics.families} families</strong><p>This batch covers {collection.statistics.guidedManuscripts} manuscripts: introductions, main statements, and linked Lean statements and solution entries. Full proof review and replay remain pending.</p></div><Link href="/publications?reading=guided#browse">Read this batch →</Link></aside>
+
       <section aria-labelledby="publication-browse-title" className="publication-browser" id="browse">
-        <div className="publication-browse-heading"><div><p className="eyebrow">Browse the collection</p><h2 id="publication-browse-title">Find a result to build on.</h2></div><span>Search titles, abstracts, subjects, or family numbers.</span></div>
+        <div className="publication-browse-heading"><div><p className="eyebrow">Browse the collection</p><h2 id="publication-browse-title">Find a result to build on.</h2></div><span>Search titles, abstracts, reading guides, or family numbers.</span></div>
         <form className="publication-filters" action="/publications" method="get">
-          <label className="publication-search">Search<input type="search" name="q" defaultValue={result.query} maxLength={240} placeholder="Erdős, Ramsey, elliptic curves…" /></label>
+          <label className="publication-search">Search<input type="search" name="q" defaultValue={result.query} maxLength={240} placeholder="Erdős, matrix multiplication, progressions…" /></label>
           <label>Subject<select aria-label="Subject" name="subject" defaultValue={result.subject}><option value="">All {collection.statistics.subjects} subjects</option>{collection.subjects.map((subject) => <option key={subject.name} value={subject.name}>{subject.name} ({subject.families})</option>)}</select></label>
           <label>Evidence<select aria-label="Evidence" name="evidence" defaultValue={result.evidence}><option value="all">All results</option><option value="scope">With Lean scope notes</option><option value="no-scope">Scope notes not linked</option></select></label>
+          <label>Reading guide<select aria-label="Reading guide" name="reading" defaultValue={result.reading}><option value="all">All results</option><option value="guided">With reading guides ({collection.statistics.readingGuideFamilies} families)</option></select></label>
           <button className="button button-primary" type="submit">Search →</button>
         </form>
-        <div className="publication-results-heading"><p><strong>{result.total}</strong> {result.total === 1 ? "result family" : "result families"} · {result.manuscriptCount} {result.manuscriptCount === 1 ? "manuscript" : "manuscripts"}{result.query ? <> matching “{result.query}”</> : null}</p>{result.query || result.subject || result.evidence !== "all" ? <Link href="/publications">Clear filters</Link> : <span>Ordered by upstream family number</span>}</div>
+        <div className="publication-results-heading"><p><strong>{result.total}</strong> {result.total === 1 ? "result family" : "result families"} · {result.manuscriptCount} {result.manuscriptCount === 1 ? "manuscript" : "manuscripts"}{result.query ? <> matching “{result.query}”</> : null}</p>{result.query || result.subject || result.evidence !== "all" || result.reading !== "all" ? <Link href="/publications">Clear filters</Link> : <span>Ordered by upstream family number</span>}</div>
         {families.length ? <div className="publication-result-grid">{families.map((family) => <article className="publication-family-card" key={family.number}>
           <div className="publication-card-top"><span className="publication-family-number">{family.number}</span><span>{family.subject}</span></div>
           <h3><Link href={`/publications/openai-math/${family.number}`}><MathText text={family.title} /></Link></h3>
+          {family.readingGuide && <p className="publication-card-guide"><span>Reading guide</span><strong>{family.readingGuide.title}</strong></p>}
           <span className="publication-claim-label">Result described by OpenAI</span>
           <p className="publication-card-claim"><MathText text={family.claim} /></p>
           <div className="publication-card-evidence"><span>{family.manuscripts.length} {family.manuscripts.length === 1 ? "manuscript" : "manuscripts"}</span><span className={family.scope ? "publication-scope-badge" : "publication-scope-missing"}>{family.scope ? "Lean scope notes" : "Scope notes not linked"}</span></div>
