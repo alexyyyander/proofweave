@@ -12,6 +12,7 @@ import explanation032 from "@/data/publications/explanations/openai-math-032.jso
 import explanation084 from "@/data/publications/explanations/openai-math-084.json";
 import explanation159 from "@/data/publications/explanations/openai-math-159.json";
 import { MathText } from "../../MathText";
+import { ReadingGuide } from "../../ReadingGuide";
 import { CitationCopyButton } from "../../CitationCopyButton";
 import { getI18n } from "@/app/i18n/server";
 import "../../publications.css";
@@ -49,7 +50,9 @@ export default async function PublicationFamilyPage({ params }: Params) {
     <main id="main-content" tabIndex={-1} className="page-main publications-main publication-detail-main">
       <div className="breadcrumb"><Link href="/publications">{t("nav.item.publications")}</Link><span> / </span><Link href={`/publications?subject=${encodeURIComponent(family.subject)}`}>{family.subject}</Link><span> / </span><span>OpenAI {family.number}</span></div>
       <section className="publication-detail-heading"><p className="eyebrow">{t("publicationDetail.eyebrow", { number: family.number })}</p><h1><MathText text={family.title} /></h1><p className="publication-detail-claim"><span className="publication-claim-label">{t("publications.card.claimLabel")}</span><MathText text={family.claim} /></p><div className="publication-detail-status"><span>{manuscriptCount(family.manuscripts.length)}</span><span>{family.scope ? t("publicationDetail.status.scopeDocumented") : t("publicationDetail.status.noScope")}</span><span>{t("publicationDetail.status.replayPending")}</span></div></section>
-      <PageSectionNav label={t("publicationDetail.navAria")} links={[{ href: "#explanations", label: t("publicationDetail.nav.explanation") }, ...(claims ? [{ href: "#claims", label: t("publicationDetail.nav.claims") }] : []), { href: "#manuscripts", label: t("publicationDetail.nav.manuscripts") }, { href: "#formalization", label: t("publicationDetail.nav.formalization") }, { href: "#provenance", label: t("publicationDetail.nav.provenance") }]} />
+      <PageSectionNav label={t("publicationDetail.navAria")} links={[...(family.readingGuide ? [{ href: "#reading-guide", label: t("readingGuide.label") }] : []), { href: "#explanations", label: t("publicationDetail.nav.explanation") }, ...(claims ? [{ href: "#claims", label: t("publicationDetail.nav.claims") }] : []), { href: "#manuscripts", label: t("publicationDetail.nav.manuscripts") }, { href: "#formalization", label: t("publicationDetail.nav.formalization") }, { href: "#provenance", label: t("publicationDetail.nav.provenance") }]} />
+
+      {family.readingGuide && <ReadingGuide guide={family.readingGuide} t={t} />}
 
       {(() => {
         const proofMapHref = family.number === "003" ? "/proof-evolution/landau-siegel" : `/proof-evolution/openai-math/${family.number}`;

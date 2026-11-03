@@ -230,3 +230,22 @@ test("the Lean coverage index, family section, and API expose real modules", asy
   assert.equal(leanPayload.summary.comparatorLinks, 426);
   assert.equal(leanPayload.summary.solutionFetched, 426);
 });
+
+test("reading guides and filters remain available in both locales", async () => {
+  for (const [locale, label, heading] of [
+    ["en", "Reading guide", "Proofweave reading guide"],
+    ["zh-CN", "阅读指南", "Proofweave 阅读指南"],
+  ]) {
+    const headers = { accept: "text/html", cookie: `pw_locale=${locale}` };
+    const list = await runtime.dispatchFetch("http://localhost/publications?reading=guided", { headers });
+    assert.equal(list.status, 200);
+    const listHtml = await list.text();
+    assert.ok(listHtml.includes(label));
+    assert.match(listHtml, /name="reading"/);
+    const family = await runtime.dispatchFetch("http://localhost/publications/openai-math/026", { headers });
+    assert.equal(family.status, 200);
+    const html = await family.text();
+    assert.ok(html.includes(heading));
+    assert.match(html, /id="reading-guide"/);
+  }
+});

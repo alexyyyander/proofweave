@@ -23,7 +23,7 @@ export default async function PublicationsPage({ searchParams }: { searchParams:
   const { t } = await getI18n();
   const params = await searchParams;
   const result = searchPublicationFamilies(collection, {
-    q: one(params.q), subject: one(params.subject), evidence: one(params.evidence), page: one(params.page),
+    q: one(params.q), subject: one(params.subject), evidence: one(params.evidence), reading: one(params.reading), page: one(params.page),
   });
   const families = result.families as PublicationFamily[];
   const browseHref = (page: number) => publicationBrowseHref({ ...result, page });
@@ -54,18 +54,22 @@ export default async function PublicationsPage({ searchParams }: { searchParams:
         <div><a href="#collection-notes">{t("publications.bar.notes")}</a><a href="#withdrawals">{t("publications.bar.withdrawals", { count: collection.withdrawals.length })}</a><Link href="/proof-evolution">{t("publications.bar.proofMaps")}</Link><Link href="/proof-evolution/landau-siegel">{t("publications.bar.landauSiegel")}</Link><a href="/api/publications/openai-math?download=1" download="proofweave-openai-math.json">{t("publications.bar.download")} ↓</a></div>
       </nav>
 
+      <aside className="publication-reading-progress" aria-label={t("readingGuide.coverageAria")}><div><strong>{t("readingGuide.coverage", { guided: collection.statistics.readingGuideFamilies, total: collection.statistics.families })}</strong><p>{t("readingGuide.coverageBody", { count: collection.statistics.guidedManuscripts })}</p></div><Link href="/publications?reading=guided#browse">{t("readingGuide.readBatch")} →</Link></aside>
+
       <section aria-labelledby="publication-browse-title" className="publication-browser" id="browse">
         <div className="publication-browse-heading"><div><p className="eyebrow">{t("publications.browse.eyebrow")}</p><h2 id="publication-browse-title">{t("publications.browse.title")}</h2></div><span>{t("publications.browse.hint")}</span></div>
         <form className="publication-filters" action="/publications" method="get">
           <label className="publication-search">{t("publications.search")}<input type="search" name="q" defaultValue={result.query} maxLength={240} placeholder={t("publications.searchPlaceholder")} /></label>
           <label>{t("publications.subject")}<select aria-label={t("publications.subject")} name="subject" defaultValue={result.subject}><option value="">{t("publications.subjectAll", { count: collection.statistics.subjects })}</option>{collection.subjects.map((subject) => <option key={subject.name} value={subject.name}>{subject.name} ({subject.families})</option>)}</select></label>
           <label>{t("publications.evidence")}<select aria-label={t("publications.evidence")} name="evidence" defaultValue={result.evidence}><option value="all">{t("publications.evidence.all")}</option><option value="scope">{t("publications.evidence.scope")}</option><option value="no-scope">{t("publications.evidence.noScope")}</option></select></label>
+          <label>{t("readingGuide.label")}<select aria-label={t("readingGuide.label")} name="reading" defaultValue={result.reading}><option value="all">{t("readingGuide.all")}</option><option value="guided">{t("readingGuide.guided", { count: collection.statistics.readingGuideFamilies })}</option></select></label>
           <button className="button button-primary" type="submit">{t("publications.searchAction")} →</button>
         </form>
-        <div className="publication-results-heading"><p><strong>{result.total}</strong> {t(result.total === 1 ? "publications.results.family.one" : "publications.results.family.other", { count: result.total }).replace(/^\d+\s*/, "")} · {manuscriptCount(result.manuscriptCount).replace(/^\d+\s*/, "")}{result.query ? <> {t("publications.results.matching", { query: result.query })}</> : null}</p>{result.query || result.subject || result.evidence !== "all" ? <Link href="/publications">{t("publications.clearFilters")}</Link> : <span>{t("publications.ordered")}</span>}</div>
+        <div className="publication-results-heading"><p><strong>{result.total}</strong> {t(result.total === 1 ? "publications.results.family.one" : "publications.results.family.other", { count: result.total }).replace(/^\d+\s*/, "")} · {manuscriptCount(result.manuscriptCount).replace(/^\d+\s*/, "")}{result.query ? <> {t("publications.results.matching", { query: result.query })}</> : null}</p>{result.query || result.subject || result.evidence !== "all" || result.reading !== "all" ? <Link href="/publications">{t("publications.clearFilters")}</Link> : <span>{t("publications.ordered")}</span>}</div>
         {families.length ? <div className="publication-result-grid">{families.map((family) => <article className="publication-family-card" key={family.number}>
           <div className="publication-card-top"><span className="publication-family-number">{family.number}</span><span>{family.subject}</span></div>
           <h3><Link href={`/publications/openai-math/${family.number}`}><MathText text={family.title} /></Link></h3>
+          {family.readingGuide && <p className="publication-card-guide"><span>{t("readingGuide.label")}</span><strong>{family.readingGuide.title}</strong></p>}
           <span className="publication-claim-label">{t("publications.card.claimLabel")}</span>
           <p className="publication-card-claim"><MathText text={family.claim} /></p>
           <div className="publication-card-evidence"><span>{manuscriptCount(family.manuscripts.length)}</span><span className={family.scope ? "publication-scope-badge" : "publication-scope-missing"}>{family.scope ? t("publications.card.leanScope") : t("publications.card.noScope")}</span></div>
