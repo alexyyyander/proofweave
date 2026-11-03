@@ -19,9 +19,13 @@ const surfaceKeys = Object.freeze({
   mcp: "PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON",
 });
 
-const allowedKeys = new Set(["schemaVersion", "persons", "agents", "attempts", "allowNewAttempts"]);
+const allowedKeys = new Set(["schemaVersion", "persons", "agents", "attempts", "allowNewAttempts", "reviewGrants", "reviewPublishGrants", "reviewDispatchOnly"]);
 const dimensions = new Set(["person", "agent", "attempt"]);
 const maximumEntries = 100;
+const reviewOperations = Object.freeze({
+  participant: new Set(["review:claim", "review:transition"]),
+  mcp: new Set(["review:replay", "attestation:write"]),
+});
 
 // Only owner-side operations whose callers have verified that the stored
 // Attempt belongs to the allowed Person + Agent may use the creation window.
@@ -90,6 +94,9 @@ export function researchWriteAllowlistState(values, surface) {
     persons: Object.freeze([]),
     agents: Object.freeze([]),
     attempts: Object.freeze([]),
+    reviewGrants: Object.freeze([]),
+    reviewPublishGrants: Object.freeze([]),
+    reviewDispatchOnly: false,
     allowNewAttempts: false,
     failureCode: null,
   };
@@ -113,6 +120,12 @@ export function researchWriteAllowlistState(values, surface) {
   if (!agents) return invalid("invalid_agents");
   const attempts = validateIdentifierList(parsed.attempts, { allowEmpty: true });
   if (!attempts) return invalid("invalid_attempts");
+  const reviewGrants = validateReviewGrants(parsed.reviewGrants, surface, persons);
+  if (!reviewGrants) return invalid("invalid_review_grants");
+  const reviewPublishGrants = validateReviewPublishGrants(parsed.reviewPublishGrants, surface);
+  if (!reviewPublishGrants) return invalid("invalid_review_publish_grants");
+  if (parsed.reviewDispatchOnly !== undefined
+      && (surface !== "mcp" || typeof parsed.reviewDispatchOnly !== "boolean")) return invalid("invalid_review_dispatch_only");
   return Object.freeze({
     schemaVersion: RESEARCH_WRITE_ALLOWLIST_SCHEMA_VERSION,
     surface,
@@ -121,6 +134,9 @@ export function researchWriteAllowlistState(values, surface) {
     persons: Object.freeze(persons),
     agents: Object.freeze(agents),
     attempts: Object.freeze(attempts),
+    reviewGrants: Object.freeze(reviewGrants),
+    reviewPublishGrants: Object.freeze(reviewPublishGrants),
+    reviewDispatchOnly: parsed.reviewDispatchOnly === true,
     allowNewAttempts: parsed.allowNewAttempts,
     failureCode: null,
   });
@@ -141,6 +157,8 @@ export function researchWriteAllowlistState(values, surface) {
  *   personId?: string | null,
  *   agentId?: string | null,
  *   attemptId?: string | null,
+ *   assignmentId?: string | null,
+ *   bundleHash?: string | null,
  *   attemptOwnershipVerified?: boolean,
  * }} input
  */
@@ -152,6 +170,8 @@ export function assertResearchWriteAllowed({
   personId = null,
   agentId = null,
   attemptId = null,
+  assignmentId = null,
+  bundleHash = null,
   attemptOwnershipVerified = false,
 }) {
   if (typeof operation !== "string" || operation.trim() === "") {
@@ -159,6 +179,29 @@ export function assertResearchWriteAllowed({
   }
   const state = researchWriteAllowlistState(values, surface);
   if (!state.valid) throw new ResearchWriteGateUnconfiguredError(state.failureCode);
+  // Publication callers must independently prove bundle ownership and accepted
+  // Lean evidence; this grant only narrows the deployment's write window.
+  if (surface === "participant" && operation === "review:publish"
+      && state.reviewPublishGrants.some((grant) => grant.personId === personId && grant.attemptId === attemptId && grant.bundleHash === bundleHash)) {
+    if (!required.includes("person") || !required.includes("attempt")) {
+      throw new ResearchWriteGateConfigurationError("review publication requires person and attempt");
+    }
+    return state;
+  }
+  // Review grants are an alternative to adding the reviewer or target to the
+  // legacy cross-product lists. They never authorize an owner-side write.
+  if (state.reviewGrants.some((grant) => grant.personId === personId)) {
+    const grantDimensions = surface === "mcp" ? ["person", "agent", "attempt"] : ["person", "attempt"];
+    for (const dimension of grantDimensions) {
+      if (!required.includes(dimension)) throw new ResearchWriteGateConfigurationError(`review operation requires ${dimension}`);
+    }
+    const matchingGrant = state.reviewGrants.some((grant) =>
+      grant.personId === personId && grant.attemptId === attemptId
+      && (surface !== "mcp" || (grant.agentId === agentId && grant.assignmentId === assignmentId))
+      && grant.operations.includes(operation));
+    if (!matchingGrant) throw new ResearchWriteNotAllowedError("review_grant");
+    return state;
+  }
   const provided = { person: personId, agent: agentId, attempt: attemptId };
   const lists = { person: state.persons, agent: state.agents, attempt: state.attempts };
   for (const dimension of required) {
@@ -206,6 +249,7 @@ export function researchWriteGateSummary(values, surface) {
     agentCount: state.agents.length,
     attemptCount: state.attempts.length,
     allowNewAttempts: state.allowNewAttempts,
+    ...(state.reviewDispatchOnly ? { reviewDispatchOnly: true } : {}),
   });
 }
 
@@ -220,6 +264,51 @@ function validateIdentifierList(value, { allowEmpty = false } = {}) {
     seen.add(entry);
   }
   return value;
+}
+
+function validateReviewGrants(value, surface, legacyPersons) {
+  if (value === undefined) return [];
+  if (!Array.isArray(value) || value.length > maximumEntries) return null;
+  const result = [];
+  const seen = new Set();
+  const keys = surface === "mcp"
+    ? new Set(["personId", "agentId", "attemptId", "assignmentId", "operations"])
+    : new Set(["personId", "attemptId", "operations"]);
+  for (const grant of value) {
+    if (!isRecord(grant) || Object.keys(grant).some((key) => !keys.has(key))) return null;
+    const identifiers = surface === "mcp"
+      ? [grant.personId, grant.agentId, grant.attemptId, grant.assignmentId]
+      : [grant.personId, grant.attemptId];
+    if (identifiers.some((id) => typeof id !== "string" || !id.trim() || id !== id.trim() || id.length > 240)) return null;
+    // Avoid a misleading configuration where a legacy entry could authorize
+    // the same Person for non-review operations independently of this grant.
+    if (legacyPersons.includes(grant.personId)) return null;
+    if (!Array.isArray(grant.operations) || grant.operations.length === 0
+      || grant.operations.some((operation) => !reviewOperations[surface].has(operation))
+      || new Set(grant.operations).size !== grant.operations.length) return null;
+    const identity = JSON.stringify(identifiers);
+    if (seen.has(identity)) return null;
+    seen.add(identity);
+    result.push(Object.freeze({ ...grant, operations: Object.freeze([...grant.operations]) }));
+  }
+  return result;
+}
+
+function validateReviewPublishGrants(value, surface) {
+  if (value === undefined) return [];
+  if (surface !== "participant" || !Array.isArray(value) || value.length > maximumEntries) return null;
+  const result = [];
+  const seen = new Set();
+  for (const grant of value) {
+    if (!isRecord(grant) || Object.keys(grant).some((key) => !["personId", "attemptId", "bundleHash"].includes(key))) return null;
+    if ([grant.personId, grant.attemptId].some((id) => typeof id !== "string" || !id.trim() || id !== id.trim() || id.length > 240)) return null;
+    if (typeof grant.bundleHash !== "string" || !/^sha256:[0-9a-f]{64}$/.test(grant.bundleHash)) return null;
+    const identity = JSON.stringify([grant.personId, grant.attemptId, grant.bundleHash]);
+    if (seen.has(identity)) return null;
+    seen.add(identity);
+    result.push(Object.freeze({ personId: grant.personId, attemptId: grant.attemptId, bundleHash: grant.bundleHash }));
+  }
+  return result;
 }
 
 function isRecord(value) {
