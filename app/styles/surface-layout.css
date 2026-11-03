@@ -91,6 +91,8 @@ textarea { border-radius: var(--radius-control); }
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
+/* The setup card uses light text and must retain its dark surface. */
+.integration-card.integration-card-dark { background: var(--navy); }
 .project-card:hover,
 .founding-card:hover,
 .information-path-grid > a:hover,
