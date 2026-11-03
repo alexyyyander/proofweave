@@ -109,6 +109,8 @@ export function ResearchLauncher({
         : researchWindowBlockedCopy(eligibility)
     : null;
 
+  const creationBlocked = atCapacity && !existing;
+
   const start = async () => {
     if (writeAvailability !== "available") {
       setError(controlPlaneMaintenanceCopy(writeAvailability).detail);
@@ -122,7 +124,7 @@ export function ResearchLauncher({
       setError(windowBlocked?.detail ?? "The current research write window does not allow creating a new Attempt.");
       return;
     }
-    if (!target || !delegation || !scope || isStarting || atCapacity) return;
+    if (!target || !delegation || !scope || isStarting || creationBlocked) return;
     setError(null);
     setNotice(null);
     if (existing) {
@@ -243,12 +245,12 @@ export function ResearchLauncher({
       </div>}
       <div className="research-launcher-footer">
         <p><strong>{connection.agentLabel}</strong> is ready. We record only a provisional Attempt now; progress, evidence, Lean execution, and review remain separate gates.</p>
-        <Button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || atCapacity || (newAttemptBlocked && !existing) || continueBlocked}>
-          {isStarting ? "Starting research…" : existing ? "Continue research" : atCapacity ? "Active research capacity reached" : "Start research"}
-          {!isStarting && !atCapacity && <span aria-hidden="true">→</span>}
+        <Button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || creationBlocked || (newAttemptBlocked && !existing) || continueBlocked}>
+          {isStarting ? "Starting research…" : existing ? "Continue research" : creationBlocked ? "Active research capacity reached" : "Start research"}
+          {!isStarting && !creationBlocked && <span aria-hidden="true">→</span>}
         </Button>
       </div>
-      {atCapacity && <p className="research-launcher-message is-error" role="alert">This Person already has the closed-alpha maximum of {closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson} active research workspaces.</p>}
+      {creationBlocked && <p className="research-launcher-message is-error" role="alert">This Person already has the closed-alpha maximum of {closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson} active research workspaces.</p>}
       {notice && <p className="research-launcher-message is-success" role="status">{notice}</p>}
       {error && <p className="research-launcher-message is-error" role="alert">{error}</p>}
     </div>}
