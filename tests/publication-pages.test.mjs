@@ -166,6 +166,25 @@ test("Lean metadata is described accurately in both locales", async () => {
   }
 });
 
+test("machine-extracted maps are not presented as curated proof dependencies", async () => {
+  for (const [locale, indexText, familyText] of [
+    ["en", "Extracted relations are unverified", "Machine-extracted paper references"],
+    ["zh-CN", "抽取的关系未经验证", "从论文中机器抽取的引用"],
+  ]) {
+    for (const [path, expected] of [["/proof-evolution", indexText], ["/proof-evolution/openai-math/050", familyText]]) {
+      const response = await runtime.dispatchFetch(`http://localhost${path}`, { headers: { accept: "text/html", cookie: `pw_locale=${locale}` } });
+      assert.equal(response.status, 200);
+      const html = await response.text();
+      assert.ok(html.includes(expected), `${locale} ${path}`);
+      if (path.endsWith("050")) {
+        const visibleHtml = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+        assert.ok(!visibleHtml.includes("theorem-level dependencies are curated"));
+        assert.ok(!visibleHtml.includes("定理级依赖已策展"));
+      }
+    }
+  }
+});
+
 
 test("the Lean coverage index, family section, and API expose real modules", async () => {
   const index = await fetchPage("/proof-evolution");

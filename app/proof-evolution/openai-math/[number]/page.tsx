@@ -107,7 +107,7 @@ export default async function ProofMapFamilyPage({ params }: Params) {
       label={t("proofMaps.family.label", { status: t(statusKeys[entry.status]) })}
       title={<MathText text={family.title} />}
       description={isDeep
-        ? t("proofMaps.family.descriptionDeep")
+        ? t(deep?.machineDerived ? "proofMaps.family.descriptionMachine" : "proofMaps.family.descriptionDeep")
         : isDraft
           ? t("proofMaps.family.descriptionDraft")
           : isPaper
@@ -134,7 +134,7 @@ export default async function ProofMapFamilyPage({ params }: Params) {
     />
 
     <div className="proof-map-family-content">
-      <StatusBanner entry={entry} isDraft={isDraft} isDeep={isDeep} isPaper={isPaper} isLean={isLean} t={t} />
+      <StatusBanner entry={entry} isDraft={isDraft} isDeep={isDeep} isPaper={isPaper} isLean={isLean} isMachineDerived={deep?.machineDerived === true} t={t} />
 
       {deep ? <DeepProofMapView deep={deep} subject={family.subject} revision={openaiMathCollection.source.revision} /> : explanation ? <DraftChain familyNumber={family.number} explanation={explanation} family={family} t={t} locale={locale} /> : isPaper && paperStructure ? <PaperDerivedMap structure={paperStructure} entry={entry} t={t} /> : isLean && leanFamily ? <LeanDerivedMap family={leanFamily} entry={entry} t={t} date={openaiMathCollection.releaseDate} /> : <ScaffoldMap entry={entry} t={t} />}
 
@@ -150,11 +150,11 @@ export default async function ProofMapFamilyPage({ params }: Params) {
   </SiteFrame>;
 }
 
-function StatusBanner({ entry, isDraft, isDeep, isPaper, isLean, t }: { entry: ProofMapIndexEntry; isDraft: boolean; isDeep: boolean; isPaper: boolean; isLean: boolean; t: Translator }) {
+function StatusBanner({ entry, isDraft, isDeep, isPaper, isLean, isMachineDerived, t }: { entry: ProofMapIndexEntry; isDraft: boolean; isDeep: boolean; isPaper: boolean; isLean: boolean; isMachineDerived: boolean; t: Translator }) {
   return <div className="proof-map-family-status">
     <Badge tone={isDeep ? "positive" : isDraft ? "warning" : "neutral"}>{t(statusKeys[entry.status])}</Badge>
     <p>{isDeep
-      ? t("proofMaps.family.statusDeep")
+      ? t(isMachineDerived ? "proofMaps.family.statusMachine" : "proofMaps.family.statusDeep")
       : isDraft
         ? t("proofMaps.family.statusDraft")
         : isPaper
