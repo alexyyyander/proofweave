@@ -967,6 +967,28 @@ test("guides a public visitor through the first accountable contribution path", 
   assert.match(page.headers.get("location") ?? "", /\/workbench\?target=erdos-865-k2#research-launcher$/i);
 });
 
+test("consolidates six introduction URLs into two guides without breaking old links", async () => {
+  const redirects = {"/about/principles": "/about#principles", "/about/catalog-standard": "/about#catalog-standard", "/about/shared-research": "/about#shared-research", "/how-it-works/research": "/how-it-works#research", "/how-it-works/verification": "/how-it-works#verification", "/how-it-works/contribution-records": "/how-it-works#contribution-records"};
+  const parents = new Map();
+  for (const [oldPath, target] of Object.entries(redirects)) {
+    const response = await render(oldPath, { redirect: "manual" });
+    assert.equal(response.status, 308, oldPath);
+    const location = new URL(response.headers.get("location"), "http://localhost");
+    assert.equal(location.pathname + location.hash, target, oldPath);
+    if (!parents.has(location.pathname)) {
+      const parent = await render(location.pathname);
+      assert.equal(parent.status, 200);
+      parents.set(location.pathname, await parent.text());
+    }
+    const html = parents.get(location.pathname);
+    assert.ok(html.includes(`id="${location.hash.slice(1)}"`), `${target} must remain reachable`);
+    for (const legacy of Object.keys(redirects)) assert.ok(!html.includes(`href="${legacy}"`), `navigation must link to the consolidated guide: ${legacy}`);
+  }
+  const how = parents.get("/how-it-works");
+  assert.match(how, /A queued run, Agent report or successful Lean run does not by itself establish independent review/i);
+  assert.match(how, /Research credit is non-transferable/i);
+});
+
 test("serves the public research paths", async () => {
   const expectedPageContent = new Map([
     ["/showcase", /See a proof become[\s\S]*public contribution/i],
@@ -974,14 +996,8 @@ test("serves the public research paths", async () => {
     ["/history", /From Erdős problems to a formalization frontier/i],
     ["/explore", /Search the frontier\. Choose one exact next action/i],
     ["/explore/erdos-865", /Erdős Problem 865/i],
-    ["/how-it-works", /One shared frontier\. One useful step at a time/i],
-    ["/how-it-works/research", /Move one bounded research task forward/i],
-    ["/how-it-works/verification", /Check one exact claim, independently/i],
-    ["/how-it-works/contribution-records", /Credit the proof path, not just the last submitter/i],
+    ["/how-it-works", /From a research target to a contribution record/i],
     ["/about", /A shared research network for people and their Agents/i],
-    ["/about/principles", /Six rules that protect useful research/i],
-    ["/about/catalog-standard", /Before a famous problem is presented as current/i],
-    ["/about/shared-research", /One frontier map\. Many coordinated Agents/i],
     ["/privacy", /Your mathematical record can be public/i],
     ["/terms", /Contribute carefully/i],
     ["/workbench", /One private place for your Agent's research/i],
@@ -1095,16 +1111,9 @@ test("serves the public research paths", async () => {
   assert.match(aboutHtml, /Proofweave was initiated and built by Alex Yu/i);
   assert.match(aboutHtml, /github\.com\/alexyyyander\/proofweave-open-catalog/i);
 
-  const catalogStandard = await render("/about/catalog-standard");
-  const catalogStandardHtml = await catalogStandard.text();
-  assert.match(catalogStandardHtml, /Before a famous problem is presented as current/i);
-  assert.match(catalogStandardHtml, /many records are source-pinned imports and explicitly remain frontier-unreviewed/i);
-  assert.match(catalogStandardHtml, /github\.com\/alexyyyander\/proofweave-open-catalog/i);
-
-  const sharedResearch = await render("/about/shared-research");
-  const sharedResearchHtml = await sharedResearch.text();
-  assert.match(sharedResearchHtml, /One frontier map\. Many coordinated Agents/i);
-  assert.match(sharedResearchHtml, /Read the shared state/i);
+  assert.match(aboutHtml, /many records are source-pinned imports and explicitly remain frontier-unreviewed/i);
+  assert.match(aboutHtml, /Read the shared state/i);
+  assert.match(aboutHtml, /Two Agents owned by one person cannot provide independent review/i);
 
   const integrations = await render("/integrations");
   const integrationsHtml = await integrations.text();
@@ -1143,7 +1152,7 @@ test("serves the localized shell and translated information pages", async () => 
   assert.equal(chinese.status, 200);
   const chineseHtml = await chinese.text();
   assert.match(chineseHtml, /<html lang="zh-CN">/);
-  assert.match(chineseHtml, /为人与他们的 Agent 打造的共享研究网络/);
+  assert.match(chineseHtml, /人与其 Agent 共同参与的研究网络/);
   assert.match(chineseHtml, /class="page-intro__label">关于</);
   assert.match(chineseHtml, /本页内容/);
   assert.match(chineseHtml, /语言：简体中文/);
@@ -1151,7 +1160,7 @@ test("serves the localized shell and translated information pages", async () => 
 
   const negotiated = await render("/how-it-works", { headers: { "accept-language": "zh-CN,zh;q=0.9,en;q=0.8" } });
   assert.equal(negotiated.status, 200);
-  assert.match(await negotiated.text(), /一个共享前沿，一次一个有用的步骤。/);
+  assert.match(await negotiated.text(), /从研究目标到贡献记录。/);
 
   const english = await render("/about", { headers: { cookie: "pw_locale=en" } });
   assert.match(await english.text(), /A shared research network for people and their Agents/);
@@ -1321,13 +1330,13 @@ test("serves the localized shell and translated information pages", async () => 
   const promotedFamily = await render("/proof-evolution/openai-math/005", localizedHeaders);
   const promotedFamilyHtml = await promotedFamily.text();
   assert.match(promotedFamilyHtml, /深度论证地图/);
-  assert.match(promotedFamilyHtml, /定理级依赖/);
+  assert.match(promotedFamilyHtml, /机器抽取的引用未经评审/);
   assert.match(promotedFamilyHtml, /<title>证明地图 005/);
 
   const leanFamily = await render("/proof-evolution/openai-math/024", localizedHeaders);
   const leanFamilyHtml = await leanFamily.text();
-  assert.match(leanFamilyHtml, /固定提交的 Lean 闭包记录了哪些结构。/);
-  assert.match(leanFamilyHtml, /形式化目标/);
+  assert.match(leanFamilyHtml, /固定来源中的 Comparator 元数据。/);
+  assert.match(leanFamilyHtml, /Comparator 源文件/);
   assert.match(leanFamilyHtml, /Lean 派生结构/);
 
   const switchResponse = await render("/api/locale?to=zh-CN", {
@@ -2076,7 +2085,7 @@ test("publicly verifies the checked Build Week reference evidence", async () => 
 });
 
 test("keeps keyboard users one action away from the main content on critical pages", async () => {
-  for (const pathname of ["/", "/showcase", "/demo", "/history", "/explore", "/how-it-works", "/how-it-works/research", "/about", "/about/principles", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
+  for (const pathname of ["/", "/showcase", "/demo", "/history", "/explore", "/how-it-works", "/about", "/workbench", "/integrations", "/evidence", "/reviews", "/receipts"]) {
     const response = await render(pathname);
     assert.equal(response.status, 200, `${pathname} should render its keyboard navigation`);
     const html = await response.text();
@@ -3275,6 +3284,7 @@ test("registers, signs, and revokes a Person-owned Agent delegation through auth
     startedAt: "2026-07-14T00:00:00Z",
     finishedAt: "2026-07-14T00:00:01Z",
     runnerResultHash,
+    delivery: null,
     evidenceState: "recorded",
     result: {
       resultHash: runnerResultHash,

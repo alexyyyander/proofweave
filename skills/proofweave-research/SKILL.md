@@ -101,8 +101,8 @@ or change global Codex configuration merely because an update was discovered.
    call `prepare_workspace_bundle_v2` with
    `ownerConfirmation: "I_CONFIRM_PREPARE_WORKSPACE_BUNDLE"`. It builds the
    source archive, normalized patch, Lake manifest, final file tree, and signed
-   local manifest itself. It accepts modifications to existing tracked text
-   files only; never silently package untracked, new, deleted, renamed, binary,
+   local manifest itself. It accepts clean tracked snapshots and modifications to existing tracked text
+   files; never silently package untracked, newly added, deleted, renamed, binary,
    symlinked, or credential-like files.
 11. If that narrow local Git path cannot represent the work, ask the owner to
    choose exactly `source.tar.zst`, `normalized.patch`, and

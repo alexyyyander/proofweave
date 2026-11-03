@@ -47,8 +47,9 @@ export function deriveAttemptPresentation({
     .sort((left, right) => Date.parse(right.queuedAt) - Date.parse(left.queuedAt))[0] ?? null;
   const hasBundle = attempt.events.some((event) => event.type === "bundle_staged");
   const hasProgress = attempt.events.some((event) => event.type === "agent_reported");
-  const runPending = Boolean(latestRun && ["queued", "preparing", "running", "cancel_requested"].includes(latestRun.state));
-  const runFailed = Boolean(latestRun && ["failed", "timed_out", "rejected", "cancelled"].includes(latestRun.state));
+  const deliveryStopped = Boolean(latestRun && ["queued", "preparing", "running"].includes(latestRun.state) && latestRun.delivery?.state === "dead_letter");
+  const runPending = Boolean(latestRun && !deliveryStopped && ["queued", "preparing", "running", "cancel_requested"].includes(latestRun.state));
+  const runFailed = Boolean(latestRun && (deliveryStopped || ["failed", "timed_out", "rejected", "cancelled"].includes(latestRun.state)));
   const kernelAccepted = hasAcceptedKernelEvidence(latestRun);
 
   if (!agentConnected) return {
@@ -60,10 +61,10 @@ export function deriveAttemptPresentation({
   };
   if (runFailed) return {
     bucket: "needs-attention",
-    label: t("attemptPresentation.leanFailed.label"),
+    label: deliveryStopped ? t("attemptPresentation.deliveryStopped.label") : t("attemptPresentation.leanFailed.label"),
     tone: "attention",
     nextAction: t("attemptPresentation.leanFailed.action"),
-    detail: t("attemptPresentation.leanFailed.detail"),
+    detail: deliveryStopped ? t("attemptPresentation.deliveryStopped.detail") : t("attemptPresentation.leanFailed.detail"),
   };
   if (runPending) return {
     bucket: "waiting",

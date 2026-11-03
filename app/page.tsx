@@ -122,8 +122,8 @@ export default async function Home() {
         <section className="home-boundary-section" aria-labelledby="home-boundary-title">
           <div><p className="eyebrow">{t("home.boundary.eyebrow")}</p><SectionTitle id="home-boundary-title">{t("home.boundary.title")}</SectionTitle></div>
           <div className="home-boundary-grid">
-            <Surface as="article"><span>{t("home.boundary.public.title")}</span><p>{t("home.boundary.public.copy")}</p><Link href="/how-it-works/contribution-records">{t("home.boundary.public.action")} →</Link></Surface>
-            <Surface as="article"><span>{t("home.boundary.private.title")}</span><p>{t("home.boundary.private.copy")}</p><Link href="/about/principles">{t("home.boundary.private.action")} →</Link></Surface>
+            <Surface as="article"><span>{t("home.boundary.public.title")}</span><p>{t("home.boundary.public.copy")}</p><Link href="/how-it-works#contribution-records">{t("home.boundary.public.action")} →</Link></Surface>
+            <Surface as="article"><span>{t("home.boundary.private.title")}</span><p>{t("home.boundary.private.copy")}</p><Link href="/about#principles">{t("home.boundary.private.action")} →</Link></Surface>
           </div>
         </section>
 

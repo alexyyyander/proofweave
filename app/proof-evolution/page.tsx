@@ -55,7 +55,7 @@ export default async function ProofMapIndexPage() {
           <span><b>{index.summary.scaffold}</b> {t("proofMaps.index.asideScaffold")}</span>
         </div>
         <p>{t("proofMaps.index.asideBody")}</p>
-        <Link href="/about/catalog-standard">{t("proofMaps.index.asideLink")}</Link>
+        <Link href="/about#catalog-standard">{t("proofMaps.index.asideLink")}</Link>
       </>}
     />
 

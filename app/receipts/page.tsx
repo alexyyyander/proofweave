@@ -42,7 +42,7 @@ export default async function ReceiptsPage() {
       <SectionHeading as="section" className="receipt-heading"><div><p className="eyebrow">{t("receipts.eyebrow")}</p><PageTitle>{t("receipts.title")}</PageTitle><p>{t("receipts.body")}</p></div><Badge className="record-chip">{unavailable ? t("receipts.badge.unavailable") : t("receipts.badge.records", { count: receipts.length })}</Badge></SectionHeading>
       <nav className="public-section-nav" aria-label={t("receipts.nav.aria")}>
         <a href="#receipt-index"><span>{t("receipts.nav.recent")}</span><b>{unavailable ? "—" : receipts.length}</b></a>
-        <Link href="/how-it-works/contribution-records"><span>{t("receipts.nav.how")}</span><b aria-hidden="true">→</b></Link>
+        <Link href="/how-it-works#contribution-records"><span>{t("receipts.nav.how")}</span><b aria-hidden="true">→</b></Link>
         <Link href="/explore"><span>{t("receipts.nav.explore")}</span><b aria-hidden="true">→</b></Link>
       </nav>
       <div id="receipt-index">

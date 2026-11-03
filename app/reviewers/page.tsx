@@ -67,7 +67,7 @@ export default async function ReviewersPage() {
 
     <div className="reading-actions">
       <ActionLink className="button button-primary" href="/reviews">{t("reviewers.action.queue")} <span aria-hidden="true">→</span></ActionLink>
-      <ActionLink className="button button-secondary" href="/how-it-works/verification">{t("reviewers.action.how")}</ActionLink>
+      <ActionLink className="button button-secondary" href="/how-it-works#verification">{t("reviewers.action.how")}</ActionLink>
       <ActionLink className="button button-secondary" href="/workbench">{t("reviewers.action.connect")}</ActionLink>
     </div>
   </SiteFrame>;

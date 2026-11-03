@@ -84,7 +84,7 @@ export async function PriorWorkChain({
             <strong>{t("explore.prior.empty.title")}</strong>
             <p>{t("explore.prior.empty.body")}</p>
           </div>
-          <ActionLink className="button button-secondary" href="/about/catalog-standard">{t("explore.prior.empty.action")} <span aria-hidden="true">→</span></ActionLink>
+          <ActionLink className="button button-secondary" href="/about#catalog-standard">{t("explore.prior.empty.action")} <span aria-hidden="true">→</span></ActionLink>
         </EmptyState>
       )}
     </section>

@@ -36,8 +36,6 @@ export const navigationGroups: readonly { labelKey: TranslationKey; items: reado
     labelKey: "nav.group.reference",
     items: [
       { href: "/how-it-works", labelKey: "nav.item.howItWorks" },
-      { href: "/about/principles", labelKey: "nav.item.principles" },
-      { href: "/about/catalog-standard", labelKey: "nav.item.catalogStandard" },
       { href: "/privacy", labelKey: "nav.item.privacy" },
       { href: "/terms", labelKey: "nav.item.terms" },
       { href: "/support", labelKey: "nav.item.support" },

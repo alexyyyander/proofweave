@@ -75,6 +75,18 @@ export function runnerWorkflowStatus(
     };
   }
 
+  if (["queued", "preparing", "running"].includes(run.state) && run.delivery?.state === "dead_letter") {
+    const beforeExecution = run.startedAt === null;
+    return {
+      tone: "failed",
+      badge: t("runnerWorkflow.deliveryStopped.badge"),
+      title: t(beforeExecution ? "runnerWorkflow.deliveryStopped.before" : "runnerWorkflow.deliveryStopped.after"),
+      detail: t("runnerWorkflow.deliveryStopped.detail"),
+      technicalTitle: t("runnerWorkflow.deliveryStopped.technicalTitle"),
+      technicalDetail: t("runnerWorkflow.deliveryStopped.technicalDetail", { attempts: run.delivery.attempts, diagnostic: run.delivery.errorCode ? t("runnerWorkflow.deliveryStopped.diagnostic", { code: run.delivery.errorCode }) : "" }),
+    };
+  }
+
   switch (run.state) {
     case "queued":
       return {

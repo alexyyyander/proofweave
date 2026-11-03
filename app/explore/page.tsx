@@ -20,7 +20,7 @@ export default async function ExplorePage({ searchParams }: { searchParams: Sear
         <PageIntro label={t("nav.primary.research")} title={t("explore.hero.title")}
           description={t("explore.hero.description")}
           meta={<span>{t("explore.hero.meta")}</span>} />
-        <div className="research-index-context"><Link href="/publications">{t("explore.context.publications")} <span aria-hidden="true">→</span></Link><Link href="/propose">{t("explore.context.propose")} <span aria-hidden="true">→</span></Link><span>{t("explore.context.boundary")}</span><Link href="/about/catalog-standard">{t("explore.context.standard")} <span aria-hidden="true">→</span></Link></div>
+        <div className="research-index-context"><Link href="/publications">{t("explore.context.publications")} <span aria-hidden="true">→</span></Link><Link href="/propose">{t("explore.context.propose")} <span aria-hidden="true">→</span></Link><span>{t("explore.context.boundary")}</span><Link href="/about#catalog-standard">{t("explore.context.standard")} <span aria-hidden="true">→</span></Link></div>
         <Suspense fallback={<ContentLoading label={t("explore.loading")} />}><ResearchResults searchParams={searchParams} /></Suspense>
       </SiteFrame>
   );
