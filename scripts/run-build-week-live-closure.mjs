@@ -18,9 +18,16 @@ export async function runBuildWeekLiveClosure({ phase, artifactBundleHash, envir
   if (phase !== "prime" && phase !== "prepare" && phase !== "finalize") {
     throw new Error("Build Week live closure phase must be prime, prepare, or finalize.");
   }
+  // This operator-only legacy helper bypasses the deployed MCP gate. Require
+  // a separate demo database credential namespace and an explicitly pinned
+  // Bundle before opening any database connection or changing review state.
+  if (typeof artifactBundleHash !== "string" || !/^sha256:[0-9a-f]{64}$/.test(artifactBundleHash)
+      || environment.PROOFWEAVE_DEMO_LIVE_BUNDLE_HASH !== artifactBundleHash) {
+    throw new Error("Build Week live closure requires an explicitly pinned demo Bundle.");
+  }
   const database = createRemoteLibsqlD1Database({
-    url: required(environment, "TURSO_DATABASE_URL"),
-    authToken: required(environment, "TURSO_AUTH_TOKEN"),
+    url: required(environment, "DEMO_TURSO_DATABASE_URL"),
+    authToken: required(environment, "DEMO_TURSO_AUTH_TOKEN"),
   });
   try {
     const mockerKeys = {

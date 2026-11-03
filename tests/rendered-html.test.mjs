@@ -46,6 +46,7 @@ const researchWriteAllowlist = JSON.stringify({
 });
 const workerRoot = new URL("../dist/server/", import.meta.url);
 let miniflare;
+let miniflareOptions;
 let database;
 let signedReceiptFixture;
 let controlledEvidenceFixture;
@@ -54,7 +55,7 @@ before(async () => {
   const entrypoint = fileURLToPath(new URL("index.js", workerRoot));
   const modules = await listJavaScriptModules(workerRoot);
 
-  miniflare = new Miniflare({
+  miniflareOptions = {
     modules: [
       { type: "ESModule", path: entrypoint },
       ...modules
@@ -77,7 +78,8 @@ before(async () => {
     serviceBindings: {
       ASSETS: async () => new Response("Not found", { status: 404 }),
     },
-  });
+  };
+  miniflare = new Miniflare(miniflareOptions);
   database = await miniflare.getD1Database("DB");
   await applyMigrations(database);
   await seedDemoPersons(database);
@@ -2651,6 +2653,79 @@ test("limits Bundle and Runner evidence to the Attempt owner or assigned reviewe
   const otherHeaders = { "oai-authenticated-user-email": "evidence-other@example.test" };
   assert.equal((await render(`/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}`, { headers: otherHeaders })).status, 404);
   assert.equal((await render(`/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/artifacts/sourcePatch`, { headers: otherHeaders })).status, 404);
+});
+
+test("scoped participant publication, claim, and transition use the real API boundaries", async () => {
+  // Use a separate Worker and D1 instance so publication and claims cannot
+  // affect the other rendered-page fixtures in this file.
+  const originalMiniflare = miniflare;
+  const originalDatabase = database;
+  const originalFixture = controlledEvidenceFixture;
+  const original = miniflareOptions;
+  try {
+    miniflare = new Miniflare(original);
+    database = await miniflare.getD1Database("DB");
+    await applyMigrations(database);
+    await seedDemoPersons(database);
+    controlledEvidenceFixture = undefined;
+    const fixture = await getControlledEvidenceFixture();
+    const base = JSON.parse(researchWriteAllowlist);
+    const scope = {
+      ...base,
+      persons: base.persons.filter((id) => id !== fixture.reviewer.person.id),
+      attempts: base.attempts.filter((id) => id !== fixture.attemptId),
+    };
+    const setWindow = async (window) => {
+      await miniflare.setOptions({
+        ...original,
+        bindings: { ...original.bindings, PROOFWEAVE_PARTICIPANT_RESEARCH_WRITE_ALLOWLIST_JSON: JSON.stringify(window) },
+      });
+      database = await miniflare.getD1Database("DB");
+    };
+    await setWindow(scope);
+    const url = `/api/me/evidence/bundles/${encodeURIComponent(fixture.manifestHash)}/submit-review`;
+    const denied = await render(url, { method: "POST", headers: fixture.ownerHeaders });
+    assert.equal(denied.status, 403);
+    const before = await database.prepare("SELECT COUNT(*) AS count FROM verification_market_jobs WHERE artifact_bundle_manifest_hash = ?").bind(fixture.manifestHash).first("count");
+    assert.equal(before, 0);
+
+    await setWindow({
+      ...scope,
+      reviewPublishGrants: [{ personId: fixture.owner.person.id, attemptId: fixture.attemptId, bundleHash: fixture.manifestHash }],
+      reviewGrants: [{ personId: fixture.reviewer.person.id, attemptId: fixture.attemptId, operations: ["review:claim", "review:transition"] }],
+    });
+    const published = await render(url, { method: "POST", headers: fixture.ownerHeaders });
+    assert.equal(published.status, 200);
+    assert.equal((await published.json()).reviewMarket.status.totalJobs, 5);
+    const otherOwner = await render(url, { method: "POST", headers: fixture.reviewerHeaders });
+    assert.equal(otherOwner.status, 403);
+
+    const board = await render("/api/review-jobs");
+    const jobs = (await board.json()).jobs;
+    const job = jobs.find((entry) => entry.claimType === "project_accepted" && entry.target.projectSlug === "controlled-evidence");
+    assert.ok(job);
+    const claimUrl = `/api/me/review-jobs/${encodeURIComponent(job.id)}/claim`;
+    const unlisted = await render(claimUrl, { method: "POST", headers: { "oai-authenticated-user-email": "scoped-other@example.test" } });
+    assert.equal(unlisted.status, 403);
+    const claimed = await render(claimUrl, { method: "POST", headers: fixture.reviewerHeaders });
+    assert.equal(claimed.status, 200);
+    assert.equal((await claimed.json()).claim.assignment.status, "accepted");
+
+    await new D1VerificationStore(database).assign({
+      id: "assignment:participant-scoped-transition", artifactBundleManifestHash: fixture.manifestHash,
+      claimType: "statement_faithful", verifierPersonId: fixture.reviewer.person.id, assignedAt: "2026-07-13T02:00:00Z",
+    });
+    const accepted = await render("/api/me/review-assignments/assignment:participant-scoped-transition/accept", {
+      method: "POST", headers: fixture.reviewerHeaders,
+    });
+    assert.equal(accepted.status, 200);
+    assert.equal((await accepted.json()).review.assignment.status, "accepted");
+  } finally {
+    await miniflare.dispose();
+    miniflare = originalMiniflare;
+    database = originalDatabase;
+    controlledEvidenceFixture = originalFixture;
+  }
 });
 
 test("scopes Runs, outputs, and review eligibility to one Bundle within a shared Attempt", async () => {

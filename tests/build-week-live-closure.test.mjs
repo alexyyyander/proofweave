@@ -15,8 +15,19 @@ import {
   buildWeekLiveReviewers,
   D1BuildWeekLiveClosure,
 } from "../services/demo/d1-build-week-live-closure.mjs";
+import { runBuildWeekLiveClosure } from "../scripts/run-build-week-live-closure.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
+
+test("the operator-only demo refuses an unpinned Bundle and ordinary production credential names before connecting", async () => {
+  const hash = `sha256:${"a".repeat(64)}`;
+  const productionLike = { TURSO_DATABASE_URL: "libsql://production.invalid", TURSO_AUTH_TOKEN: "private" };
+  for (const phase of ["prime", "prepare", "finalize"]) {
+    await assert.rejects(runBuildWeekLiveClosure({ phase, artifactBundleHash: hash, environment: productionLike }), /explicitly pinned demo Bundle/);
+    await assert.rejects(runBuildWeekLiveClosure({ phase, artifactBundleHash: hash, environment: { ...productionLike, PROOFWEAVE_DEMO_LIVE_BUNDLE_HASH: `sha256:${"b".repeat(64)}` } }), /explicitly pinned demo Bundle/);
+    await assert.rejects(runBuildWeekLiveClosure({ phase, artifactBundleHash: hash, environment: { ...productionLike, PROOFWEAVE_DEMO_LIVE_BUNDLE_HASH: hash } }), /DEMO_TURSO_DATABASE_URL is required/);
+  }
+});
 
 test("the labelled Build Week mockers are distinct owners with real possession proofs and delegations", async () => {
   const database = new LibsqlD1Database(createClient({ url: "file::memory:" }));
