@@ -84,7 +84,7 @@ export class D1RemoteMcpGatewayStore {
     this.receiptCoordinator = receiptCoordinator;
   }
 
-  requireResearchWriteGate(principal, installation, operation, { required = ["person", "agent", "attempt"], attemptId = null, attemptOwnershipVerified = false } = {}) {
+  requireResearchWriteGate(principal, installation, operation, { required = ["person", "agent", "attempt"], attemptId = null, assignmentId = null, attemptOwnershipVerified = false } = {}) {
     return assertResearchWriteAllowed({
       values: researchWriteAllowlistValues("mcp", this.researchWriteAllowlistJson),
       surface: "mcp",
@@ -93,6 +93,7 @@ export class D1RemoteMcpGatewayStore {
       personId: principal.personId,
       agentId: installation.agentId,
       attemptId,
+      assignmentId,
       attemptOwnershipVerified,
     });
   }
@@ -493,7 +494,8 @@ export class D1RemoteMcpGatewayStore {
     requireRunnerRequestInput(input);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
-    this.requireResearchWriteGate(principal, installation, "run:request", { attemptId: attempt.id, attemptOwnershipVerified: true });
+    const window = this.requireResearchWriteGate(principal, installation, "run:request", { attemptId: attempt.id, attemptOwnershipVerified: true });
+    if (window.reviewDispatchOnly) throw new GatewayStoreAuthorizationError("Runner dispatch is restricted to explicitly granted review replays.");
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     if (!this.runnerDispatcher || typeof this.runnerDispatcher.queueBundle !== "function") {
@@ -523,7 +525,12 @@ export class D1RemoteMcpGatewayStore {
     requireVerificationReplayRequestInput(input);
     const installation = await this.requireInstallation(principal, "review");
     const assignment = await this.requireAcceptedReplayAssignment(input.assignmentId, principal.personId);
-    this.requireResearchWriteGate(principal, installation, "review:replay", { attemptId: assignment.attempt.id });
+    const window = this.requireResearchWriteGate(principal, installation, "review:replay", { attemptId: assignment.attempt.id, assignmentId: assignment.id });
+    if (window.reviewDispatchOnly && !window.reviewGrants.some((grant) =>
+      grant.personId === principal.personId && grant.agentId === installation.agentId
+      && grant.attemptId === assignment.attempt.id && grant.assignmentId === assignment.id && grant.operations.includes("review:replay"))) {
+      throw new GatewayStoreAuthorizationError("Runner dispatch is restricted to explicitly granted review replays.");
+    }
     const existing = await this.findVerificationReplay({
       assignmentId: assignment.id,
       requesterAgentId: installation.agentId,
@@ -662,7 +669,7 @@ export class D1RemoteMcpGatewayStore {
     }
     await this.requireAssignedVerifier(normalized.assignmentId, principal.personId);
     const assignment = await this.requireReplayAssignmentForPerson(normalized.assignmentId, principal.personId);
-    this.requireResearchWriteGate(principal, installation, "attestation:write", { attemptId: assignment.attempt.id });
+    this.requireResearchWriteGate(principal, installation, "attestation:write", { attemptId: assignment.attempt.id, assignmentId: assignment.id });
     try {
       const recorded = await this.verificationStore.recordAttestation(normalized);
       if (!this.receiptCoordinator) {

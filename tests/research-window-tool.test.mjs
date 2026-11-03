@@ -75,6 +75,26 @@ function captureCli() {
   };
 }
 
+test("window edits and exports preserve scoped review grants without exposing them in summaries", () => {
+  const document = windowDocument({
+    participant: { ...surface(), reviewPublishGrants: [{ personId: personA, attemptId: attemptB, bundleHash: `sha256:${"a".repeat(64)}` }], reviewGrants: [{ personId: personB, attemptId: attemptB, operations: ["review:claim", "review:transition"] }] },
+    mcp: { ...surface(), reviewDispatchOnly: true, reviewGrants: [{ personId: personB, agentId: agentB, attemptId: attemptB, assignmentId: "assignment:test", operations: ["review:replay", "attestation:write"] }] },
+  });
+  assert.equal(validateResearchWindowDocument(document).valid, true);
+  const result = setResearchWindowNewAttempts(document, "both", true);
+  for (const name of ["participant", "mcp"]) {
+    assert.deepEqual(result.document[name].reviewGrants, document[name].reviewGrants);
+    const line = renderResearchWindowEnv(result.document, name)[0];
+    assert.deepEqual(JSON.parse(line.slice(line.indexOf("=") + 1)).reviewGrants, document[name].reviewGrants);
+  }
+  assert.deepEqual(result.document.participant.reviewPublishGrants, document.participant.reviewPublishGrants);
+  assert.equal(JSON.parse(renderResearchWindowEnv(result.document, "mcp")[0].split("=").slice(1).join("=")).reviewDispatchOnly, true);
+  assert.equal(JSON.stringify(validateResearchWindowDocument(document)).includes(personB), false);
+  const example = structuredClone(document);
+  example.mcp.reviewGrants[0].agentId = "urn:pw:agent:<reviewer>";
+  assert.equal(containsPlaceholderIdentifiers(example, "mcp"), true);
+});
+
 test("the example document is valid and `show` summaries never expose identifiers", async () => {
   const summary = await summarizeResearchWindow(examplePath);
   assert.equal(summary.valid, true);

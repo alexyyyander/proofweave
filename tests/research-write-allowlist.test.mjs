@@ -24,6 +24,78 @@ function values(config, surface = "participant") {
   return { [key]: typeof config === "string" ? config : JSON.stringify(config) };
 }
 
+test("review grants authorize only the specific person, target, operation, and review Agent", () => {
+  const participant = { ...allowlist, allowNewAttempts: true, reviewGrants: [
+    { personId: "person:reviewer", attemptId: "attempt:target", operations: ["review:claim", "review:transition"] },
+  ] };
+  const participantCall = { values: values(participant), surface: "participant", required: ["person", "attempt"], personId: "person:reviewer", attemptId: "attempt:target" };
+  for (const operation of ["review:claim", "review:transition"]) {
+    assert.doesNotThrow(() => assertResearchWriteAllowed({ ...participantCall, operation }));
+  }
+  assert.throws(() => assertResearchWriteAllowed({ ...participantCall, operation: "review:claim", attemptId: "attempt:other" }), ResearchWriteNotAllowedError);
+  assert.throws(() => assertResearchWriteAllowed({ ...participantCall, operation: "review:claim", personId: "person:other" }), ResearchWriteNotAllowedError);
+  for (const operation of ["proposal:write", "source:import", "attempt:create", "run:request"]) {
+    assert.throws(() => assertResearchWriteAllowed({ ...participantCall, operation }));
+  }
+  // The existing owner retains precisely their previous creation window.
+  assert.doesNotThrow(() => assertResearchWriteAllowed({ values: values(participant), surface: "participant", operation: "attempt:create", required: ["person", "agent"], personId: "person:a", agentId: "agent:a" }));
+
+  const mcp = { ...allowlist, allowNewAttempts: true, reviewGrants: [
+    { personId: "person:reviewer", agentId: "agent:reviewer", attemptId: "attempt:target", assignmentId: "assignment:target", operations: ["review:replay", "attestation:write"] },
+  ] };
+  const replay = { values: values(mcp, "mcp"), surface: "mcp", operation: "review:replay", personId: "person:reviewer", agentId: "agent:reviewer", attemptId: "attempt:target", assignmentId: "assignment:target" };
+  assert.doesNotThrow(() => assertResearchWriteAllowed(replay));
+  assert.doesNotThrow(() => assertResearchWriteAllowed({ ...replay, operation: "attestation:write" }));
+  for (const change of [{ personId: "person:other" }, { agentId: "agent:other" }, { attemptId: "attempt:other" }, { assignmentId: "assignment:other" }, { assignmentId: null }, { operation: "run:request", attemptOwnershipVerified: true }]) {
+    assert.throws(() => assertResearchWriteAllowed({ ...replay, ...change }), ResearchWriteNotAllowedError);
+  }
+  assert.throws(() => assertResearchWriteAllowed({ ...replay, required: ["person", "attempt"] }), /requires agent/);
+  assert.equal(JSON.stringify(researchWriteGateSummary(values(mcp, "mcp"), "mcp")).includes("reviewer"), false);
+});
+
+test("malformed review grants fail the entire window closed", () => {
+  const grant = { personId: "person:reviewer", agentId: "agent:reviewer", attemptId: "attempt:target", assignmentId: "assignment:target", operations: ["review:replay"] };
+  const invalid = [
+    null, {}, [{ ...grant, personId: "person:a" }], [{ ...grant, operation: "run:request" }],
+    [{ ...grant, operations: ["run:request"] }], [{ ...grant, operations: [] }],
+    [{ ...grant, operations: ["review:replay", "review:replay"] }],
+    [grant, grant], [{ ...grant, agentId: null }],
+  ];
+  for (const reviewGrants of invalid) {
+    const config = { ...allowlist, reviewGrants };
+    assert.equal(researchWriteAllowlistState(values(config, "mcp"), "mcp").failureCode, "invalid_review_grants");
+    assert.throws(() => assertResearchWriteAllowed({ values: values(config, "mcp"), surface: "mcp", operation: "progress:write", personId: "person:a", agentId: "agent:a", attemptId: "attempt:a" }), ResearchWriteGateUnconfiguredError);
+  }
+  assert.equal(researchWriteAllowlistState(values({ ...allowlist, reviewGrants: [grant] }), "participant").failureCode, "invalid_review_grants");
+});
+
+test("a publication grant permits only the exact owner and Attempt, independently of the creation window", () => {
+  const open = { ...allowlist, attempts: [], allowNewAttempts: true };
+  const bundleHash = `sha256:${"a".repeat(64)}`;
+  const call = { values: values(open), surface: "participant", operation: "review:publish", required: ["person", "attempt"], personId: "person:a", attemptId: "attempt:historical", bundleHash };
+  assert.throws(() => assertResearchWriteAllowed(call), ResearchWriteNotAllowedError);
+  const scoped = { ...open, reviewPublishGrants: [{ personId: "person:a", attemptId: "attempt:historical", bundleHash }] };
+  const authorized = { ...call, values: values(scoped) };
+  assert.doesNotThrow(() => assertResearchWriteAllowed(authorized));
+  assert.throws(() => assertResearchWriteAllowed({ ...authorized, personId: "person:b" }), ResearchWriteNotAllowedError);
+  assert.throws(() => assertResearchWriteAllowed({ ...authorized, attemptId: "attempt:other" }), ResearchWriteNotAllowedError);
+  assert.throws(() => assertResearchWriteAllowed({ ...authorized, bundleHash: `sha256:${"b".repeat(64)}` }), ResearchWriteNotAllowedError);
+  assert.throws(() => assertResearchWriteAllowed({ ...authorized, operation: "review:claim" }), ResearchWriteNotAllowedError);
+  assert.throws(() => assertResearchWriteAllowed({ ...authorized, required: ["person"] }), /requires person and attempt/);
+  const invalid = [null, {}, [{ personId: "person:a" }], [{ personId: "person:a", attemptId: "attempt:x", operations: ["anything"] }]];
+  for (const reviewPublishGrants of invalid) {
+    assert.equal(researchWriteAllowlistState(values({ ...open, reviewPublishGrants }), "participant").failureCode, "invalid_review_publish_grants");
+  }
+  assert.equal(researchWriteAllowlistState(values({ ...open, reviewPublishGrants: [] }, "mcp"), "mcp").failureCode, "invalid_review_publish_grants");
+});
+
+test("the optional review-only dispatch switch is surface-specific and fails closed on malformed values", () => {
+  assert.equal(researchWriteAllowlistState(values({ ...allowlist, reviewDispatchOnly: true }, "mcp"), "mcp").reviewDispatchOnly, true);
+  assert.equal(researchWriteGateSummary(values({ ...allowlist, reviewDispatchOnly: true }, "mcp"), "mcp").reviewDispatchOnly, true);
+  assert.equal(researchWriteAllowlistState(values({ ...allowlist, reviewDispatchOnly: "true" }, "mcp"), "mcp").failureCode, "invalid_review_dispatch_only");
+  assert.equal(researchWriteAllowlistState(values({ ...allowlist, reviewDispatchOnly: true }), "participant").failureCode, "invalid_review_dispatch_only");
+});
+
 test("missing configuration fails closed with a non-identifying state", () => {
   const state = researchWriteAllowlistState({}, "participant");
   assert.equal(state.configured, false);

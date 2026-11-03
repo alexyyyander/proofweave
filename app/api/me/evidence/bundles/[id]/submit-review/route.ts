@@ -34,6 +34,7 @@ export async function POST(_request: Request, { params }: { params: Promise<{ id
       required: ["person", "attempt"],
       personId,
       attemptId: evidence.summary.attemptId,
+      bundleHash: evidence.bundle.manifestHash,
     });
 
     const reviewMarket = await getVerificationMarketRepository().publishForBundle(

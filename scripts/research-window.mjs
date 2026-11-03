@@ -24,7 +24,7 @@ export const RESEARCH_WINDOW_DOCUMENT_SCHEMA_VERSION = "pw-research-window-docum
 export const researchWindowSurfaces = Object.freeze(["participant", "mcp"]);
 
 const topLevelKeys = new Set(["schemaVersion", "participant", "mcp"]);
-const surfaceKeys = new Set(["persons", "agents", "attempts", "allowNewAttempts"]);
+const surfaceKeys = new Set(["persons", "agents", "attempts", "allowNewAttempts", "reviewGrants", "reviewPublishGrants", "reviewDispatchOnly"]);
 const surfaceSelections = new Set(["participant", "mcp", "both"]);
 // Mirrors maximumEntries in services/database/research-write-allowlist.mjs.
 const maximumEntries = 100;
@@ -243,6 +243,9 @@ export function renderResearchWindowEnv(document, surfaceSelection) {
       agents: [...document[surface].agents],
       attempts: [...document[surface].attempts],
       allowNewAttempts: document[surface].allowNewAttempts,
+      ...(Object.hasOwn(document[surface], "reviewGrants") ? { reviewGrants: document[surface].reviewGrants } : {}),
+      ...(Object.hasOwn(document[surface], "reviewPublishGrants") ? { reviewPublishGrants: document[surface].reviewPublishGrants } : {}),
+      ...(Object.hasOwn(document[surface], "reviewDispatchOnly") ? { reviewDispatchOnly: document[surface].reviewDispatchOnly } : {}),
     });
     // Re-parse exactly as the runtime does before handing the value to an
     // operator who may paste it into a deployment configuration.
@@ -260,8 +263,11 @@ export function renderResearchWindowEnv(document, surfaceSelection) {
 /** True when a selected surface still contains example placeholders. */
 export function containsPlaceholderIdentifiers(document, surfaceSelection) {
   const surfaces = normalizeSurfaceSelection(surfaceSelection);
+  const placeholder = (id) => id.includes("<") || id.includes(">");
   return surfaces.some((surface) => ["persons", "agents", "attempts"].some((list) =>
-    document[surface][list].some((id) => id.includes("<") || id.includes(">"))));
+    document[surface][list].some(placeholder)) || (document[surface].reviewGrants ?? []).some((grant) =>
+    [grant.personId, grant.attemptId, ...(grant.agentId ? [grant.agentId] : []), ...(grant.assignmentId ? [grant.assignmentId] : [])].some(placeholder))
+    || (document[surface].reviewPublishGrants ?? []).some((grant) => [grant.personId, grant.attemptId].some(placeholder)));
 }
 
 /**
@@ -417,6 +423,9 @@ function summarizeSurface(value, surface) {
     agents: value.agents,
     attempts: value.attempts,
     allowNewAttempts: value.allowNewAttempts,
+    ...(Object.hasOwn(value, "reviewGrants") ? { reviewGrants: value.reviewGrants } : {}),
+    ...(Object.hasOwn(value, "reviewPublishGrants") ? { reviewPublishGrants: value.reviewPublishGrants } : {}),
+    ...(Object.hasOwn(value, "reviewDispatchOnly") ? { reviewDispatchOnly: value.reviewDispatchOnly } : {}),
   });
   return researchWriteGateSummary(researchWriteAllowlistValues(surface, raw), surface);
 }
@@ -507,6 +516,9 @@ function cloneSurface(surface) {
     agents: [...surface.agents],
     attempts: [...surface.attempts],
     allowNewAttempts: surface.allowNewAttempts,
+    ...(Object.hasOwn(surface, "reviewGrants") ? { reviewGrants: surface.reviewGrants.map((grant) => ({ ...grant, operations: [...grant.operations] })) } : {}),
+    ...(Object.hasOwn(surface, "reviewPublishGrants") ? { reviewPublishGrants: surface.reviewPublishGrants.map((grant) => ({ ...grant })) } : {}),
+    ...(Object.hasOwn(surface, "reviewDispatchOnly") ? { reviewDispatchOnly: surface.reviewDispatchOnly } : {}),
   };
 }
 

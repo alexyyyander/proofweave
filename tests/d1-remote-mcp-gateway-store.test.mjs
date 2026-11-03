@@ -923,6 +923,18 @@ test("a prove-delegated OAuth Agent stages a signed v2 Bundle and requests one i
   assert.equal(unavailable.result.isError, true);
   assert.match(unavailable.result.content[0].text, /isolated Lean Runner dispatch is not configured/);
 
+  const reviewOnly = createD1RemoteMcpGatewayRuntime({
+    resource, issuer: "https://auth.gateway.example.test", database, bucket: artifactBucket,
+    operationMode: "read_write",
+    researchWriteAllowlistJson: JSON.stringify({ ...JSON.parse(researchWriteAllowlist), reviewDispatchOnly: true }),
+  });
+  const restrictedOwner = await callGatewayTool(reviewOnly, resource, accessToken, "request_runner_run", {
+    attemptId, artifactBundleHash: first.bundle.manifestHash, idempotencyKey: "review-only-owner-denied",
+  });
+  assert.equal(restrictedOwner.result.isError, true);
+  assert.match(restrictedOwner.result.content[0].text, /restricted to explicitly granted review replays/);
+  assert.equal(runnerQueue.messages.length, 0);
+
   const dispatched = await callGatewayTool(gateway, resource, accessToken, "request_runner_run", {
     attemptId,
     artifactBundleHash: first.bundle.manifestHash,
@@ -1629,6 +1641,41 @@ test("cross-owner review writes require the author Attempt to be explicitly list
   assert.deepEqual(await snapshot(), before);
   assert.equal((await verification.requireAssignment("assignment:gateway-outside-window-attestation")).status, "accepted");
 
+  // A review-only grant reaches the real assignment and dispatcher checks
+  // without adding the reviewer or the author Attempt to the broad lists.
+  const scoped = new D1RemoteMcpGatewayStore({
+    database, bucket: artifactBucket, runnerDispatcher,
+    researchWriteAllowlistJson: JSON.stringify({
+      ...window,
+      persons: ["person:gateway-owner"],
+      agents: ["agent:gateway-prover"],
+      reviewDispatchOnly: true,
+      reviewGrants: [{
+        personId: "person:gateway-reviewer", agentId: "agent:gateway-reviewer", attemptId: "attempt:gateway",
+        assignmentId: "assignment:gateway-outside-window", operations: ["review:replay", "attestation:write"],
+      }, {
+        personId: "person:gateway-reviewer", agentId: "agent:gateway-reviewer", attemptId: "attempt:gateway",
+        assignmentId: "assignment:gateway-outside-window-attestation", operations: ["attestation:write"],
+      }],
+    }),
+  });
+  await assert.rejects(scoped.requestVerificationReplay(replayPrincipal, {
+    assignmentId: "assignment:gateway-outside-window",
+    idempotencyKey: "scoped-window-replay",
+  }), /local replay dispatch reached/);
+  assert.equal(dispatchCalls, 1);
+  assert.deepEqual(await snapshot(), before);
+
+  const legacyReviewOnly = new D1RemoteMcpGatewayStore({
+    database, bucket: artifactBucket, runnerDispatcher,
+    researchWriteAllowlistJson: JSON.stringify({ ...window, attempts: ["attempt:gateway"], reviewDispatchOnly: true }),
+  });
+  await assert.rejects(legacyReviewOnly.requestVerificationReplay(replayPrincipal, {
+    assignmentId: "assignment:gateway-outside-window", idempotencyKey: "legacy-review-only-denied",
+  }), GatewayStoreAuthorizationError);
+  assert.equal(dispatchCalls, 1);
+  assert.deepEqual(await snapshot(), before);
+
   // The same accepted assignments and signed evidence become authorized only
   // when the author's Attempt is explicitly included in the review window.
   const listed = new D1RemoteMcpGatewayStore({
@@ -1639,8 +1686,8 @@ test("cross-owner review writes require the author Attempt to be explicitly list
     assignmentId: "assignment:gateway-outside-window",
     idempotencyKey: "outside-window-replay",
   }), /local replay dispatch reached/);
-  assert.equal(dispatchCalls, 1);
-  const recorded = await listed.submitVerificationAttestation(attestationPrincipal, attestation);
+  assert.equal(dispatchCalls, 2);
+  const recorded = await scoped.submitVerificationAttestation(attestationPrincipal, attestation);
   assert.equal(recorded.created, true);
   assert.equal((await verification.requireAssignment("assignment:gateway-outside-window-attestation")).status, "completed");
 });
