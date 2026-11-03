@@ -1576,6 +1576,11 @@ test("cross-owner review writes require the author Attempt to be explicitly list
     assignedAt: "2026-07-13T00:00:32Z",
   });
   await verification.accept("assignment:gateway-outside-window-attestation", "person:gateway-reviewer", "2026-07-13T00:00:33Z");
+  await verification.assign({
+    id: "assignment:gateway-wrong-assignment", artifactBundleManifestHash: sha("c"),
+    claimType: "kernel_accepted", verifierPersonId: "person:gateway-reviewer", assignedAt: "2026-07-13T00:00:34Z",
+  });
+  await verification.accept("assignment:gateway-wrong-assignment", "person:gateway-reviewer", "2026-07-13T00:00:35Z");
 
   // The reviewer Person + Agent are in the window and new Attempts are open,
   // but the assignment's author Attempt is intentionally not listed.
@@ -1647,8 +1652,8 @@ test("cross-owner review writes require the author Attempt to be explicitly list
     database, bucket: artifactBucket, runnerDispatcher,
     researchWriteAllowlistJson: JSON.stringify({
       ...window,
-      persons: ["person:gateway-owner"],
-      agents: ["agent:gateway-prover"],
+      persons: ["person:gateway-owner", "person:gateway-reviewer"],
+      agents: ["agent:gateway-prover", "agent:gateway-reviewer"],
       reviewDispatchOnly: true,
       reviewGrants: [{
         personId: "person:gateway-reviewer", agentId: "agent:gateway-reviewer", attemptId: "attempt:gateway",
@@ -1663,6 +1668,21 @@ test("cross-owner review writes require the author Attempt to be explicitly list
     assignmentId: "assignment:gateway-outside-window",
     idempotencyKey: "scoped-window-replay",
   }), /local replay dispatch reached/);
+  assert.equal(dispatchCalls, 1);
+  assert.deepEqual(await snapshot(), before);
+
+  // Even when legacy access already covers the target, reviewDispatchOnly
+  // must not dispatch an assignment that is absent from the exact grant.
+  const scopedLegacyTarget = new D1RemoteMcpGatewayStore({
+    database, bucket: artifactBucket, runnerDispatcher,
+    researchWriteAllowlistJson: JSON.stringify({
+      ...window, attempts: ["attempt:gateway"], reviewDispatchOnly: true,
+      reviewGrants: [{ personId: "person:gateway-reviewer", agentId: "agent:gateway-reviewer", attemptId: "attempt:gateway", assignmentId: "assignment:gateway-outside-window", operations: ["review:replay"] }],
+    }),
+  });
+  await assert.rejects(scopedLegacyTarget.requestVerificationReplay(replayPrincipal, {
+    assignmentId: "assignment:gateway-wrong-assignment", idempotencyKey: "legacy-wrong-assignment-denied",
+  }), GatewayStoreAuthorizationError);
   assert.equal(dispatchCalls, 1);
   assert.deepEqual(await snapshot(), before);
 

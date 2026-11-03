@@ -25,7 +25,7 @@
 
 上面仅列出新增字段，不能作为完整部署文档直接使用。`reviewPublishGrants` 只开放指定 Person、Attempt 和 Bundle 哈希的 `review:publish`；发布端点仍需验证 Bundle 的拥有权和已接受的 Lean 证据。它不会使其他 Bundle、Attempt 或其他操作可写。研究资格中的 `canWrite` 并不代表具有发布权限。
 
-`reviewGrants` 只允许列明的 Person、Attempt、操作组合；MCP 还必须匹配 Agent 和已领取的具体 assignment。不同 assignment 需要分别授权。评审 Person 不得同时出现在同一个 surface 的原有 `persons` 列表，否则整个 surface 视为无效。原有列表与新授权不能混用来放宽评审范围。MCP 仍会检查 OAuth 作用域、有效委托、独立的已接受 assignment 及签名身份；授权本身并不产生复验或评审结果。
+`reviewGrants` 只新增列明的 Person、Attempt、操作组合；MCP 还必须匹配 Agent 和已领取的具体 assignment。不同 assignment 需要分别授权。评审 Person 可以同时留在原有 `persons` 列表，原有授权保持不变；不匹配 grant 的请求仍按原有名单校验。旧名单如果已经允许同一目标或操作，grant 不会收窄这项既有授权，因此配置前必须检查原有名单。MCP 仍会检查 OAuth 作用域、有效委托、独立的已接受 assignment 及签名身份；授权本身并不产生复验或评审结果。
 
 `reviewDispatchOnly` 仅允许带有精确 `review:replay` 授权的 MCP 复验请求进入 Runner 分发，拒绝普通作者 Run 请求及仅依靠旧名单的评审复验；它不会停止已经入队的工作或限制其他独立入口。打开执行环境前须同时核对其他入口与运行中的消费者。设置 `RUNNER_ONLY_RUN_ID` 为每次批准的具体新复验 Run，并设置 `RUNNER_MAX_DELIVERY_ATTEMPTS=1`，以限定该 Runner 的领取和投递；两个不同 assignment 的复验是两个独立 Run，不能用作者旧 Run 代替。
 
