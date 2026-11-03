@@ -33,9 +33,9 @@ fail-closed:
 - it rejects the production origin
   `https://proofweave.org` and production
   database fingerprint `3f9e7934a04a22ec`; and
-- it requires migration head
-  `0043_add_runner_queue_event_sequence.sql` before either release
-  observation can be accepted.
+- it requires the exact latest migration in the reviewed checkout before
+  either release observation can be accepted. The shared migration loader
+  validates the complete, contiguous repository migration history.
 
 Passing means only that a complete redacted evidence graph is internally
 consistent. The actual sign-in, browser consent, local key ownership, owner
@@ -55,8 +55,9 @@ Before collecting evidence:
 2. create a dedicated staging Turso authority and staging HTTPS origin that
    share no production credential, database fingerprint, issuer key, or
    mutable runtime resource;
-3. confirm Turso is the sole staging authority and migration
-   `0043_add_runner_queue_event_sequence.sql` is applied;
+3. confirm Turso is the sole staging authority and its migration head matches
+   `database.repositoryMigrationHead` from `npm run release:manifest`, run
+   from the reviewed release checkout;
 4. observe `read_write` and `writesEnabled: true` on staging only;
 5. keep GitHub Actions out of the participant execution path;
 6. use a new Person A and a genuinely different Person B;
@@ -157,10 +158,12 @@ production authority; operators must additionally keep production credentials
 out of the staging environment because an offline JSON checker cannot inspect
 provider secret inheritance.
 
-Both release observations must report the exact migration filename
-`0043_add_runner_queue_event_sequence.sql`. Merely reporting a filename that
-starts with `0043`, or keeping the same older migration before and after the
-smoke, is rejected.
+Run the checker from the same reviewed checkout used to build the release.
+Both observations must report its exact latest migration filename (currently
+`0045_expand_curated_research_records.sql`). The expected head comes from the
+repository, never from the evidence JSON. An older head, an invented filename,
+or an unknown future head is rejected even when both observations agree.
+The passing report includes `release.migrationHead` for the audit record.
 
 ## What failure means
 
@@ -183,7 +186,8 @@ Keep these human-observed facts alongside a passing report:
 - Person B was not another account or Agent owned by Person A;
 - the review decisions were based on inspectable evidence;
 - the public Receipt page and portable verification bundle were reachable;
-- production returned to its intended post-smoke operating mode.
+- staging returned to its intended post-smoke operating mode and production
+  resources were not modified by the staging smoke.
 
 This manual record and the offline gate complement each other. Neither one,
 alone, proves that the full contribution chain ran.
