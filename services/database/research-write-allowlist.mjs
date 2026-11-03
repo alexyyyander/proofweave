@@ -120,7 +120,7 @@ export function researchWriteAllowlistState(values, surface) {
   if (!agents) return invalid("invalid_agents");
   const attempts = validateIdentifierList(parsed.attempts, { allowEmpty: true });
   if (!attempts) return invalid("invalid_attempts");
-  const reviewGrants = validateReviewGrants(parsed.reviewGrants, surface, persons);
+  const reviewGrants = validateReviewGrants(parsed.reviewGrants, surface);
   if (!reviewGrants) return invalid("invalid_review_grants");
   const reviewPublishGrants = validateReviewPublishGrants(parsed.reviewPublishGrants, surface);
   if (!reviewPublishGrants) return invalid("invalid_review_publish_grants");
@@ -188,18 +188,18 @@ export function assertResearchWriteAllowed({
     }
     return state;
   }
-  // Review grants are an alternative to adding the reviewer or target to the
-  // legacy cross-product lists. They never authorize an owner-side write.
-  if (state.reviewGrants.some((grant) => grant.personId === personId)) {
+  // An exact review grant adds only its bounded operation. If it does not
+  // match, preserve the legacy gate unchanged, including pre-existing owner
+  // work for a Person who also has a review grant.
+  const matchingGrant = state.reviewGrants.some((grant) =>
+    grant.personId === personId && grant.attemptId === attemptId
+    && (surface !== "mcp" || (grant.agentId === agentId && grant.assignmentId === assignmentId))
+    && grant.operations.includes(operation));
+  if (matchingGrant) {
     const grantDimensions = surface === "mcp" ? ["person", "agent", "attempt"] : ["person", "attempt"];
     for (const dimension of grantDimensions) {
       if (!required.includes(dimension)) throw new ResearchWriteGateConfigurationError(`review operation requires ${dimension}`);
     }
-    const matchingGrant = state.reviewGrants.some((grant) =>
-      grant.personId === personId && grant.attemptId === attemptId
-      && (surface !== "mcp" || (grant.agentId === agentId && grant.assignmentId === assignmentId))
-      && grant.operations.includes(operation));
-    if (!matchingGrant) throw new ResearchWriteNotAllowedError("review_grant");
     return state;
   }
   const provided = { person: personId, agent: agentId, attempt: attemptId };
@@ -266,7 +266,7 @@ function validateIdentifierList(value, { allowEmpty = false } = {}) {
   return value;
 }
 
-function validateReviewGrants(value, surface, legacyPersons) {
+function validateReviewGrants(value, surface) {
   if (value === undefined) return [];
   if (!Array.isArray(value) || value.length > maximumEntries) return null;
   const result = [];
@@ -280,9 +280,6 @@ function validateReviewGrants(value, surface, legacyPersons) {
       ? [grant.personId, grant.agentId, grant.attemptId, grant.assignmentId]
       : [grant.personId, grant.attemptId];
     if (identifiers.some((id) => typeof id !== "string" || !id.trim() || id !== id.trim() || id.length > 240)) return null;
-    // Avoid a misleading configuration where a legacy entry could authorize
-    // the same Person for non-review operations independently of this grant.
-    if (legacyPersons.includes(grant.personId)) return null;
     if (!Array.isArray(grant.operations) || grant.operations.length === 0
       || grant.operations.some((operation) => !reviewOperations[surface].has(operation))
       || new Set(grant.operations).size !== grant.operations.length) return null;

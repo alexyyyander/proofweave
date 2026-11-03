@@ -56,7 +56,7 @@ test("review grants authorize only the specific person, target, operation, and r
 test("malformed review grants fail the entire window closed", () => {
   const grant = { personId: "person:reviewer", agentId: "agent:reviewer", attemptId: "attempt:target", assignmentId: "assignment:target", operations: ["review:replay"] };
   const invalid = [
-    null, {}, [{ ...grant, personId: "person:a" }], [{ ...grant, operation: "run:request" }],
+    null, {}, [{ ...grant, operation: "run:request" }],
     [{ ...grant, operations: ["run:request"] }], [{ ...grant, operations: [] }],
     [{ ...grant, operations: ["review:replay", "review:replay"] }],
     [grant, grant], [{ ...grant, agentId: null }],
@@ -67,6 +67,36 @@ test("malformed review grants fail the entire window closed", () => {
     assert.throws(() => assertResearchWriteAllowed({ values: values(config, "mcp"), surface: "mcp", operation: "progress:write", personId: "person:a", agentId: "agent:a", attemptId: "attempt:a" }), ResearchWriteGateUnconfiguredError);
   }
   assert.equal(researchWriteAllowlistState(values({ ...allowlist, reviewGrants: [grant] }), "participant").failureCode, "invalid_review_grants");
+});
+
+test("a reviewer already in the legacy window retains owner writes while gaining only the exact review grant", () => {
+  const participant = {
+    ...allowlist, allowNewAttempts: true,
+    reviewGrants: [{ personId: "person:a", attemptId: "attempt:target", operations: ["review:claim", "review:transition"] }],
+  };
+  const base = { values: values(participant), surface: "participant", personId: "person:a", agentId: "agent:a" };
+  assert.doesNotThrow(() => assertResearchWriteAllowed({ ...base, operation: "proposal:write", required: ["person"] }));
+  assert.doesNotThrow(() => assertResearchWriteAllowed({ ...base, operation: "source:import", required: ["person"] }));
+  assert.doesNotThrow(() => assertResearchWriteAllowed({ ...base, operation: "attempt:create", required: ["person", "agent"] }));
+  assert.doesNotThrow(() => assertResearchWriteAllowed({ ...base, operation: "progress:write", attemptId: "attempt:owned", attemptOwnershipVerified: true }));
+  assert.doesNotThrow(() => assertResearchWriteAllowed({ ...base, operation: "review:claim", required: ["person", "attempt"], attemptId: "attempt:target" }));
+  assert.throws(() => assertResearchWriteAllowed({ ...base, operation: "review:claim", required: ["person", "attempt"], attemptId: "attempt:other" }), ResearchWriteNotAllowedError);
+  // An already-listed target remains allowed by the pre-existing broad gate.
+  assert.doesNotThrow(() => assertResearchWriteAllowed({ ...base, operation: "review:claim", required: ["person", "attempt"], attemptId: "attempt:a" }));
+
+  const mcp = {
+    ...allowlist, allowNewAttempts: true,
+    reviewGrants: [{ personId: "person:a", agentId: "agent:review", attemptId: "attempt:target", assignmentId: "assignment:target", operations: ["review:replay"] }],
+  };
+  const replay = { values: values(mcp, "mcp"), surface: "mcp", personId: "person:a", agentId: "agent:review", attemptId: "attempt:target", assignmentId: "assignment:target", operation: "review:replay" };
+  assert.doesNotThrow(() => assertResearchWriteAllowed(replay));
+  for (const change of [{ attemptId: "attempt:other" }, { agentId: "agent:other" }, { assignmentId: "assignment:other" }, { operation: "attestation:write" }]) {
+    assert.throws(() => assertResearchWriteAllowed({ ...replay, ...change }), ResearchWriteNotAllowedError);
+  }
+  assert.doesNotThrow(() => assertResearchWriteAllowed({ ...replay, operation: "progress:write", agentId: "agent:a", attemptId: "attempt:owned", attemptOwnershipVerified: true }));
+  const unlisted = { ...mcp, persons: ["person:other"] };
+  assert.doesNotThrow(() => assertResearchWriteAllowed({ ...replay, values: values(unlisted, "mcp") }));
+  assert.throws(() => assertResearchWriteAllowed({ ...replay, values: values(unlisted, "mcp"), operation: "progress:write", agentId: "agent:a", attemptId: "attempt:owned", attemptOwnershipVerified: true }), ResearchWriteNotAllowedError);
 });
 
 test("a publication grant permits only the exact owner and Attempt, independently of the creation window", () => {
