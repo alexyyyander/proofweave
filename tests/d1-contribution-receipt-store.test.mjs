@@ -21,6 +21,7 @@ import { D1ContributionReceiptIssuerKeyStore } from "../services/receipts/d1-con
 import { D1ContributionReceiptStore } from "../services/receipts/d1-contribution-receipt-store.mjs";
 import { classifyReceiptPublication } from "../services/receipts/receipt-publication-policy.mjs";
 import { D1ReceiptCreditSettlement } from "../services/credits/d1-receipt-credit-settlement.mjs";
+import { D1PoolCreditSettlement } from "../services/credits/d1-pool-credit-settlement.mjs";
 
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 const bundleHash = sha("a");
@@ -244,6 +245,20 @@ test("D1 Receipt store derives, signs, retries, and freezes a certified contribu
     database.prepare("DELETE FROM contribution_receipt_lifecycle_events WHERE id = ?").bind(correction.event.id).run(),
     /contribution receipt lifecycle events cannot be deleted/,
   );
+});
+
+test("pool settlement refuses a signed Receipt whose Runner evidence is not authentic, without locking the pool", async () => {
+  const poolId = "pool:receipt-synthetic-test";
+  await database.prepare("INSERT INTO problem_credit_pools (id, problem_revision_id, policy_version, unit, total_credits, sponsor_label, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)")
+    .bind(poolId, "revision:receipt", "pw-credit-market-v1", "non_transferable_research_credit", 1000, "Synthetic test", "2026-07-13T00:00:00Z").run();
+  for (const [index, eventType] of ["created", "activated"].entries()) {
+    const event = { protocolVersion: "pw-credit-pool-event-v1", poolId, sequence: index + 1, eventType, occurredAt: "2026-07-13T00:00:00Z", ...(eventType === "created" ? { problemRevisionId: "revision:receipt", policyVersion: "pw-credit-market-v1", unit: "non_transferable_research_credit", totalCredits: 1000, sponsorLabel: "Synthetic test" } : {}) };
+    await database.prepare("INSERT INTO problem_credit_pool_events (id, pool_id, sequence, event_type, payload_hash, canonical_payload, occurred_at) VALUES (?, ?, ?, ?, ?, ?, ?)")
+      .bind(`pool-event:synthetic:${index}`, poolId, event.sequence, eventType, await sha256Canonical(event), canonicalJson(event), event.occurredAt).run();
+  }
+  const settlement = new D1PoolCreditSettlement(database, { now: () => new Date("2026-07-14T00:00:00Z") });
+  await assert.rejects(settlement.lock(poolId, "receipt:alice-lemma-correction", { expectedPlanHash: sha("a") }), /Signed Runner result does not match accepted immutable evidence/);
+  assert.equal(await database.prepare("SELECT COUNT(*) AS count FROM problem_credit_pool_events WHERE pool_id = ? AND event_type = 'locked'").bind(poolId).first("count"), 0);
 });
 
 test("Receipt publication policy quarantines smoke, mock, and demo closure from public research", () => {

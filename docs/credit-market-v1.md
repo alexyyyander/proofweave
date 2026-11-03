@@ -94,10 +94,12 @@ Proofweave must continue to distinguish:
 
 ## Implemented verification-job slice
 
-- Three explicit public jobs for every complete staged Bundle under an active
-  pool: Bundle reproduction, statement fidelity, and novelty review.
-- Policy-pinned reward weights of 1, 2, and 2. These are later settlement
-  shares inside the fixed verification bucket, not reserved credits.
+- Five explicit public jobs for every complete staged Bundle under an active
+  pool: Bundle reproduction, kernel acceptance, statement fidelity, novelty
+  review, and project acceptance.
+- The reproduction job has weight 1; each of the other four has weight 2.
+  These are settlement shares inside the fixed verification bucket, not
+  reserved credits.
 - Public read API at `/api/review-jobs` and a public board at `/reviews`.
 - Authenticated one-action claiming, which atomically creates an accepted
   verification assignment and immutable job/assignment events.
@@ -106,24 +108,44 @@ Proofweave must continue to distinguish:
 - Market provenance shown in the personal review queue without treating a
   claimed or accepted assignment as mathematical verification.
 
-`kernel_accepted` remains Runner evidence rather than human market work, and
-`project_accepted` remains a curator gate. A completed conflict declaration
-does not earn a verification share. Rejections, requests for changes, and
+Positive `kernel_accepted` work requires a fresh Runner replay, while
+`project_accepted` remains a separate acceptance claim. A completed conflict
+declaration does not earn a verification share. Rejections, requests for changes, and
 integrity flags may enter later settlement only with their evidence and final
 Receipt closure; any error bonus still requires separate adjudication.
+
+## Operator-reviewed pool allocation
+
+The pool settlement service can preview a deterministic allocation from a
+public, verified final Receipt and its deduplicated dependency closure. A lock
+requires the exact preview hash and appends one canonical allocation event;
+it is never invoked automatically by Receipt creation or a public route.
+
+For the 1,000-credit policy, the final Receipt receives 300 credits. The 400
+dependency credits are divided equally per eligible Receipt, with remaining
+whole units assigned in Receipt ID order. The 200 review credits use each
+completed public market job's policy weight; after flooring the weighted
+shares, remaining whole units are assigned in job ID order. Only evidence
+completed by the lock is included. The 100 challenge credits, and an empty
+dependency or review bucket, remain unallocated. A later review does not
+change a locked allocation. The authenticated personal pool-credit endpoint
+reports the requesting Person's entries separately from one-unit Receipt facts.
+
+This service is not yet an automatic production payout, a signed personal
+credit receipt, or a challenge adjudication mechanism. The synthetic
+end-to-end test exercises the real signature-verification chain; it does not
+run Lean. Independent review and production-specific evidence verification are
+required before this service is used on a production pool.
 
 ## Next implementation slices
 
 1. Add operator-reviewed pool activation with a signed activation event.
-2. Project completed, evidence-bearing review shares without reserving or
-   minting credits before settlement.
-3. Lock an accepted theorem's Receipt dependency closure.
-4. Produce a deterministic settlement manifest and signed personal credit
-   receipts.
-5. Add adjudicated challenge-reserve payouts for valid rejections and decisive
+2. Complete independent security review and production-specific validation.
+3. Produce signed personal credit receipts for committed allocations.
+4. Add adjudicated challenge-reserve payouts for valid rejections and decisive
    counterexamples; never infer them from a negative decision alone.
-6. Add Sybil, conflict-of-interest, duplicate-work, and graph-splitting audits
+5. Add Sybil, conflict-of-interest, duplicate-work, and graph-splitting audits
    before opening public settlement.
-7. Only after the off-chain ledger is stable, evaluate anchoring settlement
+6. Only after the off-chain ledger is stable, evaluate anchoring settlement
    roots on a public chain; do not put proofs, identities, or private evidence
    on-chain by default.
