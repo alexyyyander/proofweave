@@ -20,7 +20,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
     const entries = locked.allocation.entries.filter((entry: { personId: string }) => entry.personId === personId)
       .map((entry: { bucket: string; units: number; reasonId: string }) => ({ bucket: entry.bucket, units: entry.units, reasonId: entry.reasonId }));
     return Response.json({
-      state: locked.state, lockedAt: locked.lockedAt, eventHash: locked.eventHash,
+      state: locked.state, lockedAt: locked.lockedAt, eventHash: locked.eventHash, finalityHash: locked.finalityHash,
       policyVersion: locked.allocation.protocolVersion, entries,
       totalUnits: entries.reduce((sum: number, entry: { units: number }) => sum + entry.units, 0),
       note: "These are non-transferable pool allocations frozen at lock, separate from Receipt-fact credits. Held reserves are not allocated.",

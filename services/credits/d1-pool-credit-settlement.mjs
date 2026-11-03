@@ -10,6 +10,7 @@ import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { normalizeLeanRunnerResult } from "../../packages/protocol/lean-runner.mjs";
 import { artifactBundleHash, canonicalArtifactBundle, normalizeArtifactBundle, verifyArtifactBundleAgentSignature } from "../../packages/protocol/artifact-bundle.mjs";
 import { assertDelegationAllows, delegationPayloadHash, delegationProtocolVersion, delegationSigningPayload, normalizeDelegationCertificate, verifyDelegationSignature } from "../../packages/domain/delegation.mjs";
+import { normalizePoolFinalityAdjudication, poolFinalityHash, trustedPoolFinalityAuthorities, verifyPoolFinalitySignatures } from "../../packages/protocol/pool-finality-adjudication.mjs";
 
 const maximumClosureReceipts = 40;
 const eligibleDecisions = new Set(["attested", "rejected", "request_changes", "integrity_flagged"]);
@@ -104,9 +105,9 @@ export class D1PoolCreditSettlement {
     return Object.freeze({ plan, cutoff, targetDeclaration: root.receipt.target.declaration, lastEvent: history.at(-1), bundleHashes: Object.freeze(bundleHashes), attestationCount: after, receiptIds: Object.freeze([...closure.keys()].sort()), bundleSigners: Object.freeze([...closure.values()].map((entry) => entry.bundleSigner)), publicReviewRevisions: Object.freeze([...publicReviewRevisions].sort()), authoritySnapshot: authorityAfter, verifiedAttestations: Object.freeze(verifiedAttestations) });
   }
 
-  async lock(poolId, finalReceiptId, { expectedPlanHash } = {}) {
+  async lock(poolId, finalReceiptId, { expectedPlanHash, finalityAdjudication } = {}) {
     if (typeof expectedPlanHash !== "string" || !/^sha256:[0-9a-f]{64}$/.test(expectedPlanHash)) throw new PoolSettlementError("The reviewed allocation plan hash is required.");
-    await this.#requireFinalityAdjudication();
+    if (!finalityAdjudication || trustedPoolFinalityAuthorities.length === 0) throw new PoolSettlementError("Independent target-completion and contribution-attribution adjudication is required; settlement is disabled.");
     const existing = await this.readLocked(poolId);
     if (existing) {
       if (existing.allocation.finalReceipt.receiptId !== finalReceiptId) throw new PoolSettlementError("The pool is already locked to a different final Receipt.");
@@ -115,8 +116,9 @@ export class D1PoolCreditSettlement {
     }
     const prepared = await this.preview(poolId, finalReceiptId);
     if (prepared.plan.payloadHash !== expectedPlanHash) throw new PoolSettlementError("The allocation differs from the reviewed plan; preview and review again.");
+    const finality = await this.#verifyFinalityAdjudication(finalityAdjudication, prepared.plan, prepared.cutoff);
     const sequence = prepared.lastEvent.sequence + 1;
-    const payload = { protocolVersion: "pw-credit-pool-event-v1", poolId, sequence, eventType: "locked", occurredAt: prepared.cutoff, allocation: prepared.plan };
+    const payload = { protocolVersion: "pw-credit-pool-event-v1", poolId, sequence, eventType: "locked", occurredAt: prepared.cutoff, allocation: prepared.plan, finalityAdjudication: finality.adjudication };
     const hash = await sha256Canonical(payload);
     const result = await this.database.prepare(
       `INSERT INTO problem_credit_pool_events (id, pool_id, sequence, event_type, payload_hash, canonical_payload, occurred_at)
@@ -136,6 +138,7 @@ export class D1PoolCreditSettlement {
          AND COALESCE((SELECT GROUP_CONCAT(encoded, '|') FROM (SELECT hex(id) || ':' || hex(public_key) || ':' || hex(fingerprint) AS encoded FROM runner_keys WHERE status = 'active' AND revoked_at IS NULL ORDER BY id)), '') = ?
          AND (SELECT COUNT(DISTINCT qualified_name) FROM declarations WHERE problem_revision_id = ? AND is_primary = 1) = 1
          AND EXISTS (SELECT 1 FROM declarations WHERE problem_revision_id = ? AND is_primary = 1 AND qualified_name = ?)
+         AND EXISTS (SELECT 1 FROM problem_revisions WHERE id = ? AND project_id = ?)
          AND NOT EXISTS (SELECT 1 FROM json_each(?) AS item WHERE NOT EXISTS (
            SELECT 1 FROM verification_assignments WHERE id = json_extract(item.value, '$.assignmentId') AND status = 'completed' AND completed_at = json_extract(item.value, '$.attestedAt')
          ))
@@ -144,6 +147,11 @@ export class D1PoolCreditSettlement {
            INNER JOIN person_keys AS signer ON signer.id = certificate.person_key_id
            WHERE agent.id = json_extract(item.value, '$.agentId') AND agent.public_key = json_extract(item.value, '$.publicKey') AND agent.owner_person_id = json_extract(item.value, '$.personId')
              AND signer.id = json_extract(item.value, '$.signerKeyId') AND signer.public_key = json_extract(item.value, '$.signerPublicKey')
+         ))
+         AND NOT EXISTS (SELECT 1 FROM json_each(?) AS item WHERE NOT EXISTS (
+           SELECT 1 FROM person_keys AS signer WHERE signer.id = json_extract(item.value, '$.id') AND signer.person_id = json_extract(item.value, '$.personId')
+             AND signer.public_key = json_extract(item.value, '$.publicKey') AND signer.fingerprint = json_extract(item.value, '$.fingerprint') AND signer.revoked_at IS NULL
+             AND NOT EXISTS (SELECT 1 FROM person_key_revocations AS revoked WHERE revoked.person_key_id = signer.id)
          ))
          AND NOT EXISTS (SELECT 1 FROM json_each(?) AS item WHERE NOT EXISTS (
            SELECT 1 FROM problem_revisions AS revision INNER JOIN projects AS project ON project.id = revision.project_id
@@ -157,7 +165,8 @@ export class D1PoolCreditSettlement {
       poolId, prepared.lastEvent.sequence, prepared.lastEvent.payloadHash, poolId, prepared.lastEvent.sequence,
       JSON.stringify(prepared.bundleHashes), prepared.attestationCount, ...prepared.authoritySnapshot,
       prepared.plan.problemRevisionId, prepared.plan.problemRevisionId, prepared.targetDeclaration,
-      JSON.stringify(prepared.verifiedAttestations), JSON.stringify(prepared.bundleSigners), JSON.stringify(prepared.publicReviewRevisions), JSON.stringify(prepared.receiptIds)).run();
+      prepared.plan.problemRevisionId, finality.projectId,
+      JSON.stringify(prepared.verifiedAttestations), JSON.stringify(prepared.bundleSigners), JSON.stringify(finality.signers), JSON.stringify(prepared.publicReviewRevisions), JSON.stringify(prepared.receiptIds)).run();
     if (Number(result?.meta?.changes ?? 0) !== 1) throw new PoolSettlementError("Pool or evidence changed before the lock; no allocation was written.");
     return Object.freeze({ ...await this.readLocked(poolId), created: true });
   }
@@ -167,12 +176,12 @@ export class D1PoolCreditSettlement {
     const locked = history.find((event) => event.eventType === "locked");
     if (!locked) return null;
     if (!locked.allocation) throw new PoolSettlementError("The existing pool lock does not contain a compatible allocation.");
-    await this.#requireFinalityAdjudication();
     const stored = locked.allocation;
     const calculated = await derivePoolCreditAllocation(stored);
     if (canonicalJson(calculated) !== canonicalJson(stored) || stored.poolId !== poolId) throw new PoolSettlementError("The stored pool allocation is invalid.");
+    const finality = await this.#verifyFinalityAdjudication(locked.finalityAdjudication, stored, locked.occurredAt);
     await this.verifyLockedEvidence(stored, locked.occurredAt, history);
-    return Object.freeze({ state: projectCreditPoolState(history), lockedAt: locked.occurredAt, eventHash: locked.payloadHash, allocation: stored });
+    return Object.freeze({ state: projectCreditPoolState(history), lockedAt: locked.occurredAt, eventHash: locked.payloadHash, finalityHash: finality.hash, allocation: stored });
   }
 
   async verifyLockedEvidence(plan, cutoff, history) {
@@ -410,13 +419,55 @@ export class D1PoolCreditSettlement {
     return Object.freeze({ agentId: receipt.attempt.agentId, personId: row.owner_person_id, publicKey: row.public_key, certificateId: row.certificate_id, signerKeyId: row.signer_id, signerPublicKey: row.signer_public_key });
   }
 
-  async #requireFinalityAdjudication() {
-    // A signed Receipt and ordinary project acceptance do not establish that
-    // this beneficiary produced the final result, rather than reproducing an
-    // existing proof. No trusted, purpose-specific finality adjudication is
-    // implemented yet, so no allocation may be committed or served as final.
-    throw new PoolSettlementError("Independent target-completion and contribution-attribution adjudication is required; settlement is disabled.");
+  async #verifyFinalityAdjudication(value, plan, cutoff) {
+    return verifyPoolFinalityEvidence({ database: this.database, receipts: this.receipts, verifyReviewAttestation: (attestation) => this.verifyReviewAttestation(attestation), authorities: trustedPoolFinalityAuthorities, value, plan, cutoff });
   }
+}
+
+
+/** Verify explicit, project-pinned finality evidence without writing. The
+ * production settlement method always supplies its compiled trust registry. */
+export async function verifyPoolFinalityEvidence({ database, receipts, verifyReviewAttestation, authorities, value, plan, cutoff }) {
+  if (!value || authorities.length === 0) throw new PoolSettlementError("Independent target-completion and contribution-attribution adjudication is required; settlement is disabled.");
+  let adjudication;
+  try { adjudication = normalizePoolFinalityAdjudication(value); } catch { throw new PoolSettlementError("Finality adjudication is malformed."); }
+  const payload = adjudication.payload;
+  const root = await receipts.loadVerifiedReceipt(plan.finalReceipt.receiptId);
+  const revision = await database.prepare("SELECT project_id FROM problem_revisions WHERE id = ?").bind(plan.problemRevisionId).first();
+  if (!revision || payload.poolId !== plan.poolId || payload.problemRevisionId !== plan.problemRevisionId
+      || payload.finalReceiptId !== plan.finalReceipt.receiptId || payload.finalReceiptHash !== plan.finalReceipt.receiptHash
+      || payload.beneficiaryPersonId !== plan.finalReceipt.personId || payload.targetDeclaration !== root.target.declaration
+      || payload.targetStatementHash !== root.target.statementHash || payload.reviewerPersonId === root.attempt.personId
+      || Date.parse(payload.issuedAt) > Date.parse(cutoff)) throw new PoolSettlementError("Finality adjudication does not match the frozen target and beneficiary.");
+  const keys = [];
+  for (const [id, personId] of [[payload.reviewerKeyId, payload.reviewerPersonId], [payload.ownerKeyId, payload.ownerPersonId]]) {
+    const key = await database.prepare(`SELECT signer.id, signer.person_id, signer.public_key, signer.fingerprint, signer.algorithm, signer.created_at, signer.revoked_at,
+      revoked.revoked_at AS event_revoked_at FROM person_keys AS signer LEFT JOIN person_key_revocations AS revoked ON revoked.person_key_id = signer.id WHERE signer.id = ?`).bind(id).first();
+    const createdAt = key?.created_at?.includes("T") ? key.created_at : key?.created_at ? `${key.created_at.replace(" ", "T")}Z` : "";
+    if (!key || key.person_id !== personId || key.algorithm !== "ed25519" || key.revoked_at || key.event_revoked_at
+        || !Number.isFinite(Date.parse(createdAt)) || Date.parse(createdAt) > Date.parse(payload.issuedAt)
+        || key.fingerprint !== await sha256Canonical({ algorithm: "ed25519", public_key: key.public_key })) throw new PoolSettlementError("A finality signer is not an active verified Person key.");
+    keys.push(Object.freeze({ id: key.id, personId, publicKey: key.public_key, fingerprint: key.fingerprint }));
+  }
+  if (!authorities.some((authority) => authority.projectId === revision.project_id && authority.personId === payload.ownerPersonId
+      && authority.keyId === payload.ownerKeyId && authority.keyFingerprint === keys[1].fingerprint)) throw new PoolSettlementError("The finality signer is not the enrolled project owner.");
+  if (!await verifyPoolFinalitySignatures(adjudication, { reviewerPublicKey: keys[0].publicKey, ownerPublicKey: keys[1].publicKey })) throw new PoolSettlementError("Finality adjudication signatures are invalid.");
+  const reviews = await receipts.loadReviewEvidence(root.artifactBundleHash, { includeOptionalClaims: true });
+  for (const [id, claimType, evidenceHash, attestationHash] of [
+    [payload.reviewAttestationId, "statement_faithful", payload.reviewEvidenceHash, payload.reviewAttestationHash],
+    [payload.noveltyAttestationId, "novelty_reviewed", payload.noveltyEvidenceHash, payload.noveltyAttestationHash],
+  ]) {
+    const attestation = reviews.find((item) => item.id === id);
+    const latest = reviews.filter((item) => item.claimType === claimType && Date.parse(item.attestedAt) <= Date.parse(cutoff))
+      .sort((a, b) => Date.parse(b.attestedAt) - Date.parse(a.attestedAt) || compare(b.id, a.id))[0];
+    if (!attestation || attestation.claimType !== claimType || attestation.decision !== "attested"
+        || attestation.verifierPersonId === root.attempt.personId || attestation.verifierPersonId === payload.ownerPersonId
+        || (claimType === "statement_faithful" && attestation.verifierPersonId !== payload.reviewerPersonId)
+        || attestation.evidenceHash !== evidenceHash || await sha256Canonical(attestation) !== attestationHash
+        || Date.parse(attestation.attestedAt) > Date.parse(payload.issuedAt) || latest?.id !== attestation.id) throw new PoolSettlementError("Finality requires the latest named independent statement and novelty review evidence.");
+    await verifyReviewAttestation(attestation);
+  }
+  return Object.freeze({ adjudication, hash: await poolFinalityHash(adjudication), projectId: revision.project_id, signers: Object.freeze(keys) });
 }
 
 function compare(a, b) { return a < b ? -1 : a > b ? 1 : 0; }

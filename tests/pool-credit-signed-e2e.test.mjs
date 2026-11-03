@@ -13,18 +13,24 @@ import { D1ContributionReceiptIssuerKeyStore } from "../services/receipts/d1-con
 import { D1ContributionReceiptStore } from "../services/receipts/d1-contribution-receipt-store.mjs";
 import { D1VerificationStore } from "../services/verification/d1-verification-store.mjs";
 import { D1VerificationMarketStore } from "../services/verification/d1-verification-market-store.mjs";
-import { D1PoolCreditSettlement } from "../services/credits/d1-pool-credit-settlement.mjs";
+import { D1PoolCreditSettlement, verifyPoolFinalityEvidence } from "../services/credits/d1-pool-credit-settlement.mjs";
 const migrationsRoot = new URL("../drizzle/", import.meta.url);
 const runRequestHash = sha("b");
 let bundleHash, signedBundle, runResultHash, issuerPair, issuerPublicKey, reviewerPairs, runnerPair;
 
 // Synthetic data, real Ed25519 signatures and the real D1 stores. This does
 // not claim that the synthetic Runner executed Lean or proves any theorem.
-test("signed public-market evidence previews, but cannot lock without finality adjudication", async (t) => {
+test("signed public-market evidence requires an enrolled, independently adjudicated final result", async (t) => {
   issuerPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   issuerPublicKey = base64Url(await crypto.subtle.exportKey("raw", issuerPair.publicKey));
   runnerPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   reviewerPairs = Object.fromEntries(await Promise.all(["alice", "bob", "carol"].map(async (name) => [name, await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"])])));
+  if (process.env.PROOFWEAVE_TEST_OWNER_JWK) {
+    const privateJwk = JSON.parse(process.env.PROOFWEAVE_TEST_OWNER_JWK);
+    const publicJwk = { ...privateJwk, key_ops: ["verify"] };
+    delete publicJwk.d;
+    reviewerPairs.carol = { privateKey: await crypto.subtle.importKey("jwk", privateJwk, { name: "Ed25519" }, true, ["sign"]), publicKey: await crypto.subtle.importKey("jwk", publicJwk, { name: "Ed25519" }, true, ["verify"]) };
+  }
   signedBundle = fixtureBundle(base64Url(await crypto.subtle.exportKey("raw", reviewerPairs.alice.publicKey)), null);
   signedBundle.agentEvent.payloadHash = await artifactBundleSigningPayloadHash(signedBundle);
   signedBundle.agentEvent.signature = base64Url(await crypto.subtle.sign("Ed25519", reviewerPairs.alice.privateKey, new TextEncoder().encode(canonicalJson(artifactBundleSigningPayload(signedBundle)))));
@@ -58,7 +64,7 @@ test("signed public-market evidence previews, but cannot lock without finality a
   const published = await market.publishJobsForBundle(bundleHash, "2026-07-13T00:00:03Z");
   assert.equal(published.published, true);
   const bobPublic = base64Url(await crypto.subtle.exportKey("raw", reviewerPairs.bob.publicKey));
-  for (const claimType of ["bundle_reproducible", "kernel_accepted", "project_accepted", "statement_faithful"]) {
+  for (const claimType of ["bundle_reproducible", "kernel_accepted", "project_accepted", "statement_faithful", "novelty_reviewed"]) {
     const job = published.jobs.find((item) => item.claimType === claimType);
     assert.ok(job, claimType);
     const claim = await market.claimJob(job.id, "person:bob", "2026-07-13T00:00:10Z");
@@ -69,8 +75,6 @@ test("signed public-market evidence previews, but cannot lock without finality a
     }
     await verify.recordAttestation(await fixtureAttestation({ id: `attestation:${claimType}`, assignmentId: claim.assignment.id, claimType, reviewer: "bob", agent: "agent:bob-reviewer", delegation: "delegation:bob-reviewer", publicKey: bobPublic, privateKey: reviewerPairs.bob.privateKey, evidenceHash }));
   }
-  const laterJob = published.jobs.find((item) => item.claimType === "novelty_reviewed");
-  const laterClaim = await market.claimJob(laterJob.id, "person:bob", "2026-07-13T00:00:10Z");
   const issued = await new D1ContributionReceiptStore(db).issue({ id: "receipt:signed-e2e", kind: "proof_patch", artifactBundleManifestHash: bundleHash, runId: "run:receipt-fixture", issuedAt: "2026-07-13T00:01:00Z", issuerKeyId: "issuer:closed-alpha-1", issuerPublicKey, issuerPrivateKey: issuerPair.privateKey });
   assert.equal(issued.created, true);
   const settlement = new D1PoolCreditSettlement(db, { now: () => new Date("2026-07-13T00:02:00Z") });
@@ -86,14 +90,62 @@ test("signed public-market evidence previews, but cannot lock without finality a
   const forgedDb = { prepare: () => ({ bind: () => ({ first: async () => forgedRow }) }), batch: async () => [] };
   await assert.rejects(new D1PoolCreditSettlement(forgedDb).verifyBundle({ ...issued.receipt, artifactBundleHash: forgedHash }), /Signed Artifact Bundle does not match/);
   const preview = await settlement.preview(poolId, issued.receipt.id);
-  assert.equal(preview.plan.reviews.length, 4);
+  assert.equal(preview.plan.reviews.length, 5);
   assert.deepEqual(preview.plan.reserved, { verified_dependencies: 400, independent_verification: 0, challenge_reserve: 100 });
-  const results = await Promise.allSettled([settlement.lock(poolId, issued.receipt.id, { expectedPlanHash: preview.plan.payloadHash }), settlement.lock(poolId, issued.receipt.id, { expectedPlanHash: preview.plan.payloadHash })]);
-  assert.ok(results.every((item) => item.status === "rejected" && /adjudication is required/.test(item.reason.message)));
-  await verify.recordAttestation(await fixtureAttestation({ id: "attestation:late-novelty", assignmentId: laterClaim.assignment.id, claimType: "novelty_reviewed", reviewer: "bob", agent: "agent:bob-reviewer", delegation: "delegation:bob-reviewer", publicKey: bobPublic, privateKey: reviewerPairs.bob.privateKey, evidenceHash: sha("f"), attestedAt: "2026-07-13T00:03:00Z" }));
-  assert.deepEqual((await settlement.preview(poolId, issued.receipt.id)).plan, preview.plan);
+  const reviews = await settlement.receipts.loadReviewEvidence(bundleHash, { includeOptionalClaims: true });
+  const independentReview = reviews.find((item) => item.claimType === "statement_faithful");
+  const noveltyReview = reviews.find((item) => item.claimType === "novelty_reviewed");
+  const finalityPayload = { protocolVersion: "pw-pool-finality-v1", poolId, problemRevisionId: "revision:receipt", finalReceiptId: issued.receipt.id,
+    finalReceiptHash: preview.plan.finalReceipt.receiptHash, targetDeclaration: issued.receipt.target.declaration, targetStatementHash: issued.receipt.target.statementHash,
+    beneficiaryPersonId: "person:alice", reviewerPersonId: "person:bob", reviewerKeyId: "person-key:bob", reviewAttestationId: independentReview.id,
+    reviewAttestationHash: await sha256Canonical(independentReview), reviewEvidenceHash: independentReview.evidenceHash,
+    noveltyAttestationId: noveltyReview.id, noveltyAttestationHash: await sha256Canonical(noveltyReview), noveltyEvidenceHash: noveltyReview.evidenceHash,
+    ownerPersonId: "person:carol", ownerKeyId: "person-key:carol", issuedAt: "2026-07-13T00:01:30Z", decision: "original_final_result" };
+  const signFinality = async (person) => base64Url(await crypto.subtle.sign("Ed25519", reviewerPairs[person].privateKey, new TextEncoder().encode(canonicalJson(finalityPayload))));
+  const adjudication = { payload: finalityPayload, reviewerSignature: await signFinality("bob"), ownerSignature: await signFinality("carol") };
+  const ownerPublic = base64Url(await crypto.subtle.exportKey("raw", reviewerPairs.carol.publicKey));
+  const verifyFinality = { database: db, receipts: settlement.receipts, verifyReviewAttestation: (item) => settlement.verifyReviewAttestation(item), value: adjudication, plan: preview.plan, cutoff: preview.cutoff };
+  const testAuthority = { projectId: "project:receipt", personId: "person:carol", keyId: "person-key:carol", keyFingerprint: await keyFingerprint(ownerPublic) };
+  assert.equal((await verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [testAuthority] })).adjudication.payload.decision, "original_final_result");
+  await assert.rejects(verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [] }), /adjudication is required/);
+  await assert.rejects(verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [{ ...testAuthority, keyFingerprint: sha("0") }] }), /not the enrolled project owner/);
+  await assert.rejects(verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [testAuthority], value: { ...adjudication, ownerSignature: adjudication.reviewerSignature } }), /signatures are invalid/);
+  const unboundPayload = { ...finalityPayload, reviewEvidenceHash: sha("0") };
+  const unbound = { payload: unboundPayload,
+    reviewerSignature: base64Url(await crypto.subtle.sign("Ed25519", reviewerPairs.bob.privateKey, new TextEncoder().encode(canonicalJson(unboundPayload)))),
+    ownerSignature: base64Url(await crypto.subtle.sign("Ed25519", reviewerPairs.carol.privateKey, new TextEncoder().encode(canonicalJson(unboundPayload)))) };
+  await assert.rejects(verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [testAuthority], value: unbound }), /latest named independent statement and novelty review evidence/);
+  const enrolledFixture = process.env.PROOFWEAVE_TEST_EXPECT_ENROLLED === "1";
+  const lockArgs = { expectedPlanHash: preview.plan.payloadHash, finalityAdjudication: adjudication };
+  if (enrolledFixture && process.env.PROOFWEAVE_TEST_LOCK_MODE === "recovery") {
+    const read = settlement.readLocked.bind(settlement);
+    let count = 0;
+    settlement.readLocked = async (...args) => { if (++count === 2) throw new Error("synthetic readback failure"); return read(...args); };
+    await assert.rejects(settlement.lock(poolId, issued.receipt.id, lockArgs), /synthetic readback failure/);
+    settlement.readLocked = read;
+    assert.deepEqual((await settlement.readLocked(poolId)).allocation, preview.plan);
+    assert.equal((await settlement.lock(poolId, issued.receipt.id, lockArgs)).created, false);
+  } else {
+    const results = await Promise.allSettled([settlement.lock(poolId, issued.receipt.id, lockArgs), settlement.lock(poolId, issued.receipt.id, lockArgs)]);
+    if (enrolledFixture) {
+      assert.ok(results.some((item) => item.status === "fulfilled" && item.value.created));
+      assert.deepEqual((await settlement.readLocked(poolId)).allocation, preview.plan);
+      assert.equal((await settlement.lock(poolId, issued.receipt.id, lockArgs)).created, false);
+    } else assert.ok(results.every((item) => item.status === "rejected" && /adjudication is required/.test(item.reason.message)));
+  }
+  const laterClaim = await verify.assign({ id: "assignment:late-novelty", artifactBundleManifestHash: bundleHash, claimType: "novelty_reviewed", verifierPersonId: "person:carol", assignedAt: "2026-07-13T00:02:10Z" });
+  await verify.accept(laterClaim.assignment.id, "person:carol", "2026-07-13T00:02:20Z");
+  const carolPublic = base64Url(await crypto.subtle.exportKey("raw", reviewerPairs.carol.publicKey));
+  await verify.recordAttestation(await fixtureAttestation({ id: "attestation:late-novelty", assignmentId: laterClaim.assignment.id, claimType: "novelty_reviewed", reviewer: "carol", agent: "agent:carol-curator", delegation: "delegation:carol-curator", publicKey: carolPublic, privateKey: reviewerPairs.carol.privateKey, evidenceHash: sha("f"), decision: "rejected", attestedAt: "2026-07-13T00:03:00Z" }));
+  if (enrolledFixture) assert.deepEqual((await settlement.readLocked(poolId)).allocation, preview.plan);
+  else assert.deepEqual((await settlement.preview(poolId, issued.receipt.id)).plan, preview.plan);
+  await assert.rejects(verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [testAuthority], cutoff: "2026-07-13T00:04:00Z" }), /latest named independent statement and novelty review evidence/);
   await assert.rejects(settlement.lock(poolId, issued.receipt.id, { expectedPlanHash: preview.plan.payloadHash }), /adjudication is required/);
-  assert.equal(Number(await db.prepare("SELECT COUNT(*) AS n FROM problem_credit_pool_events WHERE pool_id = ? AND event_type = 'locked'").bind(poolId).first("n")), 0);
+  assert.equal(Number(await db.prepare("SELECT COUNT(*) AS n FROM problem_credit_pool_events WHERE pool_id = ? AND event_type = 'locked'").bind(poolId).first("n")), enrolledFixture ? 1 : 0);
+  await db.prepare("INSERT INTO person_key_revocations (id, person_key_id, owner_person_id, revoked_at, reason) VALUES (?, ?, ?, ?, ?)")
+    .bind("revocation:owner", "person-key:carol", "person:carol", "2026-07-13T00:04:00Z", "synthetic test").run();
+  await assert.rejects(verifyPoolFinalityEvidence({ ...verifyFinality, authorities: [testAuthority] }), /not an active verified Person key/);
+  if (enrolledFixture) await assert.rejects(settlement.readLocked(poolId), /not an active verified Person key/);
 });
 
 async function seedOutputs(db, result) {
@@ -136,7 +188,7 @@ async function seedReceiptEvidence(d1) {
       ["revision:receipt", "project:receipt", "snapshot:receipt", "receipt-target", "receipt-target", 1, "Receipt target", "logic", "research_open", "fixture", "theorem fixture : True := by trivial"],
     ],
     ...["alice", "bob", "carol"].flatMap((name) => [
-      ["INSERT INTO person_keys (id, person_id, public_key, fingerprint) VALUES (?, ?, ?, ?)", [`person-key:${name}`, `person:${name}`, publicKeys[name], fingerprints[name]]],
+      ["INSERT INTO person_keys (id, person_id, public_key, fingerprint, created_at) VALUES (?, ?, ?, ?, ?)", [`person-key:${name}`, `person:${name}`, publicKeys[name], fingerprints[name], "2026-07-01T00:00:00Z"]],
     ]),
     ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint, created_at) VALUES (?, ?, ?, ?, ?, ?)", ["agent:alice-prover", "person:alice", "Alice prover", publicKeys.alice, fingerprints.alice, "2026-07-01T00:00:00Z"]],
     ["INSERT INTO agents (id, owner_person_id, label, public_key, key_fingerprint, created_at) VALUES (?, ?, ?, ?, ?, ?)", ["agent:bob-reviewer", "person:bob", "Bob reviewer", publicKeys.bob, fingerprints.bob, "2026-07-01T00:00:00Z"]],

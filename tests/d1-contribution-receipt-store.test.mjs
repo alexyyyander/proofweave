@@ -257,7 +257,8 @@ test("pool settlement refuses a signed Receipt whose Runner evidence is not auth
       .bind(`pool-event:synthetic:${index}`, poolId, event.sequence, eventType, await sha256Canonical(event), canonicalJson(event), event.occurredAt).run();
   }
   const settlement = new D1PoolCreditSettlement(database, { now: () => new Date("2026-07-14T00:00:00Z") });
-  await assert.rejects(settlement.lock(poolId, "receipt:alice-lemma-correction", { expectedPlanHash: sha("a") }), /Signed Runner result does not match accepted immutable evidence/);
+  await assert.rejects(settlement.preview(poolId, "receipt:alice-lemma-correction"), /Signed Runner result does not match accepted immutable evidence/);
+  await assert.rejects(settlement.lock(poolId, "receipt:alice-lemma-correction", { expectedPlanHash: sha("a") }), /adjudication is required/);
   assert.equal(await database.prepare("SELECT COUNT(*) AS count FROM problem_credit_pool_events WHERE pool_id = ? AND event_type = 'locked'").bind(poolId).first("count"), 0);
 });
 

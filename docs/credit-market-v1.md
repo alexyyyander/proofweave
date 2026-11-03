@@ -118,11 +118,28 @@ Receipt closure; any error bonus still requires separate adjudication.
 
 The pool settlement service can preview a provisional allocation from a
 public Receipt and its deduplicated dependency closure. **Settlement is
-disabled**: the current Receipt and ordinary project-acceptance evidence do
+disabled by default**: the current Receipt and ordinary project-acceptance evidence do
 not establish that the beneficiary produced the accepted final result rather
-than reproduced prior work. An independently authenticated adjudication of
-target completion and contribution attribution is required before any lock.
+than reproduced prior work. The trust registry has no enrolled project owner.
+Before any lock, the named project owner and a different Person must sign the
+same `pw-pool-finality-v1` decision binding the exact pool, problem revision,
+Receipt hash, target declaration and statement hash, and beneficiary. The
+decision explicitly asserts an original final result and names the signing
+reviewer's completed `statement_faithful` attestation and an independent
+`novelty_reviewed` attestation, with their evidence hashes. The novelty
+reviewer may be a different independent Person. Both must be the latest respective
+decisions at lock. The owner identity and signing-key fingerprint must be
+enrolled for the project through a separate owner-authorized, reviewed source
+change; the operator cannot supply a trust root at runtime. Both Person keys
+must be active and their signatures valid. Review and owner decisions still
+require human judgment; the software does not prove novelty.
 Preview amounts are not credit balances and do not assert finality.
+If independent review finds a contribution is a reproduction of prior work,
+or novelty is unresolved, no one should sign an `original_final_result`
+decision. The final-result bucket remains unallocated. Completed public review
+jobs may be shown in the provisional preview, but their pool shares remain
+pending until an eligible final result and its dependency closure are locked.
+The separate one-unit Receipt-fact ledger is not a distribution of the pool.
 
 For the proposed 1,000-credit policy, an accepted final Receipt would receive
 300 credits. The 400 dependency credits would be divided equally per eligible
@@ -132,7 +149,49 @@ shares, remaining whole units are assigned in job ID order. Only evidence
 completed by the proposed lock would be included. The 100 challenge credits,
 and an empty dependency or review bucket, would remain unallocated. The
 authenticated personal pool-credit endpoint cannot present a lock as final
-while finality adjudication is unsupported.
+without a valid signed finality adjudication.
+
+The local operator command accepts a database credential only through
+`TURSO_AUTH_TOKEN` and a canonical `TURSO_DATABASE_URL`. The operator must
+independently supply the expected database fingerprint and clean Git commit;
+the command refuses a mismatch. Its output includes participant identifiers
+and should be handled as private operator material. It refuses Node runtime
+options and inherited `NODE_OPTIONS` so a loader cannot silently replace the
+compiled owner trust registry. Preview is read-only:
+
+```sh
+node scripts/pool-credit-operator.mjs preview \
+  --pool-id "$POOL_ID" --receipt-id "$FINAL_RECEIPT_ID" \
+  --database-fingerprint "$EXPECTED_DATABASE_FINGERPRINT" \
+  --source-revision "$REVIEWED_GIT_SHA"
+```
+
+The explicit `lock` command takes the same arguments plus
+`--expected-plan-hash` from the reviewed preview and `--adjudication-file`
+containing the two signed decisions. The file must be a bounded regular file;
+symbolic links are rejected. The command uses an operator-held database
+credential, not a public endpoint, and records the adjudication in the
+canonical allocation event. The event does not independently authenticate the
+operator who ran the command; the operator's database access and provider
+audit logs are the access-control and execution-audit boundary. No lock can
+succeed with the current empty project-owner trust registry.
+
+Both signers must review the full finality payload and independently sign its
+canonical UTF-8 JSON bytes with their registered Person keys. The read-only
+`node scripts/pool-finality-payload.mjs /path/to/payload.json` command validates
+the payload and prints its canonical bytes as a JSON string and its SHA-256
+hash for comparison. It never accesses private keys or signs on anyone's
+behalf. A first-party interface for collecting the two Person signatures is
+not yet provided; authorized signers must use their own trusted signing tools.
+The final adjudication file contains that payload, `reviewerSignature` and
+`ownerSignature` as unpadded base64url Ed25519 signatures.
+
+For an unfinished or reproduction-only target with no final Receipt, `status`
+accepts the same pool, database-fingerprint and source-revision arguments,
+without `--receipt-id`. It lists at most 100 review jobs as **unverified
+database projections**, marks truncation explicitly, and reports the final
+and review pool shares as unallocated or pending unless a verified lock exists.
+It does not treat a completed assignment as an independently verified payout.
 
 This service is not yet an automatic production payout, a signed personal
 credit receipt, or a challenge adjudication mechanism. The synthetic
@@ -143,8 +202,8 @@ required before this service is used on a production pool.
 ## Next implementation slices
 
 1. Add operator-reviewed pool activation with a signed activation event.
-2. Define and verify independent target-completion and contribution-attribution
-   adjudication, with an explicitly authorized trust root.
+2. Independently review the finality adjudication and enroll the explicitly
+   authorized project owner through a separate reviewed change.
 3. Complete independent security review and production-specific validation.
 4. Produce signed personal credit receipts for committed allocations.
 5. Add adjudicated challenge-reserve payouts for valid rejections and decisive
