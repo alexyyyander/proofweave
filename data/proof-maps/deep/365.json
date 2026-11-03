@@ -879,7 +879,72 @@
     }
   ],
   "finalEdges": [],
-  "crossEdges": [],
+  "crossEdges": [
+    {
+      "from": "m1:m1-ang-density",
+      "to": "m2:m2-local-density",
+      "type": "same-role",
+      "label": "Shared statement: Uniform transfer density",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-ang-raising",
+      "to": "m2:m2-angular-raising",
+      "type": "same-role",
+      "label": "Shared statement: Weighted raising estimate",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-bdy-jets",
+      "to": "m2:m2-data-jets",
+      "type": "same-role",
+      "label": "Shared statement: Boundary jets",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-cross-criterion",
+      "to": "m2:m2-cross-criterion",
+      "type": "same-role",
+      "label": "Shared statement: Product extension criterion",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-cross-initial",
+      "to": "m2:m2-cross-initial",
+      "type": "same-role",
+      "label": "Shared statement: Fixed-separation initialization",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-cross-propagation",
+      "to": "m2:m2-cross-propagation",
+      "type": "same-role",
+      "label": "Shared statement: Propagation through a compact cylinder",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-cross-series",
+      "to": "m2:m2-cross-series",
+      "type": "same-role",
+      "label": "Shared statement: Extension from a cross",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-sph-continuation",
+      "to": "m2:m2-balls-continuation",
+      "type": "same-role",
+      "label": "Shared statement: Continuation to the sphere family",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    }
+  ],
   "comparisons": [],
   "sharedInputs": [],
   "relatedManuscripts": [],
@@ -887,7 +952,8 @@
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
-    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
+    "Cross-strategy links are exact normalized statement-label matches only; they are review candidates, not audited dependencies."
   ],
   "sources": [
     {

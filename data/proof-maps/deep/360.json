@@ -647,7 +647,64 @@
     }
   ],
   "finalEdges": [],
-  "crossEdges": [],
+  "crossEdges": [
+    {
+      "from": "m1:m1-geo-convexity",
+      "to": "m2:m2-geo-convexity",
+      "type": "same-role",
+      "label": "Shared statement: Convex injectivity domains",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-geo-intermediate",
+      "to": "m2:m2-geo-intermediate",
+      "type": "same-role",
+      "label": "Shared statement: Intermediate regularity and pole control",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-geo-prelim",
+      "to": "m2:m2-geo-prelim",
+      "type": "same-role",
+      "label": "Shared statement: Uniform supports and active logs",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-geo-sections",
+      "to": "m2:m2-geo-sections",
+      "type": "same-role",
+      "label": "Shared statement: Convex lifted gap sections",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-geo-short-time",
+      "to": "m2:m2-geo-short-time",
+      "type": "same-role",
+      "label": "Shared statement: Short time for a semiconvex datum",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-geo-slack",
+      "to": "m2:m2-geo-slack",
+      "type": "same-role",
+      "label": "Shared statement: Transverse slack",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-geo-support",
+      "to": "m2:m2-geo-support",
+      "type": "same-role",
+      "label": "Shared statement: Global supporting property",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    }
+  ],
   "comparisons": [],
   "sharedInputs": [],
   "relatedManuscripts": [],
@@ -655,7 +712,8 @@
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
-    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
+    "Cross-strategy links are exact normalized statement-label matches only; they are review candidates, not audited dependencies."
   ],
   "sources": [
     {

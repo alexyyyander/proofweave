@@ -823,7 +823,56 @@
     }
   ],
   "finalEdges": [],
-  "crossEdges": [],
+  "crossEdges": [
+    {
+      "from": "m1:m1-lem-affine-recovery",
+      "to": "m2:m2-lem-affine-recovery",
+      "type": "same-role",
+      "label": "Shared statement: Affine recovery",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-lem-markers",
+      "to": "m2:m2-lem-markers",
+      "type": "same-role",
+      "label": "Shared statement: Local markers",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-lem-markers",
+      "to": "m3:m3-marker-local",
+      "type": "same-role",
+      "label": "Shared statement: Local markers",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-lem-split",
+      "to": "m3:m3-alg-split",
+      "type": "same-role",
+      "label": "Shared statement: Split identity",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-lem-template",
+      "to": "m2:m2-lem-templates",
+      "type": "same-role",
+      "label": "Shared statement: Periodic templates",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-lem-markers",
+      "to": "m3:m3-marker-local",
+      "type": "same-role",
+      "label": "Shared statement: Local markers",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    }
+  ],
   "comparisons": [],
   "sharedInputs": [],
   "relatedManuscripts": [],
@@ -831,7 +880,8 @@
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
-    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
+    "Cross-strategy links are exact normalized statement-label matches only; they are review candidates, not audited dependencies."
   ],
   "sources": [
     {

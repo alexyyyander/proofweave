@@ -629,7 +629,56 @@
     }
   ],
   "finalEdges": [],
-  "crossEdges": [],
+  "crossEdges": [
+    {
+      "from": "m1:m1-lem-hf-atomic-transfer",
+      "to": "m2:m2-hf-atomic-transfer",
+      "type": "same-role",
+      "label": "Shared statement: Transfer of atomic facts",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-lem-hf-type-counts",
+      "to": "m2:m2-hf-extension-counts",
+      "type": "same-role",
+      "label": "Shared statement: Extension counts",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-lem-sparse-cochain",
+      "to": "m2:m2-sup-sparse-cochain",
+      "type": "same-role",
+      "label": "Shared statement: Sparse cochains",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-prop-base-equivalence",
+      "to": "m2:m2-base-equivalence",
+      "type": "same-role",
+      "label": "Shared statement: Base counting equivalence",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-prop-small-orbit-support",
+      "to": "m2:m2-sup-small-orbit",
+      "type": "same-role",
+      "label": "Shared statement: Small-orbit support bound",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-thm-hf-transfer",
+      "to": "m2:m2-hf-transfer",
+      "type": "same-role",
+      "label": "Shared statement: Transfer through small supports",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    }
+  ],
   "comparisons": [],
   "sharedInputs": [],
   "relatedManuscripts": [],
@@ -637,7 +686,8 @@
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
-    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
+    "Cross-strategy links are exact normalized statement-label matches only; they are review candidates, not audited dependencies."
   ],
   "sources": [
     {

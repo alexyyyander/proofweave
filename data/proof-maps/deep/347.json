@@ -459,7 +459,24 @@
     }
   ],
   "finalEdges": [],
-  "crossEdges": [],
+  "crossEdges": [
+    {
+      "from": "m1:m1-morse-stable-lower",
+      "to": "m3:m3-prop-stable-lower",
+      "type": "same-role",
+      "label": "Shared statement: For every connected closed smooth manifold W , \\[ (W)(W). \\]",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-geo-surfaces",
+      "to": "m3:m3-lem-torsion-surfaces",
+      "type": "same-role",
+      "label": "Shared statement: The surfaces S_2 and S_3 admit holomorphic embeddings into ^ 44 and ^ 164 ,…",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    }
+  ],
   "comparisons": [],
   "sharedInputs": [],
   "relatedManuscripts": [],
@@ -467,7 +484,8 @@
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
-    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
+    "Cross-strategy links are exact normalized statement-label matches only; they are review candidates, not audited dependencies."
   ],
   "sources": [
     {

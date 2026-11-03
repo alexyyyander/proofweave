@@ -964,7 +964,80 @@
     }
   ],
   "finalEdges": [],
-  "crossEdges": [],
+  "crossEdges": [
+    {
+      "from": "m1:m1-lem-derivative-tests",
+      "to": "m3:m3-pre-derivatives",
+      "type": "same-role",
+      "label": "Shared statement: Derivative tests",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-lem-local-mellin",
+      "to": "m3:m3-sh-mellin-energy",
+      "type": "same-role",
+      "label": "Shared statement: Local Mellin energy",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-lem-long-prime",
+      "to": "m3:m3-lp-prime-polynomial",
+      "type": "same-role",
+      "label": "Shared statement: Long prime polynomial",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-lem-prime-estimates",
+      "to": "m3:m3-pre-primes",
+      "type": "same-role",
+      "label": "Shared statement: Prime estimates",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-lp-l-upper",
+      "to": "m3:m3-lp-l-upper",
+      "type": "same-role",
+      "label": "Shared statement: A bound near the line Res=1",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-lp-local-log-derivative",
+      "to": "m3:m3-lp-local-log-derivative",
+      "type": "same-role",
+      "label": "Shared statement: Local logarithmic derivative",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-lp-log-phase",
+      "to": "m3:m3-lp-log-phase",
+      "type": "same-role",
+      "label": "Shared statement: A logarithmic phase on progressions",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-lp-mean-value",
+      "to": "m3:m3-lp-mean-value",
+      "type": "same-role",
+      "label": "Shared statement: A quantitative power-sum bound",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m2:m2-lp-zero-free",
+      "to": "m3:m3-lp-zero-free",
+      "type": "same-role",
+      "label": "Shared statement: A zero-free strip at large height",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    }
+  ],
   "comparisons": [],
   "sharedInputs": [],
   "relatedManuscripts": [],
@@ -972,7 +1045,8 @@
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
-    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
+    "Cross-strategy links are exact normalized statement-label matches only; they are review candidates, not audited dependencies."
   ],
   "sources": [
     {
