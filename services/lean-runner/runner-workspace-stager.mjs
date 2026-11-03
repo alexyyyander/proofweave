@@ -16,6 +16,7 @@ export class RunnerWorkspaceStager {
     preflight,
     workspaceTransfer,
     getContainer,
+    discardContainer = async () => {},
     restageRunning = false,
     monotonicNow = () => performance.now(),
     observePhase = () => {},
@@ -26,7 +27,7 @@ export class RunnerWorkspaceStager {
     if (!workspaceTransfer || typeof workspaceTransfer.stage !== "function") {
       throw new TypeError("RunnerWorkspaceStager requires a RunnerWorkspaceTransfer.");
     }
-    if (typeof getContainer !== "function") {
+    if (typeof getContainer !== "function" || typeof discardContainer !== "function") {
       throw new TypeError("RunnerWorkspaceStager requires a private Container resolver.");
     }
     if (typeof restageRunning !== "boolean") {
@@ -41,6 +42,7 @@ export class RunnerWorkspaceStager {
     this.preflight = preflight;
     this.workspaceTransfer = workspaceTransfer;
     this.getContainer = getContainer;
+    this.discardContainer = discardContainer;
     this.restageRunning = restageRunning;
     this.monotonicNow = monotonicNow;
     this.observePhase = observePhase;
@@ -74,16 +76,24 @@ export class RunnerWorkspaceStager {
     if (!container || typeof container.fetch !== "function") {
       throw new RunnerWorkspaceStagerError("Runner Container resolver returned no private fetch stub.");
     }
-    const transfer = await measurePhase({
-      phase: "runner_workspace_transfer",
-      monotonicNow: this.monotonicNow,
-      observePhase: this.observePhase,
-      operation: () => this.workspaceTransfer.stage({
-        run: prepared.run,
-        resolvedBundle: prepared.resolvedBundle,
-        container,
-      }),
-    });
+    let transfer;
+    try {
+      transfer = await measurePhase({
+        phase: "runner_workspace_transfer",
+        monotonicNow: this.monotonicNow,
+        observePhase: this.observePhase,
+        operation: () => this.workspaceTransfer.stage({
+          run: prepared.run,
+          resolvedBundle: prepared.resolvedBundle,
+          container,
+        }),
+      });
+    } catch (error) {
+      // Finalization caches its rejection. A retry must use a fresh private
+      // workspace, and cleanup must never replace the original failure.
+      try { await this.discardContainer(prepared.run.id); } catch { /* Preserve the transfer failure. */ }
+      throw error;
+    }
     if (prepared.run.state === "running") {
       return Object.freeze({
         action: "execute",

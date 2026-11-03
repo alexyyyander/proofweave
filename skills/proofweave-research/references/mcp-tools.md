@@ -160,8 +160,8 @@ Use this minimal order when the tools are available:
    then call `prepare_workspace_bundle_v2` only with
    `ownerConfirmation: "I_CONFIRM_PREPARE_WORKSPACE_BUNDLE"`. It generates
    the source archive, normalized patch, Lake manifest, final tracked-file
-   tree, and signed draft locally. It accepts modifications to existing tracked
-   text files only and returns no uploaded bytes.
+   tree, and signed draft locally. It accepts clean tracked snapshots and modifications to existing tracked
+   text files and returns no uploaded bytes.
 10. If the workspace needs new, deleted, renamed, binary, symlinked, or
    untracked files, stop and ask the owner to select the three exact artifacts
    for the advanced `prepare_artifact_bundle_v2` flow instead; never guess how
