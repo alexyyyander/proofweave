@@ -92,39 +92,25 @@ async function syntheticFixture() {
   return { db, settlement, poolId, receipt, attestations, bundleHash };
 }
 
-test("synthetic SQL lock freezes an allocation, preserves reserves, and is retry-safe", async (t) => {
+test("preview is provisional and concurrent lock attempts fail closed without finality", async (t) => {
   const { db, settlement, poolId, receipt } = await syntheticFixture();
   t.after(() => db.close());
   const preview = await settlement.preview(poolId, receipt.id);
-  assert.equal(await db.prepare("SELECT COUNT(*) AS count FROM problem_credit_pool_events").first("count"), 2);
   assert.deepEqual(preview.plan.reserved, { verified_dependencies: 400, independent_verification: 0, challenge_reserve: 100 });
-  assert.equal(preview.plan.entries.reduce((sum, item) => sum + item.units, 0), 500);
   await assert.rejects(settlement.lock(poolId, receipt.id), /reviewed allocation plan hash/);
-  await assert.rejects(settlement.lock(poolId, receipt.id, { expectedPlanHash: `sha256:${"0".repeat(64)}` }), /differs from the reviewed plan/);
+  const attempts = await Promise.allSettled([settlement.lock(poolId, receipt.id, { expectedPlanHash: preview.plan.payloadHash }), settlement.lock(poolId, receipt.id, { expectedPlanHash: preview.plan.payloadHash })]);
+  assert.ok(attempts.every((item) => item.status === "rejected" && /adjudication is required/.test(item.reason.message)));
+  await assert.rejects(settlement.lock(poolId, receipt.id, { expectedPlanHash: preview.plan.payloadHash }), /adjudication is required/);
   assert.equal(await db.prepare("SELECT COUNT(*) AS count FROM problem_credit_pool_events").first("count"), 2);
-  const locked = await settlement.lock(poolId, receipt.id, { expectedPlanHash: preview.plan.payloadHash });
-  assert.equal(locked.created, true);
-  assert.equal(locked.state, "locked");
-  assert.deepEqual(locked.allocation, preview.plan);
-  const retry = await settlement.lock(poolId, receipt.id, { expectedPlanHash: preview.plan.payloadHash });
-  assert.equal(retry.created, false);
-  assert.equal(retry.eventHash, locked.eventHash);
-  await assert.rejects(settlement.lock(poolId, receipt.id, { expectedPlanHash: `sha256:${"0".repeat(64)}` }), /different reviewed plan/);
-  assert.equal(await db.prepare("SELECT COUNT(*) AS count FROM problem_credit_pool_events").first("count"), 3);
 });
 
-test("synthetic SQL lock fails closed if review evidence changes after preview", async (t) => {
-  const { db, settlement, poolId, receipt, bundleHash } = await syntheticFixture();
+test("an existing allocation event is not served as final without adjudication", async (t) => {
+  const { db, settlement, poolId, receipt } = await syntheticFixture();
   t.after(() => db.close());
-  const preview = settlement.preview.bind(settlement);
-  settlement.preview = async (...args) => {
-    const result = await preview(...args);
-    await db.prepare("INSERT INTO verification_attestations VALUES (?)").bind(bundleHash).run();
-    return result;
-  };
-  const reviewed = await preview(poolId, receipt.id);
-  await assert.rejects(settlement.lock(poolId, receipt.id, { expectedPlanHash: reviewed.plan.payloadHash }), /changed before the lock/);
-  assert.equal(await db.prepare("SELECT COUNT(*) AS count FROM problem_credit_pool_events").first("count"), 2);
+  const preview = await settlement.preview(poolId, receipt.id);
+  const event = { protocolVersion: "pw-credit-pool-event-v1", poolId, sequence: 3, eventType: "locked", occurredAt: preview.cutoff, allocation: preview.plan };
+  await db.prepare("INSERT INTO problem_credit_pool_events VALUES (?, ?, ?, ?, ?, ?, ?)").bind("event:unsafe", poolId, 3, "locked", await sha256Canonical(event), canonicalJson(event), preview.cutoff).run();
+  await assert.rejects(settlement.readLocked(poolId), /adjudication is required/);
 });
 
 test("a review job belonging to another pool cannot receive this pool's credits", async (t) => {
@@ -144,49 +130,6 @@ test("a review job belonging to another pool cannot receive this pool's credits"
   assert.equal(preview.plan.entries.filter((entry) => entry.bucket === "independent_verification").reduce((sum, entry) => sum + entry.units, 0), 200);
 });
 
-test("synthetic SQL lock rejects a runner key swap even if the active key count is unchanged", async (t) => {
-  const { db, settlement, poolId, receipt } = await syntheticFixture();
-  t.after(() => db.close());
-  await db.prepare("INSERT INTO runner_keys VALUES (?, ?, ?, 'active', NULL)").bind("runner:one", "key-one", "fingerprint-one").run();
-  const preview = settlement.preview.bind(settlement);
-  const reviewed = await preview(poolId, receipt.id);
-  settlement.preview = async (...args) => {
-    const result = await preview(...args);
-    await db.prepare("UPDATE runner_keys SET public_key = ?, fingerprint = ? WHERE id = ?").bind("key-two", "fingerprint-two", "runner:one").run();
-    return result;
-  };
-  await assert.rejects(settlement.lock(poolId, receipt.id, { expectedPlanHash: reviewed.plan.payloadHash }), /changed before the lock/);
-  assert.equal(await db.prepare("SELECT COUNT(*) AS count FROM problem_credit_pool_events").first("count"), 2);
-});
-
-test("the lock rejects a Bundle Agent key change after preview", async (t) => {
-  const { db, settlement, poolId, receipt } = await syntheticFixture();
-  t.after(() => db.close());
-  const preview = settlement.preview.bind(settlement);
-  const reviewed = await preview(poolId, receipt.id);
-  settlement.preview = async (...args) => {
-    const result = await preview(...args);
-    await db.prepare("UPDATE agents SET public_key = 'key:other' WHERE id = 'agent:owner'").run();
-    return result;
-  };
-  await assert.rejects(settlement.lock(poolId, receipt.id, { expectedPlanHash: reviewed.plan.payloadHash }), /changed before the lock/);
-  assert.equal(await db.prepare("SELECT COUNT(*) AS count FROM problem_credit_pool_events").first("count"), 2);
-});
-
-test("the lock rejects an owner signing key change after preview", async (t) => {
-  const { db, settlement, poolId, receipt } = await syntheticFixture();
-  t.after(() => db.close());
-  const preview = settlement.preview.bind(settlement);
-  const reviewed = await preview(poolId, receipt.id);
-  settlement.preview = async (...args) => {
-    const result = await preview(...args);
-    await db.prepare("UPDATE person_keys SET public_key = 'person-public:other' WHERE id = 'person-key:owner'").run();
-    return result;
-  };
-  await assert.rejects(settlement.lock(poolId, receipt.id, { expectedPlanHash: reviewed.plan.payloadHash }), /changed before the lock/);
-  assert.equal(await db.prepare("SELECT COUNT(*) AS count FROM problem_credit_pool_events").first("count"), 2);
-});
-
 test("non-public market targets cannot receive the review bucket", async (t) => {
   const { db, settlement, poolId, receipt } = await syntheticFixture();
   t.after(() => db.close());
@@ -202,39 +145,6 @@ test("market credit requires intact publication and claim events", async (t) => 
   await db.prepare("UPDATE verification_market_job_events SET canonical_payload = '{}' WHERE sequence = 1").run();
   await assert.rejects(settlement.preview(poolId, receipt.id), /canonical published and claimed events/);
   assert.equal(await db.prepare("SELECT COUNT(*) AS count FROM problem_credit_pool_events").first("count"), 2);
-});
-
-test("the lock rejects a target becoming private after its snapshot", async (t) => {
-  const { db, settlement, poolId, receipt } = await syntheticFixture();
-  t.after(() => db.close());
-  const preview = settlement.preview.bind(settlement);
-  const reviewed = await preview(poolId, receipt.id);
-  settlement.preview = async (...args) => {
-    const result = await preview(...args);
-    await db.prepare("UPDATE projects SET visibility = 'private' WHERE id = 'project:synthetic'").run();
-    return result;
-  };
-  await assert.rejects(settlement.lock(poolId, receipt.id, { expectedPlanHash: reviewed.plan.payloadHash }), /changed before the lock/);
-  assert.equal(await db.prepare("SELECT COUNT(*) AS count FROM problem_credit_pool_events").first("count"), 2);
-});
-
-test("retry recovers an allocation committed before readback fails", async (t) => {
-  const { db, settlement, poolId, receipt } = await syntheticFixture();
-  t.after(() => db.close());
-  const preview = await settlement.preview(poolId, receipt.id);
-  const readLocked = settlement.readLocked.bind(settlement);
-  let reads = 0;
-  settlement.readLocked = async (...args) => {
-    reads += 1;
-    if (reads === 2) throw new Error("synthetic readback failure");
-    return readLocked(...args);
-  };
-  await assert.rejects(settlement.lock(poolId, receipt.id, { expectedPlanHash: preview.plan.payloadHash }), /synthetic readback failure/);
-  assert.equal(await db.prepare("SELECT COUNT(*) AS count FROM problem_credit_pool_events WHERE event_type = 'locked'").first("count"), 1);
-  settlement.readLocked = readLocked;
-  const retry = await settlement.lock(poolId, receipt.id, { expectedPlanHash: preview.plan.payloadHash });
-  assert.equal(retry.created, false);
-  assert.deepEqual(retry.allocation, preview.plan);
 });
 
 async function insertMarketEvents(db, { jobId, poolId, bundleHash, claimType, rewardWeight, assignmentId, personId }) {

@@ -116,20 +116,23 @@ Receipt closure; any error bonus still requires separate adjudication.
 
 ## Operator-reviewed pool allocation
 
-The pool settlement service can preview a deterministic allocation from a
-public, verified final Receipt and its deduplicated dependency closure. A lock
-requires the exact preview hash and appends one canonical allocation event;
-it is never invoked automatically by Receipt creation or a public route.
+The pool settlement service can preview a provisional allocation from a
+public Receipt and its deduplicated dependency closure. **Settlement is
+disabled**: the current Receipt and ordinary project-acceptance evidence do
+not establish that the beneficiary produced the accepted final result rather
+than reproduced prior work. An independently authenticated adjudication of
+target completion and contribution attribution is required before any lock.
+Preview amounts are not credit balances and do not assert finality.
 
-For the 1,000-credit policy, the final Receipt receives 300 credits. The 400
-dependency credits are divided equally per eligible Receipt, with remaining
-whole units assigned in Receipt ID order. The 200 review credits use each
+For the proposed 1,000-credit policy, an accepted final Receipt would receive
+300 credits. The 400 dependency credits would be divided equally per eligible
+Receipt, with remaining whole units assigned in Receipt ID order. The 200 review credits use each
 completed public market job's policy weight; after flooring the weighted
 shares, remaining whole units are assigned in job ID order. Only evidence
-completed by the lock is included. The 100 challenge credits, and an empty
-dependency or review bucket, remain unallocated. A later review does not
-change a locked allocation. The authenticated personal pool-credit endpoint
-reports the requesting Person's entries separately from one-unit Receipt facts.
+completed by the proposed lock would be included. The 100 challenge credits,
+and an empty dependency or review bucket, would remain unallocated. The
+authenticated personal pool-credit endpoint cannot present a lock as final
+while finality adjudication is unsupported.
 
 This service is not yet an automatic production payout, a signed personal
 credit receipt, or a challenge adjudication mechanism. The synthetic
@@ -140,12 +143,14 @@ required before this service is used on a production pool.
 ## Next implementation slices
 
 1. Add operator-reviewed pool activation with a signed activation event.
-2. Complete independent security review and production-specific validation.
-3. Produce signed personal credit receipts for committed allocations.
-4. Add adjudicated challenge-reserve payouts for valid rejections and decisive
+2. Define and verify independent target-completion and contribution-attribution
+   adjudication, with an explicitly authorized trust root.
+3. Complete independent security review and production-specific validation.
+4. Produce signed personal credit receipts for committed allocations.
+5. Add adjudicated challenge-reserve payouts for valid rejections and decisive
    counterexamples; never infer them from a negative decision alone.
-5. Add Sybil, conflict-of-interest, duplicate-work, and graph-splitting audits
+6. Add Sybil, conflict-of-interest, duplicate-work, and graph-splitting audits
    before opening public settlement.
-6. Only after the off-chain ledger is stable, evaluate anchoring settlement
+7. Only after the off-chain ledger is stable, evaluate anchoring settlement
    roots on a public chain; do not put proofs, identities, or private evidence
    on-chain by default.

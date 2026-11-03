@@ -106,6 +106,7 @@ export class D1PoolCreditSettlement {
 
   async lock(poolId, finalReceiptId, { expectedPlanHash } = {}) {
     if (typeof expectedPlanHash !== "string" || !/^sha256:[0-9a-f]{64}$/.test(expectedPlanHash)) throw new PoolSettlementError("The reviewed allocation plan hash is required.");
+    await this.#requireFinalityAdjudication();
     const existing = await this.readLocked(poolId);
     if (existing) {
       if (existing.allocation.finalReceipt.receiptId !== finalReceiptId) throw new PoolSettlementError("The pool is already locked to a different final Receipt.");
@@ -166,6 +167,7 @@ export class D1PoolCreditSettlement {
     const locked = history.find((event) => event.eventType === "locked");
     if (!locked) return null;
     if (!locked.allocation) throw new PoolSettlementError("The existing pool lock does not contain a compatible allocation.");
+    await this.#requireFinalityAdjudication();
     const stored = locked.allocation;
     const calculated = await derivePoolCreditAllocation(stored);
     if (canonicalJson(calculated) !== canonicalJson(stored) || stored.poolId !== poolId) throw new PoolSettlementError("The stored pool allocation is invalid.");
@@ -406,6 +408,14 @@ export class D1PoolCreditSettlement {
       assertDelegationAllows(certificate, row.delegation_scope, bundle.agentEvent.occurredAt, revokedAt);
     } catch { throw new PoolSettlementError("Artifact Bundle lacks valid signed owner delegation."); }
     return Object.freeze({ agentId: receipt.attempt.agentId, personId: row.owner_person_id, publicKey: row.public_key, certificateId: row.certificate_id, signerKeyId: row.signer_id, signerPublicKey: row.signer_public_key });
+  }
+
+  async #requireFinalityAdjudication() {
+    // A signed Receipt and ordinary project acceptance do not establish that
+    // this beneficiary produced the final result, rather than reproducing an
+    // existing proof. No trusted, purpose-specific finality adjudication is
+    // implemented yet, so no allocation may be committed or served as final.
+    throw new PoolSettlementError("Independent target-completion and contribution-attribution adjudication is required; settlement is disabled.");
   }
 }
 

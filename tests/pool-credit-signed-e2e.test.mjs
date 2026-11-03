@@ -20,7 +20,7 @@ let bundleHash, signedBundle, runResultHash, issuerPair, issuerPublicKey, review
 
 // Synthetic data, real Ed25519 signatures and the real D1 stores. This does
 // not claim that the synthetic Runner executed Lean or proves any theorem.
-test("signed public-market evidence locks exactly once and reads back the frozen allocation", async (t) => {
+test("signed public-market evidence previews, but cannot lock without finality adjudication", async (t) => {
   issuerPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
   issuerPublicKey = base64Url(await crypto.subtle.exportKey("raw", issuerPair.publicKey));
   runnerPair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
@@ -89,13 +89,11 @@ test("signed public-market evidence locks exactly once and reads back the frozen
   assert.equal(preview.plan.reviews.length, 4);
   assert.deepEqual(preview.plan.reserved, { verified_dependencies: 400, independent_verification: 0, challenge_reserve: 100 });
   const results = await Promise.allSettled([settlement.lock(poolId, issued.receipt.id, { expectedPlanHash: preview.plan.payloadHash }), settlement.lock(poolId, issued.receipt.id, { expectedPlanHash: preview.plan.payloadHash })]);
-  assert.ok(results.some((item) => item.status === "fulfilled" && item.value.created));
-  const locked = await settlement.readLocked(poolId);
-  assert.deepEqual(locked.allocation, preview.plan);
+  assert.ok(results.every((item) => item.status === "rejected" && /adjudication is required/.test(item.reason.message)));
   await verify.recordAttestation(await fixtureAttestation({ id: "attestation:late-novelty", assignmentId: laterClaim.assignment.id, claimType: "novelty_reviewed", reviewer: "bob", agent: "agent:bob-reviewer", delegation: "delegation:bob-reviewer", publicKey: bobPublic, privateKey: reviewerPairs.bob.privateKey, evidenceHash: sha("f"), attestedAt: "2026-07-13T00:03:00Z" }));
-  assert.deepEqual((await settlement.readLocked(poolId)).allocation, preview.plan);
-  assert.equal((await settlement.lock(poolId, issued.receipt.id, { expectedPlanHash: preview.plan.payloadHash })).created, false);
-  assert.equal(Number(await db.prepare("SELECT COUNT(*) AS n FROM problem_credit_pool_events WHERE pool_id = ? AND event_type = 'locked'").bind(poolId).first("n")), 1);
+  assert.deepEqual((await settlement.preview(poolId, issued.receipt.id)).plan, preview.plan);
+  await assert.rejects(settlement.lock(poolId, issued.receipt.id, { expectedPlanHash: preview.plan.payloadHash }), /adjudication is required/);
+  assert.equal(Number(await db.prepare("SELECT COUNT(*) AS n FROM problem_credit_pool_events WHERE pool_id = ? AND event_type = 'locked'").bind(poolId).first("n")), 0);
 });
 
 async function seedOutputs(db, result) {
