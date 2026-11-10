@@ -10,6 +10,7 @@ on:
         type: choice
         options:
           - mathlib-4.35-56a00
+          - mathlib-4.34.1-d13f2
           - core-4.27
           - mathlib-4.27-a3a10
           - mathlib-4.31-9a948
@@ -55,6 +56,15 @@ jobs:
           SELECTED_PROFILE: ${{ inputs.profile }}
         run: |
           case "$SELECTED_PROFILE" in
+            mathlib-4.34.1-d13f2)
+              echo "profile=mathlib-4.34.1-d13f2" >> "$GITHUB_OUTPUT"
+              echo "base_dockerfile=services/lean-runner/Dockerfile.mathlib-base" >> "$GITHUB_OUTPUT"
+              echo "lean_toolchain=leanprover/lean4:v4.34.1" >> "$GITHUB_OUTPUT"
+              echo "mathlib_revision=d13f23b723b8a846827a245b89c10fc7d3f11612" >> "$GITHUB_OUTPUT"
+              echo "lean_release_url=https://github.com/leanprover/lean4/releases/download/v4.34.1/lean-4.34.1-linux.tar.zst" >> "$GITHUB_OUTPUT"
+              echo "lean_release_sha256=47bf4bbd78f70c2e9670598ab7124d92b6efb7330ff33e5fbb4030f6fd72e4e4" >> "$GITHUB_OUTPUT"
+              echo "lean_archive_root=lean-4.34.1-linux" >> "$GITHUB_OUTPUT"
+              ;;
             mathlib-4.35-56a00)
               echo "profile=mathlib-4.35-56a00" >> "$GITHUB_OUTPUT"
               echo "base_dockerfile=services/lean-runner/Dockerfile.mathlib-base" >> "$GITHUB_OUTPUT"
