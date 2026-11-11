@@ -174,7 +174,7 @@ async function runConformanceCase({
       environment: {
         imageDigest,
         leanToolchain,
-        mathlibRevision,
+        mathlibRevision: fixture.kind === "mathlib" ? mathlibRevision : "none",
         network: "disabled",
       },
       limits: {

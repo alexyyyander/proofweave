@@ -243,7 +243,7 @@ export const conformanceFixtures = Object.freeze([
   fixture({
     id: "mathlib-import-module",
     kind: "mathlib",
-    appliesToToolchains: ["leanprover/lean4:v4.35.0"],
+    appliesToToolchains: ["leanprover/lean4:v4.34.1", "leanprover/lean4:v4.35.0"],
     entryCommand: ["lake", "env", "lean", "ProofweaveConformance/Mathlib.lean"],
     target: "ProofweaveConformance.mathlib_true",
     allowedAxioms: [],
@@ -269,7 +269,7 @@ export const conformanceFixtures = Object.freeze([
   fixture({
     id: "module-syntax",
     kind: "mathlib",
-    appliesToToolchains: ["leanprover/lean4:v4.35.0"],
+    appliesToToolchains: ["leanprover/lean4:v4.34.1", "leanprover/lean4:v4.35.0"],
     entryCommand: ["lake", "env", "lean", "ProofweaveConformance/ModuleSyntax.lean"],
     target: "ProofweaveConformance.module_true",
     allowedAxioms: [],
