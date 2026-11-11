@@ -1,4 +1,5 @@
 import { Sandbox, Template } from "e2b";
+import { maximumLeanRunnerContainerTimeoutMs } from "../../packages/protocol/lean-runner.mjs";
 import { assertPinnedRunnerImage } from "./cloudflare-container-policy.mjs";
 
 const defaultPort = 8080;
@@ -9,7 +10,7 @@ const runnerHome = "/home/proofweave";
 const runnerPath = "/opt/lean/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
 const runnerLeanExecutable = "/opt/lean/bin/lake";
 const runnerDependencyPackagesRoot = "/opt/proofweave/lake-packages";
-const maximumExecutionTimeoutMs = 1_260_000;
+const maximumExecutionTimeoutMs = maximumLeanRunnerContainerTimeoutMs;
 const proofWidgetsPackageLockHash = `${runnerDependencyPackagesRoot}/proofwidgets/widget/package-lock.json.hash`;
 const prepareDependencyCacheCommand = `touch ${proofWidgetsPackageLockHash} && chown proofweave:proofweave ${proofWidgetsPackageLockHash} && chmod 0644 ${proofWidgetsPackageLockHash}`;
 const runPath = /^\/v1\/runs\/([^/]+)\/workspace(?:\/artifacts\/(?:source-archive|source-patch|lake-manifest)|\/(?:finalize|execute|cancel|complete)|\/result\/(?:stdout|stderr))?$/;

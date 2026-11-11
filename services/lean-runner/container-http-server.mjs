@@ -2,11 +2,13 @@ import { createServer } from "node:http";
 import { Readable } from "node:stream";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
+import { maximumLeanRunnerContainerTimeoutMs, standardLeanRunnerWallSeconds } from "../../packages/protocol/lean-runner.mjs";
 import { ContainerLeanExecutor } from "./container-lean-executor.mjs";
 import { createContainerWorkspaceHttpHandler } from "./container-workspace-runtime.mjs";
 
 const defaultPort = 8080;
-const maximumRequestMilliseconds = 1_260_000;
+const maximumRequestMilliseconds = maximumLeanRunnerContainerTimeoutMs;
+const defaultRequestMilliseconds = (standardLeanRunnerWallSeconds + 60) * 1_000;
 const headerTimeoutMilliseconds = 30_000;
 
 /**
@@ -35,7 +37,7 @@ export function createLeanRunnerContainerProcess({ environment = process.env } =
  * the Container image. It deliberately serves only an unauthenticated local
  * readiness probe in addition to the handler's private `/v1/runs/...` API.
  */
-export function createPrivateContainerHttpServer({ handler, requestTimeoutMilliseconds = maximumRequestMilliseconds }) {
+export function createPrivateContainerHttpServer({ handler, requestTimeoutMilliseconds = defaultRequestMilliseconds }) {
   if (typeof handler !== "function") {
     throw new TypeError("Private Container HTTP server requires a Fetch request handler.");
   }
@@ -110,7 +112,7 @@ function readRuntimeOptions(environment) {
   }
   const port = environment.PORT === undefined ? defaultPort : parsePort(environment.PORT, "PORT");
   const requestTimeoutMilliseconds = environment.PROOFWEAVE_REQUEST_TIMEOUT_MS === undefined
-    ? maximumRequestMilliseconds
+    ? defaultRequestMilliseconds
     : parseTimeout(environment.PROOFWEAVE_REQUEST_TIMEOUT_MS);
   return Object.freeze({
     networkIsolated: true,

@@ -8,6 +8,9 @@ import {
 
 export const leanRunnerProtocolVersion = "pw-lean-runner-v1";
 export const runnerEnvironmentKeyMaxLength = 512;
+export const standardLeanRunnerWallSeconds = 1_200;
+export const maximumLeanRunnerWallSeconds = 1_800;
+export const maximumLeanRunnerContainerTimeoutMs = (maximumLeanRunnerWallSeconds + 60) * 1_000;
 
 export class LeanRunnerProtocolError extends Error {
   constructor(message) {
@@ -143,7 +146,7 @@ export function normalizeLeanRunnerLimits(value) {
   requireRecord(value, "limits");
   const limits = {
     cpuSeconds: boundedInteger(value.cpuSeconds, "limits.cpuSeconds", 1, 900),
-    wallSeconds: boundedInteger(value.wallSeconds, "limits.wallSeconds", 1, 1_200),
+    wallSeconds: boundedInteger(value.wallSeconds, "limits.wallSeconds", 1, maximumLeanRunnerWallSeconds),
     memoryMiB: boundedInteger(value.memoryMiB, "limits.memoryMiB", 128, 16_384),
     diskMiB: boundedInteger(value.diskMiB, "limits.diskMiB", 128, 16_384),
     outputBytes: boundedInteger(value.outputBytes, "limits.outputBytes", 1_024, 20_000_000),

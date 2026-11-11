@@ -531,10 +531,10 @@ test("E2B adapter requires a pinned image, reviewed policy, private traffic toke
     imageReference,
     cpuCount: 2,
     memoryMB: 2_048,
-    timeoutMs: 1_260_001,
+    timeoutMs: 1_860_001,
     startupTimeoutMs: 10_000,
     resourcePolicyReviewed: true,
-  }), /between 1000 and 1260000/);
+  }), /between 1000 and 1860000/);
 });
 
 test("E2B adapter bounds each authenticated private Sandbox request", async () => {

@@ -41,6 +41,7 @@ export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
             runnerControlPlaneKeyId: env.RUNNER_CONTROL_PLANE_KEY_ID,
             runnerControlPlanePrivateKeyJwkJson: env.RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK,
             runnerDefaultLimitsJson: env.RUNNER_DEFAULT_LIMITS_JSON,
+            runnerLongRunGrantJson: env.RUNNER_LONG_RUN_GRANT_JSON,
             runnerWakeUrl: env.RUNNER_WAKE_URL,
             runnerWakeToken: env.RUNNER_WAKE_TOKEN,
             runnerWakeHostAuthorizationToken: env.RUNNER_WAKE_HOST_AUTHORIZATION_TOKEN,

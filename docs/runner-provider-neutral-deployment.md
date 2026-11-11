@@ -94,6 +94,21 @@ delivery attempt. Keep participant writes and scheduled anchoring paused during
 the smoke, then restore `RUNNER_EXECUTION_ENABLED=false` after collecting the
 terminal result. Do not remove the Run restriction while execution is enabled.
 
+For a source rebuild that needs more than 20 minutes, a reviewed E2B
+deployment can issue one longer signed Run request using
+`RUNNER_LONG_RUN_GRANT_JSON`. Set `attemptId`, `artifactBundleHash`,
+`imageDigest`, `idempotencyKey`, `wallSeconds` (1201–1800), and a canonical
+UTC `expiresAt`. The gateway applies this budget only when all four request
+identifiers match and the grant has not expired. `RUNNER_DEFAULT_LIMITS_JSON`
+still caps ordinary requests at 1200 seconds.
+
+Before enabling the grant, deploy a reviewed image and E2B host that support
+the extended limit, set `PROOFWEAVE_E2B_TIMEOUT_MS=1860000` on that host, and
+verify their exact environment. Use a new request key and keep the host
+restricted to the resulting Run ID. The Bundle and its signature are reused;
+the Run request gets a new signature with its new limit. Removing the grant
+stops admission and does not cancel a Run already accepted into the queue.
+
 ## Required deployment values
 
 Start from `.env.example`. The hosted trusted process requires:

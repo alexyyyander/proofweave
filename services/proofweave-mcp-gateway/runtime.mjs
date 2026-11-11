@@ -41,6 +41,7 @@ export class RemoteMcpRuntimeConfigurationError extends Error {
  *   runnerControlPlaneKeyId?: string | null,
  *   runnerControlPlanePrivateKeyJwkJson?: string | null,
  *   runnerDefaultLimitsJson?: string | null,
+ *   runnerLongRunGrantJson?: string | null,
  *   runnerWakeUrl?: string | null,
  *   runnerWakeToken?: string | null,
  *   runnerWakeHostAuthorizationToken?: string | null,
@@ -65,6 +66,7 @@ export function createD1RemoteMcpGatewayRuntime({
   runnerControlPlaneKeyId = null,
   runnerControlPlanePrivateKeyJwkJson = null,
   runnerDefaultLimitsJson = null,
+  runnerLongRunGrantJson = null,
   runnerWakeUrl = null,
   runnerWakeToken = null,
   runnerWakeHostAuthorizationToken = null,
@@ -111,6 +113,7 @@ export function createD1RemoteMcpGatewayRuntime({
       runnerControlPlaneKeyId,
       runnerControlPlanePrivateKeyJwkJson,
       runnerDefaultLimitsJson,
+      runnerLongRunGrantJson,
       runnerWake: createOptionalRunnerWakeClient({
         runnerWakeUrl,
         runnerWakeToken,
@@ -198,6 +201,7 @@ function createOptionalRunnerDispatcher({
   runnerControlPlaneKeyId,
   runnerControlPlanePrivateKeyJwkJson,
   runnerDefaultLimitsJson,
+  runnerLongRunGrantJson,
   runnerWake,
   runnerWakeRoutes,
   executionEnvironments,
@@ -210,7 +214,7 @@ function createOptionalRunnerDispatcher({
     runnerDefaultLimitsJson,
   ];
   const configured = settings.filter(isConfigured).length;
-  if (configured === 0) return null;
+  if (configured === 0 && !isConfigured(runnerLongRunGrantJson)) return null;
   if (configured !== settings.length) {
     throw new RemoteMcpRuntimeConfigurationError("Runner dispatch configuration must include Queue, image registry, limits, and control-plane signing material together.");
   }
@@ -230,6 +234,9 @@ function createOptionalRunnerDispatcher({
         "RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK",
       ),
       defaultLimits: parseDeploymentJson(runnerDefaultLimitsJson, "RUNNER_DEFAULT_LIMITS_JSON"),
+      longRunGrant: isConfigured(runnerLongRunGrantJson)
+        ? parseDeploymentJson(runnerLongRunGrantJson, "RUNNER_LONG_RUN_GRANT_JSON")
+        : null,
       runnerWake,
       runnerWakeRoutes,
       executionEnvironments,

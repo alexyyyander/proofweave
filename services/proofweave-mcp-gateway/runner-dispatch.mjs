@@ -3,7 +3,12 @@ import { D1InlineArtifactStore, maxInlineArtifactObjectBytes } from "../artifact
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { RunnerOrchestrator } from "../lean-runner/orchestrator.mjs";
 import { PinnedRunnerImageRegistry, RunnerImagePolicyError } from "../lean-runner/runner-image-policy.mjs";
-import { normalizeLeanRunnerLimits, runnerEnvironmentKey } from "../../packages/protocol/lean-runner.mjs";
+import {
+  maximumLeanRunnerWallSeconds,
+  normalizeLeanRunnerLimits,
+  runnerEnvironmentKey,
+  standardLeanRunnerWallSeconds,
+} from "../../packages/protocol/lean-runner.mjs";
 import {
   normalizeRunnerExecutionEnvironments,
   runnerEnvironmentDispatchDecision,
@@ -80,6 +85,7 @@ export class D1RemoteMcpRunnerDispatcher {
     controlPlaneKeyId,
     controlPlanePrivateKeyJwk,
     defaultLimits,
+    longRunGrant = null,
     runnerWake = null,
     runnerWakeRoutes = null,
     executionEnvironments = null,
@@ -131,6 +137,10 @@ export class D1RemoteMcpRunnerDispatcher {
     this.controlPlaneKeyId = controlPlaneKeyId;
     this.controlPlanePrivateKeyJwk = controlPlanePrivateKeyJwk;
     this.defaultLimits = normalizeLeanRunnerLimits(defaultLimits);
+    if (this.defaultLimits.wallSeconds > standardLeanRunnerWallSeconds) {
+      throw new RemoteMcpRunnerDispatchConfigurationError("The default wall time may not exceed the standard Runner limit.");
+    }
+    this.longRunGrant = normalizeLongRunGrant(longRunGrant);
     this.runnerWake = runnerWake;
     this.runnerWakeRoutes = runnerWakeRoutes;
     this.executionEnvironments = normalizedExecutionEnvironments;
@@ -187,11 +197,22 @@ export class D1RemoteMcpRunnerDispatcher {
         availableEnvironments: this.executionEnvironments ?? [],
       });
     }
+    const queuedAt = isoInstant(this.now());
+    const grant = this.longRunGrant;
+    const grantApplies = grant && grant.attemptId === attempt.id &&
+      grant.artifactBundleHash === artifactBundleHash && grant.imageDigest === image.imageDigest &&
+      grant.idempotencyKey === idempotencyKey;
+    if (grantApplies && Date.parse(queuedAt) >= Date.parse(grant.expiresAt)) {
+      throw new RemoteMcpRunnerDispatchValidationError("This long Runner grant expired. Inspect the existing Run or use a new request key.");
+    }
+    const limits = grantApplies
+      ? normalizeLeanRunnerLimits({ ...this.defaultLimits, wallSeconds: grant.wallSeconds })
+      : this.defaultLimits;
     const orchestrator = new RunnerOrchestrator({
       runStore: this.runStore,
       runnerQueue: this.runnerQueue,
       imageDigest: image.imageDigest,
-      defaultLimits: this.defaultLimits,
+      defaultLimits: limits,
       controlPlaneKeyId: this.controlPlaneKeyId,
       controlPlanePrivateKey: await this.controlPlanePrivateKey(),
     });
@@ -199,7 +220,7 @@ export class D1RemoteMcpRunnerDispatcher {
       runId,
       idempotencyKey,
       artifactBundle: loaded.bundle,
-      queuedAt: isoInstant(this.now()),
+      queuedAt,
       beforeDispatch,
     });
     const wake = selectRunnerWake({
@@ -234,6 +255,30 @@ export class D1RemoteMcpRunnerDispatcher {
     }
     return this.controlPlanePrivateKeyPromise;
   }
+}
+
+function normalizeLongRunGrant(value) {
+  if (value === null) return null;
+  const keys = ["attemptId", "artifactBundleHash", "imageDigest", "idempotencyKey", "wallSeconds", "expiresAt"];
+  if (!value || typeof value !== "object" || Array.isArray(value) ||
+      Object.keys(value).length !== keys.length || keys.some(key => !Object.hasOwn(value, key))) {
+    throw new RemoteMcpRunnerDispatchConfigurationError("A long Runner grant must bind one Attempt, Bundle, image, request, wall time, and expiry.");
+  }
+  requireIdentifier(value.attemptId, "Long Runner grant Attempt");
+  requireSha256(value.artifactBundleHash, "Long Runner grant Bundle hash");
+  requireIdentifier(value.idempotencyKey, "Long Runner grant idempotency key", 160);
+  if (typeof value.imageDigest !== "string" || !/^\S+@sha256:[a-f0-9]{64}$/.test(value.imageDigest)) {
+    throw new RemoteMcpRunnerDispatchConfigurationError("A long Runner grant must name an immutable image digest.");
+  }
+  if (!Number.isInteger(value.wallSeconds) || value.wallSeconds <= standardLeanRunnerWallSeconds ||
+      value.wallSeconds > maximumLeanRunnerWallSeconds) {
+    throw new RemoteMcpRunnerDispatchConfigurationError("Long Runner grant wall time is outside the supported range.");
+  }
+  if (typeof value.expiresAt !== "string" || !Number.isFinite(Date.parse(value.expiresAt)) ||
+      new Date(value.expiresAt).toISOString() !== value.expiresAt) {
+    throw new RemoteMcpRunnerDispatchConfigurationError("A long Runner grant needs a canonical UTC expiry.");
+  }
+  return Object.freeze({ ...value });
 }
 
 function requireAttempt(value) {

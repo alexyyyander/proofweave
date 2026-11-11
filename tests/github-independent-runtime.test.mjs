@@ -86,6 +86,26 @@ test("dispatch refuses a paused Runner environment with a typed error", async (t
   assert.equal(fixture.provider.createCalls, 0);
 });
 
+test("a temporary long Runner grant changes only the exact signed request", async (t) => {
+  const fixture = await createFixture({ resultMode: "valid", longRun: true });
+  t.after(() => fixture.close());
+
+  const granted = await fixture.dispatch();
+  assert.equal(granted.message.request.limits.wallSeconds, 1_800);
+  assert.equal(granted.run.artifactBundleHash, fixture.manifestHash);
+  assert.equal(granted.message.request.environment.imageDigest, imageReference);
+  await waitForRun(fixture.runStore, granted.run.id, "succeeded");
+  assert.equal(fixture.provider.createOptions.envs.PROOFWEAVE_REQUEST_TIMEOUT_MS, "1860000");
+
+  const standard = await fixture.dispatch({ suffix: "ungranted" });
+  assert.equal(standard.message.request.limits.wallSeconds, 120);
+  await waitForRun(fixture.runStore, standard.run.id, "succeeded");
+
+  fixture.expireGrant();
+  await assert.rejects(fixture.dispatch(), /long Runner grant expired/);
+  assert.equal((await fixture.queue.find(granted.run.id)).message.request.limits.wallSeconds, 1_800);
+});
+
 test("invalid E2B result evidence is retried without a signed or terminal projection", async (t) => {
   const fixture = await createFixture({ resultMode: "mismatched" });
   t.after(() => fixture.close());
@@ -113,7 +133,7 @@ test("invalid E2B result evidence is retried without a signed or terminal projec
   assert.equal(fixture.provider.killed, 1);
 });
 
-async function createFixture({ resultMode, executionEnabled = true }) {
+async function createFixture({ resultMode, executionEnabled = true, longRun = false }) {
   const database = new LibsqlD1Database(createClient({ url: "file::memory:" }));
   await applyMigrations(database);
   const [agentKeys, controlPlaneKeys, runnerKeys] = await Promise.all(
@@ -186,7 +206,7 @@ async function createFixture({ resultMode, executionEnabled = true }) {
     PROOFWEAVE_E2B_RESOURCE_POLICY_REVIEWED: "true",
     PROOFWEAVE_E2B_CPU: "2",
     PROOFWEAVE_E2B_MEMORY_MB: "2048",
-    PROOFWEAVE_E2B_TIMEOUT_MS: "120000",
+    PROOFWEAVE_E2B_TIMEOUT_MS: longRun ? "1860000" : "120000",
     PROOFWEAVE_E2B_STARTUP_TIMEOUT_MS: "5000",
   });
   let clockMilliseconds = Date.parse("2026-07-27T00:00:00.000Z");
@@ -265,6 +285,14 @@ async function createFixture({ resultMode, executionEnabled = true }) {
       diskMiB: 1_024,
       outputBytes: 1_000_000,
     },
+    longRunGrant: longRun ? {
+      attemptId: bundle.attemptId,
+      artifactBundleHash: staged.bundle.manifestHash,
+      imageDigest: imageReference,
+      idempotencyKey: `github-independent-${resultMode}`,
+      wallSeconds: 1_800,
+      expiresAt: "2026-07-28T00:00:00.000Z",
+    } : null,
     runnerWake,
     now,
   });
@@ -276,12 +304,16 @@ async function createFixture({ resultMode, executionEnabled = true }) {
     queue,
     runStore,
     service,
-    async dispatch() {
+    expireGrant() {
+      clockMilliseconds = Date.parse("2026-07-28T00:00:00.000Z");
+    },
+    async dispatch({ suffix = "" } = {}) {
+      const key = `github-independent-${resultMode}${suffix ? `-${suffix}` : ""}`;
       return dispatcher.queueBundle({
         attempt: { id: bundle.attemptId, problemRevisionId: bundle.problemRevisionId },
         artifactBundleHash: staged.bundle.manifestHash,
-        idempotencyKey: `github-independent-${resultMode}`,
-        runId: `run:github-independent-${resultMode}`,
+        idempotencyKey: key,
+        runId: `run:${key}`,
       });
     },
     async close() {

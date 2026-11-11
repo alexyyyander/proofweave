@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { PinnedRunnerImageRegistry } from "../services/lean-runner/runner-image-policy.mjs";
-import { normalizeLeanRunnerLimits } from "../packages/protocol/lean-runner.mjs";
+import { normalizeLeanRunnerLimits, standardLeanRunnerWallSeconds } from "../packages/protocol/lean-runner.mjs";
 import { maxInlineArtifactObjectBytes } from "../services/artifacts/d1-inline-artifact-store.mjs";
 
 /**
@@ -125,6 +125,9 @@ function normalizeRunnerIntegration(value) {
   let defaultLimits;
   try {
     defaultLimits = normalizeLeanRunnerLimits(normalizeRunnerLimits(runner.default_limits));
+    if (defaultLimits.wallSeconds > standardLeanRunnerWallSeconds) {
+      throw new Error(`default wall time must not exceed ${standardLeanRunnerWallSeconds} seconds`);
+    }
   } catch {
     throw new Error("runner.default_limits must satisfy the Lean Runner resource limits.");
   }

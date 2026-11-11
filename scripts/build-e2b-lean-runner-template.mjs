@@ -1,4 +1,4 @@
-import { Template, waitForProcess } from "e2b";
+import { Template, waitForFile } from "e2b";
 import { basename, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { assertPinnedRunnerImage } from "../services/lean-runner/cloudflare-container-policy.mjs";
@@ -64,7 +64,10 @@ if (sourceOverlayEnabled) {
     ], { user: "root" });
 }
 
-template = template.setStartCmd("tail -f /dev/null", waitForProcess("tail"));
+// The reviewed minimal image omits pgrep. Use a marker written by the startup
+// shell so readiness works without adding process inspection tools.
+const readyMarker = "/tmp/proofweave-e2b-template-ready";
+template = template.setStartCmd(`: > ${readyMarker} && exec tail -f /dev/null`, waitForFile(readyMarker));
 
 let built;
 try {

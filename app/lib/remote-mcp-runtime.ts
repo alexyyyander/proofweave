@@ -36,6 +36,7 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
       runnerControlPlaneKeyId: settings.RUNNER_CONTROL_PLANE_KEY_ID,
       runnerControlPlanePrivateKeyJwkJson: settings.RUNNER_CONTROL_PLANE_PRIVATE_KEY_JWK,
       runnerDefaultLimitsJson: settings.RUNNER_DEFAULT_LIMITS_JSON,
+      runnerLongRunGrantJson: settings.RUNNER_LONG_RUN_GRANT_JSON,
       runnerWakeUrl: settings.RUNNER_WAKE_URL,
       runnerWakeToken: settings.RUNNER_WAKE_TOKEN,
       runnerWakeHostAuthorizationToken: settings.RUNNER_WAKE_HOST_AUTHORIZATION_TOKEN,
