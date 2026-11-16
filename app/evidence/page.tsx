@@ -1,3 +1,4 @@
+import { runnerExecutionStateLabel } from "@/app/workbench/runner-workflow-status";
 import { Breadcrumb } from "@/app/components/navigation/Breadcrumb";
 import { PageTitle, SectionTitle, Badge, Field, ActionLink, EmptyState, FieldList, SectionHeading, Surface } from "@/app/components/ui";
 
@@ -55,7 +56,7 @@ async function loadEvidence(user: Awaited<ReturnType<typeof getCurrentUser>>): P
 
 function EvidenceIndexCard({ record, t, locale }: { record: AttemptEvidenceSummary; t: Translator; locale: Locale }) {
   return <Surface as="article" className="evidence-index-card">
-    <div className="evidence-index-card-top"><span className="micro-label">{record.accessRole === "attempt_owner" ? t("evidence.card.yourAttempt") : t("evidence.card.assignedReview")}</span><span className="review-status is-accepted">{record.latestRunState ?? t("evidence.card.noRun")}</span></div>
+    <div className="evidence-index-card-top"><span className="micro-label">{record.accessRole === "attempt_owner" ? t("evidence.card.yourAttempt") : t("evidence.card.assignedReview")}</span><span className="review-status is-accepted">{record.latestRunState ? runnerExecutionStateLabel(record.latestRunState, t) : t("evidence.card.noRun")}</span></div>
     <SectionTitle>{record.target.title}</SectionTitle>
     <p><code>{record.target.declaration}</code></p>
     <FieldList><Field label={t("evidence.card.agent")}>{record.agentLabel}</Field><Field label={t("evidence.card.bundleHash")}><code>{record.artifactBundleManifestHash}</code></Field><Field label={t("evidence.card.updated")}>{formatDate(record.updatedAt, locale)}</Field></FieldList>

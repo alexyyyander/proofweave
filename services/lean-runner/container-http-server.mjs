@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 import { maximumLeanRunnerContainerTimeoutMs, standardLeanRunnerWallSeconds } from "../../packages/protocol/lean-runner.mjs";
 import { ContainerLeanExecutor } from "./container-lean-executor.mjs";
+import { ContainerDependencyCache } from "./container-dependency-cache.mjs";
 import { createContainerWorkspaceHttpHandler } from "./container-workspace-runtime.mjs";
 
 const defaultPort = 8080;
@@ -23,6 +24,8 @@ export function createLeanRunnerContainerProcess({ environment = process.env } =
     resourceLimitsEnforced: options.resourceLimitsEnforced,
     executablePath: options.leanExecutablePath,
     dependencyPackagesRoot: options.dependencyPackagesRoot,
+    dependencyCache: options.dependencyCache,
+    leanThreads: options.leanThreads,
   });
   const handler = createContainerWorkspaceHttpHandler({
     stagingRoot: options.stagingRoot,
@@ -114,12 +117,32 @@ function readRuntimeOptions(environment) {
   const requestTimeoutMilliseconds = environment.PROOFWEAVE_REQUEST_TIMEOUT_MS === undefined
     ? defaultRequestMilliseconds
     : parseTimeout(environment.PROOFWEAVE_REQUEST_TIMEOUT_MS);
+  const cacheRoot = environment.PROOFWEAVE_DEPENDENCY_CACHE_ROOT;
+  const cacheHash = environment.PROOFWEAVE_DEPENDENCY_CACHE_MANIFEST_HASH;
+  if ((cacheRoot === undefined) !== (cacheHash === undefined)) {
+    throw new Error("A Runner cache root and its pinned manifest hash must be provisioned together.");
+  }
+  const dependencyCache = cacheRoot === undefined ? null : new ContainerDependencyCache({
+    root: absolutePath(cacheRoot, "PROOFWEAVE_DEPENDENCY_CACHE_ROOT"),
+    manifestHash: cacheHash,
+    toolchainRoot: "/opt/lean",
+  });
+  if (dependencyCache && environment.PROOFWEAVE_LEAN_EXECUTABLE_PATH !== undefined
+      && environment.PROOFWEAVE_LEAN_EXECUTABLE_PATH !== "/opt/lean/bin/lake") {
+    throw new Error("Runner cache requires Lake from the fingerprinted toolchain.");
+  }
+  const leanThreads = environment.PROOFWEAVE_LEAN_THREADS === undefined ? null : Number(environment.PROOFWEAVE_LEAN_THREADS);
+  if (leanThreads !== null && (!Number.isSafeInteger(leanThreads) || leanThreads < 1 || leanThreads > 32)) {
+    throw new Error("Runner Lean thread count is outside the allowed range.");
+  }
   return Object.freeze({
     networkIsolated: true,
     resourceLimitsEnforced: true,
     port,
     requestTimeoutMilliseconds,
-    leanExecutablePath: environment.PROOFWEAVE_LEAN_EXECUTABLE_PATH === undefined
+    dependencyCache,
+    leanThreads,
+    leanExecutablePath: dependencyCache ? "/opt/lean/bin/lake" : environment.PROOFWEAVE_LEAN_EXECUTABLE_PATH === undefined
       ? "lake"
       : absolutePath(environment.PROOFWEAVE_LEAN_EXECUTABLE_PATH, "PROOFWEAVE_LEAN_EXECUTABLE_PATH"),
     dependencyPackagesRoot: environment.PROOFWEAVE_LAKE_PACKAGES_ROOT === undefined

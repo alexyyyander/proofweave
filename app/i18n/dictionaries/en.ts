@@ -3394,6 +3394,8 @@ export const en = {
   "intro.merge50": "Find a contribution",
   "intro.merge51": "About the project",
   "runnerWorkflow.deliveryStopped.badge": "Runner needs repair",
+  "runnerWorkflow.retrying.badge": "Waiting for Runner recovery",
+  "runnerWorkflow.retrying.detail": "The delivery lease ended or the Runner released this Run for another attempt. Proofweave is waiting for a Runner to pick it up.",
   "runnerWorkflow.deliveryStopped.before": "The Runner stopped before Lean could start.",
   "runnerWorkflow.deliveryStopped.after": "The Runner stopped before it could record a result.",
   "runnerWorkflow.deliveryStopped.detail": "The service could not process this request. Your approved evidence is preserved. Inspect the recorded failure and repair the Runner before requesting another check.",

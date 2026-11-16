@@ -3368,6 +3368,8 @@ export const zhCN: Dictionary = {
   "intro.merge50": "寻找贡献机会",
   "intro.merge51": "关于项目",
   "runnerWorkflow.deliveryStopped.badge": "Runner 需要修复",
+  "runnerWorkflow.retrying.badge": "等待 Runner 恢复",
+  "runnerWorkflow.retrying.detail": "本次执行的租约已结束，或 Runner 已将任务放回队列。Proofweave 正在等待 Runner 重新领取。",
   "runnerWorkflow.deliveryStopped.before": "Runner 已停止，Lean 尚未启动。",
   "runnerWorkflow.deliveryStopped.after": "Runner 在记录结果前停止。",
   "runnerWorkflow.deliveryStopped.detail": "服务无法处理此请求。你批准的证据已保留。请检查记录的错误并修复 Runner，再请求检查。",

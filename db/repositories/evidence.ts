@@ -11,6 +11,7 @@ import {
 } from "@/packages/protocol/verification-replay-evidence.mjs";
 import { canonicalJson } from "@/packages/protocol/canonical-json.mjs";
 import { normalizeLeanRunnerResult } from "@/packages/protocol/lean-runner.mjs";
+import { runnerDeliverySummary, runnerExecutionState } from "@/services/lean-runner/runner-delivery-summary.mjs";
 import type { ReviewAttestationDecision } from "@/db/repositories/reviews";
 
 export type EvidenceAccessRole = "attempt_owner" | "assigned_reviewer";
@@ -34,6 +35,7 @@ export type EvidenceArtifact = Readonly<{
 export type EvidenceRun = Readonly<{
   id: string;
   state: string;
+  executionState: string;
   requestHash: string;
   runnerResultHash: string | null;
   queuedAt: string;
@@ -168,9 +170,16 @@ type ArtifactObjectRow = {
   content_type: string;
 };
 
-type RunRow = {
-  id: string;
+type RunDeliveryRow = {
   state: string;
+  delivery_state: string | null;
+  delivery_attempts: number | null;
+  last_error_code: string | null;
+  lease_expires_at: string | null;
+};
+
+type RunRow = RunDeliveryRow & {
+  id: string;
   request_hash: string;
   runner_result_hash: string | null;
   queued_at: string;
@@ -249,10 +258,13 @@ class D1EvidenceRepository implements EvidenceRepository {
       .all<BaseRow>();
     const summaries = await Promise.all((rows.results ?? []).map(async (row: BaseRow) => {
       const latest = await getD1()
-        .prepare("SELECT state FROM runs WHERE artifact_bundle_hash = ? ORDER BY updated_at DESC, id ASC LIMIT 1")
+        .prepare(`SELECT run.state, delivery.delivery_state, delivery.delivery_attempts,
+                         delivery.last_error_code, delivery.lease_expires_at
+                  FROM runs AS run LEFT JOIN runner_queue_messages AS delivery ON delivery.run_id = run.id
+                  WHERE run.artifact_bundle_hash = ? ORDER BY run.updated_at DESC, run.id ASC LIMIT 1`)
         .bind(row.manifest_hash)
-        .first<{ state: string }>();
-      return summaryFrom(row, latest?.state ?? null);
+        .first<RunDeliveryRow>();
+      return summaryFrom(row, latest ? runnerExecutionState(latest.state, runnerDeliverySummary(latest)) : null);
     }));
     return Object.freeze(summaries);
   }
@@ -266,7 +278,7 @@ class D1EvidenceRepository implements EvidenceRepository {
     const replays = await this.replaysFor(personId, base);
     const reviewOutcomes = await this.reviewOutcomesFor(base);
     return Object.freeze({
-      summary: summaryFrom(base, runs[0]?.state ?? null),
+      summary: summaryFrom(base, runs[0]?.executionState ?? null),
       bundle: Object.freeze({
         id: base.bundle_id,
         protocolVersion: protocolVersion(base),
@@ -382,9 +394,11 @@ class D1EvidenceRepository implements EvidenceRepository {
       .prepare(
         `SELECT run.id, run.state, run.request_hash, run.runner_result_hash,
                 run.queued_at, run.started_at, run.finished_at,
-                result.result_hash, result.canonical_result, result.received_at
+                result.result_hash, result.canonical_result, result.received_at,
+                delivery.delivery_state, delivery.delivery_attempts, delivery.last_error_code, delivery.lease_expires_at
          FROM runs AS run
          LEFT JOIN run_results AS result ON result.run_id = run.id
+         LEFT JOIN runner_queue_messages AS delivery ON delivery.run_id = run.id
          WHERE run.artifact_bundle_hash = ?
          ORDER BY run.updated_at DESC, run.id ASC`,
       )
@@ -416,6 +430,7 @@ class D1EvidenceRepository implements EvidenceRepository {
     return Object.freeze((rows.results ?? []).map((run: RunRow) => Object.freeze({
       id: run.id,
       state: run.state,
+      executionState: runnerExecutionState(run.state, runnerDeliverySummary(run)),
       requestHash: run.request_hash,
       runnerResultHash: run.runner_result_hash,
       queuedAt: run.queued_at,

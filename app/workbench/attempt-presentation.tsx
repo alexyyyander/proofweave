@@ -1,6 +1,7 @@
 import { type McpAttempt, type McpRunSummary } from "@/packages/domain/mcp";
 import { hasAcceptedKernelEvidence } from "./accepted-kernel-evidence";
 import type { Translator } from "@/app/i18n/translate";
+import { runnerExecutionState } from "@/services/lean-runner/runner-delivery-summary.mjs";
 
 export type AttemptBucket = "needs-attention" | "active" | "waiting" | "history";
 
@@ -47,7 +48,7 @@ export function deriveAttemptPresentation({
     .sort((left, right) => Date.parse(right.queuedAt) - Date.parse(left.queuedAt))[0] ?? null;
   const hasBundle = attempt.events.some((event) => event.type === "bundle_staged");
   const hasProgress = attempt.events.some((event) => event.type === "agent_reported");
-  const deliveryStopped = Boolean(latestRun && ["queued", "preparing", "running"].includes(latestRun.state) && latestRun.delivery?.state === "dead_letter");
+  const deliveryStopped = latestRun !== null && runnerExecutionState(latestRun.state, latestRun.delivery) === "delivery_failed";
   const runPending = Boolean(latestRun && !deliveryStopped && ["queued", "preparing", "running", "cancel_requested"].includes(latestRun.state));
   const runFailed = Boolean(latestRun && (deliveryStopped || ["failed", "timed_out", "rejected", "cancelled"].includes(latestRun.state)));
   const kernelAccepted = hasAcceptedKernelEvidence(latestRun);

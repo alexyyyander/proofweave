@@ -95,5 +95,15 @@ test("dead-lettered preparation is visible as a service failure without a Lean v
   assert.match(status.detail, /evidence is preserved/);
   assert.match(status.technicalDetail, /runner_workspace_finalization_rejected_4xx/);
   const retrying = runnerWorkflowStatus({ ...baseRun, state: "preparing", delivery: { state: "queued", attempts: 1, errorCode: "runner_workspace_finalization_rejected_5xx" } }, true, t);
-  assert.equal(retrying.tone, "running");
+  assert.equal(retrying.tone, "waiting");
+  assert.equal(retrying.badge, "Waiting for Runner recovery");
+});
+
+test("an expired Runner lease is displayed as waiting for recovery", () => {
+  const status = runnerWorkflowStatus({
+    ...baseRun, state: "running", startedAt: "2026-08-02T00:00:00Z",
+    delivery: { state: "leased", attempts: 1, leaseExpiresAt: "2026-08-02T00:05:00Z" },
+  }, true, t);
+  assert.equal(status.tone, "waiting");
+  assert.equal(status.badge, "Waiting for Runner recovery");
 });

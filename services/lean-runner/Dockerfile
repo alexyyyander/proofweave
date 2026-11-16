@@ -6,7 +6,7 @@
 # its digest through RUNNER_BASE_IMAGE. The build is expected to use
 # --network=none.
 ARG RUNNER_BASE_IMAGE
-FROM ${RUNNER_BASE_IMAGE}
+FROM ${RUNNER_BASE_IMAGE} AS runner
 
 ARG RUNNER_BASE_IMAGE
 ARG EXPECTED_NODE_VERSION
@@ -52,3 +52,23 @@ USER proofweave
 WORKDIR /opt/proofweave
 EXPOSE 8080
 ENTRYPOINT ["node", "/opt/proofweave/services/lean-runner/container-http-server.mjs"]
+
+# Build this optional target with an operator-provisioned, trusted snapshot
+# supplied as the named "dependency_cache" build context.
+FROM runner AS cache-enabled
+USER root
+ARG DEPENDENCY_CACHE_MANIFEST_HASH
+COPY --from=dependency_cache /manifest.json /opt/proofweave/dependency-cache/manifest.json
+COPY --from=dependency_cache /build/ /opt/proofweave/dependency-cache/build/
+RUN node --input-type=module -e '\
+  import { createHash } from "node:crypto"; \
+  import { readFileSync } from "node:fs"; \
+  const digest = "sha256:" + createHash("sha256").update(readFileSync("/opt/proofweave/dependency-cache/manifest.json")).digest("hex"); \
+  if (digest !== process.argv[1]) throw new Error("Dependency cache manifest digest mismatch."); \
+' "$DEPENDENCY_CACHE_MANIFEST_HASH" \
+ && chmod -R a+rX,a-w /opt/proofweave/dependency-cache
+ENV PROOFWEAVE_DEPENDENCY_CACHE_ROOT=/opt/proofweave/dependency-cache \
+    PROOFWEAVE_DEPENDENCY_CACHE_MANIFEST_HASH=${DEPENDENCY_CACHE_MANIFEST_HASH}
+USER proofweave
+
+FROM runner AS default

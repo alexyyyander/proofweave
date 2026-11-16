@@ -164,12 +164,14 @@ export class TrustedRunnerProcess {
           // process that lost this lease can finish isolated computation, but
           // it cannot sign or persist that computation as Runner evidence.
           await heartbeat.stop();
-          await this.queue.renew({
+          const refreshFence = () => this.queue.renew({
             runId: delivery.message.runId,
             leaseId: delivery.lease.id,
             renewedAt: timestamp(this.now),
             leaseDurationSeconds: this.leaseDurationSeconds,
           });
+          await refreshFence();
+          return refreshFence;
         },
       });
       await heartbeat.stop();

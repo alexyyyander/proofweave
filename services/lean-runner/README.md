@@ -127,3 +127,30 @@ interrupted transfer is retryable rather than a stuck running Run.
 The selected hosting boundary, non-deployable config template, and remaining
 gates are documented in
 [`docs/runner-cloudflare-deployment.md`](../../docs/runner-cloudflare-deployment.md).
+
+# Optional offline dependency cache
+
+Provision an operator-produced snapshot with the `cache-enabled` target in
+`services/lean-runner/Dockerfile`. Pass its directory as the named BuildKit
+context `dependency_cache` and pin its manifest with
+`--build-arg DEPENDENCY_CACHE_MANIFEST_HASH=sha256:…`. A provider with
+read-only mounts can instead set `PROOFWEAVE_DEPENDENCY_CACHE_ROOT` and
+`PROOFWEAVE_DEPENDENCY_CACHE_MANIFEST_HASH` together. Keep the snapshot outside
+the submitted workspace and writable only by the trusted release process.
+
+The snapshot contains `manifest.json` and its `build/` subtree. A
+`pw-runner-dependency-cache-v1` manifest binds the canonical reconstructed
+workspace hash (`sourceHash`), the selected `entryModule`, and the
+`toolchainHash` returned by `runnerToolchainHash` in the reviewed image. Each
+entry lists `path` relative to the build directory, `bytes`, and `sha256`.
+Seal only previously built dependencies from a trusted producer. Changes to
+any source, Lake configuration, audit input, Lean runtime, Lake runtime, or
+Mathlib revision select a fresh build. A mismatched artifact leaves the
+workspace cache empty. The runner rebuilds the selected module from source
+and reruns the no-sorry and allowed-axiom checks on a cache hit. The signed
+stdout includes a cache decision and fingerprints when a cache is configured.
+
+The Run API exposes `executionState` alongside the canonical Run lifecycle.
+`delivery_failed` represents exhausted delivery and `retrying` represents
+a released or expired lease. These operational states come from durable
+queue records and keep signed result history and operator redrive available.

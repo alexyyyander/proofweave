@@ -31,7 +31,8 @@ export class ContainerLeanExecutorError extends Error {
  * bytes for the trusted Runner Worker to persist and sign.
  */
 export class ContainerLeanExecutor {
-  constructor({ networkIsolated, resourceLimitsEnforced, executable = "lake", executablePath = executable, dependencyPackagesRoot = null, now = () => new Date() }) {
+  constructor({ networkIsolated, resourceLimitsEnforced, executable = "lake", executablePath = executable,
+    dependencyPackagesRoot = null, dependencyCache = null, leanThreads = null, now = () => new Date() }) {
     if (networkIsolated !== true) {
       throw new TypeError("ContainerLeanExecutor requires an explicitly network-isolated Container.");
     }
@@ -51,6 +52,8 @@ export class ContainerLeanExecutor {
     this.executable = executable;
     this.executablePath = executablePath;
     this.dependencyPackagesRoot = dependencyPackagesRoot;
+    this.dependencyCache = dependencyCache;
+    this.leanThreads = leanThreads;
     this.now = now;
   }
 
@@ -74,6 +77,11 @@ export class ContainerLeanExecutor {
     );
 
     const entryModule = entryModuleFromCommand(normalizedRequest.bundle.entryCommand);
+    if (this.dependencyCache && this.dependencyPackagesRoot) {
+      const cache = await this.dependencyCache.restore({ workspace, request: normalizedRequest, entryModule, deadline, signal });
+      const report = Buffer.from(JSON.stringify({ proofweaveDependencyCache: cache }) + "\n");
+      if (report.length < normalizedRequest.limits.outputBytes) collector.append("stdout", report);
+    }
     const build = await diagnoseExecutorStage("lean_build_execution_failed", () => buildWorkspaceEntry({
       command: this.executablePath,
       entryModule,
@@ -81,6 +89,7 @@ export class ContainerLeanExecutor {
       collector,
       deadline,
       signal,
+      leanThreads: this.leanThreads,
     }));
 
     let status;
@@ -110,6 +119,7 @@ export class ContainerLeanExecutor {
         collector,
         deadline,
         signal,
+        leanThreads: this.leanThreads,
       }));
       allowedAxioms = axiomAudit.check;
       if (axiomAudit.reason === "cancelled") {
@@ -171,7 +181,7 @@ export class ContainerLeanExecutor {
   }
 }
 
-async function buildWorkspaceEntry({ command, entryModule, cwd, collector, deadline, signal }) {
+async function buildWorkspaceEntry({ command, entryModule, cwd, collector, deadline, signal, leanThreads }) {
   return runCommand({
     command,
     args: ["build", entryModule],
@@ -179,6 +189,7 @@ async function buildWorkspaceEntry({ command, entryModule, cwd, collector, deadl
     collector,
     deadline,
     signal,
+    leanThreads,
   });
 }
 
@@ -210,7 +221,7 @@ async function mountPinnedLakePackages({ workspace, request, dependencyPackagesR
   await symlink(dependencyPackagesRoot, join(lakeDirectory, "packages"), "dir");
 }
 
-async function auditAllowedAxioms({ workspace, request, command, collector, deadline, signal }) {
+async function auditAllowedAxioms({ workspace, request, command, collector, deadline, signal, leanThreads }) {
   const auditPath = join(workspace.workspaceDirectory, axiomAuditFile);
   // Keep the exact Bundle-selected source file as the execution authority.
   // `lake build <entryModule>` above prepares local dependency oleans, while
@@ -229,6 +240,7 @@ async function auditAllowedAxioms({ workspace, request, command, collector, dead
       collector,
       deadline,
       signal,
+      leanThreads,
     });
     if (execution.reason) return { check: "failed", reason: execution.reason };
     if (execution.code !== 0) return { check: "failed", reason: null };
@@ -333,7 +345,7 @@ function parseAxiomOutput(output, declaration) {
   return axioms.every((axiom) => /^[A-Za-z_][A-Za-z0-9_'.]*(?:\.[A-Za-z_][A-Za-z0-9_'.]*)*$/.test(axiom)) ? axioms : null;
 }
 
-async function runCommand({ command, args, cwd, collector, deadline, signal }) {
+async function runCommand({ command, args, cwd, collector, deadline, signal, leanThreads }) {
   if (signal?.aborted) return { code: terminationExitCode, reason: "cancelled", stdout: Buffer.alloc(0), stderr: Buffer.alloc(0) };
   const remaining = deadline - Date.now();
   if (remaining <= 0) return { code: terminationExitCode, reason: "timed_out", stdout: Buffer.alloc(0), stderr: Buffer.alloc(0) };
@@ -342,7 +354,7 @@ async function runCommand({ command, args, cwd, collector, deadline, signal }) {
       cwd,
       shell: false,
       windowsHide: true,
-      env: restrictedEnvironment(),
+      env: restrictedEnvironment(leanThreads),
       stdio: ["ignore", "pipe", "pipe"],
     });
     let reason = null;
@@ -388,7 +400,7 @@ async function runCommand({ command, args, cwd, collector, deadline, signal }) {
   });
 }
 
-function restrictedEnvironment() {
+function restrictedEnvironment(leanThreads) {
   const path = process.env.PATH;
   const home = process.env.HOME;
   if (!path) throw new ContainerLeanExecutorError("Container image must provide PATH for its fixed lake executable.", { diagnosticCode: "lean_environment_missing" });
@@ -399,6 +411,7 @@ function restrictedEnvironment() {
     ELAN_HOME: process.env.ELAN_HOME ?? join(home, ".elan"),
     LANG: "C.UTF-8",
     LC_ALL: "C.UTF-8",
+    ...(leanThreads === null ? {} : { LEAN_NUM_THREADS: String(leanThreads) }),
   };
 }
 

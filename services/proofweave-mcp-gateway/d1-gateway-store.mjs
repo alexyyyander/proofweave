@@ -10,7 +10,7 @@ import { D1VerificationMarketStore } from "../verification/d1-verification-marke
 import { D1R2ArtifactStore, maxArtifactObjectBytes } from "../artifacts/d1-r2-artifact-store.mjs";
 import { maxInlineArtifactObjectBytes } from "../artifacts/d1-inline-artifact-store.mjs";
 import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
-import { runnerDeliverySummary } from "../lean-runner/runner-delivery-summary.mjs";
+import { runnerDeliverySummary, runnerExecutionState } from "../lean-runner/runner-delivery-summary.mjs";
 import { closedAlphaAttemptLimits } from "../../packages/domain/attempt-policy.mjs";
 import {
   assertResearchWriteAllowed,
@@ -407,9 +407,11 @@ export class D1RemoteMcpGatewayStore {
       this.database.prepare(
         `SELECT replay.id, replay.run_id, replay.idempotency_key, replay.requested_at,
                 run.state, run.queued_at, run.started_at, run.finished_at,
-                run.runner_result_hash, evidence.evidence_hash, evidence.recorded_at
+                run.runner_result_hash, evidence.evidence_hash, evidence.recorded_at,
+                delivery.delivery_state, delivery.delivery_attempts, delivery.last_error_code, delivery.lease_expires_at
          FROM verification_replays AS replay
          INNER JOIN runs AS run ON run.id = replay.run_id
+         LEFT JOIN runner_queue_messages AS delivery ON delivery.run_id = run.id
          LEFT JOIN verification_replay_evidence AS evidence ON evidence.replay_id = replay.id
          WHERE replay.assignment_id = ? AND replay.requester_agent_id = ?
            AND replay.delegation_certificate_id = ?
@@ -606,9 +608,11 @@ export class D1RemoteMcpGatewayStore {
     if (!replay) throw new GatewayStoreNotFoundError("Verification replay not found.");
     const run = await this.requireRunForAttempt(replay.runId, assignment.attempt.id);
     const replayEvidence = await this.findVerificationReplayEvidence(replay.id);
+    const delivery = await this.deliveryForRun(run.id);
     return Object.freeze({
       replay,
-      run,
+      run: Object.freeze({ ...run, executionState: runnerExecutionState(run.state, delivery) }),
+      delivery,
       events: Object.freeze(await this.runStore.listEvents(run.id)),
       replayEvidence,
       verificationState: replayEvidence ? "fresh_replay_evidence_recorded" : "fresh_replay_recorded",
@@ -622,15 +626,20 @@ export class D1RemoteMcpGatewayStore {
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
     await this.requireInstallation(principal, attempt.delegationScope);
     const run = await this.requireRunForAttempt(input.runId, attempt.id);
-    const deliveryRow = await this.database.prepare(
-      "SELECT delivery_state, delivery_attempts, last_error_code FROM runner_queue_messages WHERE run_id = ?",
-    ).bind(run.id).first();
+    const delivery = await this.deliveryForRun(run.id);
     return Object.freeze({
-      run,
-      delivery: runnerDeliverySummary(deliveryRow),
+      run: Object.freeze({ ...run, executionState: runnerExecutionState(run.state, delivery) }),
+      delivery,
       events: Object.freeze(await this.runStore.listEvents(run.id)),
       verificationState: run.runnerResultHash ? "runner_evidence_recorded" : "not_verified",
     });
+  }
+
+  async deliveryForRun(runId) {
+    const row = await this.database.prepare(
+      "SELECT delivery_state, delivery_attempts, last_error_code, lease_expires_at FROM runner_queue_messages WHERE run_id = ?",
+    ).bind(runId).first();
+    return runnerDeliverySummary(row);
   }
 
   async cancelRunnerRun(principal, input) {
@@ -1396,6 +1405,7 @@ function toReviewAgentReplaySummary(row) {
     idempotencyKey: row.idempotency_key,
     requestedAt: row.requested_at,
     state: row.state,
+    executionState: runnerExecutionState(row.state, runnerDeliverySummary(row)),
     queuedAt: row.queued_at,
     startedAt: row.started_at,
     finishedAt: row.finished_at,

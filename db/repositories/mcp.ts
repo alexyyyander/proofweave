@@ -104,6 +104,7 @@ type AttemptEventRow = EventRow & { attempt_id: string };
 type EventWithIdempotencyRow = EventRow & { idempotency_key: string };
 type RunSummaryRow = {
   delivery_state: string | null;
+  lease_expires_at: string | null;
   delivery_attempts: number | null;
   last_error_code: string | null;
   id: string;
@@ -639,7 +640,7 @@ class D1McpRepository implements McpRepository {
                 run.state, run.queued_at, run.started_at, run.finished_at,
                 run.runner_result_hash, result.result_hash, result.canonical_result,
                 result.received_at, delivery.delivery_state, delivery.delivery_attempts,
-                delivery.last_error_code
+                delivery.last_error_code, delivery.lease_expires_at
          FROM runs AS run
          INNER JOIN agent_attempts AS attempt ON attempt.id = run.attempt_id
          LEFT JOIN run_results AS result ON result.run_id = run.id

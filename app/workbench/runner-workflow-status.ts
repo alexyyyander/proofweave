@@ -1,6 +1,7 @@
 import type { McpRunSummary } from "@/packages/domain/mcp";
 import { hasAcceptedKernelEvidence } from "./accepted-kernel-evidence.ts";
 import type { Translator } from "@/app/i18n/translate";
+import { runnerExecutionState } from "../../services/lean-runner/runner-delivery-summary.mjs";
 
 export type RunnerWorkflowStatus = Readonly<{
   tone: "pending" | "waiting" | "running" | "accepted" | "failed";
@@ -10,6 +11,12 @@ export type RunnerWorkflowStatus = Readonly<{
   technicalTitle: string;
   technicalDetail: string;
 }>;
+
+export function runnerExecutionStateLabel(state: string, t: Translator): string {
+  if (state === "delivery_failed") return t("runnerWorkflow.deliveryStopped.badge");
+  if (state === "retrying") return t("runnerWorkflow.retrying.badge");
+  return state;
+}
 
 /**
  * Translate durable Runner lifecycle records into the small amount of state an
@@ -75,7 +82,8 @@ export function runnerWorkflowStatus(
     };
   }
 
-  if (["queued", "preparing", "running"].includes(run.state) && run.delivery?.state === "dead_letter") {
+  const executionState = runnerExecutionState(run.state, run.delivery);
+  if (executionState === "delivery_failed" && run.delivery) {
     const beforeExecution = run.startedAt === null;
     return {
       tone: "failed",
@@ -84,6 +92,18 @@ export function runnerWorkflowStatus(
       detail: t("runnerWorkflow.deliveryStopped.detail"),
       technicalTitle: t("runnerWorkflow.deliveryStopped.technicalTitle"),
       technicalDetail: t("runnerWorkflow.deliveryStopped.technicalDetail", { attempts: run.delivery.attempts, diagnostic: run.delivery.errorCode ? t("runnerWorkflow.deliveryStopped.diagnostic", { code: run.delivery.errorCode }) : "" }),
+    };
+  }
+
+  if (executionState === "retrying") {
+    const detail = t("runnerWorkflow.retrying.detail");
+    return {
+      tone: "waiting",
+      badge: t("runnerWorkflow.retrying.badge"),
+      title: t("runnerWorkflow.retrying.badge"),
+      detail,
+      technicalTitle: t("runnerWorkflow.retrying.badge"),
+      technicalDetail: detail,
     };
   }
 

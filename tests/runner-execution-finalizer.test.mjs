@@ -2,6 +2,36 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { RunnerExecutionFinalizer } from "../services/lean-runner/runner-execution-finalizer.mjs";
 
+test("a disconnected result write retries behind the same lease fence without signing again", async () => {
+  const run = { id: "run:recover", state: "running" };
+  const execution = {};
+  const signed = {};
+  const receivedAt = "2026-08-02T00:00:00Z";
+  const calls = [];
+  const finalizer = new RunnerExecutionFinalizer({
+    runStore: {
+      find: async () => run,
+      async recordResult(runId, result, at) {
+        assert.equal(runId, run.id);
+        assert.equal(result, signed);
+        assert.equal(at, receivedAt);
+        calls.push("record");
+        if (calls.filter(call => call === "record").length === 1) {
+          throw new TypeError("fetch failed", { cause: { code: "UND_ERR_SOCKET" } });
+        }
+        return { ...run, state: "succeeded" };
+      },
+    },
+    outputStore: { persist: async () => calls.push("outputs") },
+    resultSigner: { sign: async () => { calls.push("sign"); return signed; } },
+  });
+  const result = await finalizer.finalize({
+    runId: run.id, execution, receivedAt, retryFence: async () => calls.push("fence"),
+  });
+  assert.equal(result.run.state, "succeeded");
+  assert.deepEqual(calls, ["outputs", "sign", "record", "fence", "record"]);
+});
+
 test("execution finalizer durably succeeds before publishing independent verification work", async () => {
   const calls = [];
   const run = {

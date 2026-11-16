@@ -56,15 +56,17 @@ export class RunnerExecutionFinalizer {
     this.verificationJobPublisher = verificationJobPublisher;
   }
 
-  async finalize({ runId, execution, request = null, receivedAt }) {
-    const run = await this.runStore.find(runId);
+  async finalize({ runId, execution, request = null, receivedAt, retryFence = null }) {
+    const retryUntil = Date.now() + 90_000;
+    const persist = operation => retryImmutableStage(operation, retryFence, retryUntil);
+    const run = await persist(() => this.runStore.find(runId));
     if (!run) throw new RunnerExecutionFinalizerError("Container execution has no persisted Run.");
-    const outputs = await this.outputStore.persist({ run, execution });
+    const outputs = await persist(() => this.outputStore.persist({ run, execution }));
     const result = await this.resultSigner.sign({ execution, run, request });
     const replayEvidence = this.replayEvidenceStore
-      ? await this.replayEvidenceStore.persist({ run, result, receivedAt })
+      ? await persist(() => this.replayEvidenceStore.persist({ run, result, receivedAt }))
       : null;
-    const finalizedRun = await this.runStore.recordResult(runId, result, receivedAt);
+    const finalizedRun = await persist(() => this.runStore.recordResult(runId, result, receivedAt));
     let verificationMarket = null;
     if (finalizedRun.state === "succeeded" && this.verificationJobPublisher) {
       try {
@@ -87,4 +89,30 @@ export class RunnerExecutionFinalizer {
       verificationMarket,
     });
   }
+}
+
+const transientTransportCodes = new Set([
+  "UND_ERR_SOCKET", "UND_ERR_CONNECT_TIMEOUT", "UND_ERR_HEADERS_TIMEOUT", "ETIMEDOUT", "ECONNRESET",
+]);
+
+async function retryImmutableStage(operation, retryFence, retryUntil) {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      if (!retryFence || attempt >= 3 || Date.now() + 2_000 >= retryUntil || !isTransportError(error)) throw error;
+      await new Promise(resolve => setTimeout(resolve, attempt * 500));
+      // A committed write with a lost response is safe here: each store
+      // verifies the exact immutable bytes on retry. Revalidate the same
+      // lease before touching the control plane again.
+      await retryFence();
+    }
+  }
+}
+
+function isTransportError(error) {
+  for (let cause = error, depth = 0; cause && depth < 5; cause = cause.cause, depth++) {
+    if (cause.message === "fetch failed" || transientTransportCodes.has(cause.code)) return true;
+  }
+  return false;
 }

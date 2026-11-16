@@ -282,7 +282,7 @@ async function executeAndFinalize({
   // execution/output retrieval but before operator signing or durable result
   // persistence. Cloudflare's binding can retain the default no-op because
   // its Queue delivery acknowledgement owns that provider's retry boundary.
-  await measurePhase({
+  const retryFence = await measurePhase({
     phase: "runner_lease_fence",
     monotonicNow,
     observePhase,
@@ -297,6 +297,7 @@ async function executeAndFinalize({
       execution,
       request: message.request,
       receivedAt: timestamp(now),
+      ...(typeof retryFence === "function" ? { retryFence } : {}),
     }),
   });
 }

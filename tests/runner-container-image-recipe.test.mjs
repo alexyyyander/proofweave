@@ -90,7 +90,8 @@ test("Lean Runner image recipe fails closed and keeps its build context minimal"
   ]);
 
   assert.match(dockerfile, /^ARG RUNNER_BASE_IMAGE$/m);
-  assert.match(dockerfile, /^FROM \$\{RUNNER_BASE_IMAGE\}$/m);
+  assert.match(dockerfile, /^FROM \$\{RUNNER_BASE_IMAGE\} AS runner$/m);
+  assert.match(dockerfile, /^FROM runner AS default$/m);
   assert.match(dockerfile, /RUNNER_BASE_IMAGE must be pinned by sha256 digest/);
   assert.match(dockerfile, /pw-lean-image-v1/);
   assert.match(dockerfile, /command -v lake/);

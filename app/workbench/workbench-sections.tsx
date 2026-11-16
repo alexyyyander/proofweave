@@ -11,7 +11,8 @@ import { controlPlaneMaintenanceCopy, type ControlPlaneWriteAvailability } from 
 import { attemptIntegrationHref } from "../lib/attempt-integration-href";
 import { activeAttemptDelegation, activeLocalCodexInstallation, activeWorkDelegation, localAgentJourney } from "../lib/local-agent-journey";
 import { hasAcceptedKernelEvidence } from "./accepted-kernel-evidence";
-import { runnerWorkflowStatus } from "./runner-workflow-status";
+import { runnerExecutionStateLabel, runnerWorkflowStatus } from "./runner-workflow-status";
+import { runnerExecutionState } from "@/services/lean-runner/runner-delivery-summary.mjs";
 
 type GateState = "passed" | "waiting" | "required" | "failed";
 
@@ -447,7 +448,7 @@ export function ResearchWorkstation({ attempt, runs, t, locale }: { attempt: Mcp
             <Field label={t("workstation.source.leanBuild")}>{runnerResult.checks.leanBuild}</Field>
           </FieldList>}
         </div>
-        <div className="source-meta"><span>{attempt ? t("workstation.source.attemptBound") : t("workstation.source.noEvidence")}</span><span>{latestRun ? t("workstation.source.runnerState", { state: latestRun.state }) : t("workstation.source.runnerRequired")}</span><span>{latestRun?.evidenceState === "recorded" ? t("workstation.source.resultRecorded") : t("workstation.source.reviewRequired")}</span></div>
+        <div className="source-meta"><span>{attempt ? t("workstation.source.attemptBound") : t("workstation.source.noEvidence")}</span><span>{latestRun ? t("workstation.source.runnerState", { state: runnerExecutionStateLabel(runnerExecutionState(latestRun.state, latestRun.delivery), t) }) : t("workstation.source.runnerRequired")}</span><span>{latestRun?.evidenceState === "recorded" ? t("workstation.source.resultRecorded") : t("workstation.source.reviewRequired")}</span></div>
       </details>
     </Surface>
     <Surface as="article" className="workstation-panel run-panel" id="attempt-activity">
@@ -533,7 +534,8 @@ function latestRunForAttempt(attempt: McpAttempt | null, runs: readonly McpRunSu
 
 function runnerDotClass(run: McpRunSummary | null): string {
   if (hasAcceptedKernelEvidence(run)) return "is-passed";
-  if (run?.evidenceState === "unreadable" || ["failed", "timed_out", "rejected", "cancelled"].includes(run?.state ?? "")) return "is-failed";
+  if (run?.evidenceState === "unreadable" || ["failed", "timed_out", "rejected", "cancelled", "delivery_failed"].includes(
+    runnerExecutionState(run?.state ?? "", run?.delivery))) return "is-failed";
   return run ? "is-waiting" : "is-pending";
 }
 
@@ -550,6 +552,9 @@ function leanGateFor(run: McpRunSummary | null, t: Translator): { state: GateSta
   if (hasAcceptedKernelEvidence(run)) return { state: "passed", detail: t("leanGate.accepted") };
   if (run.evidenceState === "unreadable") return { state: "failed", detail: t("leanGate.unreadable") };
   if (run.result?.summary) return { state: "failed", detail: t("leanGate.failed", { status: run.result.summary.status, kernel: run.result.summary.kernelStatus }) };
+  const executionState = runnerExecutionState(run.state, run.delivery);
+  if (executionState === "delivery_failed") return { state: "failed", detail: t("runnerWorkflow.deliveryStopped.detail") };
+  if (executionState === "retrying") return { state: "waiting", detail: t("runnerWorkflow.retrying.detail") };
   return { state: "waiting", detail: t("leanGate.running", { state: run.state }) };
 }
 
