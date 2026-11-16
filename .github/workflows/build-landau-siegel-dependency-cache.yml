@@ -1,0 +1,58 @@
+name: Build the public Landau–Siegel dependency cache
+
+on:
+  push:
+    branches: [codex/landau-siegel-dependency-cache-20261116]
+
+permissions:
+  contents: read
+
+jobs:
+  build-dependency-cache:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      RUNNER_IMAGE: ghcr.io/alexyyyander/proofweave-lean-runner@sha256:6da14d85d14bafdec842af398f894b565d56837b75a430b72aba27f0e47cfcce
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - name: Verify and stage the public source dependencies
+        run: |
+          test "$(uname -sm)" = 'Linux x86_64'
+          python3 scripts/ci/landau-siegel-cache/prepare.py "$RUNNER_TEMP/landau-siegel-cache-inputs"
+
+      - name: Build the pinned public dependencies inside the approved image
+        run: |
+          set -euo pipefail
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc
+          df -h /
+          docker pull --platform linux/amd64 "$RUNNER_IMAGE"
+          docker image inspect "$RUNNER_IMAGE" --format '{{.Os}}/{{.Architecture}} {{.RepoDigests}}'
+          name=proofweave-landau-siegel-cache-build
+          out="$RUNNER_TEMP/landau-siegel-cache-evidence"
+          mkdir -p "$out"
+          trap 'docker rm --force "$name" || true' EXIT
+          docker run -d --pull never --platform linux/amd64 --name "$name" \
+            --network none --cap-drop ALL --security-opt no-new-privileges \
+            --cpus 2 --memory 8192m --memory-swap 8192m --pids-limit 256 \
+            --tmpfs /tmp:rw,nosuid,nodev,size=3072m,mode=1777 --user 10001:10001 \
+            --env LEAN_NUM_THREADS=2 --entrypoint /bin/bash "$RUNNER_IMAGE" -c 'sleep 3500'
+          tar -cf - -C "$RUNNER_TEMP/landau-siegel-cache-inputs" . |
+            docker exec -i "$name" /bin/bash -c 'set -e; mkdir /tmp/cache-inputs; cd /tmp/cache-inputs; tar -xf -; mkdir .lake; ln -s /opt/proofweave/lake-packages .lake/packages'
+          docker exec -w /tmp/cache-inputs "$name" /opt/lean/bin/lean --version | tee "$out/compiler.txt"
+          docker exec -w /tmp/cache-inputs "$name" /bin/bash -c 'time /opt/lean/bin/lake build +OAI.NumberTheory.SiegelZeros.Main +StacksCore.Tactic.StacksAttribute' 2>&1 | tee "$out/build.log"
+          docker exec -w /tmp/cache-inputs/.lake/build "$name" /bin/bash -c 'set -o pipefail; find lib/lean ir -type f \( -path "*/OAI/*" -o -path "*/PrimeNumberTheoremAnd/*" -o -path "*/StacksCore/*" \) ! -name "*.setup.json" -print0 | sort -z | tar --format=ustar --null -cf - -T -' |
+            zstd -1 -T2 -o "$out/dependencies.tar.zst"
+          cp scripts/ci/landau-siegel-cache/inputs.json "$out/inputs.json"
+          cd "$out"
+          sha256sum dependencies.tar.zst compiler.txt build.log inputs.json > SHA256SUMS
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: landau-siegel-public-dependency-cache
+          path: ${{ runner.temp }}/landau-siegel-cache-evidence/
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
