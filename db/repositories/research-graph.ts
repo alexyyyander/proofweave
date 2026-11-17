@@ -1,5 +1,4 @@
-import { getD1, getResearchWriteAllowlistValues } from "@/db";
-import { assertResearchWriteAllowed } from "@/services/database/research-write-allowlist.mjs";
+import { getD1, assertParticipantResearchWrite } from "@/db";
 import {
   D1ResearchGraphStore,
   ResearchGraphConflictError,
@@ -141,9 +140,7 @@ class D1ResearchGraphRepository implements ResearchGraphRepository {
 
   async importExternalWork(personId: string, input: ExternalWorkImportInput) {
     try {
-      assertResearchWriteAllowed({
-        values: getResearchWriteAllowlistValues(),
-        surface: "participant",
+      await assertParticipantResearchWrite({
         operation: "source:import",
         required: ["person"],
         personId,

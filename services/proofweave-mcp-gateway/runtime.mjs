@@ -52,6 +52,7 @@ export class RemoteMcpRuntimeConfigurationError extends Error {
  *   receiptIssuerPrivateKeyJwkJson?: string | null,
  *   receiptIssuerActivatedAt?: string | null,
  *   operationMode?: string | null,
+ *   betaEnabled?: boolean,
  *   researchWriteAllowlistJson?: string | null,
  * }} options
  */
@@ -78,6 +79,7 @@ export function createD1RemoteMcpGatewayRuntime({
   receiptIssuerActivatedAt = null,
   operationMode = controlPlaneOperationMode.readOnly,
   researchWriteAllowlistJson = null,
+  betaEnabled = false,
 }) {
   if (!database || typeof database.prepare !== "function") {
     throw new RemoteMcpRuntimeConfigurationError("Remote MCP requires a D1 DB binding.");
@@ -138,7 +140,7 @@ export function createD1RemoteMcpGatewayRuntime({
     resource,
     issuer,
     identityProvider: createOAuthAccessTokenAuthenticator({ store: oauthStore, resource }),
-    store: new D1RemoteMcpGatewayStore({ database, bucket: artifactBucket, artifactStore, runnerDispatcher, receiptCoordinator, researchWriteAllowlistJson }),
+    store: new D1RemoteMcpGatewayStore({ database, bucket: artifactBucket, artifactStore, runnerDispatcher, receiptCoordinator, researchWriteAllowlistJson, betaEnabled }),
     rateLimiter: new D1RemoteMcpRateLimiter({ database }),
     operationMode: normalizedOperationMode,
   });

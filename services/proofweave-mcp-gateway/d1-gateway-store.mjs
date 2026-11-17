@@ -1,3 +1,4 @@
+import { assertResearchWriteWithBeta } from "../database/research-beta.mjs";
 import { normalizeVerificationAttestation } from "../../packages/protocol/verification-attestation.mjs";
 import { canonicalJson, sha256Canonical } from "../../packages/protocol/canonical-json.mjs";
 import {
@@ -13,7 +14,6 @@ import { D1RunStore } from "../lean-runner/d1-run-store.mjs";
 import { runnerDeliverySummary, runnerExecutionState } from "../lean-runner/runner-delivery-summary.mjs";
 import { closedAlphaAttemptLimits } from "../../packages/domain/attempt-policy.mjs";
 import {
-  assertResearchWriteAllowed,
   researchWriteAllowlistValues,
 } from "../database/research-write-allowlist.mjs";
 import {
@@ -68,11 +68,12 @@ export class GatewayStoreRateLimitError extends Error {
  */
 export class D1RemoteMcpGatewayStore {
   constructor(databaseOrOptions) {
-    const { database, bucket, artifactStore, runnerDispatcher, receiptCoordinator, researchWriteAllowlistJson } = normalizeGatewayBindings(databaseOrOptions);
+    const { database, bucket, artifactStore, runnerDispatcher, receiptCoordinator, researchWriteAllowlistJson, betaEnabled } = normalizeGatewayBindings(databaseOrOptions);
     if (!database || typeof database.prepare !== "function") {
       throw new TypeError("D1RemoteMcpGatewayStore requires a D1 database binding.");
     }
     this.database = database;
+    this.betaEnabled = betaEnabled;
     this.researchWriteAllowlistJson = researchWriteAllowlistJson ?? null;
     this.maxArtifactBytes = bucket ? maxArtifactObjectBytes : maxInlineArtifactObjectBytes;
     this.verificationStore = new D1VerificationStore(database);
@@ -85,7 +86,9 @@ export class D1RemoteMcpGatewayStore {
   }
 
   requireResearchWriteGate(principal, installation, operation, { required = ["person", "agent", "attempt"], attemptId = null, assignmentId = null, attemptOwnershipVerified = false } = {}) {
-    return assertResearchWriteAllowed({
+    return assertResearchWriteWithBeta({
+      database: this.database,
+      betaEnabled: this.betaEnabled,
       values: researchWriteAllowlistValues("mcp", this.researchWriteAllowlistJson),
       surface: "mcp",
       operation,
@@ -129,7 +132,7 @@ export class D1RemoteMcpGatewayStore {
     assertPrincipalScope(principal, "attempt:create");
     requireCreateAttemptInput(input);
     const installation = await this.requireInstallation(principal, input.delegationScope);
-    this.requireResearchWriteGate(principal, installation, "attempt:create", { required: ["person", "agent"] });
+    await this.requireResearchWriteGate(principal, installation, "attempt:create", { required: ["person", "agent"] });
     const problem = await this.database
       .prepare(
         `SELECT revision.id, revision.slug, revision.title
@@ -212,7 +215,7 @@ export class D1RemoteMcpGatewayStore {
     const installation = await this.requireInstallation(principal);
     const attempt = await this.findAttemptForInstallation(principal, installation, input.attemptId);
     if (!attempt) throw new GatewayStoreNotFoundError("Attempt not found.");
-    this.requireResearchWriteGate(principal, installation, "progress:write", { attemptId: attempt.id, attemptOwnershipVerified: true });
+    await this.requireResearchWriteGate(principal, installation, "progress:write", { attemptId: attempt.id, attemptOwnershipVerified: true });
     if (attempt.status !== "active") {
       throw new GatewayStoreConflictError("Progress can only be reported while an Attempt is active.");
     }
@@ -269,7 +272,7 @@ export class D1RemoteMcpGatewayStore {
     const installation = await this.requireInstallation(principal);
     const attempt = await this.findAttemptForInstallation(principal, installation, checkpoint.attemptId);
     if (!attempt) throw new GatewayStoreNotFoundError("Attempt not found.");
-    this.requireResearchWriteGate(principal, installation, "checkpoint:write", { attemptId: attempt.id, attemptOwnershipVerified: true });
+    await this.requireResearchWriteGate(principal, installation, "checkpoint:write", { attemptId: attempt.id, attemptOwnershipVerified: true });
     if (attempt.delegationScope !== "formalize" && attempt.delegationScope !== "prove") {
       throw new GatewayStoreValidationError("Attempt does not have delegated formalize or prove authority.");
     }
@@ -451,7 +454,7 @@ export class D1RemoteMcpGatewayStore {
     requireArtifactObjectInput(input, this.maxArtifactBytes);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
-    this.requireResearchWriteGate(principal, installation, "artifact:write", { attemptId: attempt.id, attemptOwnershipVerified: true });
+    await this.requireResearchWriteGate(principal, installation, "artifact:write", { attemptId: attempt.id, attemptOwnershipVerified: true });
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const object = await this.requireArtifactStore().putObject({
@@ -471,7 +474,7 @@ export class D1RemoteMcpGatewayStore {
     requireArtifactBundleInput(bundle);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, bundle.attemptId);
-    this.requireResearchWriteGate(principal, installation, "artifact:write", { attemptId: attempt.id, attemptOwnershipVerified: true });
+    await this.requireResearchWriteGate(principal, installation, "artifact:write", { attemptId: attempt.id, attemptOwnershipVerified: true });
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const staged = await this.requireArtifactStore().stageBundle(bundle, {
@@ -496,7 +499,7 @@ export class D1RemoteMcpGatewayStore {
     requireRunnerRequestInput(input);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
-    const window = this.requireResearchWriteGate(principal, installation, "run:request", { attemptId: attempt.id, attemptOwnershipVerified: true });
+    const window = await this.requireResearchWriteGate(principal, installation, "run:request", { attemptId: attempt.id, attemptOwnershipVerified: true });
     if (window.reviewDispatchOnly) throw new GatewayStoreAuthorizationError("Runner dispatch is restricted to explicitly granted review replays.");
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
@@ -527,7 +530,7 @@ export class D1RemoteMcpGatewayStore {
     requireVerificationReplayRequestInput(input);
     const installation = await this.requireInstallation(principal, "review");
     const assignment = await this.requireAcceptedReplayAssignment(input.assignmentId, principal.personId);
-    const window = this.requireResearchWriteGate(principal, installation, "review:replay", { attemptId: assignment.attempt.id, assignmentId: assignment.id });
+    const window = await this.requireResearchWriteGate(principal, installation, "review:replay", { attemptId: assignment.attempt.id, assignmentId: assignment.id });
     if (window.reviewDispatchOnly && !window.reviewGrants.some((grant) =>
       grant.personId === principal.personId && grant.agentId === installation.agentId
       && grant.attemptId === assignment.attempt.id && grant.assignmentId === assignment.id && grant.operations.includes("review:replay"))) {
@@ -647,7 +650,7 @@ export class D1RemoteMcpGatewayStore {
     requireRunnerLookupInput(input);
     const installation = await this.requireInstallation(principal);
     const attempt = await this.requireArtifactAttempt(principal, installation, input.attemptId);
-    this.requireResearchWriteGate(principal, installation, "run:cancel", { attemptId: attempt.id, attemptOwnershipVerified: true });
+    await this.requireResearchWriteGate(principal, installation, "run:cancel", { attemptId: attempt.id, attemptOwnershipVerified: true });
     const currentAuthority = await this.requireInstallation(principal, attempt.delegationScope);
     await this.recordAttemptAuthorityRenewal(principal, currentAuthority, attempt);
     const run = await this.requireRunForAttempt(input.runId, attempt.id);
@@ -678,7 +681,7 @@ export class D1RemoteMcpGatewayStore {
     }
     await this.requireAssignedVerifier(normalized.assignmentId, principal.personId);
     const assignment = await this.requireReplayAssignmentForPerson(normalized.assignmentId, principal.personId);
-    this.requireResearchWriteGate(principal, installation, "attestation:write", { attemptId: assignment.attempt.id, assignmentId: assignment.id });
+    await this.requireResearchWriteGate(principal, installation, "attestation:write", { attemptId: assignment.attempt.id, assignmentId: assignment.id });
     try {
       const recorded = await this.verificationStore.recordAttestation(normalized);
       if (!this.receiptCoordinator) {
@@ -1283,9 +1286,10 @@ function normalizeGatewayBindings(value) {
       runnerDispatcher: value.runnerDispatcher ?? null,
       receiptCoordinator: value.receiptCoordinator ?? null,
       researchWriteAllowlistJson: value.researchWriteAllowlistJson ?? null,
+      betaEnabled: value.betaEnabled === true,
     };
   }
-  return { database: value, bucket: null, artifactStore: null, runnerDispatcher: null, receiptCoordinator: null, researchWriteAllowlistJson: null };
+  return { database: value, bucket: null, artifactStore: null, runnerDispatcher: null, receiptCoordinator: null, researchWriteAllowlistJson: null, betaEnabled: false };
 }
 
 async function verificationReplayIdentity({ assignmentId, requesterAgentId, delegationCertificateId, idempotencyKey }) {

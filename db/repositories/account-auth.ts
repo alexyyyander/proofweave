@@ -1,4 +1,5 @@
-import { getAccountAuthD1 as getD1 } from "@/db";
+import { getAccountAuthD1 as getD1, getResearchWriteAllowlistValues } from "@/db";
+import { researchBetaAdmission } from "@/services/database/research-beta.mjs";
 
 export type AccountProvider = "chatgpt" | "google" | "proofweave";
 
@@ -175,7 +176,8 @@ export class AccountAuthRepository {
     const now = new Date();
     const expiresAt = new Date(now.getTime() + lifetimeSeconds * 1000).toISOString();
     const sessionId = newId("session");
-    await getD1()
+    const database = getD1();
+    const session = database
       .prepare(
         `INSERT INTO app_sessions (
            id, person_id, identity_id, token_hash, expires_at, created_at, last_seen_at
@@ -189,8 +191,10 @@ export class AccountAuthRepository {
         expiresAt,
         now.toISOString(),
         now.toISOString(),
-      )
-      .run();
+      );
+    const admission = researchBetaAdmission(database, getResearchWriteAllowlistValues(), identity, now.toISOString());
+    if (admission) await database.batch([session, admission]);
+    else await session.run();
     return {
       token,
       session: { ...identity, sessionId, expiresAt },

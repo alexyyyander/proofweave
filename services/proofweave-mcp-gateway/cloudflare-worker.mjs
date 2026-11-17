@@ -1,3 +1,4 @@
+import { researchBetaEnabled } from "../database/research-beta.mjs";
 import {
   RemoteMcpRuntimeConfigurationError,
   createD1RemoteMcpGatewayRuntime,
@@ -50,6 +51,7 @@ export function createCloudflareGatewayWorker({ audit = defaultAudit() } = {}) {
             receiptIssuerPrivateKeyJwkJson: env.RECEIPT_ISSUER_PRIVATE_KEY_JWK,
             receiptIssuerActivatedAt: env.RECEIPT_ISSUER_ACTIVATED_AT,
             operationMode: operationState.mode,
+            betaEnabled: researchBetaEnabled(env),
             researchWriteAllowlistJson: env.PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON,
           }).fetch(request);
         } catch (error) {

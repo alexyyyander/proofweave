@@ -1,0 +1,16 @@
+{
+  "name": "proofweave-research-beta-monitor",
+  "account_id": "536799122b9ceaba8d5dc6d0570bbfc8",
+  "main": "workers/research-beta-monitor.mjs",
+  "compatibility_date": "2026-11-17",
+  "workers_dev": false,
+  "preview_urls": false,
+  "triggers": { "crons": ["*/5 * * * *"] },
+  "vars": {
+    "TURSO_HTTPS_URL": "https://proofweave-control-alexyu.aws-us-west-2.turso.io"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}

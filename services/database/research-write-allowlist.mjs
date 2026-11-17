@@ -160,6 +160,7 @@ export function researchWriteAllowlistState(values, surface) {
  *   assignmentId?: string | null,
  *   bundleHash?: string | null,
  *   attemptOwnershipVerified?: boolean,
+ *   betaAccess?: Partial<Record<"person" | "agent" | "attempt", boolean>>,
  * }} input
  */
 export function assertResearchWriteAllowed({
@@ -173,6 +174,7 @@ export function assertResearchWriteAllowed({
   assignmentId = null,
   bundleHash = null,
   attemptOwnershipVerified = false,
+  betaAccess = {},
 }) {
   if (typeof operation !== "string" || operation.trim() === "") {
     throw new ResearchWriteGateConfigurationError("operation must be a non-empty string");
@@ -212,7 +214,7 @@ export function assertResearchWriteAllowed({
     if (typeof value !== "string" || value.trim() === "") {
       throw new ResearchWriteGateUnconfiguredError(`missing_${dimension}`);
     }
-    if (lists[dimension].includes(value)) continue;
+    if (lists[dimension].includes(value) || (state.allowNewAttempts && betaAccess[dimension] === true)) continue;
     // A creation window covers Attempts owned by the allowed Person + Agent.
     // The caller must assert that it verified ownership against the stored row,
     // and the operation must be an owner-side write. Cross-owner review

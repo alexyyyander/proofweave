@@ -112,8 +112,6 @@ export function ResearchLauncher({
         : researchWindowBlockedCopy(eligibility, t)
     : null;
 
-  const creationBlocked = atCapacity && !existing;
-
   const start = async () => {
     if (writeAvailability !== "available") {
       setError(controlPlaneMaintenanceCopy(writeAvailability, t).detail);
@@ -127,7 +125,7 @@ export function ResearchLauncher({
       setError(windowBlocked?.detail ?? t("researchLauncher.error.newWindow"));
       return;
     }
-    if (!target || !delegation || !scope || isStarting || creationBlocked) return;
+    if (!target || !delegation || !scope || isStarting || atCapacity) return;
     setError(null);
     setNotice(null);
     if (existing) {
@@ -200,9 +198,13 @@ export function ResearchLauncher({
     /> : windowBlocked ? <LauncherState
       title={windowBlocked.title}
       detail={windowBlocked.detail}
-      href={RESEARCH_WINDOW_REQUEST_ACCESS_HREF}
-      action={t("researchLauncher.state.window.action")}
-      external
+      href={eligibility?.betaEnrollment === "full" ? "/explore"
+        : eligibility?.betaEnrollment === "enrolled" ? integrationHref
+          : RESEARCH_WINDOW_REQUEST_ACCESS_HREF}
+      action={eligibility?.betaEnrollment === "full" ? t("researchLauncher.state.storage.action")
+        : eligibility?.betaEnrollment === "enrolled" ? t("researchLauncher.state.connect.action")
+          : t("researchLauncher.state.window.action")}
+      external={!eligibility?.betaEnrollment}
     /> : !connection ? <LauncherState
       title={t("researchLauncher.state.connect.title")}
       detail={entryTarget ? t("researchLauncher.state.connect.detailTarget", { title: entryTarget.title }) : t("researchLauncher.state.connect.detail")}
@@ -244,13 +246,12 @@ export function ResearchLauncher({
       </div>}
       <div className="research-launcher-footer">
         <p>{t("researchLauncher.footer.ready", { agent: connection.agentLabel })}</p>
-        <Button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || creationBlocked || (newAttemptBlocked && !existing) || continueBlocked}>
-          {isStarting ? t("researchLauncher.footer.starting") : existing ? t("researchLauncher.footer.continue") : creationBlocked ? t("researchLauncher.footer.capacity") : t("researchLauncher.footer.start")}
-          {!isStarting && !creationBlocked && <span aria-hidden="true">→</span>}
+        <Button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || atCapacity || (newAttemptBlocked && !existing) || continueBlocked}>
+          {isStarting ? t("researchLauncher.footer.starting") : existing ? t("researchLauncher.footer.continue") : atCapacity ? t("researchLauncher.footer.capacity") : t("researchLauncher.footer.start")}
+          {!isStarting && !atCapacity && <span aria-hidden="true">→</span>}
         </Button>
       </div>
-      {creationBlocked && <p className="research-launcher-message is-error" role="alert">{t("researchLauncher.capacity", { max: closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson })}</p>}
-
+      {atCapacity && <p className="research-launcher-message is-error" role="alert">{t("researchLauncher.capacity", { max: closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson })}</p>}
       {notice && <p className="research-launcher-message is-success" role="status">{notice}</p>}
       {error && <p className="research-launcher-message is-error" role="alert">{error}</p>}
     </div>}

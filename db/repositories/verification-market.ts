@@ -1,5 +1,4 @@
-import { getD1, getResearchWriteAllowlistValues } from "@/db";
-import { assertResearchWriteAllowed } from "@/services/database/research-write-allowlist.mjs";
+import { getD1, assertParticipantResearchWrite } from "@/db";
 import {
   D1VerificationMarketStore,
   VerificationMarketConflictError,
@@ -99,9 +98,7 @@ class D1VerificationMarketRepository implements VerificationMarketRepository {
         .bind(jobId)
         .first<{ attempt_id: string }>();
       if (job?.attempt_id) {
-        assertResearchWriteAllowed({
-          values: getResearchWriteAllowlistValues(),
-          surface: "participant",
+        await assertParticipantResearchWrite({
           operation: "review:claim",
           required: ["person", "attempt"],
           personId,

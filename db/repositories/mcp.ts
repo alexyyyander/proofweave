@@ -1,5 +1,4 @@
-import { getD1, getResearchWriteAllowlistValues } from "@/db";
-import { assertResearchWriteAllowed } from "@/services/database/research-write-allowlist.mjs";
+import { getD1, assertParticipantResearchWrite } from "@/db";
 import {
   agentReportedOnly,
   type McpAttempt,
@@ -252,9 +251,7 @@ class D1McpRepository implements McpRepository {
     if (delegated.agentId !== input.agentId) {
       throw new McpDelegationRequiredError("The delegation certificate does not authorize the requested Agent.");
     }
-    assertResearchWriteAllowed({
-      values: getResearchWriteAllowlistValues(),
-      surface: "participant",
+    await assertParticipantResearchWrite({
       operation: "attempt:create",
       required: ["person", "agent"],
       personId,
@@ -357,9 +354,7 @@ class D1McpRepository implements McpRepository {
       }
       throw error;
     }
-    assertResearchWriteAllowed({
-      values: getResearchWriteAllowlistValues(),
-      surface: "participant",
+    await assertParticipantResearchWrite({
       operation: "progress:write",
       personId,
       agentId: attempt.agentId,
@@ -428,9 +423,7 @@ class D1McpRepository implements McpRepository {
       throw new McpAttemptNotActiveError("Only an active Attempt can be closed.");
     }
 
-    assertResearchWriteAllowed({
-      values: getResearchWriteAllowlistValues(),
-      surface: "participant",
+    await assertParticipantResearchWrite({
       operation: "attempt:lifecycle",
       personId,
       agentId: current.agentId,
@@ -497,9 +490,7 @@ class D1McpRepository implements McpRepository {
       throw new McpAttemptNotActiveError(transition.invalidMessage);
     }
 
-    assertResearchWriteAllowed({
-      values: getResearchWriteAllowlistValues(),
-      surface: "participant",
+    await assertParticipantResearchWrite({
       operation: "attempt:lifecycle",
       personId,
       agentId: current.agentId,

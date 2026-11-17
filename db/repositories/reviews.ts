@@ -1,5 +1,4 @@
-import { getD1, getResearchWriteAllowlistValues } from "@/db";
-import { assertResearchWriteAllowed } from "@/services/database/research-write-allowlist.mjs";
+import { getD1, assertParticipantResearchWrite } from "@/db";
 import {
   D1VerificationStore,
   VerificationStoreCapacityError,
@@ -162,9 +161,7 @@ class D1ReviewAssignmentRepository implements ReviewAssignmentRepository {
   async acceptForPerson(personId: string, assignmentId: string, acceptedAt: string): Promise<ReviewAssignmentDetail> {
     const current = await this.getForPerson(personId, assignmentId);
     if (!current) throw new ReviewAssignmentNotFoundError();
-    assertResearchWriteAllowed({
-      values: getResearchWriteAllowlistValues(),
-      surface: "participant",
+    await assertParticipantResearchWrite({
       operation: "review:transition",
       required: ["person", "attempt"],
       personId,
@@ -183,9 +180,7 @@ class D1ReviewAssignmentRepository implements ReviewAssignmentRepository {
   async declineForPerson(personId: string, assignmentId: string, declinedAt: string): Promise<ReviewAssignmentDetail> {
     const current = await this.getForPerson(personId, assignmentId);
     if (!current) throw new ReviewAssignmentNotFoundError();
-    assertResearchWriteAllowed({
-      values: getResearchWriteAllowlistValues(),
-      surface: "participant",
+    await assertParticipantResearchWrite({
       operation: "review:transition",
       required: ["person", "attempt"],
       personId,

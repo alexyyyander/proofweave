@@ -1,3 +1,4 @@
+import { researchBetaEnabled } from "@/services/database/research-beta.mjs";
 import {
   MissingDatabaseBindingError,
   getOAuthD1,
@@ -47,6 +48,7 @@ export async function handleRemoteMcp(request: Request): Promise<Response> {
       receiptIssuerPrivateKeyJwkJson: settings.RECEIPT_ISSUER_PRIVATE_KEY_JWK,
       receiptIssuerActivatedAt: settings.RECEIPT_ISSUER_ACTIVATED_AT,
       operationMode: operationState.mode,
+      betaEnabled: researchBetaEnabled(settings),
       researchWriteAllowlistJson: settings.PROOFWEAVE_MCP_RESEARCH_WRITE_ALLOWLIST_JSON,
     }).fetch(request);
   } catch (error) {

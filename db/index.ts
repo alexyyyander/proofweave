@@ -22,6 +22,8 @@ import { verifyLiveProofweaveControlPlane } from "@/services/database/libsql-mig
 import { createD1OAuthRefreshRotationCapability } from "@/services/proofweave-identity/d1-oauth-store.mjs";
 import * as schema from "./schema";
 import { connectionWriteCapability } from "@/services/database/connection-write-capability.mjs";
+import { assertResearchWriteAllowed } from "@/services/database/research-write-allowlist.mjs";
+import { assertResearchWriteWithBeta, researchBetaEnabled } from "@/services/database/research-beta.mjs";
 
 let remoteDatabase: AnyD1Database | null = null;
 let controlPlaneDiagnostics: Promise<LiveControlPlaneDiagnostics> | null = null;
@@ -173,6 +175,20 @@ export function getMcpOperationState(
  */
 export function getResearchWriteAllowlistValues(): Record<string, string | undefined> {
   return env as unknown as Record<string, string | undefined>;
+}
+
+export function assertParticipantResearchWrite(
+  input: Omit<Parameters<typeof assertResearchWriteAllowed>[0], "values" | "surface" | "betaAccess">,
+) {
+  const values = getResearchWriteAllowlistValues();
+  const betaEnabled = researchBetaEnabled(values);
+  return assertResearchWriteWithBeta({
+    ...input,
+    values,
+    surface: "participant",
+    betaEnabled,
+    database: betaEnabled ? getD1() : null,
+  });
 }
 
 /**

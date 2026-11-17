@@ -1,6 +1,7 @@
 import { getD1, getResearchWriteAllowlistValues, MissingDatabaseBindingError } from "@/db";
 import { getMcpRepository } from "@/db/repositories/mcp";
 import { researchWriteAllowlistState } from "@/services/database/research-write-allowlist.mjs";
+import { researchBetaEnabled, researchBetaEnrollment } from "@/services/database/research-beta.mjs";
 import { researchEligibilityState } from "@/services/database/research-eligibility.mjs";
 
 /**
@@ -22,6 +23,7 @@ export type ResearchEligibility = Readonly<{
     attemptCount: number;
   }>;
   personAllowed: boolean;
+  betaEnrollment?: "enrolled" | "full" | null;
   agentsAllowed: Readonly<{
     total: number;
     active: number;
@@ -63,7 +65,7 @@ export const researchEligibilityPolicy = Object.freeze({
   reviewStatus: false,
   receiptStatus: false,
   note:
-    "canCreateAttempt reports whether at least one active Agent you own is inside the window; the Workbench additionally checks the Agent connected to the current browser before offering creation. A canWrite result describes only this window: the participant control-plane mode and edge boundary must also allow writes. If your Person or Agent is outside the window, ask a Proofweave operator to add it. Clearing the window closes research writes without changing existing records, reviews, or receipts.",
+    "canCreateAttempt requires an active Agent you own. The Workbench checks the connected Agent before offering creation. Beta enrollment can extend an open research write window to your active Agents. The participant control-plane mode and edge boundary must also allow writes.",
 });
 
 /**
@@ -79,20 +81,30 @@ export const researchEligibilityPolicy = Object.freeze({
 export async function getResearchEligibilityForPerson(
   personId: string | null,
 ): Promise<ResearchEligibility> {
-  const allowlistState = researchWriteAllowlistState(
-    getResearchWriteAllowlistValues(),
-    "participant",
-  );
+  const values = getResearchWriteAllowlistValues();
+  const allowlistState = researchWriteAllowlistState(values, "participant");
   if (!personId) {
     return project(allowlistState, null, [], [], true);
   }
 
   try {
-    const [agents, attempts] = await Promise.all([
+    const [agents, attempts, enrollment] = await Promise.all([
       loadOwnAgents(personId),
       getMcpRepository().listAttempts(personId),
+      researchBetaEnabled(values) && allowlistState.valid && allowlistState.allowNewAttempts
+        && !allowlistState.persons.some(id => id === personId)
+        ? researchBetaEnrollment(getD1(), personId)
+        : null,
     ]);
-    return project(allowlistState, personId, agents, attempts, true);
+    if (enrollment !== "enrolled") {
+      return { ...project(allowlistState, personId, agents, attempts, true), betaEnrollment: enrollment };
+    }
+    const effectiveAllowlist = {
+      ...allowlistState,
+      persons: [...allowlistState.persons, personId],
+      agents: [...new Set([...allowlistState.agents, ...agents.filter(agent => agent.status === "active").map(agent => agent.id)])],
+    };
+    return { ...project(effectiveAllowlist, personId, agents, attempts, true), betaEnrollment: enrollment };
   } catch (error) {
     if (error instanceof MissingDatabaseBindingError) {
       return project(allowlistState, personId, [], [], false);

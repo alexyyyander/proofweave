@@ -11,6 +11,8 @@ import { hostingConfig } from "../hosting-config";
 import { getI18n } from "@/app/i18n/server";
 import type { TranslationKey, Translator } from "@/app/i18n/translate";
 import type { Metadata } from "next";
+import { getResearchWriteAllowlistValues } from "@/db";
+import { researchBetaEnabled } from "@/services/database/research-beta.mjs";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +35,7 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
   const demo = demoAuthConfig();
   const hosting = hostingConfig();
   const error = signInError(query.error, t);
+  const betaOpen = researchBetaEnabled(getResearchWriteAllowlistValues());
 
   return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="auth-main">
       <Surface as="section" className="auth-card" aria-labelledby="auth-title">
@@ -40,6 +43,7 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
           <p className="eyebrow">{t("signIn.eyebrow")}</p>
           <PageTitle id="auth-title">{t("signIn.title")}</PageTitle>
           <p>{t("signIn.description")}</p>
+          {betaOpen && <p>{t("signIn.betaEnrollment")}</p>}
         </div>
         {error && <div className="auth-error" role="alert"><strong>{t("signIn.error.title")}</strong><span>{error}</span></div>}
         <div className="auth-provider-list">

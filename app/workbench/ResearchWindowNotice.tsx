@@ -44,6 +44,10 @@ export function researchWindowBlockedCopy(
   if (!eligibility.window.valid) return { title: t("window.blocked.invalid.title"), detail: t("window.blocked.invalid.detail") };
   if (eligibility.reasons.includes("storage_unavailable")) return { title: t("window.blocked.storage.title"), detail: t("window.blocked.storage.detail") };
   if (eligibility.reasons.includes("person_missing")) return { title: t("window.blocked.noPerson.title"), detail: t("window.blocked.noPerson.detail") };
+  if (eligibility.betaEnrollment === "full") return { title: t("window.beta.full.title"), detail: t("window.beta.full.detail") };
+  if (eligibility.betaEnrollment === "enrolled" && eligibility.reasons.includes("no_allowed_agent")) {
+    return { title: t("window.beta.agent.title"), detail: t("window.beta.agent.detail") };
+  }
   if (!eligibility.personAllowed) return { title: t("window.blocked.person.title"), detail: t("window.blocked.person.detail") };
   if (eligibility.reasons.includes("no_allowed_agent")) return { title: t("window.blocked.noAgent.title"), detail: t("window.blocked.noAgent.detail") };
   if (!eligibility.canWrite && eligibility.reasons.includes("attempt_agent_not_allowed")) return { title: t("window.blocked.attemptAgent.title"), detail: t("window.blocked.attemptAgent.detail") };
@@ -140,7 +144,7 @@ export function ResearchWindowNotice({
         {reasons.map((reason) => <li key={reason}>{researchEligibilityReasonText(reason, t)}</li>)}
       </ul>
     </div>}
-    {!fullyOpen && (!storageUnavailable || reasons.some((reason) => reason !== "storage_unavailable")) && <div className="button-row" style={{ marginTop: 18 }}>
+    {!eligibility.betaEnrollment && !fullyOpen && (!storageUnavailable || reasons.some((reason) => reason !== "storage_unavailable")) && <div className="button-row" style={{ marginTop: 18 }}>
       <a className="button button-secondary" href={RESEARCH_WINDOW_REQUEST_ACCESS_HREF} target="_blank" rel="noreferrer">
         {t("window.request")} <span aria-hidden="true">↗</span>
       </a>
