@@ -1082,11 +1082,11 @@ function assertNormalizedPatchContents(contents) {
     if (/^(?:new file mode |deleted file mode |old mode |new mode |rename |copy |similarity index|dissimilarity index|Binary files |GIT binary patch)/.test(line)) {
       throw new Error("The generated patch contains a file operation not supported by the current one-click Bundle alpha.");
     }
-    if (line.startsWith("--- ")) {
+    if (!sawHunk && line.startsWith("--- ")) {
       if (!file || sawOld || (line.slice(4).split("\t", 1)[0] !== `a/${file}` && line.slice(4) !== "/dev/null")) throw new Error("The generated patch has an invalid old-file header.");
       sawOld = true;
     }
-    if (line.startsWith("+++ ")) {
+    if (!sawHunk && line.startsWith("+++ ")) {
       if (!file || !sawOld || sawNew || line.slice(4).split("\t", 1)[0] !== `b/${file}`) throw new Error("The generated patch has an invalid new-file header.");
       sawNew = true;
     }

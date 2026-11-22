@@ -1378,7 +1378,7 @@ test("the local Connector prepares and stages one signed, hash-bound v2 Artifact
     await mkdir(workspaceRoot);
     await Promise.all([
       writeFile(join(workspaceRoot, ".gitignore"), ".lake/\n"),
-      writeFile(join(workspaceRoot, "Main.lean"), "theorem fixture : True := by trivial\n"),
+      writeFile(join(workspaceRoot, "Main.lean"), "-- Baseline proof\ntheorem fixture : True := by trivial\n"),
       writeFile(join(workspaceRoot, "lake-manifest.json"), "{\"name\":\"fixture\"}\n"),
       writeFile(join(workspaceRoot, "lean-toolchain"), "leanprover/lean4:v4.27.0\n"),
     ]);
