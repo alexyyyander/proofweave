@@ -665,7 +665,8 @@ for (const scenario of ["other_deployment", "refresh_repair", "production_domain
     assert.equal(pairingPayload.agentPublicKey === previous.agentPublicKey, !changingControlPlane);
     assert.deepEqual(JSON.parse(await readFile(configPath, "utf8")), previous);
     if (changingControlPlane) assert.match(pairingPayload.agentId, /^urn:pw:agent:codex-/);
-    await fetchWithRetry(`http://127.0.0.1:${callbackPort}/callback?code=approved-code&state=${encodeURIComponent(pairingPayload.oauthState)}`);
+    const receipt = await fetchWithRetry(`http://127.0.0.1:${callbackPort}/callback?code=approved-code&state=${encodeURIComponent(pairingPayload.oauthState)}`);
+    assert.match(await receipt.text(), /<title>Approval saved · Proofweave<\/title>/);
 
     const completed = await client.call("connection_status", {});
     const result = JSON.parse(completed.result.content[0].text);
@@ -711,8 +712,14 @@ test("browser approval returns promptly, shares concurrent starts, and ignores u
   assert.equal(await readFile(fixture.configPath, "utf8"), fixture.previousBytes);
   assert.doesNotMatch(JSON.stringify(stillPending), /refresh-test|privateKeyJwk|access-test/);
 
-  const callback = await fetch(`${fixture.callback}?code=approved&state=${fixture.pairings[0].oauthState}`);
+  const callback = await fetch(`${fixture.callback}?code=approved&state=${fixture.pairings[0].oauthState}`, {
+    headers: { "accept-language": "en;q=0.5, zh-CN" },
+  });
   assert.equal(callback.status, 200);
+  const receipt = await callback.text();
+  assert.match(receipt, /<html lang="zh-CN">/);
+  assert.match(receipt, /授权已保存/);
+  assert.match(receipt, /请检查 Proofweave 的连接状态/);
   const status = JSON.parse((await fixture.client.call("connection_status")).result.content[0].text);
   assert.equal(status.connected, true);
   assert.equal(status.pairing.state, "completed");
