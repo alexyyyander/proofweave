@@ -2120,6 +2120,34 @@ test("does not present a receipt preview as signed public evidence", async () =>
   });
 });
 
+test("renders the signed-in Chinese workbench with legacy imported provenance in the catalog", async () => {
+  const slug = "erdos-865";
+  const id = "claim:legacy-provenance-regression";
+  await database.prepare(`INSERT INTO verification_claims (id, problem_revision_id, claim_type, status, recorded_at)
+    SELECT ?, id, 'source_correspondence', 'imported_unreviewed', CURRENT_TIMESTAMP
+    FROM problem_revisions WHERE slug = ?`).bind(id, slug).run();
+  try {
+    const response = await render(`/api/catalog/${slug}`);
+    assert.equal(response.status, 200);
+    const { record } = await response.json();
+    assert.equal(record.sourceCorrespondence, "imported_unreviewed");
+    assert.equal(record.claims.length, 5);
+    assert.ok(record.displayStatuses.includes("No Proofweave attestation"));
+    const page = await render("/api/catalog/browse?q=Erdos865");
+    assert.equal(page.status, 200);
+    assert.ok((await page.json()).records.some(item => item.slug === slug));
+    const workbench = await render("/zh-CN/workbench", {
+      headers: { "oai-authenticated-user-email": "legacy-provenance-test@example.test" },
+    });
+    assert.equal(workbench.status, 200);
+    const html = await workbench.text();
+    assert.match(html, /class="my-work-summary"/);
+    assert.doesNotMatch(html, /This page couldn.t load/);
+  } finally {
+    await database.prepare("DELETE FROM verification_claims WHERE id = ?").bind(id).run();
+  }
+});
+
 test("imports the pinned catalog idempotently and serves provenance through the API", async () => {
   await applyMigrations(database, true);
 

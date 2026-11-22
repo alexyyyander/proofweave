@@ -46,8 +46,8 @@ type CatalogRow = {
   source_license: string;
   lean_toolchain: string;
   mathlib_revision: string;
-  claim_type: VerificationClaimType;
-  claim_status: VerificationClaimStatus;
+  claim_type: VerificationClaimType | "source_correspondence";
+  claim_status: VerificationClaimStatus | "imported_unreviewed";
   claim_evidence_url: string | null;
   claim_recorded_at: string;
 };
@@ -85,8 +85,8 @@ type CatalogSummaryRow = {
   declaration_name: string;
   upstream_name: string;
   revision_tag: string;
-  claim_type: VerificationClaimType;
-  claim_status: VerificationClaimStatus;
+  claim_type: VerificationClaimType | "source_correspondence";
+  claim_status: VerificationClaimStatus | "imported_unreviewed";
 };
 
 type SummarySubjectRow = Pick<SubjectRow, "problem_revision_id" | "id" | "slug" | "name" | "ams_code">;
@@ -345,16 +345,17 @@ function toCatalogProblems(rows: readonly CatalogRow[]): CatalogProblem[] {
   const records = new Map<string, CatalogProblem>();
 
   for (const row of rows) {
-    const claim = toClaim(row);
+    const claim = verificationClaim(row);
+    const rowClaims = claim ? [{ ...claim, evidenceUrl: row.claim_evidence_url, recordedAt: row.claim_recorded_at }] : [];
     const existing = records.get(row.problem_id);
 
     if (existing) {
       records.set(row.problem_id, {
         ...existing,
-        claims: [...existing.claims, claim],
+        claims: [...existing.claims, ...rowClaims],
         displayStatuses: catalogDisplayStatuses(existing.proofState, [
           ...existing.claims,
-          claim,
+          ...rowClaims,
         ]),
       });
       continue;
@@ -398,8 +399,8 @@ function toCatalogProblems(rows: readonly CatalogRow[]): CatalogProblem[] {
         leanToolchain: row.lean_toolchain,
         mathlibRevision: row.mathlib_revision,
       },
-      claims: [claim],
-      displayStatuses: catalogDisplayStatuses(row.proof_state, [claim]),
+      claims: rowClaims,
+      displayStatuses: catalogDisplayStatuses(row.proof_state, rowClaims),
     });
   }
 
@@ -411,9 +412,7 @@ function toCatalogProblemSummaries(rows: readonly CatalogSummaryRow[]): CatalogP
   const claims = new Map<string, Pick<CatalogClaim, "type" | "status">[]>();
 
   for (const row of rows) {
-    if (!verificationClaimTypes.includes(row.claim_type)) {
-      throw new Error(`Unknown verification claim type: ${row.claim_type}`);
-    }
+    const claim = verificationClaim(row);
     if (!records.has(row.problem_id)) {
       records.set(row.problem_id, {
         id: row.problem_id,
@@ -430,10 +429,7 @@ function toCatalogProblemSummaries(rows: readonly CatalogSummaryRow[]): CatalogP
         source: { upstreamName: row.upstream_name, revisionTag: row.revision_tag },
       });
     }
-    claims.set(row.problem_id, [
-      ...(claims.get(row.problem_id) ?? []),
-      { type: row.claim_type, status: row.claim_status },
-    ]);
+    if (claim) claims.set(row.problem_id, [...(claims.get(row.problem_id) ?? []), claim]);
   }
 
   return [...records.entries()].map(([id, problem]) => ({
@@ -501,15 +497,12 @@ function groupSummaryCollections(
   return grouped;
 }
 
-function toClaim(row: CatalogRow): CatalogClaim {
-  if (!verificationClaimTypes.includes(row.claim_type)) {
+function verificationClaim(row: Pick<CatalogRow, "claim_type" | "claim_status">): Pick<CatalogClaim, "type" | "status"> | null {
+  // Older acceptance imports recorded provenance here as well as on the revision.
+  if (row.claim_type === "source_correspondence" && row.claim_status === "imported_unreviewed") return null;
+  if (row.claim_type === "source_correspondence" || !verificationClaimTypes.includes(row.claim_type)) {
     throw new Error(`Unknown verification claim type: ${row.claim_type}`);
   }
-
-  return {
-    type: row.claim_type,
-    status: row.claim_status,
-    evidenceUrl: row.claim_evidence_url,
-    recordedAt: row.claim_recorded_at,
-  };
+  if (row.claim_status === "imported_unreviewed") throw new Error("Invalid verification claim status");
+  return { type: row.claim_type, status: row.claim_status };
 }
