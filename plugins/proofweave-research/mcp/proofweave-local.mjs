@@ -2184,6 +2184,46 @@ async function startPairing(payload) {
   return { ...result, expiresAt: new Date(Math.min(deadline, Date.now() + 10 * 60 * 1_000)).toISOString() };
 }
 
+function approvalReceipt(acceptLanguage = "") {
+  const languages = acceptLanguage.split(",").map((item) => {
+    const [tag, quality = "q=1"] = item.trim().toLowerCase().split(/\s*;\s*/);
+    return { language: tag.split("-")[0], weight: Number(quality.slice(2)) };
+  });
+  const preferred = languages.filter(({ language, weight }) =>
+    (language === "zh" || language === "en") && weight > 0 && weight <= 1,
+  ).sort((a, b) => b.weight - a.weight)[0];
+  const chinese = preferred?.language === "zh";
+  const title = chinese ? "授权已保存" : "Approval saved";
+  return `<!doctype html>
+<html lang="${chinese ? "zh-CN" : "en"}">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${title} · Proofweave</title>
+<style>
+  * { box-sizing: border-box }
+  body { margin: 0; background: #f7f6f1; color: #101e36; font: 1rem/1.6 system-ui, sans-serif }
+  main { width: min(34rem, calc(100% - 2rem)); margin: clamp(2rem, 11vh, 7rem) auto }
+  header { background: #101e36; color: white; padding: .85rem 1.5rem; font-weight: 650; letter-spacing: -.025em }
+  article { border: 1px solid #d6d8de; border-top: 0; background: white; padding: clamp(1.25rem, 5vw, 2.5rem) }
+  h1 { display: flex; align-items: center; gap: .75rem; font-size: clamp(1.5rem, 5vw, 2rem); line-height: 1.3; margin: 0 }
+  .check { display: inline-grid; place-items: center; flex: none; width: 2.25rem; height: 2.25rem;
+    border-radius: 50%; background: #dff2e8; color: #206342; font-size: 1.25rem }
+  p { margin: 1.25rem 0 .65rem }
+  blockquote { margin: 0; padding: .8rem 1rem; border-inline-start: 3px solid #465bcd; background: #f1f3fa }
+  footer { margin-top: 1.5rem; color: #536079; font-size: .875rem }
+</style>
+<main>
+  <header>Proofweave</header>
+  <article aria-labelledby="result">
+    <h1 id="result"><span class="check" aria-hidden="true">✓</span>${title}</h1>
+    <p>${chinese ? "回到刚才的 Codex 对话，发送这句话确认连接。" : "Return to your Codex conversation and send this message to confirm the connection."}</p>
+    <blockquote>${chinese ? "请检查 Proofweave 的连接状态。" : "Please check my Proofweave connection."}</blockquote>
+    <footer>${chinese ? "现在可以关闭此标签页。" : "You can close this tab now."}</footer>
+  </article>
+</main>
+</html>`;
+}
+
 async function listenForApproval({ state, expiresAt, onAuthorization }) {
   const deadline = Date.parse(expiresAt);
   if (!Number.isFinite(deadline) || deadline <= Date.now()) throw new Error("The browser approval session has already expired.");
@@ -2230,7 +2270,7 @@ async function listenForApproval({ state, expiresAt, onAuthorization }) {
             clearTimeout(timer);
           },
         });
-        response.writeHead(200, { "content-type": "text/html; charset=utf-8" }).end("<h1>Proofweave approval saved.</h1><p>Return to Codex and check connection_status to verify the live connection.</p>");
+        response.writeHead(200, { "content-type": "text/html; charset=utf-8" }).end(approvalReceipt(request.headers["accept-language"]));
         finish("completed");
       } catch (error) {
         response.writeHead(500, { "content-type": "text/html; charset=utf-8" }).end("<h1>Proofweave connection could not finish.</h1><p>Return to Codex and start a new approval.</p>");
