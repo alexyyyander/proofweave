@@ -2136,9 +2136,16 @@ test("renders the signed-in Chinese workbench with legacy imported provenance in
     const page = await render("/api/catalog/browse?q=Erdos865");
     assert.equal(page.status, 200);
     assert.ok((await page.json()).records.some(item => item.slug === slug));
-    const workbench = await render("/zh-CN/workbench", {
-      headers: { "oai-authenticated-user-email": "legacy-provenance-test@example.test" },
-    });
+    const token = crypto.randomUUID();
+    const identity = "identity:legacy-provenance-test";
+    await database.prepare(`INSERT INTO person_identities
+      (id, person_id, provider, provider_subject, email, email_normalized, display_name, email_verified_at, updated_at)
+      VALUES (?, 'person:rendered-proposer', 'google', 'legacy-provenance-test', 'legacy@example.test',
+              'legacy@example.test', 'Test Person', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`).bind(identity).run();
+    await database.prepare(`INSERT INTO app_sessions (id, person_id, identity_id, token_hash, expires_at, created_at)
+      VALUES ('session:legacy-provenance-test', 'person:rendered-proposer', ?, ?, '2099-01-01T00:00:00Z', CURRENT_TIMESTAMP)`)
+      .bind(identity, await sha256(token)).run();
+    const workbench = await render("/zh-CN/workbench", { headers: { cookie: `__Host-pw_session=${token}` } });
     assert.equal(workbench.status, 200);
     const html = await workbench.text();
     assert.match(html, /class="my-work-summary"/);
