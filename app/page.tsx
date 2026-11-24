@@ -24,32 +24,36 @@ export default async function Home() {
     [t("home.research.receipt"), t("home.research.receiptOutcome"), t("home.research.receiptDetail")],
   ];
   return <SiteFrame active="home" className="site-shell public-shell research-home">
-    <div className="rh-wrap">
-      <section className="rh-intro" aria-labelledby="home-story-title">
-        <div className="rh-lead">
-          <span className="rh-meta rh-alpha">{t("home.hero.badge")}</span>
-          <h1 id="home-story-title">{t("home.research.lead")}<br/><em>{t("home.research.accent")}</em></h1>
-          <p>{t("home.research.intro")}</p>
-          <div className="rh-actions">
-            <Link className="rh-primary" href="/explore">{t("home.research.start")} <span aria-hidden="true">→</span></Link>
-            <a className="rh-secondary" href="#verification-console">{t("home.research.example")} <span aria-hidden="true">↓</span></a>
+    <div className="rh-band">
+      <div className="rh-wrap">
+        <section className="rh-intro" aria-labelledby="home-story-title">
+          <div className="rh-lead">
+            <span className="rh-meta rh-alpha">{t("home.hero.badge")}</span>
+            <h1 id="home-story-title">{t("home.research.lead")}<br/><em>{t("home.research.accent")}</em></h1>
+            <p>{t("home.research.intro")}</p>
+            <div className="rh-actions">
+              <Link className="rh-primary" href="/explore">{t("home.research.start")} <span aria-hidden="true">→</span></Link>
+              <a className="rh-secondary" href="#verification-console">{t("home.research.example")} <span aria-hidden="true">↓</span></a>
+            </div>
           </div>
-        </div>
-        <article className="rh-case" aria-labelledby="rh-case-title">
-          <div className="rh-case-head"><span className="rh-meta">{t("home.research.aside")}</span><time dateTime="2026-11-24">{t("home.research.asof")}</time></div>
-          <h2 id="rh-case-title">{t("home.research.case")}</h2>
-          <ol>{caseSteps.map(([label, state, detail], i) => <li key={label}>
-            <span className={i === 0 ? "rh-track done" : "rh-track"} aria-hidden="true">{i === 0 ? "✓" : ""}</span>
-            <div><div className="rh-step"><strong>{label}</strong><span>{state}</span></div><p>{detail}</p></div>
-          </li>)}</ol>
-          <Link className="rh-link" href="/proof-evolution/landau-siegel">{t("home.research.caseLink")} →</Link>
-        </article>
-      </section>
-      <nav className="rh-library" aria-label={t("home.research.resources")}>
-        <strong>{t("home.research.resources")}</strong>
-        <Link href="/publications">{t("home.research.pubs")} →</Link>
-        <Link href="/history#timeline">{t("home.research.history")} →</Link>
-      </nav>
+          <article className="rh-case" aria-labelledby="rh-case-title">
+            <div className="rh-case-head"><span className="rh-meta">{t("home.research.aside")}</span><time dateTime="2026-11-24">{t("home.research.asof")}</time></div>
+            <h2 id="rh-case-title">{t("home.research.case")}</h2>
+            <ol>{caseSteps.map(([label, state, detail], i) => <li key={label}>
+              <span className={i === 0 ? "rh-track done" : "rh-track"} aria-hidden="true">{i === 0 ? "✓" : ""}</span>
+              <div><div className="rh-step"><strong>{label}</strong><span>{state}</span></div><p>{detail}</p></div>
+            </li>)}</ol>
+            <Link className="rh-link" href="/proof-evolution/landau-siegel">{t("home.research.caseLink")} →</Link>
+          </article>
+        </section>
+        <nav className="rh-library" aria-label={t("home.research.resources")}>
+          <strong>{t("home.research.resources")}</strong>
+          <Link href="/publications">{t("home.research.pubs")} →</Link>
+          <Link href="/history#timeline">{t("home.research.history")} →</Link>
+        </nav>
+      </div>
+    </div>
+    <div className="rh-wrap">
       <DemoVerificationClient initial={reference} variant="home" />
       {latestReceipt && <Link className="rh-link" href={`/receipt/${encodeURIComponent(latestReceipt.id)}#receipt-verification`}>{t("home.doors.verify.action")} →</Link>}
       <section className="rh-section" id="public-frontier">
