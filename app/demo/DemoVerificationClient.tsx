@@ -13,7 +13,7 @@ export function DemoVerificationClient({
   variant = "full",
 }: {
   initial: BuildWeekDemoVerification;
-  variant?: "full" | "console";
+  variant?: "full" | "console" | "home";
 }) {
   const { t } = useI18n();
   const [verification, setVerification] = useState(initial);
@@ -77,6 +77,38 @@ export function DemoVerificationClient({
     : isTamperResult && verification.status === "failed"
       ? t("demo.verdict.tamper")
       : verification.status === "verified" ? t("demo.verdict.allPassed") : t("demo.verdict.failed");
+  if (variant === "home") {
+    return <section className="rh-console" id="verification-console" aria-labelledby="rh-console-title">
+      <div className="rh-console-head">
+        <h2 id="rh-console-title">{t("demo.home.heading")}</h2>
+        <button className="rh-console-action" disabled={isChecking}
+          onClick={() => void runChecks(isTamperResult ? "reference" : "tampered_copy")}>
+          {isChecking ? t("demo.checkState.checking") : isTamperResult ? t("demo.home.restore") : t("demo.home.tamper")}
+        </button>
+      </div>
+      <div className="rh-console-body">
+        <div className="rh-verdict">
+          <div role="status" aria-live="polite"><strong>{isChecking ? "···" : passedCount}<small>/{verification.checks.length}</small></strong>
+            <span>{isChecking ? t("demo.checkState.checking") : t("demo.home.checks")}</span></div>
+          <p>{t("demo.home.scope")}</p>
+          <a href="/demo">{t("demo.home.audit")} →</a>
+          {!isTamperResult && <button className="rh-recheck" disabled={isChecking} onClick={() => void runChecks("reference")}>{t("demo.home.check")} ↻</button>}
+          {error && <p role="alert">{error}</p>}
+        </div>
+        <ol className="rh-checks" aria-busy={isChecking}>
+          {verification.checks.map((check, index) => <li key={check.id} className={check.passed ? undefined : "failed"}>
+            <details open={!isChecking && !check.passed || undefined}>
+              <summary><span className="rh-check-number">{String(index + 1).padStart(2, "0")}</span>
+                <strong>{check.label}</strong><span className="rh-check-state">{isChecking ? "…" : check.passed ? "✓" : "×"}
+                  <span className="sr-only">{isChecking ? t("demo.checkState.checking") : check.passed ? t("demo.checkState.passed") : t("demo.checkState.failed")}</span>
+                </span><span aria-hidden="true" className="rh-chevron">⌄</span></summary>
+              <div className="rh-check-detail"><p>{check.result}</p><code>{check.evidence}</code><p>{check.method} · {formatDuration(check.durationMs)}</p></div>
+            </details>
+          </li>)}
+        </ol>
+      </div>
+    </section>;
+  }
   const consoleClassName = variant === "console" ? "demo-console demo-console-compact" : "demo-console";
 
   return (
