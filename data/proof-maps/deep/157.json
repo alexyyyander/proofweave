@@ -944,7 +944,32 @@
     }
   ],
   "finalEdges": [],
-  "crossEdges": [],
+  "crossEdges": [
+    {
+      "from": "m1:m1-lem-cut-kernel",
+      "to": "m2:m2-lem-cut-kernel",
+      "type": "same-role",
+      "label": "Shared statement: The intersection of \\(W_l\\) over any strict majority of tags is \\(W_*\\). Two…",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-lem-hole-triangle-free",
+      "to": "m2:m2-lem-hole-triangle-free",
+      "type": "same-role",
+      "label": "Shared statement: The hole relation is symmetric, has no loops, and is triangle-free.",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-lem-paired-frame-orbit",
+      "to": "m2:m2-lem-paired-frame-orbit",
+      "type": "same-role",
+      "label": "Shared statement: Let \\(A,A':U V\\) and \\(B,B':W V^*\\) be injective maps between…",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    }
+  ],
   "comparisons": [],
   "sharedInputs": [],
   "relatedManuscripts": [],
@@ -952,7 +977,8 @@
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
-    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
+    "Cross-strategy links are exact normalized statement-label matches only; they are review candidates, not audited dependencies."
   ],
   "sources": [
     {

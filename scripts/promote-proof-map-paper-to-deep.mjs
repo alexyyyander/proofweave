@@ -106,6 +106,62 @@ function acyclic(nodes, dependencies) {
   return { dependencies: kept, dropped };
 }
 
+const minCrossLabelLength = 12;
+
+function normalizedStatementLabel(label) {
+  return String(label).toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+/**
+ * Cross-strategy links are intentionally conservative: an exact normalized
+ * statement label in two different manuscripts is a candidate for review, not
+ * an inferred mathematical dependency. This recovers relationships the
+ * per-manuscript extractor cannot see without treating background citations as
+ * proof dependencies.
+ */
+function crossStrategyEdges(strategies) {
+  const groups = new Map();
+  for (const strategy of strategies) {
+    for (const node of strategy.nodes) {
+      const key = normalizedStatementLabel(node.label);
+      if (key.length < minCrossLabelLength) continue;
+      const entries = groups.get(key) ?? [];
+      entries.push({ strategyId: strategy.id, node });
+      groups.set(key, entries);
+    }
+  }
+  const edges = [];
+  const seen = new Set();
+  for (const [key, entries] of groups) {
+    const byStrategy = new Map();
+    for (const entry of entries) {
+      const list = byStrategy.get(entry.strategyId) ?? [];
+      list.push(entry);
+      byStrategy.set(entry.strategyId, list);
+    }
+    const strategyIds = [...byStrategy.keys()].sort();
+    for (let left = 0; left < strategyIds.length; left += 1) {
+      for (let right = left + 1; right < strategyIds.length; right += 1) {
+        const first = byStrategy.get(strategyIds[left])[0];
+        const second = byStrategy.get(strategyIds[right])[0];
+        const [from, to] = [`${first.strategyId}:${first.node.id}`, `${second.strategyId}:${second.node.id}`].sort();
+        const edgeKey = `${from}|${to}|same-role`;
+        if (seen.has(edgeKey)) continue;
+        seen.add(edgeKey);
+        edges.push({
+          from,
+          to,
+          type: "same-role",
+          label: `Shared statement: ${first.node.label}`.slice(0, 180),
+          note: "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+          directed: false,
+        });
+      }
+    }
+  }
+  return edges.sort((left, right) => left.from.localeCompare(right.from) || left.to.localeCompare(right.to));
+}
+
 function buildDeep(structure, family, preserveExisting = false) {
   const nodes = structure.nodes;
   const strategies = [];
@@ -213,6 +269,8 @@ function buildDeep(structure, family, preserveExisting = false) {
     });
   }
 
+  const crossEdges = crossStrategyEdges(strategies.map((strategy, index) => ({ id: `m${index + 1}`, nodes: strategy.nodes })));
+  counts.crossEdges = crossEdges.length;
   const data = {
     schemaVersion: "pw-deep-proof-map-v1",
     machineDerived: true,
@@ -231,7 +289,7 @@ function buildDeep(structure, family, preserveExisting = false) {
     roles: [...rolesById.values()],
     strategies: strategiesOut,
     finalEdges,
-    crossEdges: [],
+    crossEdges,
     comparisons: [],
     sharedInputs: [],
     relatedManuscripts: [],
@@ -240,6 +298,7 @@ function buildDeep(structure, family, preserveExisting = false) {
       `${machineMarker}: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.`,
       "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
       "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
+      ...(crossEdges.length > 0 ? ["Cross-strategy links are exact normalized statement-label matches only; they are review candidates, not audited dependencies."] : []),
     ],
     sources: structure.manuscripts.map((manuscript) => ({ label: manuscript.title, url: manuscript.pdfUrl, kind: "paper" })),
   };
@@ -282,6 +341,7 @@ for (const name of paperFiles) {
     nodes: built.data.strategies.reduce((total, strategy) => total + strategy.nodes.length, 0),
     edges: built.data.strategies.reduce((total, strategy) => total + strategy.nodes.reduce((sum, node) => sum + node.dependsOn.length, 0), 0),
     ...built.counts,
+    crossEdges: built.counts.crossEdges ?? 0,
     data: built.data,
   });
 }
@@ -321,6 +381,8 @@ process.stdout.write(`${JSON.stringify({
   mentionEdges: results.reduce((total, entry) => total + (entry.mentions ?? 0), 0),
   droppedUnclear: results.reduce((total, entry) => total + (entry.unclear ?? 0), 0),
   droppedCycles: results.reduce((total, entry) => total + (entry.cycles ?? 0), 0),
+  crossEdges: results.reduce((total, entry) => total + (entry.crossEdges ?? 0), 0),
+  crossEdgeFamilies: results.filter((entry) => (entry.crossEdges ?? 0) > 0).map((entry) => entry.familyNumber),
   demotedSample: tally("demoted").slice(0, 8),
   skippedSample: tally("skipped").slice(0, 8),
 }, null, 2)}\n`);

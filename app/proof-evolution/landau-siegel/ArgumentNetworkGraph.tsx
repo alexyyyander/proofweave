@@ -20,6 +20,7 @@ export type ArgumentNetworkEdge = {
   target: string;
   type: "strategy" | "depends" | "object" | "mentions" | "final" | "cross";
   label?: string;
+  directed?: boolean;
 };
 
 type PositionedNode = ArgumentNetworkNode & {

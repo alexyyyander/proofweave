@@ -922,7 +922,64 @@
     }
   ],
   "finalEdges": [],
-  "crossEdges": [],
+  "crossEdges": [
+    {
+      "from": "m1:m1-approx-line-sieve",
+      "to": "m2:m2-lem-foundations-affine-sieve",
+      "type": "same-role",
+      "label": "Shared statement: Avoidance along a line",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-char-pair-invariance",
+      "to": "m2:m2-lem-chars-pair-invariance",
+      "type": "same-role",
+      "label": "Shared statement: The function F_d is invariant under independent left multiplications of its two…",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-char-trivial",
+      "to": "m2:m2-thm-no-characters",
+      "type": "same-role",
+      "label": "Shared statement: Every homomorphism from U(k) to a finite abelian group is trivial on S(k) .",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-fg-abelian-test",
+      "to": "m2:m2-lem-finite-abelian-test",
+      "type": "same-role",
+      "label": "Shared statement: Suppose that C F is an abelian subgroup of odd order c>1 such that C_ F (t)=C…",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-fg-unitary-count",
+      "to": "m2:m2-lem-finite-unitary-count",
+      "type": "same-role",
+      "label": "Shared statement: Let p3 be an odd prime, let H=_p(q) be the full isometry group of a…",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-quo-dichotomy",
+      "to": "m2:m2-prop-color-dichotomy",
+      "type": "same-role",
+      "label": "Shared statement: Finite quotient dichotomy",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    },
+    {
+      "from": "m1:m1-tor-sign-element",
+      "to": "m2:m2-lem-foundations-sign-extension",
+      "type": "same-role",
+      "label": "Shared statement: A central sign element",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    }
+  ],
   "comparisons": [],
   "sharedInputs": [],
   "relatedManuscripts": [],
@@ -930,7 +987,8 @@
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
-    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
+    "Cross-strategy links are exact normalized statement-label matches only; they are review candidates, not audited dependencies."
   ],
   "sources": [
     {
