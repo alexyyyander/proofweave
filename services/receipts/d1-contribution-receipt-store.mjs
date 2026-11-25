@@ -518,8 +518,9 @@ export class D1ContributionReceiptStore {
    * does not trust the attestation projection, assignment status, Agent owner,
    * or delegation projection in isolation.
    */
-  async loadReviewEvidence(artifactBundleManifestHash) {
+  async loadReviewEvidence(artifactBundleManifestHash, { includeOptionalClaims = false } = {}) {
     requireSha256(artifactBundleManifestHash, "artifactBundleManifestHash");
+    if (typeof includeOptionalClaims !== "boolean") throw new ContributionReceiptStoreValidationError("Review evidence scope must be explicit.");
     const rows = await this.database
       .prepare(
         `SELECT
@@ -580,7 +581,7 @@ export class D1ContributionReceiptStore {
            ON key_revocation.person_key_id = signer.id
          WHERE assignment.artifact_bundle_manifest_hash = ?
            AND assignment.claim_type IN (
-             'bundle_reproducible','kernel_accepted','project_accepted'
+             'bundle_reproducible','kernel_accepted','project_accepted'${includeOptionalClaims ? ",'statement_faithful','novelty_reviewed'" : ""}
            )
          ORDER BY attestation.attested_at ASC, attestation.id ASC`,
       )
