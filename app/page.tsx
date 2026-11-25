@@ -1,3 +1,4 @@
+import { creditMarketBuckets } from "@/packages/protocol/credit-market.mjs";
 import { Suspense } from "react";
 import Link from "next/link";
 import { SiteFrame } from "@/app/components/shell/SiteFrame";
@@ -20,6 +21,7 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const { t, locale } = await getI18n();
   const reference = await verifyBuildWeekDemoFixture({ locale });
+  const poolShares = Object.fromEntries(creditMarketBuckets.map(bucket => [bucket.key, bucket.basisPoints / 100]));
   const stages = [
     [t("home.research.kernel"), t("home.workflow.kernel")],
     [t("home.research.review"), t("home.workflow.review")],
@@ -81,6 +83,14 @@ export default async function Home() {
             <p className="rh-case-detail">{t(`home.research.${stage}Detail`)}</p>
           </li>)}
         </ol>
+        <details className="rh-credit-rules">
+          <summary>{t("home.credit.title")}</summary>
+          <h3 id="credit-rules">{t("home.credit.receiptTitle")}</h3>
+          <p>{t("home.credit.receipt")}</p>
+          <h3>{t("home.credit.poolTitle")}</h3>
+          <p>{t("home.credit.pool", poolShares)}</p>
+          <p>{t("home.credit.conditions")}</p>
+        </details>
         <Link className="rh-link" href="/proof-evolution/landau-siegel#submission-record">{t("home.research.caseLink")} →</Link>
       </section>
       <Suspense fallback={null}><LatestReceiptLink /></Suspense>
