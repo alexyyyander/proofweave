@@ -1,6 +1,6 @@
 import records from "@/data/target-sponsorships.json";
 
-type PublishedSponsorship = {
+export type PublishedSponsorship = {
   problemRevisionId: string;
   sponsorName: string;
   announcementUrl: string;

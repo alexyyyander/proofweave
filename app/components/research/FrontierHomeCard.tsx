@@ -1,6 +1,7 @@
-import { publishedTargetSponsorships } from "@/app/lib/target-sponsorship";
+import { CardTitle, FieldList } from "@/app/components/ui/primitives";
+import type { PublishedSponsorship } from "@/app/lib/target-sponsorship";
 import Link from "next/link";
-import { pathForLocale, type Locale } from "@/app/i18n/config";
+
 import type { Translator } from "@/app/i18n/translate";
 import type { CatalogProblem } from "@/packages/domain/catalog";
 
@@ -16,14 +17,15 @@ export function frontierDisplayTitle(project: Pick<CatalogProblem, "id" | "title
   return entry ? t(`home.problem.${entry}.title`) : project.title;
 }
 
-export function FrontierHomeCard({ project, t, locale }: {
+export function FrontierHomeCard({ project, t, sponsors, startHref, recordHref }: {
   project: CatalogProblem;
   t: Translator;
-  locale: Locale;
+  sponsors: readonly PublishedSponsorship[];
+  startHref?: string;
+  recordHref: string;
 }) {
   const entry = featured[project.id];
   const title = frontierDisplayTitle(project, t);
-  const sponsors = publishedTargetSponsorships(project.id);
   const material = entry === "cycles" && project.source.revisionTag.startsWith("claimed-proof-")
     ? "claimed" : project.proofState === "proved" ? "upstream" : "admitted";
   const kernel = project.claims.find(claim => claim.type === "kernel_accepted")?.status ?? "not_submitted";
@@ -34,18 +36,18 @@ export function FrontierHomeCard({ project, t, locale }: {
       <span>{entry ? t(`home.problem.${entry}.domain`) : project.domain}</span>
       <span>{t(project.researchStatus === "research_open" ? "home.problem.open" : "home.problem.solved")}</span>
     </div>
-    <h3 id={`rh-title-${slug}`}>{title}</h3>
+    <CardTitle id={`rh-title-${slug}`}>{title}</CardTitle>
     <p className="rh-problem-question">{entry ? t(`home.problem.${entry}.question`) : project.informalStatement}</p>
-    <dl className="rh-problem-progress">
+    <FieldList className="rh-problem-progress">
       <div className="rh-funding" data-funded={sponsors.length > 0}><dt>{t("sponsor.status")}</dt><dd>{sponsors.length
         ? <>{t("sponsor.confirmed")} · {sponsors.map((sponsor, index) => <span key={sponsor.announcementUrl}>{index > 0 && " / "}<a href={sponsor.announcementUrl}>{sponsor.sponsorName} ↗</a></span>)}</>
         : t("sponsor.noRecord")}</dd></div>
       <div><dt>{t("home.problem.material")}</dt><dd>{t(`home.problem.${material}`)}</dd></div>
       <div><dt>{t("home.problem.kernel")}</dt><dd>{t(`home.problem.${kernel}`)}</dd></div>
-    </dl>
+    </FieldList>
     <footer>
-      <Link className="rh-problem-start" href={`${pathForLocale("/workbench", locale)}?target=${slug}#research-launcher`} aria-label={`${t("home.problem.start")} · ${title}`}>{t("home.problem.start")} <span aria-hidden="true">→</span></Link>
-      <Link className="rh-link" href={pathForLocale(`/explore/${slug}`, locale)} aria-label={`${t("home.problem.record")} · ${title}`}>{t("home.problem.record")}</Link>
+      {startHref && <Link className="rh-problem-start" href={startHref} aria-label={`${t("home.problem.start")} · ${title}`}>{t("home.problem.start")} <span aria-hidden="true">→</span></Link>}
+      <Link className="rh-link" href={recordHref} aria-label={`${t("home.problem.record")} · ${title}`}>{t("home.problem.record")}</Link>
     </footer>
   </article>;
 }

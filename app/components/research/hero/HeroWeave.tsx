@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/app/components/ui/primitives";
+
 import { useEffect, useRef, useState } from "react";
 import { weaveRenderer } from "./weave-scene";
 
@@ -68,11 +70,11 @@ export function HeroWeave({ pauseLabel, playLabel }: { pauseLabel: string; playL
   }, []);
   return <div className="rh-weave">
     <canvas ref={ref} aria-hidden="true" className={ready ? "is-ready" : undefined} />
-    {ready && <button type="button" className="rh-motion-toggle" aria-label={paused ? playLabel : pauseLabel}
+    {ready && <Button type="button" className="rh-motion-toggle" aria-label={paused ? playLabel : pauseLabel}
       title={paused ? playLabel : pauseLabel} onClick={() => setPaused(!paused)}>
       <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
         {paused ? <path d="M5 3 13 8 5 13Z" /> : <path d="M4 3h3v10H4zm5 0h3v10H9z" />}
       </svg>
-    </button>}
+    </Button>}
   </div>;
 }

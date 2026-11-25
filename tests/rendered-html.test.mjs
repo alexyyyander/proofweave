@@ -954,13 +954,13 @@ test("server-renders the Proofweave welcome page", async () => {
   assert.match(html, /Advance mathematics through your Agent/i);
   assert.match(html, /Public alpha/i);
   assert.match(html, /href="\/demo"/i);
-  assert.match(html, /Verify a claim/i);
-  assert.match(html, /Contribution records/i);
+  assert.match(html, /Verify a signed example/i);
+  assert.match(html, /Research library/i);
   assert.match(html, /brand-mark/i);
   assert.doesNotMatch(html, /proof-paper-mark/i);
-  assert.match(html, /Start a target/i);
+  assert.match(html, /Choose a research problem/i);
   assert.match(html, /id="proof-journey"/i);
-  assert.match(html, /Two ways in/i);
+  assert.match(html, /Change one byte in a copy/i);
 });
 
 test("guides a public visitor through the first accountable contribution path", async () => {
@@ -1170,13 +1170,13 @@ test("serves the localized shell and translated information pages", async () => 
   const localizedHeaders = { headers: { cookie: "pw_locale=zh-CN" } };
   const home = await render("/", localizedHeaders);
   const homeHtml = await home.text();
-  assert.match(homeHtml, /让一个证明成为/);
-  assert.match(homeHtml, /公开贡献/);
-  assert.match(homeHtml, /个人委派的形式化数学/);
-  assert.match(homeHtml, /核查一项主张/);
-  assert.match(homeHtml, /开始一个目标/);
-  assert.match(homeHtml, /Person 委派有效/);
-  assert.match(homeHtml, /参考证据检查/);
+  assert.match(homeHtml, /让全世界/);
+  assert.match(homeHtml, /一起做数学/);
+  assert.match(homeHtml, /公开 Alpha/);
+  assert.match(homeHtml, /验证签名示例/);
+  assert.match(homeHtml, /选一道题开始研究/);
+  assert.match(homeHtml, /研究授权有效/);
+  assert.match(homeHtml, /改动副本的一个字节/);
   assert.doesNotMatch(homeHtml, /筛选工作台任务/);
 
   const explore = await render("/explore", localizedHeaders);
@@ -1388,15 +1388,11 @@ test("the home doors reflect the deployment write window and published receipts"
   const response = await render("/");
   assert.equal(response.status, 200);
   const html = await response.text();
-  // This harness runs the participant surface with writes enabled and has not
-  // published a receipt yet, so the first door must fall back to the reference
-  // console and the second must open the research launcher.
-  assert.match(html, /class="home-door" href="\/workbench#research-launcher"/);
-  assert.match(html, /Open the research launcher/);
-  assert.match(html, /Private by default · you decide what is published/);
-  assert.match(html, /class="home-door" href="#verification-console"/);
-  assert.match(html, /Open the verification console/);
-  assert.match(html, /Reference run: \d+\/\d+ checks pass/);
+  assert.match(html, /<a\b(?=[^>]*class="rh-primary")(?=[^>]*href="\/explore")[^>]*>/);
+  assert.match(html, /class="rh-problem-start"/);
+  assert.match(html, /class="rh-secondary" href="#verification-console"/);
+  assert.match(html, /id="verification-console"/);
+  assert.doesNotMatch(html, /href="\/receipt\/[^"]+#receipt-verification"/);
   assert.doesNotMatch(html, /Browse pinned targets/);
 });
 
@@ -1621,10 +1617,10 @@ test("preserves the showcase URL as a redirect to the overview proof journey", a
   const page = await render("/");
   assert.equal(page.status, 200);
   const html = await page.text();
-  assert.match(html, /One theorem · six evidence moments/i);
+  assert.match(html, /From problem statement to contribution receipt/i);
   assert.match(html, /Pinned declaration/i);
-  assert.match(html, /This story does not run Lean or publish work/i);
-  assert.match(html, /Frontier question/i);
+  assert.match(html, /Reviewer identities are simulated/i);
+  assert.match(html, /aria-label="01 Target"/i);
   assert.match(html, /Independent review/i);
   assert.match(html, /aria-label="06 Receipt"/i);
   assert.match(html, /href="#verification-console"/i);
@@ -3805,11 +3801,13 @@ test("Explore bounds SSR and API results and applies filters before pagination",
 test("homepage selects only three complete public research records", async () => {
   const records = (await (await render("/api/catalog")).json()).records;
   const html = await (await render("/")).text();
-  const cards = [...html.matchAll(/<article class="ui-surface ui-surface-plain project-card">([\s\S]*?)<\/article>/g)].map(match => match[1]);
+  const cards = [...html.matchAll(/<article class="rh-problem"[^>]*>([\s\S]*?)<\/article>/g)].map(match => match[1]);
   assert.equal(cards.length, 3);
   for (const [index, card] of cards.entries()) {
     assert.ok(card.includes(`/explore/${records[index].slug}`));
-    for (const status of records[index].displayStatuses) assert.ok(card.includes(status), status);
+    assert.ok(card.includes(`/workbench?target=${records[index].slug}#research-launcher`));
+    assert.match(card, /Research material/);
+    assert.match(card, /Platform kernel/);
   }
 });
 

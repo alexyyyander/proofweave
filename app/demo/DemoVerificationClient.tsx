@@ -2,6 +2,7 @@
 
 import { SectionTitle, CardTitle, Field, Button, EmptyState, FieldList, SectionHeading, Surface } from "@/app/components/ui";
 
+import Link from "next/link";
 import { StepNavigation } from "@/app/components/navigation/StepNavigation";
 import { useEffect, useRef, useState } from "react";
 import { type BuildWeekDemoVerification, type DemoVerificationMode } from "@/app/lib/build-week-demo";
@@ -101,11 +102,11 @@ export function DemoVerificationClient({
     const report = isTamperResult ? "/api/demo/verify?tamper=artifact" : "/api/demo/verify";
     return <section ref={homePanelRef} className="rh-console" id="verification-console" aria-labelledby="rh-console-title">
       <div className="rh-console-head">
-        <h2 id="rh-console-title">{t("demo.home.heading")}</h2>
-        <button className="rh-console-action" disabled={isChecking}
+        <SectionTitle id="rh-console-title">{t("demo.home.heading")}</SectionTitle>
+        <Button className="rh-console-action" disabled={isChecking}
           onClick={() => void runChecks(isTamperResult ? "reference" : "tampered_copy")}>
           {isChecking ? t("demo.checkState.checking") : isTamperResult ? t("demo.home.restore") : t("demo.home.tamper")}
-        </button>
+        </Button>
       </div>
       <div className="rh-console-body">
         <div className="rh-verdict">
@@ -114,8 +115,8 @@ export function DemoVerificationClient({
             <span>{isChecking ? t("demo.checkState.checking") : rejected ? (isTamperResult ? t("demo.home.rejected") : t("demo.verdict.failed")) : t("demo.home.accepted")}</span>
           </div>
           <p>{isTamperResult && rejected ? t("demo.home.rejectReason") : t("demo.home.scope")}</p>
-          <a href="/demo">{t("demo.home.audit")} →</a>
-          {!isTamperResult && <button className="rh-recheck" disabled={isChecking} onClick={() => void runChecks("reference")}>{t("demo.home.check")} ↻</button>}
+          <Link href="/demo">{t("demo.home.audit")} →</Link>
+          {!isTamperResult && <Button className="rh-recheck" disabled={isChecking} onClick={() => void runChecks("reference")}>{t("demo.home.check")} ↻</Button>}
           {error && <p role="alert">{error}</p>}
         </div>
         <ol className="rh-checks" aria-busy={isChecking}>

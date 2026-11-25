@@ -1,5 +1,6 @@
+import { SectionTitle, CardTitle } from "@/app/components/ui/primitives";
 import Link from "next/link";
-import { pathForLocale, type Locale } from "@/app/i18n/config";
+
 import type { Translator } from "@/app/i18n/translate";
 
 const icons = {
@@ -8,19 +9,19 @@ const icons = {
   publish: <><circle cx="12" cy="12" r="9" /><ellipse cx="12" cy="12" rx="4" ry="9" /><path d="M3 12h18" /></>,
 };
 
-export function PrivacyBoundary({ t, locale }: { t: Translator; locale: Locale }) {
+export function PrivacyBoundary({ t, policyHref }: { t: Translator; policyHref: string }) {
   return <section id="privacy-boundary" className="rh-section rh-boundary" aria-labelledby="rh-boundary-title">
     <header className="rh-section-head">
-      <h2 id="rh-boundary-title">{t("home.research.privacy")}</h2>
-      <Link className="rh-link" href={pathForLocale("/privacy", locale) + "#workspace-boundary"}>{t("home.privacy.policy")} <span aria-hidden="true">→</span></Link>
+      <SectionTitle id="rh-boundary-title">{t("home.research.privacy")}</SectionTitle>
+      <Link className="rh-link" href={policyHref}>{t("home.privacy.policy")} <span aria-hidden="true">→</span></Link>
     </header>
     <div className="rh-boundary-map">
       {(["local", "upload", "publish"] as const).map(stage =>
         <section key={stage} className={`rh-boundary-zone rh-boundary-${stage}`} aria-labelledby={`privacy-${stage}`}>
-          <h3 id={`privacy-${stage}`}>
+          <CardTitle id={`privacy-${stage}`}>
             <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{icons[stage]}</svg>
             {t(`home.privacy.${stage}`)}
-          </h3>
+          </CardTitle>
           {stage === "upload" ? <>
             <p>{t("home.privacy.choose")}</p>
             <p className="rh-boundary-access">{t("home.privacy.access")}</p>
