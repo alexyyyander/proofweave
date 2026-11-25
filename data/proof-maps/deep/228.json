@@ -537,7 +537,16 @@
     }
   ],
   "finalEdges": [],
-  "crossEdges": [],
+  "crossEdges": [
+    {
+      "from": "m1:m1-lem-shell-graph",
+      "to": "m2:m2-f-shell-graph",
+      "type": "same-role",
+      "label": "Shared statement: The shell graph",
+      "note": "Exact normalized statement label matches across strategies; review before treating it as a dependency.",
+      "directed": false
+    }
+  ],
   "comparisons": [],
   "sharedInputs": [],
   "relatedManuscripts": [],
@@ -545,7 +554,8 @@
   "caveats": [
     "Machine-promoted from the paper structure: only references used as premises in the surrounding sentence are kept; background citations and bare mentions are removed.",
     "A reference is not an audited proof dependency; the paper remains authoritative and this map is unreviewed.",
-    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements."
+    "No extracted statement has been identified as proving the family result; consult the source paper for exact statements.",
+    "Cross-strategy links are exact normalized statement-label matches only; they are review candidates, not audited dependencies."
   ],
   "sources": [
     {

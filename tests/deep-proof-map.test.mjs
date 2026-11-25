@@ -128,3 +128,15 @@ test("the deep validator rejects a cross edge inside one strategy and a result-o
   badRole.strategies[0].nodes[0].role = "not-a-role";
   assert.throws(() => validateDeepProofMap(badRole, collection, lean), /unknown role/);
 });
+test("machine-promoted cross-strategy links stay review-marked and never join one strategy", () => {
+  const data = deep.get("011");
+  assert.ok(data.crossEdges.length > 0);
+  const strategyFor = new Map(data.strategies.flatMap((strategy) => strategy.nodes.map((node) => [`${strategy.id}:${node.id}`, strategy.id])));
+  for (const edge of data.crossEdges) {
+    assert.equal(edge.type, "same-role");
+    assert.equal(edge.directed, false);
+    assert.match(edge.label, /^Shared statement: /);
+    assert.notEqual(strategyFor.get(edge.from), strategyFor.get(edge.to));
+  }
+  assert.ok(data.caveats.some((caveat) => caveat.includes("review candidates")));
+});

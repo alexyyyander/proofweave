@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Badge, Surface, cx } from "@/app/components/ui";
 import { useI18n } from "@/app/i18n/client";
 import type { TranslationKey, Translator } from "@/app/i18n/translate";
+import { edgeDirectionGlyph } from "@/app/lib/argument-map-direction";
 import { ArgumentNetworkGraph, type ArgumentNetworkEdge, type ArgumentNetworkNode } from "./ArgumentNetworkGraph";
 import {
   type ArgumentMapComparison,
@@ -46,6 +47,7 @@ type MapEdge = {
   note?: string;
   cross: boolean;
   strategyId: string | null;
+  directed?: boolean;
 };
 
 type StrategyModel = {
@@ -199,6 +201,7 @@ function buildModel(data: ProofEvolutionData, argumentMap: ArgumentMapData, t: T
     note: edge.note,
     cross: true,
     strategyId: nodeStrategy(edge.from, strategies),
+    directed: edge.directed !== false,
   }));
   return {
     strategies,
@@ -308,7 +311,7 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
     if (canShowCrossLinks) {
       for (const edge of model.crossEdges) {
         if (nodeIds.has(edge.from) && nodeIds.has(edge.to)) {
-          edges.push({ source: edge.from, target: edge.to, type: "cross", label: edge.label });
+          edges.push({ source: edge.from, target: edge.to, type: "cross", label: edge.label, directed: edge.directed !== false });
         }
       }
     }
@@ -447,7 +450,8 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
                 d={edgePath(from, to)}
                 className={cx("argument-edge", `is-${edge.type}`, edge.cross && "is-cross", highlighted && "is-compared", !incident && activeNodeId && "is-dimmed")}
                 style={{ stroke: edge.type === "depends" ? strategyColor : edge.type === "proves" || edge.type === "implies" ? strategyColor : undefined }}
-                markerEnd="url(#argument-arrow)"
+                markerEnd={edge.directed === false ? undefined : "url(#argument-arrow)"}
+                data-directed={edge.directed === false ? "false" : "true"}
               >
                 <title>{`${t(edgeTypeKeys[edge.type])}: ${edge.label}`}</title>
               </path>;
@@ -558,7 +562,7 @@ function ComparePanel({ a, b, comparison, argumentMap, model, crossLinks, shared
       <span>{t("proofMaps.argument.directCrossLinks")}</span>
       {crossLinks.length === 0 ? <p>{t("proofMaps.argument.noCrossLink")}</p> : <ul>{crossLinks.map((edge) => <li key={`${edge.from}-${edge.to}-${edge.type}`}>
         <Badge tone={edge.type === "bypasses" ? "warning" : "neutral"}>{t(edgeTypeKeys[edge.type])}</Badge>
-        <span>{model.nodesById.get(edge.from)?.label} → {model.nodesById.get(edge.to)?.label}</span>
+        <span>{model.nodesById.get(edge.from)?.label} {edgeDirectionGlyph(edge)} {model.nodesById.get(edge.to)?.label}</span>
         <small>{edge.note ?? edge.label}</small>
       </li>)}</ul>}
     </div>
@@ -687,7 +691,7 @@ function NodeDrawer({ node, argumentMap, model, lean, onClose, onSelectNode, t }
         const other = model.nodesById.get(otherId);
         return other ? <li key={`${edge.from}-${edge.to}-${edge.type}`}>
           <Badge tone={edge.type === "bypasses" ? "warning" : edge.type === "replaces" ? "warning" : "neutral"}>{t(edgeTypeKeys[edge.type])}</Badge>
-          <span>{edge.from === node.id ? "→" : "←"}</span>
+          <span>{edgeDirectionGlyph(edge, edge.from !== node.id)}</span>
           <button type="button" onClick={() => onSelectNode(other.id)}>{other.label}</button>
           <small>{edge.note ?? edge.label}</small>
         </li> : null;
