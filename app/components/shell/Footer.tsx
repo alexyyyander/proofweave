@@ -1,9 +1,10 @@
+import { pathForLocale } from "@/app/i18n/config";
 import Link from "next/link";
 import { BrandMark } from "../ui";
 import { getI18n } from "@/app/i18n/server";
 
 export async function Footer() {
-  const { t } = await getI18n();
+  const { t, locale } = await getI18n();
   return (
     <footer className="site-footer site-footer-compact">
       <div className="footer-intro">
@@ -14,6 +15,7 @@ export async function Footer() {
         <nav className="footer-legal-links" aria-label={t("footer.legalAria")}>
           <Link href="/privacy">{t("nav.item.privacy")}</Link>
           <Link href="/terms">{t("nav.item.terms")}</Link>
+          <Link href={pathForLocale("/sponsor", locale)}>{t("sponsor.title")}</Link>
           <Link href="/support">{t("nav.item.support")}</Link>
           <a href="https://github.com/alexyyyander/proofweave/issues" rel="noreferrer" target="_blank">{t("footer.reportIssue")} ↗</a>
           <a href="https://github.com/alexyyyander/proofweave/security/advisories/new" rel="noreferrer" target="_blank">{t("footer.security")} ↗</a>

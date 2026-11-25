@@ -249,7 +249,7 @@ function VersionGraph({ data, selectedId, onSelect, t, locale }: {
       <svg className="proof-evolution-edges" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
         <defs>
           <marker id="proof-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#718096" />
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink-faint)" />
           </marker>
         </defs>
         {data.versionEdges.filter((edge) => edge.visible !== false).map((edge) => {
@@ -390,7 +390,7 @@ function InternalProofGraph({ version, t }: { version: ProofVersion; t: Translat
       <svg className="proof-internal-edges" viewBox={`0 0 ${layout.width} ${layout.height}`} aria-hidden="true">
         <defs>
           <marker id={`proof-step-arrow-${version.id}`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#a8b0bd" />
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--on-navy-dim)" />
           </marker>
         </defs>
         {version.proofSteps.flatMap((step) => step.dependsOn.flatMap((dependency) => {

@@ -62,9 +62,9 @@ function declaration(block: string, property: string): string {
   return match[1].trim();
 }
 
-function literalColour(value: string): string {
-  const hex = normalizeHex(value);
-  assert.ok(hex, `expected a literal colour, received ${value}`);
+function tokenColour(value: string): string {
+  const hex = resolveColor(value);
+  assert.ok(hex, `expected a resolvable colour, received ${value}`);
   return hex;
 }
 
@@ -147,8 +147,8 @@ test("no rule paints text on a background it fails", async () => {
 const inheritedSurfaces = [
   {
     path: "home.css",
-    surface: ".home-door",
-    texts: [".home-door p", ".home-door__note", ".home-door__action", ".home-door__index"],
+    surface: ".rh-console",
+    texts: [".rh-verdict > p", ".rh-result strong", ".rh-result.rejected strong", ".rh-duration"],
   },
   {
     path: "styles/receipt.css",
@@ -172,11 +172,30 @@ const inheritedSurfaces = [
 test("dark panels keep their inherited text readable", async () => {
   for (const { path, surface, texts } of inheritedSurfaces) {
     const css = await readFile(join(appRoot, path), "utf8");
-    const background = literalColour(declaration(rule(css, surface), "background"));
+    const background = tokenColour(declaration(rule(css, surface), "background"));
     for (const selector of texts) {
-      const foreground = literalColour(declaration(rule(css, selector), "color"));
+      const foreground = tokenColour(declaration(rule(css, selector), "color"));
       const ratio = contrast(foreground, background);
       assert.ok(ratio >= 4.5, `${path} ${selector} on ${surface}: ${foreground} on ${background} = ${ratio.toFixed(2)}:1`);
     }
   }
+});
+
+test("feature styles consume the shared palette, corner radii and hairline width", async () => {
+  const offenders: string[] = [];
+  for (const file of await cssFiles(appRoot)) {
+    if (file === join(appRoot, "styles/tokens.css")) continue;
+    const css = (await readFile(file, "utf8")).replace(/\/\*[\s\S]*?\*\//g, "");
+    for (const match of css.matchAll(/(?:^|[;{])\s*([\w-]+)\s*:\s*([^;{}]+)/g)) {
+      const [, property, value] = match;
+      const literalPaint = /#[\da-f]{3,8}\b|\b(?:rgb|hsl)a?\(|(?<![-\w])(?:white|black)(?![-\w])/i;
+      const paintProperty = /^(?:--|background|border|color$|outline|fill$|stroke$|box-shadow|text-shadow)/;
+      const rawRadius = property.endsWith("radius") && /\d(?:px|%)/.test(value);
+      const rawHairline = /^border(?:$|-)/.test(property) && /^1px\b/.test(value);
+      if ((paintProperty.test(property) && literalPaint.test(value)) || rawRadius || rawHairline) {
+        offenders.push(`${file.slice(appRoot.length + 1)} | ${property}: ${value}`);
+      }
+    }
+  }
+  assert.deepEqual(offenders, []);
 });

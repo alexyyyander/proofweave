@@ -12,7 +12,7 @@ import { useI18n } from "@/app/i18n/client";
  * and edges are the references recorded between statements. The graph never
  * presents those references as verified proof dependencies.
  */
-const strategyColors = ["#8b75c9", "#5c8fd6", "#c98b5c", "#5cc9a0"];
+const strategyColors = ["var(--graph-violet)", "var(--graph-blue)", "var(--graph-orange)", "var(--graph-green)"];
 
 function roleId(section: string, index: number) {
   const slug = section.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);

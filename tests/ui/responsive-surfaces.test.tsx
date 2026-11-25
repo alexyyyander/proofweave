@@ -3,9 +3,8 @@ import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 
 /**
- * The two home doors and the receipt verification panel cannot be checked in a
- * real browser in this environment, so their small-screen layout contract is
- * pinned here. Colour is covered by contrast.test.tsx, which resolves tokens
+ * The homepage introduction and the receipt verification panel share a
+ * single-column layout on small screens. Colour is covered by contrast.test.tsx, which resolves tokens
  * and literals alike.
  */
 const homeCss = await readFile(new URL("../../app/home.css", import.meta.url), "utf8");
@@ -28,7 +27,7 @@ function declaration(block: string, property: string): string {
 }
 
 function mediaBlock(css: string, query: string): string {
-  const start = css.indexOf(`@media (${query})`);
+  const start = css.search(new RegExp(`@media\\s*\\(\\s*${query.replace(": ", ":\\s*")}\\s*\\)`));
   assert.ok(start >= 0, `missing @media (${query})`);
   const open = css.indexOf("{", start);
   let depth = 0;
@@ -42,11 +41,10 @@ function mediaBlock(css: string, query: string): string {
   throw new Error(`unterminated @media (${query})`);
 }
 
-test("the home doors collapse to one column before they get too narrow", () => {
-  assert.match(declaration(rule(homeCss, ".home-doors"), "grid-template-columns"), /repeat\(2, minmax\(0, 1fr\)\)/);
-  const narrow = mediaBlock(homeCss, "max-width: 760px").match(/\.home-doors\s*\{([^}]*)\}/);
-  assert.ok(narrow, "the home door grid needs a narrow-screen rule");
-  assert.match(declaration(narrow[1], "grid-template-columns"), /1fr/);
+test("the homepage introduction stacks the workflow below the title on small screens", () => {
+  assert.equal(declaration(rule(homeCss, ".rh-intro"), "grid-template-columns"), "1.17fr 1fr");
+  const narrow = mediaBlock(homeCss, "max-width: 800px");
+  assert.equal(declaration(rule(narrow, ".rh-intro"), "grid-template-columns"), "1fr");
 });
 
 test("the receipt panels stack before their second column starves", () => {
