@@ -20,7 +20,6 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const { t, locale } = await getI18n();
   const reference = await verifyBuildWeekDemoFixture({ locale });
-  const [latestReceipt] = await getContributionReceiptReader().listRecent(1).catch(() => []);
   const stages = [
     [t("home.research.kernel"), t("home.workflow.kernel")],
     [t("home.research.review"), t("home.workflow.review")],
@@ -84,7 +83,7 @@ export default async function Home() {
         </ol>
         <Link className="rh-link" href="/proof-evolution/landau-siegel#submission-record">{t("home.research.caseLink")} →</Link>
       </section>
-      {latestReceipt && <Link className="rh-link" href={`/receipt/${encodeURIComponent(latestReceipt.id)}#receipt-verification`}>{t("home.doors.verify.action")} →</Link>}
+      <Suspense fallback={null}><LatestReceiptLink /></Suspense>
       <section className="rh-section rh-frontier" id="public-frontier" aria-labelledby="rh-frontier-title">
         <div className="rh-section-head"><h2 id="rh-frontier-title">{t("home.research.open")}</h2><Link className="rh-link" href={pathForLocale("/explore", locale)}>{t("home.frontier.action")} →</Link></div>
         <Suspense fallback={<ContentLoading label={t("home.frontier.loading")} />}><HomeFrontier /></Suspense>
@@ -99,9 +98,20 @@ export default async function Home() {
   </SiteFrame>;
 }
 
+async function LatestReceiptLink() {
+  const { t, locale } = await getI18n();
+  try {
+    const [receipt] = await getContributionReceiptReader().listRecent(1);
+    return receipt && <Link className="rh-link" href={`${pathForLocale(`/receipt/${encodeURIComponent(receipt.id)}`, locale)}#receipt-verification`}>{t("home.doors.verify.action")} →</Link>;
+  } catch {
+    return null;
+  }
+}
+
 async function HomeFrontier() {
   const { t, locale } = await getI18n();
-  const projects = await getCatalogRepository().list("frontier", 3);
+  const projects = await getCatalogRepository().list("frontier", 3).catch(() => null);
+  if (!projects) return <p>{t("researchLauncher.state.catalog.title")}</p>;
   return <div className="project-grid">{projects.map(project =>
     <FrontierHomeCard key={project.slug} project={project} t={t} locale={locale} />)}</div>;
 }
