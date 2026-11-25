@@ -110,7 +110,7 @@ async function readLocalStyles(url, seen = new Set()) {
 }
 
 test("five primary destinations share a single accessible page introduction", async () => {
-  for (const [path, label] of [["/", "Overview"], ["/explore", "Research"], ["/workbench", "Workspace"], ["/history", "AI record"], ["/about", "About"]]) {
+  for (const [path, label] of [["/", "Public alpha"], ["/explore", "Research"], ["/workbench", "Workspace"], ["/history", "AI record"], ["/about", "About"]]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -993,7 +993,7 @@ test("consolidates six introduction URLs into two guides without breaking old li
 
 test("serves the public research paths", async () => {
   const expectedPageContent = new Map([
-    ["/showcase", /See a proof become[\s\S]*public contribution/i],
+    ["/showcase", /From problem statement to contribution receipt/i],
     ["/demo", /Watch one Lean proof become/i],
     ["/history", /From Erdős problems to a formalization frontier/i],
     ["/explore", /Search the frontier\. Choose one exact next action/i],
