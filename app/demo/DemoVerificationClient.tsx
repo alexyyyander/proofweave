@@ -8,6 +8,12 @@ import { type BuildWeekDemoVerification, type DemoVerificationMode } from "@/app
 import { useI18n } from "@/app/i18n/client";
 import type { Translator } from "@/app/i18n/translate";
 
+const homeGateLabels = {
+  delegation: "demo.home.gate.delegation", bundle: "demo.home.gate.bundle",
+  objects: "demo.home.gate.objects", runner: "demo.home.gate.runner",
+  review: "demo.home.gate.review", receipt: "demo.home.gate.receipt",
+} as const;
+
 export function DemoVerificationClient({
   initial,
   variant = "full",
@@ -23,14 +29,27 @@ export function DemoVerificationClient({
   const [requestedMode, setRequestedMode] = useState<DemoVerificationMode>(initial.mode);
   const [runSequence, setRunSequence] = useState(initial.mode === "tampered_copy" ? 1 : 0);
   const runResultRef = useRef<HTMLDivElement>(null);
+  const homePanelRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (runSequence === 0) return;
     const frame = window.requestAnimationFrame(() => {
+      if (variant === "home") {
+        const panel = homePanelRef.current;
+        if (!panel || !window.matchMedia("(max-width: 600px)").matches) return;
+        const score = panel.querySelector(".rh-result");
+        const lastDetail = panel.querySelector(".rh-byte-diff") ?? panel.querySelector(".rh-console-action");
+        const headerHeight = document.querySelector(".site-header")?.getBoundingClientRect().height ?? 0;
+        if (score && lastDetail && (score.getBoundingClientRect().top < headerHeight ||
+          lastDetail.getBoundingClientRect().bottom > window.innerHeight)) {
+          panel.scrollIntoView({ block: "start", behavior: "instant" });
+        }
+        return;
+      }
       runResultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     });
     return () => window.cancelAnimationFrame(frame);
-  }, [runSequence]);
+  }, [runSequence, variant]);
 
   const runChecks = async (mode: DemoVerificationMode = "reference") => {
     if (isChecking) return;
@@ -78,7 +97,9 @@ export function DemoVerificationClient({
       ? t("demo.verdict.tamper")
       : verification.status === "verified" ? t("demo.verdict.allPassed") : t("demo.verdict.failed");
   if (variant === "home") {
-    return <section className="rh-console" id="verification-console" aria-labelledby="rh-console-title">
+    const rejected = verification.status === "failed";
+    const report = isTamperResult ? "/api/demo/verify?tamper=artifact" : "/api/demo/verify";
+    return <section ref={homePanelRef} className="rh-console" id="verification-console" aria-labelledby="rh-console-title">
       <div className="rh-console-head">
         <h2 id="rh-console-title">{t("demo.home.heading")}</h2>
         <button className="rh-console-action" disabled={isChecking}
@@ -88,21 +109,37 @@ export function DemoVerificationClient({
       </div>
       <div className="rh-console-body">
         <div className="rh-verdict">
-          <div role="status" aria-live="polite"><strong>{isChecking ? "···" : passedCount}<small>/{verification.checks.length}</small></strong>
-            <span>{isChecking ? t("demo.checkState.checking") : t("demo.home.checks")}</span></div>
-          <p>{t("demo.home.scope")}</p>
+          <div className={rejected ? "rh-result rejected" : "rh-result"} role="status">
+            <strong>{isChecking ? "…" : passedCount}<small>/{verification.checks.length}</small></strong>
+            <span>{isChecking ? t("demo.checkState.checking") : rejected ? (isTamperResult ? t("demo.home.rejected") : t("demo.verdict.failed")) : t("demo.home.accepted")}</span>
+          </div>
+          <p>{isTamperResult && rejected ? t("demo.home.rejectReason") : t("demo.home.scope")}</p>
           <a href="/demo">{t("demo.home.audit")} →</a>
           {!isTamperResult && <button className="rh-recheck" disabled={isChecking} onClick={() => void runChecks("reference")}>{t("demo.home.check")} ↻</button>}
           {error && <p role="alert">{error}</p>}
         </div>
         <ol className="rh-checks" aria-busy={isChecking}>
           {verification.checks.map((check, index) => <li key={check.id} className={check.passed ? undefined : "failed"}>
-            <details open={!isChecking && !check.passed || undefined}>
+            <details key={verification.verificationId} open={!check.passed || undefined}>
               <summary><span className="rh-check-number">{String(index + 1).padStart(2, "0")}</span>
-                <strong>{check.label}</strong><span className="rh-check-state">{isChecking ? "…" : check.passed ? "✓" : "×"}
+                <strong>{check.id in homeGateLabels ? t(homeGateLabels[check.id as keyof typeof homeGateLabels]) : check.label}</strong><span className="rh-duration">{isChecking ? "—" : formatDuration(check.durationMs)}</span>
+                <span className="rh-check-state">{isChecking ? "…" : check.passed ? "✓" : "×"}
                   <span className="sr-only">{isChecking ? t("demo.checkState.checking") : check.passed ? t("demo.checkState.passed") : t("demo.checkState.failed")}</span>
                 </span><span aria-hidden="true" className="rh-chevron">⌄</span></summary>
-              <div className="rh-check-detail"><p>{check.result}</p><code>{check.evidence}</code><p>{check.method} · {formatDuration(check.durationMs)}</p></div>
+              <div className="rh-check-detail">
+                {check.id === "objects" && !check.passed && verification.mutation && <div className="rh-byte-diff">
+                  <p><code>{verification.mutation.filename}</code> · {t("demo.home.offset", {offset: verification.mutation.offset})}</p>
+                  {([["demo.home.expected", verification.mutation.before], ["demo.home.changed", verification.mutation.after]] as const).map(([label, bytes]) =>
+                    <div className="rh-byte-line" key={label}><span>{t(label)}</span>
+                      <code>{bytes.slice(0,-1).join(" ")} <b>{bytes[bytes.length - 1]}</b></code></div>)}
+                </div>}
+                <p>{check.result}</p>
+                <details className="rh-raw" open={check.passed || undefined}><summary>{t("demo.check.inspect")}</summary>
+                  <p>{check.method}</p><code>{check.evidence}</code>
+                  <p>Git <code>{verification.record.commitSha}</code></p>
+                  <a href={report} target="_blank" rel="noreferrer">{t("demo.report.viewJson")} ↗</a>
+                </details>
+              </div>
             </details>
           </li>)}
         </ol>

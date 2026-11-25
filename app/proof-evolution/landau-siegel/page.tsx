@@ -52,6 +52,15 @@ export default async function LandauSiegelProofEvolutionPage() {
           <Badge tone="warning">{t("proofMaps.landau.badgeDraft")}</Badge>
         </>}
       />
+      <section id="submission-record" className="submission-record" aria-labelledby="submission-record-title">
+        <p className="eyebrow">{t("home.research.aside")} · <time dateTime="2026-11-24">{t("home.research.asof")}</time></p>
+        <h2 id="submission-record-title">{t("home.research.case")}</h2>
+        <FieldList layout="stacked">
+          <Field label={t("home.research.kernel")}>{t("home.research.kernelOutcome")} · {t("home.research.kernelDetail")}</Field>
+          <Field label={t("home.research.review")}>{t("home.research.reviewOutcome")} · {t("home.research.reviewDetail")}</Field>
+          <Field label={t("home.research.receipt")}>{t("home.research.receiptOutcome")} · {t("home.research.receiptDetail")}</Field>
+        </FieldList>
+      </section>
       <ProofEvolutionClient data={data} leanStructure={leanStructure as LeanStructureData} argumentMap={argumentMap as ArgumentMapData} />
     </SiteFrame>
   );

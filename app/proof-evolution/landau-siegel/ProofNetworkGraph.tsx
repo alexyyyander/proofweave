@@ -1,5 +1,6 @@
 "use client";
 
+import { canvasPalette } from "./canvas-palette";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Surface } from "@/app/components/ui";
 import { useI18n } from "@/app/i18n/client";
@@ -43,13 +44,13 @@ const WORLD_WIDTH = 1000;
 const WORLD_HEIGHT = 620;
 const PRIMARY_VERSION_IDS = ["openai-2026-10-01", "banks-2026-10-11", "kerr-2026-10-15", "green-2026-10-17", "barreto-2026-10-19"];
 const COLORS: Record<NetworkNodeType, string> = {
-  version: "#e8b35a",
-  step: "#8aa0ff",
-  subsystem: "#7fc9a0",
-  anchor: "#e48a7c",
-  module: "#9db4d6",
-  entry: "#f0d9a0",
-  external: "#7d8ba3",
+  version: "var(--graph-gold)",
+  step: "var(--indigo-ice)",
+  subsystem: "var(--graph-green)",
+  anchor: "var(--graph-rose)",
+  module: "var(--on-navy-muted)",
+  entry: "var(--amber-ice)",
+  external: "var(--on-navy-dim)",
 };
 
 const STEP_LABEL_KEYS: Record<string, TranslationKey> = {
@@ -361,6 +362,7 @@ export function ProofNetworkGraph({ data, lean, selectedVersion, selectedStepId,
     alphaRef.current = 1;
     const context = canvas.getContext("2d");
     if (!context) return;
+    const paint = canvasPalette(canvas);
     let width = 0;
     let height = 0;
     let dpr = 1;
@@ -388,8 +390,8 @@ export function ProofNetworkGraph({ data, lean, selectedVersion, selectedStepId,
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, width, height);
       const background = ctx.createLinearGradient(0, 0, width, height);
-      background.addColorStop(0, "#0b1830");
-      background.addColorStop(1, "#111f3d");
+      background.addColorStop(0, paint("var(--navy)"));
+      background.addColorStop(1, paint("var(--navy-surface)"));
       ctx.fillStyle = background;
       ctx.fillRect(0, 0, width, height);
       ctx.save();
@@ -413,7 +415,7 @@ export function ProofNetworkGraph({ data, lean, selectedVersion, selectedStepId,
         const incident = !active || edge.source === active || edge.target === active;
         ctx.globalAlpha = incident ? 0.78 : 0.1;
         ctx.lineWidth = edge.type === "version" ? 1.7 : edge.type === "align-source" || edge.type === "align-inferred" ? 1.4 : 0.9;
-        ctx.strokeStyle = edge.type === "version" ? "#e8b35a" : edge.type === "align-source" ? "#7fc9a0" : edge.type === "align-inferred" ? "#d9a95d" : edge.type === "anchor-step" || edge.type === "anchor-subsystem" ? "#d78a7c" : edge.type === "step-dep" || edge.type === "chain" ? "#7f93d8" : "#64748b";
+        ctx.strokeStyle = paint(edge.type === "version" ? "var(--graph-gold)" : edge.type === "align-source" ? "var(--graph-green)" : edge.type === "align-inferred" ? "var(--graph-orange)" : edge.type === "anchor-step" || edge.type === "anchor-subsystem" ? "var(--graph-rose)" : edge.type === "step-dep" || edge.type === "chain" ? "var(--graph-blue)" : "var(--ink-faint)");
         ctx.setLineDash(edge.type === "align-inferred" || edge.type === "import" || edge.type === "external" ? [4, 5] : edge.type === "anchor-step" ? [2, 4] : []);
         ctx.beginPath();
         ctx.moveTo(source.x, source.y);
@@ -430,14 +432,14 @@ export function ProofNetworkGraph({ data, lean, selectedVersion, selectedStepId,
         if (isActive || isSelected) {
           ctx.beginPath();
           ctx.arc(node.x, node.y, node.r + 6, 0, Math.PI * 2);
-          ctx.fillStyle = isSelected ? "rgba(138,160,255,.22)" : "rgba(232,179,90,.18)";
+          ctx.fillStyle = paint(isSelected ? "var(--graph-halo)" : "var(--graph-halo-warm)");
           ctx.fill();
         }
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-        ctx.fillStyle = node.color;
+        ctx.fillStyle = paint(node.color);
         ctx.fill();
-        ctx.strokeStyle = isSelected ? "#ffffff" : "rgba(11,24,48,.85)";
+        ctx.strokeStyle = paint(isSelected ? "var(--surface)" : "var(--graph-outline)");
         ctx.lineWidth = isSelected ? 2 : 1.2;
         ctx.stroke();
         const showLabel = node.type === "version" || node.type === "subsystem" || node.type === "entry"
@@ -450,10 +452,10 @@ export function ProofNetworkGraph({ data, lean, selectedVersion, selectedStepId,
           ctx.textAlign = "left";
           ctx.textBaseline = "middle";
           ctx.lineJoin = "round";
-          ctx.strokeStyle = "rgba(11,24,48,.92)";
+          ctx.strokeStyle = paint("var(--graph-outline)");
           ctx.lineWidth = 3;
           ctx.strokeText(node.label, node.x + node.r + 4, node.y + 1);
-          ctx.fillStyle = "#e7edf9";
+          ctx.fillStyle = paint("var(--on-navy)");
           ctx.fillText(node.label, node.x + node.r + 4, node.y + 1);
         }
       }

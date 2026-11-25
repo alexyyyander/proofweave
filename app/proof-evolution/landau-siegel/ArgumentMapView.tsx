@@ -185,7 +185,7 @@ function buildModel(data: ProofEvolutionData, argumentMap: ArgumentMapData, t: T
     kind: "theorem",
     source: argumentMap.result.source,
     detail: argumentMap.result.statement,
-    color: "#f2d27a",
+    color: "var(--amber-ice)",
     isResult: true,
     dependencies: [],
   };
@@ -300,7 +300,7 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
       type: "result",
       label: t("proofMaps.argument.sharedResultLabel"),
       sublabel: model.resultNode.fullLabel,
-      color: "#f2d27a",
+      color: "var(--amber-ice)",
       role: "result",
       meta: { nodeId: model.resultNode.id },
     });
@@ -432,7 +432,7 @@ export function ArgumentMapView({ data, argumentMap, lean }: { data: ProofEvolut
           <svg className="argument-map-edges" viewBox={`0 0 ${matrixWidth} ${matrixHeight}`} aria-hidden="true">
             <defs>
               <marker id="argument-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b96a9" />
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--on-navy-dim)" />
               </marker>
             </defs>
             {allEdges.map((edge) => {
