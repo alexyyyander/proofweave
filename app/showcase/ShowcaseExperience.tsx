@@ -26,6 +26,7 @@ export function ShowcaseExperience({ nodes }: { nodes: JourneyNode[] }) {
       <div className={styles.copy} aria-live="polite" aria-atomic="true">
         <h3 id="journey-artifact">{t(`showcase.artifact.${active.id === "frontier" ? "target" : active.id}`)}</h3>
         <p>{t(`showcase.explain.${active.id}`)}</p>
+        {active.id === "receipt" && <a className="rh-link" href="#credit-rules">{t("showcase.creditRules")} ↑</a>}
         <strong data-pass={active.passed}>{active.id === "frontier" ? t("showcase.stage.frontier.state") : t(active.passed ? "showcase.state.passed" : "showcase.state.failed")}</strong>
       </div>
       <div className={styles.evidence}>
