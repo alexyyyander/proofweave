@@ -1,5 +1,6 @@
 "use client";
 
+import { canvasPalette } from "./canvas-palette";
 import { useEffect, useRef } from "react";
 import { useI18n } from "@/app/i18n/client";
 import type { ArgumentMapRole } from "@/app/lib/proof-evolution";
@@ -137,6 +138,7 @@ export function ArgumentNetworkGraph({ nodes, edges, graphKey, roles, selectedNo
     alphaRef.current = 1;
     const context = canvas.getContext("2d");
     if (!context) return;
+    const paint = canvasPalette(canvas);
     let width = 0;
     let height = 0;
     let dpr = 1;
@@ -164,8 +166,8 @@ export function ArgumentNetworkGraph({ nodes, edges, graphKey, roles, selectedNo
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, width, height);
       const background = ctx.createLinearGradient(0, 0, width, height);
-      background.addColorStop(0, "#0b1830");
-      background.addColorStop(1, "#111f3d");
+      background.addColorStop(0, paint("var(--navy)"));
+      background.addColorStop(1, paint("var(--navy-surface)"));
       ctx.fillStyle = background;
       ctx.fillRect(0, 0, width, height);
       ctx.save();
@@ -185,7 +187,7 @@ export function ArgumentNetworkGraph({ nodes, edges, graphKey, roles, selectedNo
         const incident = !active || edge.source === active || edge.target === active;
         ctx.globalAlpha = incident ? (edge.type === "strategy" ? 0.38 : edge.type === "cross" ? 0.42 : 0.78) : 0.08;
         ctx.lineWidth = edge.type === "final" ? 1.8 : edge.type === "cross" ? 1 : 0.9;
-        ctx.strokeStyle = edge.type === "final" ? "#e8b35a" : edge.type === "cross" ? "#b7a6d9" : edge.type === "object" ? "#6f8fae" : edge.type === "mentions" ? "#9aa4b5" : edge.type === "depends" ? "#7f93d8" : "#64748b";
+        ctx.strokeStyle = paint(edge.type === "final" ? "var(--graph-gold)" : edge.type === "cross" ? "var(--graph-lilac)" : edge.type === "object" ? "var(--graph-link)" : edge.type === "mentions" ? "var(--on-navy-dim)" : edge.type === "depends" ? "var(--graph-blue)" : "var(--ink-faint)");
         ctx.setLineDash(edge.type === "cross" ? [4, 5] : edge.type === "strategy" ? [2, 5] : edge.type === "object" ? [3, 5] : edge.type === "mentions" ? [1, 5] : []);
         ctx.beginPath();
         ctx.moveTo(source.x, source.y);
@@ -202,14 +204,14 @@ export function ArgumentNetworkGraph({ nodes, edges, graphKey, roles, selectedNo
         if (isActive || isSelected) {
           ctx.beginPath();
           ctx.arc(node.x, node.y, node.r + 6, 0, Math.PI * 2);
-          ctx.fillStyle = isSelected ? "rgba(138,160,255,.22)" : "rgba(232,179,90,.18)";
+          ctx.fillStyle = paint(isSelected ? "var(--graph-halo)" : "var(--graph-halo-warm)");
           ctx.fill();
         }
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-        ctx.fillStyle = node.color;
+        ctx.fillStyle = paint(node.color);
         ctx.fill();
-        ctx.strokeStyle = isSelected ? "#ffffff" : "rgba(11,24,48,.85)";
+        ctx.strokeStyle = paint(isSelected ? "var(--surface)" : "var(--graph-outline)");
         ctx.lineWidth = isSelected ? 2 : 1.2;
         ctx.stroke();
       }
@@ -235,10 +237,10 @@ export function ArgumentNetworkGraph({ nodes, edges, graphKey, roles, selectedNo
         ctx.textAlign = "left";
         ctx.textBaseline = "middle";
         ctx.lineJoin = "round";
-        ctx.strokeStyle = "rgba(11,24,48,.92)";
+        ctx.strokeStyle = paint("var(--graph-outline)");
         ctx.lineWidth = 3;
         ctx.strokeText(node.label, labelLeft, node.y + 1);
-        ctx.fillStyle = "#e7edf9";
+        ctx.fillStyle = paint("var(--on-navy)");
         ctx.fillText(node.label, labelLeft, node.y + 1);
         placedLabels.push(labelBox);
       }
@@ -475,8 +477,8 @@ export function ArgumentNetworkGraph({ nodes, edges, graphKey, roles, selectedNo
     </div>
     <div className="proof-network-legend" aria-label={t("proofMaps.argumentGraph.legendAria")}>
       <span><i className="is-strategy" />{t("proofMaps.argumentGraph.legendStrategy")}</span>
-      <span><i style={{ background: "#8aa0ff" }} />{t("proofMaps.argumentGraph.legendStep")}</span>
-      <span><i style={{ background: "#f2d27a" }} />{t("proofMaps.argumentGraph.legendResult")}</span>
+      <span><i style={{ background: "var(--indigo-ice)" }} />{t("proofMaps.argumentGraph.legendStep")}</span>
+      <span><i style={{ background: "var(--amber-ice)" }} />{t("proofMaps.argumentGraph.legendResult")}</span>
       <span><i className="is-network-edge is-depends" />{t("proofMaps.argumentGraph.legendDependency")}</span>
       <span><i className="is-network-edge is-object" />{t("proofMaps.argumentGraph.legendObject")}</span>
       <span><i className="is-network-edge is-mentions" />{t("proofMaps.argumentGraph.legendMentions")}</span>

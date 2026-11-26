@@ -52,6 +52,7 @@ export type BuildWeekDemoVerification = {
   checkedAt: string;
   durationMs: number;
   checks: readonly DemoVerificationCheck[];
+  mutation?: { filename: string; offset: number; before: string[]; after: string[] };
   executionBoundary: {
     evidenceSource: "checked_in_reference_fixture";
     signedEvidenceReverified: true;
@@ -96,7 +97,7 @@ export async function verifyBuildWeekDemoFixture(
   const locale = options.locale ?? defaultLocale;
   const t = createTranslator(getDictionary(locale));
   const checkedFixture = mode === "tampered_copy" ? structuredClone(fixture) : fixture;
-  if (mode === "tampered_copy") tamperOneArtifactByte(checkedFixture);
+  const mutation = mode === "tampered_copy" ? tamperOneArtifactByte(checkedFixture) : undefined;
 
   const startedAt = stableRun ? checkedFixture.runner.result.startedAt : new Date().toISOString();
   const started = preciseNow();
@@ -324,6 +325,7 @@ export async function verifyBuildWeekDemoFixture(
     status: checks.every((candidate) => candidate.passed) ? "verified" : "failed",
     verificationId,
     protocolVersion: checkedFixture.fixtureProtocolVersion,
+    ...(mutation && { mutation }),
     mode,
     startedAt,
     checkedAt,
@@ -404,8 +406,17 @@ async function check(
 function tamperOneArtifactByte(target: typeof fixture) {
   const artifact = target.objects.find((candidate) => candidate.role === "source_patch");
   if (!artifact || artifact.content.length === 0) throw new Error("Demo tamper target is unavailable.");
-  const finalCharacter = artifact.content.at(-1);
-  artifact.content = `${artifact.content.slice(0, -1)}${finalCharacter === "\n" ? " " : "\n"}`;
+  if (artifact.encoding !== "utf8") throw new Error("Expected a UTF-8 patch.");
+  const bytes = decodeObject(artifact);
+  const offset = bytes.length - 1;
+  const windowStart = Math.max(0, offset - 3);
+  const hexWindow = () => Array.from(bytes.subarray(windowStart), byte =>
+    byte.toString(16).padStart(2, "0").toUpperCase());
+  const before = hexWindow();
+  if (bytes[offset] !== 0x0a && bytes[offset] !== 0x20) throw new Error("Expected a trailing ASCII separator.");
+  bytes[offset] = bytes[offset] === 0x0a ? 0x20 : 0x0a;
+  artifact.content = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+  return { filename: artifact.filename, offset, before, after: hexWindow() };
 }
 
 function preciseNow() {

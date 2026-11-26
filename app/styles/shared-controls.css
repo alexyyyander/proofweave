@@ -37,7 +37,7 @@
 .button:active,
 .header-sign-in:active,
 .header-cta:active { transform: scale(.98); }
-.button:hover { box-shadow: 0 4px 12px rgba(61, 95, 230, .13); }
+.button:hover { box-shadow: none; }
 
 input,
 select,
@@ -48,7 +48,7 @@ textarea,
 .research-subject-select select { border-radius: var(--radius-control); }
 input:focus-visible,
 select:focus-visible,
-textarea:focus-visible { outline: 2px solid rgba(61, 95, 230, .24); outline-offset: 1px; }
+textarea:focus-visible { outline: 2px solid color-mix(in srgb, var(--indigo) 24%, transparent); outline-offset: 1px; }
 
 /* Cards and panels: single hairline ring + soft lift instead of hard edges. */
 .project-card,
@@ -70,7 +70,7 @@ textarea:focus-visible { outline: 2px solid rgba(61, 95, 230, .24); outline-offs
 .research-index-filters {
   border-color: transparent;
   border-radius: var(--radius-card);
-  box-shadow: var(--ring), var(--shadow-card);
+  box-shadow: var(--ring);
 }
 .project-card:hover,
 .founding-card:hover,
@@ -81,7 +81,7 @@ textarea:focus-visible { outline: 2px solid rgba(61, 95, 230, .24); outline-offs
 .review-card:hover,
 .my-work-card:hover,
 .catalog-card:hover {
-  box-shadow: var(--ring), 0 8px 24px rgba(20, 34, 57, .10);
+  box-shadow: var(--ring);
 }
 
 /* Chips, status, and filters share one pill language. Status stays text + icon. */
@@ -132,24 +132,24 @@ textarea:focus-visible { outline: 2px solid rgba(61, 95, 230, .24); outline-offs
   overflow: auto;
   -webkit-mask-image: linear-gradient(to bottom,
     transparent,
-    #0000000d calc(var(--fade-top) * .15), #00000026 calc(var(--fade-top) * .3),
-    #0000004d calc(var(--fade-top) * .45), #00000080 calc(var(--fade-top) * .6),
-    #000000b3 calc(var(--fade-top) * .75), #000000d9 calc(var(--fade-top) * .87),
-    #000 var(--fade-top),
-    #000 calc(100% - var(--fade-bottom)),
-    #000000d9 calc(100% - var(--fade-bottom) * .87), #000000b3 calc(100% - var(--fade-bottom) * .75),
-    #00000080 calc(100% - var(--fade-bottom) * .6), #0000004d calc(100% - var(--fade-bottom) * .45),
-    #00000026 calc(100% - var(--fade-bottom) * .3), #0000000d calc(100% - var(--fade-bottom) * .15),
+    color-mix(in srgb, currentColor 5%, transparent) calc(var(--fade-top) * .15), color-mix(in srgb, currentColor 15%, transparent) calc(var(--fade-top) * .3),
+    color-mix(in srgb, currentColor 30%, transparent) calc(var(--fade-top) * .45), color-mix(in srgb, currentColor 50%, transparent) calc(var(--fade-top) * .6),
+    color-mix(in srgb, currentColor 70%, transparent) calc(var(--fade-top) * .75), color-mix(in srgb, currentColor 85%, transparent) calc(var(--fade-top) * .87),
+    currentColor var(--fade-top),
+    currentColor calc(100% - var(--fade-bottom)),
+    color-mix(in srgb, currentColor 85%, transparent) calc(100% - var(--fade-bottom) * .87), color-mix(in srgb, currentColor 70%, transparent) calc(100% - var(--fade-bottom) * .75),
+    color-mix(in srgb, currentColor 50%, transparent) calc(100% - var(--fade-bottom) * .6), color-mix(in srgb, currentColor 30%, transparent) calc(100% - var(--fade-bottom) * .45),
+    color-mix(in srgb, currentColor 15%, transparent) calc(100% - var(--fade-bottom) * .3), color-mix(in srgb, currentColor 5%, transparent) calc(100% - var(--fade-bottom) * .15),
     transparent);
   mask-image: linear-gradient(to bottom,
     transparent,
-    #0000000d calc(var(--fade-top) * .15), #00000026 calc(var(--fade-top) * .3),
-    #0000004d calc(var(--fade-top) * .45), #00000080 calc(var(--fade-top) * .6),
-    #000000b3 calc(var(--fade-top) * .75), #000000d9 calc(var(--fade-top) * .87),
-    #000 var(--fade-top),
-    #000 calc(100% - var(--fade-bottom)),
-    #000000d9 calc(100% - var(--fade-bottom) * .87), #000000b3 calc(100% - var(--fade-bottom) * .75),
-    #00000080 calc(100% - var(--fade-bottom) * .6), #0000004d calc(100% - var(--fade-bottom) * .45),
-    #00000026 calc(100% - var(--fade-bottom) * .3), #0000000d calc(100% - var(--fade-bottom) * .15),
+    color-mix(in srgb, currentColor 5%, transparent) calc(var(--fade-top) * .15), color-mix(in srgb, currentColor 15%, transparent) calc(var(--fade-top) * .3),
+    color-mix(in srgb, currentColor 30%, transparent) calc(var(--fade-top) * .45), color-mix(in srgb, currentColor 50%, transparent) calc(var(--fade-top) * .6),
+    color-mix(in srgb, currentColor 70%, transparent) calc(var(--fade-top) * .75), color-mix(in srgb, currentColor 85%, transparent) calc(var(--fade-top) * .87),
+    currentColor var(--fade-top),
+    currentColor calc(100% - var(--fade-bottom)),
+    color-mix(in srgb, currentColor 85%, transparent) calc(100% - var(--fade-bottom) * .87), color-mix(in srgb, currentColor 70%, transparent) calc(100% - var(--fade-bottom) * .75),
+    color-mix(in srgb, currentColor 50%, transparent) calc(100% - var(--fade-bottom) * .6), color-mix(in srgb, currentColor 30%, transparent) calc(100% - var(--fade-bottom) * .45),
+    color-mix(in srgb, currentColor 15%, transparent) calc(100% - var(--fade-bottom) * .3), color-mix(in srgb, currentColor 5%, transparent) calc(100% - var(--fade-bottom) * .15),
     transparent);
 }

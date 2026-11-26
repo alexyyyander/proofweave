@@ -11,7 +11,7 @@ import { useI18n } from "@/app/i18n/client";
  * pinned comparators and columns describe their metadata. The names and
  * permitted axioms do not establish proof relationships, so no edges are drawn.
  */
-const strategyColors = ["#5c8fd6", "#8b75c9", "#c98b5c", "#5cc9a0", "#b07cc6", "#4fa3a3"];
+const strategyColors = ["var(--graph-blue)", "var(--graph-violet)", "var(--graph-orange)", "var(--graph-green)", "var(--graph-plum)", "var(--graph-teal)"];
 
 export function LeanGraphView({ family, claim, date }: { family: LeanCoverageFamily; claim: string; date: string }) {
   const { t } = useI18n();
