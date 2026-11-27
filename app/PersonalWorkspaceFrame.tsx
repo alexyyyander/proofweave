@@ -16,7 +16,7 @@ export async function PersonalWorkspaceFrame({ active, children, summary: suppli
       <section className="personal-workspace-current">
         <span className="micro-label">{t("workspace.currentAttempt")}</span>
         {summary.currentAttempt ? <>
-          <Link href={attemptHref}>{summary.currentAttempt.problemTitle}</Link>
+          <Link prefetch={false} href={attemptHref}>{summary.currentAttempt.problemTitle}</Link>
           <p>{summary.currentAttempt.scope ?? "research"} · {summary.currentAttempt.status}</p>
         </> : <>
           <strong>{t("workspace.noActive")}</strong>
@@ -34,7 +34,7 @@ export async function PersonalWorkspaceFrame({ active, children, summary: suppli
         <div><span>{t("workspace.pendingReviews")}</span><strong>{countLabel(summary.counts.activeReviews)}</strong></div>
         <div><span>{t("workspace.evidenceRecords")}</span><strong>{countLabel(summary.counts.evidence)}</strong></div>
         <div><span>{t("workspace.stagedEvidence")}</span><strong>{countLabel(summary.counts.provisionalContributions)}</strong></div>
-        <Link href={attemptHref}>{summary.currentAttempt ? t("workspace.returnCurrent") : t("workspace.openWorkspace")} <span>→</span></Link>
+        <Link prefetch={false} href={attemptHref}>{summary.currentAttempt ? t("workspace.returnCurrent") : t("workspace.openWorkspace")} <span>→</span></Link>
       </section>
       }</WorkspacePart></Suspense>
       <div className="personal-workspace-frame-content">{children}</div>

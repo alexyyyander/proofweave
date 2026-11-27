@@ -16,10 +16,11 @@ export const onRequestError: Instrumentation.onRequestError = (error, request, c
   if (!(error instanceof Error)) return;
   const digest = ("digest" in error ? error.digest : undefined) ?? renderDigest(error);
   if (typeof digest === "string" && /^\d{1,12}$/.test(digest)) {
-    // Keep coordinates from the deployed JS bundle, never the raw stack or message.
-    const frame = error.stack?.split("\n").slice(1)
-      .map(line => line.match(/(?:^|[\s(/])([\w.-]+\.m?js:\d+:\d+)\)?$/)?.[1])
-      .find(Boolean);
+    // An Error message can itself contain line breaks and fake stack frames.
+    // Only keep bounded coordinates from known production entrypoint names.
+    const header = `${error.name}: ${error.message}\n`;
+    const frames = error.stack?.startsWith(header) ? error.stack.slice(header.length) : "";
+    const frame = frames.match(/^\s+at [^\n]*[(/\s]((?:index|worker)\.js:\d{1,6}:\d{1,6})\)?$/m)?.[1];
     const kind = error instanceof TypeError ? "TypeError" : error instanceof RangeError ? "RangeError" : "Error";
     console.error("profile_render_failed", { digest, source: context.renderSource ?? "unspecified", kind, frame });
   }

@@ -8,8 +8,8 @@ for (const source of ["server-rendering", "react-server-components"]) {
     const log = t.mock.method(console, "error", () => {});
     const path = "/zh-CN/profile";
     const handler = createAppRscOnErrorHandler(onRequestError, new Request("https://example.test" + path), path, "/profile", { renderSource: source });
-    const error = new TypeError("private test detail");
-    error.stack = "TypeError: private test detail\n    at render (worker/assets/index.js:23:45)";
+    const error = new TypeError("private test detail\n    at forged (index.js:999:9)");
+    error.stack = `TypeError: ${error.message}\n    at forged (private-material.js:67:89)\n    at render (worker/assets/index.js:23:45)`;
     const digest = handler(error);
     assert.match(digest, /^\d+$/);
     const records = log.mock.calls.map(call => call.arguments).filter(args => args[0] === "profile_render_failed");
@@ -17,7 +17,7 @@ for (const source of ["server-rendering", "react-server-components"]) {
     assert.equal(records[0][1].digest, digest);
     assert.equal(records[0][1].kind, "TypeError");
     assert.equal(records[0][1].frame, "index.js:23:45");
-    assert.doesNotMatch(JSON.stringify(records), /private test detail/);
+    assert.doesNotMatch(JSON.stringify(records), /private test detail|private-material|999:9/);
   });
 }
 
