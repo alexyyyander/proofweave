@@ -102,11 +102,11 @@ export function DemoVerificationClient({
     const report = isTamperResult ? "/api/demo/verify?tamper=artifact" : "/api/demo/verify";
     return <section ref={homePanelRef} className="rh-console" id="verification-console" aria-labelledby="rh-console-title">
       <div className="rh-console-head">
-        <h2 id="rh-console-title">{t("demo.home.heading")}</h2>
-        <button className="rh-console-action" disabled={isChecking}
+        <SectionTitle id="rh-console-title">{t("demo.home.heading")}</SectionTitle>
+        <Button className="rh-console-action" disabled={isChecking}
           onClick={() => void runChecks(isTamperResult ? "reference" : "tampered_copy")}>
           {isChecking ? t("demo.checkState.checking") : isTamperResult ? t("demo.home.restore") : t("demo.home.tamper")}
-        </button>
+        </Button>
       </div>
       <div className="rh-console-body">
         <div className="rh-verdict">
@@ -116,7 +116,7 @@ export function DemoVerificationClient({
           </div>
           <p>{isTamperResult && rejected ? t("demo.home.rejectReason") : t("demo.home.scope")}</p>
           <Link href="/demo">{t("demo.home.audit")} →</Link>
-          {!isTamperResult && <button className="rh-recheck" disabled={isChecking} onClick={() => void runChecks("reference")}>{t("demo.home.check")} ↻</button>}
+          {!isTamperResult && <Button className="rh-recheck" disabled={isChecking} onClick={() => void runChecks("reference")}>{t("demo.home.check")} ↻</Button>}
           {error && <p role="alert">{error}</p>}
         </div>
         <ol className="rh-checks" aria-busy={isChecking}>
