@@ -1149,6 +1149,57 @@ test("serves the public research paths", async () => {
   assert.match(selectedWorkbenchHtml, /exact target and source revision stay selected after sign-in/i);
 });
 
+test("a signed-in profile survives missing optional data and recovers after a core read fails", async () => {
+  const token = "profile-recovery-test-session";
+  const person = "person:rendered-reviewer";
+  await database.prepare(
+    `INSERT INTO person_identities (id, person_id, provider, provider_subject, email, email_normalized, display_name, email_verified_at, updated_at)
+     VALUES ('identity:profile-recovery', ?, 'google', 'profile-recovery', 'reviewer@example.test', 'reviewer@example.test', 'Review Person', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`,
+  ).bind(person).run();
+  await database.prepare(
+    `INSERT INTO app_sessions (id, person_id, identity_id, token_hash, expires_at, created_at)
+     VALUES ('session:profile-recovery', ?, 'identity:profile-recovery', ?, '2099-01-01T00:00:00Z', CURRENT_TIMESTAMP)`,
+  ).bind(person, await sha256(token)).run();
+  const headers = { cookie: `__Host-pw_session=${token}` };
+  const profile = async () => {
+    const response = await render("/zh-CN/profile", { headers });
+    assert.equal(response.status, 200);
+    return response.text();
+  };
+  assert.match(await profile(), /class="profile-avatar"/);
+  await database.prepare("ALTER TABLE provisional_contributions RENAME TO offline_provisional").run();
+  try {
+    const html = await profile();
+    assert.match(html, /class="profile-avatar"/);
+    assert.match(html, /<strong>—<\/strong>/);
+  } finally {
+    await database.prepare("ALTER TABLE offline_provisional RENAME TO provisional_contributions").run();
+  }
+  await database.prepare("ALTER TABLE research_nodes RENAME TO offline_research_nodes").run();
+  try {
+    const html = await profile();
+    assert.match(html, /此处数据暂时不可用/);
+    assert.match(html, /class="profile-avatar"/);
+    assert.match(html, /id="profile-activity-title"/);
+    assert.match(html, /action="\/zh-CN\/profile"/);
+    assert.match(html, /class="personal-workspace-frame-sidebar"/);
+  } finally {
+    await database.prepare("ALTER TABLE offline_research_nodes RENAME TO research_nodes").run();
+  }
+  await database.prepare("ALTER TABLE receipt_credit_entries RENAME TO offline_credit_entries").run();
+  try {
+    const html = await profile();
+    assert.match(html, /此处数据暂时不可用/);
+    assert.match(html, /id="profile-activity-title"/);
+    assert.match(html, /class="profile-avatar"/);
+  } finally {
+    await database.prepare("ALTER TABLE offline_credit_entries RENAME TO receipt_credit_entries").run();
+  }
+  const recovered = await profile();
+  assert.match(recovered, /class="profile-avatar"/);
+  assert.doesNotMatch(recovered, /class="profile-retry-read"/);
+});
+
 test("serves the localized shell and translated information pages", async () => {
   const chinese = await render("/about", { headers: { cookie: "pw_locale=zh-CN" } });
   assert.equal(chinese.status, 200);

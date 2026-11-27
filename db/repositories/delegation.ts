@@ -276,6 +276,7 @@ type PublicDelegationRow = DelegationRow & {
 
 export interface DelegationRepository {
   getProfile(identity: PersonIdentity): Promise<DelegationProfile>;
+  getProfileForPerson(person: DelegationPerson): Promise<DelegationProfile>;
   getPublicDelegation(id: string): Promise<PublicDelegationRecord | null>;
   registerPersonKey(identity: PersonIdentity, publicKey: string): Promise<{ key: PersonSigningKey; created: boolean }>;
   revokePersonKey(
@@ -315,7 +316,10 @@ class D1DelegationRepository implements DelegationRepository {
   constructor(private readonly database = getD1()) {}
 
   async getProfile(identity: PersonIdentity): Promise<DelegationProfile> {
-    const person = await this.upsertPerson(identity);
+    return this.getProfileForPerson(toPerson(await this.upsertPerson(identity)));
+  }
+
+  async getProfileForPerson(person: DelegationPerson): Promise<DelegationProfile> {
     const [keys, agents, delegations, agentInstallations] = await Promise.all([
       this.database
         .prepare(
@@ -379,7 +383,7 @@ class D1DelegationRepository implements DelegationRepository {
     ]);
 
     return {
-      person: toPerson(person),
+      person,
       signingKeys: (keys.results ?? []).map(toPersonKey),
       agents: (agents.results ?? []).map(toAgent),
       delegations: (delegations.results ?? []).map(toDelegation),
