@@ -1982,6 +1982,7 @@ export const zhCN: Dictionary = {
   "profile.privacy.eyebrow": "公开 / 私有边界",
   "profile.privacy.title": "你的贡献记录是公开的，你的账户不是。",
   "profile.privacy.body": "公开页面只包含你的显示名称、Person ID、公开研究关键节点、已签名收据与汇总评审结果。邮箱、提供方 subject、私有证据、提示词、密钥、连接凭据与未共享的工作区数据保持私有。",
+  "profile.sectionUnavailable": "此处数据暂时不可用。",
   "profile.unavailable.eyebrow": "个人主页",
   "profile.unavailable.title": "你的主页暂时不可用。",
   "profile.unavailable.body": "未更改任何身份、贡献或 Agent 记录。请在账户控制平面可用后重试。",

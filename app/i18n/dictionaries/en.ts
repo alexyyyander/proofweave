@@ -1994,6 +1994,7 @@ export const en = {
   "profile.privacy.eyebrow": "Public / private boundary",
   "profile.privacy.title": "Your contribution record is public. Your account is not.",
   "profile.privacy.body": "The public page contains only your display name, Person ID, public research checkpoints, signed Receipts, and aggregate review outcomes. Email, provider subject, private evidence, prompts, keys, connection credentials, and unshared workspace data remain private.",
+  "profile.sectionUnavailable": "This section is temporarily unavailable.",
   "profile.unavailable.eyebrow": "Personal profile",
   "profile.unavailable.title": "Your profile is temporarily unavailable.",
   "profile.unavailable.body": "No identity, contribution, or Agent record was changed. Please try again when the account control plane is available.",

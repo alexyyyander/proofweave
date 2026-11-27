@@ -136,6 +136,16 @@ class D1PersonProfileRepository implements PersonProfileRepository {
   }
 }
 
+export async function getPrivateProfileFacts(personId: string) {
+  const row = await getD1().prepare(
+    `SELECT person.created_at AS joinedAt,
+            (SELECT COUNT(*) FROM research_nodes WHERE beneficiary_person_id = person.id) AS sharedCheckpoints
+     FROM persons AS person WHERE person.id = ?`,
+  ).bind(personId).first<{ joinedAt: string; sharedCheckpoints: number }>();
+  if (!row) throw new Error("Profile person unavailable");
+  return row;
+}
+
 export function getPersonProfileRepository(): PersonProfileRepository {
   return new D1PersonProfileRepository();
 }
