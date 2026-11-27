@@ -50,18 +50,26 @@ export default async function ProfilePage() {
   const delegation = profileRead("delegation", () => user.personId
     ? getDelegationRepository().getProfileForPerson({ id: user.personId, displayName: user.displayName })
     : getDelegationRepository().getProfile(toPersonIdentity(user)));
+  const resolvedPersonId = user.personId ?? delegation.then(result => result.ok ? result.value.person.id : null);
   return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="page-main profile-main personal-workspace-main">
       <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/workbench">{t("nav.primary.workspace")}</Link><span> / </span><span>{t("profile.breadcrumb.profile")}</span></Breadcrumb>
       <SectionHeading as="section" className="profile-hero">
         <div className="profile-avatar" aria-hidden="true">{initials(user.displayName)}</div>
-        <SectionHeading as="div" className="profile-hero-copy"><p className="eyebrow">{t("profile.eyebrow")}</p><PageTitle>{user.displayName}</PageTitle><p>{user.email}</p>{user.personId && <code>{user.personId}</code>}</SectionHeading>
-        <div className="profile-hero-actions">{user.personId && <ActionLink className="button profile-public-button" href={`/people/${encodeURIComponent(user.personId)}`}>{t("profile.action.public")} <span>↗</span></ActionLink>}<Link className="text-link" href={providerAwareSignOutPath(user, "/")}>{t("profile.action.signOut")} <span>→</span></Link></div>
+        <SectionHeading as="div" className="profile-hero-copy"><p className="eyebrow">{t("profile.eyebrow")}</p><PageTitle>{user.displayName}</PageTitle><p>{user.email}</p><Suspense fallback={null}><ProfilePerson id={resolvedPersonId} /></Suspense></SectionHeading>
+        <div className="profile-hero-actions"><Suspense fallback={null}><ProfilePerson id={resolvedPersonId} linkLabel={t("profile.action.public")} /></Suspense><Link className="text-link" href={providerAwareSignOutPath(user, "/")}>{t("profile.action.signOut")} <span>→</span></Link></div>
       </SectionHeading>
 
     <Suspense fallback={<ContentLoading label={t("common.loadingPage")} />}>
       <ProfileContents user={user} delegation={delegation} {...ui} />
     </Suspense>
   </SiteFrame>;
+}
+
+async function ProfilePerson({ id, linkLabel }: { id: string | Promise<string | null>; linkLabel?: string }) {
+  const personId = await id;
+  if (!personId) return null;
+  if (!linkLabel) return <code>{personId}</code>;
+  return <ActionLink className="button profile-public-button" href={`/people/${encodeURIComponent(personId)}`}>{linkLabel} <span>↗</span></ActionLink>;
 }
 
 type ProfileUI = { t: Translator; locale: Locale };
