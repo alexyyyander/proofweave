@@ -1,22 +1,21 @@
+import { Suspense } from "react";
+import { ContentLoading } from "@/app/components/ui/ContentLoading";
 import { Breadcrumb } from "@/app/components/navigation/Breadcrumb";
-import { PageTitle, SectionTitle, Badge, Field, ActionLink, EmptyState, FieldList, SectionHeading, Surface } from "@/app/components/ui";
+import { PageTitle, SectionTitle, Button, Badge, Field, ActionLink, EmptyState, FieldList, SectionHeading, Surface } from "@/app/components/ui";
 
 import { SiteFrame } from "@/app/components/shell/SiteFrame";
 
 import Link from "next/link";
-import { MissingDatabaseBindingError } from "@/db";
 import { getDelegationRepository } from "@/db/repositories/delegation";
-import { getMcpRepository } from "@/db/repositories/mcp";
 import { getPersonProfileRepository, type PublicPersonProfile } from "@/db/repositories/profiles";
-import { getProvisionalContributionRepository, ProvisionalContributionSchemaUnavailableError } from "@/db/repositories/provisional-contributions";
-import { getReviewAssignmentRepository } from "@/db/repositories/reviews";
 import { type McpAttempt } from "@/packages/domain/mcp";
 import { providerAwareSignOutPath, requireUser, toPersonIdentity, type AuthUser } from "../auth";
 
+import { loadWorkspaceOverview } from "../lib/personal-workspace-summary";
 import { PersonalWorkspaceFrame } from "../PersonalWorkspaceFrame";
 import { personalWritesPaused, ReadOnlyPersonalSurface } from "../lib/read-only-personal-surface";
 import { getI18n } from "@/app/i18n/server";
-import type { Locale } from "@/app/i18n/config";
+import { pathForLocale, type Locale } from "@/app/i18n/config";
 import type { TranslationKey, Translator } from "@/app/i18n/translate";
 import type { ContributionReceiptKind } from "@/db/repositories/receipts";
 
@@ -44,18 +43,23 @@ export default async function ProfilePage() {
       detail={t("profile.readOnly.detail", { name: user.displayName })}
     />;
   }
+  return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="page-main profile-main personal-workspace-main">
+    <Suspense fallback={<ContentLoading label={t("common.loadingPage")} />}>
+      <ProfileContents user={user} locale={locale} t={t} />
+    </Suspense>
+  </SiteFrame>;
+}
+
+async function ProfileContents({ user, locale, t }: { user: AuthUser; locale: Locale; t: Translator }) {
   const data = await loadProfile(user);
-  if (!data) return <ProfileUnavailable />;
-  const { delegation, publicProfile, attempts, reviews, provisionalBundleCount } = data;
+  if (!data) return <ProfileUnavailable locale={locale} t={t} />;
+  const { delegation, publicProfile, attempts, reviews, summary } = data;
   const activeDelegations = delegation.delegations.filter((item) => item.revokedAt === null).length;
   const activeAgents = delegation.agents.filter((agent) => agent.status === "active").length;
-  const activeAttempts = attempts.filter((attempt) => attempt.status === "active").length;
-  const activeReviews = reviews.filter((review) => review.status === "assigned" || review.status === "accepted").length;
   const completedReviews = reviews.filter((review) => review.status === "completed").length;
   const activities = recentActivity({ attempts, reviews, publicProfile, t });
 
-  return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="page-main profile-main personal-workspace-main">
-      <PersonalWorkspaceFrame active="profile">
+  return <PersonalWorkspaceFrame active="profile" summary={summary}>
       <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/workbench">{t("nav.primary.workspace")}</Link><span> / </span><span>{t("profile.breadcrumb.profile")}</span></Breadcrumb>
       <SectionHeading as="section" className="profile-hero">
         <div className="profile-avatar" aria-hidden="true">{initials(user.displayName)}</div>
@@ -72,13 +76,13 @@ export default async function ProfilePage() {
       <section className="profile-section" aria-labelledby="profile-overview-title">
         <SectionHeading as="div" className="profile-section-heading"><div><p className="eyebrow">{t("profile.overview.eyebrow")}</p><SectionTitle id="profile-overview-title">{t("profile.overview.title")}</SectionTitle></div><Badge className="record-chip">{t("profile.overview.badge")}</Badge></SectionHeading>
         <div className="profile-stat-grid">
-          <ProfileStat value={activeAttempts} label={t("profile.stat.activeAttempts")} detail={t("profile.stat.activeDetail", { count: attempts.length })} />
+          <ProfileStat value={summary.counts.activeAttempts} label={t("profile.stat.activeAttempts")} detail={t("profile.stat.activeDetail", { count: attempts.length })} />
           <ProfileStat value={publicProfile.summary.sharedCheckpoints} label={t("profile.stat.sharedCheckpoints")} detail={t("profile.stat.sharedDetail")} />
           <ProfileStat value={publicProfile.summary.verifiedReceipts} label={t("profile.stat.verifiedReceipts")} detail={t("profile.stat.receiptsDetail")} />
           <ProfileStat value={publicProfile.credits.totalUnits} label={t("profile.stat.credit")} detail={t("profile.stat.creditDetail", { count: publicProfile.credits.settledReceipts })} />
-          <ProfileStat value={completedReviews} label={t("profile.stat.completedReviews")} detail={t("profile.stat.reviewsDetail", { count: activeReviews })} />
+          <ProfileStat value={completedReviews} label={t("profile.stat.completedReviews")} detail={t("profile.stat.reviewsDetail", { count: summary.counts.activeReviews })} />
           <ProfileStat value={activeAgents} label={t("profile.stat.activeAgents")} detail={t("profile.stat.agentsDetail", { count: activeDelegations })} />
-          <ProfileStat value={provisionalBundleCount} label={t("profile.stat.stagedBundles")} detail={t("profile.stat.bundlesDetail")} />
+          <ProfileStat value={summary.counts.provisionalContributions} label={t("profile.stat.stagedBundles")} detail={t("profile.stat.bundlesDetail")} />
         </div>
       </section>
 
@@ -96,29 +100,26 @@ export default async function ProfilePage() {
       </div>
 
       <section className="profile-privacy-boundary"><div><p className="eyebrow">{t("profile.privacy.eyebrow")}</p><SectionTitle>{t("profile.privacy.title")}</SectionTitle></div><p>{t("profile.privacy.body")}</p></section>
-      </PersonalWorkspaceFrame>
-    </SiteFrame>;
+  </PersonalWorkspaceFrame>;
 }
 
 async function loadProfile(user: AuthUser) {
   try {
     const delegation = await getDelegationRepository().getProfile(toPersonIdentity(user));
-    const [publicProfile, attempts, reviews, provisional] = await Promise.all([
+    const [publicProfile, overview] = await Promise.all([
       getPersonProfileRepository().findPublicByPersonId(delegation.person.id),
-      getMcpRepository().listAttempts(delegation.person.id),
-      getReviewAssignmentRepository().listForPerson(delegation.person.id),
-      getProvisionalContributionRepository().listForPerson(delegation.person.id),
+      loadWorkspaceOverview(delegation),
     ]);
     if (!publicProfile) return null;
-    return { delegation, publicProfile, attempts, reviews, provisionalBundleCount: provisional.length };
+    return { delegation, publicProfile, ...overview };
   } catch (error) {
-    if (error instanceof MissingDatabaseBindingError || error instanceof ProvisionalContributionSchemaUnavailableError) return null;
-    throw error;
+    console.warn("Profile data unavailable", { errorType: error instanceof Error ? error.name : "unknown" });
+    return null;
   }
 }
 
-function ProfileStat({ value, label, detail }: { value: number; label: string; detail: string }) {
-  return <Surface as="article"><strong>{value}</strong><span>{label}</span><p>{detail}</p></Surface>;
+function ProfileStat({ value, label, detail }: { value: number | null; label: string; detail: string }) {
+  return <Surface as="article"><strong>{value ?? "—"}</strong><span>{label}</span><p>{detail}</p></Surface>;
 }
 
 function ProfileEmpty({ title, detail, action, href }: { title: string; detail: string; action: string; href: string }) {
@@ -148,7 +149,16 @@ function formatDate(value: string, locale: Locale) {
   return new Intl.DateTimeFormat(locale, { year: "numeric", month: "short", day: "numeric" }).format(new Date(value));
 }
 
-async function ProfileUnavailable() {
-  const { t } = await getI18n();
-  return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="page-main profile-main personal-workspace-main"><PersonalWorkspaceFrame active="profile"><SectionHeading as="section" className="review-heading"><div><p className="eyebrow">{t("profile.unavailable.eyebrow")}</p><PageTitle>{t("profile.unavailable.title")}</PageTitle><p>{t("profile.unavailable.body")}</p></div><Badge className="record-chip">{t("profile.unavailable.badge")}</Badge></SectionHeading></PersonalWorkspaceFrame></SiteFrame>;
+function ProfileUnavailable({ locale, t }: { locale: Locale; t: Translator }) {
+  return <SectionHeading as="section" className="profile-section-heading">
+      <div>
+        <p className="eyebrow">{t("profile.unavailable.eyebrow")}</p>
+        <PageTitle>{t("profile.unavailable.title")}</PageTitle>
+        <p>{t("profile.unavailable.body")}</p>
+        <form action={pathForLocale("/profile", locale)} method="get">
+          <Button type="submit">{t("explore.error.retry")}</Button>
+        </form>
+      </div>
+      <Badge className="record-chip">{t("profile.unavailable.badge")}</Badge>
+  </SectionHeading>;
 }

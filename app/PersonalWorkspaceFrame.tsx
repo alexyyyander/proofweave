@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { type ReactNode } from "react";
 import { getCurrentUser } from "./auth";
-import { loadPersonalWorkspaceSummary } from "./lib/personal-workspace-summary";
+import { loadPersonalWorkspaceSummary, type PersonalWorkspaceSummary } from "./lib/personal-workspace-summary";
 import { PersonalWorkspaceNavigation, type PersonalWorkspacePage } from "./PersonalWorkspaceNavigation";
 import { getI18n } from "./i18n/server";
 
-export async function PersonalWorkspaceFrame({ active, children }: { active: PersonalWorkspacePage; children: ReactNode }) {
+export async function PersonalWorkspaceFrame({ active, children, summary: suppliedSummary }: { active: PersonalWorkspacePage; children: ReactNode; summary?: PersonalWorkspaceSummary }) {
   const { t } = await getI18n();
   const user = await getCurrentUser();
   if (!user) return <>{children}</>;
-  const summary = await loadPersonalWorkspaceSummary(user);
+  const summary = suppliedSummary ?? await loadPersonalWorkspaceSummary(user);
   const attemptHref = summary.currentAttempt ? `/workbench/attempts/${encodeURIComponent(summary.currentAttempt.id)}` : "/workbench";
 
   return <div className="personal-workspace-frame">

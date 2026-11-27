@@ -1149,6 +1149,34 @@ test("serves the public research paths", async () => {
   assert.match(selectedWorkbenchHtml, /exact target and source revision stay selected after sign-in/i);
 });
 
+test("a signed-in profile survives missing optional data and recovers after a core read fails", async () => {
+  const headers = { "oai-authenticated-user-email": "profile-recovery@example.test" };
+  const profile = async () => {
+    const response = await render("/zh-CN/profile", { headers });
+    assert.equal(response.status, 200);
+    return response.text();
+  };
+  assert.match(await profile(), /class="profile-avatar"/);
+  await database.prepare("ALTER TABLE provisional_contributions RENAME TO offline_provisional").run();
+  try {
+    const html = await profile();
+    assert.match(html, /class="profile-avatar"/);
+    assert.match(html, /<strong>—<\/strong>/);
+  } finally {
+    await database.prepare("ALTER TABLE offline_provisional RENAME TO provisional_contributions").run();
+  }
+  await database.prepare("ALTER TABLE research_nodes RENAME TO offline_research_nodes").run();
+  try {
+    const html = await profile();
+    assert.match(html, /你的主页暂时不可用/);
+    assert.match(html, /action="\/zh-CN\/profile"/);
+    assert.doesNotMatch(html, /class="personal-workspace-frame-sidebar"/);
+  } finally {
+    await database.prepare("ALTER TABLE offline_research_nodes RENAME TO research_nodes").run();
+  }
+  assert.match(await profile(), /class="profile-avatar"/);
+});
+
 test("serves the localized shell and translated information pages", async () => {
   const chinese = await render("/about", { headers: { cookie: "pw_locale=zh-CN" } });
   assert.equal(chinese.status, 200);
