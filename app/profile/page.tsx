@@ -10,9 +10,9 @@ import { getDelegationRepository } from "@/db/repositories/delegation";
 import { getPrivateProfileFacts } from "@/db/repositories/profiles";
 import { getReceiptCreditRepository } from "@/db/repositories/receipt-credits";
 import { getContributionReceiptReader, type PublicContributionReceiptIndexItem } from "@/db/repositories/receipts";
-import { profileRead, type ProfileRead } from "../lib/profile-read";
+import { profileRead, requireProfileUser, type ProfileRead } from "../lib/profile-read";
 import { type McpAttempt } from "@/packages/domain/mcp";
-import { providerAwareSignOutPath, requireUser, toPersonIdentity, type AuthUser } from "../auth";
+import { providerAwareSignOutPath, toPersonIdentity, type AuthUser } from "../auth";
 
 import { loadWorkspaceOverview } from "../lib/personal-workspace-summary";
 import { PersonalWorkspaceFrame } from "../PersonalWorkspaceFrame";
@@ -37,9 +37,7 @@ export const dynamic = "force-dynamic";
 export default async function ProfilePage() {
   const { t, locale } = await getI18n();
   const readOnly = personalWritesPaused();
-  const sessionStart = performance.now();
-  const user = await requireUser("/profile");
-  console.info("profile_read", { stage: "session", elapsedMs: Math.round(performance.now() - sessionStart) });
+  const user = await requireProfileUser();
   if (readOnly) {
     return <ReadOnlyPersonalSurface
       active="profile"

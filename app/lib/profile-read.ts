@@ -1,3 +1,5 @@
+import { requireUser } from "../auth";
+
 type ReadStage = "delegation" | "workspace" | "facts" | "receipts" | "credits";
 
 export type ProfileRead<T> = { ok: true; value: T } | { ok: false; reference: string };
@@ -13,4 +15,11 @@ export async function profileRead<T>(stage: ReadStage, read: () => Promise<T>): 
     console.warn("profile_read_failed", { stage, reference, elapsedMs: Math.round(performance.now() - start) });
     return { ok: false, reference };
   }
+}
+
+export async function requireProfileUser() {
+  const start = performance.now();
+  const user = await requireUser("/profile");
+  console.info("profile_read", { stage: "session", elapsedMs: Math.round(performance.now() - start) });
+  return user;
 }
