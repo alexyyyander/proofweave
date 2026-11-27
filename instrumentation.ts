@@ -16,6 +16,11 @@ export const onRequestError: Instrumentation.onRequestError = (error, request, c
   if (!(error instanceof Error)) return;
   const digest = ("digest" in error ? error.digest : undefined) ?? renderDigest(error);
   if (typeof digest === "string" && /^\d{1,12}$/.test(digest)) {
-    console.error("profile_render_failed", { digest, source: context.renderSource ?? "unspecified" });
+    // Keep coordinates from the deployed JS bundle, never the raw stack or message.
+    const frame = error.stack?.split("\n").slice(1)
+      .map(line => line.match(/(?:^|[\s(/])([\w.-]+\.m?js:\d+:\d+)\)?$/)?.[1])
+      .find(Boolean);
+    const kind = error instanceof TypeError ? "TypeError" : error instanceof RangeError ? "RangeError" : "Error";
+    console.error("profile_render_failed", { digest, source: context.renderSource ?? "unspecified", kind, frame });
   }
 };

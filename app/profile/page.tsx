@@ -11,10 +11,10 @@ import { getPrivateProfileFacts } from "@/db/repositories/profiles";
 import { getReceiptCreditRepository } from "@/db/repositories/receipt-credits";
 import { getContributionReceiptReader, type PublicContributionReceiptIndexItem } from "@/db/repositories/receipts";
 import { profileRead, requireProfileUser, type ProfileRead } from "../lib/profile-read";
-import { type McpAttempt } from "@/packages/domain/mcp";
+import type { WorkspaceAttempt } from "@/db/repositories/mcp";
 import { providerAwareSignOutPath, toPersonIdentity, type AuthUser } from "../auth";
 
-import { loadWorkspaceOverview } from "../lib/personal-workspace-summary";
+import { buildWorkspaceOverview, loadWorkspaceRecords } from "../lib/personal-workspace-summary";
 import { PersonalWorkspaceFrame } from "../PersonalWorkspaceFrame";
 import { personalWritesPaused, ReadOnlyPersonalSurface } from "../lib/read-only-personal-surface";
 import { getI18n } from "@/app/i18n/server";
@@ -89,9 +89,12 @@ async function ProfileContents({ user, delegation, ...ui }: ProfileUI & {
   const facts = profileRead("facts", () => getPrivateProfileFacts(id));
   const receipts = profileRead("receipts", () => getContributionReceiptReader().listByPerson(id, 100));
   const credits = profileRead("credits", () => getReceiptCreditRepository().summaryForPerson(id));
-  const workspace = delegation.then(result => result.ok
-    ? profileRead("workspace", () => loadWorkspaceOverview(result.value))
-    : result);
+  const records = profileRead("workspace", () => loadWorkspaceRecords(id));
+  const workspace = Promise.all([delegation, records]).then(([profile, data]) => {
+    if (!profile.ok) return profile;
+    if (!data.ok) return data;
+    return { ok: true as const, value: buildWorkspaceOverview(profile.value, data.value) };
+  });
 
   return <PersonalWorkspaceFrame active="profile" summary={workspace.then(result => result.ok ? result.value.summary : null)}>
       <section className="profile-assurance" aria-label={t("profile.assurance.aria")}>
@@ -169,7 +172,7 @@ function ProfileEmpty({ title, detail, action, href }: { title: string; detail: 
 }
 
 function recentActivity({ attempts, reviews, receipts, t }: {
-  attempts: readonly McpAttempt[];
+  attempts: readonly WorkspaceAttempt[];
   reviews: readonly { id: string; target: { title: string }; status: string; assignedAt: string; completedAt: string | null }[];
   receipts: readonly PublicContributionReceiptIndexItem[];
   t: Translator;
