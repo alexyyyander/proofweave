@@ -1199,6 +1199,21 @@ test("a signed-in profile survives missing optional data and recovers after a co
   } finally {
     await database.prepare("ALTER TABLE offline_credit_entries RENAME TO receipt_credit_entries").run();
   }
+  // The private overview uses attempt metadata even when the event history is offline.
+  await database.prepare(
+    `INSERT INTO agent_attempts (id, person_id, problem_revision_id, agent_label, status, idempotency_key, updated_at)
+     VALUES ('attempt:profile-history', ?, 'problem-revision:formal-conjectures:erdos-865:main:1',
+             'Profile history fixture', 'completed', 'profile-history-test', CURRENT_TIMESTAMP)`,
+  ).bind(person).run();
+  await database.prepare("ALTER TABLE agent_attempt_events RENAME TO offline_attempt_events").run();
+  try {
+    const html = await profile();
+    assert.match(html, /Profile history fixture/);
+    assert.doesNotMatch(html, /class="profile-retry-read"/);
+  } finally {
+    await database.prepare("ALTER TABLE offline_attempt_events RENAME TO agent_attempt_events").run();
+    await database.prepare("DELETE FROM agent_attempts WHERE id = 'attempt:profile-history'").run();
+  }
   const recovered = await profile();
   assert.match(recovered, /class="profile-avatar"/);
   assert.doesNotMatch(recovered, /class="profile-retry-read"/);

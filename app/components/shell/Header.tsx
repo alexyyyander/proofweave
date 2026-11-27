@@ -9,12 +9,14 @@ import { navigationGroups, primaryNavigation, type ActivePage } from "@/app/lib/
 export async function Header({ active, activeHref, skipTarget = "main-content" }: { active: ActivePage; activeHref?: string; skipTarget?: string }) {
   const { t } = await getI18n();
 
+  const prefetch = active === "profile" ? false : undefined;
+
   return <>
     <a className="skip-link" href={`#${skipTarget}`}>{t("common.skipToMainContent")}</a>
     <header className="site-header">
-      <Link className="brand" href="/" aria-label={t("header.homeAria")}><BrandMark /><span>Proofweave</span></Link>
+      <Link prefetch={prefetch} className="brand" href="/" aria-label={t("header.homeAria")}><BrandMark /><span>Proofweave</span></Link>
       <nav className="main-nav" aria-label={t("header.primaryNavAria")}>
-        {primaryNavigation.map((item) => <Link aria-current={active === item.page ? "page" : undefined} className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{t(item.labelKey)}</Link>)}
+        {primaryNavigation.map((item) => <Link prefetch={prefetch} aria-current={active === item.page ? "page" : undefined} className={active === item.page ? "is-active" : ""} href={item.href} key={item.href}>{t(item.labelKey)}</Link>)}
       </nav>
       <div className="header-actions">
         <LocaleSwitcher />
@@ -31,7 +33,7 @@ export async function Header({ active, activeHref, skipTarget = "main-content" }
                 <strong>{t(group.labelKey)}</strong>
                 {group.items.map((item) => {
                   const isActive = navigationItemActive(active, item.href, activeHref);
-                  return <Link aria-current={isActive ? "page" : undefined} className={isActive ? "is-active" : ""} href={item.href} key={item.href}>{t(item.labelKey)}<span aria-hidden="true">→</span></Link>;
+                  return <Link prefetch={prefetch} aria-current={isActive ? "page" : undefined} className={isActive ? "is-active" : ""} href={item.href} key={item.href}>{t(item.labelKey)}<span aria-hidden="true">→</span></Link>;
                 })}
               </div>)}
             </nav>
@@ -76,10 +78,10 @@ async function AccountMenu({ active }: { active: ActivePage }) {
             <summary aria-label={t("header.accountMenuAria", { name: user.displayName })}><span className="account-avatar" aria-hidden="true">{initials(user.displayName)}</span><span className="account-menu-name">{user.displayName}</span><span className="account-chevron" aria-hidden="true">⌄</span></summary>
             <div className="account-popover">
               <div className="account-popover-identity"><strong>{user.displayName}</strong><span>{user.email} · {user.providerLabel}</span></div>
-              <Link href="/profile">{t("header.myProfile")} <span>→</span></Link>
-              <Link href="/reviews">{t("header.myReviews")} <span>→</span></Link>
-              <Link href="/settings">{t("header.agentSettings")} <span>→</span></Link>
-              <Link className="account-sign-out" href={providerAwareSignOutPath(user, "/")}>{t("header.signOut")} <span>→</span></Link>
+              <Link prefetch={false} href="/profile">{t("header.myProfile")} <span>→</span></Link>
+              <Link prefetch={false} href="/reviews">{t("header.myReviews")} <span>→</span></Link>
+              <Link prefetch={false} href="/settings">{t("header.agentSettings")} <span>→</span></Link>
+              <Link prefetch={false} className="account-sign-out" href={providerAwareSignOutPath(user, "/")}>{t("header.signOut")} <span>→</span></Link>
             </div>
           </details>
           : <Link className="header-sign-in" href={signInPath("/profile")}>{t("header.signIn")}</Link>);

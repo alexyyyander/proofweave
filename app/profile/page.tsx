@@ -11,10 +11,10 @@ import { getPrivateProfileFacts } from "@/db/repositories/profiles";
 import { getReceiptCreditRepository } from "@/db/repositories/receipt-credits";
 import { getContributionReceiptReader, type PublicContributionReceiptIndexItem } from "@/db/repositories/receipts";
 import { profileRead, requireProfileUser, type ProfileRead } from "../lib/profile-read";
-import { type McpAttempt } from "@/packages/domain/mcp";
+import type { WorkspaceAttempt } from "@/db/repositories/mcp";
 import { providerAwareSignOutPath, toPersonIdentity, type AuthUser } from "../auth";
 
-import { loadWorkspaceOverview } from "../lib/personal-workspace-summary";
+import { buildWorkspaceOverview, loadWorkspaceRecords } from "../lib/personal-workspace-summary";
 import { PersonalWorkspaceFrame } from "../PersonalWorkspaceFrame";
 import { personalWritesPaused, ReadOnlyPersonalSurface } from "../lib/read-only-personal-surface";
 import { getI18n } from "@/app/i18n/server";
@@ -52,11 +52,11 @@ export default async function ProfilePage() {
     : getDelegationRepository().getProfile(toPersonIdentity(user)));
   const resolvedPersonId = user.personId ?? delegation.then(result => result.ok ? result.value.person.id : null);
   return <SiteFrame className="site-shell app-shell" active="profile" mainClassName="page-main profile-main personal-workspace-main">
-      <Breadcrumb aria-label={t("common.breadcrumb")}><Link href="/workbench">{t("nav.primary.workspace")}</Link><span> / </span><span>{t("profile.breadcrumb.profile")}</span></Breadcrumb>
+      <Breadcrumb aria-label={t("common.breadcrumb")}><Link prefetch={false} href="/workbench">{t("nav.primary.workspace")}</Link><span> / </span><span>{t("profile.breadcrumb.profile")}</span></Breadcrumb>
       <SectionHeading as="section" className="profile-hero">
         <div className="profile-avatar" aria-hidden="true">{initials(user.displayName)}</div>
         <SectionHeading as="div" className="profile-hero-copy"><p className="eyebrow">{t("profile.eyebrow")}</p><PageTitle>{user.displayName}</PageTitle><p>{user.email}</p><Suspense fallback={null}><ProfilePerson id={resolvedPersonId} /></Suspense></SectionHeading>
-        <div className="profile-hero-actions"><Suspense fallback={null}><ProfilePerson id={resolvedPersonId} linkLabel={t("profile.action.public")} /></Suspense><Link className="text-link" href={providerAwareSignOutPath(user, "/")}>{t("profile.action.signOut")} <span>→</span></Link></div>
+        <div className="profile-hero-actions"><Suspense fallback={null}><ProfilePerson id={resolvedPersonId} linkLabel={t("profile.action.public")} /></Suspense><Link prefetch={false} className="text-link" href={providerAwareSignOutPath(user, "/")}>{t("profile.action.signOut")} <span>→</span></Link></div>
       </SectionHeading>
 
     <Suspense fallback={<ContentLoading label={t("common.loadingPage")} />}>
@@ -69,7 +69,7 @@ async function ProfilePerson({ id, linkLabel }: { id: string | Promise<string | 
   const personId = await id;
   if (!personId) return null;
   if (!linkLabel) return <code>{personId}</code>;
-  return <ActionLink className="button profile-public-button" href={`/people/${encodeURIComponent(personId)}`}>{linkLabel} <span>↗</span></ActionLink>;
+  return <ActionLink prefetch={false} className="button profile-public-button" href={`/people/${encodeURIComponent(personId)}`}>{linkLabel} <span>↗</span></ActionLink>;
 }
 
 type ProfileUI = { t: Translator; locale: Locale };
@@ -89,9 +89,12 @@ async function ProfileContents({ user, delegation, ...ui }: ProfileUI & {
   const facts = profileRead("facts", () => getPrivateProfileFacts(id));
   const receipts = profileRead("receipts", () => getContributionReceiptReader().listByPerson(id, 100));
   const credits = profileRead("credits", () => getReceiptCreditRepository().summaryForPerson(id));
-  const workspace = delegation.then(result => result.ok
-    ? profileRead("workspace", () => loadWorkspaceOverview(result.value))
-    : result);
+  const records = profileRead("workspace", () => loadWorkspaceRecords(id));
+  const workspace = Promise.all([delegation, records]).then(([profile, data]) => {
+    if (!profile.ok) return profile;
+    if (!data.ok) return data;
+    return { ok: true as const, value: buildWorkspaceOverview(profile.value, data.value) };
+  });
 
   return <PersonalWorkspaceFrame active="profile" summary={workspace.then(result => result.ok ? result.value.summary : null)}>
       <section className="profile-assurance" aria-label={t("profile.assurance.aria")}>
@@ -118,7 +121,7 @@ async function ProfileContents({ user, delegation, ...ui }: ProfileUI & {
           <SectionValue read={receipts} {...ui}>{items => {
             const activities = recentActivity({ attempts: overview.attempts, reviews: overview.reviews, receipts: items, t });
             return <section className="profile-section profile-activity" aria-labelledby="profile-activity-title">
-          <SectionHeading as="div" className="profile-section-heading compact"><div><p className="eyebrow">{t("profile.activity.eyebrow")}</p><SectionTitle id="profile-activity-title">{t("profile.activity.title")}</SectionTitle></div><Link className="text-link" href="/workbench">{t("profile.activity.openWorkspace")} <span>→</span></Link></SectionHeading>
+          <SectionHeading as="div" className="profile-section-heading compact"><div><p className="eyebrow">{t("profile.activity.eyebrow")}</p><SectionTitle id="profile-activity-title">{t("profile.activity.title")}</SectionTitle></div><Link prefetch={false} className="text-link" href="/workbench">{t("profile.activity.openWorkspace")} <span>→</span></Link></SectionHeading>
           {activities.length === 0 ? <ProfileEmpty title={t("profile.activity.emptyTitle")} detail={t("profile.activity.emptyDetail")} action={t("profile.activity.emptyAction")} href="/explore" /> : <ol className="profile-activity-list">{activities.map((activity) => <li key={activity.id}><span className={`profile-activity-mark is-${activity.tone}`} aria-hidden="true" /><div><strong>{activity.title}</strong><p>{activity.detail}</p></div><time dateTime={activity.occurredAt}>{formatDate(activity.occurredAt, locale)}</time></li>)}</ol>}
         </section>;
           }}</SectionValue>
@@ -129,7 +132,7 @@ async function ProfileContents({ user, delegation, ...ui }: ProfileUI & {
           return <aside className="profile-control-card">
           <p className="eyebrow">{t("profile.control.eyebrow")}</p><SectionTitle>{activeAgents > 0 && activeDelegations > 0 ? t("profile.control.activeTitle") : t("profile.control.setupTitle")}</SectionTitle><p>{activeAgents > 0 ? t("profile.control.activeBody", { agents: activeAgents, delegations: activeDelegations }) : t("profile.control.setupBody")}</p>
           <FieldList><Field label={t("profile.control.signingKeys")}>{delegation.signingKeys.length}</Field><Field label={t("profile.control.connections")}>{delegation.agentInstallations.filter((item) => item.status === "active").length}</Field><Field label={t("profile.control.settlement")}>{<SectionValue read={credits} {...ui}>{value => value.active ? t("profile.control.settled", { units: value.totalUnits }) : t("profile.control.unavailable")}</SectionValue>}</Field></FieldList>
-          <ActionLink className="button button-primary" href="/settings">{t("profile.control.manage")} <span>→</span></ActionLink>
+          <ActionLink prefetch={false} className="button button-primary" href="/settings">{t("profile.control.manage")} <span>→</span></ActionLink>
         </aside>;
         }}</SectionValue>
       </div>
@@ -169,7 +172,7 @@ function ProfileEmpty({ title, detail, action, href }: { title: string; detail: 
 }
 
 function recentActivity({ attempts, reviews, receipts, t }: {
-  attempts: readonly McpAttempt[];
+  attempts: readonly WorkspaceAttempt[];
   reviews: readonly { id: string; target: { title: string }; status: string; assignedAt: string; completedAt: string | null }[];
   receipts: readonly PublicContributionReceiptIndexItem[];
   t: Translator;

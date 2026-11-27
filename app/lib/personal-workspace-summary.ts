@@ -33,17 +33,16 @@ export type PersonalWorkspaceSummary = Readonly<{
 export async function loadPersonalWorkspaceSummary(user: AuthUser): Promise<PersonalWorkspaceSummary> {
   try {
     const profile = await getDelegationRepository().getProfile(toPersonIdentity(user));
-    return (await loadWorkspaceOverview(profile)).summary;
+    return buildWorkspaceOverview(profile, await loadWorkspaceRecords(profile.person.id)).summary;
   } catch (error) {
     if (error instanceof MissingDatabaseBindingError) return unavailableSummary();
     throw error;
   }
 }
 
-export async function loadWorkspaceOverview(profile: DelegationProfile) {
-  const personId = profile.person.id;
+export async function loadWorkspaceRecords(personId: string) {
   const [attempts, reviews, evidence, provisionalContributions] = await Promise.all([
-    getMcpRepository().listAttempts(personId),
+    getMcpRepository().listWorkspaceAttempts(personId),
     getReviewAssignmentRepository().listForPerson(personId),
     getEvidenceRepository().countForPerson(personId),
     getProvisionalContributionRepository().listForPerson(personId).then(rows => rows.length).catch(error => {
@@ -51,6 +50,11 @@ export async function loadWorkspaceOverview(profile: DelegationProfile) {
       throw error;
     }),
   ]);
+  return { attempts, reviews, evidence, provisionalContributions };
+}
+
+export function buildWorkspaceOverview(profile: DelegationProfile, records: Awaited<ReturnType<typeof loadWorkspaceRecords>>) {
+  const { attempts, reviews, evidence, provisionalContributions } = records;
   const connection = activeLocalCodexInstallation(profile);
   const currentAttempt = activeLocalAgentAttempt(profile, attempts)
     ?? attempts.find(attempt => attempt.status === "active")

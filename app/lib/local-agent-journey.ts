@@ -111,11 +111,11 @@ export function activeLocalCodexInstallation(
   ) ?? null;
 }
 
-export function activeLocalAgentAttempt(
+export function activeLocalAgentAttempt<T extends Pick<McpAttempt, "status" | "agentId" | "delegationScope">>(
   profile: DelegationProfile | null,
-  attempts: readonly McpAttempt[],
+  attempts: readonly T[],
   installation = activeLocalCodexInstallation(profile),
-): McpAttempt | null {
+): T | null {
   if (!installation) return null;
   return attempts.find((attempt) =>
     (attempt.status === "active" || attempt.status === "paused") &&

@@ -27,7 +27,7 @@ export function PersonalWorkspaceNavigation({
 }
 
 function WorkspaceLink({ active, href, label, value }: { active: boolean; href: string; label: string; value?: number | null }) {
-  return <Link className={active ? "is-current" : ""} href={href} aria-current={active ? "page" : undefined}>
+  return <Link prefetch={false} className={active ? "is-current" : ""} href={href} aria-current={active ? "page" : undefined}>
     <span>{label}</span>
     <b>{typeof value === "number" ? value : "↗"}</b>
   </Link>;
