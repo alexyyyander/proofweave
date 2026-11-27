@@ -244,12 +244,21 @@ export class EvidenceIntegrityError extends Error {
 }
 
 export interface EvidenceRepository {
+  countForPerson(personId: string): Promise<number>;
   listForPerson(personId: string): Promise<readonly AttemptEvidenceSummary[]>;
   getForPerson(personId: string, bundleManifestHash: string): Promise<AttemptEvidence | null>;
   getArtifactForPerson(personId: string, bundleManifestHash: string, artifactId: string): Promise<PrivateEvidenceArtifact | null>;
 }
 
 class D1EvidenceRepository implements EvidenceRepository {
+  async countForPerson(personId: string): Promise<number> {
+    requireIdentifier(personId, "evidence Person id");
+    const row = await getD1().prepare(`SELECT COUNT(*) AS total ${evidenceTables} WHERE ${personEvidenceAccess}`)
+      .bind(personId, personId).first<{ total: number }>();
+    if (!row) throw new EvidenceIntegrityError();
+    return row.total;
+  }
+
   async listForPerson(personId: string): Promise<readonly AttemptEvidenceSummary[]> {
     requireIdentifier(personId, "evidence Person id");
     const rows = await getD1()
@@ -578,6 +587,11 @@ class D1EvidenceRepository implements EvidenceRepository {
   }
 }
 
+const evidenceTables = `FROM artifact_bundles AS bundle
+ INNER JOIN agent_attempts AS attempt ON attempt.id = bundle.attempt_id
+ INNER JOIN problem_revisions AS revision ON revision.id = bundle.problem_revision_id
+ INNER JOIN projects AS project ON project.id = revision.project_id`;
+
 const baseSelect = `SELECT
   attempt.id AS attempt_id, attempt.agent_id, attempt.agent_label, attempt.updated_at,
   bundle.id AS bundle_id, bundle.manifest_hash, bundle.manifest_key,
@@ -597,10 +611,7 @@ const baseSelect = `SELECT
      AND receipt.kind <> 'verification'
    ORDER BY receipt.issued_at ASC, receipt.id ASC LIMIT 1) AS receipt_issued_at,
   CASE WHEN attempt.person_id = ? THEN 'attempt_owner' ELSE 'assigned_reviewer' END AS access_role
- FROM artifact_bundles AS bundle
- INNER JOIN agent_attempts AS attempt ON attempt.id = bundle.attempt_id
- INNER JOIN problem_revisions AS revision ON revision.id = bundle.problem_revision_id
- INNER JOIN projects AS project ON project.id = revision.project_id`;
+ ${evidenceTables}`;
 
 const personEvidenceAccess = `(attempt.person_id = ? OR EXISTS (
   SELECT 1 FROM verification_assignments AS assignment
