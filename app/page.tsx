@@ -110,12 +110,9 @@ export default async function Home() {
 
 async function LatestReceiptLink() {
   const { t, locale } = await getI18n();
-  try {
-    const [receipt] = await getContributionReceiptReader().listRecent(1);
-    return receipt && <Link className="rh-link" href={`${pathForLocale(`/receipt/${encodeURIComponent(receipt.id)}`, locale)}#receipt-verification`}>{t("home.doors.verify.action")} →</Link>;
-  } catch {
-    return null;
-  }
+  const receipts = await getContributionReceiptReader().listRecent(1).catch(() => []);
+  const receipt = receipts[0];
+  return receipt && <Link className="rh-link" href={`${pathForLocale(`/receipt/${encodeURIComponent(receipt.id)}`, locale)}#receipt-verification`}>{t("home.doors.verify.action")} →</Link>;
 }
 
 async function HomeFrontier() {
