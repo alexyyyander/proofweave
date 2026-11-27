@@ -1168,13 +1168,26 @@ test("a signed-in profile survives missing optional data and recovers after a co
   await database.prepare("ALTER TABLE research_nodes RENAME TO offline_research_nodes").run();
   try {
     const html = await profile();
-    assert.match(html, /你的主页暂时不可用/);
+    assert.match(html, /此处数据暂时不可用/);
+    assert.match(html, /class="profile-avatar"/);
+    assert.match(html, /id="profile-activity-title"/);
     assert.match(html, /action="\/zh-CN\/profile"/);
-    assert.doesNotMatch(html, /class="personal-workspace-frame-sidebar"/);
+    assert.match(html, /class="personal-workspace-frame-sidebar"/);
   } finally {
     await database.prepare("ALTER TABLE offline_research_nodes RENAME TO research_nodes").run();
   }
-  assert.match(await profile(), /class="profile-avatar"/);
+  await database.prepare("ALTER TABLE receipt_credit_entries RENAME TO offline_credit_entries").run();
+  try {
+    const html = await profile();
+    assert.match(html, /此处数据暂时不可用/);
+    assert.match(html, /id="profile-activity-title"/);
+    assert.match(html, /class="profile-avatar"/);
+  } finally {
+    await database.prepare("ALTER TABLE offline_credit_entries RENAME TO receipt_credit_entries").run();
+  }
+  const recovered = await profile();
+  assert.match(recovered, /class="profile-avatar"/);
+  assert.doesNotMatch(recovered, /class="profile-retry-read"/);
 });
 
 test("serves the localized shell and translated information pages", async () => {
