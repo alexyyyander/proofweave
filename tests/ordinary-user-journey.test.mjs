@@ -173,16 +173,16 @@ test("the home entry offers browsing only while participant writes are paused", 
   const response = await render(readOnlyWorker, "/");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /class="home-door" href="\/explore"/);
+  assert.match(html, /<a\b(?=[^>]*class="rh-primary")(?=[^>]*href="\/explore")[^>]*>/);
   assert.match(html, /Browse pinned targets/);
   assert.match(html, /Read-only · targets and evidence stay readable/);
-  assert.doesNotMatch(html, /Open the research launcher/);
+  assert.doesNotMatch(html, /class="rh-problem-start"/);
 });
 
 test("the first-run path uses action language instead of protocol vocabulary", async () => {
   const welcome = defaultVisibleText(await (await render(normalWorker, "/")).text());
-  assert.match(welcome, /Explore without an account/i);
-  assert.match(welcome, /Verify a claim/i);
+  assert.match(welcome, /Choose a research problem/i);
+  assert.match(welcome, /Verify a signed example/i);
 
   const detail = defaultVisibleText(
     await (await render(normalWorker, "/explore/erdos-865-k2")).text(),

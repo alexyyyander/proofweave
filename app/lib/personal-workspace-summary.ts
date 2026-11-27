@@ -1,5 +1,5 @@
 import { MissingDatabaseBindingError } from "@/db";
-import { getDelegationRepository } from "@/db/repositories/delegation";
+import { getDelegationRepository, type DelegationProfile } from "@/db/repositories/delegation";
 import { getEvidenceRepository } from "@/db/repositories/evidence";
 import { getMcpRepository } from "@/db/repositories/mcp";
 import {
@@ -33,45 +33,51 @@ export type PersonalWorkspaceSummary = Readonly<{
 export async function loadPersonalWorkspaceSummary(user: AuthUser): Promise<PersonalWorkspaceSummary> {
   try {
     const profile = await getDelegationRepository().getProfile(toPersonIdentity(user));
-    const [attempts, reviews, evidence] = await Promise.all([
-      getMcpRepository().listAttempts(profile.person.id),
-      getReviewAssignmentRepository().listForPerson(profile.person.id),
-      getEvidenceRepository().listForPerson(profile.person.id),
-    ]);
-    const connection = activeLocalCodexInstallation(profile);
-    const currentAttempt = activeLocalAgentAttempt(profile, attempts)
-      ?? attempts.find((attempt) => attempt.status === "active")
-      ?? attempts[0]
-      ?? null;
-    let provisionalContributions: number | null = null;
-    try {
-      provisionalContributions = (await getProvisionalContributionRepository().listForPerson(profile.person.id)).length;
-    } catch (error) {
-      if (!(error instanceof ProvisionalContributionSchemaUnavailableError)) throw error;
-    }
-
-    return {
-      available: true,
-      agent: { connected: Boolean(connection), label: connection?.agentLabel ?? null },
-      currentAttempt: currentAttempt ? {
-        id: currentAttempt.id,
-        problemSlug: currentAttempt.problemSlug,
-        problemTitle: currentAttempt.problemTitle,
-        scope: currentAttempt.delegationScope,
-        status: currentAttempt.status,
-        updatedAt: currentAttempt.updatedAt,
-      } : null,
-      counts: {
-        activeAttempts: attempts.filter((attempt) => attempt.status === "active").length,
-        activeReviews: reviews.filter((review) => review.status === "assigned" || review.status === "accepted").length,
-        evidence: evidence.length,
-        provisionalContributions,
-      },
-    };
+    return buildWorkspaceOverview(profile, await loadWorkspaceRecords(profile.person.id)).summary;
   } catch (error) {
     if (error instanceof MissingDatabaseBindingError) return unavailableSummary();
     throw error;
   }
+}
+
+export async function loadWorkspaceRecords(personId: string) {
+  const [attempts, reviews, evidence, provisionalContributions] = await Promise.all([
+    getMcpRepository().listWorkspaceAttempts(personId),
+    getReviewAssignmentRepository().listForPerson(personId),
+    getEvidenceRepository().countForPerson(personId),
+    getProvisionalContributionRepository().listForPerson(personId).then(rows => rows.length).catch(error => {
+      if (error instanceof ProvisionalContributionSchemaUnavailableError) return null;
+      throw error;
+    }),
+  ]);
+  return { attempts, reviews, evidence, provisionalContributions };
+}
+
+export function buildWorkspaceOverview(profile: DelegationProfile, records: Awaited<ReturnType<typeof loadWorkspaceRecords>>) {
+  const { attempts, reviews, evidence, provisionalContributions } = records;
+  const connection = activeLocalCodexInstallation(profile);
+  const currentAttempt = activeLocalAgentAttempt(profile, attempts)
+    ?? attempts.find(attempt => attempt.status === "active")
+    ?? attempts[0];
+  const summary = {
+    available: true,
+    agent: { connected: Boolean(connection), label: connection?.agentLabel ?? null },
+    currentAttempt: currentAttempt ? {
+      id: currentAttempt.id,
+      problemSlug: currentAttempt.problemSlug,
+      problemTitle: currentAttempt.problemTitle,
+      scope: currentAttempt.delegationScope,
+      status: currentAttempt.status,
+      updatedAt: currentAttempt.updatedAt,
+    } : null,
+    counts: {
+      activeAttempts: attempts.filter(attempt => attempt.status === "active").length,
+      activeReviews: reviews.filter(review => review.status === "assigned" || review.status === "accepted").length,
+      evidence,
+      provisionalContributions,
+    },
+  } satisfies PersonalWorkspaceSummary;
+  return { attempts, reviews, summary };
 }
 
 function unavailableSummary(): PersonalWorkspaceSummary {

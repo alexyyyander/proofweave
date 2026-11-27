@@ -22,6 +22,8 @@
 .account-popover > .account-sign-out { border-top: var(--border-width) solid var(--line); color: var(--fail); margin-top: 5px; }
 
 .profile-main, .public-profile-main { max-width: 1120px; }
+.profile-retry-read { display: grid; justify-items: start; gap: 6px; }
+.profile-retry-read small { overflow-wrap: anywhere; }
 .profile-hero { align-items: center; background: var(--navy); color: var(--on-navy); display: grid; gap: 24px; grid-template-columns: auto minmax(0, 1fr) auto; padding: 30px; }
 .profile-avatar { align-items: center; background: var(--indigo-soft); border: var(--border-width) solid var(--line-inverse); border-radius: var(--radius-circle); color: var(--navy-line); display: flex; flex: 0 0 auto; font-family: var(--font-editorial); font-size: var(--display-xl); height: 82px; justify-content: center; letter-spacing: -.04em; width: 82px; }
 .profile-avatar.is-public { background: var(--indigo-soft); color: var(--navy-line); }

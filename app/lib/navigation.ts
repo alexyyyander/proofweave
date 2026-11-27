@@ -30,6 +30,7 @@ export const navigationGroups: readonly { labelKey: TranslationKey; items: reado
       { href: "/publications", labelKey: "nav.item.publications" },
       { href: "/proof-evolution", labelKey: "nav.item.proofMaps" },
       { href: "/reviews", labelKey: "nav.item.reviewQueue" },
+      { href: "/receipts", labelKey: "nav.item.contributionRecords" },
     ],
   },
   {

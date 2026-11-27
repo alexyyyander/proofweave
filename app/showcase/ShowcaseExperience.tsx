@@ -1,5 +1,7 @@
 "use client";
 
+import { CodeBlock, SectionTitle, CardTitle } from "@/app/components/ui/primitives";
+
 import Link from "next/link";
 import { useState } from "react";
 import { StepNavigation } from "@/app/components/navigation/StepNavigation";
@@ -19,19 +21,19 @@ export function ShowcaseExperience({ nodes }: { nodes: JourneyNode[] }) {
   });
 
   return <section className={`rh-section ${styles.root}`} id="proof-journey" aria-labelledby="showcase-journey-title">
-    <h2 id="showcase-journey-title">{t("showcase.title")}</h2>
+    <SectionTitle id="showcase-journey-title">{t("showcase.title")}</SectionTitle>
     <p className={styles.intro}>{t("showcase.guide")}</p>
     <StepNavigation className={styles.steps} items={items} label={t("showcase.stepsAria")} activeIndex={activeIndex} onSelect={select} />
     <article className={styles.preview} aria-labelledby="journey-artifact">
       <div className={styles.copy} aria-live="polite" aria-atomic="true">
-        <h3 id="journey-artifact">{t(`showcase.artifact.${active.id === "frontier" ? "target" : active.id}`)}</h3>
+        <CardTitle id="journey-artifact">{t(`showcase.artifact.${active.id === "frontier" ? "target" : active.id}`)}</CardTitle>
         <p>{t(`showcase.explain.${active.id}`)}</p>
         {active.id === "receipt" && <a className="rh-link" href="#credit-rules">{t("showcase.creditRules")} ↑</a>}
         <strong data-pass={active.passed}>{active.id === "frontier" ? t("showcase.stage.frontier.state") : t(active.passed ? "showcase.state.passed" : "showcase.state.failed")}</strong>
       </div>
       <div className={styles.evidence}>
         <div>{active.id === "frontier" ? "ProofweaveFixture.lean" : t("showcase.excerpt")}</div>
-        <pre key={active.id} tabIndex={0} aria-label={items[activeIndex].accessibleLabel}><code>{active.excerpt}</code></pre>
+        <CodeBlock key={active.id} tabIndex={0} aria-label={items[activeIndex].accessibleLabel}><code>{active.excerpt}</code></CodeBlock>
       </div>
     </article>
     <Link className="rh-link" href={pathForLocale("/demo", locale) + "#verification-console"}>{t("showcase.footer.inspect")} →</Link>

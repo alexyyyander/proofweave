@@ -7,7 +7,8 @@ import ts from "typescript";
 import { LibsqlD1Database } from "../services/database/libsql-d1-adapter.mjs";
 
 const repositorySource = (await readFile(new URL("../db/repositories/account-auth.ts", import.meta.url), "utf8"))
-  .replace('import { getAccountAuthD1 as getD1 } from "@/db";', 'const getD1 = () => globalThis.__identityConcurrencyDB;');
+  .replace('"@/services/database/research-beta.mjs"', JSON.stringify(new URL('../services/database/research-beta.mjs', import.meta.url).href))
+  .replace('import { getAccountAuthD1 as getD1, getResearchWriteAllowlistValues } from "@/db";', 'const getResearchWriteAllowlistValues = () => ({}); const getD1 = () => globalThis.__identityConcurrencyDB;');
 const compiled = ts.transpileModule(repositorySource, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText;
 const { AccountAuthRepository } = await import("data:text/javascript;base64," + Buffer.from(compiled).toString("base64"));
 const migrationsRoot = new URL("../drizzle/", import.meta.url);

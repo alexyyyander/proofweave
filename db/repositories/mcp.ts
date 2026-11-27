@@ -121,6 +121,10 @@ type RunSummaryRow = {
 };
 type RunnerKeyRow = { public_key: string };
 
+export type WorkspaceAttempt = Pick<McpAttempt,
+  "id" | "problemSlug" | "problemTitle" | "agentId" | "agentLabel" | "delegationScope" | "status" | "updatedAt"
+>;
+
 const attemptSelect = `
   SELECT
     attempt.id,
@@ -167,6 +171,7 @@ export interface McpRepository {
   ): Promise<Readonly<{ value: McpAttempt; changed: boolean }> | null>;
   findAttempt(personId: string, attemptId: string): Promise<McpAttempt | null>;
   listAttempts(personId: string): Promise<McpAttempt[]>;
+  listWorkspaceAttempts(personId: string): Promise<WorkspaceAttempt[]>;
   listRunSummaries(personId: string): Promise<readonly McpRunSummary[]>;
 }
 
@@ -584,7 +589,7 @@ class D1McpRepository implements McpRepository {
     return toAttempt(row, events.results ?? []);
   }
 
-  async listAttempts(personId: string): Promise<McpAttempt[]> {
+  private async listAttemptRows(personId: string): Promise<AttemptRow[]> {
     const database = getD1();
     const rows = await database
       .prepare(
@@ -594,10 +599,19 @@ class D1McpRepository implements McpRepository {
       )
       .bind(personId)
       .all<AttemptRow>();
-    const attemptRows: AttemptRow[] = rows.results ?? [];
+    return rows.results ?? [];
+  }
+
+  async listWorkspaceAttempts(personId: string): Promise<WorkspaceAttempt[]> {
+    const rows = await this.listAttemptRows(personId);
+    return rows.map(toWorkspaceAttempt);
+  }
+
+  async listAttempts(personId: string): Promise<McpAttempt[]> {
+    const attemptRows = await this.listAttemptRows(personId);
     if (attemptRows.length === 0) return [];
 
-    const events = await database
+    const events = await getD1()
       .prepare(
         `SELECT attempt_event.attempt_id, attempt_event.id, attempt_event.sequence,
                 attempt_event.event_type, attempt_event.message,
@@ -726,20 +740,26 @@ function toEvent(row: EventRow): McpAttemptEvent {
   };
 }
 
-function toAttempt(row: AttemptRow, events: readonly EventRow[]): McpAttempt {
+function toWorkspaceAttempt(row: AttemptRow): WorkspaceAttempt {
   return {
     id: row.id,
-    problemRevisionId: row.problem_revision_id,
     problemSlug: row.problem_slug,
     problemTitle: row.problem_title,
     agentId: row.agent_id,
     agentLabel: row.agent_label,
-    delegationCertificateId: row.delegation_certificate_id,
     delegationScope: row.delegation_scope,
     status: row.status,
+    updatedAt: row.updated_at,
+  };
+}
+
+function toAttempt(row: AttemptRow, events: readonly EventRow[]): McpAttempt {
+  return {
+    ...toWorkspaceAttempt(row),
+    problemRevisionId: row.problem_revision_id,
+    delegationCertificateId: row.delegation_certificate_id,
     lastProgressPercent: row.last_progress_percent,
     createdAt: row.created_at,
-    updatedAt: row.updated_at,
     events: events.map(toEvent),
     verificationState: agentReportedOnly,
   };
