@@ -1150,7 +1150,17 @@ test("serves the public research paths", async () => {
 });
 
 test("a signed-in profile survives missing optional data and recovers after a core read fails", async () => {
-  const headers = { "oai-authenticated-user-email": "profile-recovery@example.test" };
+  const token = "profile-recovery-test-session";
+  const person = "person:rendered-reviewer";
+  await database.prepare(
+    `INSERT INTO person_identities (id, person_id, provider, provider_subject, email, email_normalized, display_name, email_verified_at, updated_at)
+     VALUES ('identity:profile-recovery', ?, 'google', 'profile-recovery', 'reviewer@example.test', 'reviewer@example.test', 'Review Person', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`,
+  ).bind(person).run();
+  await database.prepare(
+    `INSERT INTO app_sessions (id, person_id, identity_id, token_hash, expires_at, created_at)
+     VALUES ('session:profile-recovery', ?, 'identity:profile-recovery', ?, '2099-01-01T00:00:00Z', CURRENT_TIMESTAMP)`,
+  ).bind(person, await sha256(token)).run();
+  const headers = { cookie: `__Host-pw_session=${token}` };
   const profile = async () => {
     const response = await render("/zh-CN/profile", { headers });
     assert.equal(response.status, 200);
