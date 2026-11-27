@@ -40,7 +40,7 @@ export default async function Home() {
               title={<>{t("home.research.lead")}<br/><em>{t("home.research.accent")}</em></>}
               description={t("home.research.intro")}>
               <div className="rh-actions">
-                <Link className="rh-primary" href="/explore">{t(writesEnabled ? "home.research.start" : "home.doors.start.actionPaused")} <span aria-hidden="true">→</span></Link>
+                <Link className="rh-primary" href={pathForLocale("/explore", locale)}>{t(writesEnabled ? "home.research.start" : "home.doors.start.actionPaused")} <span aria-hidden="true">→</span></Link>
                 <a className="rh-secondary" href="#verification-console">{t("home.research.example")} <span aria-hidden="true">↓</span></a>
               </div>
               {!writesEnabled && <p>{t("home.doors.start.notePaused")}</p>}

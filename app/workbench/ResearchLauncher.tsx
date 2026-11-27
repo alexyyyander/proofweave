@@ -64,7 +64,6 @@ export function ResearchLauncher({
     : "/integrations#codex-beta";
   const scope = preferredScope(delegation);
   const activeCount = attempts.filter((attempt) => attempt.status === "active").length;
-  const atCapacity = activeCount >= closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson;
   const existing = target && connection && delegation
     ? attempts.find((attempt) =>
       (attempt.status === "active" || attempt.status === "paused") &&
@@ -73,6 +72,7 @@ export function ResearchLauncher({
       attempt.delegationScope === scope,
     ) ?? null
     : null;
+  const atCreationLimit = !existing && activeCount >= closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson;
   const creationBlockedByWindow = eligibility ? !eligibility.canCreateAttempt : false;
   const connectedAgentAllowed = !eligibility || !connection
     ? true
@@ -125,7 +125,7 @@ export function ResearchLauncher({
       setError(windowBlocked?.detail ?? t("researchLauncher.error.newWindow"));
       return;
     }
-    if (!target || !delegation || !scope || isStarting || atCapacity) return;
+    if (!target || !delegation || !scope || isStarting || atCreationLimit) return;
     setError(null);
     setNotice(null);
     if (existing) {
@@ -246,12 +246,12 @@ export function ResearchLauncher({
       </div>}
       <div className="research-launcher-footer">
         <p>{t("researchLauncher.footer.ready", { agent: connection.agentLabel })}</p>
-        <Button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || atCapacity || (newAttemptBlocked && !existing) || continueBlocked}>
-          {isStarting ? t("researchLauncher.footer.starting") : existing ? t("researchLauncher.footer.continue") : atCapacity ? t("researchLauncher.footer.capacity") : t("researchLauncher.footer.start")}
-          {!isStarting && !atCapacity && <span aria-hidden="true">→</span>}
+        <Button className="button button-primary" type="button" onClick={() => { void start(); }} disabled={isStarting || atCreationLimit || (newAttemptBlocked && !existing) || continueBlocked}>
+          {isStarting ? t("researchLauncher.footer.starting") : existing ? t("researchLauncher.footer.continue") : atCreationLimit ? t("researchLauncher.footer.capacity") : t("researchLauncher.footer.start")}
+          {!isStarting && !atCreationLimit && <span aria-hidden="true">→</span>}
         </Button>
       </div>
-      {atCapacity && <p className="research-launcher-message is-error" role="alert">{t("researchLauncher.capacity", { max: closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson })}</p>}
+      {atCreationLimit && <p className="research-launcher-message is-error" role="alert">{t("researchLauncher.capacity", { max: closedAlphaAttemptLimits.maximumActiveAttemptsPerPerson })}</p>}
       {notice && <p className="research-launcher-message is-success" role="status">{notice}</p>}
       {error && <p className="research-launcher-message is-error" role="alert">{error}</p>}
     </div>}

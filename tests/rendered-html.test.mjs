@@ -99,6 +99,11 @@ async function render(pathname = "/", init = {}) {
   );
 }
 
+// Match rendered markup without mistaking client dictionaries in scripts for page content.
+function renderedMarkup(html) {
+  return html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "").replace(/<!--[\s\S]*?-->/g, "");
+}
+
 // Resolve local imports so stylesheet organization does not weaken visual contracts.
 async function readLocalStyles(url, seen = new Set()) {
   if (seen.has(url.href)) return "";
@@ -110,10 +115,10 @@ async function readLocalStyles(url, seen = new Set()) {
 }
 
 test("five primary destinations share a single accessible page introduction", async () => {
-  for (const [path, label] of [["/", "Overview"], ["/explore", "Research"], ["/workbench", "Workspace"], ["/history", "AI record"], ["/about", "About"]]) {
+  for (const [path, label] of [["/", "Public alpha"], ["/explore", "Research"], ["/workbench", "Workspace"], ["/history", "AI record"], ["/about", "About"]]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
-    const html = await response.text();
+    const html = renderedMarkup(await response.text());
     assert.equal((html.match(/<h1\b/g) ?? []).length, 1, `${path} must have one page heading`);
     assert.match(html, /class="ui-page-title page-intro__title"/, path);
     assert.ok(html.includes(`class="page-intro__label">${label}</p>`), path);
@@ -946,21 +951,21 @@ test("server-renders the Proofweave welcome page", async () => {
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
-  const html = await response.text();
+  const html = renderedMarkup(await response.text());
   assert.match(
     html,
     /<title>Proofweave — Advance mathematics through your agent<\/title>/i,
   );
-  assert.match(html, /Advance mathematics through your Agent/i);
+  assert.match(html, /<h1\b[^>]*>Let’s do math<br\s*\/?><em>together\.<\/em><\/h1>/i);
   assert.match(html, /Public alpha/i);
   assert.match(html, /href="\/demo"/i);
-  assert.match(html, /Verify a claim/i);
-  assert.match(html, /Contribution records/i);
+  assert.match(html, /Verify a signed example/i);
+  assert.match(html, /Research library/i);
   assert.match(html, /brand-mark/i);
   assert.doesNotMatch(html, /proof-paper-mark/i);
-  assert.match(html, /Start a target/i);
+  assert.match(html, /Choose a research problem/i);
   assert.match(html, /id="proof-journey"/i);
-  assert.match(html, /Two ways in/i);
+  assert.match(html, /Change one byte in a copy/i);
 });
 
 test("guides a public visitor through the first accountable contribution path", async () => {
@@ -993,7 +998,6 @@ test("consolidates six introduction URLs into two guides without breaking old li
 
 test("serves the public research paths", async () => {
   const expectedPageContent = new Map([
-    ["/showcase", /See a proof become[\s\S]*public contribution/i],
     ["/demo", /Watch one Lean proof become/i],
     ["/history", /From Erdős problems to a formalization frontier/i],
     ["/explore", /Search the frontier\. Choose one exact next action/i],
@@ -1220,14 +1224,14 @@ test("serves the localized shell and translated information pages", async () => 
 
   const localizedHeaders = { headers: { cookie: "pw_locale=zh-CN" } };
   const home = await render("/", localizedHeaders);
-  const homeHtml = await home.text();
-  assert.match(homeHtml, /让一个证明成为/);
-  assert.match(homeHtml, /公开贡献/);
-  assert.match(homeHtml, /个人委派的形式化数学/);
-  assert.match(homeHtml, /核查一项主张/);
-  assert.match(homeHtml, /开始一个目标/);
-  assert.match(homeHtml, /Person 委派有效/);
-  assert.match(homeHtml, /参考证据检查/);
+  const homeHtml = renderedMarkup(await home.text());
+  assert.match(homeHtml, /让全世界/);
+  assert.match(homeHtml, /一起做数学/);
+  assert.match(homeHtml, /公开 Alpha/);
+  assert.match(homeHtml, /验证签名示例/);
+  assert.match(homeHtml, /<a\b[^>]*href="\/zh-CN\/explore"[^>]*>选一道题开始研究/);
+  assert.match(homeHtml, /研究授权有效/);
+  assert.match(homeHtml, /改动副本的一个字节/);
   assert.doesNotMatch(homeHtml, /筛选工作台任务/);
 
   const explore = await render("/explore", localizedHeaders);
@@ -1438,16 +1442,12 @@ test("serves the localized shell and translated information pages", async () => 
 test("the home doors reflect the deployment write window and published receipts", async () => {
   const response = await render("/");
   assert.equal(response.status, 200);
-  const html = await response.text();
-  // This harness runs the participant surface with writes enabled and has not
-  // published a receipt yet, so the first door must fall back to the reference
-  // console and the second must open the research launcher.
-  assert.match(html, /class="home-door" href="\/workbench#research-launcher"/);
-  assert.match(html, /Open the research launcher/);
-  assert.match(html, /Private by default · you decide what is published/);
-  assert.match(html, /class="home-door" href="#verification-console"/);
-  assert.match(html, /Open the verification console/);
-  assert.match(html, /Reference run: \d+\/\d+ checks pass/);
+  const html = renderedMarkup(await response.text());
+  assert.match(html, /<a\b(?=[^>]*class="rh-primary")(?=[^>]*href="\/explore")[^>]*>/);
+  assert.match(html, /class="rh-problem-start"/);
+  assert.match(html, /class="rh-secondary" href="#verification-console"/);
+  assert.match(html, /id="verification-console"/);
+  assert.doesNotMatch(html, /href="\/receipt\/[^"]+#receipt-verification"/);
   assert.doesNotMatch(html, /Browse pinned targets/);
 });
 
@@ -1483,12 +1483,12 @@ test("keeps information hubs content-driven across viewport heights", async () =
 test("keeps the public directory separate from the personal workspace", async () => {
   const page = await render("/");
   assert.equal(page.status, 200);
-  const html = await page.text();
+  const html = renderedMarkup(await page.text());
   assert.match(html, /Open Proofweave directory/i);
   assert.match(html, /Proofweave menu/i);
   assert.match(html, /Five core surfaces/i);
   assert.match(html, /class="main-nav"[\s\S]*href="\/explore"[\s\S]*href="\/workbench"[\s\S]*href="\/history"[\s\S]*href="\/about"/i);
-  assert.match(html, /Core pages[\s\S]*Research tools[\s\S]*Review queue[\s\S]*Contribution records[\s\S]*Reference/i);
+  assert.match(html, /Core pages[\s\S]*Research tools[\s\S]*Review queue[\s\S]*<a\b[^>]*href="\/receipts"[^>]*>Contribution records<span\b[\s\S]*Reference/i);
   assert.doesNotMatch(html, /<strong>Workspace<\/strong>/i);
   assert.match(html, /href="\/workbench"[^>]*>Workspace<\/a>/i);
   assert.doesNotMatch(html, /aria-label="Footer navigation"/i);
@@ -1665,21 +1665,28 @@ test("records an attributed problem proposal without promoting it to a theorem o
   );
 });
 
-test("preserves the showcase URL as a redirect to the overview proof journey", async () => {
-  const redirect = await render("/showcase", { redirect: "manual" });
-  assert.equal(redirect.status, 307);
-  assert.match(redirect.headers.get("location") ?? "", /\/#proof-journey$/);
-  const page = await render("/");
-  assert.equal(page.status, 200);
-  const html = await page.text();
-  assert.match(html, /One theorem · six evidence moments/i);
-  assert.match(html, /Pinned declaration/i);
-  assert.match(html, /This story does not run Lean or publish work/i);
-  assert.match(html, /Frontier question/i);
-  assert.match(html, /Independent review/i);
-  assert.match(html, /aria-label="06 Receipt"/i);
-  assert.match(html, /href="#verification-console"/i);
-  assert.match(html, /id="verification-console"/i);
+test("legacy showcase links reach the evidence chain in the requested language", async () => {
+  for (const [source, target, title, labels, disclosure] of [
+    ["/showcase", "/", "From problem statement to contribution receipt", ["Target", "Delegate", "Bundle", "Kernel", "Review", "Receipt"], "Reviewer identities are simulated"],
+    ["/zh-CN/showcase", "/zh-CN", "从题面到贡献收据", ["题面", "委派", "证据包", "内核", "评审", "收据"], "示例使用模拟评审身份"],
+  ]) {
+    const redirect = await render(source, { redirect: "manual" });
+    assert.equal(redirect.status, 307, source);
+    const location = new URL(redirect.headers.get("location"));
+    assert.equal(location.origin, "http://localhost");
+    assert.equal(location.pathname + location.hash, target + "#proof-journey");
+    const page = await render(location.pathname);
+    assert.equal(page.status, 200);
+    const html = renderedMarkup(await page.text());
+    assert.ok(html.includes('id="proof-journey"'));
+    assert.ok(html.includes(title), title);
+    assert.ok(html.includes(disclosure));
+    for (const [index, label] of labels.entries()) {
+      assert.ok(html.includes(`aria-label="0${index + 1} ${label}"`), label);
+    }
+    assert.match(html, /href="#verification-console"/);
+    assert.match(html, /id="verification-console"/);
+  }
 });
 
 test("uses a Google app session for the same stable Person and private account boundary", async () => {
@@ -2299,6 +2306,10 @@ test("imports the pinned catalog idempotently and serves provenance through the 
 
 test("renders only a hash-checked, issuer-signed receipt from D1", async () => {
   const { receipt, receiptHash, upstreamReceipt, upstreamReceiptHash, smokeReceipt, lifecycleEvent } = await getSignedReceiptFixture();
+  const home = renderedMarkup(await (await render("/")).text());
+  assert.ok(home.includes(`href="/receipt/${encodeURIComponent(receipt.id)}#receipt-verification"`));
+  assert.ok(!home.includes(`href="/receipt/${encodeURIComponent(smokeReceipt.id)}#receipt-verification"`));
+
 
   const response = await render(`/api/receipts/${receipt.id}`);
   assert.equal(response.status, 200);
@@ -3890,12 +3901,23 @@ test("Explore bounds SSR and API results and applies filters before pagination",
 
 test("homepage selects only three complete public research records", async () => {
   const records = (await (await render("/api/catalog")).json()).records;
-  const html = await (await render("/")).text();
-  const cards = [...html.matchAll(/<article class="ui-surface ui-surface-plain project-card">([\s\S]*?)<\/article>/g)].map(match => match[1]);
+  const html = renderedMarkup(await (await render("/")).text());
+  const cards = [...html.matchAll(/<article class="rh-problem"[^>]*>([\s\S]*?)<\/article>/g)].map(match => match[1]);
   assert.equal(cards.length, 3);
+  const expectedMaterial = {
+    "erdos-865": "Lean statement ready, proof open",
+    "cycle-double-cover-conjecture": "Upstream proof claim available",
+    "p-vs-np": "Lean statement ready, proof open",
+  };
   for (const [index, card] of cards.entries()) {
     assert.ok(card.includes(`/explore/${records[index].slug}`));
-    for (const status of records[index].displayStatuses) assert.ok(card.includes(status), status);
+    assert.ok(card.includes(`/workbench?target=${records[index].slug}#research-launcher`));
+    const material = expectedMaterial[records[index].slug];
+    assert.ok(material, records[index].slug);
+    assert.ok(card.includes(`<dt>Research material</dt><dd>${material}</dd>`));
+    assert.ok(card.includes("<dt>Platform kernel</dt><dd>No acceptance recorded</dd>"));
+    assert.match(card, /Open problem/);
+    assert.match(card, /<dt>Sponsorship<\/dt><dd>(?:Sponsored|No published sponsorship)/);
   }
 });
 
